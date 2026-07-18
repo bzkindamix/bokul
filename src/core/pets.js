@@ -82,6 +82,11 @@
       const act = (def.care || []).find(a => a.id === actionId);
       if (!act) return { ok: false, err: 'Aksiyon yok.' };
       if (B.Pets.cooldownLeft(pet, act) > 0) return { ok: false, err: 'Biraz bekle, sonra tekrar yap.' };
+      // İşe yarar mı? İlgili statlar zaten doluysa malzeme boşa harcanmasın
+      if (act.restore) {
+        const useful = Object.keys(act.restore).some(s => act.restore[s] > 0 && (pet[s] || 0) < 100);
+        if (!useful) return { ok: false, err: (pet.name || 'O') + ' zaten gayet iyi — şimdi gerek yok.' };
+      }
       // Malzeme gerekiyor mu?
       if (act.consume) {
         for (const k in act.consume) if (!B.Items.have(k, act.consume[k])) {
