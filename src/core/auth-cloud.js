@@ -122,6 +122,22 @@
       catch (e) { return { ok: false, err: trErr(e.message) }; }
     },
 
+    /* Ebeveyn hesabını Firebase'den kalıcı sil (yalnızca kullanıcının kendi isteğiyle) */
+    async deleteAccount() {
+      const t = await freshToken();
+      if (!t) return { ok: false, err: 'Oturum bulunamadı.' };
+      try {
+        await post(IDT + 'delete', { idToken: t });
+        B.AuthCloud.logout();
+        return { ok: true };
+      } catch (e) {
+        const m = e.message || '';
+        if (/CREDENTIAL_TOO_OLD|LOGIN_AGAIN|TOKEN_EXPIRED/i.test(m))
+          return { ok: false, err: 'Güvenlik için önce çıkış yapıp tekrar giriş yap, sonra sil.' };
+        return { ok: false, err: trErr(m) };
+      }
+    },
+
     /* Google ile giriş (Firebase Web SDK popup; talep anında yüklenir) */
     async googleSignIn() {
       try {

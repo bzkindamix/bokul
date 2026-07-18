@@ -35,15 +35,22 @@
         '<button class="btn door door-side door-evim">🏠<br>EVİM</button>';
       root.appendChild(doors);
 
+      // Ebeveyn kilidi: engelli özellikler tıklanınca uyarı verir
+      function gate(el, feature, go) {
+        if (B.Perms.feature(feature)) { el.onclick = go; return; }
+        el.classList.add('feat-locked');
+        el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); };
+      }
+
       doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('world'); };
-      doors.querySelector('.door-evim').onclick = () => { B.Audio.play('tick'); B.UI.show('evim'); };
-      doors.querySelector('.door-quests').onclick = () => { B.Audio.play('tick'); B.UI.show('quests'); };
+      gate(doors.querySelector('.door-evim'), 'shop', () => { B.Audio.play('tick'); B.UI.show('evim'); });
+      gate(doors.querySelector('.door-quests'), 'quests', () => { B.Audio.play('tick'); B.UI.show('quests'); });
 
       // Hikâyeyi tekrar izleme
       const replay = document.createElement('button');
       replay.className = 'chip home-story';
       replay.textContent = '🎬 Hikâyeyi izle';
-      replay.onclick = () => B.UI.show('intro', { replay: true });
+      gate(replay, 'story', () => B.UI.show('intro', { replay: true }));
       root.appendChild(replay);
 
       // Dilek Kutusu (ödül isteği + oyun fikri)
@@ -51,7 +58,7 @@
       wish.className = 'chip home-wishes';
       const earned = (B.State.data.wishes || []).some(w => w.status === 'earned');
       wish.textContent = '🎁 Dilek Kutusu' + (earned ? ' 🎉' : '');
-      wish.onclick = () => B.UI.show('wishes');
+      gate(wish, 'wishes', () => B.UI.show('wishes'));
       root.appendChild(wish);
 
       // Oyuncu değiştir / çıkış

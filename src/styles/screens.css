@@ -496,3 +496,63 @@
 .consent-accept[disabled] { opacity: .4; pointer-events: none; }
 .google-btn { width: 100%; max-width: 320px; background: #fff; color: #202124; font-weight: 700; }
 .consent-or { color: var(--ink-dim); font-size: 12px; text-align: center; margin: 8px 0; }
+
+/* ---------- v0.23: Google giriş/kayıt + izinler + hesap ayarları ---------- */
+/* Google iki buton (giriş / kayıt) */
+.google-row { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.google-signup { background: #eafff3; color: #0b3d24; }
+
+/* Kilitli ders/özellik (çocuk tarafı) */
+.world-locked { opacity: .72; filter: grayscale(.4); }
+.world-lock-note { display: block; font-size: 12px; color: var(--warn); margin-top: 2px; }
+.feat-locked { opacity: .5; filter: grayscale(.6); }
+
+/* Aç/kapa anahtarı (switch) */
+.adm-switch { position: relative; display: inline-block; width: 46px; height: 26px; flex: none; }
+.adm-switch input { opacity: 0; width: 0; height: 0; }
+.adm-slider {
+  position: absolute; inset: 0; cursor: pointer; background: var(--bg-deep);
+  border: 1px solid var(--line); border-radius: 26px; transition: .18s;
+}
+.adm-slider::before {
+  content: ''; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px;
+  background: var(--ink-dim); border-radius: 50%; transition: .18s;
+}
+.adm-switch input:checked + .adm-slider { background: var(--success); border-color: var(--success); }
+.adm-switch input:checked + .adm-slider::before { transform: translateX(20px); background: #fff; }
+
+/* İzin satırları */
+.adm-perm-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 8px 4px; border-bottom: 1px dashed var(--line);
+}
+.adm-perm-lbl { font-size: 14px; }
+.adm-perm-h { font-weight: 800; font-size: 13px; color: var(--xp); margin: 12px 0 2px; }
+.adm-hint { font-size: 12.5px; color: var(--ink-dim); background: var(--bg-deep); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; line-height: 1.4; }
+
+/* Hesap ayar menüsü (farklı menüler) */
+.acc-menu { display: flex; flex-direction: column; gap: 8px; }
+.acc-item {
+  display: flex; align-items: center; gap: 12px; text-align: left; width: 100%;
+  background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px;
+}
+.acc-item:active { transform: translateY(1px); }
+.acc-ic { font-size: 24px; flex: none; }
+.acc-tt { flex: 1; display: flex; flex-direction: column; }
+.acc-tt b { font-size: 15px; }
+.acc-tt small { font-size: 12px; color: var(--ink-dim); }
+.acc-go { color: var(--ink-dim); font-size: 18px; }
+
+.acc-info { background: var(--bg-deep); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13.5px; line-height: 1.6; margin: 6px 0; }
+.acc-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.acc-actions .btn { width: 100%; }
+.acc-profs { display: flex; flex-direction: column; gap: 8px; max-height: 50vh; overflow-y: auto; }
+.acc-prof { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--bg-deep); border: 1px solid var(--line); border-radius: 12px; padding: 8px 10px; }
+.acc-prof-nm { font-size: 14px; font-weight: 700; }
+.acc-prof-ctl { display: flex; gap: 6px; }
+
+.btn-danger { background: linear-gradient(180deg, #c0392b, #922b21); color: #fff; }
+.legal-view { max-height: 78vh; overflow-y: auto; font-size: 13px; line-height: 1.55; padding: 4px 2px; }
+.legal-view h3 { font-size: 16px; margin-bottom: 6px; }
+.legal-view h4 { font-size: 13.5px; color: var(--xp); margin: 10px 0 3px; }
+.legal-view p { margin-bottom: 6px; }

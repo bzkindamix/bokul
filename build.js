@@ -25,6 +25,7 @@ const JS = [
   'src/core/cloud-sync.js',
   'src/core/auth-cloud.js',
   'src/core/consent.js',
+  'src/core/perms.js',
   'src/core/content-registry.js',
   'src/engines/audio-manager.js',
   'src/engines/dialogue-manager.js',

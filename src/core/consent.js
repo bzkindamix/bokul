@@ -13,6 +13,10 @@
     store() {
       try { localStorage.setItem(KEY, JSON.stringify({ version: legal().version, ts: new Date().toISOString() })); } catch (e) {}
     },
+    /* Kayıtlı onay bilgisi (tarih/sürüm) veya null */
+    info() { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } },
+    /* Rızayı geri çek — bir sonraki kayıt yeniden onay ister */
+    withdraw() { try { localStorage.removeItem(KEY); } catch (e) {} },
     /* Onay varsa hemen devam; yoksa metni göster, onayda çalıştır */
     require(onAccepted) {
       if (B.Consent.accepted()) return onAccepted();

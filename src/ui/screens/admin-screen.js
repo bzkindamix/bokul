@@ -19,6 +19,7 @@
     const d = { wishes: {}, ideas: {} };
     (save.wishes || []).forEach(w => { d.wishes[w.id] = { goal: w.goal || null, note: w.note || '', status: w.status }; });
     (save.ideas || []).forEach(i => { d.ideas[i.id] = { status: i.status, note: i.note || '' }; });
+    d.perms = save.perms || { lessons: {}, features: {} }; // ders/özellik kilitleri (uzaktan)
     return d;
   }
   const PROFILE_META = {
@@ -88,8 +89,10 @@
               ? '<button class="chip asrc" data-s="cloud">☁️ Bulut (aile)</button><button class="chip asrc" data-s="local">📱 Bu cihaz</button>' : '') +
             '<span class="adm-sep"></span>' +
             '<button class="chip atab" data-t="players">📊 Oyuncular</button>' +
+            '<button class="chip atab" data-t="perms">🔒 İzinler</button>' +
             '<button class="chip atab" data-t="wishes">🎁 İstekler</button>' +
             '<button class="chip atab" data-t="ideas">💡 Fikirler</button>' +
+            '<button class="chip atab" data-t="account">⚙️ Hesap</button>' +
             '<button class="chip adm-refresh">🔄</button>' +
           '</div>' +
           '<div class="admin-body"></div>';
@@ -119,6 +122,7 @@
       function renderBody() {
         const body = root.querySelector('.admin-body');
         if (!body) return;
+        if (tab === 'account') return renderAccount(body); // ebeveyn ayarları — oyuncu gerekmez
         if (source === 'cloud' && !B.Cloud.enabled()) { body.innerHTML = '<div class="wish-empty">Önce yukarıdan bir aile kodu oluştur.</div>'; return; }
         if (!players.length) {
           body.innerHTML = '<div class="wish-empty">' + (source === 'cloud'
@@ -127,8 +131,10 @@
           return;
         }
         if (tab === 'players') renderPlayers(body);
+        else if (tab === 'perms') renderPerms(body);
         else if (tab === 'wishes') renderWishes(body);
-        else renderIdeas(body);
+        else if (tab === 'ideas') renderIdeas(body);
+        else renderAccount(body);
       }
 
       /* ---- 📊 Oyuncular ---- */
@@ -234,6 +240,172 @@
             await persist(p); B.UI.toast('Kaydedildi 💾');
           };
         });
+      }
+
+      /* ---- 🔒 İzinler (ders + özellik kilitleri) ---- */
+      function swRow(kind, key, id, label, on) {
+        return '<label class="adm-perm-row"><span class="adm-perm-lbl">' + label + '</span>' +
+          '<span class="adm-switch"><input type="checkbox" class="adm-perm" data-kind="' + kind + '" data-key="' + key + '" data-id="' + esc(id) + '"' + (on ? ' checked' : '') + '><span class="adm-slider"></span></span></label>';
+      }
+      function renderPerms(body) {
+        const lessons = B.Lesson.all();
+        body.innerHTML =
+          '<div class="adm-hint">Kapatılan ders veya bölüm çocuğun ekranında 🔒 kilitli görünür. Bulut modunda değişiklik çocuğun cihazına bir sonraki açılışta yansır.</div>' +
+          players.map(p => {
+            B.Perms.ensure(p.save);
+            const lessonRows = lessons.map(l => swRow('L', p.key, l.id, l.icon + ' ' + esc(l.title), B.Perms.lesson(l.id, p.save))).join('');
+            const featRows = B.Perms.FEATURES.map(f => swRow('F', p.key, f.key, f.icon + ' ' + f.name, B.Perms.feature(f.key, p.save))).join('');
+            return '<div class="adm-card"><div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(p.save.player.avatar) + '</span><b>' + esc(p.save.player.name) + '</b></div>' +
+              '<div class="adm-perm-h">📚 Dersler (Cepheler)</div>' + lessonRows +
+              '<div class="adm-perm-h">🎮 Oyun Bölümleri</div>' + featRows + '</div>';
+          }).join('');
+        body.querySelectorAll('.adm-perm').forEach(inp => {
+          inp.onchange = async () => {
+            const p = findPlayer(inp.dataset.key); if (!p) return;
+            const on = inp.checked;
+            if (inp.dataset.kind === 'L') B.Perms.setLesson(inp.dataset.id, on, p.save);
+            else B.Perms.setFeature(inp.dataset.id, on, p.save);
+            await persist(p);
+            B.UI.toast(on ? 'Açıldı ✓' : 'Kapatıldı 🔒');
+          };
+        });
+      }
+
+      /* ---- ⚙️ Hesap (ebeveyn ayarları — farklı menüler) ---- */
+      function renderAccount(body) {
+        const hasEmail = !!(B.AuthCloud && B.AuthCloud.current());
+        const email = hasEmail ? B.AuthCloud.email() : '';
+        const items = [];
+        if (hasEmail) items.push({ ic: '👤', tt: 'Hesap Bilgileri', sub: email, fn: accountInfo });
+        items.push({ ic: '👨‍👧', tt: 'Çocuk Profilleri', sub: B.Auth.users().length + ' profil · ekle, adlandır, sil', fn: manageProfiles });
+        if (B.Cloud.configured()) items.push({ ic: '🎟️', tt: 'Aile & Davet Kodu', sub: 'Kodu paylaş, bağlantıyı yönet', fn: familyMenu });
+        items.push({ ic: '🔒', tt: 'Gizlilik & KVKK', sub: 'Metinleri gör, rızayı yönet', fn: privacyMenu });
+        items.push({ ic: '🔑', tt: 'Çevrimdışı PIN', sub: B.Auth.adminExists() ? 'PIN değiştir' : 'PIN belirle', fn: changePin });
+        items.push({ ic: '🔊', tt: 'Uygulama', sub: 'Ses ayarı', fn: appPrefs });
+        body.innerHTML = '<div class="acc-menu">' + items.map((it, i) =>
+          '<button class="acc-item" data-i="' + i + '"><span class="acc-ic">' + it.ic + '</span>' +
+          '<span class="acc-tt"><b>' + it.tt + '</b><small>' + esc(it.sub) + '</small></span><span class="acc-go">▶</span></button>'
+        ).join('') + '</div>';
+        body.querySelectorAll('.acc-item').forEach(b => b.onclick = () => items[+b.dataset.i].fn());
+      }
+
+      function accountInfo() {
+        const verified = B.AuthCloud.isVerified();
+        const ov = B.UI.overlay(
+          '<div class="ov-big">👤</div><h2>Hesap Bilgileri</h2>' +
+          '<div class="acc-info"><div><b>E-posta:</b> ' + esc(B.AuthCloud.email()) + '</div>' +
+          '<div><b>Durum:</b> ' + (verified ? '✅ Doğrulanmış' : '⚠️ Doğrulanmamış') + '</div></div>' +
+          '<div class="acc-actions">' +
+            (verified ? '' : '<button class="btn btn-quiet" id="ai-verify">📧 E-postamı doğrula</button>') +
+            '<button class="btn btn-quiet" id="ai-pass">🔑 Şifremi değiştir</button>' +
+            '<button class="btn btn-quiet" id="ai-out">🚪 Çıkış yap</button>' +
+            '<button class="btn btn-danger" id="ai-del">🗑️ Hesabı sil</button>' +
+          '</div><div class="login-err" id="ai-msg"></div>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        const msg = ov.querySelector('#ai-msg');
+        const ok = t => { msg.style.color = 'var(--success)'; msg.textContent = t; };
+        const bad = t => { msg.style.color = 'var(--warn)'; msg.textContent = '⚠️ ' + t; };
+        const vb = ov.querySelector('#ai-verify');
+        if (vb) vb.onclick = async () => { const r = await B.AuthCloud.sendVerify(); r.ok ? ok('Doğrulama e-postası gönderildi.') : bad(r.err || 'Olmadı.'); };
+        ov.querySelector('#ai-pass').onclick = async () => { const r = await B.AuthCloud.sendReset(B.AuthCloud.email()); r.ok ? ok('Şifre sıfırlama e-postası gönderildi.') : bad(r.err || 'Olmadı.'); };
+        ov.querySelector('#ai-out').onclick = () => { B.AuthCloud.logout(); ov.remove(); B.UI.toast('Çıkış yapıldı'); B.UI.show('login'); };
+        ov.querySelector('#ai-del').onclick = () => {
+          const c = B.UI.overlay('<div class="ov-big">⚠️</div><h2>Hesabı Sil</h2><p class="ov-quote">Ebeveyn hesabın Firebase\'den kalıcı silinecek. Çocuk profilleri ve ilerlemeleri bu cihazda kalır. Emin misin?</p>',
+            [{ label: 'Evet, sil', cls: 'btn-danger', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: () => c.remove() }]);
+          c.querySelectorAll('.overlay-btns .btn')[0].onclick = async () => {
+            const r = await B.AuthCloud.deleteAccount();
+            c.remove();
+            if (!r.ok) return bad(r.err || 'Silinemedi.');
+            ov.remove(); B.UI.toast('Hesap silindi'); B.UI.show('login');
+          };
+        };
+      }
+
+      function manageProfiles() {
+        const rows = B.Auth.users().map(k => {
+          const nm = B.Auth.displayName(k);
+          return '<div class="acc-prof" data-k="' + k + '"><span class="acc-prof-nm">🧒 ' + esc(nm) + '</span>' +
+            '<span class="acc-prof-ctl"><button class="chip acc-ren">✏️ Adlandır</button><button class="chip acc-del">🗑️ Sil</button></span></div>';
+        }).join('') || '<div class="wish-empty">Bu cihazda profil yok.</div>';
+        const ov = B.UI.overlay('<div class="ov-big">👨‍👧</div><h2>Çocuk Profilleri</h2><div class="acc-profs">' + rows + '</div>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        ov.querySelectorAll('.acc-prof').forEach(row => {
+          const k = row.dataset.k;
+          row.querySelector('.acc-ren').onclick = () => {
+            const r2 = B.UI.overlay('<div class="ov-big">✏️</div><h2>Yeni Ad</h2><input id="rn" class="name-input" maxlength="14" value="' + esc(B.Auth.displayName(k)) + '"><div class="login-err" id="rn-e"></div>',
+              [{ label: 'KAYDET', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: () => r2.remove() }]);
+            r2.querySelectorAll('.overlay-btns .btn')[0].onclick = () => {
+              const res = B.Auth.renameUser(k, r2.querySelector('#rn').value);
+              if (!res.ok) { r2.querySelector('#rn-e').textContent = '⚠️ ' + res.err; return; }
+              r2.remove(); ov.remove(); B.UI.toast('Ad güncellendi ✏️'); manageProfiles();
+            };
+          };
+          row.querySelector('.acc-del').onclick = () => {
+            const d = B.UI.overlay('<div class="ov-big">⚠️</div><h2>Profili Sil</h2><p class="ov-quote">"' + esc(B.Auth.displayName(k)) + '" profili ve tüm ilerlemesi bu cihazdan silinecek. Emin misin?</p>',
+              [{ label: 'Evet, sil', cls: 'btn-danger', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: () => d.remove() }]);
+            d.querySelectorAll('.overlay-btns .btn')[0].onclick = () => {
+              B.Auth.deleteUser(k); d.remove(); ov.remove(); B.UI.toast('Profil silindi 🗑️');
+              if (source === 'local') load();
+              manageProfiles();
+            };
+          };
+        });
+      }
+
+      function familyMenu() {
+        const code = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode();
+        const ov = B.UI.overlay('<div class="ov-big">🎟️</div><h2>Aile & Davet Kodu</h2>' +
+          (code ? '<div class="acc-info"><b>Davet Kodun:</b> <span class="adm-code">' + code + '</span></div>' : '<p class="ov-quote">Henüz kod yok. E-posta ile giriş yaparsan otomatik gelir.</p>') +
+          '<div class="acc-actions">' +
+            (code ? '<button class="btn btn-quiet" id="fm-copy">📋 Kopyala</button><button class="btn btn-quiet" id="fm-share">📤 Paylaş</button>' : '') +
+            (B.Cloud.getCode() ? '<button class="btn btn-quiet" id="fm-unlink">🔌 Bağlantıyı kaldır</button>' : '') +
+          '</div>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        const cp = ov.querySelector('#fm-copy');
+        if (cp) cp.onclick = () => { try { navigator.clipboard.writeText(code); B.UI.toast('Kod kopyalandı'); } catch (e) {} };
+        const sh = ov.querySelector('#fm-share');
+        if (sh) sh.onclick = async () => {
+          const txt = 'BOKUL davet kodum: ' + code + ' — Giriş ekranında "🎮 Oyuncuyum → 🎟️ Davet Kodu" ile gir.';
+          try { if (navigator.share) await navigator.share({ title: 'BOKUL Davet Kodu', text: txt }); else { navigator.clipboard.writeText(txt); B.UI.toast('Panoya kopyalandı'); } } catch (e) {}
+        };
+        const ul = ov.querySelector('#fm-unlink');
+        if (ul) ul.onclick = () => { B.Cloud.setCode(''); ov.remove(); B.UI.toast('Bağlantı kaldırıldı'); };
+      }
+
+      function privacyMenu() {
+        const info = B.Consent.info();
+        const when = info && info.ts ? new Date(info.ts).toLocaleString('tr-TR') : null;
+        const ov = B.UI.overlay('<div class="ov-big">🔒</div><h2>Gizlilik & KVKK</h2>' +
+          '<div class="acc-info">' + (when ? '✅ Onay verildi: ' + when + ' (v' + (info.version || 1) + ')' : '⚠️ Henüz onay kaydı yok.') + '</div>' +
+          '<div class="acc-actions">' +
+            '<button class="btn btn-quiet" id="pv-kvkk">📄 KVKK Aydınlatma Metni</button>' +
+            '<button class="btn btn-quiet" id="pv-terms">📜 Kullanıcı Sözleşmesi</button>' +
+            (when ? '<button class="btn btn-danger" id="pv-wd">↩️ Rızayı geri çek</button>' : '') +
+          '</div>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        function viewLegal(which) {
+          const L = B.Content.get('legal') || {};
+          const v = B.UI.overlay('<div class="legal-view">' + (which === 'terms' ? L.terms : L.kvkk) + '</div>', [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+          const box = v.querySelector('.legal-view'); if (box) box.scrollTop = 0;
+        }
+        ov.querySelector('#pv-kvkk').onclick = () => viewLegal('kvkk');
+        ov.querySelector('#pv-terms').onclick = () => viewLegal('terms');
+        const wd = ov.querySelector('#pv-wd');
+        if (wd) wd.onclick = () => { B.Consent.withdraw(); ov.remove(); B.UI.toast('Rıza geri çekildi. Sonraki kayıt yeniden onay ister.'); };
+      }
+
+      function appPrefs() {
+        const on = B.Save.settings.get().sound !== false;
+        const ov = B.UI.overlay('<div class="ov-big">🔊</div><h2>Uygulama Ayarları</h2>' +
+          '<label class="adm-perm-row"><span class="adm-perm-lbl">🔊 Ses efektleri</span>' +
+          '<span class="adm-switch"><input type="checkbox" id="ap-sound"' + (on ? ' checked' : '') + '><span class="adm-slider"></span></span></label>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        ov.querySelector('#ap-sound').onchange = e => {
+          const v = e.target.checked;
+          B.Save.settings.set({ sound: v });
+          if (B.Audio && B.Audio.setEnabled) B.Audio.setEnabled(v);
+          B.UI.toast(v ? 'Ses açık 🔊' : 'Ses kapalı 🔇');
+        };
       }
 
       function changePin() {

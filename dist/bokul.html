@@ -854,6 +854,66 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .google-btn { width: 100%; max-width: 320px; background: #fff; color: #202124; font-weight: 700; }
 .consent-or { color: var(--ink-dim); font-size: 12px; text-align: center; margin: 8px 0; }
 
+/* ---------- v0.23: Google giriş/kayıt + izinler + hesap ayarları ---------- */
+/* Google iki buton (giriş / kayıt) */
+.google-row { display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.google-signup { background: #eafff3; color: #0b3d24; }
+
+/* Kilitli ders/özellik (çocuk tarafı) */
+.world-locked { opacity: .72; filter: grayscale(.4); }
+.world-lock-note { display: block; font-size: 12px; color: var(--warn); margin-top: 2px; }
+.feat-locked { opacity: .5; filter: grayscale(.6); }
+
+/* Aç/kapa anahtarı (switch) */
+.adm-switch { position: relative; display: inline-block; width: 46px; height: 26px; flex: none; }
+.adm-switch input { opacity: 0; width: 0; height: 0; }
+.adm-slider {
+  position: absolute; inset: 0; cursor: pointer; background: var(--bg-deep);
+  border: 1px solid var(--line); border-radius: 26px; transition: .18s;
+}
+.adm-slider::before {
+  content: ''; position: absolute; height: 18px; width: 18px; left: 3px; top: 3px;
+  background: var(--ink-dim); border-radius: 50%; transition: .18s;
+}
+.adm-switch input:checked + .adm-slider { background: var(--success); border-color: var(--success); }
+.adm-switch input:checked + .adm-slider::before { transform: translateX(20px); background: #fff; }
+
+/* İzin satırları */
+.adm-perm-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 8px 4px; border-bottom: 1px dashed var(--line);
+}
+.adm-perm-lbl { font-size: 14px; }
+.adm-perm-h { font-weight: 800; font-size: 13px; color: var(--xp); margin: 12px 0 2px; }
+.adm-hint { font-size: 12.5px; color: var(--ink-dim); background: var(--bg-deep); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; line-height: 1.4; }
+
+/* Hesap ayar menüsü (farklı menüler) */
+.acc-menu { display: flex; flex-direction: column; gap: 8px; }
+.acc-item {
+  display: flex; align-items: center; gap: 12px; text-align: left; width: 100%;
+  background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px;
+}
+.acc-item:active { transform: translateY(1px); }
+.acc-ic { font-size: 24px; flex: none; }
+.acc-tt { flex: 1; display: flex; flex-direction: column; }
+.acc-tt b { font-size: 15px; }
+.acc-tt small { font-size: 12px; color: var(--ink-dim); }
+.acc-go { color: var(--ink-dim); font-size: 18px; }
+
+.acc-info { background: var(--bg-deep); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: 13.5px; line-height: 1.6; margin: 6px 0; }
+.acc-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.acc-actions .btn { width: 100%; }
+.acc-profs { display: flex; flex-direction: column; gap: 8px; max-height: 50vh; overflow-y: auto; }
+.acc-prof { display: flex; align-items: center; justify-content: space-between; gap: 8px; background: var(--bg-deep); border: 1px solid var(--line); border-radius: 12px; padding: 8px 10px; }
+.acc-prof-nm { font-size: 14px; font-weight: 700; }
+.acc-prof-ctl { display: flex; gap: 6px; }
+
+.btn-danger { background: linear-gradient(180deg, #c0392b, #922b21); color: #fff; }
+.legal-view { max-height: 78vh; overflow-y: auto; font-size: 13px; line-height: 1.55; padding: 4px 2px; }
+.legal-view h3 { font-size: 16px; margin-bottom: 6px; }
+.legal-view h4 { font-size: 13.5px; color: var(--xp); margin: 10px 0 3px; }
+.legal-view p { margin-bottom: 6px; }
+
 </style>
 </head>
 <body>
@@ -863,7 +923,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.22 — Google ile Giriş · KVKK Onayı</div>
+      <div class="splash-note">v0.23 — Google Kayıt/Giriş · İzinler · Hesap Ayarları</div>
     </div>
   </div>
 
@@ -2143,6 +2203,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },
       wishes: [], // { id, text, created, status, goal:{metric,target}|null, note }
       ideas: [],  // { id, text, created, status, note }
+      perms: { lessons: {}, features: {} }, // ebeveyn kilitleri (yoksa=serbest)
     };
   }
 
@@ -2226,6 +2287,35 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       users[key] = { name, pass: pass ? hash(pass) : '', created: new Date().toISOString() };
       writeUsers(users);
       current = key;
+      return { ok: true };
+    },
+
+    /* Profili yeniden adlandır (anahtar sabit kalır; yalnızca görünen ad + kayıttaki ad değişir) */
+    renameUser(key, newName) {
+      newName = String(newName || '').trim();
+      if (newName.length < 2) return { ok: false, err: 'İsim en az 2 harf olmalı.' };
+      const users = readUsers();
+      if (!users[key]) return { ok: false, err: 'Profil bulunamadı.' };
+      users[key].name = newName;
+      writeUsers(users);
+      try {
+        const sk = 'bokul.save.' + key;
+        const s = JSON.parse(localStorage.getItem(sk));
+        if (s && s.player) { s.player.name = newName; localStorage.setItem(sk, JSON.stringify(s)); }
+      } catch (e) {}
+      return { ok: true };
+    },
+
+    /* Profili ve kaydını sil */
+    deleteUser(key) {
+      const users = readUsers();
+      if (!users[key]) return { ok: false, err: 'Profil bulunamadı.' };
+      delete users[key];
+      writeUsers(users);
+      try { localStorage.removeItem('bokul.save.' + key); } catch (e) {}
+      try { localStorage.removeItem('bokul.save.' + key + '.corrupt'); } catch (e) {}
+      if (current === key) current = null;
+      if (B.Auth.remembered() === key) { try { localStorage.removeItem(SESSION_KEY); } catch (e) {} }
       return { ok: true };
     },
 
@@ -2530,6 +2620,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         const di = d.ideas && d.ideas[i.id];
         if (di) { if (di.status) i.status = di.status; if (di.note !== undefined) i.note = di.note; changed = true; }
       });
+      // Ebeveyn izinleri (ders/özellik kilitleri) uzaktan uygulanır — ebeveyn otoritedir
+      if (d.perms && typeof d.perms === 'object') {
+        B.State.data.perms = { lessons: d.perms.lessons || {}, features: d.perms.features || {} };
+        changed = true;
+      }
       if (changed) { B.Save.saveSoon(); if (B.Wish) B.Wish.checkEarned(); }
     },
 
@@ -2706,6 +2801,22 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       catch (e) { return { ok: false, err: trErr(e.message) }; }
     },
 
+    /* Ebeveyn hesabını Firebase'den kalıcı sil (yalnızca kullanıcının kendi isteğiyle) */
+    async deleteAccount() {
+      const t = await freshToken();
+      if (!t) return { ok: false, err: 'Oturum bulunamadı.' };
+      try {
+        await post(IDT + 'delete', { idToken: t });
+        B.AuthCloud.logout();
+        return { ok: true };
+      } catch (e) {
+        const m = e.message || '';
+        if (/CREDENTIAL_TOO_OLD|LOGIN_AGAIN|TOKEN_EXPIRED/i.test(m))
+          return { ok: false, err: 'Güvenlik için önce çıkış yapıp tekrar giriş yap, sonra sil.' };
+        return { ok: false, err: trErr(m) };
+      }
+    },
+
     /* Google ile giriş (Firebase Web SDK popup; talep anında yüklenir) */
     async googleSignIn() {
       try {
@@ -2759,6 +2870,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     store() {
       try { localStorage.setItem(KEY, JSON.stringify({ version: legal().version, ts: new Date().toISOString() })); } catch (e) {}
     },
+    /* Kayıtlı onay bilgisi (tarih/sürüm) veya null */
+    info() { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch (e) { return null; } },
+    /* Rızayı geri çek — bir sonraki kayıt yeniden onay ister */
+    withdraw() { try { localStorage.removeItem(KEY); } catch (e) {} },
     /* Onay varsa hemen devam; yoksa metni göster, onayda çalıştır */
     require(onAccepted) {
       if (B.Consent.accepted()) return onAccepted();
@@ -2794,6 +2909,49 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       checks.forEach(c => c.onchange = () => { accept.disabled = !Array.prototype.every.call(checks, x => x.checked); });
       accept.onclick = () => { B.Consent.store(); ov.remove(); onAccepted(); };
       ov.querySelector('.consent-reject').onclick = () => { ov.remove(); B.UI.toast('Onaylamadan kayıt olunamaz.'); };
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/perms.js === */
+/* BOKUL — İzinler (Ebeveyn Kilitleri)
+ * Ebeveyn her çocuk için hangi derslere (cephe) ve hangi bölümlere
+ * erişilebileceğini belirler. İzinler kayıtta tutulur (save.perms) ve
+ * bulutta "directives" ile uzaktan da ayarlanabilir.
+ * Kural: KAYIT YOKSA = SERBEST (varsayılan açık). Yalnızca engellenenler saklanır. */
+(function (B) {
+  function P(save) {
+    const s = save || (B.State && B.State.data) || {};
+    if (!s.perms) s.perms = {};
+    if (!s.perms.lessons) s.perms.lessons = {};
+    if (!s.perms.features) s.perms.features = {};
+    return s.perms;
+  }
+
+  B.Perms = {
+    /* Kilitlenebilir oyun bölümleri (derslerin dışında) */
+    FEATURES: [
+      { key: 'shop', icon: '🏠', name: 'Evim / Kıyafet Dükkânı' },
+      { key: 'quests', icon: '📋', name: 'Günlük Görevler' },
+      { key: 'wishes', icon: '🎁', name: 'Dilek Kutusu' },
+      { key: 'story', icon: '🎬', name: 'Hikâye Sineması' },
+    ],
+
+    ensure(save) { return P(save); },
+
+    /* Ders erişilebilir mi? (kayıt yoksa serbest) */
+    lesson(id, save) { return P(save).lessons[id] !== false; },
+    /* Özellik erişilebilir mi? */
+    feature(name, save) { return P(save).features[name] !== false; },
+
+    /* Ebeveyn: dersi aç/kapa (açıksa kaydı sil — varsayılan açık kalsın) */
+    setLesson(id, allowed, save) {
+      const p = P(save);
+      if (allowed) delete p.lessons[id]; else p.lessons[id] = false;
+    },
+    setFeature(name, allowed, save) {
+      const p = P(save);
+      if (allowed) delete p.features[name]; else p.features[name] = false;
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -5361,15 +5519,22 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         '<button class="btn door door-side door-evim">🏠<br>EVİM</button>';
       root.appendChild(doors);
 
+      // Ebeveyn kilidi: engelli özellikler tıklanınca uyarı verir
+      function gate(el, feature, go) {
+        if (B.Perms.feature(feature)) { el.onclick = go; return; }
+        el.classList.add('feat-locked');
+        el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); };
+      }
+
       doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('world'); };
-      doors.querySelector('.door-evim').onclick = () => { B.Audio.play('tick'); B.UI.show('evim'); };
-      doors.querySelector('.door-quests').onclick = () => { B.Audio.play('tick'); B.UI.show('quests'); };
+      gate(doors.querySelector('.door-evim'), 'shop', () => { B.Audio.play('tick'); B.UI.show('evim'); });
+      gate(doors.querySelector('.door-quests'), 'quests', () => { B.Audio.play('tick'); B.UI.show('quests'); });
 
       // Hikâyeyi tekrar izleme
       const replay = document.createElement('button');
       replay.className = 'chip home-story';
       replay.textContent = '🎬 Hikâyeyi izle';
-      replay.onclick = () => B.UI.show('intro', { replay: true });
+      gate(replay, 'story', () => B.UI.show('intro', { replay: true }));
       root.appendChild(replay);
 
       // Dilek Kutusu (ödül isteği + oyun fikri)
@@ -5377,7 +5542,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       wish.className = 'chip home-wishes';
       const earned = (B.State.data.wishes || []).some(w => w.status === 'earned');
       wish.textContent = '🎁 Dilek Kutusu' + (earned ? ' 🎉' : '');
-      wish.onclick = () => B.UI.show('wishes');
+      gate(wish, 'wishes', () => B.UI.show('wishes'));
       root.appendChild(wish);
 
       // Oyuncu değiştir / çıkış
@@ -5428,16 +5593,21 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           ? '<span class="world-grade">🎓 Senin seviyene ayarlı (' + (B.State.data.player.grade === 0 ? 'okul öncesi' : B.State.data.player.grade + '. sınıfı bitirdin') + ')</span>'
           : '';
 
+        const allowed = B.Perms.lesson(lesson.id);
         const card = document.createElement('button');
-        card.className = 'world-card';
+        card.className = 'world-card' + (allowed ? '' : ' world-locked');
         card.innerHTML =
           '<span class="world-icon">' + lesson.icon + '</span>' +
           '<span class="world-info"><b>' + lesson.title + '</b>' +
           '<small>' + lesson.subtitle + '</small>' +
-          '<span class="world-progress">⭐ ' + stars + '/' + max +
-          ' · 💠 ' + bossesDone + '/' + bosses + ' kristal</span>' + gradeNote + '</span>' +
-          '<span class="world-go">▶</span>';
+          (allowed
+            ? '<span class="world-progress">⭐ ' + stars + '/' + max +
+              ' · 💠 ' + bossesDone + '/' + bosses + ' kristal</span>' + gradeNote
+            : '<span class="world-lock-note">🔒 Bu cephe şu an ebeveyn tarafından kapalı</span>') +
+          '</span>' +
+          '<span class="world-go">' + (allowed ? '▶' : '🔒') + '</span>';
         card.onclick = () => {
+          if (!allowed) { B.Audio.play('wrong'); B.UI.toast('🔒 Bu cepheyi ebeveynin kapatmış.'); return; }
           B.Audio.play('tick');
           B.Lesson.setActive(lesson);
           B.UI.show('map');
@@ -6503,7 +6673,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     const savedEmail = B.AuthCloud.email();
     const ov = B.UI.overlay(
       '<div class="ov-big">👨‍👧</div><h2>Ebeveyn Girişi</h2>' +
-      '<button class="btn google-btn" id="pe-google">🔵 Google ile devam et</button>' +
+      '<div class="google-row">' +
+        '<button class="btn google-btn" id="pe-gsignin">🔵 Google ile Giriş Yap</button>' +
+        '<button class="btn google-btn google-signup" id="pe-gsignup">🟢 Google ile Kayıt Ol</button>' +
+      '</div>' +
       '<div class="consent-or">— veya e-posta ile —</div>' +
       '<input id="pe-email" type="email" class="name-input" placeholder="E-posta" value="' + (savedEmail || '') + '">' +
       '<input id="pe-pass" type="password" class="name-input" placeholder="Şifre (en az 6 karakter)">' +
@@ -6514,12 +6687,18 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     function busy(t) { msg.style.color = ''; msg.textContent = t; }
     function err(t) { msg.style.color = 'var(--warn)'; msg.textContent = '⚠️ ' + t; }
 
-    ov.querySelector('#pe-google').onclick = () => B.Consent.require(async () => { // Google (onay şart)
-      busy('Google penceresi açılıyor…');
-      const r = await B.AuthCloud.googleSignIn();
-      if (!r.ok) return err(r.err);
-      ov.remove(); B.UI.show('admin');
-    });
+    // Google giriş/kayıt: her ikisi de tek popup akışıdır (Google yeni hesabı otomatik oluşturur).
+    // Onay (KVKK/sözleşme) alınmadan devam edilmez; onay verilmişse pencere görünmeden geçilir.
+    function googleFlow(label) {
+      B.Consent.require(async () => {
+        busy(label + '… Google penceresi açılıyor');
+        const r = await B.AuthCloud.googleSignIn();
+        if (!r.ok) return err(r.err);
+        ov.remove(); B.UI.show('admin');
+      });
+    }
+    ov.querySelector('#pe-gsignin').onclick = () => googleFlow('Giriş yapılıyor');
+    ov.querySelector('#pe-gsignup').onclick = () => googleFlow('Hesap oluşturuluyor');
 
     btns[0].onclick = async () => { // GİRİŞ
       busy('Giriş yapılıyor…');
@@ -6831,6 +7010,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     const d = { wishes: {}, ideas: {} };
     (save.wishes || []).forEach(w => { d.wishes[w.id] = { goal: w.goal || null, note: w.note || '', status: w.status }; });
     (save.ideas || []).forEach(i => { d.ideas[i.id] = { status: i.status, note: i.note || '' }; });
+    d.perms = save.perms || { lessons: {}, features: {} }; // ders/özellik kilitleri (uzaktan)
     return d;
   }
   const PROFILE_META = {
@@ -6900,8 +7080,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
               ? '<button class="chip asrc" data-s="cloud">☁️ Bulut (aile)</button><button class="chip asrc" data-s="local">📱 Bu cihaz</button>' : '') +
             '<span class="adm-sep"></span>' +
             '<button class="chip atab" data-t="players">📊 Oyuncular</button>' +
+            '<button class="chip atab" data-t="perms">🔒 İzinler</button>' +
             '<button class="chip atab" data-t="wishes">🎁 İstekler</button>' +
             '<button class="chip atab" data-t="ideas">💡 Fikirler</button>' +
+            '<button class="chip atab" data-t="account">⚙️ Hesap</button>' +
             '<button class="chip adm-refresh">🔄</button>' +
           '</div>' +
           '<div class="admin-body"></div>';
@@ -6931,6 +7113,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       function renderBody() {
         const body = root.querySelector('.admin-body');
         if (!body) return;
+        if (tab === 'account') return renderAccount(body); // ebeveyn ayarları — oyuncu gerekmez
         if (source === 'cloud' && !B.Cloud.enabled()) { body.innerHTML = '<div class="wish-empty">Önce yukarıdan bir aile kodu oluştur.</div>'; return; }
         if (!players.length) {
           body.innerHTML = '<div class="wish-empty">' + (source === 'cloud'
@@ -6939,8 +7122,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           return;
         }
         if (tab === 'players') renderPlayers(body);
+        else if (tab === 'perms') renderPerms(body);
         else if (tab === 'wishes') renderWishes(body);
-        else renderIdeas(body);
+        else if (tab === 'ideas') renderIdeas(body);
+        else renderAccount(body);
       }
 
       /* ---- 📊 Oyuncular ---- */
@@ -7046,6 +7231,172 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             await persist(p); B.UI.toast('Kaydedildi 💾');
           };
         });
+      }
+
+      /* ---- 🔒 İzinler (ders + özellik kilitleri) ---- */
+      function swRow(kind, key, id, label, on) {
+        return '<label class="adm-perm-row"><span class="adm-perm-lbl">' + label + '</span>' +
+          '<span class="adm-switch"><input type="checkbox" class="adm-perm" data-kind="' + kind + '" data-key="' + key + '" data-id="' + esc(id) + '"' + (on ? ' checked' : '') + '><span class="adm-slider"></span></span></label>';
+      }
+      function renderPerms(body) {
+        const lessons = B.Lesson.all();
+        body.innerHTML =
+          '<div class="adm-hint">Kapatılan ders veya bölüm çocuğun ekranında 🔒 kilitli görünür. Bulut modunda değişiklik çocuğun cihazına bir sonraki açılışta yansır.</div>' +
+          players.map(p => {
+            B.Perms.ensure(p.save);
+            const lessonRows = lessons.map(l => swRow('L', p.key, l.id, l.icon + ' ' + esc(l.title), B.Perms.lesson(l.id, p.save))).join('');
+            const featRows = B.Perms.FEATURES.map(f => swRow('F', p.key, f.key, f.icon + ' ' + f.name, B.Perms.feature(f.key, p.save))).join('');
+            return '<div class="adm-card"><div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(p.save.player.avatar) + '</span><b>' + esc(p.save.player.name) + '</b></div>' +
+              '<div class="adm-perm-h">📚 Dersler (Cepheler)</div>' + lessonRows +
+              '<div class="adm-perm-h">🎮 Oyun Bölümleri</div>' + featRows + '</div>';
+          }).join('');
+        body.querySelectorAll('.adm-perm').forEach(inp => {
+          inp.onchange = async () => {
+            const p = findPlayer(inp.dataset.key); if (!p) return;
+            const on = inp.checked;
+            if (inp.dataset.kind === 'L') B.Perms.setLesson(inp.dataset.id, on, p.save);
+            else B.Perms.setFeature(inp.dataset.id, on, p.save);
+            await persist(p);
+            B.UI.toast(on ? 'Açıldı ✓' : 'Kapatıldı 🔒');
+          };
+        });
+      }
+
+      /* ---- ⚙️ Hesap (ebeveyn ayarları — farklı menüler) ---- */
+      function renderAccount(body) {
+        const hasEmail = !!(B.AuthCloud && B.AuthCloud.current());
+        const email = hasEmail ? B.AuthCloud.email() : '';
+        const items = [];
+        if (hasEmail) items.push({ ic: '👤', tt: 'Hesap Bilgileri', sub: email, fn: accountInfo });
+        items.push({ ic: '👨‍👧', tt: 'Çocuk Profilleri', sub: B.Auth.users().length + ' profil · ekle, adlandır, sil', fn: manageProfiles });
+        if (B.Cloud.configured()) items.push({ ic: '🎟️', tt: 'Aile & Davet Kodu', sub: 'Kodu paylaş, bağlantıyı yönet', fn: familyMenu });
+        items.push({ ic: '🔒', tt: 'Gizlilik & KVKK', sub: 'Metinleri gör, rızayı yönet', fn: privacyMenu });
+        items.push({ ic: '🔑', tt: 'Çevrimdışı PIN', sub: B.Auth.adminExists() ? 'PIN değiştir' : 'PIN belirle', fn: changePin });
+        items.push({ ic: '🔊', tt: 'Uygulama', sub: 'Ses ayarı', fn: appPrefs });
+        body.innerHTML = '<div class="acc-menu">' + items.map((it, i) =>
+          '<button class="acc-item" data-i="' + i + '"><span class="acc-ic">' + it.ic + '</span>' +
+          '<span class="acc-tt"><b>' + it.tt + '</b><small>' + esc(it.sub) + '</small></span><span class="acc-go">▶</span></button>'
+        ).join('') + '</div>';
+        body.querySelectorAll('.acc-item').forEach(b => b.onclick = () => items[+b.dataset.i].fn());
+      }
+
+      function accountInfo() {
+        const verified = B.AuthCloud.isVerified();
+        const ov = B.UI.overlay(
+          '<div class="ov-big">👤</div><h2>Hesap Bilgileri</h2>' +
+          '<div class="acc-info"><div><b>E-posta:</b> ' + esc(B.AuthCloud.email()) + '</div>' +
+          '<div><b>Durum:</b> ' + (verified ? '✅ Doğrulanmış' : '⚠️ Doğrulanmamış') + '</div></div>' +
+          '<div class="acc-actions">' +
+            (verified ? '' : '<button class="btn btn-quiet" id="ai-verify">📧 E-postamı doğrula</button>') +
+            '<button class="btn btn-quiet" id="ai-pass">🔑 Şifremi değiştir</button>' +
+            '<button class="btn btn-quiet" id="ai-out">🚪 Çıkış yap</button>' +
+            '<button class="btn btn-danger" id="ai-del">🗑️ Hesabı sil</button>' +
+          '</div><div class="login-err" id="ai-msg"></div>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        const msg = ov.querySelector('#ai-msg');
+        const ok = t => { msg.style.color = 'var(--success)'; msg.textContent = t; };
+        const bad = t => { msg.style.color = 'var(--warn)'; msg.textContent = '⚠️ ' + t; };
+        const vb = ov.querySelector('#ai-verify');
+        if (vb) vb.onclick = async () => { const r = await B.AuthCloud.sendVerify(); r.ok ? ok('Doğrulama e-postası gönderildi.') : bad(r.err || 'Olmadı.'); };
+        ov.querySelector('#ai-pass').onclick = async () => { const r = await B.AuthCloud.sendReset(B.AuthCloud.email()); r.ok ? ok('Şifre sıfırlama e-postası gönderildi.') : bad(r.err || 'Olmadı.'); };
+        ov.querySelector('#ai-out').onclick = () => { B.AuthCloud.logout(); ov.remove(); B.UI.toast('Çıkış yapıldı'); B.UI.show('login'); };
+        ov.querySelector('#ai-del').onclick = () => {
+          const c = B.UI.overlay('<div class="ov-big">⚠️</div><h2>Hesabı Sil</h2><p class="ov-quote">Ebeveyn hesabın Firebase\'den kalıcı silinecek. Çocuk profilleri ve ilerlemeleri bu cihazda kalır. Emin misin?</p>',
+            [{ label: 'Evet, sil', cls: 'btn-danger', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: () => c.remove() }]);
+          c.querySelectorAll('.overlay-btns .btn')[0].onclick = async () => {
+            const r = await B.AuthCloud.deleteAccount();
+            c.remove();
+            if (!r.ok) return bad(r.err || 'Silinemedi.');
+            ov.remove(); B.UI.toast('Hesap silindi'); B.UI.show('login');
+          };
+        };
+      }
+
+      function manageProfiles() {
+        const rows = B.Auth.users().map(k => {
+          const nm = B.Auth.displayName(k);
+          return '<div class="acc-prof" data-k="' + k + '"><span class="acc-prof-nm">🧒 ' + esc(nm) + '</span>' +
+            '<span class="acc-prof-ctl"><button class="chip acc-ren">✏️ Adlandır</button><button class="chip acc-del">🗑️ Sil</button></span></div>';
+        }).join('') || '<div class="wish-empty">Bu cihazda profil yok.</div>';
+        const ov = B.UI.overlay('<div class="ov-big">👨‍👧</div><h2>Çocuk Profilleri</h2><div class="acc-profs">' + rows + '</div>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        ov.querySelectorAll('.acc-prof').forEach(row => {
+          const k = row.dataset.k;
+          row.querySelector('.acc-ren').onclick = () => {
+            const r2 = B.UI.overlay('<div class="ov-big">✏️</div><h2>Yeni Ad</h2><input id="rn" class="name-input" maxlength="14" value="' + esc(B.Auth.displayName(k)) + '"><div class="login-err" id="rn-e"></div>',
+              [{ label: 'KAYDET', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: () => r2.remove() }]);
+            r2.querySelectorAll('.overlay-btns .btn')[0].onclick = () => {
+              const res = B.Auth.renameUser(k, r2.querySelector('#rn').value);
+              if (!res.ok) { r2.querySelector('#rn-e').textContent = '⚠️ ' + res.err; return; }
+              r2.remove(); ov.remove(); B.UI.toast('Ad güncellendi ✏️'); manageProfiles();
+            };
+          };
+          row.querySelector('.acc-del').onclick = () => {
+            const d = B.UI.overlay('<div class="ov-big">⚠️</div><h2>Profili Sil</h2><p class="ov-quote">"' + esc(B.Auth.displayName(k)) + '" profili ve tüm ilerlemesi bu cihazdan silinecek. Emin misin?</p>',
+              [{ label: 'Evet, sil', cls: 'btn-danger', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: () => d.remove() }]);
+            d.querySelectorAll('.overlay-btns .btn')[0].onclick = () => {
+              B.Auth.deleteUser(k); d.remove(); ov.remove(); B.UI.toast('Profil silindi 🗑️');
+              if (source === 'local') load();
+              manageProfiles();
+            };
+          };
+        });
+      }
+
+      function familyMenu() {
+        const code = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode();
+        const ov = B.UI.overlay('<div class="ov-big">🎟️</div><h2>Aile & Davet Kodu</h2>' +
+          (code ? '<div class="acc-info"><b>Davet Kodun:</b> <span class="adm-code">' + code + '</span></div>' : '<p class="ov-quote">Henüz kod yok. E-posta ile giriş yaparsan otomatik gelir.</p>') +
+          '<div class="acc-actions">' +
+            (code ? '<button class="btn btn-quiet" id="fm-copy">📋 Kopyala</button><button class="btn btn-quiet" id="fm-share">📤 Paylaş</button>' : '') +
+            (B.Cloud.getCode() ? '<button class="btn btn-quiet" id="fm-unlink">🔌 Bağlantıyı kaldır</button>' : '') +
+          '</div>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        const cp = ov.querySelector('#fm-copy');
+        if (cp) cp.onclick = () => { try { navigator.clipboard.writeText(code); B.UI.toast('Kod kopyalandı'); } catch (e) {} };
+        const sh = ov.querySelector('#fm-share');
+        if (sh) sh.onclick = async () => {
+          const txt = 'BOKUL davet kodum: ' + code + ' — Giriş ekranında "🎮 Oyuncuyum → 🎟️ Davet Kodu" ile gir.';
+          try { if (navigator.share) await navigator.share({ title: 'BOKUL Davet Kodu', text: txt }); else { navigator.clipboard.writeText(txt); B.UI.toast('Panoya kopyalandı'); } } catch (e) {}
+        };
+        const ul = ov.querySelector('#fm-unlink');
+        if (ul) ul.onclick = () => { B.Cloud.setCode(''); ov.remove(); B.UI.toast('Bağlantı kaldırıldı'); };
+      }
+
+      function privacyMenu() {
+        const info = B.Consent.info();
+        const when = info && info.ts ? new Date(info.ts).toLocaleString('tr-TR') : null;
+        const ov = B.UI.overlay('<div class="ov-big">🔒</div><h2>Gizlilik & KVKK</h2>' +
+          '<div class="acc-info">' + (when ? '✅ Onay verildi: ' + when + ' (v' + (info.version || 1) + ')' : '⚠️ Henüz onay kaydı yok.') + '</div>' +
+          '<div class="acc-actions">' +
+            '<button class="btn btn-quiet" id="pv-kvkk">📄 KVKK Aydınlatma Metni</button>' +
+            '<button class="btn btn-quiet" id="pv-terms">📜 Kullanıcı Sözleşmesi</button>' +
+            (when ? '<button class="btn btn-danger" id="pv-wd">↩️ Rızayı geri çek</button>' : '') +
+          '</div>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        function viewLegal(which) {
+          const L = B.Content.get('legal') || {};
+          const v = B.UI.overlay('<div class="legal-view">' + (which === 'terms' ? L.terms : L.kvkk) + '</div>', [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+          const box = v.querySelector('.legal-view'); if (box) box.scrollTop = 0;
+        }
+        ov.querySelector('#pv-kvkk').onclick = () => viewLegal('kvkk');
+        ov.querySelector('#pv-terms').onclick = () => viewLegal('terms');
+        const wd = ov.querySelector('#pv-wd');
+        if (wd) wd.onclick = () => { B.Consent.withdraw(); ov.remove(); B.UI.toast('Rıza geri çekildi. Sonraki kayıt yeniden onay ister.'); };
+      }
+
+      function appPrefs() {
+        const on = B.Save.settings.get().sound !== false;
+        const ov = B.UI.overlay('<div class="ov-big">🔊</div><h2>Uygulama Ayarları</h2>' +
+          '<label class="adm-perm-row"><span class="adm-perm-lbl">🔊 Ses efektleri</span>' +
+          '<span class="adm-switch"><input type="checkbox" id="ap-sound"' + (on ? ' checked' : '') + '><span class="adm-slider"></span></span></label>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        ov.querySelector('#ap-sound').onchange = e => {
+          const v = e.target.checked;
+          B.Save.settings.set({ sound: v });
+          if (B.Audio && B.Audio.setEnabled) B.Audio.setEnabled(v);
+          B.UI.toast(v ? 'Ses açık 🔊' : 'Ses kapalı 🔇');
+        };
       }
 
       function changePin() {
@@ -7219,6 +7570,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
       if (!B.State.data.wishes) B.State.data.wishes = [];
       if (!B.State.data.ideas) B.State.data.ideas = [];
+      B.Perms.ensure(B.State.data); // perms alanını garanti et
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
       if (B.State.data.stats.firstTryCorrect == null) B.State.data.stats.firstTryCorrect = 0;
       if (B.State.data.stats.timeSumMs == null) B.State.data.stats.timeSumMs = 0;

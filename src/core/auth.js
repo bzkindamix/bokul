@@ -56,6 +56,35 @@
       return { ok: true };
     },
 
+    /* Profili yeniden adlandır (anahtar sabit kalır; yalnızca görünen ad + kayıttaki ad değişir) */
+    renameUser(key, newName) {
+      newName = String(newName || '').trim();
+      if (newName.length < 2) return { ok: false, err: 'İsim en az 2 harf olmalı.' };
+      const users = readUsers();
+      if (!users[key]) return { ok: false, err: 'Profil bulunamadı.' };
+      users[key].name = newName;
+      writeUsers(users);
+      try {
+        const sk = 'bokul.save.' + key;
+        const s = JSON.parse(localStorage.getItem(sk));
+        if (s && s.player) { s.player.name = newName; localStorage.setItem(sk, JSON.stringify(s)); }
+      } catch (e) {}
+      return { ok: true };
+    },
+
+    /* Profili ve kaydını sil */
+    deleteUser(key) {
+      const users = readUsers();
+      if (!users[key]) return { ok: false, err: 'Profil bulunamadı.' };
+      delete users[key];
+      writeUsers(users);
+      try { localStorage.removeItem('bokul.save.' + key); } catch (e) {}
+      try { localStorage.removeItem('bokul.save.' + key + '.corrupt'); } catch (e) {}
+      if (current === key) current = null;
+      if (B.Auth.remembered() === key) { try { localStorage.removeItem(SESSION_KEY); } catch (e) {} }
+      return { ok: true };
+    },
+
     /* Profile dokunarak giriş (şifresiz) — çocuk profilleri için */
     loginByKey(key) {
       if (!readUsers()[key]) return { ok: false, err: 'Profil bulunamadı.' };

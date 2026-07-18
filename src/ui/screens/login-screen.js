@@ -9,7 +9,10 @@
     const savedEmail = B.AuthCloud.email();
     const ov = B.UI.overlay(
       '<div class="ov-big">👨‍👧</div><h2>Ebeveyn Girişi</h2>' +
-      '<button class="btn google-btn" id="pe-google">🔵 Google ile devam et</button>' +
+      '<div class="google-row">' +
+        '<button class="btn google-btn" id="pe-gsignin">🔵 Google ile Giriş Yap</button>' +
+        '<button class="btn google-btn google-signup" id="pe-gsignup">🟢 Google ile Kayıt Ol</button>' +
+      '</div>' +
       '<div class="consent-or">— veya e-posta ile —</div>' +
       '<input id="pe-email" type="email" class="name-input" placeholder="E-posta" value="' + (savedEmail || '') + '">' +
       '<input id="pe-pass" type="password" class="name-input" placeholder="Şifre (en az 6 karakter)">' +
@@ -20,12 +23,18 @@
     function busy(t) { msg.style.color = ''; msg.textContent = t; }
     function err(t) { msg.style.color = 'var(--warn)'; msg.textContent = '⚠️ ' + t; }
 
-    ov.querySelector('#pe-google').onclick = () => B.Consent.require(async () => { // Google (onay şart)
-      busy('Google penceresi açılıyor…');
-      const r = await B.AuthCloud.googleSignIn();
-      if (!r.ok) return err(r.err);
-      ov.remove(); B.UI.show('admin');
-    });
+    // Google giriş/kayıt: her ikisi de tek popup akışıdır (Google yeni hesabı otomatik oluşturur).
+    // Onay (KVKK/sözleşme) alınmadan devam edilmez; onay verilmişse pencere görünmeden geçilir.
+    function googleFlow(label) {
+      B.Consent.require(async () => {
+        busy(label + '… Google penceresi açılıyor');
+        const r = await B.AuthCloud.googleSignIn();
+        if (!r.ok) return err(r.err);
+        ov.remove(); B.UI.show('admin');
+      });
+    }
+    ov.querySelector('#pe-gsignin').onclick = () => googleFlow('Giriş yapılıyor');
+    ov.querySelector('#pe-gsignup').onclick = () => googleFlow('Hesap oluşturuluyor');
 
     btns[0].onclick = async () => { // GİRİŞ
       busy('Giriş yapılıyor…');

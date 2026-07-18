@@ -98,6 +98,11 @@
         const di = d.ideas && d.ideas[i.id];
         if (di) { if (di.status) i.status = di.status; if (di.note !== undefined) i.note = di.note; changed = true; }
       });
+      // Ebeveyn izinleri (ders/özellik kilitleri) uzaktan uygulanır — ebeveyn otoritedir
+      if (d.perms && typeof d.perms === 'object') {
+        B.State.data.perms = { lessons: d.perms.lessons || {}, features: d.perms.features || {} };
+        changed = true;
+      }
       if (changed) { B.Save.saveSoon(); if (B.Wish) B.Wish.checkEarned(); }
     },
 

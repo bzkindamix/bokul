@@ -32,16 +32,21 @@
           ? '<span class="world-grade">🎓 Senin seviyene ayarlı (' + (B.State.data.player.grade === 0 ? 'okul öncesi' : B.State.data.player.grade + '. sınıfı bitirdin') + ')</span>'
           : '';
 
+        const allowed = B.Perms.lesson(lesson.id);
         const card = document.createElement('button');
-        card.className = 'world-card';
+        card.className = 'world-card' + (allowed ? '' : ' world-locked');
         card.innerHTML =
           '<span class="world-icon">' + lesson.icon + '</span>' +
           '<span class="world-info"><b>' + lesson.title + '</b>' +
           '<small>' + lesson.subtitle + '</small>' +
-          '<span class="world-progress">⭐ ' + stars + '/' + max +
-          ' · 💠 ' + bossesDone + '/' + bosses + ' kristal</span>' + gradeNote + '</span>' +
-          '<span class="world-go">▶</span>';
+          (allowed
+            ? '<span class="world-progress">⭐ ' + stars + '/' + max +
+              ' · 💠 ' + bossesDone + '/' + bosses + ' kristal</span>' + gradeNote
+            : '<span class="world-lock-note">🔒 Bu cephe şu an ebeveyn tarafından kapalı</span>') +
+          '</span>' +
+          '<span class="world-go">' + (allowed ? '▶' : '🔒') + '</span>';
         card.onclick = () => {
+          if (!allowed) { B.Audio.play('wrong'); B.UI.toast('🔒 Bu cepheyi ebeveynin kapatmış.'); return; }
           B.Audio.play('tick');
           B.Lesson.setActive(lesson);
           B.UI.show('map');
