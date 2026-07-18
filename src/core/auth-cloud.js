@@ -122,6 +122,29 @@
       catch (e) { return { ok: false, err: trErr(e.message) }; }
     },
 
+    /* Google ile giriş (Firebase Web SDK popup; talep anında yüklenir) */
+    async googleSignIn() {
+      try {
+        const appMod = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js');
+        const authMod = await import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js');
+        const app = appMod.initializeApp({
+          apiKey: key(), authDomain: B.Cloud.projectId() + '.firebaseapp.com', projectId: B.Cloud.projectId(),
+        }, 'bokul-google');
+        const auth = authMod.getAuth(app);
+        const res = await authMod.signInWithPopup(auth, new authMod.GoogleAuthProvider());
+        const u = res.user;
+        const idToken = await u.getIdToken();
+        writeSess({ idToken, refreshToken: u.refreshToken, localId: u.uid, email: u.email,
+          emailVerified: !!u.emailVerified, expiresAt: Date.now() + 3600000 });
+        linkFamily();
+        return { ok: true };
+      } catch (e) {
+        const c = e && (e.code || e.message) || '';
+        if (/popup-closed|cancelled/i.test(c)) return { ok: false, err: 'Google penceresi kapatıldı.' };
+        return { ok: false, err: 'Google girişi olmadı: ' + c };
+      }
+    },
+
     /* E-posta doğrulandı mı? (kullanıcı linke tıkladıysa) */
     async refreshVerified() {
       const t = await freshToken();

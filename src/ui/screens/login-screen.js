@@ -8,8 +8,9 @@
   function parentEmailFlow() {
     const savedEmail = B.AuthCloud.email();
     const ov = B.UI.overlay(
-      '<div class="ov-big">📧</div><h2>Ebeveyn E-posta Girişi</h2>' +
-      '<p class="ov-quote">Kendi e-postanla giriş yap. İlk kez mi? "Kayıt ol"a bas — doğrulama e-postası gönderilir.</p>' +
+      '<div class="ov-big">👨‍👧</div><h2>Ebeveyn Girişi</h2>' +
+      '<button class="btn google-btn" id="pe-google">🔵 Google ile devam et</button>' +
+      '<div class="consent-or">— veya e-posta ile —</div>' +
       '<input id="pe-email" type="email" class="name-input" placeholder="E-posta" value="' + (savedEmail || '') + '">' +
       '<input id="pe-pass" type="password" class="name-input" placeholder="Şifre (en az 6 karakter)">' +
       '<div class="login-err" id="pe-msg"></div>',
@@ -19,6 +20,13 @@
     function busy(t) { msg.style.color = ''; msg.textContent = t; }
     function err(t) { msg.style.color = 'var(--warn)'; msg.textContent = '⚠️ ' + t; }
 
+    ov.querySelector('#pe-google').onclick = () => B.Consent.require(async () => { // Google (onay şart)
+      busy('Google penceresi açılıyor…');
+      const r = await B.AuthCloud.googleSignIn();
+      if (!r.ok) return err(r.err);
+      ov.remove(); B.UI.show('admin');
+    });
+
     btns[0].onclick = async () => { // GİRİŞ
       busy('Giriş yapılıyor…');
       const r = await B.AuthCloud.login(emailEl.value, passEl.value);
@@ -27,13 +35,13 @@
       if (!r.verified) B.UI.toast('📧 E-postanı doğrulaman önerilir (şifre kurtarma için).');
       B.UI.show('admin');
     };
-    btns[1].onclick = async () => { // KAYIT OL
+    btns[1].onclick = () => B.Consent.require(async () => { // KAYIT OL (onay şart)
       busy('Hesap oluşturuluyor…');
       const r = await B.AuthCloud.register(emailEl.value, passEl.value);
       if (!r.ok) return err(r.err);
       msg.style.color = 'var(--success)';
       msg.innerHTML = '✓ Doğrulama e-postası gönderildi! Gelen kutunu (ve spam) kontrol et, linke tıkla, sonra "GİRİŞ"e bas.';
-    };
+    });
     btns[2].onclick = async () => { // ŞİFREMİ UNUTTUM
       if (!emailEl.value.trim()) return err('Önce e-posta adresini yaz.');
       busy('Sıfırlama e-postası gönderiliyor…');
@@ -181,10 +189,14 @@
     const nameEl = root.querySelector('#reg-name');
     setTimeout(() => nameEl.focus(), 100);
     root.querySelector('#reg-go').onclick = () => {
-      const res = B.Auth.register(nameEl.value, '');
-      if (!res.ok) { root.querySelector('#reg-err').textContent = '⚠️ ' + res.err; return; }
-      B.Audio.play('fanfare');
-      B.Engine.enterAs();
+      const nm = (nameEl.value || '').trim();
+      if (nm.length < 2) { root.querySelector('#reg-err').textContent = '⚠️ Adın en az 2 harf olmalı.'; return; }
+      B.Consent.require(() => { // KVKK/Sözleşme onayı olmadan kayıt yok
+        const res = B.Auth.register(nm, '');
+        if (!res.ok) { root.querySelector('#reg-err').textContent = '⚠️ ' + res.err; return; }
+        B.Audio.play('fanfare');
+        B.Engine.enterAs();
+      });
     };
     const back = root.querySelector('#reg-back');
     if (back) back.onclick = () => renderSelect(root);
