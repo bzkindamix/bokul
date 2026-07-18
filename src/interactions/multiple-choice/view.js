@@ -1,7 +1,7 @@
-/* BOKUL — Çoktan Seçmeli Görünüm
- * Soru kartı + karıştırılmış seçenek butonları. Yanlış seçenek sönerek
- * devre dışı kalır (cevap asla söylenmez, eleyerek öğrenme); Komutan
- * sorunun kendi ipucunu verir. */
+/* BOKUL — Çoktan Seçmeli Görünüm (TEK DENEME)
+ * İlk cevap kesindir — rastgele/brute-force basma engellenir. Yanlışsa doğru
+ * cevap yeşil işaretlenir ve Baba nedenini söyler (öğrenme anı), soru biter.
+ * Aynı konu ileride aralıklı tekrarla geri gelir. */
 (function (B) {
 
   function el(tag, cls, text) {
@@ -15,7 +15,7 @@
     opts = opts || {};
     const item = q.item;
     const step = B.Question.steps(q)[0];
-    let attempt = 0, mistakes = 0, done = false;
+    let done = false;
 
     container.innerHTML = '';
     const root = el('div', 'mc-root');
@@ -26,22 +26,25 @@
     const grid = el('div', 'mc-options');
     order.forEach(origIdx => {
       const btn = el('button', 'mc-opt', item.options[origIdx]);
+      btn.dataset.orig = origIdx;
       btn.onclick = () => {
-        if (done || btn.disabled) return;
-        attempt++;
+        if (done) return;
+        done = true;
         const { correct } = B.Question.validate(q, step, origIdx);
-        if (opts.onAnswer) opts.onAnswer(step, correct, attempt);
+        if (opts.onAnswer) opts.onAnswer(step, correct, 1);
+        // Tüm şıkları kilitle; doğruyu yeşil göster (öğrenme anı)
+        grid.querySelectorAll('.mc-opt').forEach(b => { b.disabled = true; });
+        const rightBtn = grid.querySelector('.mc-opt[data-orig="' + item.correct + '"]');
+        if (rightBtn) rightBtn.classList.add('mc-right');
         if (correct) {
-          done = true;
-          btn.classList.add('mc-right');
-          setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes }); }, 650);
+          if (opts.say) opts.say(B.Dialogue.pick('correct'));
+          setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes: 0 }); }, 650);
         } else {
-          mistakes++;
-          btn.disabled = true;
           btn.classList.add('mc-wrong');
           root.classList.remove('ld-shake'); void root.offsetWidth;
           root.classList.add('ld-shake');
-          if (opts.say) opts.say(item.hint || B.Dialogue.pick('wrong.soft'));
+          if (opts.say) opts.say('Doğrusu: "' + item.options[item.correct] + '". ' + (item.hint || ''));
+          setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes: 1 }); }, 2200);
         }
       };
       grid.appendChild(btn);

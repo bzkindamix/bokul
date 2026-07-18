@@ -134,6 +134,8 @@
         body.innerHTML = players.map(p => {
           const s = p.save, pl = s.player, st = s.stats || {};
           const acc = (st.correct + st.wrong) ? Math.round(st.correct / (st.correct + st.wrong) * 100) : 0;
+          const firstTry = st.questionsDone ? Math.round((st.firstTryCorrect || 0) / st.questionsDone * 100) : 0;
+          const avgSec = st.questionsDone ? Math.round((st.timeSumMs || 0) / st.questionsDone / 1000) : 0;
           const rank = B.Reward.rankFor(pl.level);
           const xpPct = Math.min(100, Math.round((pl.xp || 0) / xpNeeded(pl.level) * 100));
           const lessonRows = lessons.map(les => {
@@ -153,6 +155,8 @@
             '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
             '<div class="adm-stats"><span>💰 ' + (pl.coins || 0) + '</span><span>✅ ' + (st.correct || 0) + '</span><span>❌ ' + (st.wrong || 0) +
               '</span><span>🎯 %' + acc + '</span><span>🔥 en iyi ' + ((s.streaks && s.streaks.best) || 0) + '</span><span>📅 ' + last + '</span></div>' +
+            '<div class="adm-stats adm-stats2"><span title="İlk denemede doğru bilme oranı — düşükse tahmin ediyor olabilir">🥇 İlk deneme: %' + firstTry + ' (' + (st.questionsDone || 0) + ' soru)</span>' +
+              '<span title="Soru başına ortalama yanıt süresi">⏱️ ~' + avgSec + ' sn/soru</span></div>' +
             '<div class="adm-lessons">' + lessonRows + '</div>' +
             profileHtml(pl.profile) + '</div>';
         }).join('');

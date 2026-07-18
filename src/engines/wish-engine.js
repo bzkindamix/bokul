@@ -85,8 +85,11 @@
 
     init() {
       const E = B.Events;
-      B.Bus.on(E.QUESTION_COMPLETED, () => {
-        B.State.data.stats.questionsDone = (B.State.data.stats.questionsDone || 0) + 1;
+      B.Bus.on(E.QUESTION_COMPLETED, p => {
+        const st = B.State.data.stats;
+        st.questionsDone = (st.questionsDone || 0) + 1;
+        if (p && p.firstTry) st.firstTryCorrect = (st.firstTryCorrect || 0) + 1;
+        if (p && typeof p.ms === 'number') st.timeSumMs = (st.timeSumMs || 0) + p.ms;
         B.Wish.checkEarned();
       });
       B.Bus.on(E.LEVEL_UP, () => B.Wish.checkEarned());

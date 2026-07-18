@@ -15,7 +15,7 @@
       player: { name: '', age: null, grade: null, profile: {}, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
-      stats: { correct: 0, wrong: 0, questionsDone: 0, perSkill: {} }, // perSkill: { estimate: [1,0,1,...] }
+      stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {} },
       progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
       inventory: { cosmetics: [], badges: [], titles: [] },
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },

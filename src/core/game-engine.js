@@ -53,6 +53,8 @@
       if (!B.State.data.wishes) B.State.data.wishes = [];
       if (!B.State.data.ideas) B.State.data.ideas = [];
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
+      if (B.State.data.stats.firstTryCorrect == null) B.State.data.stats.firstTryCorrect = 0;
+      if (B.State.data.stats.timeSumMs == null) B.State.data.stats.timeSumMs = 0;
 
       // Bulut senkron: ebeveyn hedeflerini çek, bu cihazın ilerlemesini gönder
       if (B.Cloud.enabled()) {

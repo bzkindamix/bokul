@@ -33,17 +33,20 @@
 
     function submit() {
       if (!buffer.length || done) return;
-      attempt++;
+      done = true; // TEK DENEME: ilk onay kesindir
       const { correct } = B.Question.validate(q, step, buffer);
-      if (opts.onAnswer) opts.onAnswer(step, correct, attempt);
+      if (opts.onAnswer) opts.onAnswer(step, correct, 1);
       if (correct) {
-        done = true; box.classList.remove('ld-active'); box.classList.add('ok');
-        setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes }); }, 500);
+        box.classList.remove('ld-active'); box.classList.add('ok');
+        if (opts.say) opts.say(B.Dialogue.pick('correct'));
+        setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes: 0 }); }, 550);
       } else {
-        mistakes++;
         root.classList.remove('ld-shake'); void root.offsetWidth; root.classList.add('ld-shake');
-        if (opts.say) opts.say(B.Dialogue.pick('wrong.soft'));
-        buffer = ''; render();
+        // Doğru cevabı göster (öğrenme anı)
+        box.classList.remove('ld-active');
+        box.textContent = q.answer; box.classList.add('ok');
+        if (opts.say) opts.say('Doğrusu ' + q.answer + '. Bir dahakine yakalarsın ' + (B.State.data.player.name || 'Komutan') + '!');
+        setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes: 1 }); }, 1900);
       }
     }
 

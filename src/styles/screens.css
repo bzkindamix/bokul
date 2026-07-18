@@ -453,3 +453,7 @@
 .grp-wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .grp-box { display: flex; flex-wrap: wrap; gap: 3px; background: var(--bg-raised); border: 2px dashed var(--line); border-radius: 12px; padding: 8px; max-width: 120px; }
 .grp-box .obj { font-size: 22px; }
+
+/* ---------- v0.20: konsol ek metrikler ---------- */
+.adm-stats2 { border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 2px; }
+.adm-stats2 span { color: var(--xp); }

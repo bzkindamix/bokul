@@ -811,6 +811,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .grp-box { display: flex; flex-wrap: wrap; gap: 3px; background: var(--bg-raised); border: 2px dashed var(--line); border-radius: 12px; padding: 8px; max-width: 120px; }
 .grp-box .obj { font-size: 22px; }
 
+/* ---------- v0.20: konsol ek metrikler ---------- */
+.adm-stats2 { border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 2px; }
+.adm-stats2 span { color: var(--xp); }
+
 </style>
 </head>
 <body>
@@ -820,7 +824,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.19 — Kolay Giriş · Ebeveyn E-posta</div>
+      <div class="splash-note">v0.20 — Tek Deneme · Öğreten Yanlış</div>
     </div>
   </div>
 
@@ -2079,7 +2083,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       player: { name: '', age: null, grade: null, profile: {}, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
-      stats: { correct: 0, wrong: 0, questionsDone: 0, perSkill: {} }, // perSkill: { estimate: [1,0,1,...] }
+      stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {} },
       progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
       inventory: { cosmetics: [], badges: [], titles: [] },
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },
@@ -3385,8 +3389,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
     init() {
       const E = B.Events;
-      B.Bus.on(E.QUESTION_COMPLETED, () => {
-        B.State.data.stats.questionsDone = (B.State.data.stats.questionsDone || 0) + 1;
+      B.Bus.on(E.QUESTION_COMPLETED, p => {
+        const st = B.State.data.stats;
+        st.questionsDone = (st.questionsDone || 0) + 1;
+        if (p && p.firstTry) st.firstTryCorrect = (st.firstTryCorrect || 0) + 1;
+        if (p && typeof p.ms === 'number') st.timeSumMs = (st.timeSumMs || 0) + p.ms;
         B.Wish.checkEarned();
       });
       B.Bus.on(E.LEVEL_UP, () => B.Wish.checkEarned());
@@ -4096,10 +4103,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 })(typeof window !== 'undefined' ? (window.BOKUL = window.BOKUL || {}) : null);
 
 /* === src/interactions/multiple-choice/view.js === */
-/* BOKUL — Çoktan Seçmeli Görünüm
- * Soru kartı + karıştırılmış seçenek butonları. Yanlış seçenek sönerek
- * devre dışı kalır (cevap asla söylenmez, eleyerek öğrenme); Komutan
- * sorunun kendi ipucunu verir. */
+/* BOKUL — Çoktan Seçmeli Görünüm (TEK DENEME)
+ * İlk cevap kesindir — rastgele/brute-force basma engellenir. Yanlışsa doğru
+ * cevap yeşil işaretlenir ve Baba nedenini söyler (öğrenme anı), soru biter.
+ * Aynı konu ileride aralıklı tekrarla geri gelir. */
 (function (B) {
 
   function el(tag, cls, text) {
@@ -4113,7 +4120,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     opts = opts || {};
     const item = q.item;
     const step = B.Question.steps(q)[0];
-    let attempt = 0, mistakes = 0, done = false;
+    let done = false;
 
     container.innerHTML = '';
     const root = el('div', 'mc-root');
@@ -4124,22 +4131,25 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     const grid = el('div', 'mc-options');
     order.forEach(origIdx => {
       const btn = el('button', 'mc-opt', item.options[origIdx]);
+      btn.dataset.orig = origIdx;
       btn.onclick = () => {
-        if (done || btn.disabled) return;
-        attempt++;
+        if (done) return;
+        done = true;
         const { correct } = B.Question.validate(q, step, origIdx);
-        if (opts.onAnswer) opts.onAnswer(step, correct, attempt);
+        if (opts.onAnswer) opts.onAnswer(step, correct, 1);
+        // Tüm şıkları kilitle; doğruyu yeşil göster (öğrenme anı)
+        grid.querySelectorAll('.mc-opt').forEach(b => { b.disabled = true; });
+        const rightBtn = grid.querySelector('.mc-opt[data-orig="' + item.correct + '"]');
+        if (rightBtn) rightBtn.classList.add('mc-right');
         if (correct) {
-          done = true;
-          btn.classList.add('mc-right');
-          setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes }); }, 650);
+          if (opts.say) opts.say(B.Dialogue.pick('correct'));
+          setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes: 0 }); }, 650);
         } else {
-          mistakes++;
-          btn.disabled = true;
           btn.classList.add('mc-wrong');
           root.classList.remove('ld-shake'); void root.offsetWidth;
           root.classList.add('ld-shake');
-          if (opts.say) opts.say(item.hint || B.Dialogue.pick('wrong.soft'));
+          if (opts.say) opts.say('Doğrusu: "' + item.options[item.correct] + '". ' + (item.hint || ''));
+          setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes: 1 }); }, 2200);
         }
       };
       grid.appendChild(btn);
@@ -4229,17 +4239,20 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
     function submit() {
       if (!buffer.length || done) return;
-      attempt++;
+      done = true; // TEK DENEME: ilk onay kesindir
       const { correct } = B.Question.validate(q, step, buffer);
-      if (opts.onAnswer) opts.onAnswer(step, correct, attempt);
+      if (opts.onAnswer) opts.onAnswer(step, correct, 1);
       if (correct) {
-        done = true; box.classList.remove('ld-active'); box.classList.add('ok');
-        setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes }); }, 500);
+        box.classList.remove('ld-active'); box.classList.add('ok');
+        if (opts.say) opts.say(B.Dialogue.pick('correct'));
+        setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes: 0 }); }, 550);
       } else {
-        mistakes++;
         root.classList.remove('ld-shake'); void root.offsetWidth; root.classList.add('ld-shake');
-        if (opts.say) opts.say(B.Dialogue.pick('wrong.soft'));
-        buffer = ''; render();
+        // Doğru cevabı göster (öğrenme anı)
+        box.classList.remove('ld-active');
+        box.textContent = q.answer; box.classList.add('ok');
+        if (opts.say) opts.say('Doğrusu ' + q.answer + '. Bir dahakine yakalarsın ' + (B.State.data.player.name || 'Komutan') + '!');
+        setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes: 1 }); }, 1900);
       }
     }
 
@@ -5395,6 +5408,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       const mission = B.Lesson.findMission(params.sectionId, params.missionId);
       const sectionObj = (B.Lesson.findSection(params.sectionId) || {}).section || {};
       const itype = sectionObj.interactionType || lesson.interactionType; // bölüm bazlı soru tipi
+      const singleAttempt = (itype === 'multiple-choice' || itype === 'arithmetic'); // tek deneme tipleri
       const cfg = B.Content.get('config');
       const self = this;
 
@@ -5504,6 +5518,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         cmd.sayFrom(qIndex === 0 ? 'mission.start' : 'mission.next');
         let mistakes = 0;
         let settled = false;
+        const qStart = Date.now();
 
         // Soruyu bitir: normal (timedOut=false) veya süre doldu (true)
         function completeCurrent(timedOut) {
@@ -5511,12 +5526,17 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           if (timerCtl) { timerCtl.stop(); timerCtl = null; }
           if (view) { view.destroy(); view = null; }
           const th = cfg.starThresholds;
-          const stars = timedOut ? 1 : (mistakes <= th.three ? 3 : mistakes <= th.two ? 2 : 1);
+          // Tek deneme tiplerinde: doğru→3★, yanlış→1★. Uzun bölme: adım eşiklerine göre.
+          const stars = timedOut ? 1
+            : singleAttempt ? (mistakes === 0 ? 3 : 1)
+            : (mistakes <= th.three ? 3 : mistakes <= th.two ? 2 : 1);
           starList.push(stars);
           B.Reward.onQuestionDone(stars === 3);
           B.Reward.addCoins(stars * 2, 'question');
           const xp = B.Reward.addXp(B.Reward.questionXp(stars), 'question', { applyStreak: true });
-          B.Bus.emit(B.Events.QUESTION_COMPLETED, { stars, mistakes });
+          B.Bus.emit(B.Events.QUESTION_COMPLETED, {
+            stars, mistakes, ms: Date.now() - qStart, firstTry: !timedOut && mistakes === 0,
+          });
           if (timedOut) cmd.sayFrom('timeUp');
           showStars(stars, xp, () => { qIndex++; nextQuestion(); });
         }
@@ -6723,6 +6743,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         body.innerHTML = players.map(p => {
           const s = p.save, pl = s.player, st = s.stats || {};
           const acc = (st.correct + st.wrong) ? Math.round(st.correct / (st.correct + st.wrong) * 100) : 0;
+          const firstTry = st.questionsDone ? Math.round((st.firstTryCorrect || 0) / st.questionsDone * 100) : 0;
+          const avgSec = st.questionsDone ? Math.round((st.timeSumMs || 0) / st.questionsDone / 1000) : 0;
           const rank = B.Reward.rankFor(pl.level);
           const xpPct = Math.min(100, Math.round((pl.xp || 0) / xpNeeded(pl.level) * 100));
           const lessonRows = lessons.map(les => {
@@ -6742,6 +6764,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
             '<div class="adm-stats"><span>💰 ' + (pl.coins || 0) + '</span><span>✅ ' + (st.correct || 0) + '</span><span>❌ ' + (st.wrong || 0) +
               '</span><span>🎯 %' + acc + '</span><span>🔥 en iyi ' + ((s.streaks && s.streaks.best) || 0) + '</span><span>📅 ' + last + '</span></div>' +
+            '<div class="adm-stats adm-stats2"><span title="İlk denemede doğru bilme oranı — düşükse tahmin ediyor olabilir">🥇 İlk deneme: %' + firstTry + ' (' + (st.questionsDone || 0) + ' soru)</span>' +
+              '<span title="Soru başına ortalama yanıt süresi">⏱️ ~' + avgSec + ' sn/soru</span></div>' +
             '<div class="adm-lessons">' + lessonRows + '</div>' +
             profileHtml(pl.profile) + '</div>';
         }).join('');
@@ -6990,6 +7014,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       if (!B.State.data.wishes) B.State.data.wishes = [];
       if (!B.State.data.ideas) B.State.data.ideas = [];
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
+      if (B.State.data.stats.firstTryCorrect == null) B.State.data.stats.firstTryCorrect = 0;
+      if (B.State.data.stats.timeSumMs == null) B.State.data.stats.timeSumMs = 0;
 
       // Bulut senkron: ebeveyn hedeflerini çek, bu cihazın ilerlemesini gönder
       if (B.Cloud.enabled()) {

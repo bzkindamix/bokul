@@ -1,5 +1,18 @@
 # BOKUL — Sürüm Notları
 
+## v0.20 — Brute-Force Engellendi: Tek Deneme + Öğreten Yanlış (2026-07-18)
+
+- 🎯 TEK DENEME: Çoktan seçmeli ve aritmetik sorularda İLK cevap kesindir.
+  Artık rastgele şıklara basıp doğruyu bulma (brute-force) mümkün değil — ilk
+  dokunuşta tüm şıklar kilitlenir.
+- 📚 ÖĞRETEN YANLIŞ: Yanlış cevapta ceza yerine öğrenme anı — doğru cevap
+  yeşille gösterilir, Baba nedenini/doğrusunu söyler ("Doğrusu: X çünkü..."),
+  soru biter (1 yıldız). Aynı konu aralıklı tekrarla tazelenmiş halde geri gelir.
+- 📊 EBEVEYN KONSOLU YENİ METRİKLER: Her çocuk için "🥇 İlk deneme isabeti %"
+  (düşükse tahmin ediyor demektir) ve "⏱️ soru başına ortalama süre".
+- Uzun bölme adım adım öğretim modelini korur (cevap gösterilmez, ipuçlu).
+
+
 ## v0.19 — Şifresiz Çocuk Girişi + Ebeveyn E-posta Hesabı (2026-07-18)
 
 - 🔓 EFE'NİN SORUNU ÇÖZÜLDÜ: Çocuklar artık profillerine DOKUNARAK giriyor —

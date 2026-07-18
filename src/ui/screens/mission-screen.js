@@ -11,6 +11,7 @@
       const mission = B.Lesson.findMission(params.sectionId, params.missionId);
       const sectionObj = (B.Lesson.findSection(params.sectionId) || {}).section || {};
       const itype = sectionObj.interactionType || lesson.interactionType; // bölüm bazlı soru tipi
+      const singleAttempt = (itype === 'multiple-choice' || itype === 'arithmetic'); // tek deneme tipleri
       const cfg = B.Content.get('config');
       const self = this;
 
@@ -120,6 +121,7 @@
         cmd.sayFrom(qIndex === 0 ? 'mission.start' : 'mission.next');
         let mistakes = 0;
         let settled = false;
+        const qStart = Date.now();
 
         // Soruyu bitir: normal (timedOut=false) veya süre doldu (true)
         function completeCurrent(timedOut) {
@@ -127,12 +129,17 @@
           if (timerCtl) { timerCtl.stop(); timerCtl = null; }
           if (view) { view.destroy(); view = null; }
           const th = cfg.starThresholds;
-          const stars = timedOut ? 1 : (mistakes <= th.three ? 3 : mistakes <= th.two ? 2 : 1);
+          // Tek deneme tiplerinde: doğru→3★, yanlış→1★. Uzun bölme: adım eşiklerine göre.
+          const stars = timedOut ? 1
+            : singleAttempt ? (mistakes === 0 ? 3 : 1)
+            : (mistakes <= th.three ? 3 : mistakes <= th.two ? 2 : 1);
           starList.push(stars);
           B.Reward.onQuestionDone(stars === 3);
           B.Reward.addCoins(stars * 2, 'question');
           const xp = B.Reward.addXp(B.Reward.questionXp(stars), 'question', { applyStreak: true });
-          B.Bus.emit(B.Events.QUESTION_COMPLETED, { stars, mistakes });
+          B.Bus.emit(B.Events.QUESTION_COMPLETED, {
+            stars, mistakes, ms: Date.now() - qStart, firstTry: !timedOut && mistakes === 0,
+          });
           if (timedOut) cmd.sayFrom('timeUp');
           showStars(stars, xp, () => { qIndex++; nextQuestion(); });
         }
