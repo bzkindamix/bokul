@@ -42,6 +42,7 @@ const JS = [
   'src/ui/screens/mission-screen.js',
   'src/ui/screens/boss-screen.js',
   'src/ui/screens/locker-screen.js',
+  'src/ui/screens/intro-screen.js',
   'src/core/game-engine.js',
   'src/main.js',
 ];
@@ -49,6 +50,7 @@ const CONTENT = [
   'config',
   'dialogues',
   'rewards',
+  'story',
   'lessons/math-5-division',
 ];
 

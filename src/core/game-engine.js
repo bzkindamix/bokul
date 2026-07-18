@@ -8,7 +8,7 @@
 
       // 2) İçerik paketleri
       await B.Content.loadAll([
-        'config', 'dialogues', 'rewards',
+        'config', 'dialogues', 'rewards', 'story',
         'lessons/math-5-division',
       ]);
       B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
@@ -29,9 +29,16 @@
       B.UI.init();
     },
 
-    /* Splash'tan oyuna giriş (ilk dokunuş ses kilidini de açar) */
+    /* Splash'tan oyuna giriş (ilk dokunuş ses kilidini de açar)
+     * Akış: sinematik (ilk kez) → isim → avatar → üs */
     start() {
       B.Audio.unlock();
+      if (!B.Save.settings.get().introSeen) return B.UI.show('intro', {});
+      B.Engine.afterIntro();
+    },
+
+    /* Sinematik bitince (veya daha önce izlendiyse) buradan devam edilir */
+    afterIntro() {
       const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
       if (!name) return B.Engine.askName();
       B.State.data.player.name = name;

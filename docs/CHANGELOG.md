@@ -1,5 +1,17 @@
 # BOKUL — Sürüm Notları
 
+## v0.8-hikaye — Giriş Sinematiği (2026-07-18)
+
+- HİKÂYE: KARMAŞA, Büyük Sayı Kristali'ni parçaladı — hiçbir şey adil
+  bölünemiyor (dondurmalar dahil). Boss'lar kristal parçalarını saklıyor;
+  her zafer bir parçayı kurtarıyor (zafer ekranına kristal satırı eklendi).
+- 5 sahnelik atlanabilir giriş sinematiği (SVG/CSS animasyon + anlatım
+  mırıltısı): kristal → Karmaşa'nın saldırısı → bölünemeyen dünya →
+  BOKUL üssü → "o asker SENSİN". İlk açılışta otomatik; üsten
+  "🎬 Hikâyeyi izle" ile tekrar izlenebilir.
+- Hikâye metinleri content/story.json'da — ileride bölüm araları eklenebilir.
+
+
 ## v0.7.1 — Canlı Karakterler (2026-07-18)
 
 - Baba Komutan artık YAŞIYOR: nefes alma animasyonu, rastgele göz kırpma,

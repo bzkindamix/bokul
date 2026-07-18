@@ -147,3 +147,34 @@
   min-width: 120px; text-align: center; color: var(--accent);
   border: 2px solid var(--line); border-radius: 14px; padding: 8px 18px;
 }
+
+/* ---------- v0.8: Giriş Sinematiği ---------- */
+.cine-root { align-items: center; justify-content: center; gap: 18px; padding: 20px; }
+.cine-stage { width: min(420px, 82vw); }
+.cine-svg { width: 100%; height: auto; display: block; }
+.cine-in { animation: cineIn .6s cubic-bezier(.2, 1.3, .4, 1); }
+@keyframes cineIn { from { transform: scale(.85); opacity: 0; } }
+.cine-text {
+  max-width: 560px; text-align: center; font-size: clamp(15px, 2.4vw, 19px);
+  line-height: 1.6; min-height: 5.2em; font-weight: 600;
+}
+.cine-controls { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.cine-dots { display: flex; gap: 6px; }
+.cine-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--bg-raised); }
+.cine-dots i.on { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.cine-float { animation: cineFloat 3s ease-in-out infinite; transform-origin: center; }
+@keyframes cineFloat { 50% { transform: translateY(-6px); } }
+.cine-swirl { animation: cineSwirl 7s linear infinite; transform-origin: 100px 80px; }
+@keyframes cineSwirl { to { transform: rotate(360deg); } }
+.cine-shard { animation: cineShard 1.6s ease-in-out infinite alternate; }
+.cine-shard.s2 { animation-delay: .3s; } .cine-shard.s3 { animation-delay: .6s; } .cine-shard.s4 { animation-delay: .9s; }
+@keyframes cineShard { to { transform: translate(4px, -5px) rotate(8deg); } }
+.cine-tilt { animation: cineTilt 2.4s ease-in-out infinite; transform-origin: 100px 120px; }
+@keyframes cineTilt { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+.cine-beacon { animation: cineBeacon 1.6s ease-in-out infinite; }
+@keyframes cineBeacon { 50% { opacity: .45; } }
+.cine-blink1 { animation: cineBlink 1.4s infinite; }
+.cine-blink2 { animation: cineBlink 1.4s .7s infinite; }
+@keyframes cineBlink { 50% { opacity: .2; } }
+.home-story { position: absolute; left: 16px; bottom: 16px; z-index: 5; color: var(--ink-dim); }
+.ov-crystal { color: var(--legendary); font-weight: 800; margin-top: 6px; }

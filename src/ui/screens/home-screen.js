@@ -37,6 +37,13 @@
       dq.classList.add('door-locked');
       dq.onclick = () => B.UI.toast('Görev panosu v0.8 güncellemesinde açılıyor! 🔧');
 
+      // Hikâyeyi tekrar izleme
+      const replay = document.createElement('button');
+      replay.className = 'chip home-story';
+      replay.textContent = '🎬 Hikâyeyi izle';
+      replay.onclick = () => B.UI.show('intro', { replay: true });
+      root.appendChild(replay);
+
       this._hud = hud;
     },
     exit() { if (this._hud) this._hud.dispose(); },

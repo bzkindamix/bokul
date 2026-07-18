@@ -505,6 +505,37 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   border: 2px solid var(--line); border-radius: 14px; padding: 8px 18px;
 }
 
+/* ---------- v0.8: Giriş Sinematiği ---------- */
+.cine-root { align-items: center; justify-content: center; gap: 18px; padding: 20px; }
+.cine-stage { width: min(420px, 82vw); }
+.cine-svg { width: 100%; height: auto; display: block; }
+.cine-in { animation: cineIn .6s cubic-bezier(.2, 1.3, .4, 1); }
+@keyframes cineIn { from { transform: scale(.85); opacity: 0; } }
+.cine-text {
+  max-width: 560px; text-align: center; font-size: clamp(15px, 2.4vw, 19px);
+  line-height: 1.6; min-height: 5.2em; font-weight: 600;
+}
+.cine-controls { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.cine-dots { display: flex; gap: 6px; }
+.cine-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--bg-raised); }
+.cine-dots i.on { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+.cine-float { animation: cineFloat 3s ease-in-out infinite; transform-origin: center; }
+@keyframes cineFloat { 50% { transform: translateY(-6px); } }
+.cine-swirl { animation: cineSwirl 7s linear infinite; transform-origin: 100px 80px; }
+@keyframes cineSwirl { to { transform: rotate(360deg); } }
+.cine-shard { animation: cineShard 1.6s ease-in-out infinite alternate; }
+.cine-shard.s2 { animation-delay: .3s; } .cine-shard.s3 { animation-delay: .6s; } .cine-shard.s4 { animation-delay: .9s; }
+@keyframes cineShard { to { transform: translate(4px, -5px) rotate(8deg); } }
+.cine-tilt { animation: cineTilt 2.4s ease-in-out infinite; transform-origin: 100px 120px; }
+@keyframes cineTilt { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+.cine-beacon { animation: cineBeacon 1.6s ease-in-out infinite; }
+@keyframes cineBeacon { 50% { opacity: .45; } }
+.cine-blink1 { animation: cineBlink 1.4s infinite; }
+.cine-blink2 { animation: cineBlink 1.4s .7s infinite; }
+@keyframes cineBlink { 50% { opacity: .2; } }
+.home-story { position: absolute; left: 16px; bottom: 16px; z-index: 5; color: var(--ink-dim); }
+.ov-crystal { color: var(--legendary); font-weight: 800; margin-top: 6px; }
+
 </style>
 </head>
 <body>
@@ -789,6 +820,34 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     { "id": "ring-galaxy", "type": "ring",      "rarity": "legendary", "name": "Galaksi Halkası" },
     { "id": "t-golem",     "type": "title",     "rarity": "legendary", "name": "Golem Deviren" },
     { "id": "t-makine",    "type": "title",     "rarity": "legendary", "name": "Makine Söken" }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-story">
+{
+  "schema": 1,
+  "intro": [
+    {
+      "art": "crystal",
+      "text": "Evvel zaman içinde, galaksinin kalbinde BÜYÜK SAYI KRİSTALİ parlardı. Onun sayesinde her şey adildi: pastalar eşit dilimlenir, harçlıklar tam bölünür, dondurmalar kavgasız paylaşılırdı."
+    },
+    {
+      "art": "chaos",
+      "text": "Ama bir gece... KARMAŞA geldi. Sayılardan nefret eden bu gölge, kristali PARAMPARÇA etti ve parçalarını canavarlarına dağıttı!"
+    },
+    {
+      "art": "broken",
+      "text": "O günden beri hiçbir şey bölünemiyor. Erzaklar takımlara dağıtılamıyor, pastalar dilimlenemiyor... ve evet — DONDURMALAR PAYLAŞILAMIYOR!"
+    },
+    {
+      "art": "base",
+      "text": "Ama umut sönmedi. Sürünün Lideri BABA KOMUTAN, gizli bir eğitim üssü kurdu: BOKUL. Plan basit: bölme sanatını öğren, canavarları yen, kristal parçalarını geri al!"
+    },
+    {
+      "art": "hero",
+      "text": "Ve bugün üsse yeni bir asker katıldı... O asker SENSİN! Galaksinin adaleti artık senin kalemine emanet. Hazır mısın?"
+    }
   ]
 }
 
@@ -3068,6 +3127,13 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       dq.classList.add('door-locked');
       dq.onclick = () => B.UI.toast('Görev panosu v0.8 güncellemesinde açılıyor! 🔧');
 
+      // Hikâyeyi tekrar izleme
+      const replay = document.createElement('button');
+      replay.className = 'chip home-story';
+      replay.textContent = '🎬 Hikâyeyi izle';
+      replay.onclick = () => B.UI.show('intro', { replay: true });
+      root.appendChild(replay);
+
       this._hud = hud;
     },
     exit() { if (this._hud) this._hud.dispose(); },
@@ -3494,6 +3560,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         B.UI.overlay(
           '<div class="ov-big">' + boss.icon + '💥</div><h2>' + boss.name.toUpperCase() + ' DEVRİLDİ!</h2>' +
           '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
+          '<p class="ov-crystal">💠 Bir Sayı Kristali parçası daha kurtarıldı!</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('boss.win') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
         );
@@ -3720,6 +3787,158 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   });
 })(window.BOKUL = window.BOKUL || {});
 
+/* === src/ui/screens/intro-screen.js === */
+/* BOKUL — Giriş Sinematiği
+ * "Ne için savaşıyoruz?" — Büyük Sayı Kristali hikâyesi.
+ * Slaytlar content/story.json'dan gelir; sahneler saf SVG/CSS animasyon.
+ * ATLA ile her an geçilebilir; ilk açılışta otomatik, üsten tekrar izlenebilir. */
+(function (B) {
+
+  /* ---------- Sahne görselleri (inline SVG) ---------- */
+  const ART = {
+    /* Parlayan Büyük Sayı Kristali */
+    crystal:
+      '<svg viewBox="0 0 200 160" class="cine-svg">' +
+      '<circle cx="100" cy="80" r="60" fill="url(#g1)" opacity=".35"/>' +
+      '<defs><radialGradient id="g1"><stop offset="0%" stop-color="#3DF2D2"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs>' +
+      '<g class="cine-float">' +
+      '<path d="M100 20 L135 60 L100 140 L65 60 Z" fill="#3DF2D2" opacity=".9"/>' +
+      '<path d="M100 20 L135 60 L100 75 Z" fill="#8ffce9"/>' +
+      '<path d="M100 20 L65 60 L100 75 Z" fill="#5cf5db"/>' +
+      '<text x="100" y="66" text-anchor="middle" font-size="20" font-weight="bold" fill="#0b3a32" font-family="monospace">÷</text>' +
+      '</g>' +
+      '<circle cx="40" cy="30" r="2" fill="#fff" opacity=".8"/><circle cx="165" cy="45" r="2.5" fill="#fff" opacity=".6"/>' +
+      '<circle cx="150" cy="120" r="2" fill="#fff" opacity=".7"/><circle cx="30" cy="110" r="1.5" fill="#fff" opacity=".5"/>' +
+      '</svg>',
+
+    /* KARMAŞA gölgesi + parçalanan kristal */
+    chaos:
+      '<svg viewBox="0 0 200 160" class="cine-svg">' +
+      '<g class="cine-swirl">' +
+      '<path d="M100 15 Q150 30 160 80 Q150 130 100 145 Q50 130 40 80 Q50 30 100 15 Z" fill="#1a1030" opacity=".9"/>' +
+      '<path d="M100 30 Q140 42 148 80 Q140 118 100 130 Q60 118 52 80 Q60 42 100 30 Z" fill="#2d1b52" opacity=".9"/>' +
+      '</g>' +
+      '<circle cx="82" cy="70" r="7" fill="#FF4FD8"/><circle cx="118" cy="70" r="7" fill="#FF4FD8"/>' +
+      '<path d="M78 100 Q100 88 122 100" stroke="#FF4FD8" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+      '<g class="cine-shard s1"><path d="M30 40 L45 50 L32 62 Z" fill="#3DF2D2"/></g>' +
+      '<g class="cine-shard s2"><path d="M165 35 L178 48 L160 55 Z" fill="#3DF2D2"/></g>' +
+      '<g class="cine-shard s3"><path d="M25 115 L40 108 L38 126 Z" fill="#3DF2D2"/></g>' +
+      '<g class="cine-shard s4"><path d="M170 110 L182 122 L162 128 Z" fill="#3DF2D2"/></g>' +
+      '</svg>',
+
+    /* Paylaşılamayan dondurma — kırık adalet */
+    broken:
+      '<svg viewBox="0 0 200 160" class="cine-svg">' +
+      '<g class="cine-tilt">' +
+      '<path d="M85 90 L100 145 L115 90 Z" fill="#D9A06B"/>' +
+      '<path d="M85 90 L100 145 L115 90 Z" fill="none" stroke="#b57843" stroke-width="2"/>' +
+      '<circle cx="88" cy="72" r="17" fill="#FF9AD5"/>' +
+      '<circle cx="112" cy="72" r="17" fill="#8ffce9"/>' +
+      '<path d="M100 52 L100 92" stroke="#160F2E" stroke-width="5" stroke-linecap="round" stroke-dasharray="6 5"/>' +
+      '</g>' +
+      '<text x="52" y="55" font-size="26" class="cine-blink1">❓</text>' +
+      '<text x="132" y="45" font-size="26" class="cine-blink2">❗</text>' +
+      '</svg>',
+
+    /* BOKUL üssü + Komutan (SvgArt'tan) */
+    base:
+      '<svg viewBox="0 0 200 160" class="cine-svg">' +
+      '<path d="M30 130 Q100 55 170 130 Z" fill="#31245F"/>' +
+      '<path d="M45 130 Q100 70 155 130 Z" fill="#3F2E7E"/>' +
+      '<rect x="92" y="60" width="16" height="26" rx="4" fill="#4A3690"/>' +
+      '<circle cx="100" cy="52" r="10" fill="#FF4FD8" class="cine-beacon"/>' +
+      '<rect x="20" y="128" width="160" height="8" rx="4" fill="#231A48"/>' +
+      '<text x="100" y="122" text-anchor="middle" font-size="16" font-weight="bold" fill="#FFD52E" letter-spacing="4">BOKUL</text>' +
+      '</svg>',
+
+    /* Kahraman: parlayan yeni asker */
+    hero:
+      '<svg viewBox="0 0 200 160" class="cine-svg">' +
+      '<circle cx="100" cy="80" r="55" fill="url(#g2)" opacity=".45" class="cine-beacon"/>' +
+      '<defs><radialGradient id="g2"><stop offset="0%" stop-color="#FFD52E"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs>' +
+      '<g class="cine-float">' +
+      '<circle cx="100" cy="62" r="24" fill="#EFBE93"/>' +
+      '<path d="M76 60 Q78 38 100 36 Q122 38 124 60 L120 57 Q100 48 80 57 Z" fill="#5B3FA8"/>' +
+      '<circle cx="100" cy="37" r="4" fill="#FFD52E"/>' +
+      '<circle cx="92" cy="62" r="3.5" fill="#2b1d10"/><circle cx="108" cy="62" r="3.5" fill="#2b1d10"/>' +
+      '<path d="M92 72 Q100 79 108 72" stroke="#7a3b2e" stroke-width="3.5" fill="none" stroke-linecap="round"/>' +
+      '<path d="M74 120 Q100 100 126 120 L126 145 L74 145 Z" fill="#31245F"/>' +
+      '</g>' +
+      '<text x="35" y="40" font-size="18" class="cine-blink1">✨</text>' +
+      '<text x="155" y="120" font-size="18" class="cine-blink2">✨</text>' +
+      '</svg>',
+  };
+
+  B.UI.registerScreen('intro', {
+    enter(root, params) {
+      const slides = (B.Content.get('story') || {}).intro || [];
+      let idx = -1;
+      let typeTimer = null;
+      const self = this;
+
+      root.classList.add('cine-root');
+      root.innerHTML =
+        '<div class="cine-stage"></div>' +
+        '<p class="cine-text"></p>' +
+        '<div class="cine-controls">' +
+          '<div class="cine-dots">' + slides.map(() => '<i></i>').join('') + '</div>' +
+          '<button class="btn btn-quiet cine-skip">ATLA ▸▸</button>' +
+          '<button class="btn btn-action cine-next">DEVAM ▶</button>' +
+        '</div>';
+
+      const stage = root.querySelector('.cine-stage');
+      const textEl = root.querySelector('.cine-text');
+      const nextBtn = root.querySelector('.cine-next');
+      const dots = root.querySelectorAll('.cine-dots i');
+
+      function finish() {
+        clearInterval(typeTimer);
+        B.Save.settings.set({ introSeen: true });
+        if (params.replay) return B.UI.show('home');
+        B.Engine.afterIntro();
+      }
+
+      function show(i) {
+        clearInterval(typeTimer);
+        idx = i;
+        if (idx >= slides.length) return finish();
+        const s = slides[idx];
+        dots.forEach((d, k) => d.classList.toggle('on', k <= idx));
+        stage.innerHTML = ART[s.art] || '';
+        stage.classList.remove('cine-in'); void stage.offsetWidth;
+        stage.classList.add('cine-in');
+        B.Audio.play(s.art === 'chaos' ? 'hit' : s.art === 'hero' ? 'fanfare' : 'tick');
+
+        // Yazı-makinesi anlatım + mırıltı
+        textEl.textContent = '';
+        let c = 0;
+        typeTimer = setInterval(() => {
+          textEl.textContent = s.text.slice(0, ++c);
+          if (c % 4 === 0) B.Audio.play('blip');
+          if (c >= s.text.length) clearInterval(typeTimer);
+        }, 22);
+
+        nextBtn.textContent = idx === slides.length - 1 ? '⚔️ GÖREVE HAZIRIM!' : 'DEVAM ▶';
+      }
+
+      nextBtn.onclick = () => {
+        // Yazı hâlâ akıyorsa önce tamamla, ikinci dokunuşta ilerle
+        if (textEl.textContent.length < slides[idx].text.length) {
+          clearInterval(typeTimer);
+          textEl.textContent = slides[idx].text;
+          return;
+        }
+        show(idx + 1);
+      };
+      root.querySelector('.cine-skip').onclick = finish;
+
+      show(0);
+      this._cleanup = () => clearInterval(typeTimer);
+    },
+    exit() { if (this._cleanup) this._cleanup(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
 /* === src/core/game-engine.js === */
 /* BOKUL — GameEngine
  * Başlatma sırasının tek sahibi: kayıt → içerik → motorlar → arayüz. */
@@ -3731,7 +3950,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
       // 2) İçerik paketleri
       await B.Content.loadAll([
-        'config', 'dialogues', 'rewards',
+        'config', 'dialogues', 'rewards', 'story',
         'lessons/math-5-division',
       ]);
       B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
@@ -3752,9 +3971,16 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       B.UI.init();
     },
 
-    /* Splash'tan oyuna giriş (ilk dokunuş ses kilidini de açar) */
+    /* Splash'tan oyuna giriş (ilk dokunuş ses kilidini de açar)
+     * Akış: sinematik (ilk kez) → isim → avatar → üs */
     start() {
       B.Audio.unlock();
+      if (!B.Save.settings.get().introSeen) return B.UI.show('intro', {});
+      B.Engine.afterIntro();
+    },
+
+    /* Sinematik bitince (veya daha önce izlendiyse) buradan devam edilir */
+    afterIntro() {
       const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
       if (!name) return B.Engine.askName();
       B.State.data.player.name = name;
