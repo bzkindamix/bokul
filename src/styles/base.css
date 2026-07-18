@@ -1,0 +1,69 @@
+/* BOKUL — Temel stiller ve "Galaksi Üssü" tasarım token'ları */
+:root {
+  --bg-deep: #160F2E;
+  --bg-panel: #231A48;
+  --bg-raised: #31245F;
+  --line: #4A3690;
+  --ink: #F2EDFF;
+  --ink-dim: #A79BC8;
+  --accent: #FF4FD8;
+  --action: #FF9F1C;
+  --xp: #FFD52E;
+  --success: #52E88C;
+  --warn: #FFB35C;
+  --epic: #9D6BFF;
+  --legendary: #3DF2D2;
+  --mono: Consolas, 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-deep);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  user-select: none;
+}
+
+#app {
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  /* Yıldızlı galaksi zemini (saf CSS — dosya yok) */
+  background:
+    radial-gradient(1px 1px at 15% 25%, #fff8 0, transparent 50%),
+    radial-gradient(1px 1px at 65% 15%, #fff6 0, transparent 50%),
+    radial-gradient(1.5px 1.5px at 85% 65%, #fff7 0, transparent 50%),
+    radial-gradient(1px 1px at 35% 85%, #fff5 0, transparent 50%),
+    radial-gradient(1px 1px at 50% 45%, #fff4 0, transparent 50%),
+    radial-gradient(ellipse at 70% -10%, #2C1E63 0, transparent 60%),
+    var(--bg-deep);
+}
+
+button { font-family: inherit; color: inherit; border: none; background: none; cursor: pointer; }
+
+.btn {
+  border-radius: 16px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  padding: 12px 22px;
+  color: #fff;
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .35);
+  transition: transform .08s;
+}
+.btn:active { transform: translateY(2px); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .35); }
+.btn-action { background: linear-gradient(180deg, #FFB443, #F07E00); color: #3a2600; }
+.btn-quiet { background: var(--bg-raised); color: var(--ink-dim); }
+
+.chip {
+  background: var(--bg-raised);
+  border-radius: 99px;
+  padding: 5px 12px;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}

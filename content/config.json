@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "starThresholds": { "three": 0, "two": 2 },
+  "hintEscalation": [1, 2, 3],
+  "adaptive": {
+    "window": 20,
+    "weakThreshold": 0.6,
+    "strongThreshold": 0.85
+  },
+  "mastery": {
+    "bossGate": 0.8,
+    "reviewIntervalsDays": [1, 3, 7, 14]
+  },
+  "unitBoss": { "armor": 3, "repairStreak": 3, "regroupHpCarry": 0.5 },
+  "sectionUnlockStars": 16,
+  "autoSaveDebounceMs": 2000,
+  "idleDialogueSeconds": 25
+}

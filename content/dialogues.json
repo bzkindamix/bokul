@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "speaker": { "name": "Baba Komutan", "avatar": "commander" },
+  "pools": {
+    "greeting": [
+      "Hoş geldin {name}! Kalemin dolu mu?",
+      "Üs seni bekliyordu {name}. Rapor ver!",
+      "{name} geldi, üs güvende. Bugün hangi kaleyi alıyoruz?",
+      "{name}! Matematik senden kaçamaz, biliyorsun.",
+      "Tam zamanında geldin {name}. Sayılar huzursuzlanmaya başlamıştı.",
+      "Karargâh seninle daha güçlü {name}."
+    ],
+    "greeting.firstOfDay": [
+      "Günün ilk harekâtı {name}! Sürü uyanıyor.",
+      "Güne bölmeyle başlayan, günü fethederek bitirir. Değil mi {name}?",
+      "Bugün ilk görev senden {name}. Beyin ısınma turları başlasın!",
+      "Yeni gün, yeni hedefler {name}. Kalemi sağlam tut!"
+    ],
+    "correct": [
+      "{name}, matematik senden kaçamaz.",
+      "Bu bölme işlemi senden daha inatçı çıkamadı {name}.",
+      "Tam isabet! Sürü seninle gurur duyuyor {name}.",
+      "İşte benim {name}'im!",
+      "Sayılar teslim oluyor {name}, devam!",
+      "Keskin nişancı gibisin bugün {name}.",
+      "Bu hızla gidersen rütbeleri sana yetiştiremem {name}.",
+      "Kale sarsılıyor {name}!"
+    ],
+    "correct.streak3": [
+      "Üçüncü hedef de düştü! Sürü seni izliyor {name}.",
+      "Seri devam ediyor {name}! Durma, hücum!",
+      "Bu seriyle akşam dondurma lobisine giriş garanti gibi {name}.",
+      "Ateş hattındasın {name}, kimse duramaz!"
+    ],
+    "wrong.soft": [
+      "Küçük bir sapma {name}. Nişanı tazele.",
+      "Yanlış yaptın ama savaş bitmedi {name}.",
+      "Harika gidiyordun {name}, sadece küçük bir hata.",
+      "Sakin {name}. Derin nefes. Tekrar bak.",
+      "Bu tuzağa çok kişi düştü. Sen kalkmasını bilenlerdensin {name}."
+    ],
+    "wrong.retry": [
+      "Tekrar saldır {name}!",
+      "Kale hâlâ orada {name}. Bir daha!",
+      "Buna henüz onay veremiyorum {name}. Ama çok yaklaştın!",
+      "Pes etmek bizim sözlükte yok {name}. Hücum!"
+    ],
+    "idle": [
+      "Kalemi sağlam tut {name}, beyin birazdan fazla mesai yapacak.",
+      "{name}? Hedef bekliyor. Uyuyakaldık mı?",
+      "Düşünmek iyidir {name}. Ama sayılar sabırsızlanıyor."
+    ],
+    "levelup": [
+      "Sürünün lideri olarak bu rütbeyi onaylıyorum {name}!",
+      "Rütbe atladın {name}! Tören bizden, dondurma senden.",
+      "Bu üniformaya yeni yıldız yakışacak {name}. Tebrikler!",
+      "Karargâhta adın konuşuluyor {name}."
+    ],
+    "mission.start": [
+      "Harekât başlıyor {name}! İlk hedef karşında.",
+      "Emirler açık {name}: bu hedefi al!",
+      "Kalemi kap {name}, hedef göründü!"
+    ],
+    "mission.next": [
+      "Sıradaki hedef {name}!",
+      "Devam ediyoruz {name}, kale kale ilerliyoruz.",
+      "Bir sonraki hedef seni bekliyor {name}.",
+      "Hız kesme {name}!"
+    ],
+    "mission.done": [
+      "Harekât tamam {name}! Karargâha dönüyoruz.",
+      "Bu bölgeyi temizledik {name}. Sıradaki!",
+      "Görev raporu: BAŞARILI. İmza: Baba Komutan.",
+      "Bu soruları da geçtin {name}. Dondurma lobisine giriş yaklaşıyor!"
+    ],
+    "step.select.intro": [
+      "Kaç basamak alacağız {name}? Sayının basamaklarına DOKUN, sonra ONAYLA!",
+      "Önce çalışacağımız parçayı seç: soldan basamaklara dokun, ONAYLA'ya bas.",
+      "Bölenden küçük olmayan en kısa parçayı seç {name} — basamaklara dokunman yeterli!"
+    ],
+    "teach.intro": [
+      "Brifing zamanı {name}. Önce mantığı öğreniyoruz, sonra fethediyoruz.",
+      "Otur, izle, dokun {name}. Bölmenin sırrını veriyorum.",
+      "Bu brifingi dinleyen, sınavda şaşırmaz {name}."
+    ],
+    "teach.deal.intro": [
+      "{total} kutu erzak geldi {name}. {groups} takıma EŞİT paylaştır. Takımlara dokun!",
+      "Depoda {total} kutu var, {groups} takım aç bekliyor. Adil ol {name}!"
+    ],
+    "teach.deal.unfair": [
+      "Eşit paylaştır {name} — önce az olan takıma!",
+      "O takım zaten fazla aldı. Adalet {name}, adalet!",
+      "Sürüde kayırma olmaz {name}. Az olana ver."
+    ],
+    "teach.deal.done": [
+      "Paylaştırma tamam! Her takıma {each} kutu düştü. İşte BÖLME tam olarak budur.",
+      "Gördün mü {name}? Eşit paylaşmak = bölmek. Her takıma {each} kutu!"
+    ],
+    "teach.guided.done": [
+      "İlk uzun bölmeni bitirdin {name}! Artık sahaya çıkabilirsin.",
+      "Brifing tamam {name}. Bu adımları unutma: seç, tahmin et, çarp, çıkar, indir!"
+    ],
+    "teach.coach.select": [
+      "Önce bak {name}: ilk basamak bölenden büyük mü? Yeterli basamağa dokun, sonra ONAYLA.",
+      "Kaç basamak alacağız? İlk basamağa dokun, yetmezse ikinciyi de al. Sonra ONAYLA!"
+    ],
+    "teach.coach.estimate": [
+      "Şimdi tahmin {name}: bölen bu sayının içinde kaç kere var? Rakamı yaz.",
+      "Bölüm rakamını tahmin et. Çarpım bölüneni geçmesin!"
+    ],
+    "teach.coach.multiply": [
+      "Tahminini bölenle çarp ve sonucu yaz {name}.",
+      "Çarpma zamanı: tahmin × bölen = ?"
+    ],
+    "teach.coach.subtract": [
+      "Şimdi çıkar {name}. Kale kuralı: kalan, bölenden KÜÇÜK olmalı!",
+      "Üstteki sayıdan çarpımı çıkar. Sonucu yaz."
+    ],
+    "teach.coach.bringdown": [
+      "Sıradaki basamağı aşağı indir {name}. Yanıp sönen rakama dokun!",
+      "İndirme zamanı! Bölünendeki sıradaki rakamı indir."
+    ],
+    "teach.autofill.select": [
+      "Bu kısmı ben aldım {name}: {n} basamak yeterli.",
+      "İzle {name}: {n} basamak alıyorum, çünkü bölenden büyük olmalı."
+    ],
+    "boss.intro.topic": [
+      "Karşında {bossName}! Sakin ol {name} — o sana vuramaz bile. Sen vur yeter!",
+      "{bossName} yolunu kesti {name}. Her doğru adım ona hasar verir. Hücum!"
+    ],
+    "boss.intro.unit": [
+      "DİKKAT {name}! {bossName} karşılık verir. Zırhını kontrol et!",
+      "Bu bir ÜNİTE BOSS'U: {bossName}. Yanlış cevaplarını sana fırlatır {name}. Hazır mısın?"
+    ],
+    "boss.playerHit": [
+      "Kendi yanlış cevabınla vuruldun {name}! Zırh dayanıyor, devam!",
+      "Boss fırsatı kaçırmadı! Zırhın bir plaka eksildi {name}. Toparlan!",
+      "Sarsıldık ama düşmedik {name}. Nişan al ve devam et!"
+    ],
+    "boss.retreat": [
+      "Geri çekiliyoruz {name}! Yeniden toplan, kale hâlâ orada.",
+      "Bu tur onun {name}. Ama boss yoruldu, sen dinlendin. Tekrar saldıracağız!"
+    ],
+    "boss.win": [
+      "Kale düştü {name}! Bu akşam dondurma lobisine giriş izni VERİLDİ.",
+      "Zafer! Sürü bu geceyi senin adınla anacak {name}.",
+      "Boss devrildi! Rapor karargâha iletildi: {name} = KAHRAMAN."
+    ],
+    "boss.shieldUp": [
+      "Boss kalkan kaldırdı! Bir doğru adımla kırılır {name}, devam!",
+      "Ufak bir hata boss'a nefes aldırdı. Kalkanı kır {name}!"
+    ],
+    "boss.shieldBreak": [
+      "Kalkan kırıldı! Şimdi vur {name}!",
+      "Kalkan paramparça. Yolu açtın {name}!"
+    ],
+    "boss.armorRepair": [
+      "Üç doğru adım! Zırhın onarıldı {name}.",
+      "Tamirci geldi: bir zırh plakası yerine takıldı!"
+    ],
+    "boss.crit": [
+      "HATASIZ HEDEF! Kritik vuruş {name}!",
+      "Mükemmel çözüm = kritik hasar. Boss sendeliyor!"
+    ],
+    "reward": [
+      "Sandık senin {name}. Açarken gözlerini kırpma.",
+      "Ganimet zamanı {name}! Bakalım içinden ne çıkacak."
+    ],
+
+    "hint.select.soft.1": "İlk basamak yeterli mi? Bölenle karşılaştır.",
+    "hint.select.soft.2": "Aldığın parça, bölenden büyük veya eşit olmalı.",
+    "hint.select.guide.1": "İlk basamak bölenden küçükse bir basamak daha al — ikinci basamağa dokun.",
+    "hint.select.explain": "Kural şu: soldan başla, bölenden küçük olmayan EN KISA parçayı al. Örnek: 4872÷6'da 4<6, o yüzden 48'i alırız.",
+
+    "hint.estimate.soft.1": "Bölünen sayıya tekrar bak.",
+    "hint.estimate.soft.2": "Bölen bu sayının içinde kaç kere var?",
+    "hint.estimate.guide.1": "Çarpım biraz büyük olmuş. Bir küçüğünü dene.",
+    "hint.estimate.guide.2": "Biraz küçük kaldı. Bir büyüğünü dene.",
+    "hint.estimate.explain": "Tahmin ettiğin rakam × bölen, çalıştığın sayıyı GEÇMEMELİ ama olabildiğince yaklaşmalı. Çarpım tablosunu düşün.",
+
+    "hint.multiply.soft.1": "Çarpımı bir daha kontrol et.",
+    "hint.multiply.soft.2": "Tahminin ile böleni çarpıyoruz, acele etme.",
+    "hint.multiply.guide.1": "Bölüm rakamı × bölen. Çarpım tablosundan emin ol.",
+    "hint.multiply.explain": "Yukarı yazdığın tahmini bölenle çarp. Örnek: tahmin 8, bölen 6 ise 8×6=48 yazılır.",
+
+    "hint.subtract.soft.1": "Harika gidiyordun, sadece küçük bir çıkarma hatası.",
+    "hint.subtract.soft.2": "Çıkarma işlemine bir daha bak.",
+    "hint.subtract.guide.1": "Üstteki sayıdan çarpımı çıkarıyoruz. Basamak basamak dene.",
+    "hint.subtract.explain": "KALE KURALI: çıkarma sonucu bölenden KÜÇÜK olmalı. Büyükse tahminde sorun var demektir.",
+
+    "hint.bringdown.soft.1": "Sıradaki basamağa bak — hangisi yanıp sönüyor?",
+    "hint.bringdown.guide.1": "Bölünendeki bir SONRAKİ rakamı indiriyoruz, atlamak yok.",
+    "hint.bringdown.explain": "Soldan sağa sırayla gideriz: kalanın yanına bölünenin sıradaki rakamını yazarız. İşte 'aşağı indirmek' budur."
+  }
+}

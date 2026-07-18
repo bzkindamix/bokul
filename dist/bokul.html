@@ -1,0 +1,3808 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>BOKUL — Baba Okulu Eğitim Üssü</title>
+
+<!-- Geliştirme modu: ayrı dosyalar. build.js bunları tek dosyaya gömer. -->
+<style>
+/* === src/styles/base.css === */
+/* BOKUL — Temel stiller ve "Galaksi Üssü" tasarım token'ları */
+:root {
+  --bg-deep: #160F2E;
+  --bg-panel: #231A48;
+  --bg-raised: #31245F;
+  --line: #4A3690;
+  --ink: #F2EDFF;
+  --ink-dim: #A79BC8;
+  --accent: #FF4FD8;
+  --action: #FF9F1C;
+  --xp: #FFD52E;
+  --success: #52E88C;
+  --warn: #FFB35C;
+  --epic: #9D6BFF;
+  --legendary: #3DF2D2;
+  --mono: Consolas, 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg-deep);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  user-select: none;
+}
+
+#app {
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  /* Yıldızlı galaksi zemini (saf CSS — dosya yok) */
+  background:
+    radial-gradient(1px 1px at 15% 25%, #fff8 0, transparent 50%),
+    radial-gradient(1px 1px at 65% 15%, #fff6 0, transparent 50%),
+    radial-gradient(1.5px 1.5px at 85% 65%, #fff7 0, transparent 50%),
+    radial-gradient(1px 1px at 35% 85%, #fff5 0, transparent 50%),
+    radial-gradient(1px 1px at 50% 45%, #fff4 0, transparent 50%),
+    radial-gradient(ellipse at 70% -10%, #2C1E63 0, transparent 60%),
+    var(--bg-deep);
+}
+
+button { font-family: inherit; color: inherit; border: none; background: none; cursor: pointer; }
+
+.btn {
+  border-radius: 16px;
+  font-weight: 800;
+  letter-spacing: .5px;
+  padding: 12px 22px;
+  color: #fff;
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .35);
+  transition: transform .08s;
+}
+.btn:active { transform: translateY(2px); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .35); }
+.btn-action { background: linear-gradient(180deg, #FFB443, #F07E00); color: #3a2600; }
+.btn-quiet { background: var(--bg-raised); color: var(--ink-dim); }
+
+.chip {
+  background: var(--bg-raised);
+  border-radius: 99px;
+  padding: 5px 12px;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* === src/styles/components.css === */
+/* BOKUL — Ortak bileşenler: HUD, Komutan, ped, bölme tahtası, overlay, efektler */
+
+/* ---------- HUD ---------- */
+.hud { display: flex; align-items: center; gap: 10px; padding: 12px 14px; }
+.hud-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--epic));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; border: 2px solid var(--xp);
+}
+.hud-xpbar { flex: 1; height: 18px; background: var(--bg-raised); border-radius: 99px; position: relative; }
+.hud-xpbar i {
+  display: block; height: 100%; width: 0; border-radius: 99px;
+  background: linear-gradient(90deg, var(--xp), var(--action));
+  box-shadow: 0 0 8px rgba(255, 213, 46, .5);
+  transition: width .4s;
+}
+.hud-lvl {
+  position: absolute; left: -6px; top: -7px; z-index: 1;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--xp); color: #4a3600; font-weight: 800; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #ffe98f;
+}
+
+/* ---------- Komutan ---------- */
+.commander-wrap { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.commander-face {
+  width: 84px; height: 84px; border-radius: 18px; font-size: 46px;
+  background: linear-gradient(160deg, #3F2E7E, var(--bg-panel));
+  border: 2px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 16px rgba(255, 79, 216, .25);
+}
+.commander-compact .commander-face { width: 60px; height: 60px; font-size: 32px; }
+.commander-balloon {
+  background: var(--bg-panel); border: 1px solid var(--line);
+  border-radius: 14px; padding: 10px 12px;
+  font-size: 14px; line-height: 1.4; min-height: 58px; width: 100%;
+}
+
+/* ---------- Sayı pedi ---------- */
+.numpad {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px;
+  padding: 10px 0 4px; max-width: 560px; margin: 0 auto; width: 100%;
+}
+.numpad .key {
+  background: var(--bg-raised); border-radius: 12px;
+  padding: 13px 0; font-weight: 800; font-size: 20px; min-height: 48px;
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .35);
+}
+.numpad .key:active { transform: translateY(2px); }
+.numpad .key-back { color: var(--warn); }
+.numpad .key-go {
+  grid-column: span 2;
+  background: linear-gradient(180deg, #FFB443, #F07E00);
+  color: #3a2600; font-size: 16px;
+}
+/* SEÇ adımı: rakam tuşları kapalı ama ONAYLA tam parlak — "bozuk" gibi görünmesin */
+.numpad-dim .key { opacity: .3; pointer-events: none; }
+.numpad-dim .key-go { opacity: 1; pointer-events: auto; animation: goPulse 1.4s infinite; }
+@keyframes goPulse { 50% { box-shadow: inset 0 -3px 0 rgba(0,0,0,.35), 0 0 16px rgba(255,159,28,.8); } }
+.numpad-mini { grid-template-columns: repeat(6, 1fr); max-width: 400px; }
+
+/* ---------- Uzun bölme tahtası ---------- */
+.ld-root { display: flex; flex-direction: column; gap: 10px; height: 100%; }
+.ld-problem {
+  background: var(--bg-panel); border: 1px dashed var(--epic);
+  border-radius: 12px; padding: 10px 14px; font-size: 14.5px; line-height: 1.45;
+}
+.ld-board {
+  flex: 1; display: flex; justify-content: center; align-items: flex-start;
+  gap: 0; padding: 14px 6px; background: var(--bg-panel); border-radius: 16px;
+  font-family: var(--mono); font-size: clamp(24px, 5vw, 36px); font-weight: 700;
+  overflow: auto;
+}
+.ld-left { display: flex; flex-direction: column; }
+.ld-right {
+  display: flex; flex-direction: column; align-items: flex-start;
+  border-left: 3px solid var(--ink); padding-left: 12px; margin-left: 8px;
+}
+.ld-divisor { padding: 0 6px 2px; }
+.ld-qline { height: 3px; background: var(--ink); align-self: stretch; }
+.ld-quotient { display: flex; padding-top: 4px; min-height: 1.3em; color: var(--accent); }
+.ld-row { display: flex; }
+.ld-cell {
+  width: 1.35ch; height: 1.45em; text-align: center;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 8px; margin: 1px 0;
+}
+.ld-digit { cursor: pointer; }
+.ld-select { background: rgba(255, 79, 216, .22); box-shadow: inset 0 -3px 0 var(--accent); }
+.ld-pulse { animation: ldPulse 1.1s infinite; }
+@keyframes ldPulse { 50% { background: rgba(255, 213, 46, .3); } }
+.ld-active {
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 10px rgba(255, 79, 216, .55);
+  color: var(--accent); min-width: 1.35ch;
+}
+.ld-ghost { border-style: dashed; opacity: .8; }
+.ld-done { color: var(--ink); }
+.ld-sep .ld-cell { color: var(--ink-dim); }
+.ld-product .ld-cell, .ld-rem .ld-cell { color: var(--ink); }
+.ld-sign-cell { color: var(--ink-dim); }
+.ld-quotient .ld-cell.ld-done { color: var(--accent); }
+.ld-shake { animation: ldShake .32s; }
+@keyframes ldShake {
+  20% { transform: translateX(-6px); } 40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); } 80% { transform: translateX(4px); }
+}
+
+/* ---------- Overlay / tören ---------- */
+.overlay {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(10, 6, 26, .82);
+  display: flex; align-items: center; justify-content: center;
+  animation: ovIn .25s;
+}
+@keyframes ovIn { from { opacity: 0; } }
+.overlay-card {
+  background: var(--bg-panel); border: 2px solid var(--line);
+  border-radius: 24px; padding: 28px 34px; text-align: center;
+  max-width: min(480px, 92vw);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .6);
+  animation: cardPop .35s cubic-bezier(.2, 1.6, .4, 1);
+}
+@keyframes cardPop { from { transform: scale(.7); opacity: 0; } }
+.overlay-card h2 { margin: 8px 0; letter-spacing: 1px; }
+.overlay-btns { display: flex; gap: 10px; justify-content: center; margin-top: 18px; flex-wrap: wrap; }
+.ov-big { font-size: 54px; }
+.ov-rank { font-size: 44px; margin-top: 6px; }
+.ov-ranktitle { color: var(--xp); font-weight: 800; }
+.ov-quote { color: var(--ink-dim); font-style: italic; margin-top: 10px; font-size: 14px; }
+.ov-xp { color: var(--xp); font-weight: 800; margin-top: 8px; }
+.ov-stars { font-size: 46px; letter-spacing: 6px; }
+.ov-star { color: var(--bg-raised); display: inline-block; }
+.ov-star.lit { color: var(--xp); animation: starPop .5s cubic-bezier(.2, 1.8, .4, 1) both; text-shadow: 0 0 18px rgba(255, 213, 46, .8); }
+@keyframes starPop { from { transform: scale(0) rotate(-40deg); } }
+.name-input {
+  margin-top: 12px; padding: 12px 16px; border-radius: 12px; border: 2px solid var(--line);
+  background: var(--bg-deep); color: var(--ink); font-size: 18px; font-weight: 700;
+  text-align: center; width: 100%; outline: none;
+}
+.name-input:focus { border-color: var(--accent); }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; top: -60px; left: 50%; transform: translateX(-50%);
+  background: var(--bg-raised); border: 1px solid var(--line);
+  border-radius: 99px; padding: 10px 20px; font-weight: 700; font-size: 14px;
+  z-index: 60; transition: top .35s cubic-bezier(.2, 1.4, .4, 1);
+}
+.toast-show { top: 16px; }
+
+/* ---------- Efektler ---------- */
+.fx-xp {
+  position: fixed; z-index: 55; pointer-events: none;
+  color: var(--xp); font-weight: 800; font-size: 18px;
+  text-shadow: 0 0 10px rgba(255, 213, 46, .8);
+  transition: transform .8s cubic-bezier(.3, 0, .6, 1), opacity .8s;
+}
+.fx-confetti {
+  position: fixed; top: 40vh; z-index: 55; pointer-events: none;
+  width: 10px; height: 14px; border-radius: 3px;
+  animation: confFall 1.9s ease-in forwards;
+}
+@keyframes confFall {
+  to { transform: translate(var(--dx), 70vh) rotate(var(--dr)); opacity: 0; }
+}
+
+/* ---------- v0.7: Avatar / Komutan SVG ---------- */
+.avatar-holder { display: inline-block; width: 100%; height: 100%; position: relative; }
+.avatar-holder svg { width: 100%; height: 100%; display: block; }
+.avatar-photo {
+  width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+  border: 2px solid var(--xp); display: block;
+}
+.avatar-ring-svg { position: absolute; inset: -4px; width: calc(100% + 8px) !important; height: calc(100% + 8px) !important; }
+.hud-avatar { width: 44px; height: 44px; flex: none; }
+.commander-face svg { width: 100%; height: 100%; display: block; }
+.commander-face { background: linear-gradient(160deg, #3F2E7E, var(--bg-panel)); overflow: hidden; }
+.boss-face svg { width: 88%; height: 88%; }
+.boss-face.boss-enter { animation: bossEnter .8s cubic-bezier(.2, 1.4, .4, 1), bossIdle 2.6s ease-in-out .8s infinite; }
+@keyframes bossEnter { from { transform: scale(.2) translateY(-40px); filter: blur(6px); opacity: 0; } }
+
+/* ---------- v0.7: Sandık töreni (CSS 3D) ---------- */
+.chest-overlay { perspective: 900px; }
+.chest-scene { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.chest-title { font-weight: 800; letter-spacing: 2px; color: var(--xp); }
+.chest3d { position: relative; width: 150px; height: 130px; cursor: pointer; transform-style: preserve-3d; }
+.chest-body {
+  position: absolute; inset: 30px 0 0 0; border-radius: 16px;
+  background: linear-gradient(180deg, #7a5217, #59390c);
+  border: 3px solid #FFD52E; font-size: 56px;
+  display: flex; align-items: center; justify-content: center;
+}
+.chest-lid {
+  position: absolute; top: 0; left: -4px; right: -4px; height: 42px; border-radius: 14px 14px 6px 6px;
+  background: linear-gradient(180deg, #96682199, #6b4610); background-color: #966821;
+  border: 3px solid #FFD52E; transform-origin: top center;
+  transition: transform .5s cubic-bezier(.3, 1.6, .4, 1); z-index: 2;
+}
+.chest-glow {
+  position: absolute; inset: -20px; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, rgba(255,213,46,.55) 0%, transparent 70%);
+  transition: opacity .4s;
+}
+.chest-shake { animation: chestShake 1.2s infinite; }
+@keyframes chestShake {
+  0%, 100% { transform: rotate(0); } 8% { transform: rotate(-5deg); }
+  16% { transform: rotate(5deg); } 24% { transform: rotate(-3deg); } 32% { transform: rotate(0); }
+}
+.chest-open .chest-lid { transform: rotateX(-115deg); }
+.chest-open .chest-glow { opacity: 1; }
+.chest-hint { color: var(--ink-dim); font-size: 13px; min-height: 18px; }
+.loot-card {
+  background: var(--bg-panel); border: 3px solid var(--rar, #A79BC8); border-radius: 18px;
+  padding: 14px 22px; min-width: 170px;
+  box-shadow: 0 0 24px color-mix(in srgb, var(--rar) 55%, transparent);
+  animation: lootIn .6s cubic-bezier(.2, 1.5, .4, 1);
+}
+@keyframes lootIn { from { transform: rotateY(90deg) scale(.6); opacity: 0; } }
+.loot-rarity { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--rar); }
+.loot-art { width: 100px; height: 100px; margin: 8px auto; }
+.loot-art svg { width: 100%; height: 100%; }
+.loot-xp { display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 900; color: var(--xp); }
+.loot-name { font-weight: 800; }
+.loot-title-art { font-size: 54px; text-align: center; }
+.loot-coins { color: var(--xp); font-weight: 800; }
+
+/* ---------- v0.7: Dolap / Dükkân ---------- */
+.locker-layout { flex: 1; display: grid; grid-template-columns: 240px 1fr; gap: 14px; padding: 8px 16px 16px; min-height: 0; }
+.locker-left { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.locker-preview { width: 170px; height: 170px; }
+.locker-name { font-weight: 900; font-size: 20px; letter-spacing: 1px; }
+.locker-right { display: flex; flex-direction: column; min-height: 0; }
+.locker-tabs { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 10px; }
+.tab-btn.tab-on { background: var(--accent); color: #3a0a2e; }
+.locker-parts { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+.part-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; }
+.part-card {
+  background: var(--bg-panel); border: 2px solid var(--line); border-radius: 14px;
+  padding: 8px 6px; display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.part-card:active { transform: scale(.96); }
+.part-on { border-color: var(--success); box-shadow: 0 0 10px rgba(82, 232, 140, .4); }
+.part-locked .part-prev { filter: grayscale(.9) brightness(.6); }
+.part-prev { width: 64px; height: 64px; }
+.part-prev svg { width: 100%; height: 100%; }
+.part-name { font-size: 11px; font-weight: 700; color: var(--ink-dim); }
+.part-price { font-size: 11px; font-weight: 800; color: var(--xp); }
+.photo-panel { text-align: center; display: flex; flex-direction: column; gap: 12px; padding: 14px; background: var(--bg-panel); border-radius: 14px; }
+.photo-input { display: none; }
+.photo-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.chest-float {
+  position: absolute; right: 20px; bottom: 120px; z-index: 5;
+  font-size: 40px; background: none; text-align: center;
+  filter: drop-shadow(0 0 12px rgba(255, 213, 46, .8));
+  animation: chestShake 1.4s infinite;
+}
+.chest-float small { display: block; font-size: 11px; color: var(--xp); font-weight: 800; }
+
+/* ---------- v0.7.1: Canlı karakterler ---------- */
+.commander-idle { animation: cmdBreath 3.2s ease-in-out infinite; }
+@keyframes cmdBreath {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-3px) rotate(-1deg); }
+}
+.boss-face { animation: bossIdle 2.6s ease-in-out infinite; }
+@keyframes bossIdle {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.03); }
+}
+
+/* === src/styles/screens.css === */
+/* BOKUL — Ekran yerleşimleri: splash, üs, harita, harekât, boss, teach */
+
+.screen { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+
+/* ---------- Splash ---------- */
+#splash {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; text-align: center; height: 100dvh;
+}
+.splash-logo { font-size: 64px; animation: floatY 3s ease-in-out infinite; }
+@keyframes floatY { 50% { transform: translateY(-10px); } }
+.splash-title { font-size: 56px; font-weight: 900; letter-spacing: 6px; }
+.splash-title span { color: var(--accent); text-shadow: 0 0 24px rgba(255, 79, 216, .6); }
+.splash-sub { color: var(--ink-dim); letter-spacing: 3px; font-size: 14px; margin-bottom: 14px; }
+.splash-note { color: var(--ink-dim); font-size: 11px; margin-top: 22px; opacity: .7; }
+.splash-error { color: var(--warn); margin-top: 16px; font-size: 14px; }
+#splash-start { font-size: 20px; padding: 16px 38px; }
+
+/* ---------- Üs (home) ---------- */
+.home-mid { flex: 1; display: flex; align-items: center; justify-content: center; padding: 10px 18px; }
+.home-mid .commander-wrap { max-width: 620px; flex-direction: row; align-items: center; }
+.home-mid .commander-face { width: 110px; height: 130px; font-size: 60px; flex: none; }
+.home-mid .commander-balloon { font-size: 16px; }
+.home-doors { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 12px; padding: 0 18px 20px; max-width: 760px; width: 100%; margin: 0 auto; }
+.door { font-size: 15px; line-height: 1.5; padding: 18px 8px; }
+.door-main { background: linear-gradient(180deg, #FFB443, #F07E00); color: #3a2600; font-size: 19px; }
+.door-side { background: linear-gradient(180deg, #43318C, var(--bg-raised)); }
+.door-locked { opacity: .6; }
+
+/* ---------- Harita ---------- */
+.map-title { text-align: center; font-weight: 800; letter-spacing: 1px; padding: 2px 12px 10px; }
+.map-scroll { flex: 1; overflow-y: auto; padding: 0 14px 24px; display: flex; flex-direction: column; gap: 12px; }
+.map-unit { color: var(--xp); font-weight: 800; letter-spacing: 2px; font-size: 13px; margin-top: 8px; }
+.map-section {
+  background: var(--bg-panel); border: 1px solid var(--line);
+  border-radius: 18px; padding: 12px 14px;
+}
+.map-locked { opacity: .55; }
+.map-sec-head { display: flex; align-items: center; gap: 10px; }
+.map-sec-head b { flex: 1; }
+.map-stars { color: var(--xp); font-size: 13px; font-weight: 700; }
+.map-path { display: flex; gap: 10px; margin-top: 12px; overflow-x: auto; padding: 6px 2px 14px; align-items: center; }
+.map-node {
+  flex: none; width: 60px; height: 60px; border-radius: 50%;
+  background: var(--bg-raised); border: 3px solid var(--line);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-size: 22px; position: relative;
+}
+.map-node small { font-size: 8.5px; color: var(--xp); letter-spacing: 1px; margin-top: -2px; white-space: nowrap; }
+.node-done { border-color: var(--success); }
+.node-active { border-color: var(--accent); animation: nodePulse 1.6s infinite; }
+@keyframes nodePulse { 50% { box-shadow: 0 0 20px rgba(255, 79, 216, .9); } }
+.node-locked { opacity: .4; filter: grayscale(1); pointer-events: none; }
+.map-boss { width: 76px; height: 76px; border-radius: 20px; border-color: var(--epic); font-size: 28px; }
+.map-uboss { width: 88px; height: 88px; border-color: var(--legendary); font-size: 34px; }
+.map-boss small { font-size: 8px; color: var(--epic); }
+.map-uboss small { color: var(--legendary); }
+.map-soon {
+  text-align: center; color: var(--ink-dim); font-size: 13px;
+  border: 1px dashed var(--line); border-radius: 14px; padding: 14px;
+}
+
+/* ---------- Harekât / Boss ortak yerleşim ---------- */
+.mission-title { text-align: center; font-weight: 800; font-size: 14px; letter-spacing: 1px; color: var(--ink-dim); }
+.mission-layout {
+  flex: 1; display: grid; grid-template-columns: 200px 1fr;
+  gap: 12px; padding: 10px 14px 14px; min-height: 0;
+}
+.mission-left { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.mission-stage { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+
+/* Dar ekran: komutan üste, tek kolon */
+@media (max-width: 720px) {
+  .mission-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .mission-left .commander-wrap { flex-direction: row; align-items: center; }
+  .mission-left .commander-face { width: 48px; height: 48px; font-size: 26px; }
+  .commander-balloon { min-height: 44px; font-size: 13px; }
+}
+
+/* ---------- Boss ---------- */
+.boss-head {
+  display: flex; align-items: center; gap: 12px; padding: 6px 16px;
+}
+.boss-face {
+  width: 64px; height: 64px; border-radius: 16px; font-size: 36px; flex: none;
+  background: linear-gradient(160deg, #5A3E9E, #2A1D52);
+  border: 2px solid var(--epic);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 16px rgba(157, 107, 255, .5);
+}
+.boss-unit .boss-face { border-color: var(--legendary); box-shadow: 0 0 16px rgba(61, 242, 210, .4); }
+.boss-info { flex: 1; }
+.boss-name { font-weight: 800; letter-spacing: 1px; font-size: 13px; color: var(--epic); margin-bottom: 5px; }
+.boss-unit .boss-name { color: var(--legendary); }
+.boss-hp { height: 18px; background: var(--bg-raised); border-radius: 99px; overflow: hidden; }
+.boss-hp i {
+  display: block; height: 100%; width: 100%;
+  background: linear-gradient(180deg, var(--accent), #A62B8C);
+  transition: width .45s;
+}
+.boss-shield { font-size: 12px; color: var(--warn); font-weight: 700; min-width: 90px; text-align: right; }
+.boss-hit .boss-face { animation: bossHit .35s; }
+@keyframes bossHit { 30% { transform: scale(.9) rotate(-6deg); filter: brightness(1.8); } }
+.boss-quake { animation: quake .4s; }
+@keyframes quake {
+  20% { transform: translate(-7px, 3px); } 40% { transform: translate(7px, -3px); }
+  60% { transform: translate(-5px, 2px); } 80% { transform: translate(5px, -2px); }
+}
+.boss-armor { text-align: center; font-size: 13px; color: var(--ink-dim); padding: 2px 0 4px; }
+.armor-plate { font-size: 22px; margin: 0 3px; filter: drop-shadow(0 0 6px rgba(61, 242, 210, .7)); }
+.armor-plate.broken { opacity: .3; filter: grayscale(1); }
+.boss-armor small { display: block; font-size: 10px; margin-top: 2px; }
+
+/* ---------- Teach sahnesi ---------- */
+.teach-stage {
+  flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; background: var(--bg-panel); border-radius: 16px; padding: 18px; overflow: auto;
+}
+.teach-say { font-size: 70px; }
+.teach-next { align-self: center; margin-top: 10px; }
+.deal-supply { font-size: 22px; font-weight: 800; }
+.deal-count { color: var(--xp); }
+.deal-groups { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.deal-group {
+  min-width: 120px; min-height: 110px; background: var(--bg-raised);
+  border: 2px dashed var(--line); border-radius: 16px; padding: 10px; cursor: pointer;
+  transition: border-color .15s;
+}
+.deal-group:hover { border-color: var(--accent); }
+.deal-group-title { font-weight: 800; font-size: 12px; color: var(--ink-dim); text-align: center; margin-bottom: 6px; }
+.deal-crates { display: flex; flex-wrap: wrap; gap: 2px; justify-content: center; font-size: 18px; max-width: 130px; }
+.pv-number { font-size: 30px; font-weight: 800; font-family: var(--mono); }
+.pv-table { display: flex; gap: 24px; }
+.pv-col { text-align: center; }
+.pv-title { font-size: 11px; letter-spacing: 2px; color: var(--ink-dim); margin-bottom: 8px; }
+.pv-blocks { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; max-width: 220px; }
+.pv-ten {
+  background: var(--epic); color: #fff; border-radius: 8px;
+  padding: 14px 8px; font-weight: 800; font-size: 14px;
+}
+.pv-one {
+  background: var(--xp); color: #4a3600; border-radius: 6px;
+  padding: 6px 8px; font-weight: 800; font-size: 12px;
+}
+.ask-display {
+  font-family: var(--mono); font-size: 42px; font-weight: 800;
+  min-width: 120px; text-align: center; color: var(--accent);
+  border: 2px solid var(--line); border-radius: 14px; padding: 8px 18px;
+}
+
+</style>
+</head>
+<body>
+  <div id="app">
+    <div id="splash">
+      <div class="splash-logo">🌌</div>
+      <div class="splash-title">BO<span>KUL</span></div>
+      <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
+      <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
+      <div class="splash-note">v0.6 — İlk Çalışan Sürüm</div>
+    </div>
+  </div>
+
+  <!-- ÇEKİRDEK KATMAN -->
+  <!-- OYUN KATMANI -->
+  <!-- SORU TİPİ PLUGIN'LERİ -->
+  <!-- SUNUM KATMANI -->
+  <!-- BAŞLATICI -->
+  <script type="application/json" id="bokul-content-config">
+{
+  "schema": 1,
+  "starThresholds": { "three": 0, "two": 2 },
+  "hintEscalation": [1, 2, 3],
+  "adaptive": {
+    "window": 20,
+    "weakThreshold": 0.6,
+    "strongThreshold": 0.85
+  },
+  "mastery": {
+    "bossGate": 0.8,
+    "reviewIntervalsDays": [1, 3, 7, 14]
+  },
+  "unitBoss": { "armor": 3, "repairStreak": 3, "regroupHpCarry": 0.5 },
+  "sectionUnlockStars": 16,
+  "autoSaveDebounceMs": 2000,
+  "idleDialogueSeconds": 25
+}
+
+</script>
+<script type="application/json" id="bokul-content-dialogues">
+{
+  "schema": 1,
+  "speaker": { "name": "Baba Komutan", "avatar": "commander" },
+  "pools": {
+    "greeting": [
+      "Hoş geldin {name}! Kalemin dolu mu?",
+      "Üs seni bekliyordu {name}. Rapor ver!",
+      "{name} geldi, üs güvende. Bugün hangi kaleyi alıyoruz?",
+      "{name}! Matematik senden kaçamaz, biliyorsun.",
+      "Tam zamanında geldin {name}. Sayılar huzursuzlanmaya başlamıştı.",
+      "Karargâh seninle daha güçlü {name}."
+    ],
+    "greeting.firstOfDay": [
+      "Günün ilk harekâtı {name}! Sürü uyanıyor.",
+      "Güne bölmeyle başlayan, günü fethederek bitirir. Değil mi {name}?",
+      "Bugün ilk görev senden {name}. Beyin ısınma turları başlasın!",
+      "Yeni gün, yeni hedefler {name}. Kalemi sağlam tut!"
+    ],
+    "correct": [
+      "{name}, matematik senden kaçamaz.",
+      "Bu bölme işlemi senden daha inatçı çıkamadı {name}.",
+      "Tam isabet! Sürü seninle gurur duyuyor {name}.",
+      "İşte benim {name}'im!",
+      "Sayılar teslim oluyor {name}, devam!",
+      "Keskin nişancı gibisin bugün {name}.",
+      "Bu hızla gidersen rütbeleri sana yetiştiremem {name}.",
+      "Kale sarsılıyor {name}!"
+    ],
+    "correct.streak3": [
+      "Üçüncü hedef de düştü! Sürü seni izliyor {name}.",
+      "Seri devam ediyor {name}! Durma, hücum!",
+      "Bu seriyle akşam dondurma lobisine giriş garanti gibi {name}.",
+      "Ateş hattındasın {name}, kimse duramaz!"
+    ],
+    "wrong.soft": [
+      "Küçük bir sapma {name}. Nişanı tazele.",
+      "Yanlış yaptın ama savaş bitmedi {name}.",
+      "Harika gidiyordun {name}, sadece küçük bir hata.",
+      "Sakin {name}. Derin nefes. Tekrar bak.",
+      "Bu tuzağa çok kişi düştü. Sen kalkmasını bilenlerdensin {name}."
+    ],
+    "wrong.retry": [
+      "Tekrar saldır {name}!",
+      "Kale hâlâ orada {name}. Bir daha!",
+      "Buna henüz onay veremiyorum {name}. Ama çok yaklaştın!",
+      "Pes etmek bizim sözlükte yok {name}. Hücum!"
+    ],
+    "idle": [
+      "Kalemi sağlam tut {name}, beyin birazdan fazla mesai yapacak.",
+      "{name}? Hedef bekliyor. Uyuyakaldık mı?",
+      "Düşünmek iyidir {name}. Ama sayılar sabırsızlanıyor."
+    ],
+    "levelup": [
+      "Sürünün lideri olarak bu rütbeyi onaylıyorum {name}!",
+      "Rütbe atladın {name}! Tören bizden, dondurma senden.",
+      "Bu üniformaya yeni yıldız yakışacak {name}. Tebrikler!",
+      "Karargâhta adın konuşuluyor {name}."
+    ],
+    "mission.start": [
+      "Harekât başlıyor {name}! İlk hedef karşında.",
+      "Emirler açık {name}: bu hedefi al!",
+      "Kalemi kap {name}, hedef göründü!"
+    ],
+    "mission.next": [
+      "Sıradaki hedef {name}!",
+      "Devam ediyoruz {name}, kale kale ilerliyoruz.",
+      "Bir sonraki hedef seni bekliyor {name}.",
+      "Hız kesme {name}!"
+    ],
+    "mission.done": [
+      "Harekât tamam {name}! Karargâha dönüyoruz.",
+      "Bu bölgeyi temizledik {name}. Sıradaki!",
+      "Görev raporu: BAŞARILI. İmza: Baba Komutan.",
+      "Bu soruları da geçtin {name}. Dondurma lobisine giriş yaklaşıyor!"
+    ],
+    "step.select.intro": [
+      "Kaç basamak alacağız {name}? Sayının basamaklarına DOKUN, sonra ONAYLA!",
+      "Önce çalışacağımız parçayı seç: soldan basamaklara dokun, ONAYLA'ya bas.",
+      "Bölenden küçük olmayan en kısa parçayı seç {name} — basamaklara dokunman yeterli!"
+    ],
+    "teach.intro": [
+      "Brifing zamanı {name}. Önce mantığı öğreniyoruz, sonra fethediyoruz.",
+      "Otur, izle, dokun {name}. Bölmenin sırrını veriyorum.",
+      "Bu brifingi dinleyen, sınavda şaşırmaz {name}."
+    ],
+    "teach.deal.intro": [
+      "{total} kutu erzak geldi {name}. {groups} takıma EŞİT paylaştır. Takımlara dokun!",
+      "Depoda {total} kutu var, {groups} takım aç bekliyor. Adil ol {name}!"
+    ],
+    "teach.deal.unfair": [
+      "Eşit paylaştır {name} — önce az olan takıma!",
+      "O takım zaten fazla aldı. Adalet {name}, adalet!",
+      "Sürüde kayırma olmaz {name}. Az olana ver."
+    ],
+    "teach.deal.done": [
+      "Paylaştırma tamam! Her takıma {each} kutu düştü. İşte BÖLME tam olarak budur.",
+      "Gördün mü {name}? Eşit paylaşmak = bölmek. Her takıma {each} kutu!"
+    ],
+    "teach.guided.done": [
+      "İlk uzun bölmeni bitirdin {name}! Artık sahaya çıkabilirsin.",
+      "Brifing tamam {name}. Bu adımları unutma: seç, tahmin et, çarp, çıkar, indir!"
+    ],
+    "teach.coach.select": [
+      "Önce bak {name}: ilk basamak bölenden büyük mü? Yeterli basamağa dokun, sonra ONAYLA.",
+      "Kaç basamak alacağız? İlk basamağa dokun, yetmezse ikinciyi de al. Sonra ONAYLA!"
+    ],
+    "teach.coach.estimate": [
+      "Şimdi tahmin {name}: bölen bu sayının içinde kaç kere var? Rakamı yaz.",
+      "Bölüm rakamını tahmin et. Çarpım bölüneni geçmesin!"
+    ],
+    "teach.coach.multiply": [
+      "Tahminini bölenle çarp ve sonucu yaz {name}.",
+      "Çarpma zamanı: tahmin × bölen = ?"
+    ],
+    "teach.coach.subtract": [
+      "Şimdi çıkar {name}. Kale kuralı: kalan, bölenden KÜÇÜK olmalı!",
+      "Üstteki sayıdan çarpımı çıkar. Sonucu yaz."
+    ],
+    "teach.coach.bringdown": [
+      "Sıradaki basamağı aşağı indir {name}. Yanıp sönen rakama dokun!",
+      "İndirme zamanı! Bölünendeki sıradaki rakamı indir."
+    ],
+    "teach.autofill.select": [
+      "Bu kısmı ben aldım {name}: {n} basamak yeterli.",
+      "İzle {name}: {n} basamak alıyorum, çünkü bölenden büyük olmalı."
+    ],
+    "boss.intro.topic": [
+      "Karşında {bossName}! Sakin ol {name} — o sana vuramaz bile. Sen vur yeter!",
+      "{bossName} yolunu kesti {name}. Her doğru adım ona hasar verir. Hücum!"
+    ],
+    "boss.intro.unit": [
+      "DİKKAT {name}! {bossName} karşılık verir. Zırhını kontrol et!",
+      "Bu bir ÜNİTE BOSS'U: {bossName}. Yanlış cevaplarını sana fırlatır {name}. Hazır mısın?"
+    ],
+    "boss.playerHit": [
+      "Kendi yanlış cevabınla vuruldun {name}! Zırh dayanıyor, devam!",
+      "Boss fırsatı kaçırmadı! Zırhın bir plaka eksildi {name}. Toparlan!",
+      "Sarsıldık ama düşmedik {name}. Nişan al ve devam et!"
+    ],
+    "boss.retreat": [
+      "Geri çekiliyoruz {name}! Yeniden toplan, kale hâlâ orada.",
+      "Bu tur onun {name}. Ama boss yoruldu, sen dinlendin. Tekrar saldıracağız!"
+    ],
+    "boss.win": [
+      "Kale düştü {name}! Bu akşam dondurma lobisine giriş izni VERİLDİ.",
+      "Zafer! Sürü bu geceyi senin adınla anacak {name}.",
+      "Boss devrildi! Rapor karargâha iletildi: {name} = KAHRAMAN."
+    ],
+    "boss.shieldUp": [
+      "Boss kalkan kaldırdı! Bir doğru adımla kırılır {name}, devam!",
+      "Ufak bir hata boss'a nefes aldırdı. Kalkanı kır {name}!"
+    ],
+    "boss.shieldBreak": [
+      "Kalkan kırıldı! Şimdi vur {name}!",
+      "Kalkan paramparça. Yolu açtın {name}!"
+    ],
+    "boss.armorRepair": [
+      "Üç doğru adım! Zırhın onarıldı {name}.",
+      "Tamirci geldi: bir zırh plakası yerine takıldı!"
+    ],
+    "boss.crit": [
+      "HATASIZ HEDEF! Kritik vuruş {name}!",
+      "Mükemmel çözüm = kritik hasar. Boss sendeliyor!"
+    ],
+    "reward": [
+      "Sandık senin {name}. Açarken gözlerini kırpma.",
+      "Ganimet zamanı {name}! Bakalım içinden ne çıkacak."
+    ],
+
+    "hint.select.soft.1": "İlk basamak yeterli mi? Bölenle karşılaştır.",
+    "hint.select.soft.2": "Aldığın parça, bölenden büyük veya eşit olmalı.",
+    "hint.select.guide.1": "İlk basamak bölenden küçükse bir basamak daha al — ikinci basamağa dokun.",
+    "hint.select.explain": "Kural şu: soldan başla, bölenden küçük olmayan EN KISA parçayı al. Örnek: 4872÷6'da 4<6, o yüzden 48'i alırız.",
+
+    "hint.estimate.soft.1": "Bölünen sayıya tekrar bak.",
+    "hint.estimate.soft.2": "Bölen bu sayının içinde kaç kere var?",
+    "hint.estimate.guide.1": "Çarpım biraz büyük olmuş. Bir küçüğünü dene.",
+    "hint.estimate.guide.2": "Biraz küçük kaldı. Bir büyüğünü dene.",
+    "hint.estimate.explain": "Tahmin ettiğin rakam × bölen, çalıştığın sayıyı GEÇMEMELİ ama olabildiğince yaklaşmalı. Çarpım tablosunu düşün.",
+
+    "hint.multiply.soft.1": "Çarpımı bir daha kontrol et.",
+    "hint.multiply.soft.2": "Tahminin ile böleni çarpıyoruz, acele etme.",
+    "hint.multiply.guide.1": "Bölüm rakamı × bölen. Çarpım tablosundan emin ol.",
+    "hint.multiply.explain": "Yukarı yazdığın tahmini bölenle çarp. Örnek: tahmin 8, bölen 6 ise 8×6=48 yazılır.",
+
+    "hint.subtract.soft.1": "Harika gidiyordun, sadece küçük bir çıkarma hatası.",
+    "hint.subtract.soft.2": "Çıkarma işlemine bir daha bak.",
+    "hint.subtract.guide.1": "Üstteki sayıdan çarpımı çıkarıyoruz. Basamak basamak dene.",
+    "hint.subtract.explain": "KALE KURALI: çıkarma sonucu bölenden KÜÇÜK olmalı. Büyükse tahminde sorun var demektir.",
+
+    "hint.bringdown.soft.1": "Sıradaki basamağa bak — hangisi yanıp sönüyor?",
+    "hint.bringdown.guide.1": "Bölünendeki bir SONRAKİ rakamı indiriyoruz, atlamak yok.",
+    "hint.bringdown.explain": "Soldan sağa sırayla gideriz: kalanın yanına bölünenin sıradaki rakamını yazarız. İşte 'aşağı indirmek' budur."
+  }
+}
+
+</script>
+<script type="application/json" id="bokul-content-rewards">
+{
+  "schema": 1,
+  "xp": {
+    "perStep": 2,
+    "perQuestionByStars": { "1": 10, "2": 15, "3": 25 },
+    "missionBonus": 20,
+    "dailyQuest": 50,
+    "weeklyQuest": 200,
+    "bossTopic": 100,
+    "bossUnit": 200,
+    "streakMultipliers": { "3": 1.5, "5": 2.0 },
+    "dailyStreakBonusPerDay": 0.10,
+    "dailyStreakBonusMax": 0.50
+  },
+  "levels": { "base": 100, "perLevel": 75 },
+  "ranks": [
+    { "minLevel": 1,  "id": "rank1", "title": "Çaylak Komutan",     "icon": "🐣" },
+    { "minLevel": 4,  "id": "rank2", "title": "Hedef Gözcüsü",      "icon": "🔭" },
+    { "minLevel": 8,  "id": "rank3", "title": "Bölme Eri",          "icon": "🎖️" },
+    { "minLevel": 13, "id": "rank4", "title": "Takım Lideri",       "icon": "⭐" },
+    { "minLevel": 19, "id": "rank5", "title": "Komutan Yardımcısı", "icon": "🌟" },
+    { "minLevel": 26, "id": "rank6", "title": "Komutan",            "icon": "👑" },
+    { "minLevel": 35, "id": "rank7", "title": "Sürünün Gururu",     "icon": "🦁" }
+  ],
+  "chests": {
+    "bronze":    { "trigger": "stars", "every": 10, "drops": { "common": 80, "rare": 15, "xpPack": 5 } },
+    "silver":    { "trigger": "dailyAll", "drops": { "common": 50, "rare": 45, "epic": 5 } },
+    "gold":      { "trigger": "levelup", "drops": { "rare": 70, "epic": 30 } },
+    "epic":      { "trigger": "bossTopic", "drops": { "epic": 100 } },
+    "legendary": { "trigger": "bossUnit", "drops": { "legendary": 100 } }
+  },
+  "shopPrices": { "common": 50, "rare": 120, "epic": 250, "legendary": 500 },
+  "cosmetics": [
+    { "id": "av-beret",    "type": "acc",       "rarity": "common",    "name": "Komutan Beresi" },
+    { "id": "hair-curly",  "type": "hair",      "rarity": "common",    "name": "Kıvırcık Saç" },
+    { "id": "mouth-grin",  "type": "mouth",     "rarity": "common",    "name": "Sırıtış" },
+    { "id": "hc-blue",     "type": "hairColor", "rarity": "rare",      "name": "Gece Mavisi Saç" },
+    { "id": "eyes-star",   "type": "eyes",      "rarity": "rare",      "name": "Yıldız Göz" },
+    { "id": "acc-glasses", "type": "acc",       "rarity": "rare",      "name": "Pilot Gözlüğü" },
+    { "id": "hc-neon",     "type": "hairColor", "rarity": "epic",      "name": "Neon Pembe Saç" },
+    { "id": "acc-headset", "type": "acc",       "rarity": "epic",      "name": "Uzay Kulaklığı" },
+    { "id": "ring-neon",   "type": "ring",      "rarity": "epic",      "name": "Neon Halka" },
+    { "id": "acc-crown",   "type": "acc",       "rarity": "legendary", "name": "Galaksi Tacı" },
+    { "id": "ring-galaxy", "type": "ring",      "rarity": "legendary", "name": "Galaksi Halkası" },
+    { "id": "t-golem",     "type": "title",     "rarity": "legendary", "name": "Golem Deviren" },
+    { "id": "t-makine",    "type": "title",     "rarity": "legendary", "name": "Makine Söken" }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-lessons-math-5-division">
+{
+  "id": "math-5-division",
+  "schema": 1,
+  "title": "Matematik Cephesi",
+  "subtitle": "Uzun Bölme Harekâtı",
+  "icon": "⚔️",
+  "theme": "galaxy-base",
+  "interactionType": "long-division",
+  "comingSoon": "Ünite 2: Kalanlı Bölme Cephesi v0.8 güncellemesiyle açılacak!",
+
+  "outcomes": [
+    { "id": "o1", "code": "M.5.1.2.5", "text": "Bölme işleminde bölüm ile kalanı tahmin eder." },
+    { "id": "o2", "code": "M.5.1.2.6", "text": "Dört basamağa kadar doğal sayıları bir basamaklı sayılara böler." }
+  ],
+
+  "skills": ["select", "estimate", "multiply", "subtract", "bringdown"],
+
+  "hints": {
+    "select":    { "1": ["hint.select.soft.1", "hint.select.soft.2"], "2": ["hint.select.guide.1"], "3": ["hint.select.explain"] },
+    "estimate":  { "1": ["hint.estimate.soft.1", "hint.estimate.soft.2"], "2": ["hint.estimate.guide.1", "hint.estimate.guide.2"], "3": ["hint.estimate.explain"] },
+    "multiply":  { "1": ["hint.multiply.soft.1", "hint.multiply.soft.2"], "2": ["hint.multiply.guide.1"], "3": ["hint.multiply.explain"] },
+    "subtract":  { "1": ["hint.subtract.soft.1", "hint.subtract.soft.2"], "2": ["hint.subtract.guide.1"], "3": ["hint.subtract.explain"] },
+    "bringdown": { "1": ["hint.bringdown.soft.1"], "2": ["hint.bringdown.guide.1"], "3": ["hint.bringdown.explain"] }
+  },
+
+  "teachScripts": {
+    "s1-concrete": [
+      { "say": "Komutan, bölme dediğin şey aslında ADİL PAYLAŞTIRMAKTIR. Göstereyim." },
+      { "deal": { "total": 12, "groups": 3 } },
+      { "ask": "12 kutuyu 3 takıma paylaştırdık. Her takıma kaç kutu düştü?", "expect": 4 },
+      { "say": "Aynen öyle: 12 ÷ 3 = 4. Bölme, eşit paylaştırmanın kısa yoludur." }
+    ],
+    "s1-pictorial": [
+      { "say": "Sayılar büyüyünce kutu saymak yavaş kalır. Basamaklara bakarız: onluklar ve birlikler." },
+      { "pv": { "number": 36, "divisor": 3 } },
+      { "ask": "36'da 3 onluk var. 3 onluğu 3 gruba paylaştırırsak her gruba kaç ONLUK düşer?", "expect": 1 },
+      { "ask": "Şimdi birlikler: 6 birlik ÷ 3 = ?", "expect": 2 },
+      { "say": "Her gruba 1 onluk + 2 birlik = 12. Yani 36 ÷ 3 = 12. Önce büyük basamak, sonra küçük!" }
+    ],
+    "s1-abstract": [
+      { "say": "Şimdi bunu kâğıt üzerindeki haliyle yapalım: UZUN BÖLME. Ben yanındayım, adım adım gidiyoruz." },
+      { "guided": { "dividend": 84, "divisor": 4 } }
+    ],
+    "s2-brief": [
+      { "say": "İki basamaklı bölünenlerde sır şu: soldan başla, sırayla in. Aynı 5 adım: SEÇ, TAHMİN, ÇARP, ÇIKAR, İNDİR." },
+      { "guided": { "dividend": 96, "divisor": 6 } },
+      { "say": "Gördün mü? Kalan her turda bölenden küçük kaldı. Kale kuralı asla bozulmaz!" }
+    ],
+    "s3-brief": [
+      { "say": "Üç basamakta yeni bir durum var Komutan: ilk basamak bölenden KÜÇÜKSE iki basamak birden alırız. İzle." },
+      { "guided": { "dividend": 435, "divisor": 5 } },
+      { "say": "4, 5'ten küçüktü — o yüzden 43'ü aldık. Kural bu: yetmezse bir basamak daha!" }
+    ],
+    "s4-brief": [
+      { "say": "Dört basamak! Gözünü korkutmasın — aynı 5 adım, sadece daha uzun yürüyüş. Efsane soruyla başlıyoruz." },
+      { "guided": { "dividend": 4872, "divisor": 6 } },
+      { "say": "4872 ÷ 6 = 812. Artık dört basamaklı kaleleri de açabilirsin Komutan!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — BÖLME TEMELLERİ",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Tek Basamak Keşfi",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Paylaştırma",
+              "segments": [
+                { "model": "concrete",  "script": "s1-concrete" },
+                { "model": "pictorial", "script": "s1-pictorial" },
+                { "model": "abstract",  "script": "s1-abstract" }
+              ] },
+            { "id": "s1m2", "type": "guided", "title": "Ortak Harekât I", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 4], "dividendDigits": 1, "remainder": false } },
+            { "id": "s1m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 2, "remainder": false } },
+            { "id": "s1m4", "type": "practice", "title": "İlk Devriye", "targetCount": 3,
+              "generator": { "divisorRange": [2, 4], "dividendDigits": 1, "remainder": false } },
+            { "id": "s1m5", "type": "practice", "title": "Saha Görevi", "targetCount": 3,
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 2, "remainder": false } },
+            { "id": "s1m6", "type": "practice", "title": "Gece Devriyesi", "targetCount": 4,
+              "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false } },
+            { "id": "s1m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 2, "remainder": false },
+              "problemTemplates": [
+                "Komutan {name}, depoya {dividend} kutu erzak geldi. {divisor} takıma eşit dağıtılacak. Her takıma kaç kutu düşer?",
+                "{dividend} askerlik birlik, {divisor} eşit kola ayrılacak. Her kolda kaç asker olur?"
+              ] },
+            { "id": "s1m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-s1", "tier": "topic", "name": "Bölünmez Kaya", "icon": "🪨", "hp": 60,
+            "unlock": { "masteryRequired": 0.8 },
+            "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-s1" }
+          }
+        },
+        {
+          "id": "s2",
+          "title": "Çifte Kule Cephesi",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 16 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: İki Basamak",
+              "segments": [ { "model": "abstract", "script": "s2-brief" } ] },
+            { "id": "s2m2", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
+              "generator": { "divisorRange": [3, 7], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m4", "type": "practice", "title": "Kule Devriyesi", "targetCount": 3,
+              "generator": { "divisorRange": [2, 7], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m5", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "divisorRange": [3, 8], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m6", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
+              "generator": { "divisorRange": [4, 9], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+              "generator": { "divisorRange": [3, 8], "dividendDigits": 2, "remainder": false },
+              "problemTemplates": [
+                "Bir raftaki {dividend} kitap, {divisor} kutuya eşit paylaştırılacak. Her kutuya kaç kitap konur?",
+                "Komutan {name}, {dividend} TL harçlığını {divisor} günde eşit harcamak istiyor. Günde kaç TL harcamalı?"
+              ] },
+            { "id": "s2m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-s2", "tier": "topic", "name": "Çifte Kule", "icon": "🏯", "hp": 60,
+            "unlock": { "masteryRequired": 0.8 },
+            "generator": { "divisorRange": [3, 9], "dividendDigits": 2, "remainder": false },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-s2" }
+          }
+        },
+        {
+          "id": "s3",
+          "title": "Üç Başlı Vadi",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 16 },
+          "missions": [
+            { "id": "s3m1", "type": "teach", "title": "Keşif Brifingi: Üç Basamak",
+              "segments": [ { "model": "abstract", "script": "s3-brief" } ] },
+            { "id": "s3m2", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
+              "generator": { "divisorRange": [3, 6], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m4", "type": "practice", "title": "Vadi Devriyesi", "targetCount": 3,
+              "generator": { "divisorRange": [2, 6], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m5", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "divisorRange": [3, 7], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m6", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
+              "generator": { "divisorRange": [4, 9], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+              "generator": { "divisorRange": [3, 8], "dividendDigits": 3, "remainder": false },
+              "problemTemplates": [
+                "Fabrikada üretilen {dividend} oyuncak, {divisor} mağazaya eşit gönderilecek. Her mağazaya kaç oyuncak düşer?",
+                "{dividend} sayfalık kitabı Komutan {name}, {divisor} günde eşit okuyarak bitirecek. Günde kaç sayfa okumalı?"
+              ] },
+            { "id": "s3m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-s3", "tier": "topic", "name": "Üç Başlı Sayı Ejderi", "icon": "🐉", "hp": 70,
+            "unlock": { "masteryRequired": 0.8 },
+            "generator": { "divisorRange": [3, 9], "dividendDigits": 3, "remainder": false },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-s3" }
+          }
+        },
+        {
+          "id": "s4",
+          "title": "Dört Basamak Zirvesi",
+          "outcomeIds": ["o1", "o2"],
+          "unlock": { "starsRequired": 16 },
+          "missions": [
+            { "id": "s4m1", "type": "teach", "title": "Keşif Brifingi: Dört Basamak",
+              "segments": [ { "model": "abstract", "script": "s4-brief" } ] },
+            { "id": "s4m2", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
+              "generator": { "divisorRange": [3, 6], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m4", "type": "practice", "title": "Zirve Devriyesi", "targetCount": 3,
+              "generator": { "divisorRange": [2, 6], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m5", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "divisorRange": [3, 7], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m6", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
+              "generator": { "divisorRange": [4, 9], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+              "generator": { "divisorRange": [3, 8], "dividendDigits": 4, "remainder": false },
+              "problemTemplates": [
+                "Karargâha {dividend} kutu malzeme geldi. Komutan {name} bunları {divisor} depoya eşit yerleştirecek. Her depoya kaç kutu girer?",
+                "{dividend} biletlik konser, {divisor} eşit seansa bölünecek. Her seansta kaç bilet satılır?"
+              ] },
+            { "id": "s4m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-s4", "tier": "unit", "name": "Basamak Golemi", "icon": "🗿", "hp": 150,
+            "unlock": { "masteryRequired": 0.8 },
+            "armor": 3, "regroupHpCarry": 0.5,
+            "generator": { "divisorRange": [3, 9], "dividendDigits": [3, 4], "remainder": false },
+            "rewards": { "xp": 200, "chest": "legendary", "badge": "b-u1", "title": "t-golem" }
+          }
+        }
+      ]
+    }
+  ]
+}
+
+</script>
+<script>
+/* === src/core/events.js === */
+/* BOKUL — Olay Sözlüğü
+ * Modüller arası TÜM iletişimin isimli sözleşmesi.
+ * Yeni olay eklerken buraya kaydet; EventBus bilinmeyen olaya uyarı basar. */
+(function (B) {
+  B.Events = Object.freeze({
+    // Soru akışı
+    QUESTION_STARTED:   'question:started',
+    STEP_ANSWERED:      'step:answered',      // { stepType, correct, attempt, value }
+    STEP_HINT:          'step:hint',          // { stepType, hintLevel }
+    QUESTION_COMPLETED: 'question:completed', // { stars, mistakes }
+
+    // Ödül akışı
+    XP_GAINED:      'xp:gained',       // { amount, source }
+    LEVEL_UP:       'level:up',        // { newLevel, newRank }
+    STREAK_CHANGED: 'streak:changed',  // { count, multiplier }
+    CHEST_EARNED:   'chest:earned',    // { chestType }
+    CHEST_OPENED:   'chest:opened',    // { chestType, item }
+    COSMETIC_UNLOCKED: 'cosmetic:unlocked', // { itemId }
+    COINS_CHANGED:  'coins:changed',   // { total, delta }
+
+    // İlerleme
+    MISSION_COMPLETED: 'mission:completed', // { missionId, stars, xp }
+    SECTION_UNLOCKED:  'section:unlocked',
+    BOSS_DAMAGED:      'boss:damaged',   // { amount, remaining }
+    BOSS_ATTACKED:     'boss:attacked',  // { armorLeft } — sadece Ünite Boss'u
+    BOSS_DEFEATED:     'boss:defeated',  // { bossId, tier }
+    BOSS_RETREAT:      'boss:retreat',
+
+    // Sistem
+    GAME_SAVED:     'game:saved',
+    GAME_LOADED:    'game:loaded',
+    SCREEN_CHANGED: 'screen:changed',
+  });
+
+  // Hızlı doğrulama için ters küme
+  B._eventSet = new Set(Object.values(B.Events));
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/event-bus.js === */
+/* BOKUL — EventBus
+ * Modüller birbirini asla doğrudan çağırmaz; buradan konuşur (pub/sub). */
+(function (B) {
+  const listeners = new Map(); // eventName -> Set<fn>
+
+  B.Bus = {
+    on(event, fn) {
+      if (!B._eventSet.has(event)) console.warn('[BOKUL] Bilinmeyen olay dinleniyor:', event);
+      if (!listeners.has(event)) listeners.set(event, new Set());
+      listeners.get(event).add(fn);
+      return () => B.Bus.off(event, fn);
+    },
+    off(event, fn) {
+      const set = listeners.get(event);
+      if (set) set.delete(fn);
+    },
+    emit(event, payload) {
+      if (!B._eventSet.has(event)) console.warn('[BOKUL] Bilinmeyen olay yayınlanıyor:', event);
+      const set = listeners.get(event);
+      if (!set) return;
+      // Kopya üzerinde dolaş: dinleyici kendini kaldırabilsin
+      [...set].forEach(fn => {
+        try { fn(payload); }
+        catch (e) { console.error('[BOKUL] Olay dinleyicisi hata verdi (' + event + '):', e); }
+      });
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/game-state.js === */
+/* BOKUL — GameState
+ * Tüm oyun durumunun tek sahibi. Motorlar state.data'yı okur;
+ * değişiklikler motor metodlarıyla yapılır ve olaylarla duyurulur. */
+(function (B) {
+  const SCHEMA_VERSION = 1;
+
+  function freshState() {
+    return {
+      meta: {
+        schemaVersion: SCHEMA_VERSION,
+        createdAt: new Date().toISOString(),
+        lastPlayedAt: new Date().toISOString(),
+      },
+      player: { name: '', xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
+                avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
+      streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
+      stats: { correct: 0, wrong: 0, perSkill: {} }, // perSkill: { estimate: [1,0,1,...] } son 20 sonuç
+      progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
+      inventory: { cosmetics: [], badges: [], titles: [] },
+      quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },
+    };
+  }
+
+  B.State = {
+    data: freshState(),
+    SCHEMA_VERSION,
+    fresh: freshState,
+
+    /* Bir dersin bölüm kaydını getir (yoksa oluştur) */
+    sectionProgress(lessonId, sectionId) {
+      const lessons = this.data.progress.lessons;
+      if (!lessons[lessonId]) lessons[lessonId] = { sections: {} };
+      const secs = lessons[lessonId].sections;
+      if (!secs[sectionId]) secs[sectionId] = { missions: {}, bossDefeated: false, bossHpCarry: 0 };
+      return secs[sectionId];
+    },
+
+    /* Bölümün toplam yıldızı */
+    sectionStars(lessonId, sectionId) {
+      const sec = this.sectionProgress(lessonId, sectionId);
+      return Object.values(sec.missions).reduce((t, m) => t + (m.stars || 0), 0);
+    },
+
+    touch() { this.data.meta.lastPlayedAt = new Date().toISOString(); },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/save-manager.js === */
+/* BOKUL — SaveManager
+ * LocalStorage kayıt: debounce'lu otomatik kayıt + şema migrasyonu.
+ * Bozuk kayıt asla sessizce silinmez; yedeğe kopyalanır. */
+(function (B) {
+  const KEY = 'bokul.save.v1';
+  const SETTINGS_KEY = 'bokul.settings';
+  let timer = null;
+
+  /* Eski şemaları yeniye taşıyan zincir: migrations[eskiSürüm] = fn(data) => data */
+  const migrations = {
+    // Örnek: 1: (d) => { d.yeniAlan = ...; d.meta.schemaVersion = 2; return d; }
+  };
+
+  B.Save = {
+    load() {
+      let raw = null;
+      try { raw = localStorage.getItem(KEY); } catch (e) { /* gizli mod vb. */ }
+      if (!raw) return false;
+      try {
+        let data = JSON.parse(raw);
+        while (data.meta.schemaVersion < B.State.SCHEMA_VERSION) {
+          const fn = migrations[data.meta.schemaVersion];
+          if (!fn) throw new Error('Migrasyon eksik: ' + data.meta.schemaVersion);
+          data = fn(data);
+        }
+        B.State.data = Object.assign(B.State.fresh(), data); // eksik alanları tamamla
+        B.Bus.emit(B.Events.GAME_LOADED, {});
+        return true;
+      } catch (e) {
+        console.error('[BOKUL] Kayıt okunamadı, yedeğe alınıyor:', e);
+        try { localStorage.setItem(KEY + '.corrupt', raw); localStorage.removeItem(KEY); } catch (e2) {}
+        return false;
+      }
+    },
+
+    saveNow() {
+      B.State.touch();
+      try {
+        localStorage.setItem(KEY, JSON.stringify(B.State.data));
+        B.Bus.emit(B.Events.GAME_SAVED, {});
+      } catch (e) { console.error('[BOKUL] Kayıt yazılamadı:', e); }
+    },
+
+    /* Debounce: art arda olaylarda tek yazım (config: autoSaveDebounceMs) */
+    saveSoon() {
+      clearTimeout(timer);
+      const ms = (B.Content && B.Content.get('config') || {}).autoSaveDebounceMs || 2000;
+      timer = setTimeout(() => B.Save.saveNow(), ms);
+    },
+
+    settings: {
+      get() {
+        try { return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}; }
+        catch (e) { return {}; }
+      },
+      set(patch) {
+        const cur = B.Save.settings.get();
+        Object.assign(cur, patch);
+        try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(cur)); } catch (e) {}
+        return cur;
+      },
+    },
+
+    /* Önemli olaylarda otomatik kayıt bağla */
+    init() {
+      const E = B.Events;
+      [E.QUESTION_COMPLETED, E.MISSION_COMPLETED, E.LEVEL_UP,
+       E.BOSS_DEFEATED, E.BOSS_RETREAT, E.XP_GAINED]
+        .forEach(ev => B.Bus.on(ev, () => B.Save.saveSoon()));
+      window.addEventListener('beforeunload', () => B.Save.saveNow());
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/content-registry.js === */
+/* BOKUL — ContentRegistry
+ * JSON içerik paketlerini yükler: önce sayfaya gömülü blok (dist/tek dosya modu),
+ * yoksa fetch (geliştirme modu). Hafif şema doğrulaması yapar. */
+(function (B) {
+  const store = new Map(); // ad -> veri
+
+  /* İçerik adı → gömülü blok id'si: lessons/math-5-division → bokul-content-lessons-math-5-division */
+  function embedId(name) { return 'bokul-content-' + name.replace(/\//g, '-'); }
+
+  /* Zorunlu alan kontrolü — hatalı paket oyunu kırmasın, atlansın */
+  const validators = {
+    'config':    d => ['starThresholds', 'adaptive', 'unitBoss'].every(k => k in d),
+    'dialogues': d => d.pools && typeof d.pools === 'object',
+    'rewards':   d => d.xp && d.levels && Array.isArray(d.ranks),
+    'lesson':    d => d.id && Array.isArray(d.units) && Array.isArray(d.skills),
+  };
+
+  B.Content = {
+    async load(name) {
+      if (store.has(name)) return store.get(name);
+      let data = null;
+      const el = document.getElementById(embedId(name));
+      if (el) {
+        data = JSON.parse(el.textContent);
+      } else {
+        const res = await fetch('content/' + name + '.json');
+        if (!res.ok) throw new Error('İçerik yüklenemedi: ' + name);
+        data = await res.json();
+      }
+      const kind = name.startsWith('lessons/') ? 'lesson' : name;
+      const check = validators[kind];
+      if (check && !check(data)) {
+        console.error('[BOKUL] İçerik paketi şemaya uymuyor, atlanıyor: ' + name);
+        return null;
+      }
+      store.set(name, data);
+      return data;
+    },
+
+    async loadAll(names) {
+      for (const n of names) await B.Content.load(n); // sıralı: hata ayıklaması kolay
+    },
+
+    get(name) { return store.get(name) || null; },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/engines/audio-manager.js === */
+/* BOKUL — AudioManager
+ * Harici ses dosyası YOK: tüm efektler Web Audio API ile sentezlenir.
+ * Olayları dinler; kimse "ses çal" demez. */
+(function (B) {
+  let ctx = null;
+  let enabled = true;
+
+  function ac() {
+    if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+    if (ctx.state === 'suspended') ctx.resume();
+    return ctx;
+  }
+
+  /* Tek nota: tip, frekans, süre, ses düzeyi, gecikme */
+  function tone(type, freq, dur, vol, delay) {
+    if (!enabled) return;
+    try {
+      const a = ac(), t = a.currentTime + (delay || 0);
+      const o = a.createOscillator(), g = a.createGain();
+      o.type = type; o.frequency.setValueAtTime(freq, t);
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(vol, t + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.connect(g); g.connect(a.destination);
+      o.start(t); o.stop(t + dur + 0.05);
+    } catch (e) { /* ses yoksa oyun devam */ }
+  }
+
+  const sfx = {
+    tick:    () => tone('square', 720, 0.06, 0.05),
+    correct: () => { tone('sine', 660, 0.12, 0.14); tone('sine', 880, 0.16, 0.12, 0.07); },
+    wrong:   () => tone('triangle', 220, 0.25, 0.12),               // yumuşak, cezasız
+    star:    (n) => tone('sine', 780 + n * 160, 0.22, 0.16, n * 0.18), // yıldız başına perde yükselir
+    fanfare: () => [523, 659, 784, 1047].forEach((f, i) => tone('sine', f, 0.3, 0.16, i * 0.12)),
+    hit:     () => { tone('sawtooth', 160, 0.15, 0.14); tone('square', 90, 0.2, 0.1, 0.03); },
+    shield:  () => tone('triangle', 340, 0.18, 0.1),
+    chest:   () => [440, 554, 659].forEach((f, i) => tone('sine', f, 0.25, 0.14, i * 0.1)),
+    blip:    () => tone('square', 260 + Math.random() * 220, 0.045, 0.05), // Komutan mırıltısı
+  };
+
+  B.Audio = {
+    unlock() { ac(); },                             // ilk kullanıcı dokunuşunda çağrılır
+    setEnabled(v) { enabled = v; },
+    isEnabled() { return enabled; },
+    play(name, arg) { if (sfx[name]) sfx[name](arg); },
+
+    init() {
+      enabled = B.Save.settings.get().sound !== false;
+      const E = B.Events;
+      B.Bus.on(E.STEP_ANSWERED, p => sfx[p.correct ? 'correct' : 'wrong']());
+      B.Bus.on(E.QUESTION_COMPLETED, p => { for (let i = 0; i < p.stars; i++) sfx.star(i); });
+      B.Bus.on(E.LEVEL_UP, () => sfx.fanfare());
+      B.Bus.on(E.BOSS_DAMAGED, () => sfx.hit());
+      B.Bus.on(E.BOSS_ATTACKED, () => sfx.shield());
+      B.Bus.on(E.BOSS_DEFEATED, () => sfx.fanfare());
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/engines/dialogue-manager.js === */
+/* BOKUL — DialogueManager
+ * Baba Komutan'ın repliklerini bağlama göre seçer.
+ * Yer tutucu doldurma + tekrar önleme burada. */
+(function (B) {
+  const recent = new Map(); // havuz adı -> son seçilen indexler
+
+  function fill(text, vars) {
+    return text.replace(/\{(\w+)\}/g, (m, k) => {
+      if (vars && vars[k] != null) return vars[k];
+      if (k === 'playerName' || k === 'name') return B.State.data.player.name || 'Komutan';
+      return m;
+    });
+  }
+
+  B.Dialogue = {
+    /* Havuzdan tekrar etmeyen rastgele replik seç */
+    pick(poolName, vars) {
+      const pools = (B.Content.get('dialogues') || {}).pools || {};
+      const pool = pools[poolName];
+      if (!pool) return null;
+      if (typeof pool === 'string') return fill(pool, vars);   // tekil ipucu metinleri
+      if (!pool.length) return null;
+
+      const memory = recent.get(poolName) || [];
+      const banned = new Set(memory.slice(-Math.min(pool.length - 1, 3))); // son 3 tekrar etmesin
+      let idx, guard = 20;
+      do { idx = Math.floor(Math.random() * pool.length); } while (banned.has(idx) && --guard);
+      memory.push(idx);
+      recent.set(poolName, memory.slice(-6));
+      return fill(pool[idx], vars);
+    },
+
+    /* İpucu anahtarı → metin (ders paketindeki hints haritasından gelen anahtarlar) */
+    hint(key, vars) { return B.Dialogue.pick(key, vars) || 'Bir daha dene Komutan!'; },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/engines/progress-manager.js === */
+/* BOKUL — ProgressManager (Adaptif Sistem)
+ * Mikro-beceri başına kayan pencereli ustalık takibi.
+ * Soru üreticiler zorluğu buradan sorar; boss kapısı ustalığa bakar. */
+(function (B) {
+  function cfg() { return (B.Content.get('config') || {}).adaptive || { window: 20, weakThreshold: 0.6, strongThreshold: 0.85 }; }
+
+  B.Progress = {
+    /* step:answered olayından beceri kaydı — sadece İLK deneme sayılır
+     * (ipucu sonrası düzeltmeler ustalık sayılmaz ama ceza da değildir) */
+    record(skill, correct) {
+      const per = B.State.data.stats.perSkill;
+      if (!per[skill]) per[skill] = [];
+      per[skill].push(correct ? 1 : 0);
+      if (per[skill].length > cfg().window) per[skill].shift();
+    },
+
+    /* 0..1 ustalık: son N denemenin doğruluk oranı (deneme azsa temkinli) */
+    mastery(skill) {
+      const arr = B.State.data.stats.perSkill[skill] || [];
+      if (!arr.length) return 0;
+      const ratio = arr.reduce((a, b) => a + b, 0) / arr.length;
+      const confidence = Math.min(1, arr.length / 8); // az veriyle şişme olmasın
+      return ratio * confidence;
+    },
+
+    /* Ders becerilerinin ortalama ustalığı (boss kapısı bunu kullanır) */
+    overallMastery(skills) {
+      if (!skills || !skills.length) return 0;
+      return skills.reduce((t, s) => t + B.Progress.mastery(s), 0) / skills.length;
+    },
+
+    /* En zayıf beceri (görev üretimi ve ipucu vurgusu için) */
+    weakestSkill(skills) {
+      let weakest = skills[0], min = Infinity;
+      skills.forEach(s => { const m = B.Progress.mastery(s); if (m < min) { min = m; weakest = s; } });
+      return weakest;
+    },
+
+    /* Üreticiye zorluk çarpanı: usta ise 1 (tam parametre), zayıfsa 0 (kolay uç) */
+    difficultyBias(skills) {
+      const m = B.Progress.overallMastery(skills);
+      const c = cfg();
+      if (m >= c.strongThreshold) return 1;
+      if (m <= c.weakThreshold) return 0;
+      return (m - c.weakThreshold) / (c.strongThreshold - c.weakThreshold);
+    },
+
+    init() {
+      B.Bus.on(B.Events.STEP_ANSWERED, p => {
+        if (p.attempt === 1) B.Progress.record(p.stepType, p.correct);
+        const st = B.State.data.stats;
+        if (p.correct) st.correct++; else st.wrong++;
+      });
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/engines/reward-engine.js === */
+/* BOKUL — RewardEngine
+ * XP, level, rütbe, seri (streak) ve günlük çalışma serisi ekonomisi.
+ * Tüm sayılar content/rewards.json'dan gelir — kodda denge sabiti YOK. */
+(function (B) {
+  function R() { return B.Content.get('rewards'); }
+
+  /* Level n'i geçmek için gereken XP: base + (n-1)*perLevel */
+  function xpForLevel(n) { const L = R().levels; return L.base + (n - 1) * L.perLevel; }
+
+  B.Reward = {
+    /* ---- XP ---- */
+    addXp(amount, source, opts) {
+      opts = opts || {};
+      let final = amount;
+      if (opts.applyStreak) final = Math.round(final * B.Reward.streakMultiplier());
+      final = Math.round(final * (1 + B.Reward.dailyBonus()));
+      const p = B.State.data.player;
+      p.xp += final;
+      B.Bus.emit(B.Events.XP_GAINED, { amount: final, source });
+      // Level kontrolü (tek olayda birden çok level atlanabilir)
+      while (p.xp >= B.Reward.xpNeeded()) {
+        p.xp -= B.Reward.xpNeeded();
+        p.level++;
+        const rank = B.Reward.rankFor(p.level);
+        const rankChanged = rank.id !== p.rank;
+        p.rank = rank.id;
+        B.Bus.emit(B.Events.LEVEL_UP, { newLevel: p.level, newRank: rankChanged ? rank : null });
+      }
+      return final;
+    },
+
+    xpNeeded() { return xpForLevel(B.State.data.player.level); },
+
+    rankFor(level) {
+      const ranks = R().ranks;
+      let cur = ranks[0];
+      ranks.forEach(r => { if (level >= r.minLevel) cur = r; });
+      return cur;
+    },
+
+    /* ---- Hatasız hedef serisi ---- */
+    streakMultiplier() {
+      const mults = R().xp.streakMultipliers;
+      const s = B.State.data.streaks.current;
+      let m = 1;
+      Object.keys(mults).map(Number).sort((a, b) => a - b)
+        .forEach(k => { if (s >= k) m = mults[k]; });
+      return m;
+    },
+
+    onQuestionDone(flawless) {
+      const st = B.State.data.streaks;
+      if (flawless) {
+        st.current++;
+        if (st.current > st.best) st.best = st.current;
+      } else st.current = 0;
+      B.Bus.emit(B.Events.STREAK_CHANGED, { count: st.current, multiplier: B.Reward.streakMultiplier() });
+    },
+
+    /* ---- Günlük çalışma serisi (login değil, HAREKÂT bitirme serisi) ---- */
+    dailyBonus() {
+      const x = R().xp;
+      return Math.min(B.State.data.streaks.dailyDays * x.dailyStreakBonusPerDay, x.dailyStreakBonusMax);
+    },
+
+    registerDailyPlay() {
+      const st = B.State.data.streaks;
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const todayStr = today.toISOString().slice(0, 10);
+      if (st.lastPlayDate === todayStr) return;
+      if (st.lastPlayDate) {
+        const diff = Math.round((today - new Date(st.lastPlayDate)) / 86400000);
+        if (diff === 1) st.dailyDays++;
+        else if (diff > 1) st.dailyDays = Math.max(0, st.dailyDays - 2); // kırılınca sıfırlama YOK: 2 kademe düşer
+      } else st.dailyDays = 1;
+      st.lastPlayDate = todayStr;
+    },
+
+    /* ---- Altın (para) ---- */
+    addCoins(amount, source) {
+      const p = B.State.data.player;
+      p.coins = (p.coins || 0) + amount;
+      B.Bus.emit(B.Events.COINS_CHANGED, { total: p.coins, delta: amount });
+      return amount;
+    },
+    spendCoins(amount) {
+      const p = B.State.data.player;
+      if ((p.coins || 0) < amount) return false;
+      p.coins -= amount;
+      B.Bus.emit(B.Events.COINS_CHANGED, { total: p.coins, delta: -amount });
+      B.Save.saveSoon();
+      return true;
+    },
+
+    /* ---- Soru/görev ödül yardımcıları ---- */
+    stepXp() { return R().xp.perStep; },
+    questionXp(stars) { return R().xp.perQuestionByStars[String(stars)] || 0; },
+    missionBonus() { return R().xp.missionBonus; },
+    bossXp(tier) { return tier === 'unit' ? R().xp.bossUnit : R().xp.bossTopic; },
+
+    init() {
+      // Harekât bittiğinde günlük seri işlenir
+      B.Bus.on(B.Events.MISSION_COMPLETED, () => B.Reward.registerDailyPlay());
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/engines/question-engine.js === */
+/* BOKUL — QuestionEngine
+ * Soru tipi plugin çatısı. Her tip registerType ile kaydolur:
+ *   { generate(params, bias), getSteps(q), validateStep(q, step, answer) }
+ * Motor tiplerin içini bilmez — Open/Closed. */
+(function (B) {
+  const types = new Map();
+
+  B.Question = {
+    registerType(name, impl) {
+      ['generate', 'getSteps', 'validateStep'].forEach(k => {
+        if (typeof impl[k] !== 'function') throw new Error('Soru tipi eksik metod: ' + name + '.' + k);
+      });
+      types.set(name, impl);
+    },
+
+    type(name) {
+      const t = types.get(name);
+      if (!t) throw new Error('Kayıtsız soru tipi: ' + name);
+      return t;
+    },
+
+    /* Üret: adaptif zorluk çarpanı ProgressManager'dan alınır */
+    generate(typeName, params, skills) {
+      const bias = skills ? B.Progress.difficultyBias(skills) : 0.5;
+      const q = B.Question.type(typeName).generate(params || {}, bias);
+      q._type = typeName;
+      return q;
+    },
+
+    steps(q) { return B.Question.type(q._type).getSteps(q); },
+    validate(q, step, answer) { return B.Question.type(q._type).validateStep(q, step, answer); },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/engines/lesson-engine.js === */
+/* BOKUL — LessonEngine
+ * Ders paketini (cephe) yorumlar: ünite → bölüm → harekât → boss akışı,
+ * kilit kuralları ve ustalık kapısı. İçeriğin ANLAMINI bilmez. */
+(function (B) {
+  let lesson = null; // aktif ders paketi
+
+  function cfg() { return B.Content.get('config') || {}; }
+
+  B.Lesson = {
+    setActive(lessonData) { lesson = lessonData; },
+    active() { return lesson; },
+
+    sections() {
+      const out = [];
+      lesson.units.forEach(u => u.sections.forEach(s => out.push({ unit: u, section: s })));
+      return out;
+    },
+
+    findSection(sectionId) {
+      return B.Lesson.sections().find(x => x.section.id === sectionId) || null;
+    },
+
+    findMission(sectionId, missionId) {
+      const s = B.Lesson.findSection(sectionId);
+      return s ? s.section.missions.find(m => m.id === missionId) : null;
+    },
+
+    /* ---- Kilit kuralları ---- */
+
+    /* Bölüm açık mı? İlk bölüm hep açık; sonrakiler önceki bölümden yıldız ister */
+    isSectionUnlocked(sectionId) {
+      const list = B.Lesson.sections();
+      const idx = list.findIndex(x => x.section.id === sectionId);
+      if (idx <= 0) return true;
+      const prev = list[idx - 1].section;
+      const need = (list[idx].section.unlock || {}).starsRequired ?? (cfg().sectionUnlockStars || 16);
+      const prevProg = B.State.sectionProgress(lesson.id, prev.id);
+      return prevProg.bossDefeated && B.State.sectionStars(lesson.id, prev.id) >= need;
+    },
+
+    /* Harekât oynanabilir mi? Kendinden önceki harekât tamamlanmış olmalı (tekrar hep serbest) */
+    isMissionUnlocked(sectionId, missionId) {
+      if (!B.Lesson.isSectionUnlocked(sectionId)) return false;
+      const sec = B.Lesson.findSection(sectionId).section;
+      const idx = sec.missions.findIndex(m => m.id === missionId);
+      if (idx <= 0) return true;
+      const prevId = sec.missions[idx - 1].id;
+      return !!B.State.sectionProgress(lesson.id, sectionId).missions[prevId];
+    },
+
+    /* Boss kapısı: tüm harekâtlar bitmiş + kazanım ustalığı yeterli */
+    bossGate(sectionId) {
+      const sec = B.Lesson.findSection(sectionId).section;
+      const prog = B.State.sectionProgress(lesson.id, sectionId);
+      const missionsDone = sec.missions.every(m => prog.missions[m.id]);
+      const need = (sec.boss.unlock || {}).masteryRequired ?? (cfg().mastery || {}).bossGate ?? 0.8;
+      const mastery = B.Progress.overallMastery(lesson.skills);
+      return { missionsDone, mastery, need, open: missionsDone && mastery >= need };
+    },
+
+    /* ---- Tamamlama kayıtları ---- */
+
+    completeMission(sectionId, missionId, stars) {
+      const prog = B.State.sectionProgress(lesson.id, sectionId);
+      const prev = prog.missions[missionId];
+      // Yıldız sadece yükselir, asla düşmez (tekrar oynama tamamlamacılığı besler)
+      prog.missions[missionId] = { stars: Math.max(stars, prev ? prev.stars : 0) };
+    },
+
+    defeatBoss(sectionId) {
+      const prog = B.State.sectionProgress(lesson.id, sectionId);
+      prog.bossDefeated = true;
+      prog.bossHpCarry = 0;
+      const list = B.Lesson.sections();
+      const idx = list.findIndex(x => x.section.id === sectionId);
+      const next = list[idx + 1];
+      if (next && B.Lesson.isSectionUnlocked(next.section.id)) {
+        B.Bus.emit(B.Events.SECTION_UNLOCKED, { sectionId: next.section.id });
+      }
+    },
+
+    /* Review harekâtı için: bu bölüme kadar tamamlanmış practice üreticileri havuzu */
+    reviewGenerators(sectionId) {
+      const list = B.Lesson.sections();
+      const idx = list.findIndex(x => x.section.id === sectionId);
+      const gens = [];
+      list.slice(0, idx + 1).forEach(x => x.section.missions.forEach(m => {
+        if (m.generator && (m.type === 'practice' || m.type === 'guided')) gens.push(m.generator);
+      }));
+      return gens.length ? gens : [{ divisorRange: [2, 5], dividendDigits: 1 }];
+    },
+
+    /* Harekâtın ipucu anahtarını getir: hints[stepType][hataSeviyesi] → rastgele anahtar */
+    hintKey(stepType, level) {
+      const h = (lesson.hints || {})[stepType];
+      if (!h) return null;
+      const lv = Math.min(level, 3);
+      const keys = h[String(lv)] || h['1'] || [];
+      return keys[Math.floor(Math.random() * keys.length)] || null;
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/engines/chest-engine.js === */
+/* BOKUL — Sandık Motoru
+ * Kazanma tetikleri olaylardan; içerik rewards.json'dan.
+ * Kopya koruması: açılmamış kozmetik bitmeden aynı şey çıkmaz;
+ * her şey açıldıysa XP paketi düşer. */
+(function (B) {
+  const TYPE_META = {
+    bronze:    { name: 'Bronz Sandık',    icon: '🥉' },
+    silver:    { name: 'Gümüş Sandık',    icon: '🥈' },
+    gold:      { name: 'Altın Sandık',    icon: '🥇' },
+    epic:      { name: 'Epik Sandık',     icon: '💎' },
+    legendary: { name: 'Efsanevi Sandık', icon: '🏆' },
+  };
+
+  function R() { return B.Content.get('rewards'); }
+
+  function inv() {
+    const i = B.State.data.inventory;
+    if (!i.chests) i.chests = [];
+    if (i.starBank == null) i.starBank = 0;
+    return i;
+  }
+
+  B.Chest = {
+    meta(type) { return TYPE_META[type]; },
+    queue() { return inv().chests; },
+
+    earn(type) {
+      inv().chests.push(type);
+      B.Bus.emit(B.Events.CHEST_EARNED, { chestType: type });
+      B.UI.toast(TYPE_META[type].icon + ' ' + TYPE_META[type].name + ' kazandın!');
+      B.Save.saveSoon();
+    },
+
+    /* Nadirlik çek: drops yüzdelerinden; o nadirlikte açılmamış kozmetik yoksa alta düş */
+    roll(type) {
+      const drops = R().chests[type].drops;
+      let r = Math.random() * 100, rarity = 'common';
+      for (const k of Object.keys(drops)) { r -= drops[k]; if (r <= 0) { rarity = k; break; } }
+      if (rarity === 'xpPack') return { xpPack: 50 };
+
+      const order = ['legendary', 'epic', 'rare', 'common'];
+      const owned = B.State.data.inventory.cosmetics;
+      let idx = order.indexOf(rarity);
+      if (idx < 0) idx = 3;
+      for (let i = idx; i < order.length; i++) {
+        const pool = R().cosmetics.filter(c => c.rarity === order[i] && !owned.includes(c.id));
+        if (pool.length) return { item: pool[Math.floor(Math.random() * pool.length)] };
+      }
+      // her nadirlikte de her şey açık → tatlı teselli
+      return { xpPack: 50 };
+    },
+
+    /* Kuyruktaki ilk sandığı aç, sonucu döndür (tören ChestUI'da) */
+    openNext() {
+      const q = inv().chests;
+      if (!q.length) return null;
+      const type = q.shift();
+      const result = B.Chest.roll(type);
+      // Her sandıktan taban altın da çıkar (dükkân ekonomisini besler)
+      const baseCoins = { bronze: 20, silver: 30, gold: 50, epic: 80, legendary: 150 }[type] || 20;
+      result.coins = baseCoins;
+      B.Reward.addCoins(baseCoins, 'chest');
+      if (result.item) {
+        B.State.data.inventory.cosmetics.push(result.item.id);
+        B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: result.item.id });
+      } else {
+        B.Reward.addXp(result.xpPack, 'chest');
+      }
+      B.Bus.emit(B.Events.CHEST_OPENED, { chestType: type, item: result.item || null });
+      B.Save.saveSoon();
+      return { type, result };
+    },
+
+    init() {
+      // Bronz: toplanan her 10 yıldız
+      B.Bus.on(B.Events.QUESTION_COMPLETED, p => {
+        const i = inv();
+        i.starBank += p.stars;
+        const every = R().chests.bronze.every || 10;
+        while (i.starBank >= every) { i.starBank -= every; B.Chest.earn('bronze'); }
+      });
+      // Altın: level atlama
+      B.Bus.on(B.Events.LEVEL_UP, () => B.Chest.earn('gold'));
+      // Epik/Efsanevi: boss zaferleri
+      B.Bus.on(B.Events.BOSS_DEFEATED, p => B.Chest.earn(p.tier === 'unit' ? 'legendary' : 'epic'));
+      // Gümüş: günlük görevler v0.8'de — tetik orada bağlanacak
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/interactions/long-division/logic.js === */
+/* BOKUL — Uzun Bölme Mantığı (saf — DOM YOK, test edilebilir)
+ * Bir bölme işlemini 5 tip mikro-adıma çözümler:
+ *   select   → ilk çalışma sayısı için kaç basamak alınacağı
+ *   estimate → bölüm rakamı tahmini
+ *   multiply → tahmin × bölen
+ *   subtract → fark (kale kuralı: fark < bölen)
+ *   bringdown→ sonraki basamağı indir
+ * computePlan() tüm adım listesini ve beklenen cevapları üretir. */
+(function (B) {
+
+  /* İşlem planını çıkar: her adım { type, expected, ... } */
+  function computePlan(dividend, divisor) {
+    const digits = String(dividend).split('').map(Number);
+    const steps = [];
+
+    // İlk çalışma sayısı: bölenden küçük olmayan en kısa önek
+    let idx = 0, current = 0;
+    do { current = current * 10 + digits[idx]; idx++; }
+    while (current < divisor && idx < digits.length);
+    steps.push({ type: 'select', expected: idx });
+
+    const qDigits = [];
+    // İterasyon bilgileri görünüm katmanı için saklanır (kolon hizalama)
+    while (true) {
+      const q = Math.floor(current / divisor);
+      qDigits.push(q);
+      const endCol = idx - 1; // çalışma sayısının son basamağının kolonu
+      steps.push({ type: 'estimate', expected: q, endCol });
+      const p = q * divisor;
+      steps.push({ type: 'multiply', expected: p, endCol, working: current });
+      const r = current - p;
+      steps.push({ type: 'subtract', expected: r, endCol, working: current, product: p });
+      if (idx < digits.length) {
+        steps.push({ type: 'bringdown', expected: digits[idx], digitIndex: idx, endCol });
+        current = r * 10 + digits[idx];
+        idx++;
+      } else {
+        return {
+          dividend, divisor, steps,
+          quotient: Number(qDigits.join('')),
+          remainder: r,
+        };
+      }
+    }
+  }
+
+  /* Rastgele soru üretici.
+   * params: { divisorRange:[a,b], dividendDigits:n|[min,max], remainder:bool, context? }
+   * bias 0..1: adaptif zorluk — 0 kolay uç, 1 zor uç */
+  function generate(params, bias) {
+    const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+    const dr = params.divisorRange || [2, 9];
+    // bias yüksekse bölen aralığın üst ucuna kayar
+    const divisor = rnd(dr[0], Math.max(dr[0], Math.round(dr[0] + (dr[1] - dr[0]) * (0.4 + 0.6 * bias))));
+
+    let dd = params.dividendDigits || 2;
+    if (Array.isArray(dd)) dd = rnd(dd[0], Math.max(dd[0], Math.round(dd[0] + (dd[1] - dd[0]) * bias)));
+
+    let dividend;
+    if (params.remainder) {
+      // Kalanlı: uygun basamakta, tam bölünmeyen sayı bul
+      let guard = 200;
+      do {
+        dividend = rnd(Math.pow(10, dd - 1), Math.pow(10, dd) - 1);
+      } while ((dividend % divisor === 0 || dividend < divisor) && --guard);
+    } else {
+      // Kalansız: bölümü kur, çarparak bölüneni üret (basamak sayısı tutana dek)
+      let guard = 200;
+      do {
+        const qMin = Math.ceil(Math.pow(10, dd - 1) / divisor);
+        const qMax = Math.floor((Math.pow(10, dd) - 1) / divisor);
+        const q = rnd(Math.max(1, qMin), Math.max(1, qMax));
+        dividend = q * divisor;
+      } while ((String(dividend).length !== dd || dividend < divisor) && --guard);
+    }
+
+    const plan = computePlan(dividend, divisor);
+    return { dividend, divisor, plan, params };
+  }
+
+  const impl = {
+    generate,
+    getSteps(q) { return q.plan.steps; },
+    validateStep(q, step, answer) {
+      const val = Number(answer);
+      if (step.type === 'select') return { correct: val === step.expected };
+      return { correct: val === step.expected };
+    },
+  };
+
+  // Tarayıcıda plugin olarak kaydol; Node'da (test) modül olarak dışa aç
+  if (B && B.Question) B.Question.registerType('long-division', impl);
+  if (B) B.LongDivision = { computePlan, generate, impl };
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { computePlan, generate, impl };
+  }
+})(typeof window !== 'undefined' ? (window.BOKUL = window.BOKUL || {}) : null);
+
+/* === src/interactions/long-division/teach-models.js === */
+/* BOKUL — Öğretim Modelleri (CPA: Somut → Görsel → Soyut)
+ * teach harekâtlarının senaryo oynatıcısı. Senaryo adımları ders paketindeki
+ * teachScripts'ten gelir; buradaki motor sadece oynatır.
+ *
+ * Adım türleri:
+ *   { say: "..." }                        → Komutan konuşur, DEVAM ile geçilir
+ *   { deal: { total, groups } }           → somut: kutuları takımlara paylaştır
+ *   { pv:   { number, divisor } }         → görsel: basamak (onluk/birlik) tablosu
+ *   { ask:  "...", expect: n }            → mini soru (küçük ped ile)
+ *   { guided: { dividend, divisor } }     → soyut: koçlu ilk uzun bölme
+ */
+(function (B) {
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function run(container, scriptSteps, api) {
+    let i = -1;
+    let cleanup = null;
+
+    function next() {
+      if (cleanup) { cleanup(); cleanup = null; }
+      i++;
+      const s = scriptSteps[i];
+      if (!s) return api.onComplete();
+      container.innerHTML = '';
+
+      if (s.say) return doSay(s);
+      if (s.deal) return doDeal(s.deal);
+      if (s.pv) return doPv(s.pv);
+      if (s.ask) return doAsk(s);
+      if (s.guided) return doGuided(s.guided);
+      next(); // bilinmeyen adım atlanır
+    }
+
+    /* --- Komutan anlatımı --- */
+    function doSay(s) {
+      api.say(s.say);
+      const btn = el('button', 'btn btn-action teach-next', 'DEVAM ▶');
+      btn.onclick = () => { B.Audio.play('tick'); next(); };
+      container.appendChild(el('div', 'teach-stage teach-say', '🫡'));
+      container.appendChild(btn);
+    }
+
+    /* --- SOMUT: kutu paylaştırma ---
+     * Kural: bir takıma, en az kutusu olan takımdan fazlası verilemez (eşit paylaşım öğretisi) */
+    function doDeal(cfg) {
+      api.say(B.Dialogue.pick('teach.deal.intro', { total: cfg.total, groups: cfg.groups }) ||
+              cfg.total + ' kutuyu ' + cfg.groups + ' takıma EŞİT paylaştır. Takımlara dokun!');
+      const stage = el('div', 'teach-stage');
+      const supply = el('div', 'deal-supply');
+      let left = cfg.total;
+      const counts = new Array(cfg.groups).fill(0);
+      const supplyLabel = el('div', 'deal-count', '📦 × ' + left);
+      supply.appendChild(supplyLabel);
+      stage.appendChild(supply);
+
+      const groupsRow = el('div', 'deal-groups');
+      const groupEls = [];
+      for (let g = 0; g < cfg.groups; g++) {
+        const box = el('div', 'deal-group');
+        box.appendChild(el('div', 'deal-group-title', 'Takım ' + (g + 1)));
+        const crates = el('div', 'deal-crates');
+        box.appendChild(crates);
+        box.onclick = () => {
+          if (!left) return;
+          const min = Math.min(...counts);
+          if (counts[g] > min) { // eşitlik bozuluyor → nazik uyarı
+            B.Audio.play('wrong');
+            api.say(B.Dialogue.pick('teach.deal.unfair') || 'Eşit paylaştır Komutan — önce az olan takıma!');
+            return;
+          }
+          counts[g]++; left--;
+          B.Audio.play('tick');
+          crates.appendChild(el('span', 'deal-crate', '📦'));
+          supplyLabel.textContent = '📦 × ' + left;
+          if (!left) {
+            B.Audio.play('correct');
+            api.say(B.Dialogue.pick('teach.deal.done', { each: counts[0] }) ||
+                    'Paylaştırma tamam! Her takıma ' + counts[0] + ' kutu düştü. İşte BÖLME budur.');
+            setTimeout(next, 1600);
+          }
+        };
+        groupEls.push(box);
+        groupsRow.appendChild(box);
+      }
+      stage.appendChild(groupsRow);
+      container.appendChild(stage);
+    }
+
+    /* --- GÖRSEL: basamak tablosu --- */
+    function doPv(cfg) {
+      const tens = Math.floor(cfg.number / 10), ones = cfg.number % 10;
+      const stage = el('div', 'teach-stage');
+      const table = el('div', 'pv-table');
+      const colT = el('div', 'pv-col');
+      colT.appendChild(el('div', 'pv-title', 'ONLUKLAR'));
+      const tRow = el('div', 'pv-blocks');
+      for (let i = 0; i < tens; i++) tRow.appendChild(el('span', 'pv-ten', '10'));
+      colT.appendChild(tRow);
+      const colO = el('div', 'pv-col');
+      colO.appendChild(el('div', 'pv-title', 'BİRLİKLER'));
+      const oRow = el('div', 'pv-blocks');
+      for (let i = 0; i < ones; i++) oRow.appendChild(el('span', 'pv-one', '1'));
+      colO.appendChild(oRow);
+      table.appendChild(colT); table.appendChild(colO);
+      stage.appendChild(el('div', 'pv-number', cfg.number + ' ÷ ' + cfg.divisor));
+      stage.appendChild(table);
+      container.appendChild(stage);
+      const btn = el('button', 'btn btn-action teach-next', 'DEVAM ▶');
+      btn.onclick = () => { B.Audio.play('tick'); next(); };
+      container.appendChild(btn);
+    }
+
+    /* --- Mini soru (küçük ped) --- */
+    function doAsk(s) {
+      api.say(s.ask);
+      const stage = el('div', 'teach-stage');
+      const display = el('div', 'ask-display', '?');
+      stage.appendChild(display);
+      const pad = el('div', 'numpad numpad-mini');
+      let buf = '';
+      '1234567890'.split('').forEach(k => {
+        const b = el('button', 'key', k);
+        b.onclick = () => { B.Audio.play('tick'); if (buf.length < 4) { buf += k; display.textContent = buf; } };
+        pad.appendChild(b);
+      });
+      const back = el('button', 'key key-back', '⌫');
+      back.onclick = () => { buf = buf.slice(0, -1); display.textContent = buf || '?'; };
+      const ok = el('button', 'key key-go', '✔');
+      ok.onclick = () => {
+        if (!buf) return;
+        if (Number(buf) === s.expect) {
+          B.Audio.play('correct');
+          api.say(B.Dialogue.pick('correct'));
+          setTimeout(next, 1100);
+        } else {
+          B.Audio.play('wrong');
+          buf = ''; display.textContent = '?';
+          api.say(B.Dialogue.pick('wrong.soft'));
+        }
+      };
+      pad.appendChild(back); pad.appendChild(ok);
+      stage.appendChild(pad);
+      container.appendChild(stage);
+    }
+
+    /* --- SOYUT: koçlu ilk uzun bölme --- */
+    function doGuided(cfg) {
+      const q = {
+        dividend: cfg.dividend, divisor: cfg.divisor,
+        plan: B.LongDivision.computePlan(cfg.dividend, cfg.divisor),
+        _type: 'long-division',
+      };
+      const view = B.LongDivisionView.create(container, q, {
+        coach: true,
+        say: api.say,
+        onAnswer(step, correct, attempt) {
+          B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });
+        },
+        onComplete() {
+          api.say(B.Dialogue.pick('teach.guided.done') || 'İlk uzun bölmeni bitirdin Komutan! Artık hazırsın.');
+          setTimeout(next, 1600);
+        },
+      });
+      cleanup = () => view.destroy();
+    }
+
+    next();
+    return { destroy() { if (cleanup) cleanup(); container.innerHTML = ''; } };
+  }
+
+  B.TeachModels = { run };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/interactions/long-division/view.js === */
+/* BOKUL — Uzun Bölme Tahtası (görünüm)
+ * Türk okul notasyonu: bölünen solda, dikey çizgi, bölen sağ üstte,
+ * bölüm bölenin altında. Adımlar logic.js planından sürülür.
+ *
+ * API:
+ *   const ctl = B.LongDivisionView.create(container, question, {
+ *     prefilled: Set<stepType>,      // guided: bu adımları Komutan yapar
+ *     coach: bool,                    // teach: her adımda yönerge repliği
+ *     problemText: string|null,       // challenge: problem metni
+ *     onAnswer(step, correct, attempt),
+ *     onComplete({ mistakes }),
+ *     say(text),                      // Komutan balonuna yaz
+ *   });
+ */
+(function (B) {
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function create(container, q, opts) {
+    opts = opts || {};
+    const plan = q.plan;
+    const D = String(q.dividend).length;
+    const steps = plan.steps;
+
+    let stepIdx = 0;
+    let attempt = 0;
+    let mistakes = 0;
+    let buffer = '';
+    let selectCount = 0;   // select adımında seçili basamak sayısı
+    let destroyed = false;
+
+    /* ---------- DOM iskeleti ---------- */
+    container.innerHTML = '';
+    const root = el('div', 'ld-root');
+
+    if (opts.problemText) root.appendChild(el('div', 'ld-problem', opts.problemText));
+
+    const boardWrap = el('div', 'ld-board');
+    const left = el('div', 'ld-left');           // bölünen + işlem satırları
+    const right = el('div', 'ld-right');         // bölen + bölüm
+
+    // Bölünen satırı (tıklanabilir basamaklar)
+    const dividendRow = el('div', 'ld-row ld-dividend');
+    const digitEls = [];
+    dividendRow.appendChild(el('span', 'ld-cell ld-sign', ''));  // kolon 0: işaret kolonu
+    String(q.dividend).split('').forEach((d, i) => {
+      const c = el('span', 'ld-cell ld-digit', d);
+      c.dataset.idx = i;
+      digitEls.push(c);
+      dividendRow.appendChild(c);
+    });
+    left.appendChild(dividendRow);
+
+    const workArea = el('div', 'ld-work');        // işlem satırları buraya eklenir
+    left.appendChild(workArea);
+
+    // Sağ blok: bölen, çizgi, bölüm
+    right.appendChild(el('div', 'ld-divisor', String(q.divisor)));
+    right.appendChild(el('div', 'ld-qline'));
+    const quotientRow = el('div', 'ld-quotient');
+    right.appendChild(quotientRow);
+
+    boardWrap.appendChild(left);
+    boardWrap.appendChild(right);
+    root.appendChild(boardWrap);
+
+    // Sayı pedi
+    const pad = el('div', 'numpad');
+    '1234567890'.split('').forEach(k => {
+      const b = el('button', 'key', k);
+      b.dataset.key = k;
+      pad.appendChild(b);
+    });
+    const back = el('button', 'key key-back', '⌫'); back.dataset.key = 'back';
+    const ok = el('button', 'key key-go', '✔ ONAYLA'); ok.dataset.key = 'ok';
+    pad.appendChild(back); pad.appendChild(ok);
+    root.appendChild(pad);
+    container.appendChild(root);
+
+    /* ---------- Yardımcılar ---------- */
+    function cellRow(cls) {
+      const r = el('div', 'ld-row ' + (cls || ''));
+      for (let c = 0; c <= D; c++) r.appendChild(el('span', 'ld-cell'));
+      workArea.appendChild(r);
+      return r;
+    }
+    function setCell(row, col, text, cls) {
+      const c = row.children[col];
+      c.textContent = text;
+      if (cls) c.classList.add(cls);
+      return c;
+    }
+    // plan endCol (0 tabanlı basamak indeksi) → görüntü kolonu (+1: işaret kolonu)
+    const VC = i => i + 1;
+
+    function say(t) { if (opts.say && t) opts.say(t); }
+
+    /* ---------- Adım durumu ---------- */
+    let activeCells = [];   // buffer'ın yazıldığı hücreler (sağdan sola)
+    let currentRow = null;  // multiply/subtract için aktif satır
+    let remRow = null;      // son kalan satırı (bringdown buraya ekler)
+
+    function clearActive() {
+      activeCells.forEach(c => { c.classList.remove('ld-active'); c.textContent = c.dataset.keep || ''; });
+      activeCells = [];
+    }
+
+    function renderBuffer() {
+      // buffer'ı aktif hücrelere sağa dayalı yaz
+      const chars = buffer.split('');
+      for (let i = 0; i < activeCells.length; i++) {
+        const ch = chars[chars.length - activeCells.length + i];
+        activeCells[i].textContent = ch || '';
+      }
+      // taşma: buffer hücre sayısını aşarsa son hücrede birden çok karakter göster
+      if (chars.length > activeCells.length && activeCells.length) {
+        activeCells[activeCells.length - 1].textContent = chars.slice(chars.length - 1).join('');
+      }
+    }
+
+    /* Adımı başlat: giriş hücrelerini hazırla + koçluk repliği */
+    function beginStep() {
+      if (destroyed) return;
+      buffer = ''; attempt = 0; selectCount = 0;
+      const step = steps[stepIdx];
+      if (!step) return finish();
+
+      // Tek basamaklı bölünende SEÇ adımı otomatik: seçilecek tek şey var,
+      // çocuğu anlamsız bir dokunuşla oyalama (UX düzeltmesi)
+      if (step.type === 'select' && digitEls.length === 1) {
+        digitEls[0].classList.add('ld-select');
+        setTimeout(() => commitStep(step, true), 400);
+        return;
+      }
+
+      if (opts.coach) {
+        const key = 'teach.coach.' + step.type;
+        const line = B.Dialogue.pick(key, { divisor: q.divisor });
+        if (line) say(line);
+      } else if (step.type === 'select') {
+        // SEÇ adımı pedle değil dokunarak oynanır — bunu HER ZAMAN söyle
+        say(B.Dialogue.pick('step.select.intro', { divisor: q.divisor }) ||
+            'Kaç basamak alacağız? Sayının basamaklarına DOKUN, sonra ONAYLA!');
+      }
+
+      // Guided: Komutan bu adımı kendisi yapar
+      if (opts.prefilled && opts.prefilled.has(step.type)) {
+        setTimeout(() => autoFill(step), 700);
+        prepareCells(step, true);
+        return;
+      }
+      prepareCells(step, false);
+    }
+
+    function prepareCells(step, ghost) {
+      clearActive();
+      digitEls.forEach(d => d.classList.remove('ld-select', 'ld-pulse'));
+
+      if (step.type === 'select') {
+        // Basamaklara dokunarak önek seç
+        digitEls.forEach(d => d.classList.add('ld-pulse'));
+        pad.classList.add('numpad-dim');
+        return;
+      }
+      pad.classList.remove('numpad-dim');
+
+      if (step.type === 'estimate') {
+        const c = el('span', 'ld-cell ld-active', '');
+        quotientRow.appendChild(c);
+        activeCells = [c];
+      }
+      else if (step.type === 'multiply') {
+        currentRow = cellRow('ld-product');
+        const len = String(step.expected).length;
+        const end = VC(step.endCol);
+        setCell(currentRow, end - len, '−', 'ld-sign-cell'); // eksi işareti
+        activeCells = [];
+        for (let c = end - len + 1; c <= end; c++) {
+          const cell = setCell(currentRow, c, '', null);
+          cell.classList.add('ld-active');
+          activeCells.push(cell);
+        }
+      }
+      else if (step.type === 'subtract') {
+        // ayraç çizgisi
+        const sep = cellRow('ld-sep');
+        const plen = String(step.product).length;
+        const end = VC(step.endCol);
+        for (let c = end - plen; c <= end; c++) setCell(sep, c, '─');
+        // sonuç satırı
+        remRow = cellRow('ld-rem');
+        const rlen = String(step.expected).length;
+        activeCells = [];
+        for (let c = end - rlen + 1; c <= end; c++) {
+          const cell = setCell(remRow, c, '');
+          cell.classList.add('ld-active');
+          activeCells.push(cell);
+        }
+      }
+      else if (step.type === 'bringdown') {
+        // İndirilecek basamak yanıp söner; dokunuş ya da ped ile
+        const d = digitEls[step.digitIndex];
+        d.classList.add('ld-pulse');
+        const cell = setCell(remRow, VC(step.digitIndex), '');
+        cell.classList.add('ld-active');
+        activeCells = [cell];
+      }
+      if (ghost) activeCells.forEach(c => c.classList.add('ld-ghost'));
+    }
+
+    /* Guided otomatik doldurma */
+    function autoFill(step) {
+      if (destroyed) return;
+      if (step.type === 'select') {
+        for (let i = 0; i < step.expected; i++) digitEls[i].classList.add('ld-select');
+        say(B.Dialogue.pick('teach.autofill.select', { n: step.expected }) || 'Bu kısmı ben aldım Komutan.');
+      } else {
+        buffer = String(step.expected);
+        renderBuffer();
+      }
+      setTimeout(() => { commitStep(step, true); }, 650);
+    }
+
+    /* ---------- Doğrulama ---------- */
+    function submit() {
+      const step = steps[stepIdx];
+      if (!step) return;
+      let answer;
+      if (step.type === 'select') {
+        if (!selectCount) return; // henüz seçim yok
+        answer = selectCount;
+      } else {
+        if (!buffer.length) return;
+        answer = buffer;
+      }
+      attempt++;
+      const { correct } = B.Question.validate(q, step, answer);
+      if (opts.onAnswer) opts.onAnswer(step, correct, attempt);
+
+      if (correct) { commitStep(step, false); }
+      else {
+        mistakes++;
+        root.classList.remove('ld-shake'); void root.offsetWidth; // animasyonu tazele
+        root.classList.add('ld-shake');
+        const key = B.Lesson.active() ? B.Lesson.hintKey(step.type, attempt) : null;
+        say(key ? B.Dialogue.hint(key, { divisor: q.divisor }) : 'Bir daha dene Komutan!');
+        if (step.type === 'select') {
+          digitEls.forEach(d => d.classList.remove('ld-select'));
+          selectCount = 0;
+        } else { buffer = ''; renderBuffer(); }
+      }
+    }
+
+    /* Doğru adımı tahtaya işle ve sonrakine geç */
+    function commitStep(step, wasAuto) {
+      clearActiveKeep(step);
+      digitEls.forEach(d => d.classList.remove('ld-pulse'));
+      stepIdx++;
+      setTimeout(beginStep, wasAuto ? 250 : 350);
+    }
+
+    function clearActiveKeep(step) {
+      // Aktif hücrelere kesin değeri yaz, vurguyu kaldır
+      const val = String(step.expected);
+      if (step.type === 'select') {
+        for (let i = 0; i < step.expected; i++) digitEls[i].classList.add('ld-select');
+      } else {
+        const chars = val.split('');
+        activeCells.forEach((c, i) => {
+          c.textContent = chars[i] != null ? chars[i] : '';
+          c.classList.remove('ld-active', 'ld-ghost');
+          c.classList.add('ld-done');
+        });
+      }
+      activeCells = [];
+    }
+
+    function finish() {
+      if (opts.onComplete) opts.onComplete({ mistakes });
+    }
+
+    /* ---------- Girdi bağlama ---------- */
+    function onPad(e) {
+      const b = e.target.closest('.key');
+      if (!b) return;
+      B.Audio.play('tick');
+      const k = b.dataset.key;
+      const step = steps[stepIdx];
+      if (!step) return;
+
+      if (k === 'ok') return submit();
+      if (step.type === 'select') return; // seçim dokunuşla yapılır
+      if (k === 'back') { buffer = buffer.slice(0, -1); renderBuffer(); return; }
+      if (buffer.length < 6) { buffer += k; renderBuffer(); }
+    }
+
+    function onDigitTap(e) {
+      const d = e.target.closest('.ld-digit');
+      if (!d) return;
+      const step = steps[stepIdx];
+      if (!step) return;
+      const idx = Number(d.dataset.idx);
+      if (step.type === 'select') {
+        B.Audio.play('tick');
+        selectCount = idx + 1;
+        digitEls.forEach((x, i) => x.classList.toggle('ld-select', i <= idx));
+      } else if (step.type === 'bringdown') {
+        B.Audio.play('tick');
+        buffer = d.textContent; // dokunulan basamak cevaptır (yanlışsa yanlış sayılır)
+        renderBuffer();
+        submit();
+      }
+    }
+
+    pad.addEventListener('click', onPad);
+    dividendRow.addEventListener('click', onDigitTap);
+
+    beginStep();
+
+    return {
+      destroy() { destroyed = true; container.innerHTML = ''; },
+    };
+  }
+
+  B.LongDivisionView = { create };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/animation-engine.js === */
+/* BOKUL — AnimationEngine
+ * XP damlası, konfeti ve küçük şölenler. Olayları dinler, kimse çağırmaz. */
+(function (B) {
+
+  /* Ekranda bir noktadan XP barına uçan altın çip */
+  function xpDrop(amount) {
+    const bar = document.querySelector('.hud-xpbar');
+    const chip = document.createElement('div');
+    chip.className = 'fx-xp';
+    chip.textContent = '+' + amount + ' XP';
+    document.body.appendChild(chip);
+    const startX = window.innerWidth / 2, startY = window.innerHeight * 0.45;
+    chip.style.left = startX + 'px'; chip.style.top = startY + 'px';
+    requestAnimationFrame(() => {
+      let tx = startX, ty = 60;
+      if (bar) { const r = bar.getBoundingClientRect(); tx = r.left + r.width / 2; ty = r.top; }
+      chip.style.transform = 'translate(' + (tx - startX) + 'px,' + (ty - startY) + 'px) scale(.6)';
+      chip.style.opacity = '0';
+    });
+    setTimeout(() => chip.remove(), 900);
+  }
+
+  /* Basit konfeti patlaması (level-up, boss zaferi) */
+  function confetti(n) {
+    const colors = ['#FF4FD8', '#FFD52E', '#52E88C', '#9D6BFF', '#3DF2D2', '#FF9F1C'];
+    for (let i = 0; i < (n || 40); i++) {
+      const p = document.createElement('div');
+      p.className = 'fx-confetti';
+      p.style.background = colors[i % colors.length];
+      p.style.left = (35 + Math.random() * 30) + 'vw';
+      p.style.setProperty('--dx', (Math.random() * 60 - 30) + 'vw');
+      p.style.setProperty('--dr', (Math.random() * 720 - 360) + 'deg');
+      p.style.animationDelay = (Math.random() * 0.3) + 's';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 2200);
+    }
+  }
+
+  B.Anim = {
+    xpDrop, confetti,
+    init() {
+      B.Bus.on(B.Events.XP_GAINED, p => { if (p.source !== 'step') xpDrop(p.amount); });
+      B.Bus.on(B.Events.LEVEL_UP, () => confetti(60));
+      B.Bus.on(B.Events.BOSS_DEFEATED, () => confetti(80));
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/components/svg-art.js === */
+/* BOKUL — SVG Sanat Kütüphanesi
+ * Emoji yerine el çizimi vektör karakterler: Baba Komutan (5 ifade) ve boss'lar.
+ * Tümü inline SVG string üretir — dosya yok, tek dosya şartına uygun. */
+(function (B) {
+
+  /* ---------- BABA KOMUTAN ----------
+   * İfadeler: normal | happy | surprised | proud | stern
+   * opts: { mouthOpen: bool (konuşma karesi), blink: bool (göz kırpma karesi) } */
+  function commander(expr, opts) {
+    expr = expr || 'normal';
+    opts = opts || {};
+
+    // Kaşlar: ifadeye göre eğim
+    const brows = {
+      normal:    '<rect x="30" y="42" width="20" height="5" rx="2.5" fill="#4a3320" transform="rotate(-4 40 44)"/><rect x="70" y="42" width="20" height="5" rx="2.5" fill="#4a3320" transform="rotate(4 80 44)"/>',
+      happy:     '<rect x="30" y="40" width="20" height="5" rx="2.5" fill="#4a3320" transform="rotate(-10 40 42)"/><rect x="70" y="40" width="20" height="5" rx="2.5" fill="#4a3320" transform="rotate(10 80 42)"/>',
+      surprised: '<rect x="30" y="36" width="20" height="5" rx="2.5" fill="#4a3320"/><rect x="70" y="36" width="20" height="5" rx="2.5" fill="#4a3320"/>',
+      proud:     '<rect x="30" y="41" width="20" height="5" rx="2.5" fill="#4a3320" transform="rotate(-8 40 43)"/><rect x="70" y="41" width="20" height="5" rx="2.5" fill="#4a3320" transform="rotate(8 80 43)"/>',
+      stern:     '<rect x="30" y="44" width="20" height="6" rx="3" fill="#4a3320" transform="rotate(8 40 47)"/><rect x="70" y="44" width="20" height="6" rx="3" fill="#4a3320" transform="rotate(-8 80 47)"/>',
+    }[expr];
+
+    // Gözler
+    const eyesMap = {
+      normal:    '<circle cx="42" cy="54" r="4.5" fill="#2b1d10"/><circle cx="78" cy="54" r="4.5" fill="#2b1d10"/>',
+      happy:     '<path d="M36 55 Q42 49 48 55" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M72 55 Q78 49 84 55" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>',
+      surprised: '<circle cx="42" cy="55" r="6.5" fill="#fff"/><circle cx="42" cy="55" r="3.5" fill="#2b1d10"/><circle cx="78" cy="55" r="6.5" fill="#fff"/><circle cx="78" cy="55" r="3.5" fill="#2b1d10"/>',
+      proud:     '<path d="M36 54 Q42 50 48 54" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M72 54 Q78 50 84 54" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>',
+      stern:     '<circle cx="42" cy="55" r="4" fill="#2b1d10"/><circle cx="78" cy="55" r="4" fill="#2b1d10"/>',
+    };
+    // Göz kırpma karesi her ifadeyi ezer
+    const eyes = opts.blink
+      ? '<path d="M36 55 Q42 58 48 55" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M72 55 Q78 58 84 55" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>'
+      : eyesMap[expr];
+
+    // Ağız (bıyığın altında)
+    const mouthMap = {
+      normal:    '<path d="M52 86 Q60 90 68 86" stroke="#7a3b2e" stroke-width="4" fill="none" stroke-linecap="round"/>',
+      happy:     '<path d="M48 84 Q60 96 72 84" stroke="#7a3b2e" stroke-width="4" fill="none" stroke-linecap="round"/>',
+      surprised: '<ellipse cx="60" cy="88" rx="7" ry="9" fill="#7a3b2e"/>',
+      proud:     '<path d="M48 85 Q60 94 72 85" stroke="#7a3b2e" stroke-width="4" fill="none" stroke-linecap="round"/>',
+      stern:     '<path d="M52 89 Q60 86 68 89" stroke="#7a3b2e" stroke-width="4" fill="none" stroke-linecap="round"/>',
+    };
+    // Konuşma karesi: ağız açık (bıyık hafif yukarı oynar — canlılık hissi)
+    const mouth = opts.mouthOpen
+      ? '<ellipse cx="60" cy="88" rx="8" ry="7" fill="#5e2b20"/><ellipse cx="60" cy="91" rx="4.5" ry="3" fill="#c96a5a"/>'
+      : mouthMap[expr];
+
+    return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
+      // yüz
+      '<ellipse cx="60" cy="62" rx="36" ry="38" fill="#EFBE93"/>' +
+      '<ellipse cx="60" cy="62" rx="36" ry="38" fill="none" stroke="#c98f5f" stroke-width="2"/>' +
+      // kulaklar
+      '<circle cx="23" cy="62" r="7" fill="#EFBE93" stroke="#c98f5f" stroke-width="2"/>' +
+      '<circle cx="97" cy="62" r="7" fill="#EFBE93" stroke="#c98f5f" stroke-width="2"/>' +
+      // bere (mor, altın yıldızlı)
+      '<path d="M20 44 Q22 16 60 14 Q98 16 100 44 L96 40 Q60 28 24 40 Z" fill="#5B3FA8"/>' +
+      '<path d="M22 42 Q60 28 98 42 L98 47 Q60 34 22 47 Z" fill="#4A3690"/>' +
+      '<circle cx="60" cy="15" r="5" fill="#FFD52E"/>' +
+      '<path d="M78 20 l3.5 6.5 7 .8 -5 5 1.3 7 -6.8 -3.5 -6.8 3.5 1.3 -7 -5 -5 7 -.8 Z" fill="#FFD52E"/>' +
+      brows + eyes +
+      // burun
+      '<ellipse cx="60" cy="67" rx="6" ry="7" fill="#DFA672"/>' +
+      // POS BIYIK — karakterin imzası
+      '<path d="M60 76 Q45 70 34 76 Q36 86 48 85 Q56 84 60 79 Q64 84 72 85 Q84 86 86 76 Q75 70 60 76 Z" fill="#4a3320"/>' +
+      mouth +
+      // yaka (üniforma)
+      '<path d="M32 96 Q60 108 88 96 L88 120 L32 120 Z" fill="#31245F"/>' +
+      '<rect x="54" y="100" width="12" height="8" rx="2" fill="#FFD52E"/>' +
+      '</svg>';
+  }
+
+  /* ---------- BOSS'LAR ---------- */
+  const bosses = {
+    /* Bölünmez Kaya — asık suratlı granit */
+    'boss-s1': '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M18 96 L26 40 Q34 18 60 16 Q88 18 94 42 L102 96 Q80 108 60 106 Q38 108 18 96 Z" fill="#7d8496"/>' +
+      '<path d="M30 50 L44 44 M78 40 L92 52 M50 100 L58 88" stroke="#5a6070" stroke-width="4" stroke-linecap="round"/>' +
+      '<path d="M30 58 L52 62 M90 58 L68 62" stroke="#3a3f4c" stroke-width="6" stroke-linecap="round"/>' +
+      '<circle cx="46" cy="70" r="6" fill="#1c1f28"/><circle cx="74" cy="70" r="6" fill="#1c1f28"/>' +
+      '<path d="M44 90 Q60 82 76 90" stroke="#3a3f4c" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+      '</svg>',
+
+    /* Çifte Kule — ikiz sinirli kuleler */
+    'boss-s2': '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
+      '<rect x="18" y="30" width="34" height="80" rx="6" fill="#8A6FD1"/>' +
+      '<rect x="68" y="30" width="34" height="80" rx="6" fill="#7157B8"/>' +
+      '<path d="M18 30 L24 18 L30 30 L36 18 L42 30 L48 18 L52 30 Z" fill="#8A6FD1"/>' +
+      '<path d="M68 30 L74 18 L80 30 L86 18 L92 30 L98 18 L102 30 Z" fill="#7157B8"/>' +
+      '<circle cx="30" cy="56" r="5" fill="#1c1f28"/><circle cx="42" cy="56" r="5" fill="#1c1f28"/>' +
+      '<circle cx="80" cy="56" r="5" fill="#1c1f28"/><circle cx="92" cy="56" r="5" fill="#1c1f28"/>' +
+      '<path d="M28 74 Q36 68 44 74" stroke="#2d2350" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+      '<path d="M78 74 Q86 80 94 74" stroke="#241c40" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+      '<rect x="24" y="88" width="10" height="14" rx="2" fill="#4A3690"/><rect x="86" y="88" width="10" height="14" rx="2" fill="#3a2b72"/>' +
+      '</svg>',
+
+    /* Üç Başlı Sayı Ejderi */
+    'boss-s3': '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M30 112 Q20 84 34 66 M60 112 Q56 88 60 62 M90 112 Q100 84 86 66" stroke="#3E9E62" stroke-width="14" fill="none" stroke-linecap="round"/>' +
+      '<circle cx="32" cy="56" r="16" fill="#52C97E"/><circle cx="60" cy="46" r="19" fill="#42B26C"/><circle cx="88" cy="56" r="16" fill="#52C97E"/>' +
+      '<path d="M24 42 L28 32 L33 41 M52 30 L58 18 L64 30 M80 42 L84 32 L89 41" stroke="#FFD52E" stroke-width="5" fill="none" stroke-linecap="round"/>' +
+      '<circle cx="27" cy="54" r="3.5" fill="#12240c"/><circle cx="37" cy="54" r="3.5" fill="#12240c"/>' +
+      '<circle cx="54" cy="44" r="4" fill="#12240c"/><circle cx="66" cy="44" r="4" fill="#12240c"/>' +
+      '<circle cx="83" cy="54" r="3.5" fill="#12240c"/><circle cx="93" cy="54" r="3.5" fill="#12240c"/>' +
+      '<path d="M26 64 Q32 68 38 64 M53 56 Q60 62 67 56 M82 64 Q88 68 94 64" stroke="#12240c" stroke-width="3" fill="none" stroke-linecap="round"/>' +
+      '</svg>',
+
+    /* Basamak Golemi — sayı bloklarından dev (ÜNİTE BOSS'U) */
+    'boss-s4': '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
+      '<rect x="30" y="54" width="60" height="56" rx="8" fill="#6B7385"/>' +
+      '<rect x="14" y="60" width="16" height="34" rx="5" fill="#7d8496"/><rect x="90" y="60" width="16" height="34" rx="5" fill="#7d8496"/>' +
+      '<rect x="24" y="14" width="72" height="44" rx="10" fill="#7d8496"/>' +
+      '<rect x="38" y="64" width="18" height="18" rx="4" fill="#31245F"/><text x="47" y="78" font-size="14" font-weight="bold" fill="#3DF2D2" text-anchor="middle" font-family="monospace">4</text>' +
+      '<rect x="64" y="64" width="18" height="18" rx="4" fill="#31245F"/><text x="73" y="78" font-size="14" font-weight="bold" fill="#3DF2D2" text-anchor="middle" font-family="monospace">8</text>' +
+      '<rect x="51" y="86" width="18" height="18" rx="4" fill="#31245F"/><text x="60" y="100" font-size="14" font-weight="bold" fill="#3DF2D2" text-anchor="middle" font-family="monospace">7</text>' +
+      '<rect x="34" y="24" width="14" height="10" rx="3" fill="#2b3040"/><rect x="72" y="24" width="14" height="10" rx="3" fill="#2b3040"/>' +
+      '<circle cx="41" cy="29" r="4" fill="#3DF2D2"/><circle cx="79" cy="29" r="4" fill="#3DF2D2"/>' +
+      '<path d="M42 46 L54 42 L66 46 L78 42" stroke="#2b3040" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+      '</svg>',
+  };
+
+  function boss(id) {
+    return bosses[id] || bosses['boss-s1'];
+  }
+
+  B.SvgArt = { commander, boss };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/components/avatar.js === */
+/* BOKUL — Avatar Sistemi
+ * SVG parça tabanlı karakter: ten, saç, göz, ağız, aksesuar, çerçeve.
+ * Fotoğraf modu: cihazdan seçilen fotoğraf CİHAZDA kalır (localStorage),
+ * hiçbir yere yüklenmez — çocuk gizliliği önceliklidir.
+ * Kilitli parçalar rewards.json kozmetik id'leriyle eşleşir (sandıktan çıkar). */
+(function (B) {
+
+  /* ---------- Parça kataloğu ----------
+   * cosmeticId olmayan parçalar herkese açıktır. */
+  const CATALOG = {
+    skins: [
+      { id: 0, color: '#F7D2B0' }, { id: 1, color: '#EFBE93' }, { id: 2, color: '#D9A06B' },
+      { id: 3, color: '#B57843' }, { id: 4, color: '#8C5A32' },
+    ],
+    hairColors: [
+      { id: 0, color: '#3B2A1A', name: 'Kahve' }, { id: 1, color: '#1C1C24', name: 'Siyah' },
+      { id: 2, color: '#B7742F', name: 'Kumral' }, { id: 3, color: '#E8C25A', name: 'Sarı' },
+      { id: 4, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue' },
+      { id: 5, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon' },
+    ],
+    hairs: [
+      { id: 0, name: 'Kısa' }, { id: 1, name: 'Uzun' }, { id: 2, name: 'Topuz' },
+      { id: 3, name: 'Kıvırcık', cosmeticId: 'hair-curly' }, { id: 4, name: 'Sıfır' },
+    ],
+    eyes: [
+      { id: 0, name: 'Klasik' }, { id: 1, name: 'Neşeli' },
+      { id: 2, name: 'Yıldız Göz', cosmeticId: 'eyes-star' },
+    ],
+    mouths: [
+      { id: 0, name: 'Gülümseme' }, { id: 1, name: 'Kocaman Gülüş' },
+      { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin' },
+    ],
+    accs: [
+      { id: 'none', name: 'Yok' },
+      { id: 'beret', name: 'Komutan Beresi', cosmeticId: 'av-beret' },
+      { id: 'glasses', name: 'Pilot Gözlüğü', cosmeticId: 'acc-glasses' },
+      { id: 'headset', name: 'Uzay Kulaklığı', cosmeticId: 'acc-headset' },
+      { id: 'crown', name: 'Galaksi Tacı', cosmeticId: 'acc-crown' },
+    ],
+    rings: [
+      { id: 'none', name: 'Yok' },
+      { id: 'neon', name: 'Neon Halka', cosmeticId: 'ring-neon' },
+      { id: 'galaxy', name: 'Galaksi Halkası', cosmeticId: 'ring-galaxy' },
+    ],
+  };
+
+  /* Eski kayıtlardan gelen avatarları yeni yapıya tamamla */
+  function normalize(a) {
+    a = a || {};
+    return {
+      skin: a.skin ?? 1, hair: a.hair ?? 0, hairColor: a.hairColor ?? 0,
+      eyes: a.eyes ?? 0, mouth: a.mouth ?? 0, acc: a.acc || 'none', ring: a.ring || 'none',
+      photo: a.photo || null, usePhoto: !!a.usePhoto,
+    };
+  }
+
+  function isUnlocked(part) {
+    if (!part || !part.cosmeticId) return true;
+    return B.State.data.inventory.cosmetics.includes(part.cosmeticId);
+  }
+
+  /* ---------- SVG çizim parçaları ---------- */
+  function hairSvg(style, color) {
+    switch (style) {
+      case 0: // kısa
+        return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/>';
+      case 1: // uzun
+        return '<path d="M24 52 Q22 18 60 14 Q98 18 96 52 L98 84 Q92 90 86 84 L86 50 Q82 32 60 30 Q38 32 34 50 L34 84 Q28 90 22 84 Z" fill="' + color + '"/>';
+      case 2: // topuz
+        return '<circle cx="60" cy="14" r="12" fill="' + color + '"/>' +
+               '<path d="M26 50 Q26 24 60 20 Q94 24 94 50 L88 48 Q86 34 60 32 Q34 34 32 48 Z" fill="' + color + '"/>';
+      case 3: // kıvırcık
+        return '<circle cx="34" cy="38" r="12" fill="' + color + '"/><circle cx="47" cy="26" r="13" fill="' + color + '"/>' +
+               '<circle cx="62" cy="22" r="13" fill="' + color + '"/><circle cx="77" cy="27" r="13" fill="' + color + '"/>' +
+               '<circle cx="88" cy="39" r="12" fill="' + color + '"/>';
+      default: return ''; // sıfır (kel)
+    }
+  }
+
+  function eyesSvg(style) {
+    switch (style) {
+      case 1: // neşeli
+        return '<path d="M38 56 Q44 50 50 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+               '<path d="M70 56 Q76 50 82 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>';
+      case 2: // yıldız göz
+        return star(44, 55, 7, '#FFD52E') + star(76, 55, 7, '#FFD52E');
+      default:
+        return '<circle cx="44" cy="56" r="5" fill="#2b1d10"/><circle cx="76" cy="56" r="5" fill="#2b1d10"/>' +
+               '<circle cx="46" cy="54" r="1.6" fill="#fff"/><circle cx="78" cy="54" r="1.6" fill="#fff"/>';
+    }
+  }
+
+  function star(cx, cy, r, fill) {
+    let p = '';
+    for (let i = 0; i < 10; i++) {
+      const rad = (i % 2 ? r / 2 : r), a = -Math.PI / 2 + i * Math.PI / 5;
+      p += (i ? 'L' : 'M') + (cx + rad * Math.cos(a)).toFixed(1) + ' ' + (cy + rad * Math.sin(a)).toFixed(1) + ' ';
+    }
+    return '<path d="' + p + 'Z" fill="' + fill + '"/>';
+  }
+
+  function mouthSvg(style) {
+    switch (style) {
+      case 1: // kocaman gülüş
+        return '<path d="M42 72 Q60 92 78 72 Z" fill="#7a3b2e"/><path d="M48 76 Q60 84 72 76 Q60 80 48 76 Z" fill="#fff"/>';
+      case 2: // sırıtış
+        return '<path d="M44 76 Q60 86 80 70" stroke="#7a3b2e" stroke-width="5" fill="none" stroke-linecap="round"/>';
+      default:
+        return '<path d="M46 74 Q60 84 74 74" stroke="#7a3b2e" stroke-width="5" fill="none" stroke-linecap="round"/>';
+    }
+  }
+
+  function accSvg(id) {
+    switch (id) {
+      case 'beret':
+        return '<path d="M26 40 Q28 16 60 14 Q92 16 94 40 L90 37 Q60 26 30 37 Z" fill="#5B3FA8"/>' +
+               '<circle cx="60" cy="15" r="4.5" fill="#FFD52E"/>';
+      case 'glasses':
+        return '<circle cx="44" cy="56" r="12" fill="none" stroke="#3DF2D2" stroke-width="4"/>' +
+               '<circle cx="76" cy="56" r="12" fill="none" stroke="#3DF2D2" stroke-width="4"/>' +
+               '<path d="M56 56 L64 56" stroke="#3DF2D2" stroke-width="4"/>';
+      case 'headset':
+        return '<path d="M28 48 Q28 18 60 18 Q92 18 92 48" stroke="#9D6BFF" stroke-width="7" fill="none" stroke-linecap="round"/>' +
+               '<rect x="20" y="46" width="12" height="20" rx="6" fill="#9D6BFF"/>' +
+               '<rect x="88" y="46" width="12" height="20" rx="6" fill="#9D6BFF"/>';
+      case 'crown':
+        return '<path d="M34 30 L40 12 L52 24 L60 8 L68 24 L80 12 L86 30 Z" fill="#FFD52E"/>' +
+               '<circle cx="40" cy="14" r="3" fill="#FF4FD8"/><circle cx="60" cy="10" r="3" fill="#3DF2D2"/><circle cx="80" cy="14" r="3" fill="#FF4FD8"/>';
+      default: return '';
+    }
+  }
+
+  function ringSvg(id) {
+    switch (id) {
+      case 'neon':
+        return '<circle cx="60" cy="60" r="57" fill="none" stroke="#FF4FD8" stroke-width="5"/>';
+      case 'galaxy':
+        return '<circle cx="60" cy="60" r="57" fill="none" stroke="#3DF2D2" stroke-width="5" stroke-dasharray="14 8"/>' +
+               star(60, 6, 6, '#FFD52E');
+      default: return '';
+    }
+  }
+
+  /* ---------- Ana çizici ---------- */
+  function svg(a) {
+    a = normalize(a);
+    const skin = CATALOG.skins[a.skin].color;
+    const hairC = CATALOG.hairColors[a.hairColor].color;
+    return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
+      '<circle cx="60" cy="60" r="54" fill="#31245F"/>' +
+      '<ellipse cx="60" cy="64" rx="32" ry="34" fill="' + skin + '"/>' +
+      '<circle cx="27" cy="64" r="6" fill="' + skin + '"/><circle cx="93" cy="64" r="6" fill="' + skin + '"/>' +
+      hairSvg(a.hair, hairC) +
+      eyesSvg(a.eyes) +
+      '<ellipse cx="60" cy="66" rx="5" ry="6" fill="rgba(0,0,0,.12)"/>' +
+      mouthSvg(a.mouth) +
+      accSvg(a.acc) +
+      ringSvg(a.ring) +
+      '</svg>';
+  }
+
+  /* HUD/ekranlar için hazır HTML: fotoğraf modundaysa yuvarlak portre */
+  function el(a, cls) {
+    a = normalize(a);
+    if (a.usePhoto && a.photo) {
+      return '<span class="avatar-holder ' + (cls || '') + '"><img class="avatar-photo" src="' + a.photo + '" alt="avatar">' +
+             '<svg viewBox="0 0 120 120" class="avatar-ring-svg">' + ringSvg(a.ring) + '</svg></span>';
+    }
+    return '<span class="avatar-holder ' + (cls || '') + '">' + svg(a) + '</span>';
+  }
+
+  B.Avatar = { CATALOG, normalize, svg, el, isUnlocked };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/components/commander.js === */
+/* BOKUL — Baba Komutan bileşeni (CANLI karakter)
+ * - Sürekli: nefes alma (CSS) + rastgele göz kırpma (kare değişimi)
+ * - Konuşurken: yazı-makinesi + ağız aç/kapa + Animal Crossing tarzı sesli mırıltı
+ * - İfadeler olaylara bağlı: doğru → mutlu, yanlış → şaşkın, level → gururlu */
+(function (B) {
+  let typeTimer = null;   // yazı makinesi
+  let talkTimer = null;   // ağız aç/kapa döngüsü
+  let blinkTimer = null;  // göz kırpma zamanlayıcısı
+  let exprTimer = null;   // ifade geri dönüş zamanlayıcısı
+
+  // Tek gerçek durum: tüm .commander-face'ler bundan çizilir
+  const face = { expr: 'normal', mouthOpen: false, blink: false };
+
+  function renderFaces() {
+    document.querySelectorAll('.commander-face').forEach(f => {
+      f.innerHTML = B.SvgArt.commander(face.expr, { mouthOpen: face.mouthOpen, blink: face.blink });
+    });
+  }
+
+  /* Rastgele aralıklarla göz kırp (2.5-5.5 sn) */
+  function scheduleBlink() {
+    clearTimeout(blinkTimer);
+    blinkTimer = setTimeout(() => {
+      face.blink = true; renderFaces();
+      setTimeout(() => { face.blink = false; renderFaces(); scheduleBlink(); }, 130);
+    }, 2500 + Math.random() * 3000);
+  }
+
+  /* İfadeyi kısa süreliğine değiştir, sonra normale dön */
+  function express(expr, ms) {
+    clearTimeout(exprTimer);
+    face.expr = expr; renderFaces();
+    exprTimer = setTimeout(() => { face.expr = 'normal'; renderFaces(); }, ms || 1600);
+  }
+
+  function stopTalking() {
+    clearInterval(talkTimer); talkTimer = null;
+    face.mouthOpen = false; renderFaces();
+  }
+
+  B.Commander = {
+    mount(container, opts) {
+      opts = opts || {};
+      const wrap = document.createElement('div');
+      wrap.className = 'commander-wrap' + (opts.compact ? ' commander-compact' : '');
+      wrap.innerHTML =
+        '<div class="commander-face commander-idle">' +
+          B.SvgArt.commander(face.expr, face) +
+        '</div>' +
+        '<div class="commander-balloon"><span class="commander-text"></span></div>';
+      container.appendChild(wrap);
+      const textEl = wrap.querySelector('.commander-text');
+
+      /* Konuşma: harfler akarken ağız oynar + her 3 harfte bir mırıltı sesi */
+      function say(text) {
+        if (!text) return;
+        clearInterval(typeTimer);
+        stopTalking();
+        textEl.textContent = '';
+        let i = 0;
+
+        talkTimer = setInterval(() => {
+          face.mouthOpen = !face.mouthOpen;
+          renderFaces();
+        }, 120);
+
+        typeTimer = setInterval(() => {
+          textEl.textContent = text.slice(0, ++i);
+          if (i % 3 === 0 && text[i - 1] !== ' ') B.Audio.play('blip');
+          if (i >= text.length) {
+            clearInterval(typeTimer);
+            stopTalking();
+          }
+        }, 26); // ağız hareketi görünsün diye biraz yavaşlatıldı
+      }
+
+      function sayFrom(pool, vars) {
+        const t = B.Dialogue.pick(pool, vars);
+        if (t) say(t);
+        return t;
+      }
+
+      renderFaces();
+      return { say, sayFrom, el: wrap };
+    },
+
+    express,
+
+    init() {
+      scheduleBlink();
+      B.Bus.on(B.Events.STEP_ANSWERED, p => express(p.correct ? 'happy' : 'surprised', 1200));
+      B.Bus.on(B.Events.LEVEL_UP, () => express('proud', 2500));
+      B.Bus.on(B.Events.BOSS_DEFEATED, () => express('proud', 3000));
+      B.Bus.on(B.Events.BOSS_ATTACKED, () => express('stern', 1800));
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/components/chest-ui.js === */
+/* BOKUL — Sandık Açılış Töreni (CSS 3D)
+ * Karartılmış sahne → sallanan 3D sandık → dokun → kapak açılır,
+ * ışık patlar, ödül kartı dönerek gelir. */
+(function (B) {
+  const RARITY = {
+    common:    { name: 'Yaygın',   color: '#A79BC8' },
+    rare:      { name: 'Nadir',    color: '#6FA8FF' },
+    epic:      { name: 'Epik',     color: '#9D6BFF' },
+    legendary: { name: 'Efsanevi', color: '#3DF2D2' },
+  };
+
+  /* Kuyruktaki sandıkları sırayla aç; bitince onDone */
+  function openCeremony(onDone) {
+    if (!B.Chest.queue().length) { if (onDone) onDone(); return; }
+    const meta = B.Chest.meta(B.Chest.queue()[0]);
+
+    const ov = document.createElement('div');
+    ov.className = 'overlay chest-overlay';
+    ov.innerHTML =
+      '<div class="chest-scene">' +
+        '<div class="chest-title">' + meta.name + '</div>' +
+        '<div class="chest3d chest-shake">' +
+          '<div class="chest-lid"></div>' +
+          '<div class="chest-body">' + meta.icon + '</div>' +
+          '<div class="chest-glow"></div>' +
+        '</div>' +
+        '<div class="chest-hint">Açmak için dokun!</div>' +
+      '</div>';
+    document.body.appendChild(ov);
+
+    const chestEl = ov.querySelector('.chest3d');
+    let opened = false;
+
+    chestEl.parentElement.onclick = () => {
+      if (opened) return;
+      opened = true;
+      const { result } = B.Chest.openNext();
+      B.Audio.play('chest');
+      chestEl.classList.remove('chest-shake');
+      chestEl.classList.add('chest-open');
+
+      setTimeout(() => {
+        B.Anim.confetti(40);
+        let cardHtml;
+        if (result.item) {
+          const rar = RARITY[result.item.rarity] || RARITY.common;
+          cardHtml =
+            '<div class="loot-card" style="--rar:' + rar.color + '">' +
+              '<div class="loot-rarity">' + rar.name.toUpperCase() + '</div>' +
+              '<div class="loot-art">' + lootArt(result.item) + '</div>' +
+              '<div class="loot-name">' + result.item.name + '</div>' +
+            '</div>';
+        } else {
+          cardHtml =
+            '<div class="loot-card" style="--rar:#FFD52E">' +
+              '<div class="loot-rarity">XP PAKETİ</div>' +
+              '<div class="loot-art loot-xp">+50 XP</div>' +
+            '</div>';
+        }
+        const scene = ov.querySelector('.chest-scene');
+        scene.insertAdjacentHTML('beforeend',
+          cardHtml + '<div class="loot-coins">+' + result.coins + ' 💰 Altın</div>');
+        ov.querySelector('.chest-hint').textContent = '';
+
+        setTimeout(() => {
+          const btn = document.createElement('button');
+          btn.className = 'btn btn-action';
+          btn.textContent = B.Chest.queue().length ? ('SIRADAKİ SANDIK (' + B.Chest.queue().length + ') ▶') : 'DEVAM ▶';
+          btn.onclick = () => { ov.remove(); openCeremony(onDone); };
+          scene.appendChild(btn);
+        }, 700);
+      }, 550);
+    };
+  }
+
+  /* Ödül kartındaki görsel: avatar parçasıysa o parçayla mini avatar önizlemesi */
+  function lootArt(item) {
+    const a = B.Avatar.normalize(B.State.data.player.avatar);
+    a.usePhoto = false;
+    const C = B.Avatar.CATALOG;
+    const bind = {
+      hair:      () => { const p = C.hairs.find(x => x.cosmeticId === item.id); if (p) a.hair = p.id; },
+      hairColor: () => { const p = C.hairColors.find(x => x.cosmeticId === item.id); if (p) a.hairColor = p.id; },
+      eyes:      () => { const p = C.eyes.find(x => x.cosmeticId === item.id); if (p) a.eyes = p.id; },
+      mouth:     () => { const p = C.mouths.find(x => x.cosmeticId === item.id); if (p) a.mouth = p.id; },
+      acc:       () => { const p = C.accs.find(x => x.cosmeticId === item.id); if (p) a.acc = p.id; },
+      ring:      () => { const p = C.rings.find(x => x.cosmeticId === item.id); if (p) a.ring = p.id; },
+    };
+    if (bind[item.type]) { bind[item.type](); return B.Avatar.svg(a); }
+    if (item.type === 'title') return '<div class="loot-title-art">🎖️</div>';
+    return '<div class="loot-title-art">✨</div>';
+  }
+
+  B.ChestUI = { openCeremony };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/ui-manager.js === */
+/* BOKUL — UIManager
+ * Ekran yönlendirici + ortak HUD + tören katmanları (overlay/toast).
+ * Ekranlar registerScreen ile kaydolur: { enter(root, params), exit() } */
+(function (B) {
+  const screens = new Map();
+  let current = null;
+  let currentName = '';
+
+  B.UI = {
+    registerScreen(name, impl) { screens.set(name, impl); },
+
+    show(name, params) {
+      const next = screens.get(name);
+      if (!next) { console.error('[BOKUL] Kayıtsız ekran:', name); return; }
+      if (current && current.exit) current.exit();
+      const app = document.getElementById('app');
+      app.innerHTML = '';
+      const root = document.createElement('div');
+      root.className = 'screen screen-' + name;
+      app.appendChild(root);
+      current = next; currentName = name;
+      next.enter(root, params || {});
+      B.Bus.emit(B.Events.SCREEN_CHANGED, { name });
+    },
+
+    currentScreen() { return currentName; },
+
+    /* ---- Ortak HUD (üst şerit) ---- */
+    buildHud(root, opts) {
+      opts = opts || {};
+      const p = B.State.data.player;
+      const rank = B.Reward.rankFor(p.level);
+      const hud = document.createElement('div');
+      hud.className = 'hud';
+      hud.innerHTML =
+        (opts.backTo ? '<button class="chip hud-back">◀</button>' : '<div class="hud-avatar">' + B.Avatar.el(p.avatar) + '</div>') +
+        '<div class="chip hud-rank">' + rank.icon + ' ' + rank.title + '</div>' +
+        '<div class="hud-xpbar"><span class="hud-lvl">' + p.level + '</span><i></i></div>' +
+        '<div class="chip hud-coins">💰 ' + (p.coins || 0) + '</div>' +
+        (opts.extra || '') +
+        '<button class="chip hud-sound">' + (B.Audio.isEnabled() ? '🔊' : '🔇') + '</button>';
+      root.appendChild(hud);
+
+      const fill = hud.querySelector('.hud-xpbar i');
+      function refresh() {
+        const pl = B.State.data.player;
+        fill.style.width = Math.min(100, Math.round(pl.xp / B.Reward.xpNeeded() * 100)) + '%';
+        hud.querySelector('.hud-lvl').textContent = pl.level;
+        const r = B.Reward.rankFor(pl.level);
+        hud.querySelector('.hud-rank').textContent = r.icon + ' ' + r.title;
+      }
+      refresh();
+      const offXp = B.Bus.on(B.Events.XP_GAINED, refresh);
+      const offLvl = B.Bus.on(B.Events.LEVEL_UP, refresh);
+      const offCoin = B.Bus.on(B.Events.COINS_CHANGED, p2 => {
+        const c = hud.querySelector('.hud-coins');
+        if (c) c.textContent = '💰 ' + p2.total;
+      });
+
+      if (opts.backTo) hud.querySelector('.hud-back').onclick = () => B.UI.show(opts.backTo, opts.backParams);
+      hud.querySelector('.hud-sound').onclick = (e) => {
+        const on = !B.Audio.isEnabled();
+        B.Audio.setEnabled(on);
+        B.Save.settings.set({ sound: on });
+        e.target.textContent = on ? '🔊' : '🔇';
+      };
+      return { refresh, dispose() { offXp(); offLvl(); offCoin(); } };
+    },
+
+    /* ---- Tören katmanı: level-up, zafer, geri çekilme ---- */
+    overlay(html, buttons) {
+      const ov = document.createElement('div');
+      ov.className = 'overlay';
+      const card = document.createElement('div');
+      card.className = 'overlay-card';
+      card.innerHTML = html;
+      const btnRow = document.createElement('div');
+      btnRow.className = 'overlay-btns';
+      (buttons || []).forEach(b => {
+        const btn = document.createElement('button');
+        btn.className = 'btn ' + (b.cls || 'btn-action');
+        btn.textContent = b.label;
+        // ÖNEMLİ: önce onClick, sonra kaldır — onClick overlay içindeki
+        // form alanlarını (ör. isim inputu) okuyabilmeli
+        btn.onclick = () => { if (b.onClick) b.onClick(); ov.remove(); };
+        btnRow.appendChild(btn);
+      });
+      card.appendChild(btnRow);
+      ov.appendChild(card);
+      document.body.appendChild(ov);
+      return ov;
+    },
+
+    toast(text) {
+      const t = document.createElement('div');
+      t.className = 'toast';
+      t.textContent = text;
+      document.body.appendChild(t);
+      setTimeout(() => t.classList.add('toast-show'), 20);
+      setTimeout(() => { t.classList.remove('toast-show'); setTimeout(() => t.remove(), 400); }, 2600);
+    },
+
+    /* Level-up törenini merkezi bağla */
+    init() {
+      B.Bus.on(B.Events.LEVEL_UP, p => {
+        const rankHtml = p.newRank
+          ? '<div class="ov-rank">' + p.newRank.icon + '</div><div class="ov-ranktitle">Yeni rütbe: ' + p.newRank.title + '!</div>'
+          : '';
+        B.UI.overlay(
+          '<div class="ov-big">⬆️</div><h2>LEVEL ' + p.newLevel + '!</h2>' + rankHtml +
+          '<p class="ov-quote">' + (B.Dialogue.pick('levelup') || '') + '</p>',
+          [{ label: 'DEVAM ▶' }]
+        );
+      });
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/home-screen.js === */
+/* BOKUL — Üs Ekranı (ana ekran) */
+(function (B) {
+  B.UI.registerScreen('home', {
+    enter(root) {
+      const hud = B.UI.buildHud(root, {});
+
+      const mid = document.createElement('div');
+      mid.className = 'home-mid';
+      root.appendChild(mid);
+      const cmd = B.Commander.mount(mid);
+
+      const today = new Date().toISOString().slice(0, 10);
+      const first = B.State.data.streaks.lastPlayDate !== today;
+      cmd.sayFrom(first ? 'greeting.firstOfDay' : 'greeting');
+
+      // Bekleyen sandık: sallanan buton (dopamin kancası)
+      const q = B.Chest.queue();
+      if (q.length) {
+        const c = document.createElement('button');
+        c.className = 'chest-float';
+        c.innerHTML = '🎁<small>' + q.length + ' sandık!</small>';
+        c.onclick = () => B.ChestUI.openCeremony(() => B.UI.show('home'));
+        root.appendChild(c);
+      }
+
+      const doors = document.createElement('div');
+      doors.className = 'home-doors';
+      doors.innerHTML =
+        '<button class="btn door door-main">⚔️<br>HAREKÂT</button>' +
+        '<button class="btn door door-side door-quests">📋<br>GÖREVLER</button>' +
+        '<button class="btn door door-side door-locker">🎒<br>DOLAP</button>';
+      root.appendChild(doors);
+
+      doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('map'); };
+      doors.querySelector('.door-locker').onclick = () => { B.Audio.play('tick'); B.UI.show('locker'); };
+      const dq = doors.querySelector('.door-quests');
+      dq.classList.add('door-locked');
+      dq.onclick = () => B.UI.toast('Görev panosu v0.8 güncellemesinde açılıyor! 🔧');
+
+      this._hud = hud;
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/map-screen.js === */
+/* BOKUL — Harita Ekranı
+ * Ünite → bölüm kartları → harekât düğümleri patikası + boss kapısı. */
+(function (B) {
+  const TYPE_ICON = { teach: '🎓', guided: '🤝', practice: '⚔️', challenge: '🧠', review: '🔄' };
+
+  B.UI.registerScreen('map', {
+    enter(root) {
+      const lesson = B.Lesson.active();
+      const hud = B.UI.buildHud(root, { backTo: 'home' });
+
+      const title = document.createElement('div');
+      title.className = 'map-title';
+      title.textContent = lesson.icon + ' ' + lesson.title + ' — ' + lesson.subtitle;
+      root.appendChild(title);
+
+      const scroll = document.createElement('div');
+      scroll.className = 'map-scroll';
+      root.appendChild(scroll);
+
+      lesson.units.forEach(unit => {
+        const uHead = document.createElement('div');
+        uHead.className = 'map-unit';
+        uHead.textContent = unit.title;
+        scroll.appendChild(uHead);
+
+        unit.sections.forEach(section => {
+          const unlocked = B.Lesson.isSectionUnlocked(section.id);
+          const prog = B.State.sectionProgress(lesson.id, section.id);
+          const stars = B.State.sectionStars(lesson.id, section.id);
+          const maxStars = section.missions.length * 3;
+
+          const card = document.createElement('div');
+          card.className = 'map-section' + (unlocked ? '' : ' map-locked');
+          card.innerHTML =
+            '<div class="map-sec-head"><b>' + section.title + '</b>' +
+            '<span class="map-stars">⭐ ' + stars + '/' + maxStars + '</span>' +
+            (unlocked ? '' : '<span class="map-lock">🔒</span>') + '</div>';
+
+          if (unlocked) {
+            const path = document.createElement('div');
+            path.className = 'map-path';
+
+            section.missions.forEach(m => {
+              const done = prog.missions[m.id];
+              const open = B.Lesson.isMissionUnlocked(section.id, m.id);
+              const node = document.createElement('button');
+              node.className = 'map-node' +
+                (done ? ' node-done' : open ? ' node-active' : ' node-locked');
+              node.innerHTML = (TYPE_ICON[m.type] || '⚔️') +
+                (done ? '<small>' + '★'.repeat(done.stars) + '☆'.repeat(3 - done.stars) + '</small>' : '');
+              node.title = m.title;
+              if (open) node.onclick = () => {
+                B.Audio.play('tick');
+                B.UI.show('mission', { sectionId: section.id, missionId: m.id });
+              };
+              path.appendChild(node);
+            });
+
+            // Boss düğümü + ustalık kapısı
+            const gate = B.Lesson.bossGate(section.id);
+            const boss = document.createElement('button');
+            const isUnit = section.boss.tier === 'unit';
+            boss.className = 'map-node map-boss' + (isUnit ? ' map-uboss' : '') +
+              (prog.bossDefeated ? ' node-done' : gate.open ? ' node-active' : ' node-locked');
+            boss.innerHTML = section.boss.icon +
+              '<small>' + (prog.bossDefeated ? 'FETHEDİLDİ'
+                : gate.open ? 'SAVAŞ!'
+                : gate.missionsDone ? ('Ustalık %' + Math.round(gate.mastery * 100) + ' / %' + Math.round(gate.need * 100))
+                : 'Harekâtlar sürüyor') + '</small>';
+            if (gate.open || prog.bossDefeated) boss.onclick = () => {
+              B.Audio.play('tick');
+              B.UI.show('boss', { sectionId: section.id });
+            };
+            path.appendChild(boss);
+            card.appendChild(path);
+          }
+          scroll.appendChild(card);
+        });
+      });
+
+      // Ünite 2 içerik notu (v0.8'de gelecek bölümler için dürüst ilan)
+      if (lesson.comingSoon) {
+        const note = document.createElement('div');
+        note.className = 'map-soon';
+        note.textContent = '🛰️ ' + lesson.comingSoon;
+        scroll.appendChild(note);
+      }
+
+      this._hud = hud;
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/mission-screen.js === */
+/* BOKUL — Harekât Ekranı
+ * Tüm harekât tiplerini oynatır: teach / guided / practice / challenge / review.
+ * Hedef döngüsü: soru üret → tahtada çöz → yıldız + XP → sonraki hedef → harekât sonu. */
+(function (B) {
+  const AD = { teach: '🎓 Keşif Brifingi', guided: '🤝 Ortak Harekât', practice: '⚔️ Saha Görevi',
+               challenge: '🧠 Yeni Nesil Operasyon', review: '🔄 Devriye' };
+
+  B.UI.registerScreen('mission', {
+    enter(root, params) {
+      const lesson = B.Lesson.active();
+      const mission = B.Lesson.findMission(params.sectionId, params.missionId);
+      const cfg = B.Content.get('config');
+      const self = this;
+
+      const hud = B.UI.buildHud(root, {
+        backTo: 'map',
+        extra: '<div class="chip hud-target"></div><div class="chip hud-streak"></div>',
+      });
+      this._hud = hud;
+
+      const streakChip = root.querySelector('.hud-streak');
+      const targetChip = root.querySelector('.hud-target');
+      function refreshStreak() {
+        const s = B.State.data.streaks.current;
+        const m = B.Reward.streakMultiplier();
+        streakChip.textContent = s >= 2 ? ('🔥 Seri x' + s + (m > 1 ? ' → XP ×' + m : '')) : '';
+      }
+      this._offStreak = B.Bus.on(B.Events.STREAK_CHANGED, refreshStreak);
+      refreshStreak();
+
+      const title = document.createElement('div');
+      title.className = 'mission-title';
+      title.textContent = (AD[mission.type] || mission.type) + ' — ' + mission.title;
+      root.appendChild(title);
+
+      const layout = document.createElement('div');
+      layout.className = 'mission-layout';
+      root.appendChild(layout);
+
+      const leftCol = document.createElement('div');
+      leftCol.className = 'mission-left';
+      layout.appendChild(leftCol);
+      const cmd = B.Commander.mount(leftCol, { compact: true });
+
+      const stage = document.createElement('div');
+      stage.className = 'mission-stage';
+      layout.appendChild(stage);
+
+      /* ---------- TEACH: senaryo oynatıcı ---------- */
+      if (mission.type === 'teach') {
+        targetChip.textContent = '🎓 Brifing';
+        const scriptSteps = [];
+        (mission.segments || []).forEach(seg => {
+          const s = (lesson.teachScripts || {})[seg.script];
+          if (s) scriptSteps.push(...s);
+        });
+        cmd.sayFrom('teach.intro');
+        this._teach = B.TeachModels.run(stage, scriptSteps, {
+          say: t => cmd.say(t),
+          onComplete() {
+            // Brifing tamam: 3 yıldız sabit + görev XP'si
+            finishMission([3]);
+          },
+        });
+        return;
+      }
+
+      /* ---------- Soru bazlı tipler ---------- */
+      const total = mission.targetCount || 3;
+      let qIndex = 0;
+      const starList = [];
+      let view = null;
+
+      // Review: önceki bölümlerin üreticilerinden karışık havuz
+      const reviewGens = mission.source === 'spaced-repetition'
+        ? B.Lesson.reviewGenerators(params.sectionId) : null;
+
+      function nextQuestion() {
+        if (view) { view.destroy(); view = null; }
+        if (qIndex >= total) return finishMission(starList);
+        targetChip.textContent = '🎯 Hedef ' + (qIndex + 1) + '/' + total;
+
+        const gen = reviewGens
+          ? reviewGens[Math.floor(Math.random() * reviewGens.length)]
+          : mission.generator;
+        const q = B.Question.generate(lesson.interactionType, gen, lesson.skills);
+        B.Bus.emit(B.Events.QUESTION_STARTED, { questionId: qIndex, lessonId: lesson.id, type: mission.type });
+
+        // Guided iskelesi: fadeOut ile her soruda bir adım daha oyuncuya bırakılır
+        let prefilled = null;
+        if (mission.scaffold) {
+          let list = mission.scaffold.prefilledSteps || [];
+          if (mission.scaffold.fadeOut) list = list.slice(0, Math.max(0, list.length - qIndex));
+          if (list.length) prefilled = new Set(list);
+        }
+
+        // Challenge: problem metni şablondan
+        let problemText = null;
+        if (mission.problemTemplates && mission.problemTemplates.length) {
+          const t = mission.problemTemplates[Math.floor(Math.random() * mission.problemTemplates.length)];
+          problemText = t.replace('{dividend}', q.dividend).replace('{divisor}', q.divisor)
+                         .replace('{name}', B.State.data.player.name || 'Komutan');
+        }
+
+        cmd.sayFrom(qIndex === 0 ? 'mission.start' : 'mission.next');
+        let mistakes = 0;
+
+        view = B.LongDivisionView.create(stage, q, {
+          prefilled, problemText,
+          say: t => cmd.say(t),
+          onAnswer(step, correct, attempt) {
+            B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });
+            if (correct) {
+              B.Reward.addXp(B.Reward.stepXp(), 'step');
+              if (Math.random() < 0.25) cmd.sayFrom('correct');
+            } else mistakes++;
+          },
+          onComplete() {
+            // Yıldız: config eşikleri (0 hata → 3★, ≤2 hata → 2★, üstü → 1★)
+            const th = cfg.starThresholds;
+            const stars = mistakes <= th.three ? 3 : mistakes <= th.two ? 2 : 1;
+            starList.push(stars);
+            B.Reward.onQuestionDone(stars === 3);
+            B.Reward.addCoins(stars * 2, 'question');
+            const xp = B.Reward.addXp(B.Reward.questionXp(stars), 'question', { applyStreak: true });
+            B.Bus.emit(B.Events.QUESTION_COMPLETED, { stars, mistakes });
+            showStars(stars, xp, () => { qIndex++; nextQuestion(); });
+          },
+        });
+      }
+
+      /* Hedef sonu yıldız töreni */
+      function showStars(stars, xp, then) {
+        const quip = stars === 3 ? B.Dialogue.pick('correct.streak3') || B.Dialogue.pick('correct')
+                                 : B.Dialogue.pick(stars === 2 ? 'correct' : 'wrong.retry');
+        B.UI.overlay(
+          '<div class="ov-stars">' +
+            [1, 2, 3].map(i => '<span class="ov-star' + (i <= stars ? ' lit' : '') + '" style="animation-delay:' + (i * 0.18) + 's">★</span>').join('') +
+          '</div><p class="ov-xp">+' + xp + ' XP</p><p class="ov-quote">' + (quip || '') + '</p>',
+          [{ label: 'DEVAM ▶', onClick: then }]
+        );
+      }
+
+      /* Harekât sonu */
+      function finishMission(starsArr) {
+        const best = starsArr.length ? Math.round(starsArr.reduce((a, b) => a + b, 0) / starsArr.length) : 3;
+        const stars = Math.max(1, Math.min(3, best));
+        B.Lesson.completeMission(params.sectionId, params.missionId, stars);
+        const bonus = B.Reward.addXp(B.Reward.missionBonus(), 'mission');
+        const coins = B.Reward.addCoins(10, 'mission');
+        B.Bus.emit(B.Events.MISSION_COMPLETED, { missionId: params.missionId, stars, xp: bonus });
+
+        B.UI.overlay(
+          '<div class="ov-big">🎖️</div><h2>HAREKÂT TAMAM!</h2>' +
+          '<div class="ov-stars">' +
+            [1, 2, 3].map(i => '<span class="ov-star' + (i <= stars ? ' lit' : '') + '">★</span>').join('') +
+          '</div><p class="ov-xp">Görev bonusu: +' + bonus + ' XP · +' + coins + ' 💰</p>' +
+          '<p class="ov-quote">' + (B.Dialogue.pick('mission.done') || '') + '</p>',
+          [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
+        );
+      }
+
+      nextQuestion();
+      this._view = () => view;
+    },
+
+    exit() {
+      if (this._hud) this._hud.dispose();
+      if (this._offStreak) this._offStreak();
+      if (this._teach) { this._teach.destroy(); this._teach = null; }
+      if (this._view) { const v = this._view(); if (v) v.destroy(); }
+    },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/boss-screen.js === */
+/* BOKUL — Boss Ekranı
+ * Konu Boss'u: can barı var, VURAMAZ (hata sadece kalkan verir).
+ * Ünite Boss'u: VURUR — oyuncunun 3 zırh plakası var; yanlış cevap zırh kırar,
+ * 3 ardışık doğru 1 zırh onarır; zırh biterse "geri çekilme" (kayıp yok). */
+(function (B) {
+  B.UI.registerScreen('boss', {
+    enter(root, params) {
+      const lesson = B.Lesson.active();
+      const section = B.Lesson.findSection(params.sectionId).section;
+      const boss = section.boss;
+      const cfg = B.Content.get('config');
+      const isUnit = boss.tier === 'unit';
+      const prog = B.State.sectionProgress(lesson.id, params.sectionId);
+
+      const hud = B.UI.buildHud(root, { backTo: 'map' });
+      this._hud = hud;
+
+      /* ---- Boss durumu ---- */
+      const maxHp = boss.hp;
+      let hp = Math.max(1, maxHp - (prog.bossHpCarry || 0)); // geri çekilme taşıması: yorgun başlar
+      let shield = 0;                                        // konu boss'u kalkanı
+      let armor = isUnit ? (cfg.unitBoss.armor || 3) : 0;    // ünite boss'unda oyuncu zırhı
+      let repairStreak = 0;
+      let dealt = maxHp - hp;
+      let over = false;
+
+      /* ---- Boss başlığı ---- */
+      const head = document.createElement('div');
+      head.className = 'boss-head' + (isUnit ? ' boss-unit' : '');
+      head.innerHTML =
+        '<div class="boss-face boss-enter">' + B.SvgArt.boss(boss.id) + '</div>' +
+        '<div class="boss-info"><div class="boss-name">' + boss.name.toUpperCase() +
+        (isUnit ? ' — ⚔️ ÜNİTE BOSS\'U' : ' — KONU BOSS\'U') + '</div>' +
+        '<div class="boss-hp"><i></i></div></div>' +
+        '<div class="boss-shield"></div>';
+      root.appendChild(head);
+      const hpFill = head.querySelector('.boss-hp i');
+      const shieldEl = head.querySelector('.boss-shield');
+
+      /* ---- Zırh göstergesi (sadece ünite) ---- */
+      let armorEl = null;
+      if (isUnit) {
+        armorEl = document.createElement('div');
+        armorEl.className = 'boss-armor';
+        root.appendChild(armorEl);
+      }
+
+      function refresh() {
+        hpFill.style.width = Math.max(0, Math.round(hp / maxHp * 100)) + '%';
+        shieldEl.textContent = shield > 0 ? '🛡️ Boss kalkanı!' : '';
+        if (armorEl) {
+          armorEl.innerHTML = 'ZIRHIN: ' +
+            Array.from({ length: cfg.unitBoss.armor }, (_, i) =>
+              '<span class="armor-plate' + (i < armor ? '' : ' broken') + '">🛡️</span>').join('') +
+            '<small>3 doğru adım = 1 zırh onarımı</small>';
+        }
+      }
+      refresh();
+
+      const layout = document.createElement('div');
+      layout.className = 'mission-layout';
+      root.appendChild(layout);
+      const leftCol = document.createElement('div');
+      leftCol.className = 'mission-left';
+      layout.appendChild(leftCol);
+      const cmd = B.Commander.mount(leftCol, { compact: true });
+      const stage = document.createElement('div');
+      stage.className = 'mission-stage';
+      layout.appendChild(stage);
+
+      cmd.sayFrom(isUnit ? 'boss.intro.unit' : 'boss.intro.topic', { bossName: boss.name });
+
+      let view = null;
+      const self = this;
+
+      function nextQuestion() {
+        if (over) return;
+        if (view) { view.destroy(); view = null; }
+        const q = B.Question.generate(lesson.interactionType, boss.generator, lesson.skills);
+        let mistakes = 0;
+
+        view = B.LongDivisionView.create(stage, q, {
+          say: t => cmd.say(t),
+          onAnswer(step, correct, attempt) {
+            B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });
+            if (correct) {
+              // Hasar: kalkan varsa önce kalkan kırılır
+              if (shield > 0) { shield--; cmd.sayFrom('boss.shieldBreak'); }
+              else {
+                const dmg = 3;
+                hp -= dmg; dealt += dmg;
+                B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: dmg, remaining: hp });
+                head.classList.remove('boss-hit'); void head.offsetWidth;
+                head.classList.add('boss-hit');
+              }
+              // Zırh onarımı
+              if (isUnit) {
+                repairStreak++;
+                if (repairStreak >= (cfg.unitBoss.repairStreak || 3) && armor < cfg.unitBoss.armor) {
+                  armor++; repairStreak = 0;
+                  cmd.sayFrom('boss.armorRepair');
+                }
+              }
+              refresh();
+              if (hp <= 0) return victory();
+            } else {
+              mistakes++;
+              if (isUnit) {
+                // ÜNİTE BOSS'U VURUR: yanlış cevabını sana fırlatır
+                armor--; repairStreak = 0;
+                B.Bus.emit(B.Events.BOSS_ATTACKED, { armorLeft: armor });
+                root.classList.remove('boss-quake'); void root.offsetWidth;
+                root.classList.add('boss-quake');
+                cmd.sayFrom('boss.playerHit', { wrongAnswer: '' });
+                refresh();
+                if (armor <= 0) return retreat();
+              } else {
+                shield++;
+                cmd.sayFrom('boss.shieldUp');
+                refresh();
+              }
+            }
+          },
+          onComplete() {
+            if (over) return;
+            // Hatasız hedef = kritik vuruş bonusu
+            if (mistakes === 0 && hp > 0) {
+              hp -= 6; dealt += 6;
+              B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: 6, remaining: hp });
+              cmd.sayFrom('boss.crit');
+              refresh();
+              if (hp <= 0) return victory();
+            }
+            setTimeout(nextQuestion, 500);
+          },
+        });
+      }
+
+      function victory() {
+        over = true;
+        if (view) { view.destroy(); view = null; }
+        B.Lesson.defeatBoss(params.sectionId);
+        const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
+        const coins = B.Reward.addCoins(isUnit ? 100 : 50, 'boss');
+        B.Bus.emit(B.Events.BOSS_DEFEATED, { bossId: boss.id, tier: boss.tier });
+        B.UI.overlay(
+          '<div class="ov-big">' + boss.icon + '💥</div><h2>' + boss.name.toUpperCase() + ' DEVRİLDİ!</h2>' +
+          '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
+          '<p class="ov-quote">' + (B.Dialogue.pick('boss.win') || '') + '</p>',
+          [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
+        );
+      }
+
+      function retreat() {
+        over = true;
+        if (view) { view.destroy(); view = null; }
+        // Emek boşa gitmez: verilen hasarın yarısı taşınır (boss yorgun başlar)
+        prog.bossHpCarry = Math.round(dealt * (cfg.unitBoss.regroupHpCarry || 0.5));
+        B.Bus.emit(B.Events.BOSS_RETREAT, {});
+        B.UI.overlay(
+          '<div class="ov-big">🏳️</div><h2>GERİ ÇEKİLME!</h2>' +
+          '<p class="ov-quote">' + (B.Dialogue.pick('boss.retreat') || 'Yeniden toplan Komutan, kale hâlâ orada!') + '</p>' +
+          '<p class="ov-xp">Boss yorgun: bir sonraki denemede ' + prog.bossHpCarry + ' hasarla başlıyorsun.</p>',
+          [
+            { label: 'TEKRAR SALDIR ⚔️', onClick: () => B.UI.show('boss', { sectionId: params.sectionId }) },
+            { label: 'HARİTAYA DÖN', cls: 'btn-quiet', onClick: () => B.UI.show('map') },
+          ]
+        );
+      }
+
+      nextQuestion();
+      this._view = () => view;
+    },
+
+    exit() {
+      if (this._hud) this._hud.dispose();
+      if (this._view) { const v = this._view(); if (v) v.destroy(); }
+    },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/locker-screen.js === */
+/* BOKUL — Dolap Ekranı: Avatar editörü + Altınla dükkân + Fotoğraf modu
+ * Onboarding modunda ("İlk kayıt") isimden sonra buraya gelinir.
+ * Kilitli parçalar altınla satın alınır; fiyatlar rewards.json'dan. */
+(function (B) {
+  const TABS = [
+    { id: 'hair',  name: '💇 Saç' },
+    { id: 'face',  name: '🙂 Yüz' },
+    { id: 'color', name: '🎨 Renk' },
+    { id: 'acc',   name: '🕶️ Aksesuar' },
+    { id: 'ring',  name: '⭕ Çerçeve' },
+    { id: 'photo', name: '📷 Fotoğraf' },
+  ];
+
+  B.UI.registerScreen('locker', {
+    enter(root, params) {
+      const onboarding = !!params.onboarding;
+      const hud = onboarding ? null : B.UI.buildHud(root, { backTo: 'home' });
+      this._hud = hud;
+      const R = B.Content.get('rewards');
+      const prices = R.shopPrices;
+      const C = B.Avatar.CATALOG;
+      let tab = 'hair';
+
+      if (onboarding) {
+        const t = document.createElement('div');
+        t.className = 'map-title';
+        t.textContent = '🎖️ Kendini tanıt: avatarını oluştur, ' + (B.State.data.player.name || 'asker') + '!';
+        root.appendChild(t);
+      }
+
+      const layout = document.createElement('div');
+      layout.className = 'locker-layout';
+      root.appendChild(layout);
+
+      const left = document.createElement('div');
+      left.className = 'locker-left';
+      layout.appendChild(left);
+
+      const right = document.createElement('div');
+      right.className = 'locker-right';
+      layout.appendChild(right);
+
+      const av = () => B.Avatar.normalize(B.State.data.player.avatar);
+
+      function commit(a) {
+        B.State.data.player.avatar = a;
+        B.Save.saveSoon();
+        render();
+      }
+
+      /* Kozmetik id'sinden katalog parçasını bul */
+      function findPart(item) {
+        const maps = { hair: C.hairs, hairColor: C.hairColors, eyes: C.eyes, mouth: C.mouths, acc: C.accs, ring: C.rings };
+        return (maps[item.type] || []).find(p => p.cosmeticId === item.id);
+      }
+
+      function buy(item) {
+        const price = prices[item.rarity] || 50;
+        if (!B.Reward.spendCoins(price)) {
+          B.UI.toast('💰 Altının yetmiyor! Görevlerden altın kazan.');
+          return false;
+        }
+        B.State.data.inventory.cosmetics.push(item.id);
+        B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: item.id });
+        B.Audio.play('chest');
+        B.UI.toast('✨ ' + item.name + ' satın alındı!');
+        return true;
+      }
+
+      /* Parça kartı: önizleme = o parça takılı mini avatar */
+      function partCard(part, apply, isEquipped) {
+        const a = av(); a.usePhoto = false; apply(a, part);
+        const cosmetic = part.cosmeticId ? R.cosmetics.find(c => c.id === part.cosmeticId) : null;
+        const unlocked = B.Avatar.isUnlocked(part);
+        const card = document.createElement('button');
+        card.className = 'part-card' + (isEquipped ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
+        card.innerHTML =
+          '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
+          '<span class="part-name">' + (part.name || '') + '</span>' +
+          (!unlocked && cosmetic ? '<span class="part-price">💰 ' + (prices[cosmetic.rarity] || 50) + '</span>' : '');
+        card.onclick = () => {
+          B.Audio.play('tick');
+          if (!unlocked) {
+            if (!buy(cosmetic)) return;
+          }
+          const cur = av(); cur.usePhoto = false; apply(cur, part);
+          commit(cur);
+        };
+        return card;
+      }
+
+      function grid(parts, apply, equippedCheck) {
+        const g = document.createElement('div');
+        g.className = 'part-grid';
+        parts.forEach(p => g.appendChild(partCard(p, apply, equippedCheck(p))));
+        return g;
+      }
+
+      function renderTab() {
+        const a = av();
+        right.querySelector('.locker-parts').innerHTML = '';
+        const host = right.querySelector('.locker-parts');
+
+        if (tab === 'hair') {
+          host.appendChild(grid(C.hairs, (x, p) => { x.hair = p.id; }, p => p.id === a.hair));
+        } else if (tab === 'face') {
+          host.appendChild(grid(C.eyes, (x, p) => { x.eyes = p.id; }, p => p.id === a.eyes));
+          host.appendChild(grid(C.mouths, (x, p) => { x.mouth = p.id; }, p => p.id === a.mouth));
+          host.appendChild(grid(C.skins.map(s => ({ ...s, name: 'Ten' })), (x, p) => { x.skin = p.id; }, p => p.id === a.skin));
+        } else if (tab === 'color') {
+          host.appendChild(grid(C.hairColors, (x, p) => { x.hairColor = p.id; }, p => p.id === a.hairColor));
+        } else if (tab === 'acc') {
+          host.appendChild(grid(C.accs, (x, p) => { x.acc = p.id; }, p => p.id === a.acc));
+        } else if (tab === 'ring') {
+          host.appendChild(grid(C.rings, (x, p) => { x.ring = p.id; }, p => p.id === a.ring));
+        } else if (tab === 'photo') {
+          host.innerHTML =
+            '<div class="photo-panel">' +
+              '<p>Fotoğrafın <b>sadece bu cihazda</b> kalır, hiçbir yere gönderilmez. 📵</p>' +
+              '<input type="file" id="photo-input" accept="image/*" class="photo-input">' +
+              '<div class="photo-btns">' +
+                '<button class="btn btn-action" id="photo-pick">📷 Fotoğraf Seç</button>' +
+                (a.photo ? '<button class="btn btn-quiet" id="photo-toggle">' + (a.usePhoto ? '🎨 Çizim avatara dön' : '🖼️ Fotoğrafı avatar yap') + '</button>' : '') +
+                (a.photo ? '<button class="btn btn-quiet" id="photo-remove">🗑️ Fotoğrafı sil</button>' : '') +
+              '</div>' +
+            '</div>';
+          const input = host.querySelector('#photo-input');
+          host.querySelector('#photo-pick').onclick = () => input.click();
+          input.onchange = () => {
+            const file = input.files && input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+              const img = new Image();
+              img.onload = () => {
+                // Kare kırp + 160px küçült → localStorage şişmesin
+                const cv = document.createElement('canvas');
+                cv.width = cv.height = 160;
+                const s = Math.min(img.width, img.height);
+                cv.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 160, 160);
+                const cur = av();
+                cur.photo = cv.toDataURL('image/jpeg', 0.82);
+                cur.usePhoto = true;
+                commit(cur);
+                B.UI.toast('📷 Fotoğraf avatarın oldu!');
+              };
+              img.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+          };
+          const tg = host.querySelector('#photo-toggle');
+          if (tg) tg.onclick = () => { const cur = av(); cur.usePhoto = !cur.usePhoto; commit(cur); };
+          const rm = host.querySelector('#photo-remove');
+          if (rm) rm.onclick = () => { const cur = av(); cur.photo = null; cur.usePhoto = false; commit(cur); };
+        }
+      }
+
+      function render() {
+        const p = B.State.data.player;
+        left.innerHTML =
+          '<div class="locker-preview">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
+          '<div class="locker-name">' + (p.name || 'İsimsiz Asker') + '</div>' +
+          '<div class="chip">💰 ' + (p.coins || 0) + ' Altın</div>' +
+          (onboarding ? '<button class="btn btn-action locker-done">ÜSSE GİR ▶</button>' : '');
+        if (onboarding) {
+          left.querySelector('.locker-done').onclick = () => {
+            B.Save.saveNow();
+            B.UI.show('home');
+          };
+        }
+        renderTab();
+      }
+
+      right.innerHTML =
+        '<div class="locker-tabs">' +
+        TABS.map(t => '<button class="chip tab-btn" data-tab="' + t.id + '">' + t.name + '</button>').join('') +
+        '</div><div class="locker-parts"></div>';
+      right.querySelectorAll('.tab-btn').forEach(b => {
+        b.onclick = () => {
+          tab = b.dataset.tab;
+          right.querySelectorAll('.tab-btn').forEach(x => x.classList.toggle('tab-on', x === b));
+          renderTab();
+        };
+      });
+      right.querySelector('.tab-btn').classList.add('tab-on');
+
+      render();
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/game-engine.js === */
+/* BOKUL — GameEngine
+ * Başlatma sırasının tek sahibi: kayıt → içerik → motorlar → arayüz. */
+(function (B) {
+  B.Engine = {
+    async boot() {
+      // 1) Kayıt
+      B.Save.load();
+
+      // 2) İçerik paketleri
+      await B.Content.loadAll([
+        'config', 'dialogues', 'rewards',
+        'lessons/math-5-division',
+      ]);
+      B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
+
+      // 3) Eski kayıtları yeni alanlarla tamamla (v0.6 → v0.7 uyumu)
+      const p = B.State.data.player;
+      if (p.coins == null) p.coins = 0;
+      p.avatar = B.Avatar.normalize(p.avatar);
+
+      // 4) Motor başlatmaları (olay dinleyicileri bağlanır)
+      B.Save.init();
+      B.Audio.init();
+      B.Progress.init();
+      B.Reward.init();
+      B.Chest.init();
+      B.Anim.init();
+      B.Commander.init();
+      B.UI.init();
+    },
+
+    /* Splash'tan oyuna giriş (ilk dokunuş ses kilidini de açar) */
+    start() {
+      B.Audio.unlock();
+      const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
+      if (!name) return B.Engine.askName();
+      B.State.data.player.name = name;
+      B.UI.show('home');
+    },
+
+    /* İlk açılış: kendini tanıt → avatarını oluştur → üsse gir */
+    askName() {
+      const ov = B.UI.overlay(
+        '<div class="ov-big">🫡</div><h2>Üsse yeni asker geldi!</h2>' +
+        '<p class="ov-quote">Kendini tanıt: adın ne?</p>' +
+        '<input id="name-input" class="name-input" maxlength="14" placeholder="Adını yaz...">',
+        [{
+          label: 'DEVAM ▶',
+          onClick: () => {
+            const v = (document.getElementById('name-input') || {}).value || '';
+            const nm = v.trim() || 'Asker';
+            B.State.data.player.name = nm;
+            B.Save.settings.set({ playerName: nm });
+            B.Save.saveNow();
+            // İsimden sonra avatar oluşturma (Dolap, onboarding modu)
+            B.UI.show('locker', { onboarding: true });
+          },
+        }]
+      );
+      setTimeout(() => { const i = ov.querySelector('#name-input'); if (i) i.focus(); }, 100);
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/main.js === */
+/* BOKUL — Giriş noktası */
+(function (B) {
+  window.addEventListener('DOMContentLoaded', async () => {
+    try {
+      await B.Engine.boot();
+      const btn = document.getElementById('splash-start');
+      btn.disabled = false;
+      btn.onclick = () => B.Engine.start();
+    } catch (e) {
+      console.error('[BOKUL] Başlatma hatası:', e);
+      const s = document.getElementById('splash');
+      if (s) s.insertAdjacentHTML('beforeend',
+        '<div class="splash-error">Bir şeyler ters gitti Komutan. Sayfayı yenile!<br><small>' + e.message + '</small></div>');
+    }
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+</script>
+</body>
+</html>

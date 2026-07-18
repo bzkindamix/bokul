@@ -1,0 +1,218 @@
+{
+  "id": "math-5-division",
+  "schema": 1,
+  "title": "Matematik Cephesi",
+  "subtitle": "Uzun Bölme Harekâtı",
+  "icon": "⚔️",
+  "theme": "galaxy-base",
+  "interactionType": "long-division",
+  "comingSoon": "Ünite 2: Kalanlı Bölme Cephesi v0.8 güncellemesiyle açılacak!",
+
+  "outcomes": [
+    { "id": "o1", "code": "M.5.1.2.5", "text": "Bölme işleminde bölüm ile kalanı tahmin eder." },
+    { "id": "o2", "code": "M.5.1.2.6", "text": "Dört basamağa kadar doğal sayıları bir basamaklı sayılara böler." }
+  ],
+
+  "skills": ["select", "estimate", "multiply", "subtract", "bringdown"],
+
+  "hints": {
+    "select":    { "1": ["hint.select.soft.1", "hint.select.soft.2"], "2": ["hint.select.guide.1"], "3": ["hint.select.explain"] },
+    "estimate":  { "1": ["hint.estimate.soft.1", "hint.estimate.soft.2"], "2": ["hint.estimate.guide.1", "hint.estimate.guide.2"], "3": ["hint.estimate.explain"] },
+    "multiply":  { "1": ["hint.multiply.soft.1", "hint.multiply.soft.2"], "2": ["hint.multiply.guide.1"], "3": ["hint.multiply.explain"] },
+    "subtract":  { "1": ["hint.subtract.soft.1", "hint.subtract.soft.2"], "2": ["hint.subtract.guide.1"], "3": ["hint.subtract.explain"] },
+    "bringdown": { "1": ["hint.bringdown.soft.1"], "2": ["hint.bringdown.guide.1"], "3": ["hint.bringdown.explain"] }
+  },
+
+  "teachScripts": {
+    "s1-concrete": [
+      { "say": "Komutan, bölme dediğin şey aslında ADİL PAYLAŞTIRMAKTIR. Göstereyim." },
+      { "deal": { "total": 12, "groups": 3 } },
+      { "ask": "12 kutuyu 3 takıma paylaştırdık. Her takıma kaç kutu düştü?", "expect": 4 },
+      { "say": "Aynen öyle: 12 ÷ 3 = 4. Bölme, eşit paylaştırmanın kısa yoludur." }
+    ],
+    "s1-pictorial": [
+      { "say": "Sayılar büyüyünce kutu saymak yavaş kalır. Basamaklara bakarız: onluklar ve birlikler." },
+      { "pv": { "number": 36, "divisor": 3 } },
+      { "ask": "36'da 3 onluk var. 3 onluğu 3 gruba paylaştırırsak her gruba kaç ONLUK düşer?", "expect": 1 },
+      { "ask": "Şimdi birlikler: 6 birlik ÷ 3 = ?", "expect": 2 },
+      { "say": "Her gruba 1 onluk + 2 birlik = 12. Yani 36 ÷ 3 = 12. Önce büyük basamak, sonra küçük!" }
+    ],
+    "s1-abstract": [
+      { "say": "Şimdi bunu kâğıt üzerindeki haliyle yapalım: UZUN BÖLME. Ben yanındayım, adım adım gidiyoruz." },
+      { "guided": { "dividend": 84, "divisor": 4 } }
+    ],
+    "s2-brief": [
+      { "say": "İki basamaklı bölünenlerde sır şu: soldan başla, sırayla in. Aynı 5 adım: SEÇ, TAHMİN, ÇARP, ÇIKAR, İNDİR." },
+      { "guided": { "dividend": 96, "divisor": 6 } },
+      { "say": "Gördün mü? Kalan her turda bölenden küçük kaldı. Kale kuralı asla bozulmaz!" }
+    ],
+    "s3-brief": [
+      { "say": "Üç basamakta yeni bir durum var Komutan: ilk basamak bölenden KÜÇÜKSE iki basamak birden alırız. İzle." },
+      { "guided": { "dividend": 435, "divisor": 5 } },
+      { "say": "4, 5'ten küçüktü — o yüzden 43'ü aldık. Kural bu: yetmezse bir basamak daha!" }
+    ],
+    "s4-brief": [
+      { "say": "Dört basamak! Gözünü korkutmasın — aynı 5 adım, sadece daha uzun yürüyüş. Efsane soruyla başlıyoruz." },
+      { "guided": { "dividend": 4872, "divisor": 6 } },
+      { "say": "4872 ÷ 6 = 812. Artık dört basamaklı kaleleri de açabilirsin Komutan!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — BÖLME TEMELLERİ",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Tek Basamak Keşfi",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Paylaştırma",
+              "segments": [
+                { "model": "concrete",  "script": "s1-concrete" },
+                { "model": "pictorial", "script": "s1-pictorial" },
+                { "model": "abstract",  "script": "s1-abstract" }
+              ] },
+            { "id": "s1m2", "type": "guided", "title": "Ortak Harekât I", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 4], "dividendDigits": 1, "remainder": false } },
+            { "id": "s1m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 2, "remainder": false } },
+            { "id": "s1m4", "type": "practice", "title": "İlk Devriye", "targetCount": 3,
+              "generator": { "divisorRange": [2, 4], "dividendDigits": 1, "remainder": false } },
+            { "id": "s1m5", "type": "practice", "title": "Saha Görevi", "targetCount": 3,
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 2, "remainder": false } },
+            { "id": "s1m6", "type": "practice", "title": "Gece Devriyesi", "targetCount": 4,
+              "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false } },
+            { "id": "s1m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 2, "remainder": false },
+              "problemTemplates": [
+                "Komutan {name}, depoya {dividend} kutu erzak geldi. {divisor} takıma eşit dağıtılacak. Her takıma kaç kutu düşer?",
+                "{dividend} askerlik birlik, {divisor} eşit kola ayrılacak. Her kolda kaç asker olur?"
+              ] },
+            { "id": "s1m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-s1", "tier": "topic", "name": "Bölünmez Kaya", "icon": "🪨", "hp": 60,
+            "unlock": { "masteryRequired": 0.8 },
+            "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-s1" }
+          }
+        },
+        {
+          "id": "s2",
+          "title": "Çifte Kule Cephesi",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 16 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: İki Basamak",
+              "segments": [ { "model": "abstract", "script": "s2-brief" } ] },
+            { "id": "s2m2", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
+              "generator": { "divisorRange": [3, 7], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m4", "type": "practice", "title": "Kule Devriyesi", "targetCount": 3,
+              "generator": { "divisorRange": [2, 7], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m5", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "divisorRange": [3, 8], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m6", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
+              "generator": { "divisorRange": [4, 9], "dividendDigits": 2, "remainder": false } },
+            { "id": "s2m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+              "generator": { "divisorRange": [3, 8], "dividendDigits": 2, "remainder": false },
+              "problemTemplates": [
+                "Bir raftaki {dividend} kitap, {divisor} kutuya eşit paylaştırılacak. Her kutuya kaç kitap konur?",
+                "Komutan {name}, {dividend} TL harçlığını {divisor} günde eşit harcamak istiyor. Günde kaç TL harcamalı?"
+              ] },
+            { "id": "s2m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-s2", "tier": "topic", "name": "Çifte Kule", "icon": "🏯", "hp": 60,
+            "unlock": { "masteryRequired": 0.8 },
+            "generator": { "divisorRange": [3, 9], "dividendDigits": 2, "remainder": false },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-s2" }
+          }
+        },
+        {
+          "id": "s3",
+          "title": "Üç Başlı Vadi",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 16 },
+          "missions": [
+            { "id": "s3m1", "type": "teach", "title": "Keşif Brifingi: Üç Basamak",
+              "segments": [ { "model": "abstract", "script": "s3-brief" } ] },
+            { "id": "s3m2", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
+              "generator": { "divisorRange": [3, 6], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m4", "type": "practice", "title": "Vadi Devriyesi", "targetCount": 3,
+              "generator": { "divisorRange": [2, 6], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m5", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "divisorRange": [3, 7], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m6", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
+              "generator": { "divisorRange": [4, 9], "dividendDigits": 3, "remainder": false } },
+            { "id": "s3m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+              "generator": { "divisorRange": [3, 8], "dividendDigits": 3, "remainder": false },
+              "problemTemplates": [
+                "Fabrikada üretilen {dividend} oyuncak, {divisor} mağazaya eşit gönderilecek. Her mağazaya kaç oyuncak düşer?",
+                "{dividend} sayfalık kitabı Komutan {name}, {divisor} günde eşit okuyarak bitirecek. Günde kaç sayfa okumalı?"
+              ] },
+            { "id": "s3m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-s3", "tier": "topic", "name": "Üç Başlı Sayı Ejderi", "icon": "🐉", "hp": 70,
+            "unlock": { "masteryRequired": 0.8 },
+            "generator": { "divisorRange": [3, 9], "dividendDigits": 3, "remainder": false },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-s3" }
+          }
+        },
+        {
+          "id": "s4",
+          "title": "Dört Basamak Zirvesi",
+          "outcomeIds": ["o1", "o2"],
+          "unlock": { "starsRequired": 16 },
+          "missions": [
+            { "id": "s4m1", "type": "teach", "title": "Keşif Brifingi: Dört Basamak",
+              "segments": [ { "model": "abstract", "script": "s4-brief" } ] },
+            { "id": "s4m2", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 5], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
+              "generator": { "divisorRange": [3, 6], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m4", "type": "practice", "title": "Zirve Devriyesi", "targetCount": 3,
+              "generator": { "divisorRange": [2, 6], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m5", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "divisorRange": [3, 7], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m6", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
+              "generator": { "divisorRange": [4, 9], "dividendDigits": 4, "remainder": false } },
+            { "id": "s4m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+              "generator": { "divisorRange": [3, 8], "dividendDigits": 4, "remainder": false },
+              "problemTemplates": [
+                "Karargâha {dividend} kutu malzeme geldi. Komutan {name} bunları {divisor} depoya eşit yerleştirecek. Her depoya kaç kutu girer?",
+                "{dividend} biletlik konser, {divisor} eşit seansa bölünecek. Her seansta kaç bilet satılır?"
+              ] },
+            { "id": "s4m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-s4", "tier": "unit", "name": "Basamak Golemi", "icon": "🗿", "hp": 150,
+            "unlock": { "masteryRequired": 0.8 },
+            "armor": 3, "regroupHpCarry": 0.5,
+            "generator": { "divisorRange": [3, 9], "dividendDigits": [3, 4], "remainder": false },
+            "rewards": { "xp": 200, "chest": "legendary", "badge": "b-u1", "title": "t-golem" }
+          }
+        }
+      ]
+    }
+  ]
+}

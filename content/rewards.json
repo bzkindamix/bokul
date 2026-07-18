@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "xp": {
+    "perStep": 2,
+    "perQuestionByStars": { "1": 10, "2": 15, "3": 25 },
+    "missionBonus": 20,
+    "dailyQuest": 50,
+    "weeklyQuest": 200,
+    "bossTopic": 100,
+    "bossUnit": 200,
+    "streakMultipliers": { "3": 1.5, "5": 2.0 },
+    "dailyStreakBonusPerDay": 0.10,
+    "dailyStreakBonusMax": 0.50
+  },
+  "levels": { "base": 100, "perLevel": 75 },
+  "ranks": [
+    { "minLevel": 1,  "id": "rank1", "title": "Çaylak Komutan",     "icon": "🐣" },
+    { "minLevel": 4,  "id": "rank2", "title": "Hedef Gözcüsü",      "icon": "🔭" },
+    { "minLevel": 8,  "id": "rank3", "title": "Bölme Eri",          "icon": "🎖️" },
+    { "minLevel": 13, "id": "rank4", "title": "Takım Lideri",       "icon": "⭐" },
+    { "minLevel": 19, "id": "rank5", "title": "Komutan Yardımcısı", "icon": "🌟" },
+    { "minLevel": 26, "id": "rank6", "title": "Komutan",            "icon": "👑" },
+    { "minLevel": 35, "id": "rank7", "title": "Sürünün Gururu",     "icon": "🦁" }
+  ],
+  "chests": {
+    "bronze":    { "trigger": "stars", "every": 10, "drops": { "common": 80, "rare": 15, "xpPack": 5 } },
+    "silver":    { "trigger": "dailyAll", "drops": { "common": 50, "rare": 45, "epic": 5 } },
+    "gold":      { "trigger": "levelup", "drops": { "rare": 70, "epic": 30 } },
+    "epic":      { "trigger": "bossTopic", "drops": { "epic": 100 } },
+    "legendary": { "trigger": "bossUnit", "drops": { "legendary": 100 } }
+  },
+  "shopPrices": { "common": 50, "rare": 120, "epic": 250, "legendary": 500 },
+  "cosmetics": [
+    { "id": "av-beret",    "type": "acc",       "rarity": "common",    "name": "Komutan Beresi" },
+    { "id": "hair-curly",  "type": "hair",      "rarity": "common",    "name": "Kıvırcık Saç" },
+    { "id": "mouth-grin",  "type": "mouth",     "rarity": "common",    "name": "Sırıtış" },
+    { "id": "hc-blue",     "type": "hairColor", "rarity": "rare",      "name": "Gece Mavisi Saç" },
+    { "id": "eyes-star",   "type": "eyes",      "rarity": "rare",      "name": "Yıldız Göz" },
+    { "id": "acc-glasses", "type": "acc",       "rarity": "rare",      "name": "Pilot Gözlüğü" },
+    { "id": "hc-neon",     "type": "hairColor", "rarity": "epic",      "name": "Neon Pembe Saç" },
+    { "id": "acc-headset", "type": "acc",       "rarity": "epic",      "name": "Uzay Kulaklığı" },
+    { "id": "ring-neon",   "type": "ring",      "rarity": "epic",      "name": "Neon Halka" },
+    { "id": "acc-crown",   "type": "acc",       "rarity": "legendary", "name": "Galaksi Tacı" },
+    { "id": "ring-galaxy", "type": "ring",      "rarity": "legendary", "name": "Galaksi Halkası" },
+    { "id": "t-golem",     "type": "title",     "rarity": "legendary", "name": "Golem Deviren" },
+    { "id": "t-makine",    "type": "title",     "rarity": "legendary", "name": "Makine Söken" }
+  ]
+}

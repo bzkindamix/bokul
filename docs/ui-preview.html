@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOKUL — UI Önizleme (Aşama 6 · Galaksi Üssü)</title>
+<style>
+  /* ==== BOKUL "Galaksi Üssü" tasarım token'ları (base.css taslağı) ==== */
+  :root{
+    --bg-deep:#160F2E; --bg-panel:#231A48; --bg-raised:#31245F;
+    --ink:#F2EDFF; --ink-dim:#A79BC8;
+    --accent:#FF4FD8; --action:#FF9F1C; --xp:#FFD52E;
+    --success:#52E88C; --warn:#FFB35C; --epic:#9D6BFF; --legendary:#3DF2D2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#0D0821;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px}
+  h1{font-size:22px;font-weight:800;letter-spacing:1px;margin-bottom:4px}
+  .sub{color:var(--ink-dim);font-size:13px;margin-bottom:22px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:22px;max-width:1400px}
+  .frame{background:var(--bg-deep);border:2px solid #3A2B72;border-radius:24px;overflow:hidden;
+         box-shadow:0 12px 40px rgba(0,0,0,.55)}
+  .frame h2{font-size:12px;font-weight:700;letter-spacing:2px;color:var(--xp);
+            padding:10px 16px;background:#1A1238;border-bottom:1px solid #3A2B72;text-transform:uppercase}
+  .screen{aspect-ratio:16/10;padding:14px;display:flex;flex-direction:column;gap:10px;position:relative}
+
+  /* ==== ortak parçalar ==== */
+  .hud{display:flex;align-items:center;gap:10px;font-size:12px}
+  .avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#FF4FD8,#9D6BFF);
+          display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid var(--xp);
+          box-shadow:0 0 10px rgba(255,213,46,.45)}
+  .xpbar{flex:1;height:16px;background:var(--bg-raised);border-radius:99px;position:relative;overflow:visible}
+  .xpbar>i{display:block;height:100%;width:62%;border-radius:99px;background:linear-gradient(90deg,#FFD52E,#FF9F1C);
+           box-shadow:0 0 8px rgba(255,213,46,.6)}
+  .lvl{position:absolute;left:-6px;top:-7px;width:30px;height:30px;border-radius:50%;background:var(--xp);
+       color:#4a3600;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;
+       border:2px solid #ffe98f}
+  .chip{background:var(--bg-raised);border-radius:99px;padding:4px 10px;font-weight:700;font-size:11px;white-space:nowrap}
+  .balloon{background:var(--bg-panel);border:1px solid #4A3690;border-radius:14px;padding:9px 12px;font-size:12.5px;
+           position:relative;line-height:1.35}
+  .balloon:before{content:"";position:absolute;left:-7px;top:14px;border:7px solid transparent;border-right-color:#4A3690;border-left:0}
+  .commander{width:52px;height:52px;border-radius:14px;flex:none;background:linear-gradient(135deg,#4A3690,#31245F);
+             display:flex;align-items:center;justify-content:center;font-size:30px;border:2px solid var(--accent)}
+  .btn{border-radius:16px;font-weight:800;text-align:center;color:#fff;letter-spacing:.5px;
+       box-shadow:inset 0 -4px 0 rgba(0,0,0,.35)}
+
+  /* ==== 1. ÜS EKRANI ==== */
+  .home-mid{flex:1;display:flex;gap:12px;align-items:center}
+  .home-commander{width:96px;height:120px;border-radius:18px;flex:none;font-size:56px;
+                  background:linear-gradient(160deg,#3F2E7E,#231A48);border:2px solid var(--accent);
+                  display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(255,79,216,.3)}
+  .doors{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+  .door{padding:16px 10px;font-size:13px}
+  .door.main{background:linear-gradient(180deg,#FFB443,#F07E00);font-size:16px;padding:20px 10px;color:#3a2600}
+  .door.q{background:linear-gradient(180deg,#43318C,#31245F)}
+  .door.l{background:linear-gradient(180deg,#43318C,#31245F);position:relative}
+  .dot{position:absolute;top:8px;right:10px;width:10px;height:10px;border-radius:50%;background:var(--legendary);
+       box-shadow:0 0 8px var(--legendary)}
+  .chest-float{position:absolute;right:16px;bottom:88px;font-size:30px;filter:drop-shadow(0 0 10px rgba(255,213,46,.8));
+               transform:rotate(-8deg)}
+  .chest-note{position:absolute;right:8px;bottom:70px;font-size:9.5px;color:var(--xp);font-weight:700}
+
+  /* ==== 2. HARİTA ==== */
+  .path{flex:1;position:relative}
+  .path svg{position:absolute;inset:0;width:100%;height:100%}
+  .node{position:absolute;width:54px;height:54px;border-radius:50%;background:var(--bg-raised);
+        border:3px solid #4A3690;display:flex;flex-direction:column;align-items:center;justify-content:center;
+        font-size:19px;transform:translate(-50%,-50%)}
+  .node small{font-size:8px;color:var(--xp);letter-spacing:1px;margin-top:-2px}
+  .node.done{border-color:var(--success)}
+  .node.active{border-color:var(--accent);box-shadow:0 0 16px rgba(255,79,216,.8);animation:pulse 1.6s infinite}
+  .node.locked{opacity:.42;filter:grayscale(1)}
+  .node.boss{width:70px;height:70px;border-radius:18px;border-color:var(--epic);font-size:26px}
+  .mastery{position:absolute;bottom:-14px;font-size:8.5px;color:var(--epic);font-weight:700;white-space:nowrap}
+  @keyframes pulse{50%{box-shadow:0 0 26px rgba(255,79,216,1)}}
+
+  /* ==== 3. BÖLME TAHTASI ==== */
+  .mission{flex:1;display:grid;grid-template-columns:150px 1fr 118px;gap:10px;min-height:0}
+  .m-left{display:flex;flex-direction:column;gap:8px}
+  .board{background:var(--bg-panel);border-radius:16px;padding:12px;display:flex;align-items:center;justify-content:center;
+         font-family:Consolas,monospace;font-size:30px;font-weight:700;letter-spacing:6px}
+  .division{line-height:1.4;position:relative}
+  .division .divisor{padding-right:12px;border-right:3px solid var(--ink)}
+  .division .top{border-bottom:3px solid var(--ink);padding-bottom:2px}
+  .division .quo{position:absolute;top:-40px;left:76px;color:var(--accent)}
+  .cell-active{display:inline-block;min-width:34px;border:2px solid var(--accent);border-radius:8px;
+               box-shadow:0 0 10px rgba(255,79,216,.7);color:var(--accent);text-align:center}
+  .division .work{color:var(--ink-dim);font-size:24px}
+  .ok{color:var(--success)}
+  .steps{display:flex;flex-direction:column;gap:6px;font-size:11.5px}
+  .step{background:var(--bg-panel);border-radius:10px;padding:7px 9px;display:flex;gap:7px;align-items:center;color:var(--ink-dim)}
+  .step.done{color:var(--success)}
+  .step.now{background:var(--bg-raised);color:var(--accent);border:1px solid var(--accent);font-weight:700}
+  .pad{display:grid;grid-template-columns:repeat(12,1fr);gap:6px}
+  .key{background:var(--bg-raised);border-radius:10px;text-align:center;padding:9px 0;font-weight:800;font-size:15px;
+       box-shadow:inset 0 -3px 0 rgba(0,0,0,.35)}
+  .key.go{grid-column:span 2;background:linear-gradient(180deg,#FFB443,#F07E00);color:#3a2600}
+
+  /* ==== 4. BOSS ==== */
+  .bossbar{display:flex;align-items:center;gap:10px}
+  .bossface{width:64px;height:64px;border-radius:16px;background:linear-gradient(160deg,#5A3E9E,#2A1D52);
+            border:2px solid var(--epic);display:flex;align-items:center;justify-content:center;font-size:36px;
+            box-shadow:0 0 16px rgba(157,107,255,.5)}
+  .hp{flex:1}
+  .hpname{font-size:12px;font-weight:800;letter-spacing:1px;color:var(--legendary);margin-bottom:4px}
+  .hptrack{height:18px;background:var(--bg-raised);border-radius:99px;overflow:hidden;display:flex;gap:2px;padding:2px}
+  .hptrack i{flex:1;background:linear-gradient(180deg,#FF4FD8,#A62B8C);border-radius:4px}
+  .hptrack i.gone{background:#3A2B72}
+  .arena{flex:1;display:flex;align-items:center;justify-content:center;gap:18px;position:relative}
+  .beam{height:4px;flex:1;max-width:130px;background:linear-gradient(90deg,transparent,var(--xp));
+        border-radius:99px;box-shadow:0 0 12px var(--xp)}
+  .miniboard{background:var(--bg-panel);border-radius:14px;padding:10px 16px;font-family:Consolas,monospace;
+             font-size:22px;font-weight:700;letter-spacing:4px}
+  .armor{display:flex;gap:8px;justify-content:center;align-items:center;font-size:12px;color:var(--ink-dim)}
+  .plate{font-size:24px;filter:drop-shadow(0 0 6px rgba(61,242,210,.7))}
+  .plate.broken{opacity:.35;filter:grayscale(1)}
+  .quip{font-size:11px;color:var(--warn);font-style:italic;text-align:center}
+</style>
+</head>
+<body>
+  <h1>🌌 BOKUL — UI Önizleme</h1>
+  <div class="sub">Aşama 6 · "Galaksi Üssü" görsel kimliği (rev. 2) · 4 anahtar ekran (statik mockup)</div>
+
+  <div class="grid">
+
+    <!-- ============ 1. ÜS EKRANI ============ -->
+    <div class="frame">
+      <h2>1 · Üs Ekranı (Ana Ekran)</h2>
+      <div class="screen">
+        <div class="hud">
+          <div class="avatar">🦁</div>
+          <div class="chip">🔭 Hedef Gözcüsü</div>
+          <div class="xpbar"><span class="lvl">6</span><i></i></div>
+          <div class="chip">⚙️</div>
+        </div>
+        <div class="home-mid">
+          <div class="home-commander">🫡</div>
+          <div class="balloon">Hoş geldin Komutan! Bugün 3 emir var.<br>
+          <span style="color:var(--ink-dim)">Bu soruyu da geçersen akşam dondurma lobisine giriş izni var.</span></div>
+        </div>
+        <div class="chest-float">🎁</div>
+        <div class="chest-note">Bronz sandığa 2★ kaldı!</div>
+        <div class="doors">
+          <div class="btn door main">⚔️ HAREKÂT</div>
+          <div class="btn door q">📋 GÖREVLER<br><span style="font-size:10px;color:var(--xp)">2/3 tamam</span></div>
+          <div class="btn door l">🎒 DOLAP<span class="dot"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 2. HARİTA ============ -->
+    <div class="frame">
+      <h2>2 · Harita — Ünite 1 · Bölüm 1 patikası</h2>
+      <div class="screen">
+        <div class="hud">
+          <div class="chip">◀ ÜS</div>
+          <div class="chip" style="flex:1;text-align:center">⚔️ MATEMATİK CEPHESİ — Tek Basamak Keşfi</div>
+          <div class="chip">⭐ 14/24</div>
+        </div>
+        <div class="path">
+          <svg viewBox="0 0 460 190" preserveAspectRatio="none">
+            <path d="M35 150 C 110 150 90 60 165 60 S 240 150 300 150 S 380 70 425 88"
+                  fill="none" stroke="#4A3690" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 13"/>
+          </svg>
+          <div class="node done" style="left:8%;top:79%">🎓<small>★★★</small></div>
+          <div class="node done" style="left:22%;top:55%">🤝<small>★★★</small></div>
+          <div class="node done" style="left:36%;top:32%">⚔️<small>★★☆</small></div>
+          <div class="node active" style="left:51%;top:52%">⚔️</div>
+          <div class="node locked" style="left:65%;top:79%">🧠</div>
+          <div class="node locked" style="left:78%;top:60%">🔄</div>
+          <div class="node boss locked" style="left:92%;top:42%">🪨
+            <div class="mastery">Ustalık %64 / %80</div>
+          </div>
+        </div>
+        <div class="hud" style="justify-content:center;gap:14px;font-size:10px;color:var(--ink-dim)">
+          <span>🎓 Keşif</span><span>🤝 Ortak</span><span>⚔️ Saha</span>
+          <span>🧠 Yeni Nesil</span><span>🔄 Devriye</span><span>🏰 Boss</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 3. BÖLME TAHTASI ============ -->
+    <div class="frame">
+      <h2>3 · Harekât — Bölme Tahtası (4872 ÷ 6, ÇARP adımı)</h2>
+      <div class="screen">
+        <div class="hud">
+          <div class="chip">◀</div>
+          <div class="chip">Hedef 2/4</div>
+          <div class="xpbar" style="max-width:130px"><i style="width:45%"></i></div>
+          <div class="chip" style="color:var(--action)">🔥 Seri x3 → XP ×1.5</div>
+        </div>
+        <div class="mission">
+          <div class="m-left">
+            <div style="display:flex;gap:8px">
+              <div class="commander">🫡</div>
+            </div>
+            <div class="balloon" style="font-size:11.5px">Güzel tahmin Komutan!<br>Şimdi 8 × 6 kaç eder?</div>
+          </div>
+          <div class="board">
+            <div class="division">
+              <div class="quo"><span class="ok">8</span><span class="cell-active">?</span></div>
+              <span class="divisor">6</span>&nbsp;<span class="top">4872</span><br>
+              <span class="work">&nbsp;&nbsp;<span class="ok">48</span></span><br>
+              <span class="work">&nbsp;&nbsp;──</span><br>
+              <span class="work">&nbsp;&nbsp;&nbsp;07</span>
+            </div>
+          </div>
+          <div class="steps">
+            <div class="step done">✔ ① KEŞİF</div>
+            <div class="step done">✔ ② TAHMİN</div>
+            <div class="step now">● ③ ÇARP</div>
+            <div class="step">④ ÇIKAR</div>
+            <div class="step">⑤ İNDİR</div>
+          </div>
+        </div>
+        <div class="pad">
+          <div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div>
+          <div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div>
+          <div class="key">9</div><div class="key">0</div><div class="key">⌫</div>
+          <div class="key go btn" style="box-shadow:inset 0 -3px 0 rgba(0,0,0,.25)">✔</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 4. ÜNİTE BOSS ============ -->
+    <div class="frame">
+      <h2>4 · Ünite Boss'u — Basamak Golemi (vurabilen boss)</h2>
+      <div class="screen">
+        <div class="bossbar">
+          <div class="bossface">🗿</div>
+          <div class="hp">
+            <div class="hpname">BASAMAK GOLEMİ — ÜNİTE BOSS'U</div>
+            <div class="hptrack">
+              <i class="gone"></i><i class="gone"></i><i class="gone"></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+        </div>
+        <div class="arena">
+          <div class="miniboard">
+            <span style="border-right:3px solid var(--ink);padding-right:8px">7</span>
+            <span style="border-bottom:3px solid var(--ink)">3654</span>
+            <span class="cell-active" style="font-size:18px">?</span>
+          </div>
+          <div class="beam"></div>
+          <div style="font-size:40px">💥</div>
+        </div>
+        <div class="quip">"Kendi 8'inle vuruldun Komutan! Zırh dayanıyor."</div>
+        <div class="armor">
+          ZIRHIN:
+          <span class="plate">🛡️</span><span class="plate">🛡️</span><span class="plate broken">🛡️</span>
+          <span style="font-size:10px">· 3 doğru adım = 1 zırh onarımı</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

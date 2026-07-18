@@ -1,0 +1,7 @@
+# İşletim sistemi artıkları
+Thumbs.db
+.DS_Store
+
+# Editör
+.vscode/
+.idea/

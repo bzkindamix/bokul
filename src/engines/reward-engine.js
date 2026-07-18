@@ -1,0 +1,106 @@
+/* BOKUL — RewardEngine
+ * XP, level, rütbe, seri (streak) ve günlük çalışma serisi ekonomisi.
+ * Tüm sayılar content/rewards.json'dan gelir — kodda denge sabiti YOK. */
+(function (B) {
+  function R() { return B.Content.get('rewards'); }
+
+  /* Level n'i geçmek için gereken XP: base + (n-1)*perLevel */
+  function xpForLevel(n) { const L = R().levels; return L.base + (n - 1) * L.perLevel; }
+
+  B.Reward = {
+    /* ---- XP ---- */
+    addXp(amount, source, opts) {
+      opts = opts || {};
+      let final = amount;
+      if (opts.applyStreak) final = Math.round(final * B.Reward.streakMultiplier());
+      final = Math.round(final * (1 + B.Reward.dailyBonus()));
+      const p = B.State.data.player;
+      p.xp += final;
+      B.Bus.emit(B.Events.XP_GAINED, { amount: final, source });
+      // Level kontrolü (tek olayda birden çok level atlanabilir)
+      while (p.xp >= B.Reward.xpNeeded()) {
+        p.xp -= B.Reward.xpNeeded();
+        p.level++;
+        const rank = B.Reward.rankFor(p.level);
+        const rankChanged = rank.id !== p.rank;
+        p.rank = rank.id;
+        B.Bus.emit(B.Events.LEVEL_UP, { newLevel: p.level, newRank: rankChanged ? rank : null });
+      }
+      return final;
+    },
+
+    xpNeeded() { return xpForLevel(B.State.data.player.level); },
+
+    rankFor(level) {
+      const ranks = R().ranks;
+      let cur = ranks[0];
+      ranks.forEach(r => { if (level >= r.minLevel) cur = r; });
+      return cur;
+    },
+
+    /* ---- Hatasız hedef serisi ---- */
+    streakMultiplier() {
+      const mults = R().xp.streakMultipliers;
+      const s = B.State.data.streaks.current;
+      let m = 1;
+      Object.keys(mults).map(Number).sort((a, b) => a - b)
+        .forEach(k => { if (s >= k) m = mults[k]; });
+      return m;
+    },
+
+    onQuestionDone(flawless) {
+      const st = B.State.data.streaks;
+      if (flawless) {
+        st.current++;
+        if (st.current > st.best) st.best = st.current;
+      } else st.current = 0;
+      B.Bus.emit(B.Events.STREAK_CHANGED, { count: st.current, multiplier: B.Reward.streakMultiplier() });
+    },
+
+    /* ---- Günlük çalışma serisi (login değil, HAREKÂT bitirme serisi) ---- */
+    dailyBonus() {
+      const x = R().xp;
+      return Math.min(B.State.data.streaks.dailyDays * x.dailyStreakBonusPerDay, x.dailyStreakBonusMax);
+    },
+
+    registerDailyPlay() {
+      const st = B.State.data.streaks;
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      const todayStr = today.toISOString().slice(0, 10);
+      if (st.lastPlayDate === todayStr) return;
+      if (st.lastPlayDate) {
+        const diff = Math.round((today - new Date(st.lastPlayDate)) / 86400000);
+        if (diff === 1) st.dailyDays++;
+        else if (diff > 1) st.dailyDays = Math.max(0, st.dailyDays - 2); // kırılınca sıfırlama YOK: 2 kademe düşer
+      } else st.dailyDays = 1;
+      st.lastPlayDate = todayStr;
+    },
+
+    /* ---- Altın (para) ---- */
+    addCoins(amount, source) {
+      const p = B.State.data.player;
+      p.coins = (p.coins || 0) + amount;
+      B.Bus.emit(B.Events.COINS_CHANGED, { total: p.coins, delta: amount });
+      return amount;
+    },
+    spendCoins(amount) {
+      const p = B.State.data.player;
+      if ((p.coins || 0) < amount) return false;
+      p.coins -= amount;
+      B.Bus.emit(B.Events.COINS_CHANGED, { total: p.coins, delta: -amount });
+      B.Save.saveSoon();
+      return true;
+    },
+
+    /* ---- Soru/görev ödül yardımcıları ---- */
+    stepXp() { return R().xp.perStep; },
+    questionXp(stars) { return R().xp.perQuestionByStars[String(stars)] || 0; },
+    missionBonus() { return R().xp.missionBonus; },
+    bossXp(tier) { return tier === 'unit' ? R().xp.bossUnit : R().xp.bossTopic; },
+
+    init() {
+      // Harekât bittiğinde günlük seri işlenir
+      B.Bus.on(B.Events.MISSION_COMPLETED, () => B.Reward.registerDailyPlay());
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
