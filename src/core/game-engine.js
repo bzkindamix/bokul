@@ -13,14 +13,15 @@
         'lessons/care-101',
         'lessons/philo-101',
       ];
-      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', ...LESSONS]);
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
 
-      // 3) Eski kayıtları yeni alanlarla tamamla (v0.6 → v0.7 uyumu)
+      // 3) Eski kayıtları yeni alanlarla tamamla (sürüm uyumu)
       const p = B.State.data.player;
       if (p.coins == null) p.coins = 0;
       p.avatar = B.Avatar.normalize(p.avatar);
+      if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
 
       // 4) Motor başlatmaları (olay dinleyicileri bağlanır)
       B.Save.init();
@@ -28,6 +29,7 @@
       B.Progress.init();
       B.Reward.init();
       B.Chest.init();
+      B.Quest.init();
       B.Anim.init();
       B.Commander.init();
       B.UI.init();

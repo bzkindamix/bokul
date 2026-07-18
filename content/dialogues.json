@@ -125,12 +125,22 @@
       "İzle {name}: {n} basamak alıyorum, çünkü bölenden büyük olmalı."
     ],
     "boss.intro.topic": [
-      "Karşında {bossName}! Sakin ol {name} — o sana vuramaz bile. Sen vur yeter!",
-      "{bossName} yolunu kesti {name}. Her doğru adım ona hasar verir. Hücum!"
+      "Ohooo, bak sen! Şu köşede saklanan {bossName}'a bak. Yıllardır sayılardan kaçan bu akıl fakiri, bugün karşına çıkma cesaretini bulmuş. Sakin ol {name}, o sana vuramaz bile — sadece homurdanır. Vur gitsin!",
+      "Efsane şöyle der {name}: {bossName} bir zamanlar koca bir canavarmış. Ama bir bölme işlemi görünce ödü patlamış, o günden beri zırvalayıp durur. Şu eblehe matematiğin ne olduğunu göster!",
+      "İşte karşımızda {bossName}! Kükrer, böğürür, korkutmaya çalışır... ama içi bomboş bir gerzodur {name}. Her doğru adımın onu eritir. Hadi bakalım!"
     ],
     "boss.intro.unit": [
-      "DİKKAT {name}! {bossName} karşılık verir. Zırhını kontrol et!",
-      "Bu bir ÜNİTE BOSS'U: {bossName}. Yanlış cevaplarını sana fırlatır {name}. Hazır mısın?"
+      "DİKKAT {name}! Bu sıradan bir gerzo değil — {bossName}, bir ÜNİTE BOSS'U. Bu ahmak karşılık verebiliyor: yanlış cevaplarını kapıp sana fırlatır. Ama korkma, zırhın sağlam. Onu kendi aptallığında boğacağız!",
+      "Sıkı dur {name}! Efsanelerin en inatçı eblehsi {bossName} uyandı. Vurur, itiler, zırhını çatlatır... ama üç doğru adımda zırhın onarılır. Bu akıl fakirini alt edecek tek şey senin kalemin. Başlayalım!"
+    ],
+    "boss.taunt": [
+      "Ha ha! Baksana {name}, {bossName} paniğe kapıldı. Koca canavar, bir çarpım tablosundan korkuyor. Ebleh şey!",
+      "Şu {bossName}'ın haline bak — sayıları görünce titriyor. Akıl fakiri resmen!",
+      "Devam et {name}! {bossName} inliyor. Bu kadar gerzo bir düşman görmedim, sayı sayamıyor bile!",
+      "{bossName} kükrüyor ama boşuna. Kafası bir çakıl taşı kadar boş, zavallı ebleh!",
+      "Vur {name}, vur! {bossName} kaçacak delik arıyor. Ödlek gerzo, matematikten daha çok korkuyor!",
+      "Gördün mü? {bossName} yine şaşırdı. Bu ahmak, bir bölme işlemini bir türlü çözemiyor. Sen çözüyorsun ama!",
+      "{bossName} sendeliyor {name}! Koca kabadayı, senin zekân karşısında eriyip gidiyor. Ne gerzo ama!"
     ],
     "boss.playerHit": [
       "Kendi yanlış cevabınla vuruldun {name}! Zırh dayanıyor, devam!",

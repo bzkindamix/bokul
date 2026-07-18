@@ -30,6 +30,7 @@
     "legendary": { "trigger": "bossUnit", "drops": { "legendary": 100 } }
   },
   "shopPrices": { "common": 50, "rare": 120, "epic": 250, "legendary": 500 },
+  "sellRatio": 0.4,
   "cosmetics": [
     { "id": "av-beret",    "type": "acc",       "rarity": "common",    "name": "Komutan Beresi" },
     { "id": "hair-curly",  "type": "hair",      "rarity": "common",    "name": "Kıvırcık Saç" },

@@ -230,3 +230,44 @@
 .mc-opt.mc-right { border-color: var(--success); background: rgba(82, 232, 140, .15); box-shadow: 0 0 14px rgba(82, 232, 140, .5); }
 .mc-opt.mc-wrong { opacity: .35; border-color: var(--warn); text-decoration: line-through; }
 .boss-emoji { font-size: 36px; }
+
+/* ---------- v0.10: Evim + Görevler ---------- */
+.evim-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 20px; }
+.evim-hero { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.evim-avatar { width: 150px; height: 150px; }
+.evim-avatar .avatar-holder { width: 100%; height: 100%; }
+.evim-name { font-size: 22px; font-weight: 900; letter-spacing: 1px; }
+.evim-doors { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.door-ben, .door-dolap {
+  width: min(220px, 42vw); padding: 22px 12px; font-size: 20px; line-height: 1.4;
+  background: linear-gradient(180deg, #43318C, var(--bg-raised));
+}
+.door-ben small, .door-dolap small { display: block; font-size: 12px; font-weight: 600; color: var(--ink-dim); margin-top: 4px; }
+.door-dolap { background: linear-gradient(180deg, #5B3FA8, #3F2E7E); }
+
+.door-badge {
+  position: absolute; top: 6px; right: 10px; min-width: 22px; height: 22px;
+  background: var(--accent); color: #fff; border-radius: 99px; font-size: 12px;
+  font-weight: 800; display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 5px; box-shadow: 0 0 10px var(--accent);
+}
+.door { position: relative; }
+
+.part-sell .part-price { color: var(--warn); }
+
+.quest-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 0 16px; max-width: 620px; width: 100%; margin: 0 auto; }
+.quest-card {
+  background: var(--bg-panel); border: 2px solid var(--line); border-radius: 16px; padding: 14px 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.quest-done { border-color: var(--xp); box-shadow: 0 0 14px rgba(255, 213, 46, .3); }
+.quest-claimed { opacity: .6; }
+.quest-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.quest-top b { font-size: 15px; }
+.quest-reward { color: var(--xp); font-size: 12px; font-weight: 800; white-space: nowrap; }
+.quest-bar { position: relative; height: 20px; background: var(--bg-raised); border-radius: 99px; overflow: hidden; }
+.quest-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--success), var(--accent)); transition: width .4s; }
+.quest-count { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
+.quest-claim { align-self: flex-end; padding: 8px 20px; }
+.quest-status { align-self: flex-end; color: var(--success); font-weight: 800; font-size: 13px; }
+.quest-note { text-align: center; color: var(--ink-dim); font-size: 13px; padding: 14px; }

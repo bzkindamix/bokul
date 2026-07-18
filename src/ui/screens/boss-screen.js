@@ -94,6 +94,8 @@
                 B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: dmg, remaining: hp });
                 head.classList.remove('boss-hit'); void head.offsetWidth;
                 head.classList.add('boss-hit');
+                // Baba düşmanla dalga geçer (bazen)
+                if (Math.random() < 0.45) cmd.sayFrom('boss.taunt', { bossName: boss.name });
               }
               // Zırh onarımı
               if (isUnit) {

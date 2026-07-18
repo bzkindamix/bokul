@@ -23,19 +23,21 @@
         root.appendChild(c);
       }
 
+      // Toplanmayı bekleyen görev sayısı (kapıda rozet)
+      const pending = B.Quest.pending();
+      const badge = pending ? '<span class="door-badge">' + pending + '</span>' : '';
+
       const doors = document.createElement('div');
       doors.className = 'home-doors';
       doors.innerHTML =
         '<button class="btn door door-main">⚔️<br>HAREKÂT</button>' +
-        '<button class="btn door door-side door-quests">📋<br>GÖREVLER</button>' +
-        '<button class="btn door door-side door-locker">🎒<br>DOLAP</button>';
+        '<button class="btn door door-side door-quests">📋<br>GÖREVLER' + badge + '</button>' +
+        '<button class="btn door door-side door-evim">🏠<br>EVİM</button>';
       root.appendChild(doors);
 
       doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('world'); };
-      doors.querySelector('.door-locker').onclick = () => { B.Audio.play('tick'); B.UI.show('locker'); };
-      const dq = doors.querySelector('.door-quests');
-      dq.classList.add('door-locked');
-      dq.onclick = () => B.UI.toast('Görev panosu v0.8 güncellemesinde açılıyor! 🔧');
+      doors.querySelector('.door-evim').onclick = () => { B.Audio.play('tick'); B.UI.show('evim'); };
+      doors.querySelector('.door-quests').onclick = () => { B.Audio.play('tick'); B.UI.show('quests'); };
 
       // Hikâyeyi tekrar izleme
       const replay = document.createElement('button');

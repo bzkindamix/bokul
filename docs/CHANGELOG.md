@@ -1,5 +1,22 @@
 # BOKUL — Sürüm Notları
 
+## v0.10 — Evim, Görevler, Satış ve Alaycı Baba (2026-07-18)
+
+- 🏠 DOLAP → EVİM: Ana kapı artık "Evim" hub'ına açılıyor; içinde iki bölüm:
+  🧍 BEN (görünüm/tip ayarı) ve 👕 DOLAP (kıyafet: al · sat · giy).
+- 💰 SATIŞ: Sahip olunan kıyafetler Dolap'ın "Sat" sekmesinden satılabilir —
+  alış fiyatının %40'ı geri döner. Takılı bir parça satılırsa slot otomatik
+  varsayılana döner.
+- 📋 GÖREVLER AKTİF: Günün Emirleri panosu çalışıyor. Her gün 3 görev
+  (hedef/3 yıldız/harekât/doğru cevap), ilerleme barı, biten göreve TOPLA
+  butonu (XP + altın), üçünü de toplayınca Gümüş Sandık. Ana kapıda bekleyen
+  görev rozeti.
+- 😏 HİKÂYECİ BABA: Boss girişleri artık uzun, anlatıcı hikâyeler; savaş
+  sırasında Baba düşmanla dalga geçiyor ("akıl fakiri", "ebleh", "gerzo",
+  "ödlek" — hep düşmana yönelik, asla çocuğa değil). Yeni boss.taunt havuzu.
+- Yeni quest-engine + evim/quests ekranları; mimariye dokunmadan eklendi.
+
+
 ## v0.9 — Üç Yeni Cephe (2026-07-18)
 
 - 🌌 DÜNYA HARİTASI: Harekât kapısı artık cephe seçim ekranına açılıyor;

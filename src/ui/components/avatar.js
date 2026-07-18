@@ -218,5 +218,23 @@
       : { gender: 'erkek', skin: 2, hair: 0, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false };
   }
 
-  B.Avatar = { CATALOG, normalize, svg, el, isUnlocked, preset };
+  /* Bir kozmetik hangi avatar slotundaki hangi parça id'sine denk düşer? */
+  function partIdFor(item) {
+    const maps = { hair: CATALOG.hairs, hairColor: CATALOG.hairColors, eyes: CATALOG.eyes,
+                   mouth: CATALOG.mouths, acc: CATALOG.accs, ring: CATALOG.rings };
+    const p = (maps[item.type] || []).find(x => x.cosmeticId === item.id);
+    return p ? p.id : null;
+  }
+
+  /* Satılan kozmetik takılıysa o slotu varsayılana döndür */
+  function unequipCosmetic(avatar, item) {
+    const a = normalize(avatar);
+    const pid = partIdFor(item);
+    if (pid == null) return a;
+    const def = { hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none' };
+    if (a[item.type] === pid) a[item.type] = def[item.type];
+    return a;
+  }
+
+  B.Avatar = { CATALOG, normalize, svg, el, isUnlocked, preset, partIdFor, unequipCosmetic };
 })(window.BOKUL = window.BOKUL || {});

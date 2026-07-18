@@ -16,7 +16,12 @@
     CHEST_EARNED:   'chest:earned',    // { chestType }
     CHEST_OPENED:   'chest:opened',    // { chestType, item }
     COSMETIC_UNLOCKED: 'cosmetic:unlocked', // { itemId }
+    COSMETIC_SOLD:  'cosmetic:sold',   // { itemId, coins }
     COINS_CHANGED:  'coins:changed',   // { total, delta }
+
+    // Görevler
+    QUEST_PROGRESS:  'quest:progress',
+    QUEST_COMPLETED: 'quest:completed',
 
     // İlerleme
     MISSION_COMPLETED: 'mission:completed', // { missionId, stars, xp }
