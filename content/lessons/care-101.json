@@ -1,0 +1,152 @@
+{
+  "id": "care-101",
+  "schema": 1,
+  "title": "Kişisel Bakım Cephesi",
+  "subtitle": "Mikroplara Karşı Harekât",
+  "icon": "🧼",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+
+  "outcomes": [
+    { "id": "o1", "code": "CARE.1", "text": "Hijyen kurallarını bilir ve uygular." },
+    { "id": "o2", "code": "CARE.2", "text": "Kişisel bakım ve düzen alışkanlıkları geliştirir." }
+  ],
+
+  "skills": ["hijyen", "dis-bakim", "bakim-duzen", "uyku-saglik"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "hijyen-brief": [
+      { "say": "Brifing! Görünmez düşmanlarımız var: MİKROPLAR. Gözle görülmezler ama kapı kollarında, telefonlarda, ellerimizde gezerler. Paniğe gerek yok — silahımız çok güçlü: SABUN!" },
+      { "say": "El yıkamanın altın kuralı: sabunla EN AZ 20 SANİYE. Bu, iki kere 'İyi ki doğdun' şarkısı kadardır. Parmak araları ve başparmak unutulmaz — mikroplar en çok oraya saklanır!" },
+      { "say": "Ne zaman? Yemekten önce, tuvaletten sonra, dışarıdan gelince, hapşırınca. Dişler ise günde İKİ kez, İKİŞER dakika fırçalanır. Bu emirler tartışılmaz, Komutan bile uyar!" }
+    ],
+    "bakim-brief": [
+      { "say": "İkinci brifing: bakım sadece temizlik değildir — kendine değer vermektir. Düzenli banyo, temiz kıyafet, kesilmiş tırnaklar... Bunlar 'kendime iyi bakıyorum' demenin yollarıdır." },
+      { "say": "Ve gizli silah: UYKU! Senin yaşında bir komutanın günde 9-11 saat uykuya ihtiyacı var. Beyin uykuda öğrendiklerini kaydeder — yani uyumak da ders çalışmaktır!" },
+      { "say": "Son emir: odan senin üssündür. Üssü dağınık olan komutan, kalemini savaşta bulamaz. Her akşam 5 dakikalık toparlama, sabah 15 dakika kazandırır!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — TEMİZLİK VE BAKIM",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Hijyen Harekâtı",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Mikroplar",
+              "segments": [ { "model": "abstract", "script": "hijyen-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Sabun Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-care1", "tier": "topic", "name": "Mikrop Kralı", "icon": "🦠", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-care1" }
+          },
+          "bank": [
+            { "q": "Eller sabunla en az kaç saniye yıkanmalı?", "skill": "hijyen",
+              "options": ["20 saniye", "2 saniye", "5 saniye", "Sadece suya tutmak yeter"],
+              "correct": 0, "hint": "İki kere 'İyi ki doğdun' söyleyecek kadar uzun!" },
+            { "q": "Hangisinden SONRA eller mutlaka yıkanır?", "skill": "hijyen",
+              "options": ["Tuvaletten sonra", "Uyanınca su içince", "Kitap okuyunca", "Televizyon izleyince"],
+              "correct": 0, "hint": "Tuvalet + yemek öncesi + dışarıdan gelince = kesin emir." },
+            { "q": "Hapşırırken ne yapmalısın?", "skill": "hijyen",
+              "options": ["Dirseğimin içine hapşırırım", "Ellerime hapşırıp devam ederim", "Arkadaşıma doğru hapşırırım", "Hiç kapatmam"],
+              "correct": 0, "hint": "Dirsek kapağı: mikroplar ellerine bulaşmaz, kimseye taşımazsın." },
+            { "q": "Mikroplar en çok nerede gizlenir?", "skill": "hijyen",
+              "options": ["Parmak araları ve tırnak dipleri", "Sadece ayakkabıda", "Sadece havada", "Sabunun içinde"],
+              "correct": 0, "hint": "Bu yüzden el yıkarken parmak araları da ovulur!" },
+            { "q": "Dişler günde kaç kez ve ne kadar fırçalanmalı?", "skill": "dis-bakim",
+              "options": ["Günde 2 kez, 2'şer dakika", "Haftada 1 kez, 10 saniye", "Ayda bir, yarım saat", "Sadece bayramlarda"],
+              "correct": 0, "hint": "2×2 kuralı: sabah ve akşam, ikişer dakika." },
+            { "q": "Diş fırçalamazsan ne olur?", "skill": "dis-bakim",
+              "options": ["Mikroplar dişte delik (çürük) açar", "Dişler daha çok parlar", "Hiçbir şey olmaz", "Dişler kendini fırçalar"],
+              "correct": 0, "hint": "Şeker artıkları mikropların ziyafetidir; ziyafetin faturası çürüktür." },
+            { "q": "Başkasının hangisini KULLANMAZSIN?", "skill": "hijyen",
+              "options": ["Diş fırçasını", "Kitabını", "Topunu", "Boya kalemini"],
+              "correct": 0, "hint": "Diş fırçası, havlu, bardak... ağza ve tene değenler kişiseldir." },
+            { "q": "Yemekten ÖNCE el yıkamak neden önemli?", "skill": "hijyen",
+              "options": ["Eldeki mikroplar yemekle mideye gider", "Eller güzel koksun diye", "Sofra süslensin diye", "Önemli değil"],
+              "correct": 0, "hint": "Mikroba servis yolu açma: önce sabun, sonra çatal!" },
+            { "q": "Tırnaklar neden kısa ve temiz olmalı?", "skill": "hijyen",
+              "options": ["Uzun tırnak mikrop deposudur", "Kısa tırnak modası geçti", "Uzun tırnak daha hızlı yazar", "Fark etmez"],
+              "correct": 0, "hint": "Tırnak dibi, mikropların en sevdiği saklanma üssüdür." },
+            { "q": "Okuldan eve geldin. İlk hamle?", "skill": "hijyen",
+              "options": ["Ellerimi sabunla yıkarım", "Doğrudan buzdolabına giderim", "Elimi silmeden atıştırırım", "Ayakkabıyla koltuğa otururum"],
+              "correct": 0, "hint": "Dışarının bütün mikropları ellerinde otostop çekiyor!" }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Bakım ve Düzen",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Bakım",
+              "segments": [ { "model": "abstract", "script": "bakim-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Bakım Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-care2", "tier": "topic", "name": "Dağınıklık Devi", "icon": "🌪️", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-care2" }
+          },
+          "bank": [
+            { "q": "Senin yaşındaki bir komutanın kaç saat uykuya ihtiyacı var?", "skill": "uyku-saglik",
+              "options": ["9-11 saat", "3-4 saat", "1 saat yeter", "Uyku gereksizdir"],
+              "correct": 0, "hint": "Beyin, öğrendiklerini uykuda kaydeder — uyku da ders çalışmaktır!" },
+            { "q": "Yatmadan önce ekrana bakmak uykuyu nasıl etkiler?", "skill": "uyku-saglik",
+              "options": ["Beyni uyanık tutar, uykuyu zorlaştırır", "Daha güzel uyutur", "Hiç etkilemez", "Rüyaları renklendirir"],
+              "correct": 0, "hint": "Ekran ışığı beyne 'gündüz devam ediyor' yalanı söyler." },
+            { "q": "Saçlar neden düzenli yıkanır?", "skill": "bakim-duzen",
+              "options": ["Kir ve yağdan temizlenmek için", "Daha hızlı uzasın diye", "Renk değiştirsin diye", "Gerek yoktur"],
+              "correct": 0, "hint": "Saç da ter ve toz toplar — üs gibi düzenli temizlik ister." },
+            { "q": "Çorap ve iç çamaşırı ne sıklıkla değişir?", "skill": "bakim-duzen",
+              "options": ["Her gün", "Ayda bir", "Yılda bir", "Delinene kadar değişmez"],
+              "correct": 0, "hint": "Her gün taze başlangıç: temiz çorap, temiz çamaşır!" },
+            { "q": "Odanı toplamanın gizli faydası nedir?", "skill": "bakim-duzen",
+              "options": ["Aradığını hemen bulursun, kafan rahatlar", "Oda küsmez", "Duvarlar renklenir", "Hiç faydası yok"],
+              "correct": 0, "hint": "Düzenli üs = hızlı komutan. Kalem aramakla harekât kaybedilmez!" },
+            { "q": "Banyo yapmanın en doğru zamanı hangisi DEĞİLDİR?", "skill": "bakim-duzen",
+              "options": ["Hiç yapmamak", "Terleyince", "Spor sonrası", "Düzenli aralıklarla"],
+              "correct": 0, "hint": "Diğer üçü doğru zaman; 'hiç' ise Mikrop Kralı'nın hayali!" },
+            { "q": "Güneşli bir günde dışarı çıkarken ne akıllıcadır?", "skill": "uyku-saglik",
+              "options": ["Su şişesi almak ve gerekirse şapka takmak", "Kat kat mont giymek", "Hiç su içmemek", "Gözünü güneşe dikmek"],
+              "correct": 0, "hint": "Su, vücudun yakıtıdır; komutan yakıtsız harekâta çıkmaz." },
+            { "q": "Kıyafetin kirlendi. Ne yaparsın?", "skill": "bakim-duzen",
+              "options": ["Kirli sepetine atar, temizini giyerim", "Üstümde kurumasını beklerim", "Yatağın altına saklarım", "Ters çevirip devam ederim"],
+              "correct": 0, "hint": "Kirlinin adresi bellidir: kirli sepeti. Yatak altı üs değildir!" },
+            { "q": "Sabah rutini hangisi olursa güne en iyi başlarsın?", "skill": "bakim-duzen",
+              "options": ["Yüzünü yıka, dişini fırçala, kahvaltı yap", "Sadece telefona bak", "Kahvaltıyı atla, koş", "Pijamayla okula git"],
+              "correct": 0, "hint": "Üç adımlık sabah harekâtı: yüz, diş, kahvaltı. Sonra dünya senindir!" },
+            { "q": "Su içmek neden önemli?", "skill": "uyku-saglik",
+              "options": ["Vücut ve beyin susuz iyi çalışmaz", "Sadece yazın gerekir", "Su modası olduğu için", "Önemli değildir"],
+              "correct": 0, "hint": "Beynin bile büyük bölümü su! Susuz komutan yavaş düşünür." }
+          ]
+        }
+      ]
+    }
+  ]
+}

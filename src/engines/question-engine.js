@@ -4,6 +4,7 @@
  * Motor tiplerin içini bilmez — Open/Closed. */
 (function (B) {
   const types = new Map();
+  const views = new Map(); // tip adı -> görünüm oluşturucu (container, q, opts) => ctl
 
   B.Question = {
     registerType(name, impl) {
@@ -11,6 +12,13 @@
         if (typeof impl[k] !== 'function') throw new Error('Soru tipi eksik metod: ' + name + '.' + k);
       });
       types.set(name, impl);
+    },
+
+    registerView(name, createFn) { views.set(name, createFn); },
+    view(name) {
+      const v = views.get(name);
+      if (!v) throw new Error('Kayıtsız soru görünümü: ' + name);
+      return v;
     },
 
     type(name) {

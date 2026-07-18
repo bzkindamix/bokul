@@ -118,8 +118,9 @@
       '</svg>',
   };
 
+  /* Bilinmeyen boss'lar için null döner; ekran ikon emojisine düşer */
   function boss(id) {
-    return bosses[id] || bosses['boss-s1'];
+    return bosses[id] || null;
   }
 
   B.SvgArt = { commander, boss };

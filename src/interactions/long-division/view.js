@@ -328,4 +328,5 @@
   }
 
   B.LongDivisionView = { create };
+  B.Question.registerView('long-division', create);
 })(window.BOKUL = window.BOKUL || {});

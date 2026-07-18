@@ -31,6 +31,8 @@ const JS = [
   'src/interactions/long-division/logic.js',
   'src/interactions/long-division/teach-models.js',
   'src/interactions/long-division/view.js',
+  'src/interactions/multiple-choice/logic.js',
+  'src/interactions/multiple-choice/view.js',
   'src/ui/animation-engine.js',
   'src/ui/components/svg-art.js',
   'src/ui/components/avatar.js',
@@ -38,6 +40,7 @@ const JS = [
   'src/ui/components/chest-ui.js',
   'src/ui/ui-manager.js',
   'src/ui/screens/home-screen.js',
+  'src/ui/screens/world-screen.js',
   'src/ui/screens/map-screen.js',
   'src/ui/screens/mission-screen.js',
   'src/ui/screens/boss-screen.js',
@@ -53,6 +56,9 @@ const CONTENT = [
   'rewards',
   'story',
   'lessons/math-5-division',
+  'lessons/ai-101',
+  'lessons/care-101',
+  'lessons/philo-101',
 ];
 
 let html = read('index.html');

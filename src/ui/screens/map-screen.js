@@ -6,7 +6,7 @@
   B.UI.registerScreen('map', {
     enter(root) {
       const lesson = B.Lesson.active();
-      const hud = B.UI.buildHud(root, { backTo: 'home' });
+      const hud = B.UI.buildHud(root, { backTo: 'world' });
 
       const title = document.createElement('div');
       title.className = 'map-title';

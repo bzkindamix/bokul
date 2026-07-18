@@ -31,7 +31,7 @@
         '<button class="btn door door-side door-locker">🎒<br>DOLAP</button>';
       root.appendChild(doors);
 
-      doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('map'); };
+      doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('world'); };
       doors.querySelector('.door-locker').onclick = () => { B.Audio.play('tick'); B.UI.show('locker'); };
       const dq = doors.querySelector('.door-quests');
       dq.classList.add('door-locked');

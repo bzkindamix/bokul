@@ -1,5 +1,20 @@
 # BOKUL — Sürüm Notları
 
+## v0.9 — Üç Yeni Cephe (2026-07-18)
+
+- 🌌 DÜNYA HARİTASI: Harekât kapısı artık cephe seçim ekranına açılıyor;
+  her ders bir cephe kartı (yıldız + kristal ilerlemesiyle).
+- 🤖 Yapay Zekâ Cephesi: "YZ nedir?" (sınırlar, doğrulama, kişisel bilgi
+  güvenliği) + "Prompt Ustalığı" (açıklık, bağlam, biçim, adım adım isteme).
+- 🧼 Kişisel Bakım Cephesi: "Hijyen Harekâtı" (el yıkama, diş, mikroplar) +
+  "Bakım ve Düzen" (uyku, su, kıyafet, oda düzeni).
+- 🦉 Felsefe Cephesi: "Soru Sorma Sanatı" (Sokrates, iyi soru, gerekçe) +
+  "Düşünce Deneyleri" (mantık hataları, adalet, empati).
+- Yeni soru motoru: çoktan seçmeli plugin (karıştırılan şıklar, yanlış şık
+  sönerek elenir, soruya özel ipucu) — mimarideki registry sayesinde çekirdek
+  koda dokunulmadan eklendi. 60 yeni soru, 6 yeni konu boss'u.
+
+
 ## v0.8-karakter — Karakter Yaratma Sihirbazı (2026-07-18)
 
 - Karakter yaratma artık oyunun İLK adımı: Cinsiyet seç (kız/erkek önizlemeli

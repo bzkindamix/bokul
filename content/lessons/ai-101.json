@@ -1,0 +1,152 @@
+{
+  "id": "ai-101",
+  "schema": 1,
+  "title": "Yapay Zekâ Cephesi",
+  "subtitle": "Prompt Ustalığı Harekâtı",
+  "icon": "🤖",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+
+  "outcomes": [
+    { "id": "o1", "code": "AI.1", "text": "Yapay zekânın ne olduğunu ve sınırlarını bilir; güvenli kullanır." },
+    { "id": "o2", "code": "AI.2", "text": "Açık, bağlamlı ve adım adım prompt yazar." }
+  ],
+
+  "skills": ["ai-temel", "ai-guvenlik", "prompt-aciklik", "prompt-baglam"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "ai-brief": [
+      { "say": "Brifing zamanı! YAPAY ZEKÂ, bilgisayarların örneklerden öğrenip konuşma, yazma ve tahmin yapabilmesidir. Sihir değil: milyonlarca örnekten öğrenmiş bir yardımcı." },
+      { "say": "Ama dikkat: yapay zekâ her şeyi bilmez ve bazen kendinden emin şekilde YANLIŞ söyler. Ona körü körüne inanmak yok — kontrol etmek var!" },
+      { "say": "Ve altın kural: yapay zekâya adresini, okulunu, şifreni, fotoğrafını verme. O bir araçtır; kişisel bilgiler sadece ailende kalır." }
+    ],
+    "prompt-brief": [
+      { "say": "PROMPT, yapay zekâya verdiğin komuttur. İyi prompt = iyi cevap. Kötü prompt = saçma cevap. Bu bir süper güçtür ve şimdi öğreneceksin!" },
+      { "say": "İyi promptun 3 sırrı var: 1) AÇIK ol: ne istediğini net söyle. 2) BAĞLAM ver: kim için, ne amaçla? 3) BİÇİM iste: 'madde madde yaz', 'kısa anlat' gibi." },
+      { "say": "Örnek: 'Bana bir şey anlat' KÖTÜ. 'Uzayı 10 yaşında birine, 3 kısa maddeyle, eğlenceli anlat' MÜKEMMEL. Fark bu işte!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — YAPAY ZEKÂ OKUR YAZARLIĞI",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Yapay Zekâ Nedir?",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Yapay Zekâ",
+              "segments": [ { "model": "abstract", "script": "ai-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Tanıma Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-ai1", "tier": "topic", "name": "Bilgi Kirliliği Canavarı", "icon": "🌫️", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-ai1" }
+          },
+          "bank": [
+            { "q": "Yapay zekâ nasıl öğrenir?", "skill": "ai-temel",
+              "options": ["Milyonlarca örneğe bakarak", "Uyuyarak", "Şans eseri", "İnsan beyni takarak"],
+              "correct": 0, "hint": "Biz nasıl çok soru çözerek öğreniyorsak, o da çok örnek görerek öğrenir." },
+            { "q": "Yapay zekâ hangisini YAPAMAZ?", "skill": "ai-temel",
+              "options": ["Senin yerine gerçekten hissedemez", "Metin yazamaz", "Soru cevaplayamaz", "Resim üretemez"],
+              "correct": 0, "hint": "Yazar, çizer, cevaplar... ama duyguları taklit eder, gerçekten hissetmez." },
+            { "q": "Yapay zekâ bir cevap verdi ama emin değilsin. Ne yaparsın?", "skill": "ai-guvenlik",
+              "options": ["Başka kaynaktan kontrol ederim", "Hemen herkese anlatırım", "Kesin doğrudur derim", "Bilgisayarı kapatırım"],
+              "correct": 0, "hint": "Yapay zekâ bazen kendinden emin şekilde yanılır. İyi komutan teyit eder!" },
+            { "q": "Yapay zekâya hangisini ASLA vermezsin?", "skill": "ai-guvenlik",
+              "options": ["Ev adresini ve şifreni", "Matematik sorusunu", "Hava durumu sorusunu", "Masal isteğini"],
+              "correct": 0, "hint": "Kişisel bilgiler ailede kalır. Yapay zekâ bir araçtır, sırdaş değildir." },
+            { "q": "Hangisi günlük hayatta yapay zekâ KULLANIR?", "skill": "ai-temel",
+              "options": ["Video önerileri ve sesli asistanlar", "Makarna süzgeci", "Ayakkabı bağcığı", "Kâğıt uçak"],
+              "correct": 0, "hint": "'Bunu da izle' diyen öneriler... o listeyi bir yapay zekâ hazırlıyor." },
+            { "q": "Yapay zekâ ödevinin TAMAMINI yazsın ister misin? En akıllıca cevap hangisi?", "skill": "ai-guvenlik",
+              "options": ["Hayır — ondan öğrenirim ama işi ben yaparım", "Evet, ben hiç uğraşmam", "Evet, kimse anlamaz", "Ödev nedir bilmiyorum"],
+              "correct": 0, "hint": "Kası kim çalıştırırsa güç ona gider. Beynin de kas gibidir!" },
+            { "q": "Yapay zekâ ile insan beyninin farkı nedir?", "skill": "ai-temel",
+              "options": ["İnsan az örnekle ve yaşayarak öğrenir", "Hiç fark yoktur", "Yapay zekâ her zaman daha akıllıdır", "İnsan hiç yanılmaz"],
+              "correct": 0, "hint": "Sen bir kediyi 3 kez görüp tanırsın; yapay zekâya binlerce kedi fotoğrafı gerekir." },
+            { "q": "Yapay zekânın verdiği bilgi eskimiş olabilir mi?", "skill": "ai-guvenlik",
+              "options": ["Evet — belli bir tarihe kadar olanları bilir", "Hayır, geleceği de bilir", "Hayır, her an her şeyi bilir", "Bilgi hiç eskimez"],
+              "correct": 0, "hint": "Öğrendiği tarihten sonra olanları bilemeyebilir. Güncel haber için haber kaynağı!" },
+            { "q": "İnternette bir robotla mı insanla mı konuştuğundan emin değilsin. Ne yapmalısın?", "skill": "ai-guvenlik",
+              "options": ["Kişisel bilgi vermem ve büyüğüme söylerim", "Adresimi veririm", "Fotoğraf gönderirim", "Şifremi paylaşırım"],
+              "correct": 0, "hint": "Emin olmadığın yerde kural hep aynı: paylaşma, aileye danış." },
+            { "q": "Yapay zekâ resim de üretebilir. Bu resimler...", "skill": "ai-temel",
+              "options": ["Gerçek fotoğraf sanılabilir, dikkatli olmak gerekir", "Her zaman gerçektir", "Asla gerçekçi olamaz", "Sadece siyah beyazdır"],
+              "correct": 0, "hint": "Gördüğün her görüntü gerçek olmayabilir — 'bu gerçek mi?' diye sormak süper güçtür." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Prompt Ustalığı",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Prompt",
+              "segments": [ { "model": "abstract", "script": "prompt-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Komut Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-ai2", "tier": "topic", "name": "Belirsizlik Bulutu", "icon": "☁️", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-ai2" }
+          },
+          "bank": [
+            { "q": "Hangisi daha İYİ bir prompt?", "skill": "prompt-aciklik",
+              "options": ["\"Kedilerle ilgili 3 şaşırtıcı bilgiyi çocuklara göre anlat\"", "\"Kedi\"", "\"Bana bir şeyler söyle\"", "\"Hayvan işte\""],
+              "correct": 0, "hint": "İyi prompt ne istediğini, kimin için ve nasıl istediğini söyler." },
+            { "q": "\"Bana bir hikâye yaz\" promptunun EKSİĞİ ne?", "skill": "prompt-aciklik",
+              "options": ["Konu, uzunluk ve kahraman belirtilmemiş", "Çok uzun olması", "Yanlış dilde olması", "Hiçbir eksiği yok"],
+              "correct": 0, "hint": "Nasıl bir hikâye? Kim için? Ne kadar? Ayrıntı yoksa cevap da bulanık olur." },
+            { "q": "Yapay zekâya kim olduğunu söylemek (örn. \"10 yaşındayım\") neden faydalı?", "skill": "prompt-baglam",
+              "options": ["Cevabı sana göre ayarlar", "Seni tanıyıp evine gelir", "Not defterine yazar", "Hiç faydası yok"],
+              "correct": 0, "hint": "Buna BAĞLAM denir: kime anlattığını bilen, ona göre anlatır." },
+            { "q": "Cevabı liste hâlinde istiyorsun. Prompta ne eklersin?", "skill": "prompt-baglam",
+              "options": ["\"Madde madde yaz\"", "\"Şiir gibi olsun\"", "Hiçbir şey, kendisi anlar", "\"Çok uzun yaz\""],
+              "correct": 0, "hint": "Biçimi sen seçersin: 'madde madde', 'tablo yap', 'kısa tut'..." },
+            { "q": "Yapay zekânın cevabı çok karışık geldi. En iyi hamle hangisi?", "skill": "prompt-baglam",
+              "options": ["\"Daha basit, kısa cümlelerle tekrar anlat\" derim", "Ağlarım", "Bilgisayarı kapatırım", "Aynı promptu bağırarak yazarım"],
+              "correct": 0, "hint": "Prompt bir konuşmadır: beğenmediysen düzeltme iste!" },
+            { "q": "Zor bir işi yapay zekâya nasıl yaptırırsın?", "skill": "prompt-baglam",
+              "options": ["Adım adım, parça parça isterim", "Tek kelimeyle", "Hiç yazmadan beklerim", "Sadece emoji göndererek"],
+              "correct": 0, "hint": "Büyük görev = küçük adımlar. Komutanlar da harekâtı bölümlere ayırır!" },
+            { "q": "\"Ödevimi yap\" yerine hangisi daha akıllıca bir prompt?", "skill": "prompt-aciklik",
+              "options": ["\"Bu konuyu bana örnekle açıkla, sonra kendim yazacağım\"", "\"Ödevimi yap ve kimseye söyleme\"", "\"Her şeyi sen yaz\"", "\"Öğretmenim gibi imzala\""],
+              "correct": 0, "hint": "Yapay zekâ öğretmen gibi kullanılırsa seni güçlendirir; kopya makinesi gibi kullanılırsa zayıflatır." },
+            { "q": "Örnek vermek promptu nasıl etkiler? (\"Şöyle bir tarzda: ...\")", "skill": "prompt-baglam",
+              "options": ["Ne istediğini çok daha iyi anlar", "Yapay zekâyı üzer", "Cevabı yavaşlatır", "Hiç etkilemez"],
+              "correct": 0, "hint": "Örnek göstermek, tarif etmekten güçlüdür. 'Bunun gibisinden istiyorum!'" },
+            { "q": "İlk cevap harika değilse ne yaparsın?", "skill": "prompt-aciklik",
+              "options": ["Promptu geliştirip tekrar denerim", "Pes ederim", "Aynısını 10 kez gönderirim", "Cevabı beğenmek zorundayım"],
+              "correct": 0, "hint": "Komutanlar ilk atışta tutturamayınca nişanı düzeltir. Prompt da böyle!" },
+            { "q": "Hangi prompt bir MASAL için en iyisi?", "skill": "prompt-aciklik",
+              "options": ["\"Uzayda geçen, kahramanı korkak bir robot olan, komik ve kısa bir masal yaz\"", "\"Masal\"", "\"Bir şeyler yaz işte\"", "\"Uzun yaz\""],
+              "correct": 0, "hint": "Yer + kahraman + ton + uzunluk... hepsi promptta!" }
+          ]
+        }
+      ]
+    }
+  ]
+}

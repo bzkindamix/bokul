@@ -2,11 +2,14 @@
  * Ders paketini (cephe) yorumlar: ünite → bölüm → harekât → boss akışı,
  * kilit kuralları ve ustalık kapısı. İçeriğin ANLAMINI bilmez. */
 (function (B) {
-  let lesson = null; // aktif ders paketi
+  let lesson = null;       // aktif ders paketi
+  const registry = [];     // yüklü tüm dersler (cepheler)
 
   function cfg() { return B.Content.get('config') || {}; }
 
   B.Lesson = {
+    register(lessonData) { if (lessonData) registry.push(lessonData); },
+    all() { return registry; },
     setActive(lessonData) { lesson = lessonData; },
     active() { return lesson; },
 
@@ -23,6 +26,14 @@
     findMission(sectionId, missionId) {
       const s = B.Lesson.findSection(sectionId);
       return s ? s.section.missions.find(m => m.id === missionId) : null;
+    },
+
+    /* Üretici çözümleme: { pool: "sX" } gibi bölüm referanslarını
+     * o bölümün soru bankasına çevirir (çoktan seçmeli dersler için). */
+    resolveGenerator(sectionId, gen) {
+      if (!gen || typeof gen.pool !== 'string') return gen;
+      const ref = B.Lesson.findSection(gen.pool) || B.Lesson.findSection(sectionId);
+      return { pool: (ref && ref.section.bank) || [] };
     },
 
     /* ---- Kilit kuralları ---- */
@@ -85,7 +96,9 @@
       const idx = list.findIndex(x => x.section.id === sectionId);
       const gens = [];
       list.slice(0, idx + 1).forEach(x => x.section.missions.forEach(m => {
-        if (m.generator && (m.type === 'practice' || m.type === 'guided')) gens.push(m.generator);
+        if (m.generator && (m.type === 'practice' || m.type === 'guided')) {
+          gens.push(B.Lesson.resolveGenerator(x.section.id, m.generator));
+        }
       }));
       return gens.length ? gens : [{ divisorRange: [2, 5], dividendDigits: 1 }];
     },

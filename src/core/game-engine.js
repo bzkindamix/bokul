@@ -7,10 +7,14 @@
       B.Save.load();
 
       // 2) İçerik paketleri
-      await B.Content.loadAll([
-        'config', 'dialogues', 'rewards', 'story',
+      const LESSONS = [
         'lessons/math-5-division',
-      ]);
+        'lessons/ai-101',
+        'lessons/care-101',
+        'lessons/philo-101',
+      ];
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', ...LESSONS]);
+      LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
 
       // 3) Eski kayıtları yeni alanlarla tamamla (v0.6 → v0.7 uyumu)

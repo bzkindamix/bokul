@@ -82,7 +82,7 @@
 
         const gen = reviewGens
           ? reviewGens[Math.floor(Math.random() * reviewGens.length)]
-          : mission.generator;
+          : B.Lesson.resolveGenerator(params.sectionId, mission.generator);
         const q = B.Question.generate(lesson.interactionType, gen, lesson.skills);
         B.Bus.emit(B.Events.QUESTION_STARTED, { questionId: qIndex, lessonId: lesson.id, type: mission.type });
 
@@ -105,7 +105,7 @@
         cmd.sayFrom(qIndex === 0 ? 'mission.start' : 'mission.next');
         let mistakes = 0;
 
-        view = B.LongDivisionView.create(stage, q, {
+        view = B.Question.view(lesson.interactionType)(stage, q, {
           prefilled, problemText,
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {

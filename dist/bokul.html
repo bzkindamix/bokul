@@ -555,6 +555,39 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .creator-go { margin-top: 6px; }
 .part-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; color: var(--xp); margin-top: 4px; }
 
+/* ---------- v0.9: Dünya Haritası + Çoktan Seçmeli ---------- */
+.world-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; padding: 0 16px 20px; max-width: 640px; width: 100%; margin: 0 auto; }
+.world-card {
+  display: flex; align-items: center; gap: 14px; text-align: left;
+  background: var(--bg-panel); border: 2px solid var(--line); border-radius: 18px;
+  padding: 14px 16px; transition: transform .12s, border-color .12s;
+}
+.world-card:hover, .world-card:active { border-color: var(--accent); transform: translateY(-2px); }
+.world-icon { font-size: 38px; flex: none; }
+.world-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.world-info b { font-size: 16px; }
+.world-info small { color: var(--ink-dim); font-size: 12px; }
+.world-progress { color: var(--xp); font-size: 12px; font-weight: 700; }
+.world-go { font-size: 20px; color: var(--accent); }
+
+.mc-root { flex: 1; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.mc-question {
+  background: var(--bg-panel); border-radius: 16px; padding: 18px 20px;
+  font-size: clamp(16px, 2.6vw, 20px); font-weight: 700; line-height: 1.5; text-align: center;
+}
+.mc-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 620px) { .mc-options { grid-template-columns: 1fr; } }
+.mc-opt {
+  background: var(--bg-raised); border: 2px solid var(--line); border-radius: 14px;
+  padding: 14px 12px; font-size: 15px; font-weight: 600; line-height: 1.4;
+  min-height: 56px; transition: border-color .12s, transform .1s;
+}
+.mc-opt:hover { border-color: var(--accent); }
+.mc-opt:active { transform: scale(.98); }
+.mc-opt.mc-right { border-color: var(--success); background: rgba(82, 232, 140, .15); box-shadow: 0 0 14px rgba(82, 232, 140, .5); }
+.mc-opt.mc-wrong { opacity: .35; border-color: var(--warn); text-decoration: line-through; }
+.boss-emoji { font-size: 36px; }
+
 </style>
 </head>
 <body>
@@ -1095,6 +1128,471 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 }
 
 </script>
+<script type="application/json" id="bokul-content-lessons-ai-101">
+{
+  "id": "ai-101",
+  "schema": 1,
+  "title": "Yapay Zekâ Cephesi",
+  "subtitle": "Prompt Ustalığı Harekâtı",
+  "icon": "🤖",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+
+  "outcomes": [
+    { "id": "o1", "code": "AI.1", "text": "Yapay zekânın ne olduğunu ve sınırlarını bilir; güvenli kullanır." },
+    { "id": "o2", "code": "AI.2", "text": "Açık, bağlamlı ve adım adım prompt yazar." }
+  ],
+
+  "skills": ["ai-temel", "ai-guvenlik", "prompt-aciklik", "prompt-baglam"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "ai-brief": [
+      { "say": "Brifing zamanı! YAPAY ZEKÂ, bilgisayarların örneklerden öğrenip konuşma, yazma ve tahmin yapabilmesidir. Sihir değil: milyonlarca örnekten öğrenmiş bir yardımcı." },
+      { "say": "Ama dikkat: yapay zekâ her şeyi bilmez ve bazen kendinden emin şekilde YANLIŞ söyler. Ona körü körüne inanmak yok — kontrol etmek var!" },
+      { "say": "Ve altın kural: yapay zekâya adresini, okulunu, şifreni, fotoğrafını verme. O bir araçtır; kişisel bilgiler sadece ailende kalır." }
+    ],
+    "prompt-brief": [
+      { "say": "PROMPT, yapay zekâya verdiğin komuttur. İyi prompt = iyi cevap. Kötü prompt = saçma cevap. Bu bir süper güçtür ve şimdi öğreneceksin!" },
+      { "say": "İyi promptun 3 sırrı var: 1) AÇIK ol: ne istediğini net söyle. 2) BAĞLAM ver: kim için, ne amaçla? 3) BİÇİM iste: 'madde madde yaz', 'kısa anlat' gibi." },
+      { "say": "Örnek: 'Bana bir şey anlat' KÖTÜ. 'Uzayı 10 yaşında birine, 3 kısa maddeyle, eğlenceli anlat' MÜKEMMEL. Fark bu işte!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — YAPAY ZEKÂ OKUR YAZARLIĞI",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Yapay Zekâ Nedir?",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Yapay Zekâ",
+              "segments": [ { "model": "abstract", "script": "ai-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Tanıma Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-ai1", "tier": "topic", "name": "Bilgi Kirliliği Canavarı", "icon": "🌫️", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-ai1" }
+          },
+          "bank": [
+            { "q": "Yapay zekâ nasıl öğrenir?", "skill": "ai-temel",
+              "options": ["Milyonlarca örneğe bakarak", "Uyuyarak", "Şans eseri", "İnsan beyni takarak"],
+              "correct": 0, "hint": "Biz nasıl çok soru çözerek öğreniyorsak, o da çok örnek görerek öğrenir." },
+            { "q": "Yapay zekâ hangisini YAPAMAZ?", "skill": "ai-temel",
+              "options": ["Senin yerine gerçekten hissedemez", "Metin yazamaz", "Soru cevaplayamaz", "Resim üretemez"],
+              "correct": 0, "hint": "Yazar, çizer, cevaplar... ama duyguları taklit eder, gerçekten hissetmez." },
+            { "q": "Yapay zekâ bir cevap verdi ama emin değilsin. Ne yaparsın?", "skill": "ai-guvenlik",
+              "options": ["Başka kaynaktan kontrol ederim", "Hemen herkese anlatırım", "Kesin doğrudur derim", "Bilgisayarı kapatırım"],
+              "correct": 0, "hint": "Yapay zekâ bazen kendinden emin şekilde yanılır. İyi komutan teyit eder!" },
+            { "q": "Yapay zekâya hangisini ASLA vermezsin?", "skill": "ai-guvenlik",
+              "options": ["Ev adresini ve şifreni", "Matematik sorusunu", "Hava durumu sorusunu", "Masal isteğini"],
+              "correct": 0, "hint": "Kişisel bilgiler ailede kalır. Yapay zekâ bir araçtır, sırdaş değildir." },
+            { "q": "Hangisi günlük hayatta yapay zekâ KULLANIR?", "skill": "ai-temel",
+              "options": ["Video önerileri ve sesli asistanlar", "Makarna süzgeci", "Ayakkabı bağcığı", "Kâğıt uçak"],
+              "correct": 0, "hint": "'Bunu da izle' diyen öneriler... o listeyi bir yapay zekâ hazırlıyor." },
+            { "q": "Yapay zekâ ödevinin TAMAMINI yazsın ister misin? En akıllıca cevap hangisi?", "skill": "ai-guvenlik",
+              "options": ["Hayır — ondan öğrenirim ama işi ben yaparım", "Evet, ben hiç uğraşmam", "Evet, kimse anlamaz", "Ödev nedir bilmiyorum"],
+              "correct": 0, "hint": "Kası kim çalıştırırsa güç ona gider. Beynin de kas gibidir!" },
+            { "q": "Yapay zekâ ile insan beyninin farkı nedir?", "skill": "ai-temel",
+              "options": ["İnsan az örnekle ve yaşayarak öğrenir", "Hiç fark yoktur", "Yapay zekâ her zaman daha akıllıdır", "İnsan hiç yanılmaz"],
+              "correct": 0, "hint": "Sen bir kediyi 3 kez görüp tanırsın; yapay zekâya binlerce kedi fotoğrafı gerekir." },
+            { "q": "Yapay zekânın verdiği bilgi eskimiş olabilir mi?", "skill": "ai-guvenlik",
+              "options": ["Evet — belli bir tarihe kadar olanları bilir", "Hayır, geleceği de bilir", "Hayır, her an her şeyi bilir", "Bilgi hiç eskimez"],
+              "correct": 0, "hint": "Öğrendiği tarihten sonra olanları bilemeyebilir. Güncel haber için haber kaynağı!" },
+            { "q": "İnternette bir robotla mı insanla mı konuştuğundan emin değilsin. Ne yapmalısın?", "skill": "ai-guvenlik",
+              "options": ["Kişisel bilgi vermem ve büyüğüme söylerim", "Adresimi veririm", "Fotoğraf gönderirim", "Şifremi paylaşırım"],
+              "correct": 0, "hint": "Emin olmadığın yerde kural hep aynı: paylaşma, aileye danış." },
+            { "q": "Yapay zekâ resim de üretebilir. Bu resimler...", "skill": "ai-temel",
+              "options": ["Gerçek fotoğraf sanılabilir, dikkatli olmak gerekir", "Her zaman gerçektir", "Asla gerçekçi olamaz", "Sadece siyah beyazdır"],
+              "correct": 0, "hint": "Gördüğün her görüntü gerçek olmayabilir — 'bu gerçek mi?' diye sormak süper güçtür." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Prompt Ustalığı",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Prompt",
+              "segments": [ { "model": "abstract", "script": "prompt-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Komut Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-ai2", "tier": "topic", "name": "Belirsizlik Bulutu", "icon": "☁️", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-ai2" }
+          },
+          "bank": [
+            { "q": "Hangisi daha İYİ bir prompt?", "skill": "prompt-aciklik",
+              "options": ["\"Kedilerle ilgili 3 şaşırtıcı bilgiyi çocuklara göre anlat\"", "\"Kedi\"", "\"Bana bir şeyler söyle\"", "\"Hayvan işte\""],
+              "correct": 0, "hint": "İyi prompt ne istediğini, kimin için ve nasıl istediğini söyler." },
+            { "q": "\"Bana bir hikâye yaz\" promptunun EKSİĞİ ne?", "skill": "prompt-aciklik",
+              "options": ["Konu, uzunluk ve kahraman belirtilmemiş", "Çok uzun olması", "Yanlış dilde olması", "Hiçbir eksiği yok"],
+              "correct": 0, "hint": "Nasıl bir hikâye? Kim için? Ne kadar? Ayrıntı yoksa cevap da bulanık olur." },
+            { "q": "Yapay zekâya kim olduğunu söylemek (örn. \"10 yaşındayım\") neden faydalı?", "skill": "prompt-baglam",
+              "options": ["Cevabı sana göre ayarlar", "Seni tanıyıp evine gelir", "Not defterine yazar", "Hiç faydası yok"],
+              "correct": 0, "hint": "Buna BAĞLAM denir: kime anlattığını bilen, ona göre anlatır." },
+            { "q": "Cevabı liste hâlinde istiyorsun. Prompta ne eklersin?", "skill": "prompt-baglam",
+              "options": ["\"Madde madde yaz\"", "\"Şiir gibi olsun\"", "Hiçbir şey, kendisi anlar", "\"Çok uzun yaz\""],
+              "correct": 0, "hint": "Biçimi sen seçersin: 'madde madde', 'tablo yap', 'kısa tut'..." },
+            { "q": "Yapay zekânın cevabı çok karışık geldi. En iyi hamle hangisi?", "skill": "prompt-baglam",
+              "options": ["\"Daha basit, kısa cümlelerle tekrar anlat\" derim", "Ağlarım", "Bilgisayarı kapatırım", "Aynı promptu bağırarak yazarım"],
+              "correct": 0, "hint": "Prompt bir konuşmadır: beğenmediysen düzeltme iste!" },
+            { "q": "Zor bir işi yapay zekâya nasıl yaptırırsın?", "skill": "prompt-baglam",
+              "options": ["Adım adım, parça parça isterim", "Tek kelimeyle", "Hiç yazmadan beklerim", "Sadece emoji göndererek"],
+              "correct": 0, "hint": "Büyük görev = küçük adımlar. Komutanlar da harekâtı bölümlere ayırır!" },
+            { "q": "\"Ödevimi yap\" yerine hangisi daha akıllıca bir prompt?", "skill": "prompt-aciklik",
+              "options": ["\"Bu konuyu bana örnekle açıkla, sonra kendim yazacağım\"", "\"Ödevimi yap ve kimseye söyleme\"", "\"Her şeyi sen yaz\"", "\"Öğretmenim gibi imzala\""],
+              "correct": 0, "hint": "Yapay zekâ öğretmen gibi kullanılırsa seni güçlendirir; kopya makinesi gibi kullanılırsa zayıflatır." },
+            { "q": "Örnek vermek promptu nasıl etkiler? (\"Şöyle bir tarzda: ...\")", "skill": "prompt-baglam",
+              "options": ["Ne istediğini çok daha iyi anlar", "Yapay zekâyı üzer", "Cevabı yavaşlatır", "Hiç etkilemez"],
+              "correct": 0, "hint": "Örnek göstermek, tarif etmekten güçlüdür. 'Bunun gibisinden istiyorum!'" },
+            { "q": "İlk cevap harika değilse ne yaparsın?", "skill": "prompt-aciklik",
+              "options": ["Promptu geliştirip tekrar denerim", "Pes ederim", "Aynısını 10 kez gönderirim", "Cevabı beğenmek zorundayım"],
+              "correct": 0, "hint": "Komutanlar ilk atışta tutturamayınca nişanı düzeltir. Prompt da böyle!" },
+            { "q": "Hangi prompt bir MASAL için en iyisi?", "skill": "prompt-aciklik",
+              "options": ["\"Uzayda geçen, kahramanı korkak bir robot olan, komik ve kısa bir masal yaz\"", "\"Masal\"", "\"Bir şeyler yaz işte\"", "\"Uzun yaz\""],
+              "correct": 0, "hint": "Yer + kahraman + ton + uzunluk... hepsi promptta!" }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-lessons-care-101">
+{
+  "id": "care-101",
+  "schema": 1,
+  "title": "Kişisel Bakım Cephesi",
+  "subtitle": "Mikroplara Karşı Harekât",
+  "icon": "🧼",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+
+  "outcomes": [
+    { "id": "o1", "code": "CARE.1", "text": "Hijyen kurallarını bilir ve uygular." },
+    { "id": "o2", "code": "CARE.2", "text": "Kişisel bakım ve düzen alışkanlıkları geliştirir." }
+  ],
+
+  "skills": ["hijyen", "dis-bakim", "bakim-duzen", "uyku-saglik"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "hijyen-brief": [
+      { "say": "Brifing! Görünmez düşmanlarımız var: MİKROPLAR. Gözle görülmezler ama kapı kollarında, telefonlarda, ellerimizde gezerler. Paniğe gerek yok — silahımız çok güçlü: SABUN!" },
+      { "say": "El yıkamanın altın kuralı: sabunla EN AZ 20 SANİYE. Bu, iki kere 'İyi ki doğdun' şarkısı kadardır. Parmak araları ve başparmak unutulmaz — mikroplar en çok oraya saklanır!" },
+      { "say": "Ne zaman? Yemekten önce, tuvaletten sonra, dışarıdan gelince, hapşırınca. Dişler ise günde İKİ kez, İKİŞER dakika fırçalanır. Bu emirler tartışılmaz, Komutan bile uyar!" }
+    ],
+    "bakim-brief": [
+      { "say": "İkinci brifing: bakım sadece temizlik değildir — kendine değer vermektir. Düzenli banyo, temiz kıyafet, kesilmiş tırnaklar... Bunlar 'kendime iyi bakıyorum' demenin yollarıdır." },
+      { "say": "Ve gizli silah: UYKU! Senin yaşında bir komutanın günde 9-11 saat uykuya ihtiyacı var. Beyin uykuda öğrendiklerini kaydeder — yani uyumak da ders çalışmaktır!" },
+      { "say": "Son emir: odan senin üssündür. Üssü dağınık olan komutan, kalemini savaşta bulamaz. Her akşam 5 dakikalık toparlama, sabah 15 dakika kazandırır!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — TEMİZLİK VE BAKIM",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Hijyen Harekâtı",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Mikroplar",
+              "segments": [ { "model": "abstract", "script": "hijyen-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Sabun Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-care1", "tier": "topic", "name": "Mikrop Kralı", "icon": "🦠", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-care1" }
+          },
+          "bank": [
+            { "q": "Eller sabunla en az kaç saniye yıkanmalı?", "skill": "hijyen",
+              "options": ["20 saniye", "2 saniye", "5 saniye", "Sadece suya tutmak yeter"],
+              "correct": 0, "hint": "İki kere 'İyi ki doğdun' söyleyecek kadar uzun!" },
+            { "q": "Hangisinden SONRA eller mutlaka yıkanır?", "skill": "hijyen",
+              "options": ["Tuvaletten sonra", "Uyanınca su içince", "Kitap okuyunca", "Televizyon izleyince"],
+              "correct": 0, "hint": "Tuvalet + yemek öncesi + dışarıdan gelince = kesin emir." },
+            { "q": "Hapşırırken ne yapmalısın?", "skill": "hijyen",
+              "options": ["Dirseğimin içine hapşırırım", "Ellerime hapşırıp devam ederim", "Arkadaşıma doğru hapşırırım", "Hiç kapatmam"],
+              "correct": 0, "hint": "Dirsek kapağı: mikroplar ellerine bulaşmaz, kimseye taşımazsın." },
+            { "q": "Mikroplar en çok nerede gizlenir?", "skill": "hijyen",
+              "options": ["Parmak araları ve tırnak dipleri", "Sadece ayakkabıda", "Sadece havada", "Sabunun içinde"],
+              "correct": 0, "hint": "Bu yüzden el yıkarken parmak araları da ovulur!" },
+            { "q": "Dişler günde kaç kez ve ne kadar fırçalanmalı?", "skill": "dis-bakim",
+              "options": ["Günde 2 kez, 2'şer dakika", "Haftada 1 kez, 10 saniye", "Ayda bir, yarım saat", "Sadece bayramlarda"],
+              "correct": 0, "hint": "2×2 kuralı: sabah ve akşam, ikişer dakika." },
+            { "q": "Diş fırçalamazsan ne olur?", "skill": "dis-bakim",
+              "options": ["Mikroplar dişte delik (çürük) açar", "Dişler daha çok parlar", "Hiçbir şey olmaz", "Dişler kendini fırçalar"],
+              "correct": 0, "hint": "Şeker artıkları mikropların ziyafetidir; ziyafetin faturası çürüktür." },
+            { "q": "Başkasının hangisini KULLANMAZSIN?", "skill": "hijyen",
+              "options": ["Diş fırçasını", "Kitabını", "Topunu", "Boya kalemini"],
+              "correct": 0, "hint": "Diş fırçası, havlu, bardak... ağza ve tene değenler kişiseldir." },
+            { "q": "Yemekten ÖNCE el yıkamak neden önemli?", "skill": "hijyen",
+              "options": ["Eldeki mikroplar yemekle mideye gider", "Eller güzel koksun diye", "Sofra süslensin diye", "Önemli değil"],
+              "correct": 0, "hint": "Mikroba servis yolu açma: önce sabun, sonra çatal!" },
+            { "q": "Tırnaklar neden kısa ve temiz olmalı?", "skill": "hijyen",
+              "options": ["Uzun tırnak mikrop deposudur", "Kısa tırnak modası geçti", "Uzun tırnak daha hızlı yazar", "Fark etmez"],
+              "correct": 0, "hint": "Tırnak dibi, mikropların en sevdiği saklanma üssüdür." },
+            { "q": "Okuldan eve geldin. İlk hamle?", "skill": "hijyen",
+              "options": ["Ellerimi sabunla yıkarım", "Doğrudan buzdolabına giderim", "Elimi silmeden atıştırırım", "Ayakkabıyla koltuğa otururum"],
+              "correct": 0, "hint": "Dışarının bütün mikropları ellerinde otostop çekiyor!" }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Bakım ve Düzen",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Bakım",
+              "segments": [ { "model": "abstract", "script": "bakim-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Bakım Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-care2", "tier": "topic", "name": "Dağınıklık Devi", "icon": "🌪️", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-care2" }
+          },
+          "bank": [
+            { "q": "Senin yaşındaki bir komutanın kaç saat uykuya ihtiyacı var?", "skill": "uyku-saglik",
+              "options": ["9-11 saat", "3-4 saat", "1 saat yeter", "Uyku gereksizdir"],
+              "correct": 0, "hint": "Beyin, öğrendiklerini uykuda kaydeder — uyku da ders çalışmaktır!" },
+            { "q": "Yatmadan önce ekrana bakmak uykuyu nasıl etkiler?", "skill": "uyku-saglik",
+              "options": ["Beyni uyanık tutar, uykuyu zorlaştırır", "Daha güzel uyutur", "Hiç etkilemez", "Rüyaları renklendirir"],
+              "correct": 0, "hint": "Ekran ışığı beyne 'gündüz devam ediyor' yalanı söyler." },
+            { "q": "Saçlar neden düzenli yıkanır?", "skill": "bakim-duzen",
+              "options": ["Kir ve yağdan temizlenmek için", "Daha hızlı uzasın diye", "Renk değiştirsin diye", "Gerek yoktur"],
+              "correct": 0, "hint": "Saç da ter ve toz toplar — üs gibi düzenli temizlik ister." },
+            { "q": "Çorap ve iç çamaşırı ne sıklıkla değişir?", "skill": "bakim-duzen",
+              "options": ["Her gün", "Ayda bir", "Yılda bir", "Delinene kadar değişmez"],
+              "correct": 0, "hint": "Her gün taze başlangıç: temiz çorap, temiz çamaşır!" },
+            { "q": "Odanı toplamanın gizli faydası nedir?", "skill": "bakim-duzen",
+              "options": ["Aradığını hemen bulursun, kafan rahatlar", "Oda küsmez", "Duvarlar renklenir", "Hiç faydası yok"],
+              "correct": 0, "hint": "Düzenli üs = hızlı komutan. Kalem aramakla harekât kaybedilmez!" },
+            { "q": "Banyo yapmanın en doğru zamanı hangisi DEĞİLDİR?", "skill": "bakim-duzen",
+              "options": ["Hiç yapmamak", "Terleyince", "Spor sonrası", "Düzenli aralıklarla"],
+              "correct": 0, "hint": "Diğer üçü doğru zaman; 'hiç' ise Mikrop Kralı'nın hayali!" },
+            { "q": "Güneşli bir günde dışarı çıkarken ne akıllıcadır?", "skill": "uyku-saglik",
+              "options": ["Su şişesi almak ve gerekirse şapka takmak", "Kat kat mont giymek", "Hiç su içmemek", "Gözünü güneşe dikmek"],
+              "correct": 0, "hint": "Su, vücudun yakıtıdır; komutan yakıtsız harekâta çıkmaz." },
+            { "q": "Kıyafetin kirlendi. Ne yaparsın?", "skill": "bakim-duzen",
+              "options": ["Kirli sepetine atar, temizini giyerim", "Üstümde kurumasını beklerim", "Yatağın altına saklarım", "Ters çevirip devam ederim"],
+              "correct": 0, "hint": "Kirlinin adresi bellidir: kirli sepeti. Yatak altı üs değildir!" },
+            { "q": "Sabah rutini hangisi olursa güne en iyi başlarsın?", "skill": "bakim-duzen",
+              "options": ["Yüzünü yıka, dişini fırçala, kahvaltı yap", "Sadece telefona bak", "Kahvaltıyı atla, koş", "Pijamayla okula git"],
+              "correct": 0, "hint": "Üç adımlık sabah harekâtı: yüz, diş, kahvaltı. Sonra dünya senindir!" },
+            { "q": "Su içmek neden önemli?", "skill": "uyku-saglik",
+              "options": ["Vücut ve beyin susuz iyi çalışmaz", "Sadece yazın gerekir", "Su modası olduğu için", "Önemli değildir"],
+              "correct": 0, "hint": "Beynin bile büyük bölümü su! Susuz komutan yavaş düşünür." }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-lessons-philo-101">
+{
+  "id": "philo-101",
+  "schema": 1,
+  "title": "Felsefe Cephesi",
+  "subtitle": "Büyük Sorular Harekâtı",
+  "icon": "🦉",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+
+  "outcomes": [
+    { "id": "o1", "code": "PHI.1", "text": "Soru sormanın değerini bilir; iyi soru ile ezber cevabı ayırt eder." },
+    { "id": "o2", "code": "PHI.2", "text": "Gerekçe gösterme, dinleme ve düşünce deneyleriyle akıl yürütür." }
+  ],
+
+  "skills": ["soru-sorma", "mantik", "kavram", "empati"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "soru-brief": [
+      { "say": "Bu cephe farklı, asker. Burada düşman yok — sadece BÜYÜK SORULAR var. Felsefe, cevapları ezberlemek değil, güzel soru sormaktır." },
+      { "say": "Binlerce yıl önce Sokrates adında bir bilge, çarşıda insanlara sadece SORU sorardı: 'Adalet nedir? Cesaret nedir?' Kimse tam cevaplayamazdı — ve işte o an düşünmeye başlarlardı!" },
+      { "say": "Kuralımız şu: 'Neden?' diye sormak asla ayıp değildir. Ayıp olan, hiç merak etmemektir. Şimdi filozof gibi düşünme zamanı!" }
+    ],
+    "dusunce-brief": [
+      { "say": "İkinci brifing: filozofların gizli silahı GEREKÇEDİR. 'Bence böyle' demek yetmez — 'ÇÜNKÜ...' diyebilmek gerekir. Çünkü'sü olmayan fikir, cephanesiz tüfektir." },
+      { "say": "Bir silah daha: DÜŞÜNCE DENEYİ. 'Ya herkes yalan söyleseydi?' gibi hayali sorularla fikirlerimizi test ederiz. Laboratuvar gerekmez — beynin yeter!" },
+      { "say": "Ve unutma: seninle aynı düşünmeyen kişi düşmanın değildir. Filozoflar fikirlerle güreşir, insanlarla değil. Dinlemek de düşünmenin yarısıdır." }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — KÜÇÜK FİLOZOF",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Soru Sorma Sanatı",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Felsefe",
+              "segments": [ { "model": "abstract", "script": "soru-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Merak Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-phi1", "tier": "topic", "name": "Cevapsızlık Gölgesi", "icon": "❓", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-phi1" }
+          },
+          "bank": [
+            { "q": "Felsefe en çok neye benzer?", "skill": "soru-sorma",
+              "options": ["Güzel soru sorma sanatına", "Ezber yarışmasına", "Şans oyununa", "Koşu yarışına"],
+              "correct": 0, "hint": "Filozofun aleti cevap anahtarı değil, soru işaretidir." },
+            { "q": "Sokrates çarşıda ne yapardı?", "skill": "soru-sorma",
+              "options": ["İnsanlara sorular sorup düşündürürdü", "Cevapları satardı", "Herkesi susturur, ders anlatırdı", "Koşu yarışı düzenlerdi"],
+              "correct": 0, "hint": "Onun yöntemi anlatmak değil, SORMAKTI." },
+            { "q": "Hangisi FELSEFİ bir sorudur?", "skill": "soru-sorma",
+              "options": ["\"Adalet nedir?\"", "\"Saat kaç?\"", "\"Türkiye'nin başkenti neresi?\"", "\"2+2 kaç eder?\""],
+              "correct": 0, "hint": "Cevabı takvimde, haritada veya hesapta olmayan sorular felsefenin alanıdır." },
+            { "q": "\"Neden?\" diye sormak...", "skill": "soru-sorma",
+              "options": ["Merakın ve düşünmenin başlangıcıdır", "Ayıptır", "Sadece küçük çocuklara özgüdür", "Zaman kaybıdır"],
+              "correct": 0, "hint": "Baba Komutan'ın kuralı: ayıp olan sormak değil, hiç merak etmemektir." },
+            { "q": "Bir sorunun cevabını bilmiyorsan en dürüst tavır hangisi?", "skill": "mantik",
+              "options": ["\"Bilmiyorum, düşünelim\" demek", "Uydurmak", "Konuyu değiştirmek", "Bileni susturmak"],
+              "correct": 0, "hint": "Sokrates'in ünü şuradandı: 'Bilmediğimi biliyorum' diyebilmek." },
+            { "q": "\"Herkes öyle diyor\" bir fikri doğru yapar mı?", "skill": "mantik",
+              "options": ["Hayır — kalabalık da yanılabilir", "Evet, çoğunluk hep haklıdır", "Evet, itiraz yasaktır", "Sorunun cevabı yoktur"],
+              "correct": 0, "hint": "Bir zamanlar herkes Dünya'yı düz sanıyordu!" },
+            { "q": "İyi bir soru sana ne kazandırır?", "skill": "soru-sorma",
+              "options": ["Yeni düşünme kapıları açar", "Sadece not kazandırır", "Hiçbir şey", "Karnını doyurur"],
+              "correct": 0, "hint": "İyi cevap bir kapıyı kapatır; iyi soru üç kapı açar." },
+            { "q": "Merak eden biri için dünya nasıldır?", "skill": "soru-sorma",
+              "options": ["Keşfedilecek dev bir bilmecedir", "Sıkıcıdır", "Tamamı çözülmüştür", "Sorulmaya değmez"],
+              "correct": 0, "hint": "Merak, sıradan bir taşı bile hazineye çevirir." },
+            { "q": "Filozoflar fikir tartışırken neyle 'güreşir'?", "skill": "empati",
+              "options": ["Fikirlerle — insanlarla değil", "İnsanlarla", "Masalarla", "Kimseyle konuşmazlar"],
+              "correct": 0, "hint": "Hedef karşındakini yenmek değil, birlikte doğruya yaklaşmaktır." },
+            { "q": "\"Mutluluk nedir?\" sorusunun tek bir doğru cevabı var mıdır?", "skill": "kavram",
+              "options": ["Hayır — herkes düşünüp kendi gerekçesini bulmalı", "Evet, kitabın arkasında yazar", "Evet, öğretmen söyler", "Sormak yasaktır"],
+              "correct": 0, "hint": "Bazı sorular pusula gibidir: cevabı değil, yönü gösterir." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Düşünce Deneyleri",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Gerekçe",
+              "segments": [ { "model": "abstract", "script": "dusunce-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Mantık Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-phi2", "tier": "topic", "name": "Karışık Fikirler Ejderi", "icon": "🌀", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-phi2" }
+          },
+          "bank": [
+            { "q": "\"Bence böyle ÇÜNKÜ...\" demek neden güçlüdür?", "skill": "mantik",
+              "options": ["Fikrine gerekçe verir, tartışılabilir yapar", "Cümleyi uzatır", "Kimse itiraz edemez", "Sihirli bir kelimedir"],
+              "correct": 0, "hint": "Çünkü'sü olmayan fikir, cephanesiz tüfektir." },
+            { "q": "Düşünce deneyi nedir?", "skill": "mantik",
+              "options": ["\"Ya şöyle olsaydı?\" diye hayalde fikir test etmek", "Kimya deneyi", "Uyku testi", "Bilgisayar oyunu"],
+              "correct": 0, "hint": "Laboratuvarı beynin olan deneyler!" },
+            { "q": "\"Ya herkes yalan söyleseydi?\" deneyi bize ne gösterir?", "skill": "mantik",
+              "options": ["Kimse kimseye güvenemezdi — dürüstlük bu yüzden değerli", "Yalan eğlenceli olurdu", "Hiçbir şey değişmezdi", "Herkes zengin olurdu"],
+              "correct": 0, "hint": "Bir kuralın değerini görmek için 'herkes tersini yapsa?' diye sor." },
+            { "q": "Arkadaşın seninle aynı fikirde değil. Filozofça tavır hangisi?", "skill": "empati",
+              "options": ["Gerekçesini dinler, kendi gerekçemi söylerim", "Küserim", "Bağırırım", "Bir daha konuşmam"],
+              "correct": 0, "hint": "Dinlemek de düşünmenin yarısıdır." },
+            { "q": "Adil paylaşım hangisidir: 12 kurabiye, 3 arkadaş?", "skill": "kavram",
+              "options": ["Herkese 4 — eşit bölmek", "En büyüğe 10", "İlk kapana hepsi", "Kurabiyeleri saklamak"],
+              "correct": 0, "hint": "Adaletin matematiği çoğu zaman BÖLMEDİR. Tanıdık geldi mi?" },
+            { "q": "Kural olmasa bile doğru olanı yapmak neyin işaretidir?", "skill": "kavram",
+              "options": ["Karakterin — asıl dürüstlük görünmezken belli olur", "Korkaklığın", "Şanssızlığın", "Unutkanlığın"],
+              "correct": 0, "hint": "Kimse bakmıyorken kim olduğun, gerçekte kim olduğundur." },
+            { "q": "\"Bütün kuşlar uçar. Penguen kuştur. Öyleyse penguen uçar.\" Bu akıl yürütmenin sorunu ne?", "skill": "mantik",
+              "options": ["İlk cümle yanlış — bazı kuşlar uçamaz", "Penguen kuş değildir", "Hiç sorunu yok", "Penguenler gizlice uçar"],
+              "correct": 0, "hint": "Akıl yürütme zinciri, en zayıf halkası kadar sağlamdır: 'bütün' demeden önce düşün!" },
+            { "q": "Mutluluk daha çok neye benzer?", "skill": "kavram",
+              "options": ["Kelebeğe — kovalayınca kaçar, sen işine bakınca konar", "Cebe konan taşa", "Markette satılan kutuya", "Wi-Fi şifresine"],
+              "correct": 0, "hint": "Filozoflar buna benzetme der: zor kavramı tanıdık bir resimle düşünmek." },
+            { "q": "Hata yapmak düşünen biri için nedir?", "skill": "mantik",
+              "options": ["Öğrenmenin ham maddesidir", "Utançtır, saklanmalıdır", "Sonun başlangıcıdır", "Başkasının suçudur"],
+              "correct": 0, "hint": "Bu oyunun anayasası da öyle demiyor mu? Yanlış = istihbarat!" },
+            { "q": "Empati ne demektir?", "skill": "empati",
+              "options": ["Kendini başkasının yerine koyup onun gibi hissetmeyi denemek", "Herkesle aynı fikirde olmak", "Hızlı koşmak", "Çok konuşmak"],
+              "correct": 0, "hint": "Bir günlüğüne arkadaşının ayakkabılarıyla yürüdüğünü hayal et." }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+</script>
 <script>
 /* === src/core/events.js === */
 /* BOKUL — Olay Sözlüğü
@@ -1607,6 +2105,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
  * Motor tiplerin içini bilmez — Open/Closed. */
 (function (B) {
   const types = new Map();
+  const views = new Map(); // tip adı -> görünüm oluşturucu (container, q, opts) => ctl
 
   B.Question = {
     registerType(name, impl) {
@@ -1614,6 +2113,13 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         if (typeof impl[k] !== 'function') throw new Error('Soru tipi eksik metod: ' + name + '.' + k);
       });
       types.set(name, impl);
+    },
+
+    registerView(name, createFn) { views.set(name, createFn); },
+    view(name) {
+      const v = views.get(name);
+      if (!v) throw new Error('Kayıtsız soru görünümü: ' + name);
+      return v;
     },
 
     type(name) {
@@ -1640,11 +2146,14 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
  * Ders paketini (cephe) yorumlar: ünite → bölüm → harekât → boss akışı,
  * kilit kuralları ve ustalık kapısı. İçeriğin ANLAMINI bilmez. */
 (function (B) {
-  let lesson = null; // aktif ders paketi
+  let lesson = null;       // aktif ders paketi
+  const registry = [];     // yüklü tüm dersler (cepheler)
 
   function cfg() { return B.Content.get('config') || {}; }
 
   B.Lesson = {
+    register(lessonData) { if (lessonData) registry.push(lessonData); },
+    all() { return registry; },
     setActive(lessonData) { lesson = lessonData; },
     active() { return lesson; },
 
@@ -1661,6 +2170,14 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     findMission(sectionId, missionId) {
       const s = B.Lesson.findSection(sectionId);
       return s ? s.section.missions.find(m => m.id === missionId) : null;
+    },
+
+    /* Üretici çözümleme: { pool: "sX" } gibi bölüm referanslarını
+     * o bölümün soru bankasına çevirir (çoktan seçmeli dersler için). */
+    resolveGenerator(sectionId, gen) {
+      if (!gen || typeof gen.pool !== 'string') return gen;
+      const ref = B.Lesson.findSection(gen.pool) || B.Lesson.findSection(sectionId);
+      return { pool: (ref && ref.section.bank) || [] };
     },
 
     /* ---- Kilit kuralları ---- */
@@ -1723,7 +2240,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       const idx = list.findIndex(x => x.section.id === sectionId);
       const gens = [];
       list.slice(0, idx + 1).forEach(x => x.section.missions.forEach(m => {
-        if (m.generator && (m.type === 'practice' || m.type === 'guided')) gens.push(m.generator);
+        if (m.generator && (m.type === 'practice' || m.type === 'guided')) {
+          gens.push(B.Lesson.resolveGenerator(x.section.id, m.generator));
+        }
       }));
       return gens.length ? gens : [{ divisorRange: [2, 5], dividendDigits: 1 }];
     },
@@ -2440,6 +2959,98 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   }
 
   B.LongDivisionView = { create };
+  B.Question.registerView('long-division', create);
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/interactions/multiple-choice/logic.js === */
+/* BOKUL — Çoktan Seçmeli Soru Tipi (mantık — DOM YOK)
+ * Soru bankası tabanlı dersler için (Yapay Zekâ, Kişisel Bakım, Felsefe...).
+ * Bank öğesi: { q, options: [...], correct: <doğru seçeneğin indeksi>,
+ *               skill: "beceri-adı", hint: "yanlışta gösterilecek ipucu" } */
+(function (B) {
+
+  /* params: { pool: [bankItem...] } — havuzdan rastgele soru seçer.
+   * Aynı sorunun art arda gelmemesi için son seçilenler hatırlanır. */
+  const recent = [];
+  function generate(params) {
+    const pool = params.pool || [];
+    if (!pool.length) throw new Error('Çoktan seçmeli havuz boş!');
+    let item, guard = 30;
+    do { item = pool[Math.floor(Math.random() * pool.length)]; }
+    while (recent.includes(item.q) && --guard);
+    recent.push(item.q);
+    if (recent.length > Math.min(6, pool.length - 1)) recent.shift();
+    return { item, params };
+  }
+
+  const impl = {
+    generate,
+    /* Tek mikro-adım: cevap seçimi. skill, ustalık takibine gider. */
+    getSteps(q) { return [{ type: q.item.skill || 'answer', expected: q.item.correct }]; },
+    validateStep(q, step, answer) { return { correct: Number(answer) === q.item.correct }; },
+  };
+
+  if (B && B.Question) B.Question.registerType('multiple-choice', impl);
+  if (typeof module !== 'undefined' && module.exports) module.exports = { generate, impl };
+})(typeof window !== 'undefined' ? (window.BOKUL = window.BOKUL || {}) : null);
+
+/* === src/interactions/multiple-choice/view.js === */
+/* BOKUL — Çoktan Seçmeli Görünüm
+ * Soru kartı + karıştırılmış seçenek butonları. Yanlış seçenek sönerek
+ * devre dışı kalır (cevap asla söylenmez, eleyerek öğrenme); Komutan
+ * sorunun kendi ipucunu verir. */
+(function (B) {
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function create(container, q, opts) {
+    opts = opts || {};
+    const item = q.item;
+    const step = B.Question.steps(q)[0];
+    let attempt = 0, mistakes = 0, done = false;
+
+    container.innerHTML = '';
+    const root = el('div', 'mc-root');
+    root.appendChild(el('div', 'mc-question', item.q));
+
+    // Seçenekleri karıştır ama orijinal indeksleri koru
+    const order = item.options.map((_, i) => i).sort(() => Math.random() - 0.5);
+    const grid = el('div', 'mc-options');
+    order.forEach(origIdx => {
+      const btn = el('button', 'mc-opt', item.options[origIdx]);
+      btn.onclick = () => {
+        if (done || btn.disabled) return;
+        attempt++;
+        const { correct } = B.Question.validate(q, step, origIdx);
+        if (opts.onAnswer) opts.onAnswer(step, correct, attempt);
+        if (correct) {
+          done = true;
+          btn.classList.add('mc-right');
+          setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes }); }, 650);
+        } else {
+          mistakes++;
+          btn.disabled = true;
+          btn.classList.add('mc-wrong');
+          root.classList.remove('ld-shake'); void root.offsetWidth;
+          root.classList.add('ld-shake');
+          if (opts.say) opts.say(item.hint || B.Dialogue.pick('wrong.soft'));
+        }
+      };
+      grid.appendChild(btn);
+    });
+    root.appendChild(grid);
+    container.appendChild(root);
+
+    return { destroy() { done = true; container.innerHTML = ''; } };
+  }
+
+  B.MultipleChoiceView = { create };
+  B.Question.registerView('multiple-choice', create);
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/animation-engine.js === */
@@ -2612,8 +3223,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       '</svg>',
   };
 
+  /* Bilinmeyen boss'lar için null döner; ekran ikon emojisine düşer */
   function boss(id) {
-    return bosses[id] || bosses['boss-s1'];
+    return bosses[id] || null;
   }
 
   B.SvgArt = { commander, boss };
@@ -3192,7 +3804,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         '<button class="btn door door-side door-locker">🎒<br>DOLAP</button>';
       root.appendChild(doors);
 
-      doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('map'); };
+      doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('world'); };
       doors.querySelector('.door-locker').onclick = () => { B.Audio.play('tick'); B.UI.show('locker'); };
       const dq = doors.querySelector('.door-quests');
       dq.classList.add('door-locked');
@@ -3211,6 +3823,57 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   });
 })(window.BOKUL = window.BOKUL || {});
 
+/* === src/ui/screens/world-screen.js === */
+/* BOKUL — Dünya Haritası (Cephe Seçimi)
+ * Her ders bir "Cephe" kartıdır. Kart seçilince o ders aktif olur ve
+ * bölüm haritası açılır. Yeni ders eklemek = content/lessons/'a JSON eklemek. */
+(function (B) {
+
+  B.UI.registerScreen('world', {
+    enter(root) {
+      const hud = B.UI.buildHud(root, { backTo: 'home' });
+      this._hud = hud;
+
+      const title = document.createElement('div');
+      title.className = 'map-title';
+      title.textContent = '🌌 CEPHE SEÇ — Hangi kristal parçasının peşindesin?';
+      root.appendChild(title);
+
+      const list = document.createElement('div');
+      list.className = 'world-list';
+      root.appendChild(list);
+
+      (B.Lesson.all() || []).forEach(lesson => {
+        // Dersin toplam yıldız / maksimum yıldız hesabı
+        let stars = 0, max = 0, bosses = 0, bossesDone = 0;
+        lesson.units.forEach(u => u.sections.forEach(s => {
+          max += s.missions.length * 3;
+          stars += B.State.sectionStars(lesson.id, s.id);
+          bosses++;
+          if (B.State.sectionProgress(lesson.id, s.id).bossDefeated) bossesDone++;
+        }));
+
+        const card = document.createElement('button');
+        card.className = 'world-card';
+        card.innerHTML =
+          '<span class="world-icon">' + lesson.icon + '</span>' +
+          '<span class="world-info"><b>' + lesson.title + '</b>' +
+          '<small>' + lesson.subtitle + '</small>' +
+          '<span class="world-progress">⭐ ' + stars + '/' + max +
+          ' · 💠 ' + bossesDone + '/' + bosses + ' kristal</span></span>' +
+          '<span class="world-go">▶</span>';
+        card.onclick = () => {
+          B.Audio.play('tick');
+          B.Lesson.setActive(lesson);
+          B.UI.show('map');
+        };
+        list.appendChild(card);
+      });
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
 /* === src/ui/screens/map-screen.js === */
 /* BOKUL — Harita Ekranı
  * Ünite → bölüm kartları → harekât düğümleri patikası + boss kapısı. */
@@ -3220,7 +3883,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   B.UI.registerScreen('map', {
     enter(root) {
       const lesson = B.Lesson.active();
-      const hud = B.UI.buildHud(root, { backTo: 'home' });
+      const hud = B.UI.buildHud(root, { backTo: 'world' });
 
       const title = document.createElement('div');
       title.className = 'map-title';
@@ -3391,7 +4054,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
         const gen = reviewGens
           ? reviewGens[Math.floor(Math.random() * reviewGens.length)]
-          : mission.generator;
+          : B.Lesson.resolveGenerator(params.sectionId, mission.generator);
         const q = B.Question.generate(lesson.interactionType, gen, lesson.skills);
         B.Bus.emit(B.Events.QUESTION_STARTED, { questionId: qIndex, lessonId: lesson.id, type: mission.type });
 
@@ -3414,7 +4077,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         cmd.sayFrom(qIndex === 0 ? 'mission.start' : 'mission.next');
         let mistakes = 0;
 
-        view = B.LongDivisionView.create(stage, q, {
+        view = B.Question.view(lesson.interactionType)(stage, q, {
           prefilled, problemText,
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {
@@ -3513,7 +4176,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       const head = document.createElement('div');
       head.className = 'boss-head' + (isUnit ? ' boss-unit' : '');
       head.innerHTML =
-        '<div class="boss-face boss-enter">' + B.SvgArt.boss(boss.id) + '</div>' +
+        '<div class="boss-face boss-enter">' +
+          (B.SvgArt.boss(boss.id) || '<span class="boss-emoji">' + boss.icon + '</span>') + '</div>' +
         '<div class="boss-info"><div class="boss-name">' + boss.name.toUpperCase() +
         (isUnit ? ' — ⚔️ ÜNİTE BOSS\'U' : ' — KONU BOSS\'U') + '</div>' +
         '<div class="boss-hp"><i></i></div></div>' +
@@ -3561,10 +4225,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       function nextQuestion() {
         if (over) return;
         if (view) { view.destroy(); view = null; }
-        const q = B.Question.generate(lesson.interactionType, boss.generator, lesson.skills);
+        const q = B.Question.generate(lesson.interactionType,
+          B.Lesson.resolveGenerator(params.sectionId, boss.generator), lesson.skills);
         let mistakes = 0;
 
-        view = B.LongDivisionView.create(stage, q, {
+        view = B.Question.view(lesson.interactionType)(stage, q, {
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {
             B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });
@@ -4087,10 +4752,14 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       B.Save.load();
 
       // 2) İçerik paketleri
-      await B.Content.loadAll([
-        'config', 'dialogues', 'rewards', 'story',
+      const LESSONS = [
         'lessons/math-5-division',
-      ]);
+        'lessons/ai-101',
+        'lessons/care-101',
+        'lessons/philo-101',
+      ];
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', ...LESSONS]);
+      LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
 
       // 3) Eski kayıtları yeni alanlarla tamamla (v0.6 → v0.7 uyumu)

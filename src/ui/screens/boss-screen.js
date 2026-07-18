@@ -28,7 +28,8 @@
       const head = document.createElement('div');
       head.className = 'boss-head' + (isUnit ? ' boss-unit' : '');
       head.innerHTML =
-        '<div class="boss-face boss-enter">' + B.SvgArt.boss(boss.id) + '</div>' +
+        '<div class="boss-face boss-enter">' +
+          (B.SvgArt.boss(boss.id) || '<span class="boss-emoji">' + boss.icon + '</span>') + '</div>' +
         '<div class="boss-info"><div class="boss-name">' + boss.name.toUpperCase() +
         (isUnit ? ' — ⚔️ ÜNİTE BOSS\'U' : ' — KONU BOSS\'U') + '</div>' +
         '<div class="boss-hp"><i></i></div></div>' +
@@ -76,10 +77,11 @@
       function nextQuestion() {
         if (over) return;
         if (view) { view.destroy(); view = null; }
-        const q = B.Question.generate(lesson.interactionType, boss.generator, lesson.skills);
+        const q = B.Question.generate(lesson.interactionType,
+          B.Lesson.resolveGenerator(params.sectionId, boss.generator), lesson.skills);
         let mistakes = 0;
 
-        view = B.LongDivisionView.create(stage, q, {
+        view = B.Question.view(lesson.interactionType)(stage, q, {
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {
             B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });

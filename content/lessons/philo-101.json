@@ -1,0 +1,152 @@
+{
+  "id": "philo-101",
+  "schema": 1,
+  "title": "Felsefe Cephesi",
+  "subtitle": "Büyük Sorular Harekâtı",
+  "icon": "🦉",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+
+  "outcomes": [
+    { "id": "o1", "code": "PHI.1", "text": "Soru sormanın değerini bilir; iyi soru ile ezber cevabı ayırt eder." },
+    { "id": "o2", "code": "PHI.2", "text": "Gerekçe gösterme, dinleme ve düşünce deneyleriyle akıl yürütür." }
+  ],
+
+  "skills": ["soru-sorma", "mantik", "kavram", "empati"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "soru-brief": [
+      { "say": "Bu cephe farklı, asker. Burada düşman yok — sadece BÜYÜK SORULAR var. Felsefe, cevapları ezberlemek değil, güzel soru sormaktır." },
+      { "say": "Binlerce yıl önce Sokrates adında bir bilge, çarşıda insanlara sadece SORU sorardı: 'Adalet nedir? Cesaret nedir?' Kimse tam cevaplayamazdı — ve işte o an düşünmeye başlarlardı!" },
+      { "say": "Kuralımız şu: 'Neden?' diye sormak asla ayıp değildir. Ayıp olan, hiç merak etmemektir. Şimdi filozof gibi düşünme zamanı!" }
+    ],
+    "dusunce-brief": [
+      { "say": "İkinci brifing: filozofların gizli silahı GEREKÇEDİR. 'Bence böyle' demek yetmez — 'ÇÜNKÜ...' diyebilmek gerekir. Çünkü'sü olmayan fikir, cephanesiz tüfektir." },
+      { "say": "Bir silah daha: DÜŞÜNCE DENEYİ. 'Ya herkes yalan söyleseydi?' gibi hayali sorularla fikirlerimizi test ederiz. Laboratuvar gerekmez — beynin yeter!" },
+      { "say": "Ve unutma: seninle aynı düşünmeyen kişi düşmanın değildir. Filozoflar fikirlerle güreşir, insanlarla değil. Dinlemek de düşünmenin yarısıdır." }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — KÜÇÜK FİLOZOF",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Soru Sorma Sanatı",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Felsefe",
+              "segments": [ { "model": "abstract", "script": "soru-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Merak Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-phi1", "tier": "topic", "name": "Cevapsızlık Gölgesi", "icon": "❓", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-phi1" }
+          },
+          "bank": [
+            { "q": "Felsefe en çok neye benzer?", "skill": "soru-sorma",
+              "options": ["Güzel soru sorma sanatına", "Ezber yarışmasına", "Şans oyununa", "Koşu yarışına"],
+              "correct": 0, "hint": "Filozofun aleti cevap anahtarı değil, soru işaretidir." },
+            { "q": "Sokrates çarşıda ne yapardı?", "skill": "soru-sorma",
+              "options": ["İnsanlara sorular sorup düşündürürdü", "Cevapları satardı", "Herkesi susturur, ders anlatırdı", "Koşu yarışı düzenlerdi"],
+              "correct": 0, "hint": "Onun yöntemi anlatmak değil, SORMAKTI." },
+            { "q": "Hangisi FELSEFİ bir sorudur?", "skill": "soru-sorma",
+              "options": ["\"Adalet nedir?\"", "\"Saat kaç?\"", "\"Türkiye'nin başkenti neresi?\"", "\"2+2 kaç eder?\""],
+              "correct": 0, "hint": "Cevabı takvimde, haritada veya hesapta olmayan sorular felsefenin alanıdır." },
+            { "q": "\"Neden?\" diye sormak...", "skill": "soru-sorma",
+              "options": ["Merakın ve düşünmenin başlangıcıdır", "Ayıptır", "Sadece küçük çocuklara özgüdür", "Zaman kaybıdır"],
+              "correct": 0, "hint": "Baba Komutan'ın kuralı: ayıp olan sormak değil, hiç merak etmemektir." },
+            { "q": "Bir sorunun cevabını bilmiyorsan en dürüst tavır hangisi?", "skill": "mantik",
+              "options": ["\"Bilmiyorum, düşünelim\" demek", "Uydurmak", "Konuyu değiştirmek", "Bileni susturmak"],
+              "correct": 0, "hint": "Sokrates'in ünü şuradandı: 'Bilmediğimi biliyorum' diyebilmek." },
+            { "q": "\"Herkes öyle diyor\" bir fikri doğru yapar mı?", "skill": "mantik",
+              "options": ["Hayır — kalabalık da yanılabilir", "Evet, çoğunluk hep haklıdır", "Evet, itiraz yasaktır", "Sorunun cevabı yoktur"],
+              "correct": 0, "hint": "Bir zamanlar herkes Dünya'yı düz sanıyordu!" },
+            { "q": "İyi bir soru sana ne kazandırır?", "skill": "soru-sorma",
+              "options": ["Yeni düşünme kapıları açar", "Sadece not kazandırır", "Hiçbir şey", "Karnını doyurur"],
+              "correct": 0, "hint": "İyi cevap bir kapıyı kapatır; iyi soru üç kapı açar." },
+            { "q": "Merak eden biri için dünya nasıldır?", "skill": "soru-sorma",
+              "options": ["Keşfedilecek dev bir bilmecedir", "Sıkıcıdır", "Tamamı çözülmüştür", "Sorulmaya değmez"],
+              "correct": 0, "hint": "Merak, sıradan bir taşı bile hazineye çevirir." },
+            { "q": "Filozoflar fikir tartışırken neyle 'güreşir'?", "skill": "empati",
+              "options": ["Fikirlerle — insanlarla değil", "İnsanlarla", "Masalarla", "Kimseyle konuşmazlar"],
+              "correct": 0, "hint": "Hedef karşındakini yenmek değil, birlikte doğruya yaklaşmaktır." },
+            { "q": "\"Mutluluk nedir?\" sorusunun tek bir doğru cevabı var mıdır?", "skill": "kavram",
+              "options": ["Hayır — herkes düşünüp kendi gerekçesini bulmalı", "Evet, kitabın arkasında yazar", "Evet, öğretmen söyler", "Sormak yasaktır"],
+              "correct": 0, "hint": "Bazı sorular pusula gibidir: cevabı değil, yönü gösterir." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Düşünce Deneyleri",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Gerekçe",
+              "segments": [ { "model": "abstract", "script": "dusunce-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Mantık Devriyesi", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3,
+              "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4,
+              "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-phi2", "tier": "topic", "name": "Karışık Fikirler Ejderi", "icon": "🌀", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-phi2" }
+          },
+          "bank": [
+            { "q": "\"Bence böyle ÇÜNKÜ...\" demek neden güçlüdür?", "skill": "mantik",
+              "options": ["Fikrine gerekçe verir, tartışılabilir yapar", "Cümleyi uzatır", "Kimse itiraz edemez", "Sihirli bir kelimedir"],
+              "correct": 0, "hint": "Çünkü'sü olmayan fikir, cephanesiz tüfektir." },
+            { "q": "Düşünce deneyi nedir?", "skill": "mantik",
+              "options": ["\"Ya şöyle olsaydı?\" diye hayalde fikir test etmek", "Kimya deneyi", "Uyku testi", "Bilgisayar oyunu"],
+              "correct": 0, "hint": "Laboratuvarı beynin olan deneyler!" },
+            { "q": "\"Ya herkes yalan söyleseydi?\" deneyi bize ne gösterir?", "skill": "mantik",
+              "options": ["Kimse kimseye güvenemezdi — dürüstlük bu yüzden değerli", "Yalan eğlenceli olurdu", "Hiçbir şey değişmezdi", "Herkes zengin olurdu"],
+              "correct": 0, "hint": "Bir kuralın değerini görmek için 'herkes tersini yapsa?' diye sor." },
+            { "q": "Arkadaşın seninle aynı fikirde değil. Filozofça tavır hangisi?", "skill": "empati",
+              "options": ["Gerekçesini dinler, kendi gerekçemi söylerim", "Küserim", "Bağırırım", "Bir daha konuşmam"],
+              "correct": 0, "hint": "Dinlemek de düşünmenin yarısıdır." },
+            { "q": "Adil paylaşım hangisidir: 12 kurabiye, 3 arkadaş?", "skill": "kavram",
+              "options": ["Herkese 4 — eşit bölmek", "En büyüğe 10", "İlk kapana hepsi", "Kurabiyeleri saklamak"],
+              "correct": 0, "hint": "Adaletin matematiği çoğu zaman BÖLMEDİR. Tanıdık geldi mi?" },
+            { "q": "Kural olmasa bile doğru olanı yapmak neyin işaretidir?", "skill": "kavram",
+              "options": ["Karakterin — asıl dürüstlük görünmezken belli olur", "Korkaklığın", "Şanssızlığın", "Unutkanlığın"],
+              "correct": 0, "hint": "Kimse bakmıyorken kim olduğun, gerçekte kim olduğundur." },
+            { "q": "\"Bütün kuşlar uçar. Penguen kuştur. Öyleyse penguen uçar.\" Bu akıl yürütmenin sorunu ne?", "skill": "mantik",
+              "options": ["İlk cümle yanlış — bazı kuşlar uçamaz", "Penguen kuş değildir", "Hiç sorunu yok", "Penguenler gizlice uçar"],
+              "correct": 0, "hint": "Akıl yürütme zinciri, en zayıf halkası kadar sağlamdır: 'bütün' demeden önce düşün!" },
+            { "q": "Mutluluk daha çok neye benzer?", "skill": "kavram",
+              "options": ["Kelebeğe — kovalayınca kaçar, sen işine bakınca konar", "Cebe konan taşa", "Markette satılan kutuya", "Wi-Fi şifresine"],
+              "correct": 0, "hint": "Filozoflar buna benzetme der: zor kavramı tanıdık bir resimle düşünmek." },
+            { "q": "Hata yapmak düşünen biri için nedir?", "skill": "mantik",
+              "options": ["Öğrenmenin ham maddesidir", "Utançtır, saklanmalıdır", "Sonun başlangıcıdır", "Başkasının suçudur"],
+              "correct": 0, "hint": "Bu oyunun anayasası da öyle demiyor mu? Yanlış = istihbarat!" },
+            { "q": "Empati ne demektir?", "skill": "empati",
+              "options": ["Kendini başkasının yerine koyup onun gibi hissetmeyi denemek", "Herkesle aynı fikirde olmak", "Hızlı koşmak", "Çok konuşmak"],
+              "correct": 0, "hint": "Bir günlüğüne arkadaşının ayakkabılarıyla yürüdüğünü hayal et." }
+          ]
+        }
+      ]
+    }
+  ]
+}
