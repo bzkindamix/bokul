@@ -52,6 +52,8 @@
 
   B.Cloud = {
     configured, enabled, getCode, setCode, genCode,
+    apiKey() { return CFG.apiKey; },
+    projectId() { return CFG.projectId; },
 
     /* Aktif profilin kaydını buluta yaz (directives'e DOKUNMAZ) */
     async pushSave() {

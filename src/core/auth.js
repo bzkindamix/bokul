@@ -45,13 +45,20 @@
 
     register(name, pass) {
       name = String(name || '').trim();
-      if (name.length < 2) return { ok: false, err: 'Kullanıcı adı en az 2 harf olmalı.' };
-      if (String(pass || '').length < 3) return { ok: false, err: 'Şifre en az 3 karakter olmalı.' };
+      if (name.length < 2) return { ok: false, err: 'İsim en az 2 harf olmalı.' };
       const key = keyOf(name);
       const users = readUsers();
       if (users[key]) return { ok: false, err: 'Bu isim alınmış. Başka bir isim dene.' };
-      users[key] = { name, pass: hash(pass), created: new Date().toISOString() };
+      // Çocuk profilleri şifresizdir (profile dokunarak girilir); ebeveyn PIN'i/e-postası korur.
+      users[key] = { name, pass: pass ? hash(pass) : '', created: new Date().toISOString() };
       writeUsers(users);
+      current = key;
+      return { ok: true };
+    },
+
+    /* Profile dokunarak giriş (şifresiz) — çocuk profilleri için */
+    loginByKey(key) {
+      if (!readUsers()[key]) return { ok: false, err: 'Profil bulunamadı.' };
       current = key;
       return { ok: true };
     },
@@ -60,7 +67,7 @@
       const key = keyOf(name);
       const u = readUsers()[key];
       if (!u) return { ok: false, err: 'Böyle bir oyuncu yok.' };
-      if (u.pass !== hash(pass)) return { ok: false, err: 'Şifre yanlış. Tekrar dene!' };
+      if (u.pass && u.pass !== hash(pass)) return { ok: false, err: 'Şifre yanlış. Tekrar dene!' };
       current = key;
       return { ok: true };
     },

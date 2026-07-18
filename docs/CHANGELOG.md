@@ -1,5 +1,19 @@
 # BOKUL — Sürüm Notları
 
+## v0.19 — Şifresiz Çocuk Girişi + Ebeveyn E-posta Hesabı (2026-07-18)
+
+- 🔓 EFE'NİN SORUNU ÇÖZÜLDÜ: Çocuklar artık profillerine DOKUNARAK giriyor —
+  şifre yok, "şifre hatalı" kilidi yok. Kayıt sadece ad; ilerleme güvende.
+  (Eski şifreli hesaplar da artık dokunarak açılıyor.)
+- 📧 EBEVEYN E-POSTA HESABI (Firebase Authentication): Ebeveyn konsolu artık
+  e-posta ile de açılıyor. Kayıtta DOĞRULAMA e-postası, girişte hatalı şifre
+  koruması, "ŞİFREMİ UNUTTUM" ile e-postaya sıfırlama linki — hepsi Firebase
+  tarafından (ücretsiz, sunucu yazmadan). Yerel PIN de çevrimdışı seçenek olarak
+  kaldı. Çocuklar e-postasız (KVKK dostu).
+- Firebase Console'da Email/Password sağlayıcısı etkinleştirildi; REST akışı
+  (kayıt/giriş/doğrulama/sıfırlama) uçtan uca test edildi.
+
+
 ## v0.18 — Okunur Sorular, Görsel Anlatım ve Süre (2026-07-18)
 
 - 🔎 OKUNUR KOMUTAN: Baba Komutan artık soruları/ipuçlarını tam genişlikte,
