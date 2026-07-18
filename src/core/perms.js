@@ -16,6 +16,7 @@
     /* Kilitlenebilir oyun bölümleri (derslerin dışında) */
     FEATURES: [
       { key: 'shop', icon: '🏠', name: 'Evim / Kıyafet Dükkânı' },
+      { key: 'store', icon: '📦', name: 'Eşya Mağazası / Depom' },
       { key: 'quests', icon: '📋', name: 'Günlük Görevler' },
       { key: 'wishes', icon: '🎁', name: 'Dilek Kutusu' },
       { key: 'story', icon: '🎬', name: 'Hikâye Sineması' },

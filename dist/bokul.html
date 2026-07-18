@@ -914,6 +914,38 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .legal-view h4 { font-size: 13.5px; color: var(--xp); margin: 10px 0 3px; }
 .legal-view p { margin-bottom: 6px; }
 
+/* ---------- v0.24: Eşya Mağazası + Depom ---------- */
+.store-wrap { padding: 8px 10px 24px; max-width: 720px; margin: 0 auto; }
+.store-top { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.store-gold { font-size: 15px; font-weight: 800; }
+.store-tabs { display: flex; gap: 8px; margin-bottom: 10px; }
+.stab.tab-on { background: var(--accent); color: #3a0a2e; }
+.store-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.scat.tab-on { background: var(--xp); color: #3a2e05; }
+.store-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.store-card {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px;
+  background: var(--bg-panel); border: 1px solid var(--line); border-radius: 16px; padding: 12px 8px;
+  position: relative; min-height: 150px; justify-content: flex-start;
+}
+.store-card:not([disabled]):active { transform: translateY(2px); }
+.store-ic { font-size: 40px; line-height: 1; margin-bottom: 2px; }
+.store-nm { font-size: 14px; font-weight: 800; }
+.store-desc { font-size: 11px; color: var(--ink-dim); line-height: 1.3; flex: 1; }
+.store-price { font-size: 14px; font-weight: 800; color: var(--xp); margin-top: 4px; }
+.store-have { font-size: 11px; color: var(--success); }
+.store-tag { font-size: 12px; font-weight: 800; color: var(--success); margin-top: 4px; }
+.store-owned { opacity: .82; }
+.store-poor { opacity: .78; }
+.store-poor .store-price { color: var(--warn); }
+.store-empty { text-align: center; color: var(--ink-dim); padding: 40px 16px; line-height: 1.6; font-size: 15px; }
+.depo-cat { font-weight: 800; font-size: 14px; color: var(--xp); margin: 14px 0 6px; }
+.depo-card { min-height: 110px; }
+.depo-count {
+  position: absolute; top: 6px; right: 8px; background: var(--accent); color: #3a0a2e;
+  font-size: 12px; font-weight: 800; border-radius: 10px; padding: 1px 7px;
+}
+
 </style>
 </head>
 <body>
@@ -923,7 +955,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.23 — Google Kayıt/Giriş · İzinler · Hesap Ayarları</div>
+      <div class="splash-note">v0.24 — Eşya Mağazası · Depom</div>
     </div>
   </div>
 
@@ -1288,6 +1320,60 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   ],
   "kvkk": "<h3>KVKK Aydınlatma Metni ve Açık Rıza Beyanı<\/h3><p><em>Son güncelleme: 18.07.2026 · Sürüm 1<\/em><\/p><p><b>ÖNEMLİ:<\/b> Bu metin bir taslaktır ve hukuki görüş yerine geçmez. Uygulamayı ticari veya yaygın biçimde kullanmadan önce bir KVKK/veri hukuku uzmanına inceletmeniz önerilir.<\/p><h4>1. Veri Sorumlusu<\/h4><p>BOKUL uygulamasını kuran/işleten kişi (bundan sonra \"İşletmeci\") 6698 sayılı Kişisel Verilerin Korunması Kanunu (\"KVKK\") kapsamında veri sorumlusudur. İletişim: uygulamayı size ileten ebeveyn/işletmeci ile sağlanır.<\/p><h4>2. İşlenen Kişisel Veriler<\/h4><p>Uygulama, mümkün olan en az veriyi işler: takma ad (gerçek ad/soyad girilmesi tavsiye edilmez), yaş ve bitirilen sınıf bilgisi, isteğe bağlı ilgi alanları (hobi, sevilen içerikler vb.), oyun içi ilerleme ve istatistikler, çocuğun girdiği dilek/fikir metinleri ve (yalnızca ebeveyn için) e-posta adresi. <b>Fotoğraf, adres, telefon, kimlik numarası gibi veriler İŞLENMEZ ve buluta gönderilmez.<\/b><\/p><h4>3. İşleme Amaçları<\/h4><p>Veriler; eğitici oyunun sunulması, içeriğin çocuğun yaş/sınıf seviyesine uyarlanması, ilerlemenin kaydedilmesi ve ebeveynin çocuğunun gelişimini görmesi amaçlarıyla işlenir.<\/p><h4>4. Hukuki Sebep<\/h4><p>İşleme, açık rızanıza (KVKK m.5/1) dayanır. Çocuğa ait veriler yalnızca velinin açık rızasıyla işlenir; bu rızayı çocuğun velisi/yasal temsilcisi verir.<\/p><h4>5. Yurt Dışına Aktarım<\/h4><p>İlerleme senkronu ve ebeveyn hesabı için Google/Firebase altyapısı kullanılır. Veriler Avrupa (eur3) bölgesinde tutulmakla birlikte, hizmet sağlayıcı yurt dışı merkezli olduğundan aktarım yurt dışına aktarım niteliği taşıyabilir. Bu aktarıma açık rıza vermektesiniz (KVKK m.9).<\/p><h4>6. Saklama Süresi<\/h4><p>Veriler, hesap/profil silinene veya rıza geri alınana kadar saklanır. Talebiniz üzerine silinir.<\/p><h4>7. Haklarınız (KVKK m.11)<\/h4><p>Kişisel verilerinize erişme, düzeltme, silme, işlemeyi öğrenme ve rızanızı geri alma haklarına sahipsiniz. Rızayı geri almak için profili/hesabı silebilir veya İşletmeci ile iletişime geçebilirsiniz.<\/p><h4>8. Çocuklara İlişkin<\/h4><p>Uygulama 18 yaş altı bireylere yöneliktir. Çocuğun uygulamayı kullanması, gözetimi ve verilerinin girilmesi velinin sorumluluğundadır. Onay veren kişi, çocuğun velisi/yasal temsilcisi olduğunu ve onun adına rıza vermeye yetkili olduğunu beyan eder.<\/p>",
   "terms": "<h3>Kullanıcı Sözleşmesi<\/h3><p><em>Son güncelleme: 18.07.2026 · Sürüm 1<\/em><\/p><p><b>ÖNEMLİ:<\/b> Bu metin bir taslaktır, hukuki görüş değildir. Ticari kullanım öncesi hukukçuya inceletiniz.<\/p><h4>1. Taraflar ve Konu<\/h4><p>Bu sözleşme, BOKUL uygulamasını (\"Uygulama\") kullanan ebeveyn/veli (\"Kullanıcı\") ile İşletmeci arasındadır. Uygulama, çocuklara yönelik ücretsiz bir eğitim oyunudur.<\/p><h4>2. Ebeveyn Beyanı ve Sorumluluğu<\/h4><p>Kullanıcı; (a) 18 yaşından büyük olduğunu, (b) çocuğun/çocukların velisi veya yasal temsilcisi olduğunu, (c) çocuk adına gerekli onayları vermeye yetkili olduğunu, (d) çocuğun Uygulamayı kullanımını gözeteceğini, (e) girdiği bilgilerin doğruluğundan ve cihaz güvenliğinden sorumlu olduğunu kabul ve beyan eder.<\/p><h4>3. Sorumluluğun Kullanıcıda Olması<\/h4><p>Uygulamanın kullanımına, çocuğun gözetimine, girilen verilere, davet kodunun paylaşımına ve ortaya çıkabilecek sonuçlara ilişkin sorumluluk, yürürlükteki hukukun izin verdiği azami ölçüde Kullanıcıya aittir. İşletmeci, eğitim içeriğinin doğruluğu veya kesintisizliği konusunda garanti vermez.<\/p><h4>4. Garanti Reddi<\/h4><p>Uygulama \"olduğu gibi\" ve \"mevcut haliyle\" sunulur. İşletmeci, Uygulamanın hatasız, kesintisiz veya belirli bir amaca uygun olacağını garanti etmez.<\/p><h4>5. Sorumluluğun Sınırlanması<\/h4><p>Yürürlükteki hukukun izin verdiği azami ölçüde İşletmeci; dolaylı, arızi veya sonuç niteliğindeki zararlardan sorumlu tutulamaz. Bu sınırlama, hukuken devredilemeyen/muaf tutulamayan sorumlulukları kapsamaz.<\/p><h4>6. Fikri Mülkiyet<\/h4><p>Uygulamadaki içerik, tasarım ve yazılım üzerindeki haklar saklıdır. İzinsiz kopyalanamaz veya ticari amaçla kullanılamaz.<\/p><h4>7. İleriye Dönük Özellikler<\/h4><p>İleride, çocuğun ilgi alanlarına göre ebeveyne hediye fikirleri veya bağlantılar (ör. yönlendirme/affiliate) sunulabilir. Böyle bir özellik eklendiğinde ayrıca bilgilendirme ve gerekli onaylar alınacaktır; çocuk verisi üçüncü taraflarla paylaşılmaz.<\/p><h4>8. Değişiklik ve Fesih<\/h4><p>İşletmeci bu koşulları güncelleyebilir; önemli değişikliklerde yeniden onay istenir. Kullanıcı, profili/hesabı silerek dilediği zaman kullanımı sonlandırabilir.<\/p><h4>9. Uygulanacak Hukuk<\/h4><p>Bu sözleşmeye Türkiye Cumhuriyeti hukuku uygulanır; uyuşmazlıklarda Türkiye mahkemeleri ve icra daireleri yetkilidir.<\/p>"
+}
+
+</script>
+<script type="application/json" id="bokul-content-items">
+{
+  "schema": 1,
+  "version": 1,
+  "categories": [
+    { "id": "tech", "name": "Teknoloji", "icon": "🎮" },
+    { "id": "oda", "name": "Odam", "icon": "🛋️" },
+    { "id": "pet", "name": "Evcil Malzemeleri", "icon": "🐾" },
+    { "id": "koleksiyon", "name": "Koleksiyon", "icon": "🏆" }
+  ],
+  "items": [
+    { "id": "konsol", "name": "Oyun Konsolu", "icon": "🎮", "price": 900, "cat": "tech", "unique": true, "desc": "Son model oyun konsolu. Odanın yıldızı!" },
+    { "id": "tablet", "name": "Son Model Tablet", "icon": "📱", "price": 750, "cat": "tech", "unique": true, "desc": "İnce, hızlı, kocaman ekran." },
+    { "id": "telefon", "name": "Akıllı Telefon", "icon": "📲", "price": 650, "cat": "tech", "unique": true, "desc": "Cepte taşınan mini bilgisayar." },
+    { "id": "kulaklik", "name": "Kablosuz Kulaklık", "icon": "🎧", "price": 300, "cat": "tech", "unique": true, "desc": "Kablosuz, gürültü engelli." },
+    { "id": "vr", "name": "VR Gözlük", "icon": "🥽", "price": 1100, "cat": "tech", "unique": true, "desc": "Sanal gerçeklik dünyasına giriş." },
+    { "id": "dizustu", "name": "Dizüstü Bilgisayar", "icon": "💻", "price": 1300, "cat": "tech", "unique": true, "desc": "Kodlama ve oyun için güçlü makine." },
+    { "id": "drone", "name": "Kameralı Drone", "icon": "🚁", "price": 950, "cat": "tech", "unique": true, "desc": "Gökyüzünden çekim yapan uçan robot." },
+    { "id": "robot", "name": "Robot Arkadaş", "icon": "🤖", "price": 1500, "cat": "tech", "unique": true, "desc": "Konuşan, hareket eden robot dostun." },
+
+    { "id": "koltuk", "name": "Rahat Koltuk", "icon": "🛋️", "price": 400, "cat": "oda", "unique": true, "desc": "Oyun molası için süper rahat." },
+    { "id": "masa", "name": "Çalışma Masası", "icon": "🪑", "price": 350, "cat": "oda", "unique": true, "desc": "Ders ve proje masası." },
+    { "id": "kitaplik", "name": "Kitaplık", "icon": "📚", "price": 300, "cat": "oda", "unique": true, "desc": "Kitapların yeni evi." },
+    { "id": "poster", "name": "Uzay Posteri", "icon": "🖼️", "price": 120, "cat": "oda", "unique": true, "desc": "Duvarını süsleyen galaksi posteri." },
+    { "id": "hali", "name": "Yumuşak Halı", "icon": "🟫", "price": 200, "cat": "oda", "unique": true, "desc": "Sıcacık, yumuşacık." },
+    { "id": "lego", "name": "Dev Lego Seti", "icon": "🧱", "price": 500, "cat": "oda", "unique": true, "desc": "Binlerce parça, sonsuz macera." },
+    { "id": "lamba", "name": "Yıldız Lambası", "icon": "🪩", "price": 180, "cat": "oda", "unique": true, "desc": "Tavana yıldızlar yansıtır." },
+
+    { "id": "akvaryum_cam", "name": "Akvaryum Camı", "icon": "🔲", "price": 120, "cat": "pet", "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)" },
+    { "id": "filtre", "name": "Su Filtresi", "icon": "🌀", "price": 150, "cat": "pet", "desc": "Suyu temiz tutan filtre." },
+    { "id": "temiz_su", "name": "Temiz Su", "icon": "💧", "price": 30, "cat": "pet", "desc": "Akvaryumu doldurmak için." },
+    { "id": "cakil", "name": "Akvaryum Çakılı", "icon": "🪨", "price": 40, "cat": "pet", "desc": "Akvaryum tabanı için renkli çakıl." },
+    { "id": "balik_yemi", "name": "Balık Yemi", "icon": "🍥", "price": 25, "cat": "pet", "desc": "Balığını beslemek için." },
+
+    { "id": "tasma", "name": "Köpek Tasması", "icon": "🦮", "price": 90, "cat": "pet", "desc": "Köpeğini gezdirmek için." },
+    { "id": "mama_kabi", "name": "Mama Kabı", "icon": "🥣", "price": 50, "cat": "pet", "desc": "Beslenme kabı." },
+    { "id": "kopek_mamasi", "name": "Köpek Maması", "icon": "🦴", "price": 60, "cat": "pet", "desc": "Enerji dolu mama." },
+    { "id": "oyuncak_kemik", "name": "Oyuncak Kemik", "icon": "🦴", "price": 45, "cat": "pet", "desc": "Köpeğinle oynamak için." },
+
+    { "id": "kedi_kumu", "name": "Kedi Kumu", "icon": "🏖️", "price": 55, "cat": "pet", "desc": "Kum kabı için." },
+    { "id": "kedi_mamasi", "name": "Kedi Maması", "icon": "🐟", "price": 60, "cat": "pet", "desc": "Kedinin favorisi." },
+    { "id": "tirmalama", "name": "Tırmalama Tahtası", "icon": "🪵", "price": 110, "cat": "pet", "desc": "Kedinin tırmalama alanı." },
+
+    { "id": "kafes", "name": "Kuş Kafesi", "icon": "🪺", "price": 130, "cat": "pet", "desc": "Kuşun evi." },
+    { "id": "kus_yemi", "name": "Kuş Yemi", "icon": "🌾", "price": 25, "cat": "pet", "desc": "Kuşunu beslemek için." },
+
+    { "id": "kupa", "name": "Altın Kupa", "icon": "🏆", "price": 700, "cat": "koleksiyon", "unique": true, "desc": "Başarının simgesi." },
+    { "id": "madalya", "name": "Şeref Madalyası", "icon": "🥇", "price": 500, "cat": "koleksiyon", "unique": true, "desc": "Nadir bir onur nişanı." },
+    { "id": "model_araba", "name": "Model Yarış Arabası", "icon": "🏎️", "price": 600, "cat": "koleksiyon", "unique": true, "desc": "Detaylı koleksiyon arabası." },
+    { "id": "nadir_kart", "name": "Nadir Koleksiyon Kartı", "icon": "🃏", "price": 800, "cat": "koleksiyon", "unique": true, "desc": "Efsanevi, parlayan kart." }
+  ]
 }
 
 </script>
@@ -2124,6 +2210,12 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     COSMETIC_SOLD:  'cosmetic:sold',   // { itemId, coins }
     COINS_CHANGED:  'coins:changed',   // { total, delta }
 
+    // Eşya / craft / evcil hayvan
+    ITEM_BOUGHT: 'item:bought',   // { itemId }
+    ITEM_CRAFTED: 'item:crafted', // { recipeId }
+    PET_ADOPTED: 'pet:adopted',   // { petId }
+    PET_CARED:   'pet:cared',     // { petId, action }
+
     // Görevler
     QUEST_PROGRESS:  'quest:progress',
     QUEST_COMPLETED: 'quest:completed',
@@ -2199,7 +2291,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
       stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {} },
       progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
-      inventory: { cosmetics: [], badges: [], titles: [] },
+      inventory: { cosmetics: [], badges: [], titles: [], items: {} }, // items: { itemId: adet }
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },
       wishes: [], // { id, text, created, status, goal:{metric,target}|null, note }
       ideas: [],  // { id, text, created, status, note }
@@ -2932,6 +3024,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     /* Kilitlenebilir oyun bölümleri (derslerin dışında) */
     FEATURES: [
       { key: 'shop', icon: '🏠', name: 'Evim / Kıyafet Dükkânı' },
+      { key: 'store', icon: '📦', name: 'Eşya Mağazası / Depom' },
       { key: 'quests', icon: '📋', name: 'Günlük Görevler' },
       { key: 'wishes', icon: '🎁', name: 'Dilek Kutusu' },
       { key: 'story', icon: '🎬', name: 'Hikâye Sineması' },
@@ -2952,6 +3045,57 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     setFeature(name, allowed, save) {
       const p = P(save);
       if (allowed) delete p.features[name]; else p.features[name] = false;
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/items.js === */
+/* BOKUL — Eşya Sistemi (Mağaza + Depo)
+ * Çocuk altınla "gerçek dünya" eşyaları alır (konsol, tablet, akvaryum malzemesi…)
+ * ve bunları Evim'deki Depom'da saklar. Bazı eşyalar tekildir (unique), bazıları
+ * (evcil hayvan malzemeleri) adetlidir ve ileride craft'ta kullanılır.
+ * Envanter: B.State.data.inventory.items = { itemId: adet } */
+(function (B) {
+  function inv() {
+    const i = B.State.data.inventory;
+    if (!i.items) i.items = {};
+    return i.items;
+  }
+  function data() { return B.Content.get('items') || { categories: [], items: [] }; }
+
+  B.Items = {
+    ensure() { inv(); },
+    catalog() { return data().items; },
+    categories() { return data().categories; },
+    get(id) { return data().items.find(x => x.id === id) || null; },
+    catName(cat) { const c = data().categories.find(x => x.id === cat); return c ? c.name : cat; },
+
+    count(id) { return inv()[id] || 0; },
+    have(id, n) { return (inv()[id] || 0) >= (n || 1); },
+    total() { return Object.values(inv()).reduce((t, n) => t + n, 0); },
+    ownedList() {
+      const m = inv();
+      return Object.keys(m).filter(k => m[k] > 0)
+        .map(k => ({ item: B.Items.get(k), count: m[k] }))
+        .filter(x => x.item);
+    },
+
+    /* Craft ve ödül sistemleri için düşük seviye ekle/çıkar */
+    add(id, n) { const m = inv(); m[id] = (m[id] || 0) + (n || 1); B.Save.saveSoon(); },
+    remove(id, n) {
+      const m = inv(); m[id] = Math.max(0, (m[id] || 0) - (n || 1));
+      if (!m[id]) delete m[id]; B.Save.saveSoon();
+    },
+
+    /* Mağazadan satın al */
+    buy(id) {
+      const it = B.Items.get(id);
+      if (!it) return { ok: false, err: 'Eşya bulunamadı.' };
+      if (it.unique && B.Items.count(id) > 0) return { ok: false, err: 'Bu eşya zaten sende var.' };
+      if (!B.Reward.spendCoins(it.price)) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
+      B.Items.add(id, 1);
+      B.Bus.emit(B.Events.ITEM_BOUGHT || 'item-bought', { itemId: id });
+      return { ok: true, item: it };
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -6355,13 +6499,129 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         '<div class="evim-doors">' +
           '<button class="btn door door-ben">🧍<br>BEN<small>Tipimi ayarla</small></button>' +
           '<button class="btn door door-dolap">👕<br>DOLAP<small>Kıyafet al · sat · giy</small></button>' +
+          '<button class="btn door door-store">📦<br>DEPOM<small>Eşya al · sakla</small></button>' +
           '<button class="btn door door-int">🎯<br>İLGİ ALANLARIM<small>Sevdiklerim</small></button>' +
         '</div>';
       root.appendChild(wrap);
 
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
+      const storeDoor = wrap.querySelector('.door-store');
+      if (B.Perms.feature('store')) storeDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('store', {}); };
+      else { storeDoor.classList.add('feat-locked'); storeDoor.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); }; }
       wrap.querySelector('.door-int').onclick = () => { B.Audio.play('tick'); B.UI.show('interests', {}); };
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/store-screen.js === */
+/* BOKUL — Mağaza & Depom
+ * 🏪 Mağaza: altınla eşya satın al (kategori süzgeçli).
+ * 📦 Depom : sahip olduğun eşyalar (adetli), Evim'de saklanır.
+ * Eşyalar ileride evcil hayvan craft'ında ön koşul olur. */
+(function (B) {
+  B.UI.registerScreen('store', {
+    enter(root, params) {
+      const hud = B.UI.buildHud(root, { backTo: 'evim' });
+      this._hud = hud;
+      let tab = (params && params.tab) || 'shop';
+      let cat = 'all';
+
+      const wrap = document.createElement('div');
+      wrap.className = 'store-wrap';
+      root.appendChild(wrap);
+
+      function coins() { return B.State.data.player.coins || 0; }
+
+      function shell() {
+        wrap.innerHTML =
+          '<div class="store-top"><div class="chip store-gold">💰 ' + coins() + ' Altın</div></div>' +
+          '<div class="store-tabs">' +
+            '<button class="chip stab" data-t="shop">🏪 Mağaza</button>' +
+            '<button class="chip stab" data-t="depo">📦 Depom (' + B.Items.total() + ')</button>' +
+          '</div>' +
+          '<div class="store-body"></div>';
+        wrap.querySelectorAll('.stab').forEach(b => b.onclick = () => {
+          tab = b.dataset.t;
+          wrap.querySelectorAll('.stab').forEach(x => x.classList.toggle('tab-on', x === b));
+          renderBody();
+        });
+        wrap.querySelector('.stab[data-t="' + tab + '"]').classList.add('tab-on');
+        renderBody();
+      }
+
+      function renderBody() {
+        const body = wrap.querySelector('.store-body');
+        if (tab === 'shop') renderShop(body);
+        else renderDepo(body);
+      }
+
+      /* ---- 🏪 Mağaza ---- */
+      function renderShop(body) {
+        const cats = B.Items.categories();
+        const filterRow = '<div class="store-cats">' +
+          '<button class="chip scat" data-c="all">Hepsi</button>' +
+          cats.map(c => '<button class="chip scat" data-c="' + c.id + '">' + c.icon + ' ' + c.name + '</button>').join('') +
+          '</div>';
+        const items = B.Items.catalog().filter(it => cat === 'all' || it.cat === cat);
+        const cards = items.map(it => {
+          const owned = B.Items.count(it.id);
+          const isOwnedUnique = it.unique && owned > 0;
+          const afford = coins() >= it.price;
+          return '<button class="store-card' + (isOwnedUnique ? ' store-owned' : '') + (afford || isOwnedUnique ? '' : ' store-poor') + '" data-id="' + it.id + '"' + (isOwnedUnique ? ' disabled' : '') + '>' +
+            '<span class="store-ic">' + it.icon + '</span>' +
+            '<span class="store-nm">' + it.name + '</span>' +
+            '<span class="store-desc">' + (it.desc || '') + '</span>' +
+            (owned && !it.unique ? '<span class="store-have">Depoda: ' + owned + '</span>' : '') +
+            (isOwnedUnique ? '<span class="store-tag">✓ Sende var</span>'
+                           : '<span class="store-price">💰 ' + it.price + '</span>') +
+            '</button>';
+        }).join('');
+        body.innerHTML = filterRow + '<div class="store-grid">' + cards + '</div>';
+
+        body.querySelectorAll('.scat').forEach(b => b.onclick = () => {
+          cat = b.dataset.c;
+          body.querySelectorAll('.scat').forEach(x => x.classList.toggle('tab-on', x === b));
+          renderShop(body);
+        });
+        const active = body.querySelector('.scat[data-c="' + cat + '"]'); if (active) active.classList.add('tab-on');
+
+        body.querySelectorAll('.store-card[data-id]').forEach(cardEl => {
+          if (cardEl.disabled) return;
+          cardEl.onclick = () => {
+            const r = B.Items.buy(cardEl.dataset.id);
+            if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
+            B.Audio.play('chest');
+            B.UI.toast('✨ ' + r.item.name + ' alındı! Depom\'da.');
+            shell(); // altın + depo sayısı güncellensin
+          };
+        });
+      }
+
+      /* ---- 📦 Depom ---- */
+      function renderDepo(body) {
+        const owned = B.Items.ownedList();
+        if (!owned.length) {
+          body.innerHTML = '<div class="store-empty">📦 Depon boş. Mağazadan eşya al, burada saklansın!<br><small>Bazı eşyalar ileride evcil hayvan sahibi olmak için gerekli olacak.</small></div>';
+          return;
+        }
+        // Kategoriye göre grupla
+        const byCat = {};
+        owned.forEach(o => { (byCat[o.item.cat] = byCat[o.item.cat] || []).push(o); });
+        body.innerHTML = Object.keys(byCat).map(c =>
+          '<div class="depo-cat">' + B.Items.catName(c) + '</div>' +
+          '<div class="store-grid">' + byCat[c].map(o =>
+            '<div class="store-card depo-card">' +
+              '<span class="store-ic">' + o.item.icon + '</span>' +
+              '<span class="store-nm">' + o.item.name + '</span>' +
+              (o.count > 1 ? '<span class="depo-count">×' + o.count + '</span>' : '') +
+            '</div>').join('') +
+          '</div>'
+        ).join('');
+      }
+
+      shell();
     },
     exit() { if (this._hud) this._hud.dispose(); },
   });
@@ -7529,7 +7789,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         'lessons/care-101',
         'lessons/philo-101',
       ];
-      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', ...LESSONS]);
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-core'));
 
@@ -7571,6 +7831,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       if (!B.State.data.wishes) B.State.data.wishes = [];
       if (!B.State.data.ideas) B.State.data.ideas = [];
       B.Perms.ensure(B.State.data); // perms alanını garanti et
+      if (!B.State.data.inventory.items) B.State.data.inventory.items = {}; // eşya envanteri
+      B.Items.ensure();
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
       if (B.State.data.stats.firstTryCorrect == null) B.State.data.stats.firstTryCorrect = 0;
       if (B.State.data.stats.timeSumMs == null) B.State.data.stats.timeSumMs = 0;

@@ -19,6 +19,12 @@
     COSMETIC_SOLD:  'cosmetic:sold',   // { itemId, coins }
     COINS_CHANGED:  'coins:changed',   // { total, delta }
 
+    // Eşya / craft / evcil hayvan
+    ITEM_BOUGHT: 'item:bought',   // { itemId }
+    ITEM_CRAFTED: 'item:crafted', // { recipeId }
+    PET_ADOPTED: 'pet:adopted',   // { petId }
+    PET_CARED:   'pet:cared',     // { petId, action }
+
     // Görevler
     QUEST_PROGRESS:  'quest:progress',
     QUEST_COMPLETED: 'quest:completed',

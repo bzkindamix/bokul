@@ -17,7 +17,7 @@
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
       stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {} },
       progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
-      inventory: { cosmetics: [], badges: [], titles: [] },
+      inventory: { cosmetics: [], badges: [], titles: [], items: {} }, // items: { itemId: adet }
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },
       wishes: [], // { id, text, created, status, goal:{metric,target}|null, note }
       ideas: [],  // { id, text, created, status, note }

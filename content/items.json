@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "version": 1,
+  "categories": [
+    { "id": "tech", "name": "Teknoloji", "icon": "🎮" },
+    { "id": "oda", "name": "Odam", "icon": "🛋️" },
+    { "id": "pet", "name": "Evcil Malzemeleri", "icon": "🐾" },
+    { "id": "koleksiyon", "name": "Koleksiyon", "icon": "🏆" }
+  ],
+  "items": [
+    { "id": "konsol", "name": "Oyun Konsolu", "icon": "🎮", "price": 900, "cat": "tech", "unique": true, "desc": "Son model oyun konsolu. Odanın yıldızı!" },
+    { "id": "tablet", "name": "Son Model Tablet", "icon": "📱", "price": 750, "cat": "tech", "unique": true, "desc": "İnce, hızlı, kocaman ekran." },
+    { "id": "telefon", "name": "Akıllı Telefon", "icon": "📲", "price": 650, "cat": "tech", "unique": true, "desc": "Cepte taşınan mini bilgisayar." },
+    { "id": "kulaklik", "name": "Kablosuz Kulaklık", "icon": "🎧", "price": 300, "cat": "tech", "unique": true, "desc": "Kablosuz, gürültü engelli." },
+    { "id": "vr", "name": "VR Gözlük", "icon": "🥽", "price": 1100, "cat": "tech", "unique": true, "desc": "Sanal gerçeklik dünyasına giriş." },
+    { "id": "dizustu", "name": "Dizüstü Bilgisayar", "icon": "💻", "price": 1300, "cat": "tech", "unique": true, "desc": "Kodlama ve oyun için güçlü makine." },
+    { "id": "drone", "name": "Kameralı Drone", "icon": "🚁", "price": 950, "cat": "tech", "unique": true, "desc": "Gökyüzünden çekim yapan uçan robot." },
+    { "id": "robot", "name": "Robot Arkadaş", "icon": "🤖", "price": 1500, "cat": "tech", "unique": true, "desc": "Konuşan, hareket eden robot dostun." },
+
+    { "id": "koltuk", "name": "Rahat Koltuk", "icon": "🛋️", "price": 400, "cat": "oda", "unique": true, "desc": "Oyun molası için süper rahat." },
+    { "id": "masa", "name": "Çalışma Masası", "icon": "🪑", "price": 350, "cat": "oda", "unique": true, "desc": "Ders ve proje masası." },
+    { "id": "kitaplik", "name": "Kitaplık", "icon": "📚", "price": 300, "cat": "oda", "unique": true, "desc": "Kitapların yeni evi." },
+    { "id": "poster", "name": "Uzay Posteri", "icon": "🖼️", "price": 120, "cat": "oda", "unique": true, "desc": "Duvarını süsleyen galaksi posteri." },
+    { "id": "hali", "name": "Yumuşak Halı", "icon": "🟫", "price": 200, "cat": "oda", "unique": true, "desc": "Sıcacık, yumuşacık." },
+    { "id": "lego", "name": "Dev Lego Seti", "icon": "🧱", "price": 500, "cat": "oda", "unique": true, "desc": "Binlerce parça, sonsuz macera." },
+    { "id": "lamba", "name": "Yıldız Lambası", "icon": "🪩", "price": 180, "cat": "oda", "unique": true, "desc": "Tavana yıldızlar yansıtır." },
+
+    { "id": "akvaryum_cam", "name": "Akvaryum Camı", "icon": "🔲", "price": 120, "cat": "pet", "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)" },
+    { "id": "filtre", "name": "Su Filtresi", "icon": "🌀", "price": 150, "cat": "pet", "desc": "Suyu temiz tutan filtre." },
+    { "id": "temiz_su", "name": "Temiz Su", "icon": "💧", "price": 30, "cat": "pet", "desc": "Akvaryumu doldurmak için." },
+    { "id": "cakil", "name": "Akvaryum Çakılı", "icon": "🪨", "price": 40, "cat": "pet", "desc": "Akvaryum tabanı için renkli çakıl." },
+    { "id": "balik_yemi", "name": "Balık Yemi", "icon": "🍥", "price": 25, "cat": "pet", "desc": "Balığını beslemek için." },
+
+    { "id": "tasma", "name": "Köpek Tasması", "icon": "🦮", "price": 90, "cat": "pet", "desc": "Köpeğini gezdirmek için." },
+    { "id": "mama_kabi", "name": "Mama Kabı", "icon": "🥣", "price": 50, "cat": "pet", "desc": "Beslenme kabı." },
+    { "id": "kopek_mamasi", "name": "Köpek Maması", "icon": "🦴", "price": 60, "cat": "pet", "desc": "Enerji dolu mama." },
+    { "id": "oyuncak_kemik", "name": "Oyuncak Kemik", "icon": "🦴", "price": 45, "cat": "pet", "desc": "Köpeğinle oynamak için." },
+
+    { "id": "kedi_kumu", "name": "Kedi Kumu", "icon": "🏖️", "price": 55, "cat": "pet", "desc": "Kum kabı için." },
+    { "id": "kedi_mamasi", "name": "Kedi Maması", "icon": "🐟", "price": 60, "cat": "pet", "desc": "Kedinin favorisi." },
+    { "id": "tirmalama", "name": "Tırmalama Tahtası", "icon": "🪵", "price": 110, "cat": "pet", "desc": "Kedinin tırmalama alanı." },
+
+    { "id": "kafes", "name": "Kuş Kafesi", "icon": "🪺", "price": 130, "cat": "pet", "desc": "Kuşun evi." },
+    { "id": "kus_yemi", "name": "Kuş Yemi", "icon": "🌾", "price": 25, "cat": "pet", "desc": "Kuşunu beslemek için." },
+
+    { "id": "kupa", "name": "Altın Kupa", "icon": "🏆", "price": 700, "cat": "koleksiyon", "unique": true, "desc": "Başarının simgesi." },
+    { "id": "madalya", "name": "Şeref Madalyası", "icon": "🥇", "price": 500, "cat": "koleksiyon", "unique": true, "desc": "Nadir bir onur nişanı." },
+    { "id": "model_araba", "name": "Model Yarış Arabası", "icon": "🏎️", "price": 600, "cat": "koleksiyon", "unique": true, "desc": "Detaylı koleksiyon arabası." },
+    { "id": "nadir_kart", "name": "Nadir Koleksiyon Kartı", "icon": "🃏", "price": 800, "cat": "koleksiyon", "unique": true, "desc": "Efsanevi, parlayan kart." }
+  ]
+}
