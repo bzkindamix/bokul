@@ -24,10 +24,19 @@
   const SHAPES_KIZ = [['elbise', 'Elbise'], ['bluz', 'Bluz'], ['kolsuz', 'Askılı']];
   const SHAPES_ERK = [['forma', 'Forma'], ['gomlek', 'Gömlek'], ['yelek', 'Yelek']];
 
+  // Başlangıçta yalnızca birkaç kıyafet ÜCRETSİZ; gerisi altınla alınır.
+  const FREE_OUTFITS = new Set(['tee-mavi', 'elbise-pembe', 'forma-mavi']);
+
   function buildOutfits() {
     const out = [];
     const add = (shapes, gender) => shapes.forEach(([shape, label]) =>
-      PAL.forEach(p => out.push({ id: shape + '-' + p.id, name: p.n + ' ' + label, shape, c1: p.c1, c2: p.c2, gender, rarity: 'common' })));
+      PAL.forEach(p => {
+        const id = shape + '-' + p.id;
+        const o = { id, name: p.n + ' ' + label, shape, c1: p.c1, c2: p.c2, gender };
+        if (FREE_OUTFITS.has(id)) o.free = true;           // ücretsiz başlangıç
+        else { o.cosmeticId = id; o.rarity = 'common'; }   // kilitli, satın alınır
+        out.push(o);
+      }));
     add(SHAPES_UNI, 'both');   // 5×6 = 30
     add(SHAPES_KIZ, 'kiz');    // 3×6 = 18
     add(SHAPES_ERK, 'erkek');  // 3×6 = 18
@@ -60,10 +69,10 @@
       { id: 0, color: '#3B2A1A', name: 'Kahve' }, { id: 1, color: '#1C1C24', name: 'Siyah' },
       { id: 2, color: '#B7742F', name: 'Kumral' }, { id: 3, color: '#E8C25A', name: 'Sarı' },
       { id: 4, color: '#C4472B', name: 'Kızıl' },  { id: 5, color: '#C9C9D9', name: 'Gümüş' },
-      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue' },
-      { id: 7, color: '#9D6BFF', name: 'Mor', cosmeticId: 'hc-purple' },
-      { id: 8, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon' },
-      { id: 9, color: '#3DF2D2', name: 'Turkuaz', cosmeticId: 'hc-teal' },
+      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue', rarity: 'rare' },
+      { id: 7, color: '#9D6BFF', name: 'Mor', cosmeticId: 'hc-purple', rarity: 'rare' },
+      { id: 8, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon', rarity: 'epic' },
+      { id: 9, color: '#3DF2D2', name: 'Turkuaz', cosmeticId: 'hc-teal', rarity: 'epic' },
     ],
     eyeColors: [
       { id: 0, color: '#6B4423', name: 'Kahve' }, { id: 1, color: '#23212B', name: 'Siyah' },
@@ -74,16 +83,16 @@
       { id: 0,  name: 'Kısa',        gender: 'both' },
       { id: 1,  name: 'Uzun',        gender: 'kiz' },
       { id: 2,  name: 'Topuz',       gender: 'kiz' },
-      { id: 3,  name: 'Kıvırcık',    gender: 'both', cosmeticId: 'hair-curly' },
+      { id: 3,  name: 'Kıvırcık',    gender: 'both', cosmeticId: 'hair-curly', rarity: 'common' },
       { id: 4,  name: 'Sıfır',       gender: 'erkek' },
       { id: 5,  name: 'At Kuyruğu',  gender: 'kiz' },
       { id: 6,  name: 'İki Örgü',    gender: 'kiz' },
       { id: 7,  name: 'Kâkül',       gender: 'both' },
-      { id: 8,  name: 'Kirpi',       gender: 'erkek', cosmeticId: 'hair-spiky' },
-      { id: 9,  name: 'Mohawk',      gender: 'erkek', cosmeticId: 'hair-mohawk' },
+      { id: 8,  name: 'Kirpi',       gender: 'erkek', cosmeticId: 'hair-spiky', rarity: 'common' },
+      { id: 9,  name: 'Mohawk',      gender: 'erkek', cosmeticId: 'hair-mohawk', rarity: 'rare' },
       { id: 10, name: 'Afro',        gender: 'both' },
       { id: 11, name: 'Bob',         gender: 'kiz' },
-      { id: 12, name: 'Uzun Dalgalı', gender: 'kiz', cosmeticId: 'hair-wavy' },
+      { id: 12, name: 'Uzun Dalgalı', gender: 'kiz', cosmeticId: 'hair-wavy', rarity: 'rare' },
       { id: 13, name: 'Yan Ayrık',   gender: 'both' },
       { id: 14, name: 'Yüksek Topuz', gender: 'kiz' },
       { id: 15, name: 'Undercut',    gender: 'erkek' },
@@ -91,24 +100,24 @@
     ],
     eyes: [
       { id: 0, name: 'Klasik' }, { id: 1, name: 'Neşeli' },
-      { id: 2, name: 'Yıldız Göz', cosmeticId: 'eyes-star' },
+      { id: 2, name: 'Yıldız Göz', cosmeticId: 'eyes-star', rarity: 'rare' },
     ],
     mouths: [
       { id: 0, name: 'Gülümseme' }, { id: 1, name: 'Kocaman Gülüş' },
-      { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin' }, { id: 3, name: 'Islık' },
+      { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin', rarity: 'common' }, { id: 3, name: 'Islık' },
     ],
     outfits: OUTFITS,
     accs: [
       { id: 'none', name: 'Yok' },
-      { id: 'beret', name: 'Komutan Beresi', cosmeticId: 'av-beret' },
-      { id: 'glasses', name: 'Pilot Gözlüğü', cosmeticId: 'acc-glasses' },
-      { id: 'headset', name: 'Uzay Kulaklığı', cosmeticId: 'acc-headset' },
-      { id: 'crown', name: 'Galaksi Tacı', cosmeticId: 'acc-crown' },
+      { id: 'beret', name: 'Komutan Beresi', cosmeticId: 'av-beret', rarity: 'common' },
+      { id: 'glasses', name: 'Pilot Gözlüğü', cosmeticId: 'acc-glasses', rarity: 'rare' },
+      { id: 'headset', name: 'Uzay Kulaklığı', cosmeticId: 'acc-headset', rarity: 'epic' },
+      { id: 'crown', name: 'Galaksi Tacı', cosmeticId: 'acc-crown', rarity: 'legendary' },
     ],
     rings: [
       { id: 'none', name: 'Yok' },
-      { id: 'neon', name: 'Neon Halka', cosmeticId: 'ring-neon' },
-      { id: 'galaxy', name: 'Galaksi Halkası', cosmeticId: 'ring-galaxy' },
+      { id: 'neon', name: 'Neon Halka', cosmeticId: 'ring-neon', rarity: 'epic' },
+      { id: 'galaxy', name: 'Galaksi Halkası', cosmeticId: 'ring-galaxy', rarity: 'legendary' },
     ],
   };
 
@@ -278,10 +287,18 @@
     const hairC = (CATALOG.hairColors[a.hairColor] || CATALOG.hairColors[0]).color;
     const eyeC = (CATALOG.eyeColors[a.eyeColor] || CATALOG.eyeColors[0]).color;
     const id = 'bkc' + (uid++);
-    return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-      '<defs><clipPath id="' + id + '"><circle cx="60" cy="60" r="54"/></clipPath></defs>' +
-      '<circle cx="60" cy="60" r="54" fill="#31245F"/>' +
-      '<g clip-path="url(#' + id + ')">' +
+    // 3D hissi: derinlikli zemin gradyanı + yüz ışığı (sol-üst) + gölge (sağ-alt)
+    const defs = '<defs>' +
+      '<clipPath id="c' + id + '"><circle cx="60" cy="60" r="54"/></clipPath>' +
+      '<radialGradient id="bg' + id + '" cx="38%" cy="30%" r="80%"><stop offset="0%" stop-color="#3d2d74"/><stop offset="100%" stop-color="#211838"/></radialGradient>' +
+      '<radialGradient id="hl' + id + '" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff" stop-opacity="0.4"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>' +
+      '<radialGradient id="sh' + id + '" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#000" stop-opacity="0.32"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient>' +
+      '</defs>';
+    return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' + defs +
+      '<circle cx="60" cy="60" r="54" fill="url(#bg' + id + ')"/>' +
+      '<g clip-path="url(#c' + id + ')">' +
+        // arka gölge (derinlik) — figürün arkasında
+        '<ellipse cx="78" cy="88" rx="46" ry="42" fill="url(#sh' + id + ')"/>' +
         outfitSvg(a.outfit, skin) +
         '<ellipse cx="60" cy="64" rx="32" ry="34" fill="' + skin + '"/>' +
         '<circle cx="27" cy="64" r="6" fill="' + skin + '"/><circle cx="93" cy="64" r="6" fill="' + skin + '"/>' +
@@ -290,7 +307,13 @@
         '<ellipse cx="60" cy="66" rx="5" ry="6" fill="rgba(0,0,0,.12)"/>' +
         mouthSvg(a.mouth) +
         accSvg(a.acc) +
+        // yüz ışığı (yumuşak parlaklık, sol-üst) — hacim hissi
+        '<ellipse cx="45" cy="50" rx="20" ry="22" fill="url(#hl' + id + ')" opacity="0.7"/>' +
+        // alt gölge (çene/gövde) — hacim hissi
+        '<ellipse cx="72" cy="82" rx="34" ry="30" fill="url(#sh' + id + ')"/>' +
       '</g>' +
+      // kenar ışığı (rim) — badge parlaklığı
+      '<circle cx="60" cy="60" r="52.5" fill="none" stroke="#fff" stroke-opacity="0.14" stroke-width="2"/>' +
       ringSvg(a.ring) +
       '</svg>';
   }
@@ -328,6 +351,21 @@
     return a;
   }
 
+  /* Bir parçanın kilit anahtarı ve satın alınabilirliği */
+  function unlockKey(part) { return part.cosmeticId || part.id; }
+  function isGated(part) { return !part.free && !!(part.cosmeticId || part.rarity); }
+
+  /* Envanterdeki bir id'ye karşılık gelen katalog parçasını bul (satış için) */
+  function findByUnlock(key) {
+    const groups = [['hair', CATALOG.hairs], ['hairColor', CATALOG.hairColors], ['eyes', CATALOG.eyes],
+                    ['mouth', CATALOG.mouths], ['outfit', CATALOG.outfits], ['acc', CATALOG.accs], ['ring', CATALOG.rings]];
+    for (const [type, list] of groups) {
+      const p = list.find(x => isGated(x) && unlockKey(x) === key);
+      if (p) return { type, part: p, name: p.name, rarity: p.rarity || 'common' };
+    }
+    return null;
+  }
+
   B.Avatar = { CATALOG, normalize, svg, el, isUnlocked, preset, partIdFor, unequipCosmetic,
-               genderOk, hairsFor, outfitsFor };
+               genderOk, hairsFor, outfitsFor, unlockKey, isGated, findByUnlock };
 })(window.BOKUL = window.BOKUL || {});

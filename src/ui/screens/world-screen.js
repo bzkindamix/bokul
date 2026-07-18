@@ -27,6 +27,11 @@
           if (B.State.sectionProgress(lesson.id, s.id).bossDefeated) bossesDone++;
         }));
 
+        // Matematik cephesi çocuğun bitirdiği sınıfa göre ayarlanır
+        const gradeNote = (lesson.interactionType === 'long-division' && B.State.data.player.grade != null)
+          ? '<span class="world-grade">🎓 Senin seviyene ayarlı (' + (B.State.data.player.grade === 0 ? 'okul öncesi' : B.State.data.player.grade + '. sınıf sonrası') + ')</span>'
+          : '';
+
         const card = document.createElement('button');
         card.className = 'world-card';
         card.innerHTML =
@@ -34,7 +39,7 @@
           '<span class="world-info"><b>' + lesson.title + '</b>' +
           '<small>' + lesson.subtitle + '</small>' +
           '<span class="world-progress">⭐ ' + stars + '/' + max +
-          ' · 💠 ' + bossesDone + '/' + bosses + ' kristal</span></span>' +
+          ' · 💠 ' + bossesDone + '/' + bosses + ' kristal</span>' + gradeNote + '</span>' +
           '<span class="world-go">▶</span>';
         card.onclick = () => {
           B.Audio.play('tick');

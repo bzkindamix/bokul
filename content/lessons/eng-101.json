@@ -1,0 +1,131 @@
+{
+  "id": "eng-101",
+  "schema": 1,
+  "title": "İngilizce Cephesi",
+  "subtitle": "Kelime Avı Harekâtı",
+  "icon": "🌍",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+
+  "outcomes": [
+    { "id": "o1", "code": "ENG.1", "text": "Temel İngilizce kelimeleri ve selamlaşmayı bilir." },
+    { "id": "o2", "code": "ENG.2", "text": "Günlük basit İngilizce ifadeleri anlar ve kurar." }
+  ],
+
+  "skills": ["eng-kelime", "eng-selam", "eng-cumle", "eng-sayi"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "eng-brief": [
+      { "say": "Yeni cephe Komutan: İNGİLİZCE! Dünyanın en çok konuşulan ortak dili. Bu dili bilen, tüm dünyayla konuşabilir. Süper güç değil de nedir?" },
+      { "say": "Korkma, adım adım gideceğiz. Önce selamlaşma: 'Hello' (Merhaba), 'Goodbye' (Hoşça kal), 'Thank you' (Teşekkürler). Bunlar sihirli kelimeler!" },
+      { "say": "Kural şu: her gün birkaç kelime = kısa sürede koca bir hazine. Bulanık İngilizce bilmez, o yüzden bu cephe onun kâbusu. Hücum!" }
+    ],
+    "eng-brief2": [
+      { "say": "İkinci brifing Komutan: artık kelimeleri birleştirip CÜMLE kuracağız. 'I am happy' (Ben mutluyum), 'This is a cat' (Bu bir kedi)." },
+      { "say": "Renkler, sayılar, aile... hepsi cephanemiz. Ne kadar çok kelime, o kadar güçlü asker. Bulanık'ın sisini İngilizceyle dağıtacağız!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — KELİME AVI",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "İlk Kelimeler",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: İngilizce",
+              "segments": [ { "model": "abstract", "script": "eng-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Kelime Devriyesi", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-eng1", "tier": "topic", "name": "Sessiz Kelime Canavarı", "icon": "🔇", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-eng1" }
+          },
+          "bank": [
+            { "q": "'Hello' ne demek?", "skill": "eng-selam",
+              "options": ["Merhaba", "Hoşça kal", "Teşekkürler", "Evet"], "correct": 0, "hint": "Birine ilk gördüğünde söylersin." },
+            { "q": "'Thank you' ne demek?", "skill": "eng-selam",
+              "options": ["Teşekkürler", "Lütfen", "Özür dilerim", "Merhaba"], "correct": 0, "hint": "Biri sana yardım edince söylersin." },
+            { "q": "'Goodbye' ne demek?", "skill": "eng-selam",
+              "options": ["Hoşça kal", "Merhaba", "Günaydın", "Evet"], "correct": 0, "hint": "Ayrılırken söylenir." },
+            { "q": "'Cat' hangi hayvan?", "skill": "eng-kelime",
+              "options": ["Kedi", "Köpek", "Kuş", "Balık"], "correct": 0, "hint": "Miyav!" },
+            { "q": "'Dog' hangi hayvan?", "skill": "eng-kelime",
+              "options": ["Köpek", "Kedi", "At", "Fare"], "correct": 0, "hint": "Hav hav!" },
+            { "q": "'Red' hangi renk?", "skill": "eng-kelime",
+              "options": ["Kırmızı", "Mavi", "Yeşil", "Sarı"], "correct": 0, "hint": "Elmanın ve domatesin rengi." },
+            { "q": "'Blue' hangi renk?", "skill": "eng-kelime",
+              "options": ["Mavi", "Kırmızı", "Siyah", "Beyaz"], "correct": 0, "hint": "Gökyüzünün ve denizin rengi." },
+            { "q": "'One' hangi sayı?", "skill": "eng-sayi",
+              "options": ["1", "2", "3", "10"], "correct": 0, "hint": "En küçük sayma sayısı." },
+            { "q": "'Three' hangi sayı?", "skill": "eng-sayi",
+              "options": ["3", "2", "5", "8"], "correct": 0, "hint": "İki'den bir fazla." },
+            { "q": "'Please' ne demek?", "skill": "eng-selam",
+              "options": ["Lütfen", "Teşekkürler", "Hayır", "Dur"], "correct": 0, "hint": "Kibarca bir şey isterken eklersin." },
+            { "q": "'Yes' ne demek?", "skill": "eng-kelime",
+              "options": ["Evet", "Hayır", "Belki", "Dur"], "correct": 0, "hint": "Kabul ederken." },
+            { "q": "'Water' ne demek?", "skill": "eng-kelime",
+              "options": ["Su", "Ekmek", "Süt", "Çay"], "correct": 0, "hint": "Susayınca içtiğin şey." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Günlük İngilizce",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Cümleler",
+              "segments": [ { "model": "abstract", "script": "eng-brief2" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Cümle Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-eng2", "tier": "topic", "name": "Karışık Cümle Ejderi", "icon": "🐲", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-eng2" }
+          },
+          "bank": [
+            { "q": "'I am happy' ne demek?", "skill": "eng-cumle",
+              "options": ["Ben mutluyum", "Ben üzgünüm", "Sen mutlusun", "O mutlu"], "correct": 0, "hint": "'I am' = Ben ...-ım, 'happy' = mutlu." },
+            { "q": "'This is a book' ne demek?", "skill": "eng-cumle",
+              "options": ["Bu bir kitap", "Bu bir kalem", "Şu bir masa", "O bir defter"], "correct": 0, "hint": "'book' = kitap." },
+            { "q": "'Good morning' ne demek?", "skill": "eng-selam",
+              "options": ["Günaydın", "İyi geceler", "İyi akşamlar", "Hoşça kal"], "correct": 0, "hint": "Sabah söylenir. 'morning' = sabah." },
+            { "q": "'Mother' ne demek?", "skill": "eng-kelime",
+              "options": ["Anne", "Baba", "Kardeş", "Dede"], "correct": 0, "hint": "Aileden, seni doğuran." },
+            { "q": "'Father' ne demek?", "skill": "eng-kelime",
+              "options": ["Baba", "Anne", "Abla", "Amca"], "correct": 0, "hint": "Bu oyunun kahramanı: Baba Komutan!" },
+            { "q": "'Apple' ne demek?", "skill": "eng-kelime",
+              "options": ["Elma", "Armut", "Muz", "Üzüm"], "correct": 0, "hint": "Kırmızı veya yeşil, ağaçta yetişen meyve." },
+            { "q": "'I like you' ne demek?", "skill": "eng-cumle",
+              "options": ["Senden hoşlanıyorum", "Seni görüyorum", "Sana gidiyorum", "Sen büyüksün"], "correct": 0, "hint": "'like' = sevmek/hoşlanmak." },
+            { "q": "'How are you?' ne sorar?", "skill": "eng-cumle",
+              "options": ["Nasılsın?", "Kaç yaşındasın?", "Adın ne?", "Nerelisin?"], "correct": 0, "hint": "Hal hatır sorma." },
+            { "q": "'My name is Ali' ne demek?", "skill": "eng-cumle",
+              "options": ["Benim adım Ali", "Senin adın Ali", "Ali geldi", "Ali nerede"], "correct": 0, "hint": "'My name is ...' = Benim adım ..." },
+            { "q": "'Big' ne demek?", "skill": "eng-kelime",
+              "options": ["Büyük", "Küçük", "Uzun", "Kısa"], "correct": 0, "hint": "Fil ... bir hayvandır." },
+            { "q": "'Small' ne demek?", "skill": "eng-kelime",
+              "options": ["Küçük", "Büyük", "Hızlı", "Yavaş"], "correct": 0, "hint": "Karınca ... bir böcektir." },
+            { "q": "'Good night' ne zaman söylenir?", "skill": "eng-selam",
+              "options": ["Yatarken", "Kahvaltıda", "Okula giderken", "Öğlen"], "correct": 0, "hint": "'night' = gece." }
+          ]
+        }
+      ]
+    }
+  ]
+}

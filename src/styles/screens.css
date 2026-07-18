@@ -342,3 +342,30 @@
 .adm-metric, .adm-istatus, .adm-target { background: var(--bg-raised); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; font-size: 13px; font-family: inherit; }
 .adm-target { width: 80px; }
 .adm-note, .adm-inote { margin: 0 !important; text-align: left !important; font-size: 13px !important; padding: 8px 10px !important; }
+
+/* ---------- v0.14: 3D avatar hissi (büyük önizlemeler) ---------- */
+.locker-preview .avatar-holder,
+.evim-avatar .avatar-holder,
+.gender-prev,
+.login-av .avatar-holder,
+.creator-mini .avatar-holder {
+  display: inline-block; transform-style: preserve-3d;
+  animation: av3d 5.5s ease-in-out infinite;
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.45));
+}
+@keyframes av3d {
+  0%, 100% { transform: perspective(520px) rotateY(-9deg) rotateX(4deg) translateY(0); }
+  50%      { transform: perspective(520px) rotateY(9deg) rotateX(-3deg) translateY(-4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .locker-preview .avatar-holder, .evim-avatar .avatar-holder, .gender-prev,
+  .login-av .avatar-holder, .creator-mini .avatar-holder { animation: none; }
+}
+
+/* ---------- v0.14: Yaş & Sınıf seçimi ---------- */
+.ag-q { font-weight: 800; font-size: 15px; margin-top: 8px; }
+.ag-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 460px; }
+.ag-age, .ag-grade { min-width: 40px; font-size: 15px; padding: 8px 12px; }
+.ag-on { background: var(--accent); color: #3a0a2e; box-shadow: 0 0 10px rgba(255,79,216,.5); }
+.creator-root .creator-go[disabled] { opacity: .4; pointer-events: none; }
+.world-grade { color: var(--success); font-size: 11px; font-weight: 700; margin-top: 2px; }

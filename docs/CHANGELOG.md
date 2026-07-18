@@ -1,5 +1,23 @@
 # BOKUL — Sürüm Notları
 
+## v0.14 — 3D Avatar, Ekonomi, Yaş/Sınıf ve İngilizce (2026-07-18)
+
+- 🧊 3D AVATAR: Avatarlara derinlik gölgelendirmesi (radial gradyanlar: zemin,
+  yüz ışığı sol-üst, gölge sağ-alt, kenar ışığı). Büyük önizlemeler hafifçe
+  3D eğilip süzülüyor (perspective + rotateY animasyonu). Kıyafet değişikliği
+  avatarda anında görünüyor.
+- 💰 KIYAFET EKONOMİSİ: Başta yalnızca 3 kıyafet ücretsiz (her cinsiyet ~2-3
+  görür); kalan ~60+ kıyafet ve tüm premium parçalar altınla alınır. Katalog
+  tabanlı fiyat/alım/satım (rewards.json'a bağımlı değil).
+- 🎓 YAŞ & SINIF: Karakter yaratımında "Kaç yaşındasın?" ve "Kaçıncı sınıfı
+  bitirdin?" sorulur. Matematik zorluğu bitirilen sınıfa göre ayarlanır
+  (ör. 2. sınıf → 2 basamaklı bölme; 5.+ → 4 basamaklı). Dünya haritasında
+  math cephesinde seviye notu, ebeveyn konsolunda yaş/sınıf görünür.
+- 🌍 İNGİLİZCE CEPHESİ: Yeni ders (5. cephe). "İlk Kelimeler" (selamlaşma,
+  renkler, sayılar, hayvanlar) ve "Günlük İngilizce" (cümleler, aile, ifadeler).
+  24 soru, 2 boss (Sessiz Kelime Canavarı, Karışık Cümle Ejderi).
+
+
 ## v0.13 — Ebeveyn Konsolu ve Dilek Kutusu (2026-07-18)
 
 - 👨‍👧 EBEVEYN KONSOLU: Giriş ekranında "👨‍👧 Ebeveyn" → ebeveyn PIN'i (ilk

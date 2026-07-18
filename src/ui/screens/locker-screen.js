@@ -49,28 +49,31 @@
       const av = () => B.Avatar.normalize(B.State.data.player.avatar);
       function commit(a) { B.State.data.player.avatar = a; B.Save.saveSoon(); render(); }
 
-      function buy(item) {
-        const price = prices[item.rarity] || 50;
-        if (!B.Reward.spendCoins(price)) { B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return false; }
-        B.State.data.inventory.cosmetics.push(item.id);
-        B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: item.id });
+      const priceOf = part => prices[part.rarity] || 50;
+
+      /* Katalog parçasını satın al (kilit anahtarı envantere eklenir) */
+      function buyPart(part) {
+        if (!B.Reward.spendCoins(priceOf(part))) { B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return false; }
+        B.State.data.inventory.cosmetics.push(B.Avatar.unlockKey(part));
+        B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: B.Avatar.unlockKey(part) });
         B.Audio.play('chest');
-        B.UI.toast('✨ ' + item.name + ' satın alındı!');
+        B.UI.toast('✨ ' + part.name + ' satın alındı!');
         return true;
       }
 
-      function sell(item) {
-        const price = Math.round((prices[item.rarity] || 50) * sellRatio);
+      /* Sahip olunan bir parçayı sat (alış fiyatının bir kısmı geri döner) */
+      function sellPart(part) {
+        const price = Math.round(priceOf(part) * sellRatio);
         const inv = B.State.data.inventory;
-        const i = inv.cosmetics.indexOf(item.id);
+        const key = B.Avatar.unlockKey(part);
+        const i = inv.cosmetics.indexOf(key);
         if (i < 0) return;
         inv.cosmetics.splice(i, 1);
-        // Takılıysa slotu varsayılana döndür
-        B.State.data.player.avatar = B.Avatar.unequipCosmetic(B.State.data.player.avatar, item);
+        B.State.data.player.avatar = B.Avatar.unequipCosmetic(B.State.data.player.avatar, { id: key, type: part.type });
         B.Reward.addCoins(price, 'sell');
-        B.Bus.emit(B.Events.COSMETIC_SOLD, { itemId: item.id, coins: price });
+        B.Bus.emit(B.Events.COSMETIC_SOLD, { itemId: key, coins: price });
         B.Audio.play('tick');
-        B.UI.toast('💰 ' + item.name + ' satıldı: +' + price + ' Altın');
+        B.UI.toast('💰 ' + part.name + ' satıldı: +' + price + ' Altın');
         B.Save.saveSoon();
         render();
       }
@@ -78,17 +81,16 @@
       /* Parça kartı: önizleme = o parça takılı mini avatar */
       function partCard(part, apply, isEquipped) {
         const a = av(); a.usePhoto = false; apply(a, part);
-        const cosmetic = part.cosmeticId ? R.cosmetics.find(c => c.id === part.cosmeticId) : null;
         const unlocked = B.Avatar.isUnlocked(part);
         const card = document.createElement('button');
         card.className = 'part-card' + (isEquipped ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
         card.innerHTML =
           '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
           '<span class="part-name">' + (part.name || '') + '</span>' +
-          (!unlocked && cosmetic ? '<span class="part-price">💰 ' + (prices[cosmetic.rarity] || 50) + '</span>' : '');
+          (!unlocked ? '<span class="part-price">💰 ' + priceOf(part) + '</span>' : '');
         card.onclick = () => {
           B.Audio.play('tick');
-          if (!unlocked) { if (!buy(cosmetic)) return; }
+          if (!unlocked) { if (!buyPart(part)) return; }
           const cur = av(); cur.usePhoto = false; apply(cur, part);
           commit(cur);
         };
@@ -132,26 +134,28 @@
         }
       }
 
-      /* Satış: sahip olunan giyilebilir kozmetikler (ünvan hariç) */
+      /* Satış: envanterdeki sahip olunan parçalar (katalogdan çözümlenir) */
       function renderSell(host) {
-        const owned = R.cosmetics.filter(c =>
-          c.type !== 'title' && B.State.data.inventory.cosmetics.includes(c.id));
+        const owned = (B.State.data.inventory.cosmetics || [])
+          .map(key => B.Avatar.findByUnlock(key)).filter(Boolean);
         if (!owned.length) {
           host.innerHTML = '<div class="photo-panel"><p>Henüz satılık kıyafetin yok Komutan. Sandıklardan ve dükkândan kazan, sonra satarsın!</p></div>';
           return;
         }
         const g = document.createElement('div'); g.className = 'part-grid';
-        owned.forEach(item => {
-          const pid = B.Avatar.partIdFor(item);
-          const a = av(); a.usePhoto = false; if (pid != null) a[item.type] = pid;
-          const price = Math.round((prices[item.rarity] || 50) * sellRatio);
+        owned.forEach(found => {
+          const part = Object.assign({ type: found.type, rarity: found.rarity }, found.part);
+          const a = av(); a.usePhoto = false;
+          const pid = found.part.id;
+          if (pid != null) a[found.type] = pid;
+          const price = Math.round((prices[found.rarity] || 50) * sellRatio);
           const card = document.createElement('button');
           card.className = 'part-card part-sell';
           card.innerHTML =
             '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
-            '<span class="part-name">' + item.name + '</span>' +
+            '<span class="part-name">' + found.name + '</span>' +
             '<span class="part-price">Sat: 💰 ' + price + '</span>';
-          card.onclick = () => sell(item);
+          card.onclick = () => sellPart(part);
           g.appendChild(card);
         });
         host.appendChild(g);

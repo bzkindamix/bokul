@@ -78,7 +78,8 @@
           return '<div class="adm-card">' +
             '<div class="adm-p-head">' +
               '<span class="adm-av">' + B.Avatar.el(pl.avatar) + '</span>' +
-              '<div><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level + '</div></div>' +
+              '<div><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level +
+                (pl.age ? ' · 🎂 ' + pl.age : '') + (pl.grade != null ? ' · 🎓 ' + (pl.grade === 0 ? 'okul öncesi' : pl.grade + '. sınıf') : '') + '</div></div>' +
             '</div>' +
             '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
             '<div class="adm-stats">' +

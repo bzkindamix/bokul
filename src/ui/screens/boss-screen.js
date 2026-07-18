@@ -78,7 +78,7 @@
         if (over) return;
         if (view) { view.destroy(); view = null; }
         const q = B.Question.generate(lesson.interactionType,
-          B.Lesson.resolveGenerator(params.sectionId, boss.generator), lesson.skills);
+          B.Curriculum.adjust(lesson, B.Lesson.resolveGenerator(params.sectionId, boss.generator)), lesson.skills);
         let mistakes = 0;
 
         view = B.Question.view(lesson.interactionType)(stage, q, {

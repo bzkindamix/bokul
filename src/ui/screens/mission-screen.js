@@ -80,9 +80,10 @@
         if (qIndex >= total) return finishMission(starList);
         targetChip.textContent = '🎯 Hedef ' + (qIndex + 1) + '/' + total;
 
-        const gen = reviewGens
+        let gen = reviewGens
           ? reviewGens[Math.floor(Math.random() * reviewGens.length)]
           : B.Lesson.resolveGenerator(params.sectionId, mission.generator);
+        gen = B.Curriculum.adjust(lesson, gen); // yaş/sınıfa göre zorluk
         const q = B.Question.generate(lesson.interactionType, gen, lesson.skills);
         B.Bus.emit(B.Events.QUESTION_STARTED, { questionId: qIndex, lessonId: lesson.id, type: mission.type });
 

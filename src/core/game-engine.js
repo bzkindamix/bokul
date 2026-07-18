@@ -6,6 +6,7 @@
       // 1) İçerik paketleri (kayıt YÜKLENMEZ — önce profil seçilir)
       const LESSONS = [
         'lessons/math-5-division',
+        'lessons/eng-101',
         'lessons/ai-101',
         'lessons/care-101',
         'lessons/philo-101',

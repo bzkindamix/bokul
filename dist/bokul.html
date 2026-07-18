@@ -700,6 +700,33 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .adm-target { width: 80px; }
 .adm-note, .adm-inote { margin: 0 !important; text-align: left !important; font-size: 13px !important; padding: 8px 10px !important; }
 
+/* ---------- v0.14: 3D avatar hissi (büyük önizlemeler) ---------- */
+.locker-preview .avatar-holder,
+.evim-avatar .avatar-holder,
+.gender-prev,
+.login-av .avatar-holder,
+.creator-mini .avatar-holder {
+  display: inline-block; transform-style: preserve-3d;
+  animation: av3d 5.5s ease-in-out infinite;
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,.45));
+}
+@keyframes av3d {
+  0%, 100% { transform: perspective(520px) rotateY(-9deg) rotateX(4deg) translateY(0); }
+  50%      { transform: perspective(520px) rotateY(9deg) rotateX(-3deg) translateY(-4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .locker-preview .avatar-holder, .evim-avatar .avatar-holder, .gender-prev,
+  .login-av .avatar-holder, .creator-mini .avatar-holder { animation: none; }
+}
+
+/* ---------- v0.14: Yaş & Sınıf seçimi ---------- */
+.ag-q { font-weight: 800; font-size: 15px; margin-top: 8px; }
+.ag-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; max-width: 460px; }
+.ag-age, .ag-grade { min-width: 40px; font-size: 15px; padding: 8px 12px; }
+.ag-on { background: var(--accent); color: #3a0a2e; box-shadow: 0 0 10px rgba(255,79,216,.5); }
+.creator-root .creator-go[disabled] { opacity: .4; pointer-events: none; }
+.world-grade { color: var(--success); font-size: 11px; font-weight: 700; margin-top: 2px; }
+
 </style>
 </head>
 <body>
@@ -1277,6 +1304,140 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 }
 
 </script>
+<script type="application/json" id="bokul-content-lessons-eng-101">
+{
+  "id": "eng-101",
+  "schema": 1,
+  "title": "İngilizce Cephesi",
+  "subtitle": "Kelime Avı Harekâtı",
+  "icon": "🌍",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+
+  "outcomes": [
+    { "id": "o1", "code": "ENG.1", "text": "Temel İngilizce kelimeleri ve selamlaşmayı bilir." },
+    { "id": "o2", "code": "ENG.2", "text": "Günlük basit İngilizce ifadeleri anlar ve kurar." }
+  ],
+
+  "skills": ["eng-kelime", "eng-selam", "eng-cumle", "eng-sayi"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "eng-brief": [
+      { "say": "Yeni cephe Komutan: İNGİLİZCE! Dünyanın en çok konuşulan ortak dili. Bu dili bilen, tüm dünyayla konuşabilir. Süper güç değil de nedir?" },
+      { "say": "Korkma, adım adım gideceğiz. Önce selamlaşma: 'Hello' (Merhaba), 'Goodbye' (Hoşça kal), 'Thank you' (Teşekkürler). Bunlar sihirli kelimeler!" },
+      { "say": "Kural şu: her gün birkaç kelime = kısa sürede koca bir hazine. Bulanık İngilizce bilmez, o yüzden bu cephe onun kâbusu. Hücum!" }
+    ],
+    "eng-brief2": [
+      { "say": "İkinci brifing Komutan: artık kelimeleri birleştirip CÜMLE kuracağız. 'I am happy' (Ben mutluyum), 'This is a cat' (Bu bir kedi)." },
+      { "say": "Renkler, sayılar, aile... hepsi cephanemiz. Ne kadar çok kelime, o kadar güçlü asker. Bulanık'ın sisini İngilizceyle dağıtacağız!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — KELİME AVI",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "İlk Kelimeler",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: İngilizce",
+              "segments": [ { "model": "abstract", "script": "eng-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Kelime Devriyesi", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-eng1", "tier": "topic", "name": "Sessiz Kelime Canavarı", "icon": "🔇", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-eng1" }
+          },
+          "bank": [
+            { "q": "'Hello' ne demek?", "skill": "eng-selam",
+              "options": ["Merhaba", "Hoşça kal", "Teşekkürler", "Evet"], "correct": 0, "hint": "Birine ilk gördüğünde söylersin." },
+            { "q": "'Thank you' ne demek?", "skill": "eng-selam",
+              "options": ["Teşekkürler", "Lütfen", "Özür dilerim", "Merhaba"], "correct": 0, "hint": "Biri sana yardım edince söylersin." },
+            { "q": "'Goodbye' ne demek?", "skill": "eng-selam",
+              "options": ["Hoşça kal", "Merhaba", "Günaydın", "Evet"], "correct": 0, "hint": "Ayrılırken söylenir." },
+            { "q": "'Cat' hangi hayvan?", "skill": "eng-kelime",
+              "options": ["Kedi", "Köpek", "Kuş", "Balık"], "correct": 0, "hint": "Miyav!" },
+            { "q": "'Dog' hangi hayvan?", "skill": "eng-kelime",
+              "options": ["Köpek", "Kedi", "At", "Fare"], "correct": 0, "hint": "Hav hav!" },
+            { "q": "'Red' hangi renk?", "skill": "eng-kelime",
+              "options": ["Kırmızı", "Mavi", "Yeşil", "Sarı"], "correct": 0, "hint": "Elmanın ve domatesin rengi." },
+            { "q": "'Blue' hangi renk?", "skill": "eng-kelime",
+              "options": ["Mavi", "Kırmızı", "Siyah", "Beyaz"], "correct": 0, "hint": "Gökyüzünün ve denizin rengi." },
+            { "q": "'One' hangi sayı?", "skill": "eng-sayi",
+              "options": ["1", "2", "3", "10"], "correct": 0, "hint": "En küçük sayma sayısı." },
+            { "q": "'Three' hangi sayı?", "skill": "eng-sayi",
+              "options": ["3", "2", "5", "8"], "correct": 0, "hint": "İki'den bir fazla." },
+            { "q": "'Please' ne demek?", "skill": "eng-selam",
+              "options": ["Lütfen", "Teşekkürler", "Hayır", "Dur"], "correct": 0, "hint": "Kibarca bir şey isterken eklersin." },
+            { "q": "'Yes' ne demek?", "skill": "eng-kelime",
+              "options": ["Evet", "Hayır", "Belki", "Dur"], "correct": 0, "hint": "Kabul ederken." },
+            { "q": "'Water' ne demek?", "skill": "eng-kelime",
+              "options": ["Su", "Ekmek", "Süt", "Çay"], "correct": 0, "hint": "Susayınca içtiğin şey." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Günlük İngilizce",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Cümleler",
+              "segments": [ { "model": "abstract", "script": "eng-brief2" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Cümle Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-eng2", "tier": "topic", "name": "Karışık Cümle Ejderi", "icon": "🐲", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-eng2" }
+          },
+          "bank": [
+            { "q": "'I am happy' ne demek?", "skill": "eng-cumle",
+              "options": ["Ben mutluyum", "Ben üzgünüm", "Sen mutlusun", "O mutlu"], "correct": 0, "hint": "'I am' = Ben ...-ım, 'happy' = mutlu." },
+            { "q": "'This is a book' ne demek?", "skill": "eng-cumle",
+              "options": ["Bu bir kitap", "Bu bir kalem", "Şu bir masa", "O bir defter"], "correct": 0, "hint": "'book' = kitap." },
+            { "q": "'Good morning' ne demek?", "skill": "eng-selam",
+              "options": ["Günaydın", "İyi geceler", "İyi akşamlar", "Hoşça kal"], "correct": 0, "hint": "Sabah söylenir. 'morning' = sabah." },
+            { "q": "'Mother' ne demek?", "skill": "eng-kelime",
+              "options": ["Anne", "Baba", "Kardeş", "Dede"], "correct": 0, "hint": "Aileden, seni doğuran." },
+            { "q": "'Father' ne demek?", "skill": "eng-kelime",
+              "options": ["Baba", "Anne", "Abla", "Amca"], "correct": 0, "hint": "Bu oyunun kahramanı: Baba Komutan!" },
+            { "q": "'Apple' ne demek?", "skill": "eng-kelime",
+              "options": ["Elma", "Armut", "Muz", "Üzüm"], "correct": 0, "hint": "Kırmızı veya yeşil, ağaçta yetişen meyve." },
+            { "q": "'I like you' ne demek?", "skill": "eng-cumle",
+              "options": ["Senden hoşlanıyorum", "Seni görüyorum", "Sana gidiyorum", "Sen büyüksün"], "correct": 0, "hint": "'like' = sevmek/hoşlanmak." },
+            { "q": "'How are you?' ne sorar?", "skill": "eng-cumle",
+              "options": ["Nasılsın?", "Kaç yaşındasın?", "Adın ne?", "Nerelisin?"], "correct": 0, "hint": "Hal hatır sorma." },
+            { "q": "'My name is Ali' ne demek?", "skill": "eng-cumle",
+              "options": ["Benim adım Ali", "Senin adın Ali", "Ali geldi", "Ali nerede"], "correct": 0, "hint": "'My name is ...' = Benim adım ..." },
+            { "q": "'Big' ne demek?", "skill": "eng-kelime",
+              "options": ["Büyük", "Küçük", "Uzun", "Kısa"], "correct": 0, "hint": "Fil ... bir hayvandır." },
+            { "q": "'Small' ne demek?", "skill": "eng-kelime",
+              "options": ["Küçük", "Büyük", "Hızlı", "Yavaş"], "correct": 0, "hint": "Karınca ... bir böcektir." },
+            { "q": "'Good night' ne zaman söylenir?", "skill": "eng-selam",
+              "options": ["Yatarken", "Kahvaltıda", "Okula giderken", "Öğlen"], "correct": 0, "hint": "'night' = gece." }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+</script>
 <script type="application/json" id="bokul-content-lessons-ai-101">
 {
   "id": "ai-101",
@@ -1835,7 +1996,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         lastPlayedAt: new Date().toISOString(),
         introSeen: false,          // giriş sinematiği bu profilde izlendi mi
       },
-      player: { name: '', xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
+      player: { name: '', age: null, grade: null, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
       stats: { correct: 0, wrong: 0, questionsDone: 0, perSkill: {} }, // perSkill: { estimate: [1,0,1,...] }
@@ -1959,6 +2120,51 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     checkAdmin(pin) {
       try { return JSON.parse(localStorage.getItem(ADMIN_KEY)).pin === hash(pin); }
       catch (e) { return false; }
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/curriculum.js === */
+/* BOKUL — Curriculum (Yaş / Sınıf Uyarlaması)
+ * Onboarding'de sorulan "kaç yaşındasın / kaçıncı sınıfı bitirdin" bilgisine göre
+ * içeriği (özellikle matematik zorluğunu) çocuğun seviyesine göre ayarlar. */
+(function (B) {
+
+  /* Bitirilen sınıfa göre matematik üretici tavanları */
+  function mathCaps(grade) {
+    grade = grade == null ? 5 : grade;
+    if (grade <= 2) return { maxDigits: 2, maxDivisor: 5 };
+    if (grade === 3) return { maxDigits: 3, maxDivisor: 6 };
+    if (grade === 4) return { maxDigits: 3, maxDivisor: 9 };
+    return { maxDigits: 4, maxDivisor: 9 }; // 5 ve üzeri
+  }
+
+  B.Curriculum = {
+    mathCaps,
+
+    /* Uzun bölme üreticisini sınıfa göre kısıtla (çok küçükler zorlanmasın) */
+    forMath(gen) {
+      if (!gen) return gen;
+      const caps = mathCaps(B.State.data.player.grade);
+      const g = Object.assign({}, gen);
+      if (Array.isArray(g.dividendDigits))
+        g.dividendDigits = [Math.min(g.dividendDigits[0], caps.maxDigits), Math.min(g.dividendDigits[1], caps.maxDigits)];
+      else if (typeof g.dividendDigits === 'number')
+        g.dividendDigits = Math.min(g.dividendDigits, caps.maxDigits);
+      if (Array.isArray(g.divisorRange))
+        g.divisorRange = [g.divisorRange[0], Math.min(g.divisorRange[1], caps.maxDivisor)];
+      return g;
+    },
+
+    /* Etkin ders matematikse üreticiyi uyarlar, değilse dokunmaz */
+    adjust(lesson, gen) {
+      return (lesson && lesson.interactionType === 'long-division') ? B.Curriculum.forMath(gen) : gen;
+    },
+
+    gradeLabel() {
+      const gr = B.State.data.player.grade;
+      if (gr == null) return '';
+      return gr === 0 ? 'okul öncesi' : (gr + '. sınıfı bitirmiş');
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -3706,10 +3912,19 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   const SHAPES_KIZ = [['elbise', 'Elbise'], ['bluz', 'Bluz'], ['kolsuz', 'Askılı']];
   const SHAPES_ERK = [['forma', 'Forma'], ['gomlek', 'Gömlek'], ['yelek', 'Yelek']];
 
+  // Başlangıçta yalnızca birkaç kıyafet ÜCRETSİZ; gerisi altınla alınır.
+  const FREE_OUTFITS = new Set(['tee-mavi', 'elbise-pembe', 'forma-mavi']);
+
   function buildOutfits() {
     const out = [];
     const add = (shapes, gender) => shapes.forEach(([shape, label]) =>
-      PAL.forEach(p => out.push({ id: shape + '-' + p.id, name: p.n + ' ' + label, shape, c1: p.c1, c2: p.c2, gender, rarity: 'common' })));
+      PAL.forEach(p => {
+        const id = shape + '-' + p.id;
+        const o = { id, name: p.n + ' ' + label, shape, c1: p.c1, c2: p.c2, gender };
+        if (FREE_OUTFITS.has(id)) o.free = true;           // ücretsiz başlangıç
+        else { o.cosmeticId = id; o.rarity = 'common'; }   // kilitli, satın alınır
+        out.push(o);
+      }));
     add(SHAPES_UNI, 'both');   // 5×6 = 30
     add(SHAPES_KIZ, 'kiz');    // 3×6 = 18
     add(SHAPES_ERK, 'erkek');  // 3×6 = 18
@@ -3742,10 +3957,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       { id: 0, color: '#3B2A1A', name: 'Kahve' }, { id: 1, color: '#1C1C24', name: 'Siyah' },
       { id: 2, color: '#B7742F', name: 'Kumral' }, { id: 3, color: '#E8C25A', name: 'Sarı' },
       { id: 4, color: '#C4472B', name: 'Kızıl' },  { id: 5, color: '#C9C9D9', name: 'Gümüş' },
-      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue' },
-      { id: 7, color: '#9D6BFF', name: 'Mor', cosmeticId: 'hc-purple' },
-      { id: 8, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon' },
-      { id: 9, color: '#3DF2D2', name: 'Turkuaz', cosmeticId: 'hc-teal' },
+      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue', rarity: 'rare' },
+      { id: 7, color: '#9D6BFF', name: 'Mor', cosmeticId: 'hc-purple', rarity: 'rare' },
+      { id: 8, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon', rarity: 'epic' },
+      { id: 9, color: '#3DF2D2', name: 'Turkuaz', cosmeticId: 'hc-teal', rarity: 'epic' },
     ],
     eyeColors: [
       { id: 0, color: '#6B4423', name: 'Kahve' }, { id: 1, color: '#23212B', name: 'Siyah' },
@@ -3756,16 +3971,16 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       { id: 0,  name: 'Kısa',        gender: 'both' },
       { id: 1,  name: 'Uzun',        gender: 'kiz' },
       { id: 2,  name: 'Topuz',       gender: 'kiz' },
-      { id: 3,  name: 'Kıvırcık',    gender: 'both', cosmeticId: 'hair-curly' },
+      { id: 3,  name: 'Kıvırcık',    gender: 'both', cosmeticId: 'hair-curly', rarity: 'common' },
       { id: 4,  name: 'Sıfır',       gender: 'erkek' },
       { id: 5,  name: 'At Kuyruğu',  gender: 'kiz' },
       { id: 6,  name: 'İki Örgü',    gender: 'kiz' },
       { id: 7,  name: 'Kâkül',       gender: 'both' },
-      { id: 8,  name: 'Kirpi',       gender: 'erkek', cosmeticId: 'hair-spiky' },
-      { id: 9,  name: 'Mohawk',      gender: 'erkek', cosmeticId: 'hair-mohawk' },
+      { id: 8,  name: 'Kirpi',       gender: 'erkek', cosmeticId: 'hair-spiky', rarity: 'common' },
+      { id: 9,  name: 'Mohawk',      gender: 'erkek', cosmeticId: 'hair-mohawk', rarity: 'rare' },
       { id: 10, name: 'Afro',        gender: 'both' },
       { id: 11, name: 'Bob',         gender: 'kiz' },
-      { id: 12, name: 'Uzun Dalgalı', gender: 'kiz', cosmeticId: 'hair-wavy' },
+      { id: 12, name: 'Uzun Dalgalı', gender: 'kiz', cosmeticId: 'hair-wavy', rarity: 'rare' },
       { id: 13, name: 'Yan Ayrık',   gender: 'both' },
       { id: 14, name: 'Yüksek Topuz', gender: 'kiz' },
       { id: 15, name: 'Undercut',    gender: 'erkek' },
@@ -3773,24 +3988,24 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     ],
     eyes: [
       { id: 0, name: 'Klasik' }, { id: 1, name: 'Neşeli' },
-      { id: 2, name: 'Yıldız Göz', cosmeticId: 'eyes-star' },
+      { id: 2, name: 'Yıldız Göz', cosmeticId: 'eyes-star', rarity: 'rare' },
     ],
     mouths: [
       { id: 0, name: 'Gülümseme' }, { id: 1, name: 'Kocaman Gülüş' },
-      { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin' }, { id: 3, name: 'Islık' },
+      { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin', rarity: 'common' }, { id: 3, name: 'Islık' },
     ],
     outfits: OUTFITS,
     accs: [
       { id: 'none', name: 'Yok' },
-      { id: 'beret', name: 'Komutan Beresi', cosmeticId: 'av-beret' },
-      { id: 'glasses', name: 'Pilot Gözlüğü', cosmeticId: 'acc-glasses' },
-      { id: 'headset', name: 'Uzay Kulaklığı', cosmeticId: 'acc-headset' },
-      { id: 'crown', name: 'Galaksi Tacı', cosmeticId: 'acc-crown' },
+      { id: 'beret', name: 'Komutan Beresi', cosmeticId: 'av-beret', rarity: 'common' },
+      { id: 'glasses', name: 'Pilot Gözlüğü', cosmeticId: 'acc-glasses', rarity: 'rare' },
+      { id: 'headset', name: 'Uzay Kulaklığı', cosmeticId: 'acc-headset', rarity: 'epic' },
+      { id: 'crown', name: 'Galaksi Tacı', cosmeticId: 'acc-crown', rarity: 'legendary' },
     ],
     rings: [
       { id: 'none', name: 'Yok' },
-      { id: 'neon', name: 'Neon Halka', cosmeticId: 'ring-neon' },
-      { id: 'galaxy', name: 'Galaksi Halkası', cosmeticId: 'ring-galaxy' },
+      { id: 'neon', name: 'Neon Halka', cosmeticId: 'ring-neon', rarity: 'epic' },
+      { id: 'galaxy', name: 'Galaksi Halkası', cosmeticId: 'ring-galaxy', rarity: 'legendary' },
     ],
   };
 
@@ -3960,10 +4175,18 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     const hairC = (CATALOG.hairColors[a.hairColor] || CATALOG.hairColors[0]).color;
     const eyeC = (CATALOG.eyeColors[a.eyeColor] || CATALOG.eyeColors[0]).color;
     const id = 'bkc' + (uid++);
-    return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
-      '<defs><clipPath id="' + id + '"><circle cx="60" cy="60" r="54"/></clipPath></defs>' +
-      '<circle cx="60" cy="60" r="54" fill="#31245F"/>' +
-      '<g clip-path="url(#' + id + ')">' +
+    // 3D hissi: derinlikli zemin gradyanı + yüz ışığı (sol-üst) + gölge (sağ-alt)
+    const defs = '<defs>' +
+      '<clipPath id="c' + id + '"><circle cx="60" cy="60" r="54"/></clipPath>' +
+      '<radialGradient id="bg' + id + '" cx="38%" cy="30%" r="80%"><stop offset="0%" stop-color="#3d2d74"/><stop offset="100%" stop-color="#211838"/></radialGradient>' +
+      '<radialGradient id="hl' + id + '" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#fff" stop-opacity="0.4"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/></radialGradient>' +
+      '<radialGradient id="sh' + id + '" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#000" stop-opacity="0.32"/><stop offset="100%" stop-color="#000" stop-opacity="0"/></radialGradient>' +
+      '</defs>';
+    return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' + defs +
+      '<circle cx="60" cy="60" r="54" fill="url(#bg' + id + ')"/>' +
+      '<g clip-path="url(#c' + id + ')">' +
+        // arka gölge (derinlik) — figürün arkasında
+        '<ellipse cx="78" cy="88" rx="46" ry="42" fill="url(#sh' + id + ')"/>' +
         outfitSvg(a.outfit, skin) +
         '<ellipse cx="60" cy="64" rx="32" ry="34" fill="' + skin + '"/>' +
         '<circle cx="27" cy="64" r="6" fill="' + skin + '"/><circle cx="93" cy="64" r="6" fill="' + skin + '"/>' +
@@ -3972,7 +4195,13 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         '<ellipse cx="60" cy="66" rx="5" ry="6" fill="rgba(0,0,0,.12)"/>' +
         mouthSvg(a.mouth) +
         accSvg(a.acc) +
+        // yüz ışığı (yumuşak parlaklık, sol-üst) — hacim hissi
+        '<ellipse cx="45" cy="50" rx="20" ry="22" fill="url(#hl' + id + ')" opacity="0.7"/>' +
+        // alt gölge (çene/gövde) — hacim hissi
+        '<ellipse cx="72" cy="82" rx="34" ry="30" fill="url(#sh' + id + ')"/>' +
       '</g>' +
+      // kenar ışığı (rim) — badge parlaklığı
+      '<circle cx="60" cy="60" r="52.5" fill="none" stroke="#fff" stroke-opacity="0.14" stroke-width="2"/>' +
       ringSvg(a.ring) +
       '</svg>';
   }
@@ -4010,8 +4239,23 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     return a;
   }
 
+  /* Bir parçanın kilit anahtarı ve satın alınabilirliği */
+  function unlockKey(part) { return part.cosmeticId || part.id; }
+  function isGated(part) { return !part.free && !!(part.cosmeticId || part.rarity); }
+
+  /* Envanterdeki bir id'ye karşılık gelen katalog parçasını bul (satış için) */
+  function findByUnlock(key) {
+    const groups = [['hair', CATALOG.hairs], ['hairColor', CATALOG.hairColors], ['eyes', CATALOG.eyes],
+                    ['mouth', CATALOG.mouths], ['outfit', CATALOG.outfits], ['acc', CATALOG.accs], ['ring', CATALOG.rings]];
+    for (const [type, list] of groups) {
+      const p = list.find(x => isGated(x) && unlockKey(x) === key);
+      if (p) return { type, part: p, name: p.name, rarity: p.rarity || 'common' };
+    }
+    return null;
+  }
+
   B.Avatar = { CATALOG, normalize, svg, el, isUnlocked, preset, partIdFor, unequipCosmetic,
-               genderOk, hairsFor, outfitsFor };
+               genderOk, hairsFor, outfitsFor, unlockKey, isGated, findByUnlock };
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/components/commander.js === */
@@ -4429,6 +4673,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           if (B.State.sectionProgress(lesson.id, s.id).bossDefeated) bossesDone++;
         }));
 
+        // Matematik cephesi çocuğun bitirdiği sınıfa göre ayarlanır
+        const gradeNote = (lesson.interactionType === 'long-division' && B.State.data.player.grade != null)
+          ? '<span class="world-grade">🎓 Senin seviyene ayarlı (' + (B.State.data.player.grade === 0 ? 'okul öncesi' : B.State.data.player.grade + '. sınıf sonrası') + ')</span>'
+          : '';
+
         const card = document.createElement('button');
         card.className = 'world-card';
         card.innerHTML =
@@ -4436,7 +4685,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           '<span class="world-info"><b>' + lesson.title + '</b>' +
           '<small>' + lesson.subtitle + '</small>' +
           '<span class="world-progress">⭐ ' + stars + '/' + max +
-          ' · 💠 ' + bossesDone + '/' + bosses + ' kristal</span></span>' +
+          ' · 💠 ' + bossesDone + '/' + bosses + ' kristal</span>' + gradeNote + '</span>' +
           '<span class="world-go">▶</span>';
         card.onclick = () => {
           B.Audio.play('tick');
@@ -4628,9 +4877,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         if (qIndex >= total) return finishMission(starList);
         targetChip.textContent = '🎯 Hedef ' + (qIndex + 1) + '/' + total;
 
-        const gen = reviewGens
+        let gen = reviewGens
           ? reviewGens[Math.floor(Math.random() * reviewGens.length)]
           : B.Lesson.resolveGenerator(params.sectionId, mission.generator);
+        gen = B.Curriculum.adjust(lesson, gen); // yaş/sınıfa göre zorluk
         const q = B.Question.generate(lesson.interactionType, gen, lesson.skills);
         B.Bus.emit(B.Events.QUESTION_STARTED, { questionId: qIndex, lessonId: lesson.id, type: mission.type });
 
@@ -4802,7 +5052,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         if (over) return;
         if (view) { view.destroy(); view = null; }
         const q = B.Question.generate(lesson.interactionType,
-          B.Lesson.resolveGenerator(params.sectionId, boss.generator), lesson.skills);
+          B.Curriculum.adjust(lesson, B.Lesson.resolveGenerator(params.sectionId, boss.generator)), lesson.skills);
         let mistakes = 0;
 
         view = B.Question.view(lesson.interactionType)(stage, q, {
@@ -4960,28 +5210,31 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       const av = () => B.Avatar.normalize(B.State.data.player.avatar);
       function commit(a) { B.State.data.player.avatar = a; B.Save.saveSoon(); render(); }
 
-      function buy(item) {
-        const price = prices[item.rarity] || 50;
-        if (!B.Reward.spendCoins(price)) { B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return false; }
-        B.State.data.inventory.cosmetics.push(item.id);
-        B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: item.id });
+      const priceOf = part => prices[part.rarity] || 50;
+
+      /* Katalog parçasını satın al (kilit anahtarı envantere eklenir) */
+      function buyPart(part) {
+        if (!B.Reward.spendCoins(priceOf(part))) { B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return false; }
+        B.State.data.inventory.cosmetics.push(B.Avatar.unlockKey(part));
+        B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: B.Avatar.unlockKey(part) });
         B.Audio.play('chest');
-        B.UI.toast('✨ ' + item.name + ' satın alındı!');
+        B.UI.toast('✨ ' + part.name + ' satın alındı!');
         return true;
       }
 
-      function sell(item) {
-        const price = Math.round((prices[item.rarity] || 50) * sellRatio);
+      /* Sahip olunan bir parçayı sat (alış fiyatının bir kısmı geri döner) */
+      function sellPart(part) {
+        const price = Math.round(priceOf(part) * sellRatio);
         const inv = B.State.data.inventory;
-        const i = inv.cosmetics.indexOf(item.id);
+        const key = B.Avatar.unlockKey(part);
+        const i = inv.cosmetics.indexOf(key);
         if (i < 0) return;
         inv.cosmetics.splice(i, 1);
-        // Takılıysa slotu varsayılana döndür
-        B.State.data.player.avatar = B.Avatar.unequipCosmetic(B.State.data.player.avatar, item);
+        B.State.data.player.avatar = B.Avatar.unequipCosmetic(B.State.data.player.avatar, { id: key, type: part.type });
         B.Reward.addCoins(price, 'sell');
-        B.Bus.emit(B.Events.COSMETIC_SOLD, { itemId: item.id, coins: price });
+        B.Bus.emit(B.Events.COSMETIC_SOLD, { itemId: key, coins: price });
         B.Audio.play('tick');
-        B.UI.toast('💰 ' + item.name + ' satıldı: +' + price + ' Altın');
+        B.UI.toast('💰 ' + part.name + ' satıldı: +' + price + ' Altın');
         B.Save.saveSoon();
         render();
       }
@@ -4989,17 +5242,16 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       /* Parça kartı: önizleme = o parça takılı mini avatar */
       function partCard(part, apply, isEquipped) {
         const a = av(); a.usePhoto = false; apply(a, part);
-        const cosmetic = part.cosmeticId ? R.cosmetics.find(c => c.id === part.cosmeticId) : null;
         const unlocked = B.Avatar.isUnlocked(part);
         const card = document.createElement('button');
         card.className = 'part-card' + (isEquipped ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
         card.innerHTML =
           '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
           '<span class="part-name">' + (part.name || '') + '</span>' +
-          (!unlocked && cosmetic ? '<span class="part-price">💰 ' + (prices[cosmetic.rarity] || 50) + '</span>' : '');
+          (!unlocked ? '<span class="part-price">💰 ' + priceOf(part) + '</span>' : '');
         card.onclick = () => {
           B.Audio.play('tick');
-          if (!unlocked) { if (!buy(cosmetic)) return; }
+          if (!unlocked) { if (!buyPart(part)) return; }
           const cur = av(); cur.usePhoto = false; apply(cur, part);
           commit(cur);
         };
@@ -5043,26 +5295,28 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         }
       }
 
-      /* Satış: sahip olunan giyilebilir kozmetikler (ünvan hariç) */
+      /* Satış: envanterdeki sahip olunan parçalar (katalogdan çözümlenir) */
       function renderSell(host) {
-        const owned = R.cosmetics.filter(c =>
-          c.type !== 'title' && B.State.data.inventory.cosmetics.includes(c.id));
+        const owned = (B.State.data.inventory.cosmetics || [])
+          .map(key => B.Avatar.findByUnlock(key)).filter(Boolean);
         if (!owned.length) {
           host.innerHTML = '<div class="photo-panel"><p>Henüz satılık kıyafetin yok Komutan. Sandıklardan ve dükkândan kazan, sonra satarsın!</p></div>';
           return;
         }
         const g = document.createElement('div'); g.className = 'part-grid';
-        owned.forEach(item => {
-          const pid = B.Avatar.partIdFor(item);
-          const a = av(); a.usePhoto = false; if (pid != null) a[item.type] = pid;
-          const price = Math.round((prices[item.rarity] || 50) * sellRatio);
+        owned.forEach(found => {
+          const part = Object.assign({ type: found.type, rarity: found.rarity }, found.part);
+          const a = av(); a.usePhoto = false;
+          const pid = found.part.id;
+          if (pid != null) a[found.type] = pid;
+          const price = Math.round((prices[found.rarity] || 50) * sellRatio);
           const card = document.createElement('button');
           card.className = 'part-card part-sell';
           card.innerHTML =
             '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
-            '<span class="part-name">' + item.name + '</span>' +
+            '<span class="part-name">' + found.name + '</span>' +
             '<span class="part-price">Sat: 💰 ' + price + '</span>';
-          card.onclick = () => sell(item);
+          card.onclick = () => sellPart(part);
           g.appendChild(card);
         });
         host.appendChild(g);
@@ -5402,35 +5656,68 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
 /* === src/ui/screens/creator-screen.js === */
 /* BOKUL — Karakter Yaratma Sihirbazı (profil oluşturulduktan sonra)
- * Akış: cinsiyet seç → görünüm detayları (Ben) → sinematik → üs.
+ * Akış: cinsiyet → yaş & sınıf (müfredat buna göre ayarlanır) → görünüm → sinematik → üs.
  * İsim, giriş ekranındaki kullanıcı adından gelir. */
 (function (B) {
 
   B.UI.registerScreen('creator', {
     enter(root) {
       root.classList.add('creator-root');
-      const kiz = B.Avatar.preset('kiz');
-      const erkek = B.Avatar.preset('erkek');
-      root.innerHTML =
-        '<h2 class="creator-title">🎖️ Merhaba ' + (B.State.data.player.name || 'asker') + '! Karakterini yarat</h2>' +
-        '<p class="creator-sub">Önce seç: kimsin sen, asker?</p>' +
-        '<div class="gender-row">' +
-          '<button class="gender-card" data-g="kiz">' +
-            '<span class="gender-prev">' + B.Avatar.svg(kiz) + '</span>' +
-            '<span class="gender-name">KIZ</span></button>' +
-          '<button class="gender-card" data-g="erkek">' +
-            '<span class="gender-prev">' + B.Avatar.svg(erkek) + '</span>' +
-            '<span class="gender-name">ERKEK</span></button>' +
-        '</div>';
-      root.querySelectorAll('.gender-card').forEach(c => {
-        c.onclick = () => {
-          B.Audio.play('correct');
-          B.State.data.player.avatar = B.Avatar.preset(c.dataset.g);
-          B.Save.saveNow();
-          // Görünüm detayları (Ben bölümü, onboarding modu)
-          B.UI.show('locker', { onboarding: true });
-        };
-      });
+      const self = this;
+
+      /* ---- Adım 1: Cinsiyet ---- */
+      function stepGender() {
+        const kiz = B.Avatar.preset('kiz');
+        const erkek = B.Avatar.preset('erkek');
+        root.innerHTML =
+          '<h2 class="creator-title">🎖️ Merhaba ' + (B.State.data.player.name || 'asker') + '! Karakterini yarat</h2>' +
+          '<p class="creator-sub">Önce seç: kimsin sen, asker?</p>' +
+          '<div class="gender-row">' +
+            '<button class="gender-card" data-g="kiz"><span class="gender-prev">' + B.Avatar.svg(kiz) + '</span><span class="gender-name">KIZ</span></button>' +
+            '<button class="gender-card" data-g="erkek"><span class="gender-prev">' + B.Avatar.svg(erkek) + '</span><span class="gender-name">ERKEK</span></button>' +
+          '</div>';
+        root.querySelectorAll('.gender-card').forEach(c => {
+          c.onclick = () => {
+            B.Audio.play('correct');
+            B.State.data.player.avatar = B.Avatar.preset(c.dataset.g);
+            stepAgeGrade();
+          };
+        });
+      }
+
+      /* ---- Adım 2: Yaş & Sınıf (müfredatı belirler) ---- */
+      function stepAgeGrade() {
+        let age = B.State.data.player.age || 10;
+        let grade = B.State.data.player.grade;
+        const ages = [];
+        for (let i = 5; i <= 14; i++) ages.push(i);
+        const grades = [{ v: 0, l: 'Henüz' }, { v: 1, l: '1.' }, { v: 2, l: '2.' }, { v: 3, l: '3.' },
+                        { v: 4, l: '4.' }, { v: 5, l: '5.' }, { v: 6, l: '6.' }, { v: 7, l: '7.' }, { v: 8, l: '8.' }];
+        function draw() {
+          root.innerHTML =
+            '<h2 class="creator-title">🎓 Seni tanıyalım</h2>' +
+            '<p class="creator-sub">Bu bilgiler dersleri senin seviyene göre ayarlar.</p>' +
+            '<div class="ag-q">Kaç yaşındasın?</div>' +
+            '<div class="ag-row">' + ages.map(a => '<button class="chip ag-age' + (a === age ? ' ag-on' : '') + '" data-a="' + a + '">' + a + '</button>').join('') + '</div>' +
+            '<div class="ag-q">Kaçıncı sınıfı bitirdin?</div>' +
+            '<div class="ag-row">' + grades.map(g => '<button class="chip ag-grade' + (g.v === grade ? ' ag-on' : '') + '" data-g="' + g.v + '">' + g.l + '</button>').join('') + '</div>' +
+            '<button class="btn btn-action creator-go"' + (grade == null ? ' disabled' : '') + '>DEVAM ▶</button>';
+          root.querySelectorAll('.ag-age').forEach(b => b.onclick = () => { age = +b.dataset.a; draw(); });
+          root.querySelectorAll('.ag-grade').forEach(b => b.onclick = () => { grade = +b.dataset.g; draw(); });
+          const go = root.querySelector('.creator-go');
+          go.onclick = () => {
+            if (grade == null) return;
+            B.State.data.player.age = age;
+            B.State.data.player.grade = grade;
+            B.Save.saveNow();
+            B.Audio.play('tick');
+            B.UI.show('locker', { onboarding: true });
+          };
+        }
+        draw();
+      }
+
+      stepGender();
     },
     exit() {},
   });
@@ -5746,7 +6033,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           return '<div class="adm-card">' +
             '<div class="adm-p-head">' +
               '<span class="adm-av">' + B.Avatar.el(pl.avatar) + '</span>' +
-              '<div><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level + '</div></div>' +
+              '<div><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level +
+                (pl.age ? ' · 🎂 ' + pl.age : '') + (pl.grade != null ? ' · 🎓 ' + (pl.grade === 0 ? 'okul öncesi' : pl.grade + '. sınıf') : '') + '</div></div>' +
             '</div>' +
             '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
             '<div class="adm-stats">' +
@@ -5878,6 +6166,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       // 1) İçerik paketleri (kayıt YÜKLENMEZ — önce profil seçilir)
       const LESSONS = [
         'lessons/math-5-division',
+        'lessons/eng-101',
         'lessons/ai-101',
         'lessons/care-101',
         'lessons/philo-101',
