@@ -815,6 +815,18 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .adm-stats2 { border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 2px; }
 .adm-stats2 span { color: var(--xp); }
 
+/* ---------- v0.21: Ebeveyn-önce karşılama + davet kodu ---------- */
+.welcome-choices { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+.welcome-card {
+  width: min(230px, 44vw); padding: 22px 14px; font-size: 19px; line-height: 1.4;
+  background: linear-gradient(180deg, #43318C, var(--bg-raised)); color: #fff;
+  border-radius: 20px; box-shadow: inset 0 -4px 0 rgba(0,0,0,.35);
+}
+.welcome-card:active { transform: translateY(2px); }
+.welcome-card small { display: block; font-size: 12px; font-weight: 600; color: var(--ink-dim); margin-top: 6px; }
+.wc-parent { background: linear-gradient(180deg, #5B3FA8, #3F2E7E); }
+.wc-kid { background: linear-gradient(180deg, #2f7a5a, #1f5a40); }
+
 </style>
 </head>
 <body>
@@ -824,7 +836,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.20 — Tek Deneme · Öğreten Yanlış</div>
+      <div class="splash-note">v0.21 — Ebeveyn Hesabı · Davet Kodu</div>
     </div>
   </div>
 
@@ -2595,17 +2607,36 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     return s;
   }
 
+  /* Hesaba bağlı, deterministik DAVET KODU (uid'den türer; hep aynı) */
+  function deriveCode(uid) {
+    const abc = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+    let h1 = 5381, h2 = 52711;
+    for (let i = 0; i < uid.length; i++) { const c = uid.charCodeAt(i); h1 = ((h1 << 5) + h1) ^ c; h2 = (h2 * 33 ^ c) >>> 0; }
+    h1 = h1 >>> 0; h2 = h2 >>> 0;
+    let s = '', a = h1, b = h2;
+    for (let i = 0; i < 4; i++) { s += abc[a % abc.length]; a = Math.floor(a / abc.length); }
+    for (let i = 0; i < 4; i++) { s += abc[b % abc.length]; b = Math.floor(b / abc.length); }
+    return s;
+  }
+  /* Giriş yapan ebeveynin bu cihazını kendi ailesine bağla */
+  function linkFamily() {
+    const s = readSess();
+    if (s && s.localId && B.Cloud) B.Cloud.setCode(deriveCode(s.localId));
+  }
+
   B.AuthCloud = {
     available,
     current() { return readSess(); },
     email() { const s = readSess(); return s ? s.email : ''; },
     isVerified() { const s = readSess(); return !!(s && s.emailVerified); },
+    inviteCode() { const s = readSess(); return s && s.localId ? deriveCode(s.localId) : ''; },
     logout() { try { localStorage.removeItem(SESS); } catch (e) {} },
 
     async register(email, pass) {
       try {
         const d = await post(IDT + 'signUp', { email: (email || '').trim(), password: pass, returnSecureToken: true });
         store(d);
+        linkFamily(); // davet kodu = bu hesap
         await B.AuthCloud.sendVerify();
         return { ok: true, needVerify: true };
       } catch (e) { return { ok: false, err: trErr(e.message) }; }
@@ -2614,7 +2645,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     async login(email, pass) {
       try {
         const d = await post(IDT + 'signInWithPassword', { email: (email || '').trim(), password: pass, returnSecureToken: true });
-        const s = store(d);
+        store(d);
+        linkFamily(); // davet kodu = bu hesap
         const v = await B.AuthCloud.refreshVerified();
         return { ok: true, verified: v };
       } catch (e) { return { ok: false, err: trErr(e.message) }; }
@@ -6433,21 +6465,57 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     }
   }
 
-  /* Bu cihaz için aile kodu (bulut senkron) */
+  /* Bu cihaz için davet kodu (ebeveynin hesabından gelen kod) */
   function openFamilyCode() {
     const cur = B.Cloud.getCode();
     const ov = B.UI.overlay(
-      '<div class="ov-big">☁️</div><h2>Aile Kodu</h2>' +
-      '<p class="ov-quote">Ebeveynin verdiği aile kodunu gir. İlerleme buluta bu kodla kaydolur.</p>' +
-      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Aile kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
+      '<div class="ov-big">🎟️</div><h2>Davet Kodu</h2>' +
+      '<p class="ov-quote">Ebeveyninin verdiği davet kodunu gir. İlerlemen buluta bu aileye kaydolur.</p>' +
+      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Davet kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
       '<div class="login-err" id="fam-msg">' + (cur ? '✓ Bağlı: ' + cur : '') + '</div>',
-      [{ label: 'KAYDET', onClick: null }, { label: 'Bağlantıyı kaldır', cls: 'btn-quiet', onClick: () => { B.Cloud.setCode(''); B.UI.toast('Bulut bağlantısı kaldırıldı'); } }]);
+      [{ label: 'KAYDET', onClick: null }, { label: 'Bağlantıyı kaldır', cls: 'btn-quiet', onClick: () => { B.Cloud.setCode(''); B.UI.toast('Bağlantı kaldırıldı'); } }]);
     const btn = ov.querySelector('.overlay-btns .btn');
     btn.onclick = () => {
       const v = (ov.querySelector('#fam-in').value || '').trim().toUpperCase();
       if (v.length < 6) { ov.querySelector('#fam-msg').textContent = '⚠️ Kod en az 6 karakter.'; return; }
-      B.Cloud.setCode(v); ov.remove(); B.UI.toast('☁️ Bu cihaz aileye bağlandı: ' + v);
+      B.Cloud.setCode(v); ov.remove(); B.UI.toast('🎟️ Aileye bağlandın: ' + v);
     };
+  }
+
+  /* İlk açılış: Ebeveyn mi Oyuncu mu? */
+  function renderWelcome(root) {
+    root.innerHTML =
+      '<div class="login-box"><div class="login-logo">🌌</div>' +
+      '<h2 class="login-title">BOKUL Eğitim Üssü</h2>' +
+      '<p class="login-sub">Kim kuruyor?</p>' +
+      '<div class="welcome-choices">' +
+        '<button class="btn welcome-card wc-parent">👨‍👧<br>EBEVEYNİM<small>E-posta ile hesap aç, çocuklarımı davet et</small></button>' +
+        '<button class="btn welcome-card wc-kid">🎮<br>OYUNCUYUM<small>Davet kodum var / hemen oyna</small></button>' +
+      '</div></div>';
+    root.querySelector('.wc-parent').onclick = () => { B.Audio.play('tick'); parentEmailFlow(); };
+    root.querySelector('.wc-kid').onclick = () => { B.Audio.play('tick'); renderInvite(root); };
+  }
+
+  /* Oyuncu: davet kodu (varsa) → profil oluştur */
+  function renderInvite(root) {
+    root.innerHTML =
+      '<div class="login-box"><div class="login-logo">🎟️</div>' +
+      '<h2 class="login-title">Davet Kodu</h2>' +
+      '<p class="login-sub">Ebeveyninin verdiği davet kodunu gir (ilerlemen ailene kaydolsun). Kodun yoksa "Kodsuz oyna".</p>' +
+      '<input id="inv-code" class="name-input" maxlength="14" placeholder="Davet kodu" style="text-transform:uppercase">' +
+      '<div class="login-err" id="inv-err"></div>' +
+      '<button class="btn btn-action" id="inv-go">KATIL ▶</button>' +
+      '<button class="btn btn-quiet" id="inv-skip">Kodsuz oyna</button>' +
+      '<button class="btn btn-quiet" id="inv-back">◀ Geri</button></div>';
+    setTimeout(() => root.querySelector('#inv-code').focus(), 100);
+    root.querySelector('#inv-go').onclick = () => {
+      const v = (root.querySelector('#inv-code').value || '').trim().toUpperCase();
+      if (v.length < 6) { root.querySelector('#inv-err').textContent = '⚠️ Kod en az 6 karakter (ya da "Kodsuz oyna").'; return; }
+      B.Cloud.setCode(v); B.UI.toast('🎟️ Aileye bağlandın: ' + v);
+      renderRegister(root, false);
+    };
+    root.querySelector('#inv-skip').onclick = () => renderRegister(root, false);
+    root.querySelector('#inv-back').onclick = () => renderWelcome(root);
   }
 
   /* ---------- Çocuk profilleri: dokun ve gir ---------- */
@@ -6506,13 +6574,16 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       foot.className = 'login-foot';
       foot.innerHTML =
         '<button class="chip login-parent">👨‍👧 Ebeveyn</button>' +
-        (B.Cloud.configured() ? '<button class="chip login-fam">☁️ Aile Kodu' + (B.Cloud.getCode() ? ' ✓' : '') + '</button>' : '');
+        (B.Cloud.configured() ? '<button class="chip login-fam">🎟️ Davet Kodu' + (B.Cloud.getCode() ? ' ✓' : '') + '</button>' : '');
       root.appendChild(foot);
       foot.querySelector('.login-parent').onclick = openParent;
       const fam = foot.querySelector('.login-fam');
       if (fam) fam.onclick = openFamilyCode;
 
-      if (!B.Auth.hasAny()) renderRegister(content, true);
+      // İlk açılış (hiç profil, hesap veya kod yok) → Ebeveyn/Oyuncu seçimi
+      const fresh = !B.Auth.hasAny() && !(B.AuthCloud && B.AuthCloud.current()) && !B.Cloud.getCode();
+      if (fresh) renderWelcome(content);
+      else if (!B.Auth.hasAny()) renderInvite(content);
       else renderSelect(content);
     },
     exit() {},
@@ -6672,14 +6743,17 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       }
 
       function shell() {
-        const code = B.Cloud.getCode();
+        // Davet kodu öncelikle e-posta hesabından (hesaba bağlı, hep aynı)
+        const emailCode = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : '';
+        if (emailCode && B.Cloud.getCode() !== emailCode) B.Cloud.setCode(emailCode);
+        const code = emailCode || B.Cloud.getCode();
         const famRow = B.Cloud.configured()
           ? '<div class="adm-fam">' +
               (code
-                ? '<div>☁️ Aile Kodu: <b class="adm-code">' + code + '</b> <button class="chip adm-copy">Kopyala</button>' +
-                  '<div class="adm-fam-hint">Bu kodu çocukların cihazlarında giriş ekranı → "Aile Kodu" bölümüne bir kez gir.</div></div>'
-                : '<button class="chip adm-gencode">☁️ Aile kodu oluştur</button>' +
-                  '<span class="adm-fam-hint"> — çocukların cihazlarını bağlamak için</span>') +
+                ? '<div>🎟️ Davet Kodun: <b class="adm-code">' + code + '</b> <button class="chip adm-copy">Kopyala</button>' +
+                  '<div class="adm-fam-hint">Bu kodu çocuklarının cihazında giriş ekranı → "🎮 Oyuncuyum" / "🎟️ Davet Kodu" bölümüne gir. Sonra "☁️ Bulut (aile)" sekmesinden hepsini görürsün.</div></div>'
+                : '<button class="chip adm-gencode">🎟️ Davet kodu oluştur</button>' +
+                  '<span class="adm-fam-hint"> — çocukların cihazlarını bağlamak için (veya e-posta ile giriş yap, kod otomatik gelsin)</span>') +
             '</div>'
           : '';
         root.innerHTML =

@@ -1,5 +1,17 @@
 # BOKUL — Sürüm Notları
 
+## v0.21 — Ebeveyn-Önce Kurgu + Hesaba Bağlı Davet Kodu (2026-07-18)
+
+- 🎬 İLK AÇILIŞ NETLEŞTİ: Yeni cihazda "👨‍👧 Ebeveynim" / "🎮 Oyuncuyum" seçimi.
+- 🎟️ DAVET KODU HESABA BAĞLI: Ebeveyn e-posta ile kayıt/giriş yapınca, hesabına
+  bağlı (uid'den türeyen, hep aynı) bir DAVET KODU otomatik oluşuyor — ayrıca
+  "kod oluştur" adımına gerek yok. Konsolda "🎟️ Davet Kodun: XXXX" görünür.
+- 👨‍👩‍👧 KURGU: Ebeveyn e-posta ile kayıt → davet kodunu çocukların cihazına
+  ("🎮 Oyuncuyum → Davet Kodu") gir → çocuklar aileye katılır, ilerleme buluta
+  yazılır → ebeveyn kendi cihazından "☁️ Bulut (aile)" ile hepsini görür.
+- "Aile Kodu" → "Davet Kodu" olarak yeniden adlandırıldı.
+
+
 ## v0.20 — Brute-Force Engellendi: Tek Deneme + Öğreten Yanlış (2026-07-18)
 
 - 🎯 TEK DENEME: Çoktan seçmeli ve aritmetik sorularda İLK cevap kesindir.

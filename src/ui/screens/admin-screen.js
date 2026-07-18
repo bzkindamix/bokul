@@ -63,14 +63,17 @@
       }
 
       function shell() {
-        const code = B.Cloud.getCode();
+        // Davet kodu öncelikle e-posta hesabından (hesaba bağlı, hep aynı)
+        const emailCode = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : '';
+        if (emailCode && B.Cloud.getCode() !== emailCode) B.Cloud.setCode(emailCode);
+        const code = emailCode || B.Cloud.getCode();
         const famRow = B.Cloud.configured()
           ? '<div class="adm-fam">' +
               (code
-                ? '<div>☁️ Aile Kodu: <b class="adm-code">' + code + '</b> <button class="chip adm-copy">Kopyala</button>' +
-                  '<div class="adm-fam-hint">Bu kodu çocukların cihazlarında giriş ekranı → "Aile Kodu" bölümüne bir kez gir.</div></div>'
-                : '<button class="chip adm-gencode">☁️ Aile kodu oluştur</button>' +
-                  '<span class="adm-fam-hint"> — çocukların cihazlarını bağlamak için</span>') +
+                ? '<div>🎟️ Davet Kodun: <b class="adm-code">' + code + '</b> <button class="chip adm-copy">Kopyala</button>' +
+                  '<div class="adm-fam-hint">Bu kodu çocuklarının cihazında giriş ekranı → "🎮 Oyuncuyum" / "🎟️ Davet Kodu" bölümüne gir. Sonra "☁️ Bulut (aile)" sekmesinden hepsini görürsün.</div></div>'
+                : '<button class="chip adm-gencode">🎟️ Davet kodu oluştur</button>' +
+                  '<span class="adm-fam-hint"> — çocukların cihazlarını bağlamak için (veya e-posta ile giriş yap, kod otomatik gelsin)</span>') +
             '</div>'
           : '';
         root.innerHTML =

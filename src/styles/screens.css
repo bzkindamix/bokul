@@ -457,3 +457,15 @@
 /* ---------- v0.20: konsol ek metrikler ---------- */
 .adm-stats2 { border-top: 1px dashed var(--line); padding-top: 6px; margin-top: 2px; }
 .adm-stats2 span { color: var(--xp); }
+
+/* ---------- v0.21: Ebeveyn-önce karşılama + davet kodu ---------- */
+.welcome-choices { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+.welcome-card {
+  width: min(230px, 44vw); padding: 22px 14px; font-size: 19px; line-height: 1.4;
+  background: linear-gradient(180deg, #43318C, var(--bg-raised)); color: #fff;
+  border-radius: 20px; box-shadow: inset 0 -4px 0 rgba(0,0,0,.35);
+}
+.welcome-card:active { transform: translateY(2px); }
+.welcome-card small { display: block; font-size: 12px; font-weight: 600; color: var(--ink-dim); margin-top: 6px; }
+.wc-parent { background: linear-gradient(180deg, #5B3FA8, #3F2E7E); }
+.wc-kid { background: linear-gradient(180deg, #2f7a5a, #1f5a40); }
