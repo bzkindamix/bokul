@@ -180,9 +180,12 @@
         const p = B.State.data.player;
         left.innerHTML =
           '<div class="locker-preview">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
+          '<div class="turn-hint">👆 Çevirmek için sürükle</div>' +
           '<div class="locker-name">' + (p.name || 'İsimsiz Asker') + '</div>' +
           '<div class="chip">💰 ' + (p.coins || 0) + ' Altın</div>' +
           (onboarding ? '<button class="btn btn-action locker-done">DEVAM ▶</button>' : '');
+        const turnH = left.querySelector('.locker-preview .avatar-holder');
+        if (turnH) B.Avatar.turntable(turnH); // pseudo-3D döndürme
         if (onboarding) {
           left.querySelector('.locker-done').onclick = () => {
             B.Save.saveNow();

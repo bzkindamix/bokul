@@ -691,3 +691,10 @@
 .adopt-go { width: 100%; font-size: 13px; padding: 8px; }
 .adopt-go[disabled] { opacity: .55; pointer-events: none; }
 .adopt-tag { text-align: center; font-size: 13px; font-weight: 800; color: var(--success); }
+
+/* ---------- v0.29: Döndürülebilir 3D avatar (turntable) + yeni kıyafet ---------- */
+.av-turn { animation: none !important; cursor: grab; touch-action: none; will-change: transform; }
+.av-turn:active { cursor: grabbing; }
+.av-turn.av-spring { transition: transform .5s cubic-bezier(.34, 1.5, .5, 1); }
+.turn-hint { text-align: center; font-size: 11.5px; color: var(--ink-dim); margin-top: 2px; opacity: .85; }
+@media (prefers-reduced-motion: reduce) { .turn-hint { display: none; } }

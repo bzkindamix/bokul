@@ -1049,6 +1049,13 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .adopt-go[disabled] { opacity: .55; pointer-events: none; }
 .adopt-tag { text-align: center; font-size: 13px; font-weight: 800; color: var(--success); }
 
+/* ---------- v0.29: Döndürülebilir 3D avatar (turntable) + yeni kıyafet ---------- */
+.av-turn { animation: none !important; cursor: grab; touch-action: none; will-change: transform; }
+.av-turn:active { cursor: grabbing; }
+.av-turn.av-spring { transition: transform .5s cubic-bezier(.34, 1.5, .5, 1); }
+.turn-hint { text-align: center; font-size: 11.5px; color: var(--ink-dim); margin-top: 2px; opacity: .85; }
+@media (prefers-reduced-motion: reduce) { .turn-hint { display: none; } }
+
 </style>
 </head>
 <body>
@@ -1058,7 +1065,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.28 — QA düzeltmesi: dolu hayvana bakımda malzeme harcanmaz</div>
+      <div class="splash-note">v0.29 — 3D Döndürülebilir Karakter · Yeni Kıyafetler</div>
     </div>
   </div>
 
@@ -5535,6 +5542,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   const SHAPES_UNI = [
     ['tee', 'Tişört'], ['hoodie', 'Kapüşonlu'], ['jacket', 'Ceket'],
     ['stripes', 'Çizgili'], ['vneck', 'V-Yaka'],
+    ['kazak', 'Kazak'], ['tulum', 'Tulum'], ['kapmont', 'Mont'], // v0.29 yeni kıyafetler
   ];
   const SHAPES_KIZ = [['elbise', 'Elbise'], ['bluz', 'Bluz'], ['kolsuz', 'Askılı']];
   const SHAPES_ERK = [['forma', 'Forma'], ['gomlek', 'Gömlek'], ['yelek', 'Yelek']];
@@ -5564,7 +5572,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       { id: 'cubbe',    name: 'Filozof Cübbesi',  shape: 'cubbe',    c1: '#4A3690', c2: '#FFD52E', gender: 'both',  rarity: 'rare',      cosmeticId: 'of-cubbe' },
       { id: 'pelerin',  name: 'Kahraman Pelerini', shape: 'pelerin',  c1: '#E8443B', c2: '#FFD52E', gender: 'both',  rarity: 'legendary', cosmeticId: 'of-pelerin' },
       { id: 'balo',     name: 'Balo Elbisesi',    shape: 'balo',     c1: '#FF7FC4', c2: '#FFD52E', gender: 'kiz',   rarity: 'epic',      cosmeticId: 'of-balo' },
-      { id: 'takim',    name: 'Şık Takım',        shape: 'takim',    c1: '#231A48', c2: '#3DF2D2', gender: 'erkek', rarity: 'rare',      cosmeticId: 'of-takim' }
+      { id: 'takim',    name: 'Şık Takım',        shape: 'takim',    c1: '#231A48', c2: '#3DF2D2', gender: 'erkek', rarity: 'rare',      cosmeticId: 'of-takim' },
+      { id: 'ninja',    name: 'Ninja Kıyafeti',   shape: 'ninja',    c1: '#2A2740', c2: '#FF4FD8', gender: 'both',  rarity: 'epic',      cosmeticId: 'of-ninja' }
     );
     return out;
   }
@@ -5710,6 +5719,14 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
                               '<circle cx="60" cy="107" r="3" fill="' + c2 + '"/><path d="M40 116 Q60 110 80 116" stroke="' + c2 + '" stroke-width="2" fill="none"/>';
       case 'takim':    return '<path d="M50 96 L60 106 L70 96" fill="none" stroke="' + c2 + '" stroke-width="3"/>' +
                               '<path d="M57 98 L63 98 L60 116 Z" fill="' + c2 + '"/>';
+      case 'kazak':    return '<path d="M46 96 Q60 103 74 96" fill="none" stroke="' + c2 + '" stroke-width="4.5" stroke-linecap="round"/>' +
+                              '<path d="M22 108 H98 M22 114 H98" stroke="' + c2 + '" stroke-width="2" opacity=".55"/>';
+      case 'tulum':    return '<path d="M50 96 L52 120 M70 96 L68 120" stroke="' + c2 + '" stroke-width="5" stroke-linecap="round"/>' +
+                              '<rect x="53" y="105" width="14" height="10" rx="2.5" fill="' + c2 + '"/><circle cx="60" cy="110" r="1.7" fill="#FFD52E"/>';
+      case 'kapmont':  return collar(c2) + '<path d="M60 98 L60 120" stroke="' + c2 + '" stroke-width="3"/>' +
+                              '<rect x="43" y="109" width="10" height="8" rx="2" fill="' + c2 + '" opacity=".8"/><rect x="67" y="109" width="10" height="8" rx="2" fill="' + c2 + '" opacity=".8"/>';
+      case 'ninja':    return '<path d="M40 100 Q60 96 80 100 L78 108 Q60 104 42 108 Z" fill="' + c2 + '"/>' +
+                              '<path d="M50 113 H70" stroke="' + c2 + '" stroke-width="3" stroke-linecap="round"/>' + star(60, 101, 3, '#FFD52E');
       default:         return collar(c2);
     }
   }
@@ -5878,8 +5895,54 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     return null;
   }
 
+  /* ---------- Pseudo-3D: parmakla döndürülebilir turntable ----------
+   * 2B SVG'yi 3B uzayda (perspektif + rotateY/rotateX) döndürür. Sürükle→çevir,
+   * bırak→yumuşak yaylanarak merkeze döner, boştayken hafif sallanır.
+   * Gerçek WebGL değil ama "3D karakter" hissini verir. */
+  function turntable(holder) {
+    if (!holder) return null;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return null;
+    holder.classList.add('av-turn');
+    let ry = -5, rx = 3, dragging = false, sx = 0, sy = 0, sry = 0, srx = 0, lastMove = Date.now(), t = 0, raf = null;
+    const clamp = (v, m) => Math.max(-m, Math.min(m, v));
+    function apply() { holder.style.transform = 'perspective(560px) rotateY(' + ry.toFixed(1) + 'deg) rotateX(' + rx.toFixed(1) + 'deg)'; }
+    function pt(e) { return e.touches && e.touches[0] ? e.touches[0] : e; }
+    function move(e) {
+      if (!dragging) return;
+      const p = pt(e);
+      ry = clamp(sry + (p.clientX - sx) * 0.55, 60);
+      rx = clamp(srx - (p.clientY - sy) * 0.28, 20);
+      lastMove = Date.now(); apply();
+      if (e.cancelable) e.preventDefault();
+    }
+    function up() {
+      if (!dragging) return; dragging = false;
+      holder.classList.add('av-spring'); ry = -5; rx = 3; apply();
+      lastMove = Date.now();
+      setTimeout(() => holder.classList.remove('av-spring'), 520);
+      window.removeEventListener('mousemove', move); window.removeEventListener('mouseup', up);
+      window.removeEventListener('touchmove', move); window.removeEventListener('touchend', up);
+    }
+    function down(e) {
+      dragging = true; holder.classList.remove('av-spring');
+      const p = pt(e); sx = p.clientX; sy = p.clientY; sry = ry; srx = rx; lastMove = Date.now();
+      window.addEventListener('mousemove', move); window.addEventListener('mouseup', up);
+      window.addEventListener('touchmove', move, { passive: false }); window.addEventListener('touchend', up);
+      if (e.cancelable) e.preventDefault();
+    }
+    holder.addEventListener('mousedown', down);
+    holder.addEventListener('touchstart', down, { passive: false });
+    function idle() {
+      if (!holder.isConnected) { cancelAnimationFrame(raf); return; } // ekran değişince dur
+      if (!dragging && Date.now() - lastMove > 1500) { t += 0.02; ry = Math.sin(t) * 8 - 2; rx = Math.cos(t * 0.8) * 3; apply(); }
+      raf = requestAnimationFrame(idle);
+    }
+    apply(); idle();
+    return { dispose() { cancelAnimationFrame(raf); up(); } };
+  }
+
   B.Avatar = { CATALOG, normalize, svg, el, isUnlocked, preset, partIdFor, unequipCosmetic,
-               genderOk, hairsFor, outfitsFor, unlockKey, isGated, findByUnlock };
+               genderOk, hairsFor, outfitsFor, unlockKey, isGated, findByUnlock, turntable };
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/components/commander.js === */
@@ -7127,9 +7190,12 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         const p = B.State.data.player;
         left.innerHTML =
           '<div class="locker-preview">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
+          '<div class="turn-hint">👆 Çevirmek için sürükle</div>' +
           '<div class="locker-name">' + (p.name || 'İsimsiz Asker') + '</div>' +
           '<div class="chip">💰 ' + (p.coins || 0) + ' Altın</div>' +
           (onboarding ? '<button class="btn btn-action locker-done">DEVAM ▶</button>' : '');
+        const turnH = left.querySelector('.locker-preview .avatar-holder');
+        if (turnH) B.Avatar.turntable(turnH); // pseudo-3D döndürme
         if (onboarding) {
           left.querySelector('.locker-done').onclick = () => {
             B.Save.saveNow();
@@ -7188,6 +7254,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           '<button class="btn door door-int">🎯<br>İLGİ ALANLARIM<small>Sevdiklerim</small></button>' +
         '</div>';
       root.appendChild(wrap);
+
+      const evimTurn = wrap.querySelector('.evim-avatar .avatar-holder');
+      if (evimTurn) B.Avatar.turntable(evimTurn); // pseudo-3D döndürme
 
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };

@@ -28,6 +28,9 @@
         '</div>';
       root.appendChild(wrap);
 
+      const evimTurn = wrap.querySelector('.evim-avatar .avatar-holder');
+      if (evimTurn) B.Avatar.turntable(evimTurn); // pseudo-3D döndürme
+
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
       const storeDoor = wrap.querySelector('.door-store');
