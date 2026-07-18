@@ -67,7 +67,7 @@
             boss.innerHTML = section.boss.icon +
               '<small>' + (prog.bossDefeated ? 'FETHEDİLDİ'
                 : gate.open ? 'SAVAŞ!'
-                : gate.missionsDone ? ('Ustalık %' + Math.round(gate.mastery * 100) + ' / %' + Math.round(gate.need * 100))
+                : gate.missionsDone ? '⭐ Biraz daha yıldız topla!'
                 : 'Harekâtlar sürüyor') + '</small>';
             if (gate.open || prog.bossDefeated) boss.onclick = () => {
               B.Audio.play('tick');

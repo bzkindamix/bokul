@@ -66,14 +66,36 @@
       return !!B.State.sectionProgress(lesson.id, sectionId).missions[prevId];
     },
 
-    /* Boss kapısı: tüm harekâtlar bitmiş + kazanım ustalığı yeterli */
+    /* Bölümün KENDİ becerileri: açıkça tanımlı (section.skills) → banka soru
+     * becerileri → son çare dersin tüm becerileri. Boss kapısı bunu kullanır ki
+     * bir bölümün boss'u, henüz kilitli sonraki bölümlerin becerilerini İSTEMESİN
+     * (yoksa ilk boss asla açılmaz — kilitlenme). */
+    sectionSkills(section) {
+      if (section.skills && section.skills.length) return section.skills;
+      if (section.bank && section.bank.length) {
+        const set = [];
+        section.bank.forEach(b => { if (b.skill && set.indexOf(b.skill) < 0) set.push(b.skill); });
+        if (set.length) return set;
+      }
+      return lesson.skills || [];
+    },
+
+    /* Boss kapısı: tüm harekâtlar bitmiş VE (bölüm ustalığı yeterli VEYA
+     * bölümü iyi yıldızla bitirmiş). Yıldız tabanlı geçiş, küçük banka +
+     * güven katsayısı yüzünden oluşan kilitlenmeleri önler. */
     bossGate(sectionId) {
       const sec = B.Lesson.findSection(sectionId).section;
       const prog = B.State.sectionProgress(lesson.id, sectionId);
       const missionsDone = sec.missions.every(m => prog.missions[m.id]);
       const need = (sec.boss.unlock || {}).masteryRequired ?? (cfg().mastery || {}).bossGate ?? 0.8;
-      const mastery = B.Progress.overallMastery(lesson.skills);
-      return { missionsDone, mastery, need, open: missionsDone && mastery >= need };
+      const mastery = B.Progress.overallMastery(B.Lesson.sectionSkills(sec));
+      // Yıldız oranı: teach hariç harekâtların topladığı yıldız / olası en yüksek
+      const graded = sec.missions.filter(m => m.type !== 'teach');
+      const earned = graded.reduce((t, m) => t + ((prog.missions[m.id] || {}).stars || 0), 0);
+      const maxStars = graded.length * 3;
+      const starRatio = maxStars ? earned / maxStars : 1;
+      const open = missionsDone && (mastery >= need || starRatio >= 0.6);
+      return { missionsDone, mastery, need, starRatio, open };
     },
 
     /* ---- Tamamlama kayıtları ---- */

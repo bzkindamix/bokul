@@ -106,6 +106,7 @@
                 B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: dmg, remaining: hp });
                 head.classList.remove('boss-hit'); void head.offsetWidth;
                 head.classList.add('boss-hit');
+                if (B.Anim.damageFloat) B.Anim.damageFloat(dmg, head);
                 // Baba düşmanla dalga geçer (bazen)
                 if (Math.random() < 0.45) cmd.sayFrom('boss.taunt', { bossName: boss.name });
               }
@@ -144,6 +145,9 @@
             if (mistakes === 0 && hp > 0) {
               hp -= 6; dealt += 6;
               B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: 6, remaining: hp });
+              head.classList.remove('boss-hit'); void head.offsetWidth;
+              head.classList.add('boss-hit');
+              if (B.Anim.damageFloat) B.Anim.damageFloat(6, head);
               cmd.sayFrom('boss.crit');
               refresh();
               if (hp <= 0) return victory();
@@ -168,14 +172,17 @@
         B.Lesson.defeatBoss(params.sectionId);
         const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
         const coins = B.Reward.addCoins(isUnit ? 100 : 50, 'boss');
-        B.Bus.emit(B.Events.BOSS_DEFEATED, { bossId: boss.id, tier: boss.tier });
-        B.UI.overlay(
+        head.classList.remove('boss-hit', 'boss-enter'); void head.offsetWidth;
+        head.classList.add('boss-defeated'); // patlama animasyonu
+        B.Bus.emit(B.Events.BOSS_DEFEATED, { bossId: boss.id, tier: boss.tier }); // konfeti + ekran parlaması
+        // Zafer kartını biraz geciktir: önce boss'un patlaması + konfeti görünsün
+        setTimeout(() => B.UI.overlay(
           '<div class="ov-big">' + boss.icon + '💥</div><h2>' + boss.name.toUpperCase() + ' DEVRİLDİ!</h2>' +
           '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
           '<p class="ov-crystal">💠 Bir Sayı Kristali parçası daha kurtarıldı!</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('boss.win') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
-        );
+        ), 700);
       }
 
       function retreat() {

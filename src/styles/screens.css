@@ -588,3 +588,22 @@
   position: absolute; top: 6px; right: 8px; background: var(--accent); color: #3a0a2e;
   font-size: 12px; font-weight: 800; border-radius: 10px; padding: 1px 7px;
 }
+
+/* ---------- v0.25: Zafer animasyonu (ekran parlaması + hasar + boss patlaması) ---------- */
+.fx-flash {
+  position: fixed; inset: 0; z-index: 54; pointer-events: none;
+  background: radial-gradient(circle at 50% 42%, rgba(255,255,255,.85), rgba(255,213,46,.35) 40%, transparent 70%);
+  animation: fxFlash .7s ease-out forwards;
+}
+@keyframes fxFlash { from { opacity: 0; } 18% { opacity: 1; } to { opacity: 0; } }
+.fx-dmg {
+  position: fixed; z-index: 56; pointer-events: none;
+  font-family: var(--mono); font-weight: 900; font-size: 30px; color: #fff;
+  text-shadow: 0 0 10px rgba(255,79,216,.9), 0 2px 4px rgba(0,0,0,.6);
+  transition: transform .8s ease-out, opacity .8s ease-out;
+}
+.boss-defeated { animation: bossDefeat .9s cubic-bezier(.3,1.2,.5,1) forwards !important; }
+@keyframes bossDefeat {
+  40% { transform: scale(1.15) rotate(-6deg); filter: brightness(2.2); }
+  to { transform: scale(.15) rotate(32deg) translateY(70px); opacity: 0; filter: blur(4px); }
+}

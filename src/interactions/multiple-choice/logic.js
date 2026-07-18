@@ -10,11 +10,13 @@
   function generate(params) {
     const pool = params.pool || [];
     if (!pool.length) throw new Error('Çoktan seçmeli havuz boş!');
-    let item, guard = 30;
+    let item, guard = 40;
     do { item = pool[Math.floor(Math.random() * pool.length)]; }
     while (recent.includes(item.q) && --guard);
     recent.push(item.q);
-    if (recent.length > Math.min(6, pool.length - 1)) recent.shift();
+    // Havuzun neredeyse tamamı dönmeden aynı soru tekrar gelmesin (tazelik hissi)
+    const cap = Math.max(1, Math.min(pool.length - 1, 14));
+    while (recent.length > cap) recent.shift();
     return { item, params };
   }
 

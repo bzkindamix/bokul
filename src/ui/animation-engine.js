@@ -36,12 +36,33 @@
     }
   }
 
+  /* Tüm ekranı bir an aydınlatan zafer parlaması */
+  function flash() {
+    const f = document.createElement('div');
+    f.className = 'fx-flash';
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 700);
+  }
+
+  /* Boss'a vurunca yukarı süzülen hasar sayısı (savaş hissi) */
+  function damageFloat(amount, el) {
+    const d = document.createElement('div');
+    d.className = 'fx-dmg';
+    d.textContent = '-' + amount;
+    document.body.appendChild(d);
+    const r = el ? el.getBoundingClientRect() : { left: window.innerWidth / 2 - 20, top: window.innerHeight * 0.28, width: 40 };
+    d.style.left = (r.left + r.width / 2 + (Math.random() * 40 - 20)) + 'px';
+    d.style.top = (r.top + 24) + 'px';
+    requestAnimationFrame(() => { d.style.transform = 'translateY(-46px)'; d.style.opacity = '0'; });
+    setTimeout(() => d.remove(), 850);
+  }
+
   B.Anim = {
-    xpDrop, confetti,
+    xpDrop, confetti, flash, damageFloat,
     init() {
       B.Bus.on(B.Events.XP_GAINED, p => { if (p.source !== 'step') xpDrop(p.amount); });
       B.Bus.on(B.Events.LEVEL_UP, () => confetti(60));
-      B.Bus.on(B.Events.BOSS_DEFEATED, () => confetti(80));
+      B.Bus.on(B.Events.BOSS_DEFEATED, () => { confetti(130); flash(); });
     },
   };
 })(window.BOKUL = window.BOKUL || {});

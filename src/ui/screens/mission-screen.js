@@ -181,6 +181,7 @@
         const bonus = B.Reward.addXp(B.Reward.missionBonus(), 'mission');
         const coins = B.Reward.addCoins(10, 'mission');
         B.Bus.emit(B.Events.MISSION_COMPLETED, { missionId: params.missionId, stars, xp: bonus });
+        if (B.Anim.confetti) B.Anim.confetti(stars === 3 ? 55 : 30); // küçük kutlama
 
         B.UI.overlay(
           '<div class="ov-big">🎖️</div><h2>HAREKÂT TAMAM!</h2>' +

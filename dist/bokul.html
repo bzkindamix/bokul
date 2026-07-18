@@ -946,6 +946,25 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   font-size: 12px; font-weight: 800; border-radius: 10px; padding: 1px 7px;
 }
 
+/* ---------- v0.25: Zafer animasyonu (ekran parlaması + hasar + boss patlaması) ---------- */
+.fx-flash {
+  position: fixed; inset: 0; z-index: 54; pointer-events: none;
+  background: radial-gradient(circle at 50% 42%, rgba(255,255,255,.85), rgba(255,213,46,.35) 40%, transparent 70%);
+  animation: fxFlash .7s ease-out forwards;
+}
+@keyframes fxFlash { from { opacity: 0; } 18% { opacity: 1; } to { opacity: 0; } }
+.fx-dmg {
+  position: fixed; z-index: 56; pointer-events: none;
+  font-family: var(--mono); font-weight: 900; font-size: 30px; color: #fff;
+  text-shadow: 0 0 10px rgba(255,79,216,.9), 0 2px 4px rgba(0,0,0,.6);
+  transition: transform .8s ease-out, opacity .8s ease-out;
+}
+.boss-defeated { animation: bossDefeat .9s cubic-bezier(.3,1.2,.5,1) forwards !important; }
+@keyframes bossDefeat {
+  40% { transform: scale(1.15) rotate(-6deg); filter: brightness(2.2); }
+  to { transform: scale(.15) rotate(32deg) translateY(70px); opacity: 0; filter: blur(4px); }
+}
+
 </style>
 </head>
 <body>
@@ -955,7 +974,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.24 — Eşya Mağazası · Depom</div>
+      <div class="splash-note">v0.25 — Boss Kilidi Düzeltmesi · Zafer Animasyonu</div>
     </div>
   </div>
 
@@ -3524,14 +3543,36 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       return !!B.State.sectionProgress(lesson.id, sectionId).missions[prevId];
     },
 
-    /* Boss kapısı: tüm harekâtlar bitmiş + kazanım ustalığı yeterli */
+    /* Bölümün KENDİ becerileri: açıkça tanımlı (section.skills) → banka soru
+     * becerileri → son çare dersin tüm becerileri. Boss kapısı bunu kullanır ki
+     * bir bölümün boss'u, henüz kilitli sonraki bölümlerin becerilerini İSTEMESİN
+     * (yoksa ilk boss asla açılmaz — kilitlenme). */
+    sectionSkills(section) {
+      if (section.skills && section.skills.length) return section.skills;
+      if (section.bank && section.bank.length) {
+        const set = [];
+        section.bank.forEach(b => { if (b.skill && set.indexOf(b.skill) < 0) set.push(b.skill); });
+        if (set.length) return set;
+      }
+      return lesson.skills || [];
+    },
+
+    /* Boss kapısı: tüm harekâtlar bitmiş VE (bölüm ustalığı yeterli VEYA
+     * bölümü iyi yıldızla bitirmiş). Yıldız tabanlı geçiş, küçük banka +
+     * güven katsayısı yüzünden oluşan kilitlenmeleri önler. */
     bossGate(sectionId) {
       const sec = B.Lesson.findSection(sectionId).section;
       const prog = B.State.sectionProgress(lesson.id, sectionId);
       const missionsDone = sec.missions.every(m => prog.missions[m.id]);
       const need = (sec.boss.unlock || {}).masteryRequired ?? (cfg().mastery || {}).bossGate ?? 0.8;
-      const mastery = B.Progress.overallMastery(lesson.skills);
-      return { missionsDone, mastery, need, open: missionsDone && mastery >= need };
+      const mastery = B.Progress.overallMastery(B.Lesson.sectionSkills(sec));
+      // Yıldız oranı: teach hariç harekâtların topladığı yıldız / olası en yüksek
+      const graded = sec.missions.filter(m => m.type !== 'teach');
+      const earned = graded.reduce((t, m) => t + ((prog.missions[m.id] || {}).stars || 0), 0);
+      const maxStars = graded.length * 3;
+      const starRatio = maxStars ? earned / maxStars : 1;
+      const open = missionsDone && (mastery >= need || starRatio >= 0.6);
+      return { missionsDone, mastery, need, starRatio, open };
     },
 
     /* ---- Tamamlama kayıtları ---- */
@@ -4537,11 +4578,13 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   function generate(params) {
     const pool = params.pool || [];
     if (!pool.length) throw new Error('Çoktan seçmeli havuz boş!');
-    let item, guard = 30;
+    let item, guard = 40;
     do { item = pool[Math.floor(Math.random() * pool.length)]; }
     while (recent.includes(item.q) && --guard);
     recent.push(item.q);
-    if (recent.length > Math.min(6, pool.length - 1)) recent.shift();
+    // Havuzun neredeyse tamamı dönmeden aynı soru tekrar gelmesin (tazelik hissi)
+    const cap = Math.max(1, Math.min(pool.length - 1, 14));
+    while (recent.length > cap) recent.shift();
     return { item, params };
   }
 
@@ -4767,12 +4810,33 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     }
   }
 
+  /* Tüm ekranı bir an aydınlatan zafer parlaması */
+  function flash() {
+    const f = document.createElement('div');
+    f.className = 'fx-flash';
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 700);
+  }
+
+  /* Boss'a vurunca yukarı süzülen hasar sayısı (savaş hissi) */
+  function damageFloat(amount, el) {
+    const d = document.createElement('div');
+    d.className = 'fx-dmg';
+    d.textContent = '-' + amount;
+    document.body.appendChild(d);
+    const r = el ? el.getBoundingClientRect() : { left: window.innerWidth / 2 - 20, top: window.innerHeight * 0.28, width: 40 };
+    d.style.left = (r.left + r.width / 2 + (Math.random() * 40 - 20)) + 'px';
+    d.style.top = (r.top + 24) + 'px';
+    requestAnimationFrame(() => { d.style.transform = 'translateY(-46px)'; d.style.opacity = '0'; });
+    setTimeout(() => d.remove(), 850);
+  }
+
   B.Anim = {
-    xpDrop, confetti,
+    xpDrop, confetti, flash, damageFloat,
     init() {
       B.Bus.on(B.Events.XP_GAINED, p => { if (p.source !== 'step') xpDrop(p.amount); });
       B.Bus.on(B.Events.LEVEL_UP, () => confetti(60));
-      B.Bus.on(B.Events.BOSS_DEFEATED, () => confetti(80));
+      B.Bus.on(B.Events.BOSS_DEFEATED, () => { confetti(130); flash(); });
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -5833,7 +5897,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             boss.innerHTML = section.boss.icon +
               '<small>' + (prog.bossDefeated ? 'FETHEDİLDİ'
                 : gate.open ? 'SAVAŞ!'
-                : gate.missionsDone ? ('Ustalık %' + Math.round(gate.mastery * 100) + ' / %' + Math.round(gate.need * 100))
+                : gate.missionsDone ? '⭐ Biraz daha yıldız topla!'
                 : 'Harekâtlar sürüyor') + '</small>';
             if (gate.open || prog.bossDefeated) boss.onclick = () => {
               B.Audio.play('tick');
@@ -6044,6 +6108,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         const bonus = B.Reward.addXp(B.Reward.missionBonus(), 'mission');
         const coins = B.Reward.addCoins(10, 'mission');
         B.Bus.emit(B.Events.MISSION_COMPLETED, { missionId: params.missionId, stars, xp: bonus });
+        if (B.Anim.confetti) B.Anim.confetti(stars === 3 ? 55 : 30); // küçük kutlama
 
         B.UI.overlay(
           '<div class="ov-big">🎖️</div><h2>HAREKÂT TAMAM!</h2>' +
@@ -6179,6 +6244,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
                 B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: dmg, remaining: hp });
                 head.classList.remove('boss-hit'); void head.offsetWidth;
                 head.classList.add('boss-hit');
+                if (B.Anim.damageFloat) B.Anim.damageFloat(dmg, head);
                 // Baba düşmanla dalga geçer (bazen)
                 if (Math.random() < 0.45) cmd.sayFrom('boss.taunt', { bossName: boss.name });
               }
@@ -6217,6 +6283,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             if (mistakes === 0 && hp > 0) {
               hp -= 6; dealt += 6;
               B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: 6, remaining: hp });
+              head.classList.remove('boss-hit'); void head.offsetWidth;
+              head.classList.add('boss-hit');
+              if (B.Anim.damageFloat) B.Anim.damageFloat(6, head);
               cmd.sayFrom('boss.crit');
               refresh();
               if (hp <= 0) return victory();
@@ -6241,14 +6310,17 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         B.Lesson.defeatBoss(params.sectionId);
         const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
         const coins = B.Reward.addCoins(isUnit ? 100 : 50, 'boss');
-        B.Bus.emit(B.Events.BOSS_DEFEATED, { bossId: boss.id, tier: boss.tier });
-        B.UI.overlay(
+        head.classList.remove('boss-hit', 'boss-enter'); void head.offsetWidth;
+        head.classList.add('boss-defeated'); // patlama animasyonu
+        B.Bus.emit(B.Events.BOSS_DEFEATED, { bossId: boss.id, tier: boss.tier }); // konfeti + ekran parlaması
+        // Zafer kartını biraz geciktir: önce boss'un patlaması + konfeti görünsün
+        setTimeout(() => B.UI.overlay(
           '<div class="ov-big">' + boss.icon + '💥</div><h2>' + boss.name.toUpperCase() + ' DEVRİLDİ!</h2>' +
           '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
           '<p class="ov-crystal">💠 Bir Sayı Kristali parçası daha kurtarıldı!</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('boss.win') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
-        );
+        ), 700);
       }
 
       function retreat() {
