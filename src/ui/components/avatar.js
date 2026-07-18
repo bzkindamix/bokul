@@ -1,45 +1,93 @@
-/* BOKUL — Avatar Sistemi (v0.8: genişletilmiş)
- * SVG parça tabanlı karakter: cinsiyet, ten, saç modeli/rengi, GÖZ RENGİ,
- * göz/ağız stili, aksesuar, çerçeve. Fotoğraf modu cihazda kalır.
+/* BOKUL — Avatar Sistemi (v0.12: gövde + kıyafet, bol çeşit, cinsiyet filtresi)
+ * SVG parça tabanlı karakter: cinsiyet, ten, saç (17 model), göz rengi+stili,
+ * ağız, KIYAFET (60+), aksesuar, çerçeve. Kıyafet artık omuz/gövdede GÖRÜNÜR.
+ * Parçalar cinsiyete göre etiketlidir; editörde oyuncunun cinsiyetine göre süzülür.
  * Kilitli parçalar rewards.json kozmetik id'leriyle eşleşir. */
 (function (B) {
 
-  /* ---------- Parça kataloğu (cosmeticId olmayanlar herkese açık) ---------- */
+  let uid = 0; // benzersiz clipPath id sayacı (birden çok avatar aynı sayfada olabilir)
+
+  /* ---------- Renk paletleri (kıyafet üretimi için) ---------- */
+  const PAL = [
+    { id: 'mavi',     n: 'Mavi',      c1: '#3E7BFF', c2: '#2a55b5' },
+    { id: 'kirmizi',  n: 'Kırmızı',   c1: '#E8443B', c2: '#b12f28' },
+    { id: 'yesil',    n: 'Yeşil',     c1: '#3E9E62', c2: '#2c7247' },
+    { id: 'mor',      n: 'Mor',       c1: '#9D6BFF', c2: '#6f45c9' },
+    { id: 'turuncu',  n: 'Turuncu',   c1: '#FF9F1C', c2: '#cc7a08' },
+    { id: 'pembe',    n: 'Pembe',     c1: '#FF7FC4', c2: '#d95a9f' },
+  ];
+  /* Kıyafet biçimleri: id, ad, cinsiyet */
+  const SHAPES_UNI = [
+    ['tee', 'Tişört'], ['hoodie', 'Kapüşonlu'], ['jacket', 'Ceket'],
+    ['stripes', 'Çizgili'], ['vneck', 'V-Yaka'],
+  ];
+  const SHAPES_KIZ = [['elbise', 'Elbise'], ['bluz', 'Bluz'], ['kolsuz', 'Askılı']];
+  const SHAPES_ERK = [['forma', 'Forma'], ['gomlek', 'Gömlek'], ['yelek', 'Yelek']];
+
+  function buildOutfits() {
+    const out = [];
+    const add = (shapes, gender) => shapes.forEach(([shape, label]) =>
+      PAL.forEach(p => out.push({ id: shape + '-' + p.id, name: p.n + ' ' + label, shape, c1: p.c1, c2: p.c2, gender, rarity: 'common' })));
+    add(SHAPES_UNI, 'both');   // 5×6 = 30
+    add(SHAPES_KIZ, 'kiz');    // 3×6 = 18
+    add(SHAPES_ERK, 'erkek');  // 3×6 = 18
+    // Premium (kilitli) özel kıyafetler — kozmetik id'leri rewards.json'da
+    out.push(
+      { id: 'zirh',     name: 'Şövalye Zırhı',    shape: 'zirh',     c1: '#9aa3b2', c2: '#3DF2D2', gender: 'both',  rarity: 'epic',      cosmeticId: 'of-zirh' },
+      { id: 'uniforma', name: 'Komutan Üniforması', shape: 'uniforma', c1: '#31245F', c2: '#FFD52E', gender: 'both',  rarity: 'rare',      cosmeticId: 'of-uniforma' },
+      { id: 'uzay',     name: 'Uzay Giysisi',     shape: 'uzay',     c1: '#e8ecf5', c2: '#3DF2D2', gender: 'both',  rarity: 'epic',      cosmeticId: 'of-uzay' },
+      { id: 'robot',    name: 'Robot Zırhı',      shape: 'robot',    c1: '#5b6b86', c2: '#FF4FD8', gender: 'both',  rarity: 'epic',      cosmeticId: 'of-robot' },
+      { id: 'cubbe',    name: 'Filozof Cübbesi',  shape: 'cubbe',    c1: '#4A3690', c2: '#FFD52E', gender: 'both',  rarity: 'rare',      cosmeticId: 'of-cubbe' },
+      { id: 'pelerin',  name: 'Kahraman Pelerini', shape: 'pelerin',  c1: '#E8443B', c2: '#FFD52E', gender: 'both',  rarity: 'legendary', cosmeticId: 'of-pelerin' },
+      { id: 'balo',     name: 'Balo Elbisesi',    shape: 'balo',     c1: '#FF7FC4', c2: '#FFD52E', gender: 'kiz',   rarity: 'epic',      cosmeticId: 'of-balo' },
+      { id: 'takim',    name: 'Şık Takım',        shape: 'takim',    c1: '#231A48', c2: '#3DF2D2', gender: 'erkek', rarity: 'rare',      cosmeticId: 'of-takim' }
+    );
+    return out;
+  }
+
+  const OUTFITS = buildOutfits();
+  const OUTFIT_BY_ID = {};
+  OUTFITS.forEach(o => { OUTFIT_BY_ID[o.id] = o; });
+  const DEFAULT_OUTFIT = 'tee-mavi';
+
+  /* ---------- Katalog ---------- */
   const CATALOG = {
     skins: [
       { id: 0, color: '#FBE0C4' }, { id: 1, color: '#F7D2B0' }, { id: 2, color: '#EFBE93' },
       { id: 3, color: '#D9A06B' }, { id: 4, color: '#B57843' }, { id: 5, color: '#8C5A32' },
     ],
     hairColors: [
-      { id: 0, color: '#3B2A1A', name: 'Kahve' },
-      { id: 1, color: '#1C1C24', name: 'Siyah' },
-      { id: 2, color: '#B7742F', name: 'Kumral' },
-      { id: 3, color: '#E8C25A', name: 'Sarı' },
-      { id: 4, color: '#C4472B', name: 'Kızıl' },
-      { id: 5, color: '#C9C9D9', name: 'Gümüş' },
+      { id: 0, color: '#3B2A1A', name: 'Kahve' }, { id: 1, color: '#1C1C24', name: 'Siyah' },
+      { id: 2, color: '#B7742F', name: 'Kumral' }, { id: 3, color: '#E8C25A', name: 'Sarı' },
+      { id: 4, color: '#C4472B', name: 'Kızıl' },  { id: 5, color: '#C9C9D9', name: 'Gümüş' },
       { id: 6, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue' },
       { id: 7, color: '#9D6BFF', name: 'Mor', cosmeticId: 'hc-purple' },
       { id: 8, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon' },
       { id: 9, color: '#3DF2D2', name: 'Turkuaz', cosmeticId: 'hc-teal' },
     ],
     eyeColors: [
-      { id: 0, color: '#6B4423', name: 'Kahve' },
-      { id: 1, color: '#23212B', name: 'Siyah' },
-      { id: 2, color: '#3E7BFF', name: 'Mavi' },
-      { id: 3, color: '#3E9E62', name: 'Yeşil' },
-      { id: 4, color: '#9A7B3F', name: 'Ela' },
-      { id: 5, color: '#8FA3C2', name: 'Gri' },
+      { id: 0, color: '#6B4423', name: 'Kahve' }, { id: 1, color: '#23212B', name: 'Siyah' },
+      { id: 2, color: '#3E7BFF', name: 'Mavi' },   { id: 3, color: '#3E9E62', name: 'Yeşil' },
+      { id: 4, color: '#9A7B3F', name: 'Ela' },    { id: 5, color: '#8FA3C2', name: 'Gri' },
     ],
     hairs: [
-      { id: 0, name: 'Kısa' },
-      { id: 1, name: 'Uzun' },
-      { id: 2, name: 'Topuz' },
-      { id: 3, name: 'Kıvırcık', cosmeticId: 'hair-curly' },
-      { id: 4, name: 'Sıfır' },
-      { id: 5, name: 'At Kuyruğu' },
-      { id: 6, name: 'İki Örgü' },
-      { id: 7, name: 'Kâkül' },
-      { id: 8, name: 'Kirpi', cosmeticId: 'hair-spiky' },
+      { id: 0,  name: 'Kısa',        gender: 'both' },
+      { id: 1,  name: 'Uzun',        gender: 'kiz' },
+      { id: 2,  name: 'Topuz',       gender: 'kiz' },
+      { id: 3,  name: 'Kıvırcık',    gender: 'both', cosmeticId: 'hair-curly' },
+      { id: 4,  name: 'Sıfır',       gender: 'erkek' },
+      { id: 5,  name: 'At Kuyruğu',  gender: 'kiz' },
+      { id: 6,  name: 'İki Örgü',    gender: 'kiz' },
+      { id: 7,  name: 'Kâkül',       gender: 'both' },
+      { id: 8,  name: 'Kirpi',       gender: 'erkek', cosmeticId: 'hair-spiky' },
+      { id: 9,  name: 'Mohawk',      gender: 'erkek', cosmeticId: 'hair-mohawk' },
+      { id: 10, name: 'Afro',        gender: 'both' },
+      { id: 11, name: 'Bob',         gender: 'kiz' },
+      { id: 12, name: 'Uzun Dalgalı', gender: 'kiz', cosmeticId: 'hair-wavy' },
+      { id: 13, name: 'Yan Ayrık',   gender: 'both' },
+      { id: 14, name: 'Yüksek Topuz', gender: 'kiz' },
+      { id: 15, name: 'Undercut',    gender: 'erkek' },
+      { id: 16, name: 'İki Topuz',   gender: 'kiz' },
     ],
     eyes: [
       { id: 0, name: 'Klasik' }, { id: 1, name: 'Neşeli' },
@@ -47,9 +95,9 @@
     ],
     mouths: [
       { id: 0, name: 'Gülümseme' }, { id: 1, name: 'Kocaman Gülüş' },
-      { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin' },
-      { id: 3, name: 'Islık' },
+      { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin' }, { id: 3, name: 'Islık' },
     ],
+    outfits: OUTFITS,
     accs: [
       { id: 'none', name: 'Yok' },
       { id: 'beret', name: 'Komutan Beresi', cosmeticId: 'av-beret' },
@@ -64,14 +112,14 @@
     ],
   };
 
-  /* Eski kayıtlardan gelen avatarları yeni yapıya tamamla */
   function normalize(a) {
     a = a || {};
     return {
-      gender: a.gender || null,               // 'kiz' | 'erkek' | null
-      skin: a.skin ?? 2, hair: a.hair ?? 0, hairColor: a.hairColor ?? 0,
-      eyeColor: a.eyeColor ?? 0,
-      eyes: a.eyes ?? 0, mouth: a.mouth ?? 0, acc: a.acc || 'none', ring: a.ring || 'none',
+      gender: a.gender || null,
+      skin: a.skin ?? 2, hair: a.hair ?? 0, hairColor: a.hairColor ?? 0, eyeColor: a.eyeColor ?? 0,
+      eyes: a.eyes ?? 0, mouth: a.mouth ?? 0,
+      outfit: OUTFIT_BY_ID[a.outfit] ? a.outfit : DEFAULT_OUTFIT,
+      acc: a.acc || 'none', ring: a.ring || 'none',
       photo: a.photo || null, usePhoto: !!a.usePhoto,
     };
   }
@@ -81,55 +129,107 @@
     return B.State.data.inventory.cosmetics.includes(part.cosmeticId);
   }
 
-  /* ---------- SVG çizim parçaları ---------- */
+  /* Cinsiyet süzgeci: 'both' herkese, gendered sadece o cinsiyete */
+  function genderOk(part, gender) {
+    if (!part.gender || part.gender === 'both') return true;
+    return part.gender === gender;
+  }
+  function hairsFor(gender) { return CATALOG.hairs.filter(h => genderOk(h, gender)); }
+  function outfitsFor(gender) { return CATALOG.outfits.filter(o => genderOk(o, gender)); }
+
+  /* ---------- KIYAFET / GÖVDE ---------- */
+  function outfitSvg(id, skin) {
+    const o = OUTFIT_BY_ID[id] || OUTFIT_BY_ID[DEFAULT_OUTFIT];
+    const c1 = o.c1, c2 = o.c2, shape = o.shape;
+    // Omuz/gövde tabanı (badge dairesiyle kırpılır)
+    let s = '';
+    if (shape === 'pelerin') // pelerin omuzların ARKASINDA
+      s += '<path d="M8 120 Q30 96 60 98 Q90 96 112 120 Z" fill="' + c1 + '" opacity=".95"/>';
+    s += '<path d="M14 120 Q18 99 44 96 L76 96 Q102 99 106 120 Z" fill="' + c1 + '"/>';
+    // Boyun (ten)
+    s += '<path d="M53 86 L53 97 Q60 101 67 97 L67 86 Z" fill="' + skin + '"/>';
+    // Biçime göre yaka / amblem
+    s += detail(shape, c1, c2, skin);
+    return s;
+  }
+
+  function detail(shape, c1, c2, skin) {
+    switch (shape) {
+      case 'tee':      return collar(c2);
+      case 'stripes':  return collar(c2) + '<path d="M20 106 H100 M18 112 H102" stroke="' + c2 + '" stroke-width="4"/>';
+      case 'vneck':    return '<path d="M50 97 L60 108 L70 97" fill="none" stroke="' + c2 + '" stroke-width="3.5" stroke-linecap="round"/>';
+      case 'hoodie':   return '<path d="M44 97 Q60 90 76 97 L74 104 Q60 99 46 104 Z" fill="' + c2 + '"/>' +
+                              '<path d="M56 101 L55 114 M64 101 L65 114" stroke="' + c2 + '" stroke-width="3" stroke-linecap="round"/>';
+      case 'jacket':   return '<path d="M45 97 L60 120 L60 100 Z" fill="' + c2 + '"/><path d="M75 97 L60 120 L60 100 Z" fill="' + c2 + '"/>' +
+                              '<path d="M57 98 L63 98 L60 108 Z" fill="' + skin + '"/>';
+      case 'elbise':   return '<path d="M48 96 Q60 106 72 96" fill="none" stroke="' + c2 + '" stroke-width="3"/>' +
+                              '<circle cx="60" cy="103" r="3.5" fill="' + c2 + '"/>';
+      case 'bluz':     return '<path d="M46 97 Q52 104 60 98 Q68 104 74 97" fill="none" stroke="' + c2 + '" stroke-width="3.5"/>';
+      case 'kolsuz':   return '<path d="M50 96 L54 118 M70 96 L66 118" stroke="' + c2 + '" stroke-width="4" stroke-linecap="round"/>' +
+                              '<path d="M52 97 Q60 104 68 97" fill="none" stroke="' + c2 + '" stroke-width="3"/>';
+      case 'forma':    return collar(c2) + '<text x="60" y="116" text-anchor="middle" font-size="12" font-weight="bold" fill="' + c2 + '" font-family="monospace">10</text>';
+      case 'gomlek':   return '<path d="M52 96 L60 104 L68 96" fill="none" stroke="' + c2 + '" stroke-width="3"/>' +
+                              '<circle cx="60" cy="110" r="1.8" fill="' + c2 + '"/><circle cx="60" cy="117" r="1.8" fill="' + c2 + '"/>';
+      case 'yelek':    return '<path d="M46 97 L54 120 L54 100 Z" fill="' + c2 + '"/><path d="M74 97 L66 120 L66 100 Z" fill="' + c2 + '"/>';
+      case 'zirh':     return '<path d="M40 100 Q60 96 80 100 L78 110 Q60 106 42 110 Z" fill="' + c2 + '" opacity=".8"/>' +
+                              '<path d="M60 99 L60 118" stroke="' + c2 + '" stroke-width="2"/><circle cx="60" cy="107" r="3.5" fill="#FFD52E"/>';
+      case 'uniforma': return collar(c2) + '<rect x="34" y="100" width="8" height="6" rx="2" fill="' + c2 + '"/><rect x="78" y="100" width="8" height="6" rx="2" fill="' + c2 + '"/>' +
+                              star(60, 110, 5, c2) + '<circle cx="52" cy="116" r="1.6" fill="' + c2 + '"/><circle cx="68" cy="116" r="1.6" fill="' + c2 + '"/>';
+      case 'uzay':     return '<path d="M42 98 Q60 94 78 98 L78 103 Q60 99 42 103 Z" fill="' + c2 + '"/>' +
+                              '<circle cx="52" cy="112" r="2.4" fill="#52E88C"/><circle cx="60" cy="112" r="2.4" fill="#FFD52E"/><circle cx="68" cy="112" r="2.4" fill="#FF4FD8"/>';
+      case 'robot':    return '<path d="M44 102 H76 M50 108 H70" stroke="' + c2 + '" stroke-width="2"/><circle cx="60" cy="106" r="4" fill="' + c2 + '"/><circle cx="60" cy="106" r="1.8" fill="#fff"/>';
+      case 'cubbe':    return '<path d="M46 97 L60 108 L74 97 L70 120 L50 120 Z" fill="' + c2 + '" opacity=".55"/>' +
+                              '<path d="M46 97 L60 108 L74 97" fill="none" stroke="' + c2 + '" stroke-width="2.5"/>';
+      case 'pelerin':  return '<path d="M46 98 Q60 92 74 98 L72 104 Q60 100 48 104 Z" fill="' + c2 + '"/>' + star(60, 112, 5, c2);
+      case 'balo':     return '<path d="M46 97 Q60 92 74 97 L74 102 Q60 98 46 102 Z" fill="' + c2 + '" opacity=".8"/>' +
+                              '<circle cx="60" cy="107" r="3" fill="' + c2 + '"/><path d="M40 116 Q60 110 80 116" stroke="' + c2 + '" stroke-width="2" fill="none"/>';
+      case 'takim':    return '<path d="M50 96 L60 106 L70 96" fill="none" stroke="' + c2 + '" stroke-width="3"/>' +
+                              '<path d="M57 98 L63 98 L60 116 Z" fill="' + c2 + '"/>';
+      default:         return collar(c2);
+    }
+  }
+  function collar(c) { return '<path d="M49 96 Q60 104 71 96" fill="none" stroke="' + c + '" stroke-width="3.5" stroke-linecap="round"/>'; }
+
+  /* ---------- SAÇ ---------- */
   function hairSvg(style, color) {
-    const tie = '#FFD52E'; // saç lastiği
+    const tie = '#FFD52E';
     switch (style) {
-      case 0: // kısa
-        return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/>';
-      case 1: // uzun
-        return '<path d="M24 52 Q22 18 60 14 Q98 18 96 52 L98 84 Q92 90 86 84 L86 50 Q82 32 60 30 Q38 32 34 50 L34 84 Q28 90 22 84 Z" fill="' + color + '"/>';
-      case 2: // topuz
-        return '<circle cx="60" cy="14" r="12" fill="' + color + '"/>' +
-               '<path d="M26 50 Q26 24 60 20 Q94 24 94 50 L88 48 Q86 34 60 32 Q34 34 32 48 Z" fill="' + color + '"/>';
-      case 3: // kıvırcık
-        return '<circle cx="34" cy="38" r="12" fill="' + color + '"/><circle cx="47" cy="26" r="13" fill="' + color + '"/>' +
-               '<circle cx="62" cy="22" r="13" fill="' + color + '"/><circle cx="77" cy="27" r="13" fill="' + color + '"/>' +
-               '<circle cx="88" cy="39" r="12" fill="' + color + '"/>';
-      case 5: // at kuyruğu
-        return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/>' +
-               '<path d="M90 34 Q108 44 103 70 Q100 90 91 100 Q85 88 90 68 Q93 50 84 40 Z" fill="' + color + '"/>' +
-               '<rect x="86" y="36" width="9" height="6" rx="3" fill="' + tie + '" transform="rotate(30 90 39)"/>';
-      case 6: // iki örgü
-        return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/>' +
-               '<circle cx="26" cy="62" r="7" fill="' + color + '"/><circle cx="24" cy="76" r="6.5" fill="' + color + '"/><circle cx="23" cy="89" r="6" fill="' + color + '"/>' +
-               '<circle cx="94" cy="62" r="7" fill="' + color + '"/><circle cx="96" cy="76" r="6.5" fill="' + color + '"/><circle cx="97" cy="89" r="6" fill="' + color + '"/>' +
-               '<rect x="20" y="94" width="8" height="5" rx="2.5" fill="' + tie + '"/><rect x="93" y="94" width="8" height="5" rx="2.5" fill="' + tie + '"/>';
-      case 7: // kâkül (perçemli)
-        return '<path d="M24 52 Q22 18 60 15 Q98 18 96 52 L96 58 L88 44 L80 56 L72 42 L64 55 L56 42 L48 56 L40 44 L32 58 L24 58 Z" fill="' + color + '"/>';
-      case 8: // kirpi
-        return '<path d="M26 50 L30 26 L40 40 L46 16 L55 36 L62 12 L70 34 L78 16 L84 38 L92 26 L94 50 Q80 34 60 34 Q40 34 26 50 Z" fill="' + color + '"/>' +
-               '<path d="M26 50 Q40 36 60 36 Q80 36 94 50 L90 52 Q75 40 60 40 Q45 40 30 52 Z" fill="' + color + '"/>';
-      default: return ''; // sıfır (4)
+      case 0: return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/>';
+      case 1: return '<path d="M24 52 Q22 18 60 14 Q98 18 96 52 L98 84 Q92 90 86 84 L86 50 Q82 32 60 30 Q38 32 34 50 L34 84 Q28 90 22 84 Z" fill="' + color + '"/>';
+      case 2: return '<circle cx="60" cy="14" r="12" fill="' + color + '"/><path d="M26 50 Q26 24 60 20 Q94 24 94 50 L88 48 Q86 34 60 32 Q34 34 32 48 Z" fill="' + color + '"/>';
+      case 3: return '<circle cx="34" cy="38" r="12" fill="' + color + '"/><circle cx="47" cy="26" r="13" fill="' + color + '"/><circle cx="62" cy="22" r="13" fill="' + color + '"/><circle cx="77" cy="27" r="13" fill="' + color + '"/><circle cx="88" cy="39" r="12" fill="' + color + '"/>';
+      case 5: return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/><path d="M90 34 Q108 44 103 70 Q100 90 91 100 Q85 88 90 68 Q93 50 84 40 Z" fill="' + color + '"/><rect x="86" y="36" width="9" height="6" rx="3" fill="' + tie + '" transform="rotate(30 90 39)"/>';
+      case 6: return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/><circle cx="26" cy="62" r="7" fill="' + color + '"/><circle cx="24" cy="76" r="6.5" fill="' + color + '"/><circle cx="23" cy="89" r="6" fill="' + color + '"/><circle cx="94" cy="62" r="7" fill="' + color + '"/><circle cx="96" cy="76" r="6.5" fill="' + color + '"/><circle cx="97" cy="89" r="6" fill="' + color + '"/><rect x="20" y="94" width="8" height="5" rx="2.5" fill="' + tie + '"/><rect x="93" y="94" width="8" height="5" rx="2.5" fill="' + tie + '"/>';
+      case 7: return '<path d="M24 52 Q22 18 60 15 Q98 18 96 52 L96 58 L88 44 L80 56 L72 42 L64 55 L56 42 L48 56 L40 44 L32 58 L24 58 Z" fill="' + color + '"/>';
+      case 8: return '<path d="M26 50 L30 26 L40 40 L46 16 L55 36 L62 12 L70 34 L78 16 L84 38 L92 26 L94 50 Q80 34 60 34 Q40 34 26 50 Z" fill="' + color + '"/><path d="M26 50 Q40 36 60 36 Q80 36 94 50 L90 52 Q75 40 60 40 Q45 40 30 52 Z" fill="' + color + '"/>';
+      case 9: return '<path d="M52 12 Q60 8 68 12 L66 50 L54 50 Z" fill="' + color + '"/><path d="M34 50 Q40 42 54 42 L54 50 Z" fill="' + color + '"/><path d="M86 50 Q80 42 66 42 L66 50 Z" fill="' + color + '"/>';
+      case 10: return '<circle cx="60" cy="34" r="30" fill="' + color + '"/><path d="M30 50 Q30 40 40 40 L80 40 Q90 40 90 50 L86 50 Q86 44 60 44 Q34 44 34 50 Z" fill="' + color + '"/>';
+      case 11: return '<path d="M22 56 Q20 18 60 15 Q100 18 98 56 L94 66 Q92 44 60 32 Q28 44 26 66 Z" fill="' + color + '"/>';
+      case 12: return '<path d="M22 54 Q20 16 60 13 Q100 16 98 54 Q102 78 92 96 Q88 82 90 60 Q84 34 60 30 Q36 34 30 60 Q32 82 28 96 Q18 78 22 54 Z" fill="' + color + '"/>';
+      case 13: return '<path d="M24 52 Q22 18 60 15 Q98 18 96 52 L90 50 Q88 30 46 30 Q40 40 36 50 Z" fill="' + color + '"/>';
+      case 14: return '<ellipse cx="60" cy="12" rx="14" ry="10" fill="' + color + '"/><rect x="53" y="18" width="14" height="8" rx="3" fill="' + tie + '"/><path d="M28 50 Q28 26 60 24 Q92 26 92 50 L86 48 Q84 34 60 34 Q36 34 34 48 Z" fill="' + color + '"/>';
+      case 15: return '<path d="M28 46 Q30 22 60 20 Q90 22 92 46 L86 46 Q84 34 60 34 Q36 34 34 46 Z" fill="' + color + '"/>';
+      case 16: return '<circle cx="30" cy="30" r="11" fill="' + color + '"/><circle cx="90" cy="30" r="11" fill="' + color + '"/><path d="M26 50 Q26 24 60 20 Q94 24 94 50 L88 48 Q86 34 60 32 Q34 34 32 48 Z" fill="' + color + '"/>';
+      default: return ''; // 4 sıfır
     }
   }
 
+  /* ---------- GÖZ ---------- */
   function eyesSvg(style, eyeColor, lashes) {
-    // Gözler BÜYÜK ve iris BASKIN çizilir; küçük boyutlarda bile renk net görünsün.
     let s = '';
-    if (style === 1) { // neşeli (gülen kapalı gözler)
+    if (style === 1) {
       s = '<path d="M35 58 Q44 49 53 58" stroke="#2b1d10" stroke-width="4.5" fill="none" stroke-linecap="round"/>' +
           '<path d="M67 58 Q76 49 85 58" stroke="#2b1d10" stroke-width="4.5" fill="none" stroke-linecap="round"/>';
-    } else if (style === 2) { // yıldız göz
+    } else if (style === 2) {
       s = star(44, 57, 9, eyeColor) + star(76, 57, 9, eyeColor);
-    } else { // klasik: kocaman gözler, geniş renkli iris
+    } else {
       s = '<ellipse cx="44" cy="57" rx="9" ry="9.5" fill="#fff" stroke="#2b1d10" stroke-width="1.2"/>' +
           '<ellipse cx="76" cy="57" rx="9" ry="9.5" fill="#fff" stroke="#2b1d10" stroke-width="1.2"/>' +
           '<circle cx="44" cy="58" r="6" fill="' + eyeColor + '"/><circle cx="76" cy="58" r="6" fill="' + eyeColor + '"/>' +
           '<circle cx="44" cy="58" r="2.6" fill="#16121c"/><circle cx="76" cy="58" r="2.6" fill="#16121c"/>' +
           '<circle cx="46.5" cy="55" r="1.9" fill="#fff"/><circle cx="78.5" cy="55" r="1.9" fill="#fff"/>';
     }
-    if (lashes && style !== 2) { // kirpikler
+    if (lashes && style !== 2) {
       s += '<path d="M33 51 L29 46 M38 48 L35 42 M87 51 L91 46 M82 48 L85 42" stroke="#2b1d10" stroke-width="2.6" stroke-linecap="round"/>';
     }
     return s;
@@ -155,31 +255,18 @@
 
   function accSvg(id) {
     switch (id) {
-      case 'beret':
-        return '<path d="M26 40 Q28 16 60 14 Q92 16 94 40 L90 37 Q60 26 30 37 Z" fill="#5B3FA8"/>' +
-               '<circle cx="60" cy="15" r="4.5" fill="#FFD52E"/>';
-      case 'glasses':
-        return '<circle cx="44" cy="56" r="12" fill="none" stroke="#3DF2D2" stroke-width="4"/>' +
-               '<circle cx="76" cy="56" r="12" fill="none" stroke="#3DF2D2" stroke-width="4"/>' +
-               '<path d="M56 56 L64 56" stroke="#3DF2D2" stroke-width="4"/>';
-      case 'headset':
-        return '<path d="M28 48 Q28 18 60 18 Q92 18 92 48" stroke="#9D6BFF" stroke-width="7" fill="none" stroke-linecap="round"/>' +
-               '<rect x="20" y="46" width="12" height="20" rx="6" fill="#9D6BFF"/>' +
-               '<rect x="88" y="46" width="12" height="20" rx="6" fill="#9D6BFF"/>';
-      case 'crown':
-        return '<path d="M34 30 L40 12 L52 24 L60 8 L68 24 L80 12 L86 30 Z" fill="#FFD52E"/>' +
-               '<circle cx="40" cy="14" r="3" fill="#FF4FD8"/><circle cx="60" cy="10" r="3" fill="#3DF2D2"/><circle cx="80" cy="14" r="3" fill="#FF4FD8"/>';
+      case 'beret': return '<path d="M26 40 Q28 16 60 14 Q92 16 94 40 L90 37 Q60 26 30 37 Z" fill="#5B3FA8"/><circle cx="60" cy="15" r="4.5" fill="#FFD52E"/>';
+      case 'glasses': return '<circle cx="44" cy="57" r="12" fill="none" stroke="#3DF2D2" stroke-width="4"/><circle cx="76" cy="57" r="12" fill="none" stroke="#3DF2D2" stroke-width="4"/><path d="M56 57 L64 57" stroke="#3DF2D2" stroke-width="4"/>';
+      case 'headset': return '<path d="M28 48 Q28 18 60 18 Q92 18 92 48" stroke="#9D6BFF" stroke-width="7" fill="none" stroke-linecap="round"/><rect x="20" y="46" width="12" height="20" rx="6" fill="#9D6BFF"/><rect x="88" y="46" width="12" height="20" rx="6" fill="#9D6BFF"/>';
+      case 'crown': return '<path d="M34 30 L40 12 L52 24 L60 8 L68 24 L80 12 L86 30 Z" fill="#FFD52E"/><circle cx="40" cy="14" r="3" fill="#FF4FD8"/><circle cx="60" cy="10" r="3" fill="#3DF2D2"/><circle cx="80" cy="14" r="3" fill="#FF4FD8"/>';
       default: return '';
     }
   }
 
   function ringSvg(id) {
     switch (id) {
-      case 'neon':
-        return '<circle cx="60" cy="60" r="57" fill="none" stroke="#FF4FD8" stroke-width="5"/>';
-      case 'galaxy':
-        return '<circle cx="60" cy="60" r="57" fill="none" stroke="#3DF2D2" stroke-width="5" stroke-dasharray="14 8"/>' +
-               star(60, 6, 6, '#FFD52E');
+      case 'neon': return '<circle cx="60" cy="60" r="57" fill="none" stroke="#FF4FD8" stroke-width="5"/>';
+      case 'galaxy': return '<circle cx="60" cy="60" r="57" fill="none" stroke="#3DF2D2" stroke-width="5" stroke-dasharray="14 8"/>' + star(60, 6, 6, '#FFD52E');
       default: return '';
     }
   }
@@ -190,20 +277,24 @@
     const skin = CATALOG.skins[a.skin].color;
     const hairC = (CATALOG.hairColors[a.hairColor] || CATALOG.hairColors[0]).color;
     const eyeC = (CATALOG.eyeColors[a.eyeColor] || CATALOG.eyeColors[0]).color;
+    const id = 'bkc' + (uid++);
     return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
+      '<defs><clipPath id="' + id + '"><circle cx="60" cy="60" r="54"/></clipPath></defs>' +
       '<circle cx="60" cy="60" r="54" fill="#31245F"/>' +
-      '<ellipse cx="60" cy="64" rx="32" ry="34" fill="' + skin + '"/>' +
-      '<circle cx="27" cy="64" r="6" fill="' + skin + '"/><circle cx="93" cy="64" r="6" fill="' + skin + '"/>' +
-      hairSvg(a.hair, hairC) +
-      eyesSvg(a.eyes, eyeC, a.gender === 'kiz') +
-      '<ellipse cx="60" cy="66" rx="5" ry="6" fill="rgba(0,0,0,.12)"/>' +
-      mouthSvg(a.mouth) +
-      accSvg(a.acc) +
+      '<g clip-path="url(#' + id + ')">' +
+        outfitSvg(a.outfit, skin) +
+        '<ellipse cx="60" cy="64" rx="32" ry="34" fill="' + skin + '"/>' +
+        '<circle cx="27" cy="64" r="6" fill="' + skin + '"/><circle cx="93" cy="64" r="6" fill="' + skin + '"/>' +
+        hairSvg(a.hair, hairC) +
+        eyesSvg(a.eyes, eyeC, a.gender === 'kiz') +
+        '<ellipse cx="60" cy="66" rx="5" ry="6" fill="rgba(0,0,0,.12)"/>' +
+        mouthSvg(a.mouth) +
+        accSvg(a.acc) +
+      '</g>' +
       ringSvg(a.ring) +
       '</svg>';
   }
 
-  /* HUD/ekranlar için hazır HTML: fotoğraf modundaysa yuvarlak portre */
   function el(a, cls) {
     a = normalize(a);
     if (a.usePhoto && a.photo) {
@@ -213,30 +304,30 @@
     return '<span class="avatar-holder ' + (cls || '') + '">' + svg(a) + '</span>';
   }
 
-  /* Cinsiyete göre başlangıç görünümü (hepsi sonradan değiştirilebilir) */
   function preset(gender) {
+    const base = { gender, skin: 2, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false };
     return gender === 'kiz'
-      ? { gender: 'kiz', skin: 2, hair: 6, hairColor: 2, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false }
-      : { gender: 'erkek', skin: 2, hair: 0, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false };
+      ? Object.assign(base, { hair: 6, outfit: 'elbise-pembe' })
+      : Object.assign(base, { hair: 0, outfit: 'tee-mavi' });
   }
 
-  /* Bir kozmetik hangi avatar slotundaki hangi parça id'sine denk düşer? */
+  /* Kozmetik id → avatar slotundaki parça id'si */
   function partIdFor(item) {
     const maps = { hair: CATALOG.hairs, hairColor: CATALOG.hairColors, eyes: CATALOG.eyes,
-                   mouth: CATALOG.mouths, acc: CATALOG.accs, ring: CATALOG.rings };
+                   mouth: CATALOG.mouths, outfit: CATALOG.outfits, acc: CATALOG.accs, ring: CATALOG.rings };
     const p = (maps[item.type] || []).find(x => x.cosmeticId === item.id);
     return p ? p.id : null;
   }
 
-  /* Satılan kozmetik takılıysa o slotu varsayılana döndür */
   function unequipCosmetic(avatar, item) {
     const a = normalize(avatar);
     const pid = partIdFor(item);
     if (pid == null) return a;
-    const def = { hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none' };
+    const def = { hair: 0, hairColor: 0, eyes: 0, mouth: 0, outfit: DEFAULT_OUTFIT, acc: 'none', ring: 'none' };
     if (a[item.type] === pid) a[item.type] = def[item.type];
     return a;
   }
 
-  B.Avatar = { CATALOG, normalize, svg, el, isUnlocked, preset, partIdFor, unequipCosmetic };
+  B.Avatar = { CATALOG, normalize, svg, el, isUnlocked, preset, partIdFor, unequipCosmetic,
+               genderOk, hairsFor, outfitsFor };
 })(window.BOKUL = window.BOKUL || {});

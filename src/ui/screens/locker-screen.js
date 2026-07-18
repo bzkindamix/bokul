@@ -13,9 +13,10 @@
       { id: 'photo', name: '📷 Fotoğraf' },
     ],
     dolap: [
-      { id: 'acc',  name: '🕶️ Aksesuar' },
-      { id: 'ring', name: '⭕ Çerçeve' },
-      { id: 'sell', name: '💰 Sat' },
+      { id: 'outfit', name: '👕 Kıyafet' },
+      { id: 'acc',    name: '🕶️ Aksesuar' },
+      { id: 'ring',   name: '⭕ Çerçeve' },
+      { id: 'sell',   name: '💰 Sat' },
     ],
   };
 
@@ -106,7 +107,11 @@
         host.innerHTML = '';
 
         if (tab === 'hair') {
-          host.appendChild(grid(C.hairs, (x, p) => { x.hair = p.id; }, p => p.id === a.hair));
+          // Saç modelleri oyuncunun cinsiyetine göre süzülür
+          host.appendChild(grid(B.Avatar.hairsFor(a.gender), (x, p) => { x.hair = p.id; }, p => p.id === a.hair));
+        } else if (tab === 'outfit') {
+          // Kıyafetler cinsiyete göre süzülür
+          host.appendChild(grid(B.Avatar.outfitsFor(a.gender), (x, p) => { x.outfit = p.id; }, p => p.id === a.outfit));
         } else if (tab === 'face') {
           host.appendChild(grid(C.eyes, (x, p) => { x.eyes = p.id; }, p => p.id === a.eyes));
           host.appendChild(grid(C.mouths, (x, p) => { x.mouth = p.id; }, p => p.id === a.mouth));

@@ -1,5 +1,21 @@
 # BOKUL — Sürüm Notları
 
+## v0.12 — Kıyafetler Göründü + Bol Çeşit + Cinsiyet Filtresi (2026-07-18)
+
+- 👕 KIYAFET HATASI DÜZELDİ: Avatarlar sadece kafadan ibaretti. Artık omuz +
+  gövde çiziliyor ve kıyafet GÖRÜNÜYOR (badge'in alt kısmında). Her yerde
+  (HUD, kartlar, önizleme) geçerli. clipPath ile temiz kırpma.
+- 🧥 74 KIYAFET: 11 biçim (tişört, kapüşonlu, ceket, çizgili, V-yaka, elbise,
+  bluz, askılı, forma, gömlek, yelek) × 6 renk = 66 ücretsiz, + 8 premium
+  (zırh, üniforma, uzay giysisi, robot zırhı, filozof cübbesi, kahraman
+  pelerini, balo elbisesi, şık takım). Dolap'a "👕 Kıyafet" sekmesi eklendi.
+- 💇 17 SAÇ MODELİ: 9→17 (mohawk, afro, bob, uzun dalgalı, yan ayrık,
+  yüksek topuz, undercut, iki topuz eklendi).
+- 🚻 CİNSİYET FİLTRESİ: Oyun başında seçilen cinsiyete göre saç ve kıyafet
+  seçenekleri süzülür (unisex + o cinsiyete özel). Kız ~55 kıyafet/13 saç,
+  erkek ~55 kıyafet/9 saç görür.
+
+
 ## v0.11 — Yeni Hikâye, Görünür Gözler ve Oyuncu Profilleri (2026-07-18)
 
 - 📖 YEPYENİ HİKÂYE: Sadece bölmeyi değil TÜM cepheleri kapsıyor. "Büyük Bilgi
