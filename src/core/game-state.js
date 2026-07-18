@@ -10,6 +10,7 @@
         schemaVersion: SCHEMA_VERSION,
         createdAt: new Date().toISOString(),
         lastPlayedAt: new Date().toISOString(),
+        introSeen: false,          // giriş sinematiği bu profilde izlendi mi
       },
       player: { name: '', xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },

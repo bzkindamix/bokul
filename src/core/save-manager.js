@@ -2,7 +2,9 @@
  * LocalStorage kayıt: debounce'lu otomatik kayıt + şema migrasyonu.
  * Bozuk kayıt asla sessizce silinmez; yedeğe kopyalanır. */
 (function (B) {
-  const KEY = 'bokul.save.v1';
+  // Kayıt anahtarı artık AKTİF PROFİLE göre (bkz. Auth.saveKey()).
+  // Eski tek-oyunculu kayıt anahtarı (v0.10 öncesi) göç için okunur.
+  const LEGACY_KEY = 'bokul.save.v1';
   const SETTINGS_KEY = 'bokul.settings';
   let timer = null;
 
@@ -11,11 +13,17 @@
     // Örnek: 1: (d) => { d.yeniAlan = ...; d.meta.schemaVersion = 2; return d; }
   };
 
+  function key() { return B.Auth ? B.Auth.saveKey() : LEGACY_KEY; }
+
   B.Save = {
+    /* Aktif profilin kaydını yükle; yoksa taze durum. Eski tek kayıt varsa
+     * ilk profile bir kez taşınır (legacyImport). */
     load() {
+      const k = key();
+      if (!k) { B.State.data = B.State.fresh(); return false; }
       let raw = null;
-      try { raw = localStorage.getItem(KEY); } catch (e) { /* gizli mod vb. */ }
-      if (!raw) return false;
+      try { raw = localStorage.getItem(k); } catch (e) { /* gizli mod vb. */ }
+      if (!raw) { B.State.data = B.State.fresh(); return false; }
       try {
         let data = JSON.parse(raw);
         while (data.meta.schemaVersion < B.State.SCHEMA_VERSION) {
@@ -23,20 +31,34 @@
           if (!fn) throw new Error('Migrasyon eksik: ' + data.meta.schemaVersion);
           data = fn(data);
         }
-        B.State.data = Object.assign(B.State.fresh(), data); // eksik alanları tamamla
+        B.State.data = Object.assign(B.State.fresh(), data);
         B.Bus.emit(B.Events.GAME_LOADED, {});
         return true;
       } catch (e) {
         console.error('[BOKUL] Kayıt okunamadı, yedeğe alınıyor:', e);
-        try { localStorage.setItem(KEY + '.corrupt', raw); localStorage.removeItem(KEY); } catch (e2) {}
+        try { localStorage.setItem(k + '.corrupt', raw); localStorage.removeItem(k); } catch (e2) {}
+        B.State.data = B.State.fresh();
         return false;
       }
     },
 
+    /* v0.10 öncesi tek kayıt varsa, yeni bir profile içeriğini taşı */
+    legacyImport() {
+      try {
+        const raw = localStorage.getItem(LEGACY_KEY);
+        if (!raw) return false;
+        B.State.data = Object.assign(B.State.fresh(), JSON.parse(raw));
+        return true;
+      } catch (e) { return false; }
+    },
+    hasLegacy() { try { return !!localStorage.getItem(LEGACY_KEY); } catch (e) { return false; } },
+
     saveNow() {
+      const k = key();
+      if (!k) return; // profil seçilmeden yazma
       B.State.touch();
       try {
-        localStorage.setItem(KEY, JSON.stringify(B.State.data));
+        localStorage.setItem(k, JSON.stringify(B.State.data));
         B.Bus.emit(B.Events.GAME_SAVED, {});
       } catch (e) { console.error('[BOKUL] Kayıt yazılamadı:', e); }
     },

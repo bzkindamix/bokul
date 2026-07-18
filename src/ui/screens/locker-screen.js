@@ -202,7 +202,7 @@
         if (onboarding) {
           left.querySelector('.locker-done').onclick = () => {
             B.Save.saveNow();
-            if (!B.Save.settings.get().introSeen) B.UI.show('intro', {});
+            if (!B.State.data.meta.introSeen) B.UI.show('intro', {});
             else B.UI.show('home');
           };
         }

@@ -3,10 +3,7 @@
 (function (B) {
   B.Engine = {
     async boot() {
-      // 1) Kayıt
-      B.Save.load();
-
-      // 2) İçerik paketleri
+      // 1) İçerik paketleri (kayıt YÜKLENMEZ — önce profil seçilir)
       const LESSONS = [
         'lessons/math-5-division',
         'lessons/ai-101',
@@ -17,13 +14,7 @@
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
 
-      // 3) Eski kayıtları yeni alanlarla tamamla (sürüm uyumu)
-      const p = B.State.data.player;
-      if (p.coins == null) p.coins = 0;
-      p.avatar = B.Avatar.normalize(p.avatar);
-      if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
-
-      // 4) Motor başlatmaları (olay dinleyicileri bağlanır)
+      // 2) Motor başlatmaları (olay dinleyicileri bağlanır)
       B.Save.init();
       B.Audio.init();
       B.Progress.init();
@@ -35,44 +26,50 @@
       B.UI.init();
     },
 
-    /* Splash'tan oyuna giriş (ilk dokunuş ses kilidini de açar)
-     * Akış: KARAKTER YARATMA (cinsiyet → isim → görünüm) → sinematik → üs */
+    /* Splash'tan giriş: hatırlanan profil varsa devam, yoksa giriş ekranı */
     start() {
       B.Audio.unlock();
-      const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
-      if (!name) return B.UI.show('creator', {});   // en başta karakter yaratma
-      B.State.data.player.name = name;
-      if (!B.Save.settings.get().introSeen) return B.UI.show('intro', {});
+      const rem = B.Auth.remembered();
+      if (rem && B.Auth.resume(rem)) return B.Engine.enterAs();
+      B.UI.show('login');
+    },
+
+    /* Profil seçildikten sonra: kaydı yükle ve doğru ekrana yönlendir */
+    enterAs() {
+      const loaded = B.Save.load();
+      // İlk profil + v0.10 öncesi tek kayıt varsa eski ilerlemeyi taşı
+      if (!loaded && B.Save.hasLegacy() && B.Auth.users().length === 1) {
+        B.Save.legacyImport();
+        B.Save.saveNow();
+      }
+      // Sürüm uyumu: eksik alanları tamamla
+      const p = B.State.data.player;
+      if (p.coins == null) p.coins = 0;
+      p.avatar = B.Avatar.normalize(p.avatar);
+      if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
+
+      // Yeni profil (henüz karakteri yok) → kullanıcı adını varsayılan yap, karakter yaratmaya git
+      if (!p.name) {
+        p.name = B.Auth.displayName();
+        B.Save.saveNow();
+        return B.UI.show('creator', {});
+      }
+      if (!B.State.data.meta.introSeen) return B.UI.show('intro', {});
       B.UI.show('home');
     },
 
-    /* Sinematik bitince buradan devam edilir */
+    /* Sinematik bitince üsse geç */
     afterIntro() {
-      const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
-      B.State.data.player.name = name || 'Asker';
+      B.State.data.meta.introSeen = true;
+      B.Save.saveNow();
       B.UI.show('home');
     },
 
-    /* İlk açılış: kendini tanıt → avatarını oluştur → üsse gir */
-    askName() {
-      const ov = B.UI.overlay(
-        '<div class="ov-big">🫡</div><h2>Üsse yeni asker geldi!</h2>' +
-        '<p class="ov-quote">Kendini tanıt: adın ne?</p>' +
-        '<input id="name-input" class="name-input" maxlength="14" placeholder="Adını yaz...">',
-        [{
-          label: 'DEVAM ▶',
-          onClick: () => {
-            const v = (document.getElementById('name-input') || {}).value || '';
-            const nm = v.trim() || 'Asker';
-            B.State.data.player.name = nm;
-            B.Save.settings.set({ playerName: nm });
-            B.Save.saveNow();
-            // İsimden sonra avatar oluşturma (Dolap, onboarding modu)
-            B.UI.show('locker', { onboarding: true });
-          },
-        }]
-      );
-      setTimeout(() => { const i = ov.querySelector('#name-input'); if (i) i.focus(); }, 100);
+    /* Oyuncu değiştir / çıkış */
+    logout() {
+      B.Save.saveNow();
+      B.Auth.logout();
+      B.UI.show('login');
     },
   };
 })(window.BOKUL = window.BOKUL || {});

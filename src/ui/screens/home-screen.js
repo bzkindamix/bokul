@@ -46,6 +46,13 @@
       replay.onclick = () => B.UI.show('intro', { replay: true });
       root.appendChild(replay);
 
+      // Oyuncu değiştir / çıkış
+      const out = document.createElement('button');
+      out.className = 'chip home-logout';
+      out.textContent = '🚪 Çıkış';
+      out.onclick = () => B.Engine.logout();
+      root.appendChild(out);
+
       this._hud = hud;
     },
     exit() { if (this._hud) this._hud.dispose(); },

@@ -115,20 +115,22 @@
   }
 
   function eyesSvg(style, eyeColor, lashes) {
+    // Gözler BÜYÜK ve iris BASKIN çizilir; küçük boyutlarda bile renk net görünsün.
     let s = '';
-    if (style === 1) { // neşeli
-      s = '<path d="M38 56 Q44 50 50 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>' +
-          '<path d="M70 56 Q76 50 82 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    if (style === 1) { // neşeli (gülen kapalı gözler)
+      s = '<path d="M35 58 Q44 49 53 58" stroke="#2b1d10" stroke-width="4.5" fill="none" stroke-linecap="round"/>' +
+          '<path d="M67 58 Q76 49 85 58" stroke="#2b1d10" stroke-width="4.5" fill="none" stroke-linecap="round"/>';
     } else if (style === 2) { // yıldız göz
-      s = star(44, 55, 7, '#FFD52E') + star(76, 55, 7, '#FFD52E');
-    } else { // klasik: beyaz + renkli iris + göz bebeği + parıltı
-      s = '<ellipse cx="44" cy="56" rx="7.5" ry="8" fill="#fff"/><ellipse cx="76" cy="56" rx="7.5" ry="8" fill="#fff"/>' +
-          '<circle cx="44" cy="57" r="4.8" fill="' + eyeColor + '"/><circle cx="76" cy="57" r="4.8" fill="' + eyeColor + '"/>' +
-          '<circle cx="44" cy="57" r="2.2" fill="#16121c"/><circle cx="76" cy="57" r="2.2" fill="#16121c"/>' +
-          '<circle cx="46" cy="54.5" r="1.4" fill="#fff"/><circle cx="78" cy="54.5" r="1.4" fill="#fff"/>';
+      s = star(44, 57, 9, eyeColor) + star(76, 57, 9, eyeColor);
+    } else { // klasik: kocaman gözler, geniş renkli iris
+      s = '<ellipse cx="44" cy="57" rx="9" ry="9.5" fill="#fff" stroke="#2b1d10" stroke-width="1.2"/>' +
+          '<ellipse cx="76" cy="57" rx="9" ry="9.5" fill="#fff" stroke="#2b1d10" stroke-width="1.2"/>' +
+          '<circle cx="44" cy="58" r="6" fill="' + eyeColor + '"/><circle cx="76" cy="58" r="6" fill="' + eyeColor + '"/>' +
+          '<circle cx="44" cy="58" r="2.6" fill="#16121c"/><circle cx="76" cy="58" r="2.6" fill="#16121c"/>' +
+          '<circle cx="46.5" cy="55" r="1.9" fill="#fff"/><circle cx="78.5" cy="55" r="1.9" fill="#fff"/>';
     }
     if (lashes && style !== 2) { // kirpikler
-      s += '<path d="M35 50 L31 46 M39 47 L36 42 M85 50 L89 46 M81 47 L84 42" stroke="#2b1d10" stroke-width="2.4" stroke-linecap="round"/>';
+      s += '<path d="M33 51 L29 46 M38 48 L35 42 M87 51 L91 46 M82 48 L85 42" stroke="#2b1d10" stroke-width="2.6" stroke-linecap="round"/>';
     }
     return s;
   }

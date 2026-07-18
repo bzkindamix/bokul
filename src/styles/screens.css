@@ -271,3 +271,30 @@
 .quest-claim { align-self: flex-end; padding: 8px 20px; }
 .quest-status { align-self: flex-end; color: var(--success); font-weight: 800; font-size: 13px; }
 .quest-note { text-align: center; color: var(--ink-dim); font-size: 13px; padding: 14px; }
+
+/* ---------- v0.11: Giriş / Oyuncu Profilleri ---------- */
+.login-root { align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+.login-box { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 380px; width: 100%; text-align: center; }
+.login-box-wide { max-width: 640px; }
+.login-logo { font-size: 52px; animation: floatY 3s ease-in-out infinite; }
+.login-title { font-size: 24px; font-weight: 900; letter-spacing: 1px; }
+.login-sub { color: var(--ink-dim); font-size: 14px; }
+.login-box .name-input { max-width: 320px; }
+.login-remember { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-dim); cursor: pointer; }
+.login-remember input { width: 18px; height: 18px; accent-color: var(--accent); }
+.login-err { color: var(--warn); font-size: 13px; min-height: 18px; font-weight: 700; }
+.login-box .btn { width: 100%; max-width: 320px; }
+.login-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; width: 100%; margin-top: 8px; }
+.login-card {
+  background: var(--bg-panel); border: 2px solid var(--line); border-radius: 18px;
+  padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  transition: transform .12s, border-color .12s;
+}
+.login-card:hover, .login-card:active { border-color: var(--accent); transform: translateY(-3px); }
+.login-av { width: 70px; height: 70px; }
+.login-av .avatar-holder { width: 100%; height: 100%; }
+.login-anon { font-size: 44px; line-height: 70px; }
+.login-cardname { font-weight: 800; font-size: 15px; }
+.login-lvl { font-size: 11px; color: var(--xp); font-weight: 700; }
+.login-new { border-style: dashed; justify-content: center; }
+.home-logout { position: absolute; right: 16px; bottom: 16px; z-index: 5; color: var(--ink-dim); }

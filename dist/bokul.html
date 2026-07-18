@@ -629,6 +629,33 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .quest-status { align-self: flex-end; color: var(--success); font-weight: 800; font-size: 13px; }
 .quest-note { text-align: center; color: var(--ink-dim); font-size: 13px; padding: 14px; }
 
+/* ---------- v0.11: Giriş / Oyuncu Profilleri ---------- */
+.login-root { align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+.login-box { display: flex; flex-direction: column; align-items: center; gap: 12px; max-width: 380px; width: 100%; text-align: center; }
+.login-box-wide { max-width: 640px; }
+.login-logo { font-size: 52px; animation: floatY 3s ease-in-out infinite; }
+.login-title { font-size: 24px; font-weight: 900; letter-spacing: 1px; }
+.login-sub { color: var(--ink-dim); font-size: 14px; }
+.login-box .name-input { max-width: 320px; }
+.login-remember { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-dim); cursor: pointer; }
+.login-remember input { width: 18px; height: 18px; accent-color: var(--accent); }
+.login-err { color: var(--warn); font-size: 13px; min-height: 18px; font-weight: 700; }
+.login-box .btn { width: 100%; max-width: 320px; }
+.login-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; width: 100%; margin-top: 8px; }
+.login-card {
+  background: var(--bg-panel); border: 2px solid var(--line); border-radius: 18px;
+  padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 6px;
+  transition: transform .12s, border-color .12s;
+}
+.login-card:hover, .login-card:active { border-color: var(--accent); transform: translateY(-3px); }
+.login-av { width: 70px; height: 70px; }
+.login-av .avatar-holder { width: 100%; height: 100%; }
+.login-anon { font-size: 44px; line-height: 70px; }
+.login-cardname { font-weight: 800; font-size: 15px; }
+.login-lvl { font-size: 11px; color: var(--xp); font-weight: 700; }
+.login-new { border-style: dashed; justify-content: center; }
+.home-logout { position: absolute; right: 16px; bottom: 16px; z-index: 5; color: var(--ink-dim); }
+
 </style>
 </head>
 <body>
@@ -937,23 +964,27 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   "intro": [
     {
       "art": "crystal",
-      "text": "Evvel zaman içinde, galaksinin kalbinde BÜYÜK SAYI KRİSTALİ parlardı. Onun sayesinde her şey adildi: pastalar eşit dilimlenir, harçlıklar tam bölünür, dondurmalar kavgasız paylaşılırdı."
+      "text": "Çok çok uzun zaman önce, dünyamız BÜYÜK BİLGİ KRİSTALİ'nin ışığıyla parlardı. Bu kristal sayesinde insanlar sayabilir, sorular sorabilir, kendine bakabilir ve geleceği kurabilirdi. Bilmek güçtü, öğrenmek en büyük hazineydi."
     },
     {
-      "art": "chaos",
-      "text": "Ama bir gece... KARMAŞA geldi. Sayılardan nefret eden bu gölge, kristali PARAMPARÇA etti ve parçalarını canavarlarına dağıttı!"
+      "art": "villain",
+      "text": "Ama bir gölge vardı: BULANIK. Tembel, sisli, aksi bir yaratık. Düşünmekten nefret eder, öğrenen herkesi kıskanırdı. Bir çocuğun bile ondan daha akıllı olmasına dayanamıyordu. Şu gerzoya bak sen!"
     },
     {
       "art": "broken",
-      "text": "O günden beri hiçbir şey bölünemiyor. Erzaklar takımlara dağıtılamıyor, pastalar dilimlenemiyor... ve evet — DONDURMALAR PAYLAŞILAMIYOR!"
+      "text": "Ve bir gece Bulanık, Büyük Bilgi Kristali'ni PARAMPARÇA etti! Parçalar dört bir yana savruldu. O günden beri sayılar bölünmez oldu, sorular cevapsız kaldı, çocuklar ellerini yıkamayı unuttu, makineler aptallaştı. Her yeri sis kapladı."
     },
     {
       "art": "base",
-      "text": "Ama umut sönmedi. Sürünün Lideri BABA KOMUTAN, gizli bir eğitim üssü kurdu: BOKUL. Plan basit: bölme sanatını öğren, canavarları yen, kristal parçalarını geri al!"
+      "text": "Ama umut hiç bitmez! Sürünün Lideri BABA KOMUTAN, dağların arasında gizli bir eğitim üssü kurdu: BOKUL. Amaç tek: öğrenerek güçlen, canavarları yen ve kristal parçalarını tek tek geri al!"
+    },
+    {
+      "art": "fronts",
+      "text": "Her kristal parçası ayrı bir CEPHEDE, sersem bir canavarın elinde saklı. Sayı Cephesi'nde, Yapay Zekâ Cephesi'nde, Kişisel Bakım Cephesi'nde, Felsefe Cephesi'nde... Her ustalık, dünyaya biraz daha ışık getirir!"
     },
     {
       "art": "hero",
-      "text": "Ve bugün üsse yeni bir asker katıldı... O asker SENSİN! Galaksinin adaleti artık senin kalemine emanet. Hazır mısın?"
+      "text": "Peki bu ordunun en güçlü silahı ne mi? Meraklı bir zihin! Ve bugün üsse öyle bir asker katıldı ki... O asker SENSİN! Bulanık'ın korkulu rüyası sensin. Hazır mısın, Komutan?"
     }
   ]
 }
@@ -1745,6 +1776,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         schemaVersion: SCHEMA_VERSION,
         createdAt: new Date().toISOString(),
         lastPlayedAt: new Date().toISOString(),
+        introSeen: false,          // giriş sinematiği bu profilde izlendi mi
       },
       player: { name: '', xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
@@ -1780,12 +1812,93 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   };
 })(window.BOKUL = window.BOKUL || {});
 
+/* === src/core/auth.js === */
+/* BOKUL — Auth (Oyuncu Profilleri)
+ * Çok oyunculu yerel profil sistemi: her oyuncunun kullanıcı adı + şifresi
+ * ve kendi kayıt dosyası vardır. Tamamen çevrimdışı çalışır; sunucu YOKTUR.
+ *
+ * GÜVENLİK NOTU: Bu bir aile içi yerel profil kilididir, banka düzeyinde
+ * güvenlik DEĞİLDİR. Şifreler basit bir karma (hash) ile saklanır — düz metin
+ * tutulmaz — ama aynı cihaza fiziksel erişimi olan biri kayıtları görebilir.
+ * Çocuk için "kim oynuyor + ilerlemem bana ait" hissini verir. */
+(function (B) {
+  const USERS_KEY = 'bokul.users';
+  const SESSION_KEY = 'bokul.session';
+
+  /* Basit, tersine çevrilemez karma (kriptografik değil) — düz metin saklamamak için */
+  function hash(s) {
+    let h = 5381;
+    s = String(s);
+    for (let i = 0; i < s.length; i++) h = ((h << 5) + h) ^ s.charCodeAt(i);
+    return (h >>> 0).toString(16);
+  }
+
+  function readUsers() { try { return JSON.parse(localStorage.getItem(USERS_KEY)) || {}; } catch (e) { return {}; } }
+  function writeUsers(u) { try { localStorage.setItem(USERS_KEY, JSON.stringify(u)); } catch (e) {} }
+  function keyOf(name) { return String(name || '').trim().toLowerCase(); }
+
+  let current = null; // aktif profilin anahtarı (küçük harf)
+
+  B.Auth = {
+    /* Kayıtlı profil anahtarları */
+    users() { return Object.keys(readUsers()); },
+    hasAny() { return B.Auth.users().length > 0; },
+    exists(name) { return !!readUsers()[keyOf(name)]; },
+    current() { return current; },
+    displayName(key) { const u = readUsers()[key || current]; return u ? u.name : (key || ''); },
+    saveKey() { return current ? 'bokul.save.' + current : null; },
+
+    /* Profil kartında göstermek için kayıttan avatarı ve adı çek (tam yüklemeden) */
+    peek(key) {
+      try {
+        const s = JSON.parse(localStorage.getItem('bokul.save.' + key));
+        return { name: B.Auth.displayName(key), avatar: (s && s.player) ? s.player.avatar : null,
+                 level: (s && s.player) ? s.player.level : 1 };
+      } catch (e) { return { name: B.Auth.displayName(key), avatar: null, level: 1 }; }
+    },
+
+    register(name, pass) {
+      name = String(name || '').trim();
+      if (name.length < 2) return { ok: false, err: 'Kullanıcı adı en az 2 harf olmalı.' };
+      if (String(pass || '').length < 3) return { ok: false, err: 'Şifre en az 3 karakter olmalı.' };
+      const key = keyOf(name);
+      const users = readUsers();
+      if (users[key]) return { ok: false, err: 'Bu isim alınmış. Başka bir isim dene.' };
+      users[key] = { name, pass: hash(pass), created: new Date().toISOString() };
+      writeUsers(users);
+      current = key;
+      return { ok: true };
+    },
+
+    login(name, pass) {
+      const key = keyOf(name);
+      const u = readUsers()[key];
+      if (!u) return { ok: false, err: 'Böyle bir oyuncu yok.' };
+      if (u.pass !== hash(pass)) return { ok: false, err: 'Şifre yanlış. Tekrar dene!' };
+      current = key;
+      return { ok: true };
+    },
+
+    /* "Beni hatırla": bir sonraki açılışta şifre sormadan devam */
+    setRemember(on) {
+      if (on && current) { try { localStorage.setItem(SESSION_KEY, current); } catch (e) {} }
+      else { try { localStorage.removeItem(SESSION_KEY); } catch (e) {} }
+    },
+    remembered() { try { return localStorage.getItem(SESSION_KEY); } catch (e) { return null; } },
+    resume(key) { if (readUsers()[key]) { current = key; return true; } return false; },
+
+    logout() { current = null; try { localStorage.removeItem(SESSION_KEY); } catch (e) {} },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
 /* === src/core/save-manager.js === */
 /* BOKUL — SaveManager
  * LocalStorage kayıt: debounce'lu otomatik kayıt + şema migrasyonu.
  * Bozuk kayıt asla sessizce silinmez; yedeğe kopyalanır. */
 (function (B) {
-  const KEY = 'bokul.save.v1';
+  // Kayıt anahtarı artık AKTİF PROFİLE göre (bkz. Auth.saveKey()).
+  // Eski tek-oyunculu kayıt anahtarı (v0.10 öncesi) göç için okunur.
+  const LEGACY_KEY = 'bokul.save.v1';
   const SETTINGS_KEY = 'bokul.settings';
   let timer = null;
 
@@ -1794,11 +1907,17 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     // Örnek: 1: (d) => { d.yeniAlan = ...; d.meta.schemaVersion = 2; return d; }
   };
 
+  function key() { return B.Auth ? B.Auth.saveKey() : LEGACY_KEY; }
+
   B.Save = {
+    /* Aktif profilin kaydını yükle; yoksa taze durum. Eski tek kayıt varsa
+     * ilk profile bir kez taşınır (legacyImport). */
     load() {
+      const k = key();
+      if (!k) { B.State.data = B.State.fresh(); return false; }
       let raw = null;
-      try { raw = localStorage.getItem(KEY); } catch (e) { /* gizli mod vb. */ }
-      if (!raw) return false;
+      try { raw = localStorage.getItem(k); } catch (e) { /* gizli mod vb. */ }
+      if (!raw) { B.State.data = B.State.fresh(); return false; }
       try {
         let data = JSON.parse(raw);
         while (data.meta.schemaVersion < B.State.SCHEMA_VERSION) {
@@ -1806,20 +1925,34 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           if (!fn) throw new Error('Migrasyon eksik: ' + data.meta.schemaVersion);
           data = fn(data);
         }
-        B.State.data = Object.assign(B.State.fresh(), data); // eksik alanları tamamla
+        B.State.data = Object.assign(B.State.fresh(), data);
         B.Bus.emit(B.Events.GAME_LOADED, {});
         return true;
       } catch (e) {
         console.error('[BOKUL] Kayıt okunamadı, yedeğe alınıyor:', e);
-        try { localStorage.setItem(KEY + '.corrupt', raw); localStorage.removeItem(KEY); } catch (e2) {}
+        try { localStorage.setItem(k + '.corrupt', raw); localStorage.removeItem(k); } catch (e2) {}
+        B.State.data = B.State.fresh();
         return false;
       }
     },
 
+    /* v0.10 öncesi tek kayıt varsa, yeni bir profile içeriğini taşı */
+    legacyImport() {
+      try {
+        const raw = localStorage.getItem(LEGACY_KEY);
+        if (!raw) return false;
+        B.State.data = Object.assign(B.State.fresh(), JSON.parse(raw));
+        return true;
+      } catch (e) { return false; }
+    },
+    hasLegacy() { try { return !!localStorage.getItem(LEGACY_KEY); } catch (e) { return false; } },
+
     saveNow() {
+      const k = key();
+      if (!k) return; // profil seçilmeden yazma
       B.State.touch();
       try {
-        localStorage.setItem(KEY, JSON.stringify(B.State.data));
+        localStorage.setItem(k, JSON.stringify(B.State.data));
         B.Bus.emit(B.Events.GAME_SAVED, {});
       } catch (e) { console.error('[BOKUL] Kayıt yazılamadı:', e); }
     },
@@ -3494,20 +3627,22 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   }
 
   function eyesSvg(style, eyeColor, lashes) {
+    // Gözler BÜYÜK ve iris BASKIN çizilir; küçük boyutlarda bile renk net görünsün.
     let s = '';
-    if (style === 1) { // neşeli
-      s = '<path d="M38 56 Q44 50 50 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>' +
-          '<path d="M70 56 Q76 50 82 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    if (style === 1) { // neşeli (gülen kapalı gözler)
+      s = '<path d="M35 58 Q44 49 53 58" stroke="#2b1d10" stroke-width="4.5" fill="none" stroke-linecap="round"/>' +
+          '<path d="M67 58 Q76 49 85 58" stroke="#2b1d10" stroke-width="4.5" fill="none" stroke-linecap="round"/>';
     } else if (style === 2) { // yıldız göz
-      s = star(44, 55, 7, '#FFD52E') + star(76, 55, 7, '#FFD52E');
-    } else { // klasik: beyaz + renkli iris + göz bebeği + parıltı
-      s = '<ellipse cx="44" cy="56" rx="7.5" ry="8" fill="#fff"/><ellipse cx="76" cy="56" rx="7.5" ry="8" fill="#fff"/>' +
-          '<circle cx="44" cy="57" r="4.8" fill="' + eyeColor + '"/><circle cx="76" cy="57" r="4.8" fill="' + eyeColor + '"/>' +
-          '<circle cx="44" cy="57" r="2.2" fill="#16121c"/><circle cx="76" cy="57" r="2.2" fill="#16121c"/>' +
-          '<circle cx="46" cy="54.5" r="1.4" fill="#fff"/><circle cx="78" cy="54.5" r="1.4" fill="#fff"/>';
+      s = star(44, 57, 9, eyeColor) + star(76, 57, 9, eyeColor);
+    } else { // klasik: kocaman gözler, geniş renkli iris
+      s = '<ellipse cx="44" cy="57" rx="9" ry="9.5" fill="#fff" stroke="#2b1d10" stroke-width="1.2"/>' +
+          '<ellipse cx="76" cy="57" rx="9" ry="9.5" fill="#fff" stroke="#2b1d10" stroke-width="1.2"/>' +
+          '<circle cx="44" cy="58" r="6" fill="' + eyeColor + '"/><circle cx="76" cy="58" r="6" fill="' + eyeColor + '"/>' +
+          '<circle cx="44" cy="58" r="2.6" fill="#16121c"/><circle cx="76" cy="58" r="2.6" fill="#16121c"/>' +
+          '<circle cx="46.5" cy="55" r="1.9" fill="#fff"/><circle cx="78.5" cy="55" r="1.9" fill="#fff"/>';
     }
     if (lashes && style !== 2) { // kirpikler
-      s += '<path d="M35 50 L31 46 M39 47 L36 42 M85 50 L89 46 M81 47 L84 42" stroke="#2b1d10" stroke-width="2.4" stroke-linecap="round"/>';
+      s += '<path d="M33 51 L29 46 M38 48 L35 42 M87 51 L91 46 M82 48 L85 42" stroke="#2b1d10" stroke-width="2.6" stroke-linecap="round"/>';
     }
     return s;
   }
@@ -3981,6 +4116,13 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       replay.textContent = '🎬 Hikâyeyi izle';
       replay.onclick = () => B.UI.show('intro', { replay: true });
       root.appendChild(replay);
+
+      // Oyuncu değiştir / çıkış
+      const out = document.createElement('button');
+      out.className = 'chip home-logout';
+      out.textContent = '🚪 Çıkış';
+      out.onclick = () => B.Engine.logout();
+      root.appendChild(out);
 
       this._hud = hud;
     },
@@ -4702,7 +4844,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         if (onboarding) {
           left.querySelector('.locker-done').onclick = () => {
             B.Save.saveNow();
-            if (!B.Save.settings.get().introSeen) B.UI.show('intro', {});
+            if (!B.State.data.meta.introSeen) B.UI.show('intro', {});
             else B.UI.show('home');
           };
         }
@@ -4828,48 +4970,49 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
   /* ---------- Sahne görselleri (inline SVG) ---------- */
   const ART = {
-    /* Parlayan Büyük Sayı Kristali */
+    /* Parlayan Büyük Bilgi Kristali (çok yüzlü) */
     crystal:
       '<svg viewBox="0 0 200 160" class="cine-svg">' +
-      '<circle cx="100" cy="80" r="60" fill="url(#g1)" opacity=".35"/>' +
-      '<defs><radialGradient id="g1"><stop offset="0%" stop-color="#3DF2D2"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs>' +
+      '<circle cx="100" cy="80" r="64" fill="url(#g1)" opacity=".4"/>' +
+      '<defs><radialGradient id="g1"><stop offset="0%" stop-color="#FFD52E"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs>' +
       '<g class="cine-float">' +
-      '<path d="M100 20 L135 60 L100 140 L65 60 Z" fill="#3DF2D2" opacity=".9"/>' +
-      '<path d="M100 20 L135 60 L100 75 Z" fill="#8ffce9"/>' +
-      '<path d="M100 20 L65 60 L100 75 Z" fill="#5cf5db"/>' +
-      '<text x="100" y="66" text-anchor="middle" font-size="20" font-weight="bold" fill="#0b3a32" font-family="monospace">÷</text>' +
+      '<path d="M100 18 L138 62 L100 142 L62 62 Z" fill="#3DF2D2" opacity=".95"/>' +
+      '<path d="M100 18 L138 62 L100 80 Z" fill="#8ffce9"/>' +
+      '<path d="M100 18 L62 62 L100 80 Z" fill="#5cf5db"/>' +
+      '<path d="M100 80 L138 62 L100 142 Z" fill="#2fd0b5"/>' +
+      '<path d="M100 80 L62 62 L100 142 Z" fill="#39e6c8"/>' +
+      '<text x="100" y="74" text-anchor="middle" font-size="15" font-weight="bold" fill="#0b3a32" font-family="monospace">✦</text>' +
       '</g>' +
       '<circle cx="40" cy="30" r="2" fill="#fff" opacity=".8"/><circle cx="165" cy="45" r="2.5" fill="#fff" opacity=".6"/>' +
       '<circle cx="150" cy="120" r="2" fill="#fff" opacity=".7"/><circle cx="30" cy="110" r="1.5" fill="#fff" opacity=".5"/>' +
       '</svg>',
 
-    /* KARMAŞA gölgesi + parçalanan kristal */
-    chaos:
+    /* BULANIK — sisli tembel gölge */
+    villain:
       '<svg viewBox="0 0 200 160" class="cine-svg">' +
       '<g class="cine-swirl">' +
-      '<path d="M100 15 Q150 30 160 80 Q150 130 100 145 Q50 130 40 80 Q50 30 100 15 Z" fill="#1a1030" opacity=".9"/>' +
-      '<path d="M100 30 Q140 42 148 80 Q140 118 100 130 Q60 118 52 80 Q60 42 100 30 Z" fill="#2d1b52" opacity=".9"/>' +
+      '<path d="M100 20 Q152 34 160 82 Q150 132 100 142 Q50 132 40 82 Q48 34 100 20 Z" fill="#1a1030" opacity=".92"/>' +
+      '<path d="M100 34 Q140 46 146 82 Q138 120 100 128 Q62 120 54 82 Q60 46 100 34 Z" fill="#2d1b52" opacity=".92"/>' +
       '</g>' +
-      '<circle cx="82" cy="70" r="7" fill="#FF4FD8"/><circle cx="118" cy="70" r="7" fill="#FF4FD8"/>' +
-      '<path d="M78 100 Q100 88 122 100" stroke="#FF4FD8" stroke-width="4" fill="none" stroke-linecap="round"/>' +
-      '<g class="cine-shard s1"><path d="M30 40 L45 50 L32 62 Z" fill="#3DF2D2"/></g>' +
-      '<g class="cine-shard s2"><path d="M165 35 L178 48 L160 55 Z" fill="#3DF2D2"/></g>' +
-      '<g class="cine-shard s3"><path d="M25 115 L40 108 L38 126 Z" fill="#3DF2D2"/></g>' +
-      '<g class="cine-shard s4"><path d="M170 110 L182 122 L162 128 Z" fill="#3DF2D2"/></g>' +
+      '<ellipse cx="80" cy="74" rx="9" ry="6" fill="#FF4FD8"/><ellipse cx="120" cy="74" rx="9" ry="6" fill="#FF4FD8"/>' +
+      '<circle cx="80" cy="74" r="3" fill="#160F2E"/><circle cx="120" cy="74" r="3" fill="#160F2E"/>' +
+      '<path d="M74 104 Q100 92 126 104" stroke="#FF4FD8" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+      '<g class="cine-blink1"><path d="M30 120 Q45 116 60 122 Q45 126 30 120 Z" fill="#3a2b72" opacity=".7"/></g>' +
+      '<g class="cine-blink2"><path d="M140 122 Q158 118 174 124 Q158 128 140 122 Z" fill="#3a2b72" opacity=".7"/></g>' +
       '</svg>',
 
-    /* Paylaşılamayan dondurma — kırık adalet */
+    /* Kırılan kristal → dört alanda karmaşa (sayı, soru, mikrop, robot) */
     broken:
       '<svg viewBox="0 0 200 160" class="cine-svg">' +
+      '<g class="cine-shard s1"><text x="24" y="46" font-size="30" font-family="monospace" fill="#3DF2D2" font-weight="bold">?÷</text></g>' +
+      '<g class="cine-shard s2"><text x="150" y="44" font-size="30" fill="#FF4FD8" class="cine-blink1">❓</text></g>' +
+      '<g class="cine-shard s3"><text x="26" y="128" font-size="30" fill="#52E88C" class="cine-blink2">🦠</text></g>' +
+      '<g class="cine-shard s4"><text x="150" y="128" font-size="30" fill="#9D6BFF">🤖</text></g>' +
       '<g class="cine-tilt">' +
-      '<path d="M85 90 L100 145 L115 90 Z" fill="#D9A06B"/>' +
-      '<path d="M85 90 L100 145 L115 90 Z" fill="none" stroke="#b57843" stroke-width="2"/>' +
-      '<circle cx="88" cy="72" r="17" fill="#FF9AD5"/>' +
-      '<circle cx="112" cy="72" r="17" fill="#8ffce9"/>' +
-      '<path d="M100 52 L100 92" stroke="#160F2E" stroke-width="5" stroke-linecap="round" stroke-dasharray="6 5"/>' +
+      '<path d="M100 55 L118 82 L100 108 L82 82 Z" fill="none" stroke="#3DF2D2" stroke-width="3" stroke-dasharray="5 5"/>' +
+      '<path d="M92 70 L108 94" stroke="#FF4FD8" stroke-width="3" stroke-linecap="round"/>' +
       '</g>' +
-      '<text x="52" y="55" font-size="26" class="cine-blink1">❓</text>' +
-      '<text x="132" y="45" font-size="26" class="cine-blink2">❗</text>' +
+      '<text x="100" y="150" text-anchor="middle" font-size="11" fill="#A79BC8">her yer sis...</text>' +
       '</svg>',
 
     /* BOKUL üssü + Komutan (SvgArt'tan) */
@@ -4899,6 +5042,19 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       '<text x="35" y="40" font-size="18" class="cine-blink1">✨</text>' +
       '<text x="155" y="120" font-size="18" class="cine-blink2">✨</text>' +
       '</svg>',
+
+    /* Dört cephe: her biri bir kristal parçası */
+    fronts:
+      '<svg viewBox="0 0 200 160" class="cine-svg">' +
+      '<g class="cine-float">' +
+      '<g><circle cx="55" cy="55" r="26" fill="#31245F" stroke="#FFB443" stroke-width="2"/><text x="55" y="64" text-anchor="middle" font-size="26">⚔️</text></g>' +
+      '<g><circle cx="145" cy="55" r="26" fill="#31245F" stroke="#9D6BFF" stroke-width="2"/><text x="145" y="64" text-anchor="middle" font-size="26">🤖</text></g>' +
+      '<g><circle cx="55" cy="115" r="26" fill="#31245F" stroke="#52E88C" stroke-width="2"/><text x="55" y="124" text-anchor="middle" font-size="26">🧼</text></g>' +
+      '<g><circle cx="145" cy="115" r="26" fill="#31245F" stroke="#3DF2D2" stroke-width="2"/><text x="145" y="124" text-anchor="middle" font-size="26">🦉</text></g>' +
+      '</g>' +
+      '<path d="M100 85 L108 78 L106 88 L100 85 Z" fill="#FFD52E" class="cine-beacon"/>' +
+      '<circle cx="100" cy="85" r="6" fill="#FFD52E" class="cine-beacon"/>' +
+      '</svg>',
   };
 
   B.UI.registerScreen('intro', {
@@ -4925,9 +5081,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
       function finish() {
         clearInterval(typeTimer);
-        B.Save.settings.set({ introSeen: true });
         if (params.replay) return B.UI.show('home');
-        B.Engine.afterIntro();
+        B.Engine.afterIntro();   // meta.introSeen = true + kaydet + üs
       }
 
       function show(i) {
@@ -4939,7 +5094,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         stage.innerHTML = ART[s.art] || '';
         stage.classList.remove('cine-in'); void stage.offsetWidth;
         stage.classList.add('cine-in');
-        B.Audio.play(s.art === 'chaos' ? 'hit' : s.art === 'hero' ? 'fanfare' : 'tick');
+        B.Audio.play(s.art === 'villain' || s.art === 'broken' ? 'hit' : s.art === 'hero' ? 'fanfare' : 'tick');
 
         // Yazı-makinesi anlatım + mırıltı
         textEl.textContent = '';
@@ -4972,60 +5127,138 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/screens/creator-screen.js === */
-/* BOKUL — Karakter Yaratma Sihirbazı (oyunun İLK adımı)
- * Akış: 1) Cinsiyet seç → 2) İsmini yaz → 3) Dolap'ta görünümü detaylandır
- * Sonrasında giriş sinematiği oynar ve üsse girilir. */
+/* BOKUL — Karakter Yaratma Sihirbazı (profil oluşturulduktan sonra)
+ * Akış: cinsiyet seç → görünüm detayları (Ben) → sinematik → üs.
+ * İsim, giriş ekranındaki kullanıcı adından gelir. */
 (function (B) {
 
   B.UI.registerScreen('creator', {
     enter(root) {
       root.classList.add('creator-root');
-
-      /* ---- Adım 1: Cinsiyet ---- */
-      function stepGender() {
-        const kiz = B.Avatar.preset('kiz');
-        const erkek = B.Avatar.preset('erkek');
-        root.innerHTML =
-          '<h2 class="creator-title">🎖️ Karakterini Yarat</h2>' +
-          '<p class="creator-sub">Önce seç: kimsin sen, asker?</p>' +
-          '<div class="gender-row">' +
-            '<button class="gender-card" data-g="kiz">' +
-              '<span class="gender-prev">' + B.Avatar.svg(kiz) + '</span>' +
-              '<span class="gender-name">KIZ</span></button>' +
-            '<button class="gender-card" data-g="erkek">' +
-              '<span class="gender-prev">' + B.Avatar.svg(erkek) + '</span>' +
-              '<span class="gender-name">ERKEK</span></button>' +
-          '</div>';
-        root.querySelectorAll('.gender-card').forEach(c => {
-          c.onclick = () => {
-            B.Audio.play('correct');
-            B.State.data.player.avatar = B.Avatar.preset(c.dataset.g);
-            stepName();
-          };
-        });
-      }
-
-      /* ---- Adım 2: İsim ---- */
-      function stepName() {
-        root.innerHTML =
-          '<h2 class="creator-title">' + B.Avatar.el(B.State.data.player.avatar, 'creator-mini') + '</h2>' +
-          '<p class="creator-sub">Peki adın ne?</p>' +
-          '<input id="creator-name" class="name-input creator-name" maxlength="14" placeholder="Adını yaz...">' +
-          '<button class="btn btn-action creator-go">DEVAM ▶</button>';
-        const input = root.querySelector('#creator-name');
-        setTimeout(() => input.focus(), 100);
-        root.querySelector('.creator-go').onclick = () => {
-          const nm = (input.value || '').trim() || 'Asker';
-          B.State.data.player.name = nm;
-          B.Save.settings.set({ playerName: nm });
+      const kiz = B.Avatar.preset('kiz');
+      const erkek = B.Avatar.preset('erkek');
+      root.innerHTML =
+        '<h2 class="creator-title">🎖️ Merhaba ' + (B.State.data.player.name || 'asker') + '! Karakterini yarat</h2>' +
+        '<p class="creator-sub">Önce seç: kimsin sen, asker?</p>' +
+        '<div class="gender-row">' +
+          '<button class="gender-card" data-g="kiz">' +
+            '<span class="gender-prev">' + B.Avatar.svg(kiz) + '</span>' +
+            '<span class="gender-name">KIZ</span></button>' +
+          '<button class="gender-card" data-g="erkek">' +
+            '<span class="gender-prev">' + B.Avatar.svg(erkek) + '</span>' +
+            '<span class="gender-name">ERKEK</span></button>' +
+        '</div>';
+      root.querySelectorAll('.gender-card').forEach(c => {
+        c.onclick = () => {
+          B.Audio.play('correct');
+          B.State.data.player.avatar = B.Avatar.preset(c.dataset.g);
           B.Save.saveNow();
-          B.Audio.play('tick');
-          // Adım 3: görünüm detayları (Dolap, onboarding modu)
+          // Görünüm detayları (Ben bölümü, onboarding modu)
           B.UI.show('locker', { onboarding: true });
         };
-      }
+      });
+    },
+    exit() {},
+  });
+})(window.BOKUL = window.BOKUL || {});
 
-      stepGender();
+/* === src/ui/screens/login-screen.js === */
+/* BOKUL — Giriş / Oyuncu Seçimi
+ * Profil seç + şifre, ya da yeni oyuncu oluştur (kullanıcı adı + şifre).
+ * "Beni hatırla" ile sonraki açılışta şifre sorulmadan devam edilir. */
+(function (B) {
+
+  function overlayLogin(key) {
+    const name = B.Auth.displayName(key);
+    const ov = B.UI.overlay(
+      '<div class="ov-big">🔐</div><h2>' + name + '</h2>' +
+      '<p class="ov-quote">Şifreni gir Komutan.</p>' +
+      '<input id="login-pass" type="password" class="name-input" placeholder="Şifre...">' +
+      '<label class="login-remember"><input type="checkbox" id="login-remember" checked> Beni hatırla</label>' +
+      '<div class="login-err" id="login-err"></div>',
+      [{
+        label: 'GİRİŞ ▶',
+        onClick: null, // aşağıda elle bağlanır (hata durumunda overlay kapanmasın)
+      }]
+    );
+    // Varsayılan buton overlay'i kapatır; biz kendi kontrolümüzü koyuyoruz
+    const card = ov.querySelector('.overlay-card');
+    const btn = card.querySelector('.overlay-btns .btn');
+    const input = ov.querySelector('#login-pass');
+    const err = ov.querySelector('#login-err');
+    setTimeout(() => input.focus(), 100);
+    function submit() {
+      const res = B.Auth.login(name, input.value);
+      if (!res.ok) { err.textContent = '⚠️ ' + res.err; input.value = ''; input.focus(); return; }
+      B.Auth.setRemember(ov.querySelector('#login-remember').checked);
+      ov.remove();
+      B.Engine.enterAs();
+    }
+    btn.onclick = submit;
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+  }
+
+  function renderRegister(root, firstEver) {
+    root.innerHTML =
+      '<div class="login-box">' +
+        '<div class="login-logo">🌌</div>' +
+        '<h2 class="login-title">' + (firstEver ? 'Üsse hoş geldin!' : 'Yeni Oyuncu') + '</h2>' +
+        '<p class="login-sub">Kendine bir kullanıcı adı ve şifre seç. İlerlemen bu isme kaydolur.</p>' +
+        '<input id="reg-name" class="name-input" maxlength="14" placeholder="Kullanıcı adı">' +
+        '<input id="reg-pass" type="password" class="name-input" maxlength="20" placeholder="Şifre (en az 3 karakter)">' +
+        '<label class="login-remember"><input type="checkbox" id="reg-remember" checked> Beni hatırla</label>' +
+        '<div class="login-err" id="reg-err"></div>' +
+        '<button class="btn btn-action" id="reg-go">🎖️ OYUNCU OLUŞTUR</button>' +
+        (firstEver ? '' : '<button class="btn btn-quiet" id="reg-back">◀ Geri</button>') +
+      '</div>';
+    const nameEl = root.querySelector('#reg-name');
+    const passEl = root.querySelector('#reg-pass');
+    const err = root.querySelector('#reg-err');
+    setTimeout(() => nameEl.focus(), 100);
+    root.querySelector('#reg-go').onclick = () => {
+      const res = B.Auth.register(nameEl.value, passEl.value);
+      if (!res.ok) { err.textContent = '⚠️ ' + res.err; return; }
+      B.Auth.setRemember(root.querySelector('#reg-remember').checked);
+      B.Audio.play('fanfare');
+      B.Engine.enterAs();
+    };
+    const back = root.querySelector('#reg-back');
+    if (back) back.onclick = () => renderSelect(root);
+  }
+
+  function renderSelect(root) {
+    const keys = B.Auth.users();
+    let cards = keys.map(k => {
+      const info = B.Auth.peek(k);
+      const av = info.avatar ? B.Avatar.el(info.avatar) : '<span class="login-anon">🧑</span>';
+      return '<button class="login-card" data-key="' + k + '">' +
+        '<span class="login-av">' + av + '</span>' +
+        '<span class="login-cardname">' + info.name + '</span>' +
+        '<span class="login-lvl">Seviye ' + (info.level || 1) + '</span></button>';
+    }).join('');
+    cards += '<button class="login-card login-new"><span class="login-av"><span class="login-anon">➕</span></span>' +
+             '<span class="login-cardname">Yeni Oyuncu</span></button>';
+
+    root.innerHTML =
+      '<div class="login-box login-box-wide">' +
+        '<div class="login-logo">🌌</div>' +
+        '<h2 class="login-title">Kim oynuyor?</h2>' +
+        '<div class="login-cards">' + cards + '</div>' +
+      '</div>';
+    root.querySelectorAll('.login-card').forEach(c => {
+      c.onclick = () => {
+        B.Audio.play('tick');
+        if (c.classList.contains('login-new')) renderRegister(root, false);
+        else overlayLogin(c.dataset.key);
+      };
+    });
+  }
+
+  B.UI.registerScreen('login', {
+    enter(root) {
+      root.classList.add('login-root');
+      if (!B.Auth.hasAny()) renderRegister(root, true);
+      else renderSelect(root);
     },
     exit() {},
   });
@@ -5037,10 +5270,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 (function (B) {
   B.Engine = {
     async boot() {
-      // 1) Kayıt
-      B.Save.load();
-
-      // 2) İçerik paketleri
+      // 1) İçerik paketleri (kayıt YÜKLENMEZ — önce profil seçilir)
       const LESSONS = [
         'lessons/math-5-division',
         'lessons/ai-101',
@@ -5051,13 +5281,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
 
-      // 3) Eski kayıtları yeni alanlarla tamamla (sürüm uyumu)
-      const p = B.State.data.player;
-      if (p.coins == null) p.coins = 0;
-      p.avatar = B.Avatar.normalize(p.avatar);
-      if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
-
-      // 4) Motor başlatmaları (olay dinleyicileri bağlanır)
+      // 2) Motor başlatmaları (olay dinleyicileri bağlanır)
       B.Save.init();
       B.Audio.init();
       B.Progress.init();
@@ -5069,44 +5293,50 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       B.UI.init();
     },
 
-    /* Splash'tan oyuna giriş (ilk dokunuş ses kilidini de açar)
-     * Akış: KARAKTER YARATMA (cinsiyet → isim → görünüm) → sinematik → üs */
+    /* Splash'tan giriş: hatırlanan profil varsa devam, yoksa giriş ekranı */
     start() {
       B.Audio.unlock();
-      const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
-      if (!name) return B.UI.show('creator', {});   // en başta karakter yaratma
-      B.State.data.player.name = name;
-      if (!B.Save.settings.get().introSeen) return B.UI.show('intro', {});
+      const rem = B.Auth.remembered();
+      if (rem && B.Auth.resume(rem)) return B.Engine.enterAs();
+      B.UI.show('login');
+    },
+
+    /* Profil seçildikten sonra: kaydı yükle ve doğru ekrana yönlendir */
+    enterAs() {
+      const loaded = B.Save.load();
+      // İlk profil + v0.10 öncesi tek kayıt varsa eski ilerlemeyi taşı
+      if (!loaded && B.Save.hasLegacy() && B.Auth.users().length === 1) {
+        B.Save.legacyImport();
+        B.Save.saveNow();
+      }
+      // Sürüm uyumu: eksik alanları tamamla
+      const p = B.State.data.player;
+      if (p.coins == null) p.coins = 0;
+      p.avatar = B.Avatar.normalize(p.avatar);
+      if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
+
+      // Yeni profil (henüz karakteri yok) → kullanıcı adını varsayılan yap, karakter yaratmaya git
+      if (!p.name) {
+        p.name = B.Auth.displayName();
+        B.Save.saveNow();
+        return B.UI.show('creator', {});
+      }
+      if (!B.State.data.meta.introSeen) return B.UI.show('intro', {});
       B.UI.show('home');
     },
 
-    /* Sinematik bitince buradan devam edilir */
+    /* Sinematik bitince üsse geç */
     afterIntro() {
-      const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
-      B.State.data.player.name = name || 'Asker';
+      B.State.data.meta.introSeen = true;
+      B.Save.saveNow();
       B.UI.show('home');
     },
 
-    /* İlk açılış: kendini tanıt → avatarını oluştur → üsse gir */
-    askName() {
-      const ov = B.UI.overlay(
-        '<div class="ov-big">🫡</div><h2>Üsse yeni asker geldi!</h2>' +
-        '<p class="ov-quote">Kendini tanıt: adın ne?</p>' +
-        '<input id="name-input" class="name-input" maxlength="14" placeholder="Adını yaz...">',
-        [{
-          label: 'DEVAM ▶',
-          onClick: () => {
-            const v = (document.getElementById('name-input') || {}).value || '';
-            const nm = v.trim() || 'Asker';
-            B.State.data.player.name = nm;
-            B.Save.settings.set({ playerName: nm });
-            B.Save.saveNow();
-            // İsimden sonra avatar oluşturma (Dolap, onboarding modu)
-            B.UI.show('locker', { onboarding: true });
-          },
-        }]
-      );
-      setTimeout(() => { const i = ov.querySelector('#name-input'); if (i) i.focus(); }, 100);
+    /* Oyuncu değiştir / çıkış */
+    logout() {
+      B.Save.saveNow();
+      B.Auth.logout();
+      B.UI.show('login');
     },
   };
 })(window.BOKUL = window.BOKUL || {});

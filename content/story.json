@@ -3,23 +3,27 @@
   "intro": [
     {
       "art": "crystal",
-      "text": "Evvel zaman içinde, galaksinin kalbinde BÜYÜK SAYI KRİSTALİ parlardı. Onun sayesinde her şey adildi: pastalar eşit dilimlenir, harçlıklar tam bölünür, dondurmalar kavgasız paylaşılırdı."
+      "text": "Çok çok uzun zaman önce, dünyamız BÜYÜK BİLGİ KRİSTALİ'nin ışığıyla parlardı. Bu kristal sayesinde insanlar sayabilir, sorular sorabilir, kendine bakabilir ve geleceği kurabilirdi. Bilmek güçtü, öğrenmek en büyük hazineydi."
     },
     {
-      "art": "chaos",
-      "text": "Ama bir gece... KARMAŞA geldi. Sayılardan nefret eden bu gölge, kristali PARAMPARÇA etti ve parçalarını canavarlarına dağıttı!"
+      "art": "villain",
+      "text": "Ama bir gölge vardı: BULANIK. Tembel, sisli, aksi bir yaratık. Düşünmekten nefret eder, öğrenen herkesi kıskanırdı. Bir çocuğun bile ondan daha akıllı olmasına dayanamıyordu. Şu gerzoya bak sen!"
     },
     {
       "art": "broken",
-      "text": "O günden beri hiçbir şey bölünemiyor. Erzaklar takımlara dağıtılamıyor, pastalar dilimlenemiyor... ve evet — DONDURMALAR PAYLAŞILAMIYOR!"
+      "text": "Ve bir gece Bulanık, Büyük Bilgi Kristali'ni PARAMPARÇA etti! Parçalar dört bir yana savruldu. O günden beri sayılar bölünmez oldu, sorular cevapsız kaldı, çocuklar ellerini yıkamayı unuttu, makineler aptallaştı. Her yeri sis kapladı."
     },
     {
       "art": "base",
-      "text": "Ama umut sönmedi. Sürünün Lideri BABA KOMUTAN, gizli bir eğitim üssü kurdu: BOKUL. Plan basit: bölme sanatını öğren, canavarları yen, kristal parçalarını geri al!"
+      "text": "Ama umut hiç bitmez! Sürünün Lideri BABA KOMUTAN, dağların arasında gizli bir eğitim üssü kurdu: BOKUL. Amaç tek: öğrenerek güçlen, canavarları yen ve kristal parçalarını tek tek geri al!"
+    },
+    {
+      "art": "fronts",
+      "text": "Her kristal parçası ayrı bir CEPHEDE, sersem bir canavarın elinde saklı. Sayı Cephesi'nde, Yapay Zekâ Cephesi'nde, Kişisel Bakım Cephesi'nde, Felsefe Cephesi'nde... Her ustalık, dünyaya biraz daha ışık getirir!"
     },
     {
       "art": "hero",
-      "text": "Ve bugün üsse yeni bir asker katıldı... O asker SENSİN! Galaksinin adaleti artık senin kalemine emanet. Hazır mısın?"
+      "text": "Peki bu ordunun en güçlü silahı ne mi? Meraklı bir zihin! Ve bugün üsse öyle bir asker katıldı ki... O asker SENSİN! Bulanık'ın korkulu rüyası sensin. Hazır mısın, Komutan?"
     }
   ]
 }

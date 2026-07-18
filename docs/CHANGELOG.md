@@ -1,5 +1,21 @@
 # BOKUL — Sürüm Notları
 
+## v0.11 — Yeni Hikâye, Görünür Gözler ve Oyuncu Profilleri (2026-07-18)
+
+- 📖 YEPYENİ HİKÂYE: Sadece bölmeyi değil TÜM cepheleri kapsıyor. "Büyük Bilgi
+  Kristali"ni tembel gölge BULANIK parçaladı; parçalar Sayı, Yapay Zekâ, Bakım
+  ve Felsefe cephelerinde canavarlarda saklı. Sinematik yeni sahnelerle
+  (kristal, Bulanık, dört cephe...) baştan yazıldı.
+- 👁️ GÖZ HATASI DÜZELDİ: İris çok inceydi, göz rengi görünmüyordu. Gözler
+  büyütüldü, iris baskın (r6) yapıldı — göz rengi artık tüm boyutlarda net.
+  HUD, kartlar, önizlemeler dahil her yerde.
+- 🔐 OYUNCU PROFİLLERİ: Kullanıcı adı + şifre ile giriş. Her oyuncunun kendi
+  kaydı; ilerleme profile yazılır, sonraki girişte hatırlanır. "Beni hatırla"
+  ile şifresiz otomatik devam, "Çıkış" ile oyuncu değiştirme. Şifreler karma
+  (hash) ile saklanır — düz metin değil. (Not: yerel aile profili, banka
+  güvenliği değil.) Eski tek kayıt ilk profile otomatik taşınır.
+
+
 ## v0.10 — Evim, Görevler, Satış ve Alaycı Baba (2026-07-18)
 
 - 🏠 DOLAP → EVİM: Ana kapı artık "Evim" hub'ına açılıyor; içinde iki bölüm:

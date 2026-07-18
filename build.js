@@ -19,6 +19,7 @@ const JS = [
   'src/core/events.js',
   'src/core/event-bus.js',
   'src/core/game-state.js',
+  'src/core/auth.js',
   'src/core/save-manager.js',
   'src/core/content-registry.js',
   'src/engines/audio-manager.js',
@@ -50,6 +51,7 @@ const JS = [
   'src/ui/screens/quests-screen.js',
   'src/ui/screens/intro-screen.js',
   'src/ui/screens/creator-screen.js',
+  'src/ui/screens/login-screen.js',
   'src/core/game-engine.js',
   'src/main.js',
 ];
