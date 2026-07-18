@@ -13,7 +13,11 @@
         '<div class="evim-hero">' +
           '<div class="evim-avatar">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
           '<div class="evim-name">' + (p.name || 'Asker') + '\'in Evi 🏠</div>' +
-          '<div class="chip">💰 ' + (p.coins || 0) + ' Altın</div>' +
+          '<div class="evim-levels">' +
+            '<span class="chip">💰 ' + (p.coins || 0) + '</span>' +
+            '<span class="chip">🏠 Ev Sv.' + (p.homeLevel || 1) + '</span>' +
+            '<span class="chip">📦 Depo Sv.' + (p.depoLevel || 1) + '</span>' +
+          '</div>' +
         '</div>' +
         '<div class="evim-doors">' +
           '<button class="btn door door-ben">🧍<br>BEN<small>Tipimi ayarla</small></button>' +

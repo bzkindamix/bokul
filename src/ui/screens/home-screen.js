@@ -23,6 +23,54 @@
         root.appendChild(c);
       }
 
+      // ---- Baba'nın Panosu (dashboard): durum + öğrenme yolları + şaka ----
+      const p = B.State.data.player;
+      const st = B.State.data.stats || {};
+      const rank = B.Reward.rankFor(p.level);
+      const lessons = (B.Lesson.forPlayer() || []).filter(l => B.Perms.lesson(l.id));
+      const pathRows = lessons.map(l => {
+        let stars = 0, max = 0, bosses = 0, done = 0;
+        l.units.forEach(u => u.sections.forEach(s => {
+          max += s.missions.length * 3; stars += B.State.sectionStars(l.id, s.id);
+          bosses++; if (B.State.sectionProgress(l.id, s.id).bossDefeated) done++;
+        }));
+        const pct = max ? Math.round(stars / max * 100) : 0;
+        return '<button class="dash-path" data-lid="' + l.id + '">' +
+          '<span class="dash-picon">' + l.icon + '</span>' +
+          '<span class="dash-pinfo"><b>' + l.title + '</b>' +
+            '<span class="dash-bar"><i style="width:' + pct + '%"></i></span>' +
+            '<small>⭐ ' + stars + '/' + max + ' · 💠 ' + done + '/' + bosses + '</small></span>' +
+          '<span class="dash-pgo">▶</span></button>';
+      }).join('');
+      const jokes = [
+        'Matematik kitabı neden üzgünmüş? Çünkü çok problemi varmış! 😄',
+        'Sıfır sekize ne demiş? "Güzel kemerin varmış!" 🥋',
+        'Kalem tıraşına girdi, çıkınca çok keskin bir fikir buldu! ✏️',
+        'Bilgisayar neden hasta olmuş? Virüs kapmış tabii! 🦠',
+        'İki nokta üst üste gelince ne olur? İki nokta olur, başka ne olacak! 😁',
+      ];
+      const joke = jokes[(p.level + (st.questionsDone || 0)) % jokes.length];
+
+      const dash = document.createElement('div');
+      dash.className = 'home-dash';
+      dash.innerHTML =
+        '<div class="dash-stats">' +
+          '<span class="dash-stat">' + rank.icon + ' ' + rank.title + '</span>' +
+          '<span class="dash-stat">🎖️ Sv.' + p.level + '</span>' +
+          '<span class="dash-stat">💰 ' + (p.coins || 0) + '</span>' +
+          '<span class="dash-stat">🔥 Seri ' + (B.State.data.streaks.current || 0) + '</span>' +
+          '<span class="dash-stat">✅ ' + (st.questionsDone || 0) + ' soru</span>' +
+        '</div>' +
+        '<div class="dash-title">🗺️ Öğrenme Yolların</div>' +
+        '<div class="dash-paths">' + (pathRows || '<div class="dash-empty">Cephe bulunamadı.</div>') + '</div>' +
+        '<div class="dash-joke">🧑‍✈️ <b>Baba:</b> ' + joke + '</div>';
+      root.appendChild(dash);
+      dash.querySelectorAll('.dash-path').forEach(b => b.onclick = () => {
+        B.Audio.play('tick');
+        const l = lessons.find(x => x.id === b.dataset.lid);
+        if (l) { B.Lesson.setActive(l); B.UI.show('map'); }
+      });
+
       // Toplanmayı bekleyen görev sayısı (kapıda rozet)
       const pending = B.Quest.pending();
       const badge = pending ? '<span class="door-badge">' + pending + '</span>' : '';

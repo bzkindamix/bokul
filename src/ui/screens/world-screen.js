@@ -17,7 +17,7 @@
       list.className = 'world-list';
       root.appendChild(list);
 
-      (B.Lesson.all() || []).forEach(lesson => {
+      (B.Lesson.forPlayer() || []).forEach(lesson => {
         // Dersin toplam yıldız / maksimum yıldız hesabı
         let stars = 0, max = 0, bosses = 0, bossesDone = 0;
         lesson.units.forEach(u => u.sections.forEach(s => {

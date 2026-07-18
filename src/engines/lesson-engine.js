@@ -13,6 +13,17 @@
     setActive(lessonData) { lesson = lessonData; },
     active() { return lesson; },
 
+    /* İlgi-alanı kapısı: interestKey'i olan ders, yalnız çocuk o ilgi alanını
+     * seçtiyse görünür (varsayılan gizli — kişiselleştirilmiş içerik). */
+    interestOk(l) {
+      if (!l || !l.interestKey) return true;
+      const prof = (B.State.data.player && B.State.data.player.profile) || {};
+      const v = prof[l.interestKey];
+      return Array.isArray(v) ? v.length > 0 : !!v;
+    },
+    /* Bu oyuncuya görünecek dersler (ilgi-alanı süzgeçli) */
+    forPlayer() { return registry.filter(l => B.Lesson.interestOk(l)); },
+
     sections() {
       const out = [];
       lesson.units.forEach(u => u.sections.forEach(s => out.push({ unit: u, section: s })));

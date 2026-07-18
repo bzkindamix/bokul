@@ -965,6 +965,56 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   to { transform: scale(.15) rotate(32deg) translateY(70px); opacity: 0; filter: blur(4px); }
 }
 
+/* ---------- v0.26: Craft + Dashboard + Harita ilerleme + Onay ---------- */
+/* Baba açıklama overlay ikonu */
+.ov-baba { font-size: 56px; line-height: 1; text-align: center; }
+
+/* Atölye (craft) */
+.craft-tier { margin: 14px 0 6px; }
+.craft-tier b { font-size: 15px; color: var(--xp); }
+.craft-tier small { display: block; font-size: 12px; color: var(--ink-dim); }
+.craft-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; }
+.craft-card { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.craft-cant { opacity: .85; }
+.craft-head { display: flex; align-items: center; gap: 8px; }
+.craft-ic { font-size: 28px; }
+.craft-head b { font-size: 14px; }
+.craft-needs { display: flex; flex-wrap: wrap; gap: 5px; }
+.craft-need { font-size: 11px; padding: 2px 7px; border-radius: 9px; border: 1px solid var(--line); }
+.need-ok { color: var(--success); border-color: var(--success); }
+.need-no { color: var(--warn); }
+.craft-do { width: 100%; font-size: 13px; padding: 8px; }
+.craft-do[disabled] { opacity: .55; pointer-events: none; }
+
+/* Ana ekran panosu (dashboard) */
+.home-dash { max-width: 640px; margin: 4px auto 8px; padding: 0 10px; }
+.dash-stats { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 10px; }
+.dash-stat { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 12px; padding: 4px 10px; font-size: 12.5px; font-weight: 700; }
+.dash-title { font-weight: 800; font-size: 13px; color: var(--xp); margin: 6px 2px; }
+.dash-paths { display: flex; flex-direction: column; gap: 8px; }
+.dash-path { display: flex; align-items: center; gap: 10px; text-align: left; width: 100%; background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; padding: 9px 12px; }
+.dash-path:active { transform: translateY(1px); }
+.dash-picon { font-size: 26px; flex: none; }
+.dash-pinfo { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.dash-pinfo b { font-size: 14px; }
+.dash-pinfo small { font-size: 11px; color: var(--ink-dim); }
+.dash-bar { height: 7px; background: var(--bg-deep); border-radius: 5px; overflow: hidden; }
+.dash-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--xp)); }
+.dash-pgo { color: var(--ink-dim); }
+.dash-joke { margin-top: 10px; background: var(--bg-deep); border: 1px dashed var(--line); border-radius: 12px; padding: 8px 12px; font-size: 12.5px; line-height: 1.4; }
+.dash-empty { color: var(--ink-dim); font-size: 13px; }
+
+/* Harita genel + bölüm ilerleme */
+.map-overall { max-width: 640px; margin: 0 auto 10px; padding: 0 12px; }
+.map-overall-bar { position: relative; height: 20px; background: var(--bg-deep); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.map-overall-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--xp)); }
+.map-overall-bar span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; text-shadow: 0 1px 2px rgba(0,0,0,.6); }
+.map-overall-meta { text-align: center; font-size: 12px; color: var(--ink-dim); margin-top: 3px; }
+.map-sec-bar { height: 6px; background: var(--bg-deep); border-radius: 4px; overflow: hidden; margin: 6px 0 2px; }
+.map-sec-bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--xp)); }
+
+.evim-levels { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+
 </style>
 </head>
 <body>
@@ -974,7 +1024,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.25 — Boss Kilidi Düzeltmesi · Zafer Animasyonu</div>
+      <div class="splash-note">v0.26 — Atölye/Craft · Dashboard · Al-Sat Onayı · Müzik Cephesi</div>
     </div>
   </div>
 
@@ -1347,12 +1397,21 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   "schema": 1,
   "version": 1,
   "categories": [
+    { "id": "malzeme", "name": "Ham Malzeme", "icon": "🧰" },
     { "id": "tech", "name": "Teknoloji", "icon": "🎮" },
     { "id": "oda", "name": "Odam", "icon": "🛋️" },
     { "id": "pet", "name": "Evcil Malzemeleri", "icon": "🐾" },
+    { "id": "craft", "name": "Atölye Ürünleri", "icon": "🔨" },
     { "id": "koleksiyon", "name": "Koleksiyon", "icon": "🏆" }
   ],
   "items": [
+    { "id": "tahta", "name": "Tahta", "icon": "🪵", "price": 20, "cat": "malzeme", "desc": "Craft için temel malzeme." },
+    { "id": "metal", "name": "Metal Parça", "icon": "⛓️", "price": 30, "cat": "malzeme", "desc": "Sağlam craft malzemesi." },
+    { "id": "cam", "name": "Cam", "icon": "🪟", "price": 35, "cat": "malzeme", "desc": "Panel ve akvaryum için." },
+    { "id": "vida", "name": "Vida", "icon": "🔩", "price": 10, "cat": "malzeme", "desc": "Parçaları birleştirir." },
+    { "id": "ip", "name": "İp", "icon": "🧵", "price": 12, "cat": "malzeme", "desc": "Örgü ve kumaş için." },
+    { "id": "boya", "name": "Boya", "icon": "🎨", "price": 25, "cat": "malzeme", "desc": "Renk ve süsleme için." },
+
     { "id": "konsol", "name": "Oyun Konsolu", "icon": "🎮", "price": 900, "cat": "tech", "unique": true, "desc": "Son model oyun konsolu. Odanın yıldızı!" },
     { "id": "tablet", "name": "Son Model Tablet", "icon": "📱", "price": 750, "cat": "tech", "unique": true, "desc": "İnce, hızlı, kocaman ekran." },
     { "id": "telefon", "name": "Akıllı Telefon", "icon": "📲", "price": 650, "cat": "tech", "unique": true, "desc": "Cepte taşınan mini bilgisayar." },
@@ -1388,10 +1447,80 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     { "id": "kafes", "name": "Kuş Kafesi", "icon": "🪺", "price": 130, "cat": "pet", "desc": "Kuşun evi." },
     { "id": "kus_yemi", "name": "Kuş Yemi", "icon": "🌾", "price": 25, "cat": "pet", "desc": "Kuşunu beslemek için." },
 
+    { "id": "cam_panel", "name": "Cam Panel", "icon": "🔲", "cat": "craft", "craftOnly": true, "desc": "Camlardan üretilmiş panel. Akvaryum yapımında kullanılır." },
+    { "id": "metal_cerceve", "name": "Metal Çerçeve", "icon": "🖼️", "cat": "craft", "craftOnly": true, "desc": "Sağlam iskelet. Raf ve mobilya için." },
+    { "id": "kumas", "name": "Kumaş Parça", "icon": "🧶", "cat": "craft", "craftOnly": true, "desc": "İpten örülmüş kumaş. Yumuşak eşyalar için." },
+    { "id": "akvaryum", "name": "Çalışır Akvaryum", "icon": "🐠", "cat": "craft", "craftOnly": true, "desc": "Filtreli, sulu, çakıllı — balık için hazır! (Evcil hayvan ön koşulu)" },
+    { "id": "kopek_kulubesi", "name": "Köpek Kulübesi", "icon": "🏠", "cat": "craft", "craftOnly": true, "desc": "Sıcacık köpek evi." },
+    { "id": "kus_yuvasi", "name": "Kuş Yuvası", "icon": "🐣", "cat": "craft", "craftOnly": true, "desc": "Örgü kuş yuvası." },
+
     { "id": "kupa", "name": "Altın Kupa", "icon": "🏆", "price": 700, "cat": "koleksiyon", "unique": true, "desc": "Başarının simgesi." },
     { "id": "madalya", "name": "Şeref Madalyası", "icon": "🥇", "price": 500, "cat": "koleksiyon", "unique": true, "desc": "Nadir bir onur nişanı." },
     { "id": "model_araba", "name": "Model Yarış Arabası", "icon": "🏎️", "price": 600, "cat": "koleksiyon", "unique": true, "desc": "Detaylı koleksiyon arabası." },
     { "id": "nadir_kart", "name": "Nadir Koleksiyon Kartı", "icon": "🃏", "price": 800, "cat": "koleksiyon", "unique": true, "desc": "Efsanevi, parlayan kart." }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-recipes">
+{
+  "schema": 1,
+  "version": 1,
+  "intro": "Atölyeye hoş geldin Komutan! Burada ham malzemeleri birleştirip yeni şeyler ÜRETİRSİN. Önce küçük parçalar (panel, çerçeve, kumaş), sonra onlarla büyük eşyalar (akvaryum, kulübe), en sonunda evini ve deponu geliştirirsin. Bir üretim için birden fazla adet malzeme gerekebilir — deponu kontrol et!",
+  "tiers": [
+    { "id": "t1", "name": "① Temel Parçalar", "hint": "Ham malzemeden ilk parçalar" },
+    { "id": "t2", "name": "② Büyük Eşyalar", "hint": "Parçaları birleştir" },
+    { "id": "t3", "name": "③ Ev & Depo Geliştirme", "hint": "Üssünü yükselt" }
+  ],
+  "recipes": [
+    {
+      "id": "r_cam_panel", "tier": "t1", "icon": "🔲", "name": "Cam Panel",
+      "produces": { "type": "item", "id": "cam_panel", "qty": 1 },
+      "needs": { "cam": 2, "vida": 1 },
+      "teach": "İki cam + bir vida = sağlam bir panel. Panel, akvaryumun duvarı olacak. Bir şeyi üretmek için parçaları BİRLEŞTİRMEK gerekir — tıpkı legolar gibi!"
+    },
+    {
+      "id": "r_metal_cerceve", "tier": "t1", "icon": "🖼️", "name": "Metal Çerçeve",
+      "produces": { "type": "item", "id": "metal_cerceve", "qty": 1 },
+      "needs": { "metal": 2, "vida": 2 },
+      "teach": "İki metal + iki vida = dayanıklı bir çerçeve. Çerçeve, raf ve mobilyanın iskeletidir. Sağlam iskelet, sağlam eşya demektir!"
+    },
+    {
+      "id": "r_kumas", "tier": "t1", "icon": "🧶", "name": "Kumaş Parça",
+      "produces": { "type": "item", "id": "kumas", "qty": 1 },
+      "needs": { "ip": 3 },
+      "teach": "Üç ipi ör, kumaş elde et! İplikler tek başına zayıftır ama birleşince güçlenir. Kumaş; yatak, dekor ve kulübe için lazım olacak."
+    },
+    {
+      "id": "r_akvaryum", "tier": "t2", "icon": "🐠", "name": "Çalışır Akvaryum",
+      "produces": { "type": "item", "id": "akvaryum", "qty": 1 },
+      "needs": { "cam_panel": 2, "filtre": 1, "temiz_su": 2, "cakil": 1 },
+      "teach": "İşte gerçek craft! İki cam PANEL (bunları sen ürettin), bir filtre, iki temiz su ve bir çakıl → ÇALIŞIR bir akvaryum. Gördün mü? Ürettiğin parçalarla daha büyük şeyler üretiyorsun. Bu akvaryumla ileride BALIK sahibi olacaksın!"
+    },
+    {
+      "id": "r_kopek_kulubesi", "tier": "t2", "icon": "🏠", "name": "Köpek Kulübesi",
+      "produces": { "type": "item", "id": "kopek_kulubesi", "qty": 1 },
+      "needs": { "tahta": 3, "vida": 2, "kumas": 1 },
+      "teach": "Üç tahta + iki vida ile iskeleti kur, içine bir kumaş ser → sıcacık köpek kulübesi. Bir köpek dostun için ilk adım!"
+    },
+    {
+      "id": "r_kus_yuvasi", "tier": "t2", "icon": "🐣", "name": "Kuş Yuvası",
+      "produces": { "type": "item", "id": "kus_yuvasi", "qty": 1 },
+      "needs": { "tahta": 2, "ip": 2 },
+      "teach": "İki tahta + iki ip = küçük bir kuş yuvası. Küçük ama önemli — her dostun bir evi olmalı!"
+    },
+    {
+      "id": "r_depo_raf", "tier": "t3", "icon": "📦", "name": "Depo Rafı",
+      "produces": { "type": "upgrade", "id": "depoLevel", "qty": 1 },
+      "needs": { "tahta": 2, "metal_cerceve": 1 },
+      "teach": "İki tahta + bir metal çerçeve ile deponu bir kademe büyüt! Depon büyüdükçe daha düzenli komutan olursun. Kademe arttıkça Depom rozeti yükselir."
+    },
+    {
+      "id": "r_ev_dekor", "tier": "t3", "icon": "🛋️", "name": "Ev Geliştirme",
+      "produces": { "type": "upgrade", "id": "homeLevel", "qty": 1 },
+      "needs": { "kumas": 2, "boya": 1 },
+      "teach": "İki kumaş + bir boya ile evini güzelleştir! Ev seviyen yükseldikçe üssün daha konforlu ve şık olur."
+    }
   ]
 }
 
@@ -2206,6 +2335,126 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 }
 
 </script>
+<script type="application/json" id="bokul-content-lessons-music-101">
+{
+  "id": "music-101",
+  "schema": 1,
+  "title": "Müzik Cephesi",
+  "subtitle": "Notalar ve Enstrümanlar",
+  "icon": "🎵",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+  "interestKey": "muzik",
+
+  "outcomes": [
+    { "id": "o1", "code": "MUS.1", "text": "Temel notaları ve müzik işaretlerini tanır." },
+    { "id": "o2", "code": "MUS.2", "text": "Enstrüman ailelerini ve seslerini ayırt eder." }
+  ],
+
+  "skills": ["notalar", "ritim", "enstruman", "muzik-genel"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "nota-brief": [
+      { "say": "Gizli cephe açıldı Komutan — çünkü sen MÜZİĞİ seçtin! Müziğin alfabesi yedi notadır: Do, Re, Mi, Fa, Sol, La, Si. Sonra tekrar Do'ya döner, bu bir 'oktav'dır." },
+      { "say": "Notalar bir merdiven gibidir: Do en altta, yukarı çıktıkça ses incelir. Portede (beş çizgi) notalar farklı yerlerde durur; yeri, sesin kalınlığını gösterir." },
+      { "say": "Bir de RİTİM var: notaların ne kadar sürdüğü. Uzun notalar, kısa notalar... Ritim, müziğin kalp atışıdır!" }
+    ],
+    "enstruman-brief": [
+      { "say": "İkinci brifing: enstrüman AİLELERİ. Telliler (gitar, keman), üflemeliler (flüt, trompet), vurmalılar (davul, marimba) ve tuşlular (piyano)." },
+      { "say": "Piyano hem tuşlu hem tellidir — tuşa basınca içerideki çekiç TELE vurur! Keman yayla, gitar parmakla çalınır. Her ailenin kendine has bir sesi vardır." },
+      { "say": "Bir orkestrada bu aileler birlikte çalar. Şef hepsini yönetir — tıpkı bir komutan gibi! Şimdi sıra sende." }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — MÜZİĞİN DİLİ",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Notalar ve Ritim",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Notalar",
+              "segments": [ { "model": "abstract", "script": "nota-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Nota Devriyesi", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-music1", "tier": "topic", "name": "Akortsuz Gulyabani", "icon": "🎼", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-music1" }
+          },
+          "bank": [
+            { "q": "Müzikte kaç temel nota vardır?", "skill": "notalar",
+              "options": ["7", "5", "10", "3"], "correct": 0, "hint": "Do-Re-Mi-Fa-Sol-La-Si: say bakalım!" },
+            { "q": "Notaların doğru sırası hangisidir?", "skill": "notalar",
+              "options": ["Do Re Mi Fa Sol La Si", "Do Mi Re Fa La Sol Si", "Si La Sol Fa Mi Re Do", "Re Do Mi Fa Sol Si La"], "correct": 0, "hint": "Merdivenin en altı Do'dur, yukarı çıkarsın." },
+            { "q": "'Do' notasından sonra gelen 'yedi nota sonra' hangi notadır?", "skill": "notalar",
+              "options": ["Yine Do (bir oktav tiz)", "Si", "Fa", "Sol"], "correct": 0, "hint": "Yedi notadan sonra tekrar başa dönülür — buna oktav denir." },
+            { "q": "Notaların yazıldığı beş çizgiye ne denir?", "skill": "notalar",
+              "options": ["Porte", "Cetvel", "Merdiven", "Tablo"], "correct": 0, "hint": "Beş çizgi + dört aralık = porte." },
+            { "q": "Ritim müzikte neyi belirler?", "skill": "ritim",
+              "options": ["Notaların ne kadar sürdüğünü", "Şarkının rengini", "Şarkıcının adını", "Sahnenin ışığını"], "correct": 0, "hint": "Ritim, müziğin kalp atışıdır — uzunluk ve vuruş." },
+            { "q": "Bir notanın sesi 'ince/tiz' ise porte üzerinde nerededir?", "skill": "notalar",
+              "options": ["Daha yukarıda", "Daha aşağıda", "Hep ortada", "Portenin dışında"], "correct": 0, "hint": "Yukarı çıktıkça ses incelir." },
+            { "q": "Sessizliğin de bir süresi vardır; buna ne denir?", "skill": "ritim",
+              "options": ["Es (susku)", "Nota", "Akor", "Do"], "correct": 0, "hint": "Müzikte susmak da bir parçadır: es." },
+            { "q": "Aynı anda çalınan birkaç uyumlu notaya ne denir?", "skill": "notalar",
+              "options": ["Akor", "Es", "Porte", "Oktav"], "correct": 0, "hint": "Gitarda tek seferde birkaç tel = akor." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Enstrümanlar",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Enstrümanlar",
+              "segments": [ { "model": "abstract", "script": "enstruman-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Enstrüman Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-music2", "tier": "topic", "name": "Gürültü Devi", "icon": "🥁", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-music2" }
+          },
+          "bank": [
+            { "q": "Gitar hangi enstrüman ailesindendir?", "skill": "enstruman",
+              "options": ["Telli", "Üflemeli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "Telleri parmakla titreştirirsin." },
+            { "q": "Flüt hangi aileye aittir?", "skill": "enstruman",
+              "options": ["Üflemeli", "Telli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "İçine ÜFLEYEREK çalınır." },
+            { "q": "Davul hangi enstrüman ailesindendir?", "skill": "enstruman",
+              "options": ["Vurmalı", "Telli", "Üflemeli", "Tuşlu"], "correct": 0, "hint": "Üzerine VURARAK ses çıkarırsın." },
+            { "q": "Piyanoda tuşa basınca içeride ne olur?", "skill": "enstruman",
+              "options": ["Küçük bir çekiç tele vurur", "Bir zil çalar", "Hava üflenir", "Işık yanar"], "correct": 0, "hint": "Bu yüzden piyano hem tuşlu hem tellidir!" },
+            { "q": "Keman genellikle neyle çalınır?", "skill": "enstruman",
+              "options": ["Yay", "Çubuk", "Nefes", "Elektrik"], "correct": 0, "hint": "Yayı tellerin üzerinde gezdirirsin." },
+            { "q": "Bir orkestrayı kim yönetir?", "skill": "muzik-genel",
+              "options": ["Şef (orkestra şefi)", "Seyirci", "Kapıcı", "Işıkçı"], "correct": 0, "hint": "Elinde bir değnekle herkesi birlikte çaldırır." },
+            { "q": "Hangisi vurmalı bir çalgı DEĞİLDİR?", "skill": "enstruman",
+              "options": ["Keman", "Davul", "Ziller", "Marimba"], "correct": 0, "hint": "Keman yayla/telle çalınır, vurmalı değildir." },
+            { "q": "Trompet hangi aileye aittir?", "skill": "enstruman",
+              "options": ["Üflemeli (bakır)", "Telli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "Dudakla üfleyerek çalınan parlak bir çalgı." }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+</script>
 <script>
 /* === src/core/events.js === */
 /* BOKUL — Olay Sözlüğü
@@ -2305,7 +2554,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         lastPlayedAt: new Date().toISOString(),
         introSeen: false,          // giriş sinematiği bu profilde izlendi mi
       },
-      player: { name: '', age: null, grade: null, profile: {}, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
+      player: { name: '', age: null, grade: null, profile: {}, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0, homeLevel: 1, depoLevel: 1,
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
       stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {} },
@@ -3119,6 +3368,54 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   };
 })(window.BOKUL = window.BOKUL || {});
 
+/* === src/core/craft.js === */
+/* BOKUL — Craft (Atölye)
+ * Ham malzeme → parça → büyük eşya → ev/depo geliştirme zinciri.
+ * Bir üretim birden fazla adet malzeme isteyebilir. Ürettiğin parçalar
+ * başka tariflerde malzeme olur (kademeli craft). Öğretici: her tarifin
+ * bir "teach" açıklaması vardır; Baba Komutan örnekle anlatır. */
+(function (B) {
+  function data() { return B.Content.get('recipes') || { recipes: [], tiers: [] }; }
+
+  B.Craft = {
+    intro() { return data().intro || ''; },
+    tiers() { return data().tiers || []; },
+    recipes() { return data().recipes || []; },
+    get(id) { return data().recipes.find(r => r.id === id) || null; },
+
+    /* Bu tarif için eksik malzemeler: [{ id, name, icon, have, need }] */
+    missing(r) {
+      const out = [];
+      Object.keys(r.needs || {}).forEach(k => {
+        const need = r.needs[k], have = B.Items.count(k);
+        if (have < need) {
+          const it = B.Items.get(k) || { name: k, icon: '❔' };
+          out.push({ id: k, name: it.name, icon: it.icon, have, need });
+        }
+      });
+      return out;
+    },
+    canCraft(r) { return B.Craft.missing(r).length === 0; },
+
+    /* Üret: malzemeleri harca, ürünü ekle (eşya) veya seviyeyi yükselt (upgrade) */
+    craft(id) {
+      const r = B.Craft.get(id);
+      if (!r) return { ok: false, err: 'Tarif bulunamadı.' };
+      if (!B.Craft.canCraft(r)) return { ok: false, err: 'Malzemen eksik.' };
+      Object.keys(r.needs).forEach(k => B.Items.remove(k, r.needs[k]));
+      const p = r.produces || {};
+      if (p.type === 'item') B.Items.add(p.id, p.qty || 1);
+      else if (p.type === 'upgrade') {
+        const pl = B.State.data.player;
+        pl[p.id] = (pl[p.id] || 1) + (p.qty || 1);
+      }
+      B.Bus.emit(B.Events.ITEM_CRAFTED, { recipeId: id });
+      B.Save.saveSoon();
+      return { ok: true, recipe: r };
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
 /* === src/core/content-registry.js === */
 /* BOKUL — ContentRegistry
  * JSON içerik paketlerini yükler: önce sayfaya gömülü blok (dist/tek dosya modu),
@@ -3489,6 +3786,17 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     all() { return registry; },
     setActive(lessonData) { lesson = lessonData; },
     active() { return lesson; },
+
+    /* İlgi-alanı kapısı: interestKey'i olan ders, yalnız çocuk o ilgi alanını
+     * seçtiyse görünür (varsayılan gizli — kişiselleştirilmiş içerik). */
+    interestOk(l) {
+      if (!l || !l.interestKey) return true;
+      const prof = (B.State.data.player && B.State.data.player.profile) || {};
+      const v = prof[l.interestKey];
+      return Array.isArray(v) ? v.length > 0 : !!v;
+    },
+    /* Bu oyuncuya görünecek dersler (ilgi-alanı süzgeçli) */
+    forPlayer() { return registry.filter(l => B.Lesson.interestOk(l)); },
 
     sections() {
       const out = [];
@@ -5664,6 +5972,22 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       return ov;
     },
 
+    /* Evet/Vazgeç onay kutusu (satın alma, satış, craft vb. için) */
+    confirm(opts) {
+      opts = opts || {};
+      const ov = B.UI.overlay(
+        '<div class="ov-big">' + (opts.icon || '❓') + '</div><h2>' + (opts.title || 'Emin misin?') + '</h2>' +
+        (opts.body ? '<p class="ov-quote">' + opts.body + '</p>' : ''),
+        [
+          { label: opts.yes || 'Evet', onClick: null },
+          { label: opts.no || 'Vazgeç', cls: 'btn-quiet', onClick: null },
+        ]);
+      const btns = ov.querySelectorAll('.overlay-btns .btn');
+      btns[0].onclick = () => { ov.remove(); if (opts.onYes) opts.onYes(); };
+      btns[1].onclick = () => { ov.remove(); if (opts.onNo) opts.onNo(); };
+      return ov;
+    },
+
     toast(text) {
       const t = document.createElement('div');
       t.className = 'toast';
@@ -5714,6 +6038,54 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         c.onclick = () => B.ChestUI.openCeremony(() => B.UI.show('home'));
         root.appendChild(c);
       }
+
+      // ---- Baba'nın Panosu (dashboard): durum + öğrenme yolları + şaka ----
+      const p = B.State.data.player;
+      const st = B.State.data.stats || {};
+      const rank = B.Reward.rankFor(p.level);
+      const lessons = (B.Lesson.forPlayer() || []).filter(l => B.Perms.lesson(l.id));
+      const pathRows = lessons.map(l => {
+        let stars = 0, max = 0, bosses = 0, done = 0;
+        l.units.forEach(u => u.sections.forEach(s => {
+          max += s.missions.length * 3; stars += B.State.sectionStars(l.id, s.id);
+          bosses++; if (B.State.sectionProgress(l.id, s.id).bossDefeated) done++;
+        }));
+        const pct = max ? Math.round(stars / max * 100) : 0;
+        return '<button class="dash-path" data-lid="' + l.id + '">' +
+          '<span class="dash-picon">' + l.icon + '</span>' +
+          '<span class="dash-pinfo"><b>' + l.title + '</b>' +
+            '<span class="dash-bar"><i style="width:' + pct + '%"></i></span>' +
+            '<small>⭐ ' + stars + '/' + max + ' · 💠 ' + done + '/' + bosses + '</small></span>' +
+          '<span class="dash-pgo">▶</span></button>';
+      }).join('');
+      const jokes = [
+        'Matematik kitabı neden üzgünmüş? Çünkü çok problemi varmış! 😄',
+        'Sıfır sekize ne demiş? "Güzel kemerin varmış!" 🥋',
+        'Kalem tıraşına girdi, çıkınca çok keskin bir fikir buldu! ✏️',
+        'Bilgisayar neden hasta olmuş? Virüs kapmış tabii! 🦠',
+        'İki nokta üst üste gelince ne olur? İki nokta olur, başka ne olacak! 😁',
+      ];
+      const joke = jokes[(p.level + (st.questionsDone || 0)) % jokes.length];
+
+      const dash = document.createElement('div');
+      dash.className = 'home-dash';
+      dash.innerHTML =
+        '<div class="dash-stats">' +
+          '<span class="dash-stat">' + rank.icon + ' ' + rank.title + '</span>' +
+          '<span class="dash-stat">🎖️ Sv.' + p.level + '</span>' +
+          '<span class="dash-stat">💰 ' + (p.coins || 0) + '</span>' +
+          '<span class="dash-stat">🔥 Seri ' + (B.State.data.streaks.current || 0) + '</span>' +
+          '<span class="dash-stat">✅ ' + (st.questionsDone || 0) + ' soru</span>' +
+        '</div>' +
+        '<div class="dash-title">🗺️ Öğrenme Yolların</div>' +
+        '<div class="dash-paths">' + (pathRows || '<div class="dash-empty">Cephe bulunamadı.</div>') + '</div>' +
+        '<div class="dash-joke">🧑‍✈️ <b>Baba:</b> ' + joke + '</div>';
+      root.appendChild(dash);
+      dash.querySelectorAll('.dash-path').forEach(b => b.onclick = () => {
+        B.Audio.play('tick');
+        const l = lessons.find(x => x.id === b.dataset.lid);
+        if (l) { B.Lesson.setActive(l); B.UI.show('map'); }
+      });
 
       // Toplanmayı bekleyen görev sayısı (kapıda rozet)
       const pending = B.Quest.pending();
@@ -5786,7 +6158,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       list.className = 'world-list';
       root.appendChild(list);
 
-      (B.Lesson.all() || []).forEach(lesson => {
+      (B.Lesson.forPlayer() || []).forEach(lesson => {
         // Dersin toplam yıldız / maksimum yıldız hesabı
         let stars = 0, max = 0, bosses = 0, bossesDone = 0;
         lesson.units.forEach(u => u.sections.forEach(s => {
@@ -5843,6 +6215,20 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       title.textContent = lesson.icon + ' ' + lesson.title + ' — ' + lesson.subtitle;
       root.appendChild(title);
 
+      // Genel ilerleme (dersin toplam yıldız + kristal durumu)
+      let totStars = 0, totMax = 0, totBoss = 0, totBossDone = 0;
+      lesson.units.forEach(u => u.sections.forEach(s => {
+        totMax += s.missions.length * 3; totStars += B.State.sectionStars(lesson.id, s.id);
+        totBoss++; if (B.State.sectionProgress(lesson.id, s.id).bossDefeated) totBossDone++;
+      }));
+      const totPct = totMax ? Math.round(totStars / totMax * 100) : 0;
+      const overall = document.createElement('div');
+      overall.className = 'map-overall';
+      overall.innerHTML =
+        '<div class="map-overall-bar"><i style="width:' + totPct + '%"></i><span>%' + totPct + '</span></div>' +
+        '<div class="map-overall-meta">⭐ ' + totStars + '/' + totMax + ' yıldız · 💠 ' + totBossDone + '/' + totBoss + ' kristal</div>';
+      root.appendChild(overall);
+
       const scroll = document.createElement('div');
       scroll.className = 'map-scroll';
       root.appendChild(scroll);
@@ -5862,10 +6248,12 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
           const card = document.createElement('div');
           card.className = 'map-section' + (unlocked ? '' : ' map-locked');
+          const secPct = maxStars ? Math.round(stars / maxStars * 100) : 0;
           card.innerHTML =
             '<div class="map-sec-head"><b>' + section.title + '</b>' +
             '<span class="map-stars">⭐ ' + stars + '/' + maxStars + '</span>' +
             (unlocked ? '' : '<span class="map-lock">🔒</span>') + '</div>' +
+            (unlocked ? '<div class="map-sec-bar"><i style="width:' + secPct + '%"></i></div>' : '') +
             (gradeLocked ? '<div class="map-gradelock">🎓 Bu bölümü ' + section.minGrade + '. sınıfta açacaksın. Şimdilik seviyene uygun bölümlere odaklan!</div>' : '');
 
           if (unlocked) {
@@ -6446,7 +6834,20 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           (!unlocked ? '<span class="part-price">💰 ' + priceOf(part) + '</span>' : '');
         card.onclick = () => {
           B.Audio.play('tick');
-          if (!unlocked) { if (!buyPart(part)) return; }
+          if (!unlocked) {
+            // Satın alma onayı
+            B.UI.confirm({
+              icon: '👕', title: (part.name || 'Bu parça') + ' alınsın mı?',
+              body: '💰 ' + priceOf(part) + ' Altın karşılığında satın alıp giyeceksin.',
+              yes: 'Satın al', no: 'Vazgeç',
+              onYes: () => {
+                if (!buyPart(part)) return;
+                const cur = av(); cur.usePhoto = false; apply(cur, part);
+                commit(cur);
+              },
+            });
+            return;
+          }
           const cur = av(); cur.usePhoto = false; apply(cur, part);
           commit(cur);
         };
@@ -6509,7 +6910,12 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
             '<span class="part-name">' + found.name + '</span>' +
             '<span class="part-price">Sat: 💰 ' + price + '</span>';
-          card.onclick = () => sellPart(part);
+          card.onclick = () => B.UI.confirm({
+            icon: '💰', title: found.name + ' satılsın mı?',
+            body: 'Bu parçayı satıp <b>+' + price + ' Altın</b> alacaksın.',
+            yes: 'Sat', no: 'Vazgeç',
+            onYes: () => sellPart(part),
+          });
           g.appendChild(card);
         });
         host.appendChild(g);
@@ -6566,7 +6972,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         '<div class="evim-hero">' +
           '<div class="evim-avatar">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
           '<div class="evim-name">' + (p.name || 'Asker') + '\'in Evi 🏠</div>' +
-          '<div class="chip">💰 ' + (p.coins || 0) + ' Altın</div>' +
+          '<div class="evim-levels">' +
+            '<span class="chip">💰 ' + (p.coins || 0) + '</span>' +
+            '<span class="chip">🏠 Ev Sv.' + (p.homeLevel || 1) + '</span>' +
+            '<span class="chip">📦 Depo Sv.' + (p.depoLevel || 1) + '</span>' +
+          '</div>' +
         '</div>' +
         '<div class="evim-doors">' +
           '<button class="btn door door-ben">🧍<br>BEN<small>Tipimi ayarla</small></button>' +
@@ -6611,6 +7021,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           '<div class="store-top"><div class="chip store-gold">💰 ' + coins() + ' Altın</div></div>' +
           '<div class="store-tabs">' +
             '<button class="chip stab" data-t="shop">🏪 Mağaza</button>' +
+            '<button class="chip stab" data-t="craft">🔨 Atölye</button>' +
             '<button class="chip stab" data-t="depo">📦 Depom (' + B.Items.total() + ')</button>' +
           '</div>' +
           '<div class="store-body"></div>';
@@ -6626,17 +7037,29 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       function renderBody() {
         const body = wrap.querySelector('.store-body');
         if (tab === 'shop') renderShop(body);
+        else if (tab === 'craft') renderCraft(body);
         else renderDepo(body);
+      }
+
+      /* Baba bir mekaniği ilk kez açıklıyor (bir kez gösterilir) */
+      function babaSays(key, icon, text) {
+        const seen = B.Save.settings.get();
+        if (seen['tut_' + key]) return;
+        B.Save.settings.set({ ['tut_' + key]: true });
+        B.UI.overlay('<div class="ov-baba">' + (icon || '🧑‍✈️') + '</div><h2>Baba Komutan</h2>' +
+          '<p class="ov-quote">' + text + '</p>', [{ label: 'Anlaşıldı!', onClick: null }]);
       }
 
       /* ---- 🏪 Mağaza ---- */
       function renderShop(body) {
-        const cats = B.Items.categories();
+        babaSays('shop', '🛒', 'Burası Mağaza! Kazandığın altınla eşya alırsın; aldıkların Depom\'a gider. Ham malzemeleri (tahta, cam, metal…) buradan al, sonra 🔨 Atölye\'de birleştirip yeni şeyler ÜRET. İpucu: bir eşyanın üstüne dokun, "emin misin?" diye sorar.');
+        const buyable = B.Items.catalog().filter(it => !it.craftOnly);
+        const cats = B.Items.categories().filter(c => buyable.some(it => it.cat === c.id));
         const filterRow = '<div class="store-cats">' +
           '<button class="chip scat" data-c="all">Hepsi</button>' +
           cats.map(c => '<button class="chip scat" data-c="' + c.id + '">' + c.icon + ' ' + c.name + '</button>').join('') +
           '</div>';
-        const items = B.Items.catalog().filter(it => cat === 'all' || it.cat === cat);
+        const items = buyable.filter(it => cat === 'all' || it.cat === cat);
         const cards = items.map(it => {
           const owned = B.Items.count(it.id);
           const isOwnedUnique = it.unique && owned > 0;
@@ -6662,13 +7085,75 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         body.querySelectorAll('.store-card[data-id]').forEach(cardEl => {
           if (cardEl.disabled) return;
           cardEl.onclick = () => {
-            const r = B.Items.buy(cardEl.dataset.id);
-            if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
-            B.Audio.play('chest');
-            B.UI.toast('✨ ' + r.item.name + ' alındı! Depom\'da.');
-            shell(); // altın + depo sayısı güncellensin
+            const it = B.Items.get(cardEl.dataset.id);
+            if (!it) return;
+            if (coins() < it.price) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+            B.UI.confirm({
+              icon: it.icon, title: it.name + ' alınsın mı?',
+              body: '💰 ' + it.price + ' Altın karşılığında satın alacaksın.',
+              yes: 'Satın al', no: 'Vazgeç',
+              onYes: () => {
+                const r = B.Items.buy(cardEl.dataset.id);
+                if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
+                B.Audio.play('chest');
+                B.UI.toast('✨ ' + r.item.name + ' alındı! Depom\'da.');
+                shell(); // altın + depo sayısı güncellensin
+              },
+            });
           };
         });
+      }
+
+      /* ---- 🔨 Atölye (craft) ---- */
+      function renderCraft(body) {
+        babaSays('craft', '🔨', B.Craft.intro());
+        const tiers = B.Craft.tiers();
+        const recipes = B.Craft.recipes();
+        body.innerHTML = tiers.map(t => {
+          const rs = recipes.filter(r => r.tier === t.id);
+          if (!rs.length) return '';
+          return '<div class="craft-tier"><b>' + t.name + '</b><small>' + (t.hint || '') + '</small></div>' +
+            '<div class="craft-list">' + rs.map(craftCard).join('') + '</div>';
+        }).join('');
+
+        body.querySelectorAll('.craft-do').forEach(btn => btn.onclick = () => {
+          const r = B.Craft.get(btn.dataset.id);
+          if (!r) return;
+          B.UI.confirm({
+            icon: r.icon, title: r.name + ' üretilsin mi?',
+            body: 'Gerekli malzemeler harcanacak.',
+            yes: 'Üret 🔨', no: 'Vazgeç',
+            onYes: () => {
+              const res = B.Craft.craft(btn.dataset.id);
+              if (!res.ok) { B.Audio.play('wrong'); B.UI.toast('⚠️ ' + res.err); return; }
+              B.Audio.play('chest');
+              // Baba örnekle açıklar (öğretici)
+              B.UI.overlay('<div class="ov-baba">' + r.icon + '</div><h2>' + r.name + ' üretildi! 🎉</h2>' +
+                '<p class="ov-quote">' + (r.teach || '') + '</p>', [{ label: 'Süper!', onClick: null }]);
+              shell();
+              tab = 'craft';
+              wrap.querySelectorAll('.stab').forEach(x => x.classList.toggle('tab-on', x.dataset.t === 'craft'));
+              renderBody();
+            },
+          });
+        });
+      }
+
+      function craftCard(r) {
+        const miss = B.Craft.missing(r);
+        const can = miss.length === 0;
+        const needRows = Object.keys(r.needs).map(k => {
+          const it = B.Items.get(k) || { name: k, icon: '❔' };
+          const have = B.Items.count(k), need = r.needs[k];
+          const ok = have >= need;
+          return '<span class="craft-need' + (ok ? ' need-ok' : ' need-no') + '">' + it.icon + ' ' + it.name + ' ' + have + '/' + need + '</span>';
+        }).join('');
+        return '<div class="craft-card' + (can ? '' : ' craft-cant') + '">' +
+          '<div class="craft-head"><span class="craft-ic">' + r.icon + '</span><b>' + r.name + '</b></div>' +
+          '<div class="craft-needs">' + needRows + '</div>' +
+          '<button class="btn craft-do' + (can ? ' btn-action' : ' btn-quiet') + '" data-id="' + r.id + '"' + (can ? '' : ' disabled') + '>' +
+            (can ? '🔨 Üret' : '🔒 Malzeme eksik') + '</button>' +
+          '</div>';
       }
 
       /* ---- 📦 Depom ---- */
@@ -7860,8 +8345,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         'lessons/ai-101',
         'lessons/care-101',
         'lessons/philo-101',
+        'lessons/music-101',
       ];
-      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', ...LESSONS]);
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-core'));
 
@@ -7898,6 +8384,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       // Sürüm uyumu: eksik alanları tamamla
       const p = B.State.data.player;
       if (p.coins == null) p.coins = 0;
+      if (p.homeLevel == null) p.homeLevel = 1;
+      if (p.depoLevel == null) p.depoLevel = 1;
       p.avatar = B.Avatar.normalize(p.avatar);
       if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
       if (!B.State.data.wishes) B.State.data.wishes = [];

@@ -89,7 +89,20 @@
           (!unlocked ? '<span class="part-price">💰 ' + priceOf(part) + '</span>' : '');
         card.onclick = () => {
           B.Audio.play('tick');
-          if (!unlocked) { if (!buyPart(part)) return; }
+          if (!unlocked) {
+            // Satın alma onayı
+            B.UI.confirm({
+              icon: '👕', title: (part.name || 'Bu parça') + ' alınsın mı?',
+              body: '💰 ' + priceOf(part) + ' Altın karşılığında satın alıp giyeceksin.',
+              yes: 'Satın al', no: 'Vazgeç',
+              onYes: () => {
+                if (!buyPart(part)) return;
+                const cur = av(); cur.usePhoto = false; apply(cur, part);
+                commit(cur);
+              },
+            });
+            return;
+          }
           const cur = av(); cur.usePhoto = false; apply(cur, part);
           commit(cur);
         };
@@ -152,7 +165,12 @@
             '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
             '<span class="part-name">' + found.name + '</span>' +
             '<span class="part-price">Sat: 💰 ' + price + '</span>';
-          card.onclick = () => sellPart(part);
+          card.onclick = () => B.UI.confirm({
+            icon: '💰', title: found.name + ' satılsın mı?',
+            body: 'Bu parçayı satıp <b>+' + price + ' Altın</b> alacaksın.',
+            yes: 'Sat', no: 'Vazgeç',
+            onYes: () => sellPart(part),
+          });
           g.appendChild(card);
         });
         host.appendChild(g);

@@ -27,6 +27,7 @@ const JS = [
   'src/core/consent.js',
   'src/core/perms.js',
   'src/core/items.js',
+  'src/core/craft.js',
   'src/core/content-registry.js',
   'src/engines/audio-manager.js',
   'src/engines/dialogue-manager.js',
@@ -77,11 +78,13 @@ const CONTENT = [
   'quests',
   'legal',
   'items',
+  'recipes',
   'lessons/math-core',
   'lessons/eng-101',
   'lessons/ai-101',
   'lessons/care-101',
   'lessons/philo-101',
+  'lessons/music-101',
 ];
 
 let html = read('index.html');

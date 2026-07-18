@@ -10,8 +10,9 @@
         'lessons/ai-101',
         'lessons/care-101',
         'lessons/philo-101',
+        'lessons/music-101',
       ];
-      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', ...LESSONS]);
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-core'));
 
@@ -48,6 +49,8 @@
       // Sürüm uyumu: eksik alanları tamamla
       const p = B.State.data.player;
       if (p.coins == null) p.coins = 0;
+      if (p.homeLevel == null) p.homeLevel = 1;
+      if (p.depoLevel == null) p.depoLevel = 1;
       p.avatar = B.Avatar.normalize(p.avatar);
       if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
       if (!B.State.data.wishes) B.State.data.wishes = [];

@@ -93,6 +93,22 @@
       return ov;
     },
 
+    /* Evet/Vazgeç onay kutusu (satın alma, satış, craft vb. için) */
+    confirm(opts) {
+      opts = opts || {};
+      const ov = B.UI.overlay(
+        '<div class="ov-big">' + (opts.icon || '❓') + '</div><h2>' + (opts.title || 'Emin misin?') + '</h2>' +
+        (opts.body ? '<p class="ov-quote">' + opts.body + '</p>' : ''),
+        [
+          { label: opts.yes || 'Evet', onClick: null },
+          { label: opts.no || 'Vazgeç', cls: 'btn-quiet', onClick: null },
+        ]);
+      const btns = ov.querySelectorAll('.overlay-btns .btn');
+      btns[0].onclick = () => { ov.remove(); if (opts.onYes) opts.onYes(); };
+      btns[1].onclick = () => { ov.remove(); if (opts.onNo) opts.onNo(); };
+      return ov;
+    },
+
     toast(text) {
       const t = document.createElement('div');
       t.className = 'toast';

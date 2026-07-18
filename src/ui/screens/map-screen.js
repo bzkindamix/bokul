@@ -13,6 +13,20 @@
       title.textContent = lesson.icon + ' ' + lesson.title + ' — ' + lesson.subtitle;
       root.appendChild(title);
 
+      // Genel ilerleme (dersin toplam yıldız + kristal durumu)
+      let totStars = 0, totMax = 0, totBoss = 0, totBossDone = 0;
+      lesson.units.forEach(u => u.sections.forEach(s => {
+        totMax += s.missions.length * 3; totStars += B.State.sectionStars(lesson.id, s.id);
+        totBoss++; if (B.State.sectionProgress(lesson.id, s.id).bossDefeated) totBossDone++;
+      }));
+      const totPct = totMax ? Math.round(totStars / totMax * 100) : 0;
+      const overall = document.createElement('div');
+      overall.className = 'map-overall';
+      overall.innerHTML =
+        '<div class="map-overall-bar"><i style="width:' + totPct + '%"></i><span>%' + totPct + '</span></div>' +
+        '<div class="map-overall-meta">⭐ ' + totStars + '/' + totMax + ' yıldız · 💠 ' + totBossDone + '/' + totBoss + ' kristal</div>';
+      root.appendChild(overall);
+
       const scroll = document.createElement('div');
       scroll.className = 'map-scroll';
       root.appendChild(scroll);
@@ -32,10 +46,12 @@
 
           const card = document.createElement('div');
           card.className = 'map-section' + (unlocked ? '' : ' map-locked');
+          const secPct = maxStars ? Math.round(stars / maxStars * 100) : 0;
           card.innerHTML =
             '<div class="map-sec-head"><b>' + section.title + '</b>' +
             '<span class="map-stars">⭐ ' + stars + '/' + maxStars + '</span>' +
             (unlocked ? '' : '<span class="map-lock">🔒</span>') + '</div>' +
+            (unlocked ? '<div class="map-sec-bar"><i style="width:' + secPct + '%"></i></div>' : '') +
             (gradeLocked ? '<div class="map-gradelock">🎓 Bu bölümü ' + section.minGrade + '. sınıfta açacaksın. Şimdilik seviyene uygun bölümlere odaklan!</div>' : '');
 
           if (unlocked) {
