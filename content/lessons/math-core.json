@@ -1,0 +1,202 @@
+{
+  "id": "math-core",
+  "schema": 1,
+  "subject": "math",
+  "title": "Matematik Cephesi",
+  "subtitle": "Sayı Kristali Harekâtı",
+  "icon": "⚔️",
+  "theme": "galaxy-base",
+  "interactionType": "arithmetic",
+  "gradeAware": true,
+
+  "outcomes": [
+    { "id": "o-add", "code": "M.1-2.1", "text": "Toplama ve çıkarma işlemlerini yapar." },
+    { "id": "o-mul", "code": "M.2-3.2", "text": "Çarpma işlemine giriş: tekrarlı toplama ve çarpım tablosu." },
+    { "id": "o-div", "code": "M.3-4.3", "text": "Bölme işlemine giriş: eşit paylaştırma ve tek basamaklı bölme." },
+    { "id": "o-long", "code": "M.4-5.4", "text": "Uzun bölme yöntemiyle çok basamaklı bölme." }
+  ],
+
+  "skills": ["add", "sub", "mul", "div", "select", "estimate", "multiply", "subtract", "bringdown"],
+
+  "hints": {
+    "select":    { "1": ["hint.select.soft.1"], "2": ["hint.select.guide.1"], "3": ["hint.select.explain"] },
+    "estimate":  { "1": ["hint.estimate.soft.1"], "2": ["hint.estimate.guide.1"], "3": ["hint.estimate.explain"] },
+    "multiply":  { "1": ["hint.multiply.soft.1"], "2": ["hint.multiply.guide.1"], "3": ["hint.multiply.explain"] },
+    "subtract":  { "1": ["hint.subtract.soft.1"], "2": ["hint.subtract.guide.1"], "3": ["hint.subtract.explain"] },
+    "bringdown": { "1": ["hint.bringdown.soft.1"], "2": ["hint.bringdown.guide.1"], "3": ["hint.bringdown.explain"] }
+  },
+
+  "teachScripts": {
+    "add-brief": [
+      { "say": "Brifing Komutan! TOPLAMA, iki grubu birleştirmektir. 3 elman var, 2 tane daha geldi... hepsi 5 eder! Artı işareti (+) 'birleştir' demektir." },
+      { "ask": "3 + 2 kaç eder?", "expect": 5 },
+      { "say": "Aynen! Sayıları birleştirdik. Toplama bu kadar basit. Şimdi sahaya!" }
+    ],
+    "sub-brief": [
+      { "say": "ÇIKARMA, bir gruptan koparıp almaktır. 7 şekerin vardı, 3'ünü yedin... 4 kaldı! Eksi işareti (−) 'geri kalan ne' diye sorar." },
+      { "ask": "7 − 3 kaç eder?", "expect": 4 },
+      { "say": "Harika! Kalanı buldun. Çıkarma da cephaneliğe girdi." }
+    ],
+    "mul-brief": [
+      { "say": "ÇARPMA bir kestirme yoldur Komutan! 4 kere 3 demek, 3'ü 4 defa toplamak demektir: 3+3+3+3 = 12. Çarpı işareti (×) 'şu kadar defa' der." },
+      { "ask": "2 kere 3, yani 3+3 kaç eder?", "expect": 6 },
+      { "say": "İşte bu! Tekrar tekrar toplamak yerine çarpıyoruz. Çarpım tablosu en güçlü silahındır." }
+    ],
+    "share-brief": [
+      { "say": "Şimdi sıra BÖLMEDE. Bölme, ADİL PAYLAŞTIRMAKTIR. 12 kutuyu 3 takıma eşit dağıtalım, bakalım her takıma kaç düşecek." },
+      { "deal": { "total": 12, "groups": 3 } },
+      { "ask": "12'yi 3'e paylaştırdık. Her takıma kaç kutu düştü?", "expect": 4 },
+      { "say": "Aynen! 12 ÷ 3 = 4. Bölme, çarpmanın tersidir: 3 × 4 = 12, 12 ÷ 3 = 4. İkiz kardeş gibiler!" }
+    ],
+    "long-brief": [
+      { "say": "En büyük harekât Komutan: UZUN BÖLME! Büyük sayıları bölmek için adım adım gideriz: seç, tahmin et, çarp, çıkar, indir. Ben yanındayım." },
+      { "guided": { "dividend": 84, "divisor": 4 } },
+      { "say": "Gördün mü? Büyük sayı bile adım adım teslim oldu. Artık dört basamaklı kaleleri açabilirsin!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — TOPLAMA & ÇIKARMA",
+      "sections": [
+        {
+          "id": "s-add",
+          "title": "Toplama Ustalığı",
+          "minGrade": 1,
+          "outcomeIds": ["o-add"],
+          "interactionType": "arithmetic",
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s-add-t", "type": "teach", "title": "Keşif Brifingi: Toplama",
+              "segments": [ { "model": "abstract", "script": "add-brief" } ] },
+            { "id": "s-add-1", "type": "practice", "title": "Toplama Devriyesi", "targetCount": 4, "generator": { "op": "+", "a": [1, 10], "b": [1, 10] } },
+            { "id": "s-add-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "+", "a": [5, 20], "b": [3, 20] } },
+            { "id": "s-add-3", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-add", "tier": "topic", "name": "Toplama Devi", "icon": "➕", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "op": "+", "a": [2, 20], "b": [2, 20] },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-add" }
+          }
+        },
+        {
+          "id": "s-sub",
+          "title": "Çıkarma Ustalığı",
+          "minGrade": 1,
+          "outcomeIds": ["o-add"],
+          "interactionType": "arithmetic",
+          "unlock": { "starsRequired": 8 },
+          "missions": [
+            { "id": "s-sub-t", "type": "teach", "title": "Keşif Brifingi: Çıkarma",
+              "segments": [ { "model": "abstract", "script": "sub-brief" } ] },
+            { "id": "s-sub-1", "type": "practice", "title": "Çıkarma Devriyesi", "targetCount": 4, "generator": { "op": "-", "a": [2, 10] } },
+            { "id": "s-sub-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "-", "a": [5, 20] } },
+            { "id": "s-sub-3", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-sub", "tier": "topic", "name": "Çıkarma Golemi", "icon": "➖", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "op": "-", "a": [4, 20] },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-sub" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — ÇARPMAYA GİRİŞ",
+      "sections": [
+        {
+          "id": "s-mul",
+          "title": "Çarpım Tablosu",
+          "minGrade": 2,
+          "outcomeIds": ["o-mul"],
+          "interactionType": "arithmetic",
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s-mul-t", "type": "teach", "title": "Keşif Brifingi: Çarpma",
+              "segments": [ { "model": "abstract", "script": "mul-brief" } ] },
+            { "id": "s-mul-1", "type": "practice", "title": "Çarpma Devriyesi", "targetCount": 4, "generator": { "op": "*", "a": [1, 5], "b": [1, 5] } },
+            { "id": "s-mul-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "*", "a": [2, 9], "b": [2, 9] } },
+            { "id": "s-mul-3", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "op": "*", "a": [3, 10], "b": [3, 10] } },
+            { "id": "s-mul-4", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-mul", "tier": "topic", "name": "Çarpım Ejderi", "icon": "✖️", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "op": "*", "a": [2, 9], "b": [2, 9] },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-mul" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — BÖLMEYE GİRİŞ",
+      "sections": [
+        {
+          "id": "s-div",
+          "title": "Eşit Paylaştırma",
+          "minGrade": 3,
+          "outcomeIds": ["o-div"],
+          "interactionType": "arithmetic",
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s-div-t", "type": "teach", "title": "Keşif Brifingi: Bölme",
+              "segments": [ { "model": "abstract", "script": "share-brief" } ] },
+            { "id": "s-div-1", "type": "practice", "title": "Paylaştırma Devriyesi", "targetCount": 4, "generator": { "op": "/", "b": [2, 5], "q": [1, 5] } },
+            { "id": "s-div-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "/", "b": [2, 9], "q": [2, 9] } },
+            { "id": "s-div-3", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "op": "/", "b": [3, 9], "q": [2, 10] } },
+            { "id": "s-div-4", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-div", "tier": "topic", "name": "Paylaştırma Canavarı", "icon": "➗", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "op": "/", "b": [2, 9], "q": [2, 9] },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-div" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — UZUN BÖLME",
+      "sections": [
+        {
+          "id": "s-long",
+          "title": "Uzun Bölme Ustalığı",
+          "minGrade": 4,
+          "outcomeIds": ["o-long"],
+          "interactionType": "long-division",
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s-long-t", "type": "teach", "title": "Keşif Brifingi: Uzun Bölme",
+              "segments": [ { "model": "abstract", "script": "long-brief" } ] },
+            { "id": "s-long-1", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
+              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
+              "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false } },
+            { "id": "s-long-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "divisorRange": [2, 9], "dividendDigits": 3, "remainder": false } },
+            { "id": "s-long-3", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
+              "generator": { "divisorRange": [3, 9], "dividendDigits": 4, "remainder": false } },
+            { "id": "s-long-4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+              "generator": { "divisorRange": [3, 8], "dividendDigits": 4, "remainder": false },
+              "problemTemplates": [
+                "Karargâha {dividend} kutu malzeme geldi. Komutan {name} bunları {divisor} depoya eşit yerleştirecek. Her depoya kaç kutu girer?"
+              ] },
+            { "id": "s-long-5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-long", "tier": "unit", "name": "Basamak Golemi", "icon": "🗿", "hp": 150,
+            "unlock": { "masteryRequired": 0.8 },
+            "armor": 3, "regroupHpCarry": 0.5,
+            "generator": { "divisorRange": [3, 9], "dividendDigits": [3, 4], "remainder": false },
+            "rewards": { "xp": 200, "chest": "legendary", "badge": "b-long", "title": "t-golem" }
+          }
+        }
+      ]
+    }
+  ]
+}

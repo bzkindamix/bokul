@@ -8,6 +8,7 @@
       const lesson = B.Lesson.active();
       const section = B.Lesson.findSection(params.sectionId).section;
       const boss = section.boss;
+      const itype = section.interactionType || lesson.interactionType; // bölüm bazlı soru tipi
       const cfg = B.Content.get('config');
       const isUnit = boss.tier === 'unit';
       const prog = B.State.sectionProgress(lesson.id, params.sectionId);
@@ -77,11 +78,11 @@
       function nextQuestion() {
         if (over) return;
         if (view) { view.destroy(); view = null; }
-        const q = B.Question.generate(lesson.interactionType,
-          B.Curriculum.adjust(lesson, B.Lesson.resolveGenerator(params.sectionId, boss.generator)), lesson.skills);
+        const q = B.Question.generate(itype,
+          B.Curriculum.forType(itype, B.Lesson.resolveGenerator(params.sectionId, boss.generator)), lesson.skills);
         let mistakes = 0;
 
-        view = B.Question.view(lesson.interactionType)(stage, q, {
+        view = B.Question.view(itype)(stage, q, {
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {
             B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });

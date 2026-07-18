@@ -25,6 +25,7 @@
 
         unit.sections.forEach(section => {
           const unlocked = B.Lesson.isSectionUnlocked(section.id);
+          const gradeLocked = B.Lesson.gradeLocked(section.id);
           const prog = B.State.sectionProgress(lesson.id, section.id);
           const stars = B.State.sectionStars(lesson.id, section.id);
           const maxStars = section.missions.length * 3;
@@ -34,7 +35,8 @@
           card.innerHTML =
             '<div class="map-sec-head"><b>' + section.title + '</b>' +
             '<span class="map-stars">⭐ ' + stars + '/' + maxStars + '</span>' +
-            (unlocked ? '' : '<span class="map-lock">🔒</span>') + '</div>';
+            (unlocked ? '' : '<span class="map-lock">🔒</span>') + '</div>' +
+            (gradeLocked ? '<div class="map-gradelock">🎓 Bu bölümü ' + section.minGrade + '. sınıfta açacaksın. Şimdilik seviyene uygun bölümlere odaklan!</div>' : '');
 
           if (unlocked) {
             const path = document.createElement('div');

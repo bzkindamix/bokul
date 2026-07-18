@@ -9,6 +9,8 @@
     enter(root, params) {
       const lesson = B.Lesson.active();
       const mission = B.Lesson.findMission(params.sectionId, params.missionId);
+      const sectionObj = (B.Lesson.findSection(params.sectionId) || {}).section || {};
+      const itype = sectionObj.interactionType || lesson.interactionType; // bölüm bazlı soru tipi
       const cfg = B.Content.get('config');
       const self = this;
 
@@ -83,8 +85,8 @@
         let gen = reviewGens
           ? reviewGens[Math.floor(Math.random() * reviewGens.length)]
           : B.Lesson.resolveGenerator(params.sectionId, mission.generator);
-        gen = B.Curriculum.adjust(lesson, gen); // yaş/sınıfa göre zorluk
-        const q = B.Question.generate(lesson.interactionType, gen, lesson.skills);
+        gen = B.Curriculum.forType(itype, gen); // yaş/sınıfa göre zorluk (uzun bölme)
+        const q = B.Question.generate(itype, gen, lesson.skills);
         B.Bus.emit(B.Events.QUESTION_STARTED, { questionId: qIndex, lessonId: lesson.id, type: mission.type });
 
         // Guided iskelesi: fadeOut ile her soruda bir adım daha oyuncuya bırakılır
@@ -106,7 +108,7 @@
         cmd.sayFrom(qIndex === 0 ? 'mission.start' : 'mission.next');
         let mistakes = 0;
 
-        view = B.Question.view(lesson.interactionType)(stage, q, {
+        view = B.Question.view(itype)(stage, q, {
           prefilled, problemText,
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {

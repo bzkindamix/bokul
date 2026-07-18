@@ -727,6 +727,26 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .creator-root .creator-go[disabled] { opacity: .4; pointer-events: none; }
 .world-grade { color: var(--success); font-size: 11px; font-weight: 700; margin-top: 2px; }
 
+/* ---------- v0.15: Aritmetik görünüm + sınıf kilidi ---------- */
+.ar-root { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+.ar-expr {
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  font-family: var(--mono); font-weight: 800; font-size: clamp(34px, 8vw, 58px);
+  background: var(--bg-panel); border-radius: 18px; padding: 24px 16px;
+}
+.ar-op { color: var(--accent); }
+.ar-eq { color: var(--ink-dim); }
+.ar-box {
+  min-width: 1.6ch; text-align: center; color: var(--accent);
+  border: 3px solid var(--line); border-radius: 12px; padding: 2px 10px;
+}
+.ar-box.ld-active { border-color: var(--accent); box-shadow: 0 0 14px rgba(255, 79, 216, .6); }
+.ar-box.ok { color: var(--success); border-color: var(--success); box-shadow: 0 0 14px rgba(82, 232, 140, .6); }
+.map-gradelock {
+  margin-top: 8px; font-size: 12.5px; color: var(--warn); line-height: 1.4;
+  background: rgba(255, 179, 92, .1); border-radius: 10px; padding: 8px 10px;
+}
+
 </style>
 </head>
 <body>
@@ -736,7 +756,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.12 — Karakter & Kıyafet Güncellemesi</div>
+      <div class="splash-note">v0.14 — 3D Avatar · Yaş/Sınıf · İngilizce</div>
     </div>
   </div>
 
@@ -1083,219 +1103,203 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 }
 
 </script>
-<script type="application/json" id="bokul-content-lessons-math-5-division">
+<script type="application/json" id="bokul-content-lessons-math-core">
 {
-  "id": "math-5-division",
+  "id": "math-core",
   "schema": 1,
+  "subject": "math",
   "title": "Matematik Cephesi",
-  "subtitle": "Uzun Bölme Harekâtı",
+  "subtitle": "Sayı Kristali Harekâtı",
   "icon": "⚔️",
   "theme": "galaxy-base",
-  "interactionType": "long-division",
-  "comingSoon": "Ünite 2: Kalanlı Bölme Cephesi v0.8 güncellemesiyle açılacak!",
+  "interactionType": "arithmetic",
+  "gradeAware": true,
 
   "outcomes": [
-    { "id": "o1", "code": "M.5.1.2.5", "text": "Bölme işleminde bölüm ile kalanı tahmin eder." },
-    { "id": "o2", "code": "M.5.1.2.6", "text": "Dört basamağa kadar doğal sayıları bir basamaklı sayılara böler." }
+    { "id": "o-add", "code": "M.1-2.1", "text": "Toplama ve çıkarma işlemlerini yapar." },
+    { "id": "o-mul", "code": "M.2-3.2", "text": "Çarpma işlemine giriş: tekrarlı toplama ve çarpım tablosu." },
+    { "id": "o-div", "code": "M.3-4.3", "text": "Bölme işlemine giriş: eşit paylaştırma ve tek basamaklı bölme." },
+    { "id": "o-long", "code": "M.4-5.4", "text": "Uzun bölme yöntemiyle çok basamaklı bölme." }
   ],
 
-  "skills": ["select", "estimate", "multiply", "subtract", "bringdown"],
+  "skills": ["add", "sub", "mul", "div", "select", "estimate", "multiply", "subtract", "bringdown"],
 
   "hints": {
-    "select":    { "1": ["hint.select.soft.1", "hint.select.soft.2"], "2": ["hint.select.guide.1"], "3": ["hint.select.explain"] },
-    "estimate":  { "1": ["hint.estimate.soft.1", "hint.estimate.soft.2"], "2": ["hint.estimate.guide.1", "hint.estimate.guide.2"], "3": ["hint.estimate.explain"] },
-    "multiply":  { "1": ["hint.multiply.soft.1", "hint.multiply.soft.2"], "2": ["hint.multiply.guide.1"], "3": ["hint.multiply.explain"] },
-    "subtract":  { "1": ["hint.subtract.soft.1", "hint.subtract.soft.2"], "2": ["hint.subtract.guide.1"], "3": ["hint.subtract.explain"] },
+    "select":    { "1": ["hint.select.soft.1"], "2": ["hint.select.guide.1"], "3": ["hint.select.explain"] },
+    "estimate":  { "1": ["hint.estimate.soft.1"], "2": ["hint.estimate.guide.1"], "3": ["hint.estimate.explain"] },
+    "multiply":  { "1": ["hint.multiply.soft.1"], "2": ["hint.multiply.guide.1"], "3": ["hint.multiply.explain"] },
+    "subtract":  { "1": ["hint.subtract.soft.1"], "2": ["hint.subtract.guide.1"], "3": ["hint.subtract.explain"] },
     "bringdown": { "1": ["hint.bringdown.soft.1"], "2": ["hint.bringdown.guide.1"], "3": ["hint.bringdown.explain"] }
   },
 
   "teachScripts": {
-    "s1-concrete": [
-      { "say": "Komutan, bölme dediğin şey aslında ADİL PAYLAŞTIRMAKTIR. Göstereyim." },
+    "add-brief": [
+      { "say": "Brifing Komutan! TOPLAMA, iki grubu birleştirmektir. 3 elman var, 2 tane daha geldi... hepsi 5 eder! Artı işareti (+) 'birleştir' demektir." },
+      { "ask": "3 + 2 kaç eder?", "expect": 5 },
+      { "say": "Aynen! Sayıları birleştirdik. Toplama bu kadar basit. Şimdi sahaya!" }
+    ],
+    "sub-brief": [
+      { "say": "ÇIKARMA, bir gruptan koparıp almaktır. 7 şekerin vardı, 3'ünü yedin... 4 kaldı! Eksi işareti (−) 'geri kalan ne' diye sorar." },
+      { "ask": "7 − 3 kaç eder?", "expect": 4 },
+      { "say": "Harika! Kalanı buldun. Çıkarma da cephaneliğe girdi." }
+    ],
+    "mul-brief": [
+      { "say": "ÇARPMA bir kestirme yoldur Komutan! 4 kere 3 demek, 3'ü 4 defa toplamak demektir: 3+3+3+3 = 12. Çarpı işareti (×) 'şu kadar defa' der." },
+      { "ask": "2 kere 3, yani 3+3 kaç eder?", "expect": 6 },
+      { "say": "İşte bu! Tekrar tekrar toplamak yerine çarpıyoruz. Çarpım tablosu en güçlü silahındır." }
+    ],
+    "share-brief": [
+      { "say": "Şimdi sıra BÖLMEDE. Bölme, ADİL PAYLAŞTIRMAKTIR. 12 kutuyu 3 takıma eşit dağıtalım, bakalım her takıma kaç düşecek." },
       { "deal": { "total": 12, "groups": 3 } },
-      { "ask": "12 kutuyu 3 takıma paylaştırdık. Her takıma kaç kutu düştü?", "expect": 4 },
-      { "say": "Aynen öyle: 12 ÷ 3 = 4. Bölme, eşit paylaştırmanın kısa yoludur." }
+      { "ask": "12'yi 3'e paylaştırdık. Her takıma kaç kutu düştü?", "expect": 4 },
+      { "say": "Aynen! 12 ÷ 3 = 4. Bölme, çarpmanın tersidir: 3 × 4 = 12, 12 ÷ 3 = 4. İkiz kardeş gibiler!" }
     ],
-    "s1-pictorial": [
-      { "say": "Sayılar büyüyünce kutu saymak yavaş kalır. Basamaklara bakarız: onluklar ve birlikler." },
-      { "pv": { "number": 36, "divisor": 3 } },
-      { "ask": "36'da 3 onluk var. 3 onluğu 3 gruba paylaştırırsak her gruba kaç ONLUK düşer?", "expect": 1 },
-      { "ask": "Şimdi birlikler: 6 birlik ÷ 3 = ?", "expect": 2 },
-      { "say": "Her gruba 1 onluk + 2 birlik = 12. Yani 36 ÷ 3 = 12. Önce büyük basamak, sonra küçük!" }
-    ],
-    "s1-abstract": [
-      { "say": "Şimdi bunu kâğıt üzerindeki haliyle yapalım: UZUN BÖLME. Ben yanındayım, adım adım gidiyoruz." },
-      { "guided": { "dividend": 84, "divisor": 4 } }
-    ],
-    "s2-brief": [
-      { "say": "İki basamaklı bölünenlerde sır şu: soldan başla, sırayla in. Aynı 5 adım: SEÇ, TAHMİN, ÇARP, ÇIKAR, İNDİR." },
-      { "guided": { "dividend": 96, "divisor": 6 } },
-      { "say": "Gördün mü? Kalan her turda bölenden küçük kaldı. Kale kuralı asla bozulmaz!" }
-    ],
-    "s3-brief": [
-      { "say": "Üç basamakta yeni bir durum var Komutan: ilk basamak bölenden KÜÇÜKSE iki basamak birden alırız. İzle." },
-      { "guided": { "dividend": 435, "divisor": 5 } },
-      { "say": "4, 5'ten küçüktü — o yüzden 43'ü aldık. Kural bu: yetmezse bir basamak daha!" }
-    ],
-    "s4-brief": [
-      { "say": "Dört basamak! Gözünü korkutmasın — aynı 5 adım, sadece daha uzun yürüyüş. Efsane soruyla başlıyoruz." },
-      { "guided": { "dividend": 4872, "divisor": 6 } },
-      { "say": "4872 ÷ 6 = 812. Artık dört basamaklı kaleleri de açabilirsin Komutan!" }
+    "long-brief": [
+      { "say": "En büyük harekât Komutan: UZUN BÖLME! Büyük sayıları bölmek için adım adım gideriz: seç, tahmin et, çarp, çıkar, indir. Ben yanındayım." },
+      { "guided": { "dividend": 84, "divisor": 4 } },
+      { "say": "Gördün mü? Büyük sayı bile adım adım teslim oldu. Artık dört basamaklı kaleleri açabilirsin!" }
     ]
   },
 
   "units": [
     {
       "id": "u1",
-      "title": "ÜNİTE 1 — BÖLME TEMELLERİ",
+      "title": "ÜNİTE 1 — TOPLAMA & ÇIKARMA",
       "sections": [
         {
-          "id": "s1",
-          "title": "Tek Basamak Keşfi",
-          "outcomeIds": ["o2"],
+          "id": "s-add",
+          "title": "Toplama Ustalığı",
+          "minGrade": 1,
+          "outcomeIds": ["o-add"],
+          "interactionType": "arithmetic",
           "unlock": { "starsRequired": 0 },
           "missions": [
-            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Paylaştırma",
-              "segments": [
-                { "model": "concrete",  "script": "s1-concrete" },
-                { "model": "pictorial", "script": "s1-pictorial" },
-                { "model": "abstract",  "script": "s1-abstract" }
-              ] },
-            { "id": "s1m2", "type": "guided", "title": "Ortak Harekât I", "targetCount": 3,
+            { "id": "s-add-t", "type": "teach", "title": "Keşif Brifingi: Toplama",
+              "segments": [ { "model": "abstract", "script": "add-brief" } ] },
+            { "id": "s-add-1", "type": "practice", "title": "Toplama Devriyesi", "targetCount": 4, "generator": { "op": "+", "a": [1, 10], "b": [1, 10] } },
+            { "id": "s-add-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "+", "a": [5, 20], "b": [3, 20] } },
+            { "id": "s-add-3", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-add", "tier": "topic", "name": "Toplama Devi", "icon": "➕", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "op": "+", "a": [2, 20], "b": [2, 20] },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-add" }
+          }
+        },
+        {
+          "id": "s-sub",
+          "title": "Çıkarma Ustalığı",
+          "minGrade": 1,
+          "outcomeIds": ["o-add"],
+          "interactionType": "arithmetic",
+          "unlock": { "starsRequired": 8 },
+          "missions": [
+            { "id": "s-sub-t", "type": "teach", "title": "Keşif Brifingi: Çıkarma",
+              "segments": [ { "model": "abstract", "script": "sub-brief" } ] },
+            { "id": "s-sub-1", "type": "practice", "title": "Çıkarma Devriyesi", "targetCount": 4, "generator": { "op": "-", "a": [2, 10] } },
+            { "id": "s-sub-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "-", "a": [5, 20] } },
+            { "id": "s-sub-3", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-sub", "tier": "topic", "name": "Çıkarma Golemi", "icon": "➖", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "op": "-", "a": [4, 20] },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-sub" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — ÇARPMAYA GİRİŞ",
+      "sections": [
+        {
+          "id": "s-mul",
+          "title": "Çarpım Tablosu",
+          "minGrade": 2,
+          "outcomeIds": ["o-mul"],
+          "interactionType": "arithmetic",
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s-mul-t", "type": "teach", "title": "Keşif Brifingi: Çarpma",
+              "segments": [ { "model": "abstract", "script": "mul-brief" } ] },
+            { "id": "s-mul-1", "type": "practice", "title": "Çarpma Devriyesi", "targetCount": 4, "generator": { "op": "*", "a": [1, 5], "b": [1, 5] } },
+            { "id": "s-mul-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "*", "a": [2, 9], "b": [2, 9] } },
+            { "id": "s-mul-3", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "op": "*", "a": [3, 10], "b": [3, 10] } },
+            { "id": "s-mul-4", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-mul", "tier": "topic", "name": "Çarpım Ejderi", "icon": "✖️", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "op": "*", "a": [2, 9], "b": [2, 9] },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-mul" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — BÖLMEYE GİRİŞ",
+      "sections": [
+        {
+          "id": "s-div",
+          "title": "Eşit Paylaştırma",
+          "minGrade": 3,
+          "outcomeIds": ["o-div"],
+          "interactionType": "arithmetic",
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s-div-t", "type": "teach", "title": "Keşif Brifingi: Bölme",
+              "segments": [ { "model": "abstract", "script": "share-brief" } ] },
+            { "id": "s-div-1", "type": "practice", "title": "Paylaştırma Devriyesi", "targetCount": 4, "generator": { "op": "/", "b": [2, 5], "q": [1, 5] } },
+            { "id": "s-div-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "/", "b": [2, 9], "q": [2, 9] } },
+            { "id": "s-div-3", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "op": "/", "b": [3, 9], "q": [2, 10] } },
+            { "id": "s-div-4", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-div", "tier": "topic", "name": "Paylaştırma Canavarı", "icon": "➗", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "op": "/", "b": [2, 9], "q": [2, 9] },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-div" }
+          }
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — UZUN BÖLME",
+      "sections": [
+        {
+          "id": "s-long",
+          "title": "Uzun Bölme Ustalığı",
+          "minGrade": 4,
+          "outcomeIds": ["o-long"],
+          "interactionType": "long-division",
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s-long-t", "type": "teach", "title": "Keşif Brifingi: Uzun Bölme",
+              "segments": [ { "model": "abstract", "script": "long-brief" } ] },
+            { "id": "s-long-1", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
               "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
-              "generator": { "divisorRange": [2, 4], "dividendDigits": 1, "remainder": false } },
-            { "id": "s1m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
-              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
-              "generator": { "divisorRange": [2, 5], "dividendDigits": 2, "remainder": false } },
-            { "id": "s1m4", "type": "practice", "title": "İlk Devriye", "targetCount": 3,
-              "generator": { "divisorRange": [2, 4], "dividendDigits": 1, "remainder": false } },
-            { "id": "s1m5", "type": "practice", "title": "Saha Görevi", "targetCount": 3,
-              "generator": { "divisorRange": [2, 5], "dividendDigits": 2, "remainder": false } },
-            { "id": "s1m6", "type": "practice", "title": "Gece Devriyesi", "targetCount": 4,
               "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false } },
-            { "id": "s1m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
-              "generator": { "divisorRange": [2, 5], "dividendDigits": 2, "remainder": false },
-              "problemTemplates": [
-                "Komutan {name}, depoya {dividend} kutu erzak geldi. {divisor} takıma eşit dağıtılacak. Her takıma kaç kutu düşer?",
-                "{dividend} askerlik birlik, {divisor} eşit kola ayrılacak. Her kolda kaç asker olur?"
-              ] },
-            { "id": "s1m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
-              "source": "spaced-repetition" }
-          ],
-          "boss": {
-            "id": "boss-s1", "tier": "topic", "name": "Bölünmez Kaya", "icon": "🪨", "hp": 60,
-            "unlock": { "masteryRequired": 0.8 },
-            "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-s1" }
-          }
-        },
-        {
-          "id": "s2",
-          "title": "Çifte Kule Cephesi",
-          "outcomeIds": ["o2"],
-          "unlock": { "starsRequired": 16 },
-          "missions": [
-            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: İki Basamak",
-              "segments": [ { "model": "abstract", "script": "s2-brief" } ] },
-            { "id": "s2m2", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
-              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
-              "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false } },
-            { "id": "s2m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
-              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
-              "generator": { "divisorRange": [3, 7], "dividendDigits": 2, "remainder": false } },
-            { "id": "s2m4", "type": "practice", "title": "Kule Devriyesi", "targetCount": 3,
-              "generator": { "divisorRange": [2, 7], "dividendDigits": 2, "remainder": false } },
-            { "id": "s2m5", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
-              "generator": { "divisorRange": [3, 8], "dividendDigits": 2, "remainder": false } },
-            { "id": "s2m6", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
-              "generator": { "divisorRange": [4, 9], "dividendDigits": 2, "remainder": false } },
-            { "id": "s2m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
-              "generator": { "divisorRange": [3, 8], "dividendDigits": 2, "remainder": false },
-              "problemTemplates": [
-                "Bir raftaki {dividend} kitap, {divisor} kutuya eşit paylaştırılacak. Her kutuya kaç kitap konur?",
-                "Komutan {name}, {dividend} TL harçlığını {divisor} günde eşit harcamak istiyor. Günde kaç TL harcamalı?"
-              ] },
-            { "id": "s2m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
-              "source": "spaced-repetition" }
-          ],
-          "boss": {
-            "id": "boss-s2", "tier": "topic", "name": "Çifte Kule", "icon": "🏯", "hp": 60,
-            "unlock": { "masteryRequired": 0.8 },
-            "generator": { "divisorRange": [3, 9], "dividendDigits": 2, "remainder": false },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-s2" }
-          }
-        },
-        {
-          "id": "s3",
-          "title": "Üç Başlı Vadi",
-          "outcomeIds": ["o2"],
-          "unlock": { "starsRequired": 16 },
-          "missions": [
-            { "id": "s3m1", "type": "teach", "title": "Keşif Brifingi: Üç Basamak",
-              "segments": [ { "model": "abstract", "script": "s3-brief" } ] },
-            { "id": "s3m2", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
-              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
-              "generator": { "divisorRange": [2, 5], "dividendDigits": 3, "remainder": false } },
-            { "id": "s3m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
-              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
-              "generator": { "divisorRange": [3, 6], "dividendDigits": 3, "remainder": false } },
-            { "id": "s3m4", "type": "practice", "title": "Vadi Devriyesi", "targetCount": 3,
-              "generator": { "divisorRange": [2, 6], "dividendDigits": 3, "remainder": false } },
-            { "id": "s3m5", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
-              "generator": { "divisorRange": [3, 7], "dividendDigits": 3, "remainder": false } },
-            { "id": "s3m6", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
-              "generator": { "divisorRange": [4, 9], "dividendDigits": 3, "remainder": false } },
-            { "id": "s3m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
-              "generator": { "divisorRange": [3, 8], "dividendDigits": 3, "remainder": false },
-              "problemTemplates": [
-                "Fabrikada üretilen {dividend} oyuncak, {divisor} mağazaya eşit gönderilecek. Her mağazaya kaç oyuncak düşer?",
-                "{dividend} sayfalık kitabı Komutan {name}, {divisor} günde eşit okuyarak bitirecek. Günde kaç sayfa okumalı?"
-              ] },
-            { "id": "s3m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
-              "source": "spaced-repetition" }
-          ],
-          "boss": {
-            "id": "boss-s3", "tier": "topic", "name": "Üç Başlı Sayı Ejderi", "icon": "🐉", "hp": 70,
-            "unlock": { "masteryRequired": 0.8 },
-            "generator": { "divisorRange": [3, 9], "dividendDigits": 3, "remainder": false },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-s3" }
-          }
-        },
-        {
-          "id": "s4",
-          "title": "Dört Basamak Zirvesi",
-          "outcomeIds": ["o1", "o2"],
-          "unlock": { "starsRequired": 16 },
-          "missions": [
-            { "id": "s4m1", "type": "teach", "title": "Keşif Brifingi: Dört Basamak",
-              "segments": [ { "model": "abstract", "script": "s4-brief" } ] },
-            { "id": "s4m2", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
-              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
-              "generator": { "divisorRange": [2, 5], "dividendDigits": 4, "remainder": false } },
-            { "id": "s4m3", "type": "guided", "title": "Ortak Harekât II", "targetCount": 3,
-              "scaffold": { "prefilledSteps": ["select"], "fadeOut": true },
-              "generator": { "divisorRange": [3, 6], "dividendDigits": 4, "remainder": false } },
-            { "id": "s4m4", "type": "practice", "title": "Zirve Devriyesi", "targetCount": 3,
-              "generator": { "divisorRange": [2, 6], "dividendDigits": 4, "remainder": false } },
-            { "id": "s4m5", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
-              "generator": { "divisorRange": [3, 7], "dividendDigits": 4, "remainder": false } },
-            { "id": "s4m6", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
-              "generator": { "divisorRange": [4, 9], "dividendDigits": 4, "remainder": false } },
-            { "id": "s4m7", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
+            { "id": "s-long-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
+              "generator": { "divisorRange": [2, 9], "dividendDigits": 3, "remainder": false } },
+            { "id": "s-long-3", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
+              "generator": { "divisorRange": [3, 9], "dividendDigits": 4, "remainder": false } },
+            { "id": "s-long-4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
               "generator": { "divisorRange": [3, 8], "dividendDigits": 4, "remainder": false },
               "problemTemplates": [
-                "Karargâha {dividend} kutu malzeme geldi. Komutan {name} bunları {divisor} depoya eşit yerleştirecek. Her depoya kaç kutu girer?",
-                "{dividend} biletlik konser, {divisor} eşit seansa bölünecek. Her seansta kaç bilet satılır?"
+                "Karargâha {dividend} kutu malzeme geldi. Komutan {name} bunları {divisor} depoya eşit yerleştirecek. Her depoya kaç kutu girer?"
               ] },
-            { "id": "s4m8", "type": "review", "title": "Devriye Turu", "targetCount": 4,
-              "source": "spaced-repetition" }
+            { "id": "s-long-5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
           ],
           "boss": {
-            "id": "boss-s4", "tier": "unit", "name": "Basamak Golemi", "icon": "🗿", "hp": 150,
+            "id": "boss-long", "tier": "unit", "name": "Basamak Golemi", "icon": "🗿", "hp": 150,
             "unlock": { "masteryRequired": 0.8 },
             "armor": 3, "regroupHpCarry": 0.5,
             "generator": { "divisorRange": [3, 9], "dividendDigits": [3, 4], "remainder": false },
-            "rewards": { "xp": 200, "chest": "legendary", "badge": "b-u1", "title": "t-golem" }
+            "rewards": { "xp": 200, "chest": "legendary", "badge": "b-long", "title": "t-golem" }
           }
         }
       ]
@@ -2139,8 +2143,26 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     return { maxDigits: 4, maxDivisor: 9 }; // 5 ve üzeri
   }
 
+  /* Çocuğun ŞU AN bulunduğu sınıf (bitirdiği + 1). Bilinmiyorsa hepsi açık. */
+  function currentGrade() {
+    const g = B.State.data.player.grade;
+    if (g == null) return 6;
+    return g === 0 ? 1 : g + 1;
+  }
+
   B.Curriculum = {
     mathCaps,
+    currentGrade,
+
+    /* Bölüm çocuğun sınıfına uygun mu? (section.minGrade) */
+    gradeOk(section) {
+      return !section || !section.minGrade || currentGrade() >= section.minGrade;
+    },
+
+    /* Soru tipine göre üreticiyi uyarla (uzun bölme sınıfa göre kısıtlanır) */
+    forType(itype, gen) {
+      return itype === 'long-division' ? B.Curriculum.forMath(gen) : gen;
+    },
 
     /* Uzun bölme üreticisini sınıfa göre kısıtla (çok küçükler zorlanmasın) */
     forMath(gen) {
@@ -2662,8 +2684,15 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
     /* ---- Kilit kuralları ---- */
 
-    /* Bölüm açık mı? İlk bölüm hep açık; sonrakiler önceki bölümden yıldız ister */
+    /* Bölüm çocuğun sınıf seviyesine uygun mu? (değilse haritada "X. sınıfta açılır") */
+    gradeLocked(sectionId) {
+      const f = B.Lesson.findSection(sectionId);
+      return !!(f && B.Curriculum && !B.Curriculum.gradeOk(f.section));
+    },
+
+    /* Bölüm açık mı? Sınıf uygun + önceki bölüm tamamlanmış olmalı */
     isSectionUnlocked(sectionId) {
+      if (B.Lesson.gradeLocked(sectionId)) return false; // sınıf kilidi
       const list = B.Lesson.sections();
       const idx = list.findIndex(x => x.section.id === sectionId);
       if (idx <= 0) return true;
@@ -2714,17 +2743,26 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       }
     },
 
-    /* Review harekâtı için: bu bölüme kadar tamamlanmış practice üreticileri havuzu */
+    /* Review harekâtı için: bu bölüme kadarki AYNI soru tipindeki üreticiler.
+     * (Aritmetik ile uzun bölme karışmasın.) */
     reviewGenerators(sectionId) {
       const list = B.Lesson.sections();
       const idx = list.findIndex(x => x.section.id === sectionId);
+      const curSec = idx >= 0 ? list[idx].section : null;
+      const typeOf = sec => sec.interactionType || (lesson || {}).interactionType;
+      const curType = curSec ? typeOf(curSec) : null;
       const gens = [];
-      list.slice(0, idx + 1).forEach(x => x.section.missions.forEach(m => {
-        if (m.generator && (m.type === 'practice' || m.type === 'guided')) {
-          gens.push(B.Lesson.resolveGenerator(x.section.id, m.generator));
-        }
-      }));
-      return gens.length ? gens : [{ divisorRange: [2, 5], dividendDigits: 1 }];
+      list.slice(0, idx + 1).forEach(x => {
+        if (typeOf(x.section) !== curType) return; // yalnızca aynı tip
+        x.section.missions.forEach(m => {
+          if (m.generator && (m.type === 'practice' || m.type === 'guided')) {
+            gens.push(B.Lesson.resolveGenerator(x.section.id, m.generator));
+          }
+        });
+      });
+      if (gens.length) return gens;
+      // Yedek: tipe uygun basit varsayılan
+      return [curType === 'arithmetic' ? { op: '+', a: [1, 10], b: [1, 10] } : { divisorRange: [2, 5], dividendDigits: 1 }];
     },
 
     /* Harekâtın ipucu anahtarını getir: hints[stepType][hataSeviyesi] → rastgele anahtar */
@@ -3707,6 +3745,113 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   B.Question.registerView('multiple-choice', create);
 })(window.BOKUL = window.BOKUL || {});
 
+/* === src/interactions/arithmetic/logic.js === */
+/* BOKUL — Aritmetik Soru Tipi (toplama, çıkarma, çarpma, basit bölme)
+ * Tek cevaplı işlemler. Küçük sınıflar için MEB kademesine uygun.
+ * params: { op:'+'|'-'|'*'|'/', a:[min,max], b:[min,max], q:[min,max] }
+ * bias 0..1: adaptif zorluk (üst aralığa yaklaştırır) */
+(function (B) {
+  const SKILL = { '+': 'add', '-': 'sub', '*': 'mul', '/': 'div' };
+
+  function rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
+  function rng(r, bias) {
+    if (!Array.isArray(r)) return r;
+    const hi = Math.round(r[0] + (r[1] - r[0]) * (0.45 + 0.55 * (bias || 0)));
+    return rnd(r[0], Math.max(r[0], hi));
+  }
+
+  function generate(params, bias) {
+    const op = params.op || '+';
+    let a, b, answer;
+    if (op === '+') { a = rng(params.a || [1, 20], bias); b = rng(params.b || [1, 20], bias); answer = a + b; }
+    else if (op === '-') { a = rng(params.a || [2, 20], bias); b = rnd(0, a); answer = a - b; }
+    else if (op === '*') { a = rng(params.a || [1, 10], bias); b = rng(params.b || [1, 10], bias); answer = a * b; }
+    else { // '/' — tam bölünen (paylaştırma): a = b × q
+      b = rng(params.b || [2, 5], bias);
+      const q = rng(params.q || [1, 10], bias);
+      a = b * q; answer = q;
+    }
+    return { a, b, op, answer };
+  }
+
+  const impl = {
+    generate,
+    getSteps(q) { return [{ type: SKILL[q.op] || 'add', expected: q.answer }]; },
+    validateStep(q, step, ans) { return { correct: Number(ans) === q.answer }; },
+  };
+
+  if (B && B.Question) B.Question.registerType('arithmetic', impl);
+  if (typeof module !== 'undefined' && module.exports) module.exports = { generate, impl };
+})(typeof window !== 'undefined' ? (window.BOKUL = window.BOKUL || {}) : null);
+
+/* === src/interactions/arithmetic/view.js === */
+/* BOKUL — Aritmetik Görünüm: "a op b = [?]" + sayı pedi (tek cevap). */
+(function (B) {
+  const SYM = { '+': '+', '-': '−', '*': '×', '/': '÷' };
+
+  function el(tag, cls, text) {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+
+  function create(container, q, opts) {
+    opts = opts || {};
+    let buffer = '', attempt = 0, mistakes = 0, done = false;
+    const step = B.Question.steps(q)[0];
+
+    container.innerHTML = '';
+    const root = el('div', 'ar-root');
+    root.innerHTML =
+      '<div class="ar-expr"><span>' + q.a + '</span><span class="ar-op">' + (SYM[q.op] || '?') +
+      '</span><span>' + q.b + '</span><span class="ar-eq">=</span><span class="ar-box" id="ar-box">?</span></div>';
+
+    const pad = el('div', 'numpad');
+    '1234567890'.split('').forEach(k => { const b = el('button', 'key', k); b.dataset.key = k; pad.appendChild(b); });
+    const back = el('button', 'key key-back', '⌫'); back.dataset.key = 'back';
+    const ok = el('button', 'key key-go', '✔ ONAYLA'); ok.dataset.key = 'ok';
+    pad.appendChild(back); pad.appendChild(ok);
+    root.appendChild(pad);
+    container.appendChild(root);
+    const box = root.querySelector('#ar-box');
+
+    function render() { box.textContent = buffer || '?'; box.classList.add('ld-active'); }
+
+    function submit() {
+      if (!buffer.length || done) return;
+      attempt++;
+      const { correct } = B.Question.validate(q, step, buffer);
+      if (opts.onAnswer) opts.onAnswer(step, correct, attempt);
+      if (correct) {
+        done = true; box.classList.remove('ld-active'); box.classList.add('ok');
+        setTimeout(() => { if (opts.onComplete) opts.onComplete({ mistakes }); }, 500);
+      } else {
+        mistakes++;
+        root.classList.remove('ld-shake'); void root.offsetWidth; root.classList.add('ld-shake');
+        if (opts.say) opts.say(B.Dialogue.pick('wrong.soft'));
+        buffer = ''; render();
+      }
+    }
+
+    pad.addEventListener('click', e => {
+      const b = e.target.closest('.key');
+      if (!b || done) return;
+      B.Audio.play('tick');
+      const k = b.dataset.key;
+      if (k === 'ok') return submit();
+      if (k === 'back') { buffer = buffer.slice(0, -1); render(); return; }
+      if (buffer.length < 5) { buffer += k; render(); }
+    });
+
+    render();
+    return { destroy() { done = true; container.innerHTML = ''; } };
+  }
+
+  B.ArithmeticView = { create };
+  B.Question.registerView('arithmetic', create);
+})(window.BOKUL = window.BOKUL || {});
+
 /* === src/ui/animation-engine.js === */
 /* BOKUL — AnimationEngine
  * XP damlası, konfeti ve küçük şölenler. Olayları dinler, kimse çağırmaz. */
@@ -4673,9 +4818,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           if (B.State.sectionProgress(lesson.id, s.id).bossDefeated) bossesDone++;
         }));
 
-        // Matematik cephesi çocuğun bitirdiği sınıfa göre ayarlanır
-        const gradeNote = (lesson.interactionType === 'long-division' && B.State.data.player.grade != null)
-          ? '<span class="world-grade">🎓 Senin seviyene ayarlı (' + (B.State.data.player.grade === 0 ? 'okul öncesi' : B.State.data.player.grade + '. sınıf sonrası') + ')</span>'
+        // Matematik cephesi çocuğun sınıfına göre bölümleri açar/ayarlar
+        const gradeNote = (lesson.gradeAware && B.State.data.player.grade != null)
+          ? '<span class="world-grade">🎓 Senin seviyene ayarlı (' + (B.State.data.player.grade === 0 ? 'okul öncesi' : B.State.data.player.grade + '. sınıfı bitirdin') + ')</span>'
           : '';
 
         const card = document.createElement('button');
@@ -4727,6 +4872,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
         unit.sections.forEach(section => {
           const unlocked = B.Lesson.isSectionUnlocked(section.id);
+          const gradeLocked = B.Lesson.gradeLocked(section.id);
           const prog = B.State.sectionProgress(lesson.id, section.id);
           const stars = B.State.sectionStars(lesson.id, section.id);
           const maxStars = section.missions.length * 3;
@@ -4736,7 +4882,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           card.innerHTML =
             '<div class="map-sec-head"><b>' + section.title + '</b>' +
             '<span class="map-stars">⭐ ' + stars + '/' + maxStars + '</span>' +
-            (unlocked ? '' : '<span class="map-lock">🔒</span>') + '</div>';
+            (unlocked ? '' : '<span class="map-lock">🔒</span>') + '</div>' +
+            (gradeLocked ? '<div class="map-gradelock">🎓 Bu bölümü ' + section.minGrade + '. sınıfta açacaksın. Şimdilik seviyene uygun bölümlere odaklan!</div>' : '');
 
           if (unlocked) {
             const path = document.createElement('div');
@@ -4806,6 +4953,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     enter(root, params) {
       const lesson = B.Lesson.active();
       const mission = B.Lesson.findMission(params.sectionId, params.missionId);
+      const sectionObj = (B.Lesson.findSection(params.sectionId) || {}).section || {};
+      const itype = sectionObj.interactionType || lesson.interactionType; // bölüm bazlı soru tipi
       const cfg = B.Content.get('config');
       const self = this;
 
@@ -4880,8 +5029,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         let gen = reviewGens
           ? reviewGens[Math.floor(Math.random() * reviewGens.length)]
           : B.Lesson.resolveGenerator(params.sectionId, mission.generator);
-        gen = B.Curriculum.adjust(lesson, gen); // yaş/sınıfa göre zorluk
-        const q = B.Question.generate(lesson.interactionType, gen, lesson.skills);
+        gen = B.Curriculum.forType(itype, gen); // yaş/sınıfa göre zorluk (uzun bölme)
+        const q = B.Question.generate(itype, gen, lesson.skills);
         B.Bus.emit(B.Events.QUESTION_STARTED, { questionId: qIndex, lessonId: lesson.id, type: mission.type });
 
         // Guided iskelesi: fadeOut ile her soruda bir adım daha oyuncuya bırakılır
@@ -4903,7 +5052,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         cmd.sayFrom(qIndex === 0 ? 'mission.start' : 'mission.next');
         let mistakes = 0;
 
-        view = B.Question.view(lesson.interactionType)(stage, q, {
+        view = B.Question.view(itype)(stage, q, {
           prefilled, problemText,
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {
@@ -4982,6 +5131,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       const lesson = B.Lesson.active();
       const section = B.Lesson.findSection(params.sectionId).section;
       const boss = section.boss;
+      const itype = section.interactionType || lesson.interactionType; // bölüm bazlı soru tipi
       const cfg = B.Content.get('config');
       const isUnit = boss.tier === 'unit';
       const prog = B.State.sectionProgress(lesson.id, params.sectionId);
@@ -5051,11 +5201,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       function nextQuestion() {
         if (over) return;
         if (view) { view.destroy(); view = null; }
-        const q = B.Question.generate(lesson.interactionType,
-          B.Curriculum.adjust(lesson, B.Lesson.resolveGenerator(params.sectionId, boss.generator)), lesson.skills);
+        const q = B.Question.generate(itype,
+          B.Curriculum.forType(itype, B.Lesson.resolveGenerator(params.sectionId, boss.generator)), lesson.skills);
         let mistakes = 0;
 
-        view = B.Question.view(lesson.interactionType)(stage, q, {
+        view = B.Question.view(itype)(stage, q, {
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {
             B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });
@@ -6165,7 +6315,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     async boot() {
       // 1) İçerik paketleri (kayıt YÜKLENMEZ — önce profil seçilir)
       const LESSONS = [
-        'lessons/math-5-division',
+        'lessons/math-core',
         'lessons/eng-101',
         'lessons/ai-101',
         'lessons/care-101',
@@ -6173,7 +6323,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       ];
       await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
-      B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
+      B.Lesson.setActive(B.Content.get('lessons/math-core'));
 
       // 2) Motor başlatmaları (olay dinleyicileri bağlanır)
       B.Save.init();

@@ -12,8 +12,26 @@
     return { maxDigits: 4, maxDivisor: 9 }; // 5 ve üzeri
   }
 
+  /* Çocuğun ŞU AN bulunduğu sınıf (bitirdiği + 1). Bilinmiyorsa hepsi açık. */
+  function currentGrade() {
+    const g = B.State.data.player.grade;
+    if (g == null) return 6;
+    return g === 0 ? 1 : g + 1;
+  }
+
   B.Curriculum = {
     mathCaps,
+    currentGrade,
+
+    /* Bölüm çocuğun sınıfına uygun mu? (section.minGrade) */
+    gradeOk(section) {
+      return !section || !section.minGrade || currentGrade() >= section.minGrade;
+    },
+
+    /* Soru tipine göre üreticiyi uyarla (uzun bölme sınıfa göre kısıtlanır) */
+    forType(itype, gen) {
+      return itype === 'long-division' ? B.Curriculum.forMath(gen) : gen;
+    },
 
     /* Uzun bölme üreticisini sınıfa göre kısıtla (çok küçükler zorlanmasın) */
     forMath(gen) {

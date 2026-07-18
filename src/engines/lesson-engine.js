@@ -38,8 +38,15 @@
 
     /* ---- Kilit kuralları ---- */
 
-    /* Bölüm açık mı? İlk bölüm hep açık; sonrakiler önceki bölümden yıldız ister */
+    /* Bölüm çocuğun sınıf seviyesine uygun mu? (değilse haritada "X. sınıfta açılır") */
+    gradeLocked(sectionId) {
+      const f = B.Lesson.findSection(sectionId);
+      return !!(f && B.Curriculum && !B.Curriculum.gradeOk(f.section));
+    },
+
+    /* Bölüm açık mı? Sınıf uygun + önceki bölüm tamamlanmış olmalı */
     isSectionUnlocked(sectionId) {
+      if (B.Lesson.gradeLocked(sectionId)) return false; // sınıf kilidi
       const list = B.Lesson.sections();
       const idx = list.findIndex(x => x.section.id === sectionId);
       if (idx <= 0) return true;
@@ -90,17 +97,26 @@
       }
     },
 
-    /* Review harekâtı için: bu bölüme kadar tamamlanmış practice üreticileri havuzu */
+    /* Review harekâtı için: bu bölüme kadarki AYNI soru tipindeki üreticiler.
+     * (Aritmetik ile uzun bölme karışmasın.) */
     reviewGenerators(sectionId) {
       const list = B.Lesson.sections();
       const idx = list.findIndex(x => x.section.id === sectionId);
+      const curSec = idx >= 0 ? list[idx].section : null;
+      const typeOf = sec => sec.interactionType || (lesson || {}).interactionType;
+      const curType = curSec ? typeOf(curSec) : null;
       const gens = [];
-      list.slice(0, idx + 1).forEach(x => x.section.missions.forEach(m => {
-        if (m.generator && (m.type === 'practice' || m.type === 'guided')) {
-          gens.push(B.Lesson.resolveGenerator(x.section.id, m.generator));
-        }
-      }));
-      return gens.length ? gens : [{ divisorRange: [2, 5], dividendDigits: 1 }];
+      list.slice(0, idx + 1).forEach(x => {
+        if (typeOf(x.section) !== curType) return; // yalnızca aynı tip
+        x.section.missions.forEach(m => {
+          if (m.generator && (m.type === 'practice' || m.type === 'guided')) {
+            gens.push(B.Lesson.resolveGenerator(x.section.id, m.generator));
+          }
+        });
+      });
+      if (gens.length) return gens;
+      // Yedek: tipe uygun basit varsayılan
+      return [curType === 'arithmetic' ? { op: '+', a: [1, 10], b: [1, 10] } : { divisorRange: [2, 5], dividendDigits: 1 }];
     },
 
     /* Harekâtın ipucu anahtarını getir: hints[stepType][hataSeviyesi] → rastgele anahtar */

@@ -1,5 +1,22 @@
 # BOKUL — Sürüm Notları
 
+## v0.15 — MEB Müfredatına Uygun Matematik (2026-07-18)
+
+- 📚 MÜFREDAT DÜZELTİLDİ: Eskiden tüm çocuklara uzun bölme geliyordu. Artık
+  matematik cephesi MEB kademelerine göre sınıf-kilitli:
+  - Toplama & Çıkarma (1. sınıf)
+  - Çarpım Tablosu / çarpmaya giriş (2. sınıf)
+  - Eşit Paylaştırma / bölmeye giriş (3. sınıf)
+  - Uzun Bölme (4. sınıf)
+  Çocuk sınıfına uygun bölümleri görür; üstü "🎓 Bu bölümü X. sınıfta açacaksın"
+  notuyla kilitli. Örn. 2. sınıfa geçen çocuk BÖLME görmez, toplama/çarpma çalışır.
+- ➕ Yeni "arithmetic" soru tipi: toplama/çıkarma/çarpma/basit bölme (tek cevap,
+  sayı pedi). Bölme burada "eşit paylaştırma" olarak öğretilir.
+- Uzun bölme yalnızca 4-5. sınıfta; zorluk yine bitirilen sınıfa göre ölçeklenir.
+- Bölüm bazlı soru tipi desteği (bir ders içinde farklı tipler); tekrar (review)
+  havuzu artık soru tipine göre süzülür (aritmetik ↔ uzun bölme karışmaz).
+
+
 ## v0.14 — 3D Avatar, Ekonomi, Yaş/Sınıf ve İngilizce (2026-07-18)
 
 - 🧊 3D AVATAR: Avatarlara derinlik gölgelendirmesi (radial gradyanlar: zemin,

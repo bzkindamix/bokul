@@ -5,7 +5,7 @@
     async boot() {
       // 1) İçerik paketleri (kayıt YÜKLENMEZ — önce profil seçilir)
       const LESSONS = [
-        'lessons/math-5-division',
+        'lessons/math-core',
         'lessons/eng-101',
         'lessons/ai-101',
         'lessons/care-101',
@@ -13,7 +13,7 @@
       ];
       await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
-      B.Lesson.setActive(B.Content.get('lessons/math-5-division'));
+      B.Lesson.setActive(B.Content.get('lessons/math-core'));
 
       // 2) Motor başlatmaları (olay dinleyicileri bağlanır)
       B.Save.init();

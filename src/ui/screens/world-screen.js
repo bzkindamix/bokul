@@ -27,9 +27,9 @@
           if (B.State.sectionProgress(lesson.id, s.id).bossDefeated) bossesDone++;
         }));
 
-        // Matematik cephesi çocuğun bitirdiği sınıfa göre ayarlanır
-        const gradeNote = (lesson.interactionType === 'long-division' && B.State.data.player.grade != null)
-          ? '<span class="world-grade">🎓 Senin seviyene ayarlı (' + (B.State.data.player.grade === 0 ? 'okul öncesi' : B.State.data.player.grade + '. sınıf sonrası') + ')</span>'
+        // Matematik cephesi çocuğun sınıfına göre bölümleri açar/ayarlar
+        const gradeNote = (lesson.gradeAware && B.State.data.player.grade != null)
+          ? '<span class="world-grade">🎓 Senin seviyene ayarlı (' + (B.State.data.player.grade === 0 ? 'okul öncesi' : B.State.data.player.grade + '. sınıfı bitirdin') + ')</span>'
           : '';
 
         const card = document.createElement('button');
