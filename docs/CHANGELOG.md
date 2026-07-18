@@ -1,5 +1,21 @@
 # BOKUL — Sürüm Notları
 
+## v0.16 — Bulut Senkron: Çocuklar kendi cihazında, ebeveyn uzaktan (2026-07-18)
+
+- ☁️ ÇOK-AİLELİ BULUT SENKRON (Firebase Firestore, REST — SDK yok): Çocuklar
+  kendi cihazlarında oynar, ilerleme buluta yazılır; ebeveyn kendi cihazından
+  aynı "aile kodu" ile tüm çocuklarını uzaktan görür.
+- 🔑 Aile Kodu: Ebeveyn konsolunda bir kez oluşturulur (rastgele 10 karakter);
+  her çocuğun cihazında giriş ekranı → "☁️ Aile Kodu" bölümüne girilir.
+- 👨‍👧 Ebeveyn konsolu artık iki kaynaklı: "📱 Bu cihaz" ve "☁️ Bulut (aile)".
+  Bulut modunda uzaktaki tüm çocukların gelişimi görünür; dilek hedefleri
+  bulut üzerinden atanır (directives), çocuk bir sonraki açılışta uygular.
+- 🔒 Gizlilik: Buluta yalnızca oyun ilerlemesi + takma ad + dilekler gider.
+  Avatar FOTOĞRAFI buluta gönderilmez (cihazda kalır). Veri Avrupa'da (eur3).
+  Erişim yalnızca aile kodu altına açık; kod uzun ve rastgele.
+- Yapılandırma yoksa senkron sessizce devre dışı; çevrimdışı tek dosya bozulmaz.
+
+
 ## v0.15 — MEB Müfredatına Uygun Matematik (2026-07-18)
 
 - 📚 MÜFREDAT DÜZELTİLDİ: Eskiden tüm çocuklara uzun bölme geliyordu. Artık

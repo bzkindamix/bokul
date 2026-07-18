@@ -122,16 +122,41 @@
     }
   }
 
+  /* Bu cihaz için aile kodunu gir/değiştir (bulut senkron) */
+  function openFamilyCode() {
+    const cur = B.Cloud.getCode();
+    const ov = B.UI.overlay(
+      '<div class="ov-big">☁️</div><h2>Aile Kodu</h2>' +
+      '<p class="ov-quote">Ebeveynin verdiği aile kodunu gir. İlerleme buluta bu kodla kaydolur; ebeveyn kendi cihazından görür.</p>' +
+      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Aile kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
+      '<div class="login-err" id="fam-msg">' + (cur ? '✓ Bu cihaz bağlı: ' + cur : '') + '</div>',
+      [{ label: 'KAYDET', onClick: null }, { label: 'Bağlantıyı kaldır', cls: 'btn-quiet', onClick: () => { B.Cloud.setCode(''); B.UI.toast('Bulut bağlantısı kaldırıldı'); } }]);
+    const btn = ov.querySelector('.overlay-btns .btn');
+    btn.onclick = () => {
+      const v = (ov.querySelector('#fam-in').value || '').trim().toUpperCase();
+      if (v.length < 6) { ov.querySelector('#fam-msg').textContent = '⚠️ Kod en az 6 karakter.'; return; }
+      B.Cloud.setCode(v);
+      ov.remove();
+      B.UI.toast('☁️ Bu cihaz aileye bağlandı: ' + v);
+    };
+  }
+
   B.UI.registerScreen('login', {
     enter(root) {
       root.classList.add('login-root');
       root.innerHTML = '<div class="login-content"></div>';
       const content = root.querySelector('.login-content');
-      const parentBtn = document.createElement('button');
-      parentBtn.className = 'chip login-parent';
-      parentBtn.textContent = '👨‍👧 Ebeveyn';
-      parentBtn.onclick = openParent;
-      root.appendChild(parentBtn);
+
+      const foot = document.createElement('div');
+      foot.className = 'login-foot';
+      foot.innerHTML =
+        '<button class="chip login-parent">👨‍👧 Ebeveyn</button>' +
+        (B.Cloud.configured() ? '<button class="chip login-fam">☁️ Aile Kodu' + (B.Cloud.getCode() ? ' ✓' : '') + '</button>' : '');
+      root.appendChild(foot);
+      foot.querySelector('.login-parent').onclick = openParent;
+      const fam = foot.querySelector('.login-fam');
+      if (fam) fam.onclick = openFamilyCode;
+
       if (!B.Auth.hasAny()) renderRegister(content, true);
       else renderSelect(content);
     },

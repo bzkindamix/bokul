@@ -22,6 +22,7 @@ const JS = [
   'src/core/auth.js',
   'src/core/curriculum.js',
   'src/core/save-manager.js',
+  'src/core/cloud-sync.js',
   'src/core/content-registry.js',
   'src/engines/audio-manager.js',
   'src/engines/dialogue-manager.js',

@@ -747,6 +747,17 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   background: rgba(255, 179, 92, .1); border-radius: 10px; padding: 8px 10px;
 }
 
+/* ---------- v0.16: Bulut senkron (aile kodu, admin kaynak) ---------- */
+.login-foot { position: absolute; left: 16px; bottom: 16px; z-index: 6; display: flex; gap: 8px; flex-wrap: wrap; }
+.login-parent, .login-fam { color: var(--ink-dim); }
+.adm-fam { padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.adm-code { color: var(--xp); font-size: 18px; letter-spacing: 2px; font-family: var(--mono); }
+.adm-copy { margin-left: 8px; }
+.adm-fam-hint { color: var(--ink-dim); font-size: 12px; margin-top: 4px; }
+.asrc.tab-on { background: var(--legendary); color: #0b3a32; }
+.adm-sep { flex: 1; }
+.admin-tabs { flex-wrap: wrap; }
+
 </style>
 </head>
 <body>
@@ -756,7 +767,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.14 — 3D Avatar · Yaş/Sınıf · İngilizce</div>
+      <div class="splash-note">v0.15 — MEB Müfredatına Uygun Matematik</div>
     </div>
   </div>
 
@@ -2284,6 +2295,156 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
        E.BOSS_DEFEATED, E.BOSS_RETREAT, E.XP_GAINED]
         .forEach(ev => B.Bus.on(ev, () => B.Save.saveSoon()));
       window.addEventListener('beforeunload', () => B.Save.saveNow());
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/cloud-sync.js === */
+/* BOKUL — Bulut Senkron (Firebase Firestore REST)
+ * Çok-aileli senkron: her aile bir "aile kodu" ile ayrılır.
+ * - Çocuğun cihazı ilerlemeyi buluta yazar (fotoğraf HARİÇ — cihazda kalır).
+ * - Ebeveyn kendi cihazından, aynı aile koduyla tüm çocukları görür ve
+ *   dilek hedefi/not (directives) yazar; çocuğun cihazı bir sonraki açılışta çeker.
+ * SDK yok; doğrudan Firestore REST (fetch). Anahtar istemci içindir (public).
+ * Yapılandırma yoksa modül sessizce devre dışıdır (çevrimdışı tek dosya bozulmaz). */
+(function (B) {
+  // Firebase istemci yapılandırması (public — dağıtılan dosyada olması normaldir)
+  const CFG = {
+    projectId: 'bokul-bc2c4',
+    apiKey: 'AIzaSyCe9-6Dl_fcx1q8WxiX_MoGM7dpHc7YJeY',
+  };
+  const CODE_KEY = 'bokul.familyCode'; // cihaz düzeyinde (tüm profiller ortak)
+
+  function base() {
+    return 'https://firestore.googleapis.com/v1/projects/' + CFG.projectId + '/databases/(default)/documents';
+  }
+  function configured() { return !!(CFG.projectId && CFG.apiKey); }
+
+  function getCode() { try { return localStorage.getItem(CODE_KEY) || ''; } catch (e) { return ''; } }
+  function setCode(c) { try { c ? localStorage.setItem(CODE_KEY, c) : localStorage.removeItem(CODE_KEY); } catch (e) {} }
+  function enabled() { return configured() && !!getCode(); }
+
+  /* Rastgele, tahmin edilemez aile kodu (karışabilen harfler yok) */
+  function genCode() {
+    const abc = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+    let s = '';
+    const arr = new Uint32Array(10);
+    (window.crypto || window.msCrypto).getRandomValues(arr);
+    for (let i = 0; i < 10; i++) s += abc[arr[i] % abc.length];
+    return s;
+  }
+
+  /* Firestore alanı: her şeyi stringValue olarak tutuyoruz (basit) */
+  function sv(s) { return { stringValue: String(s == null ? '' : s) }; }
+
+  /* Kaydı buluta uygun hale getir: fotoğrafı çıkar (gizlilik) */
+  function stripForCloud(state) {
+    const copy = JSON.parse(JSON.stringify(state));
+    if (copy.player && copy.player.avatar) { copy.player.avatar.photo = null; copy.player.avatar.usePhoto = false; }
+    return copy;
+  }
+
+  async function req(url, opts) {
+    const res = await fetch(url + (url.includes('?') ? '&' : '?') + 'key=' + CFG.apiKey, opts);
+    if (!res.ok) throw new Error('Firestore ' + res.status);
+    return res.status === 200 ? res.json() : null;
+  }
+
+  function playerDoc(code, key) { return base() + '/families/' + encodeURIComponent(code) + '/players/' + encodeURIComponent(key); }
+
+  B.Cloud = {
+    configured, enabled, getCode, setCode, genCode,
+
+    /* Aktif profilin kaydını buluta yaz (directives'e DOKUNMAZ) */
+    async pushSave() {
+      if (!enabled() || !B.Auth || !B.Auth.current()) return;
+      const code = getCode(), key = B.Auth.current();
+      const body = { fields: {
+        name: sv(B.State.data.player.name),
+        save: sv(JSON.stringify(stripForCloud(B.State.data))),
+        updatedAt: sv(new Date().toISOString()),
+      } };
+      const mask = 'updateMask.fieldPaths=name&updateMask.fieldPaths=save&updateMask.fieldPaths=updatedAt';
+      try {
+        await req(playerDoc(code, key) + '?' + mask, {
+          method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+        });
+      } catch (e) { /* çevrimdışıysa sessiz geç, sonra tekrar denenir */ }
+    },
+
+    /* Ebeveyn direktiflerini çek ve yerel dileklere uygula */
+    async pullDirectives() {
+      if (!enabled() || !B.Auth || !B.Auth.current()) return;
+      try {
+        const doc = await req(playerDoc(getCode(), B.Auth.current()), { method: 'GET' });
+        const d = doc && doc.fields && doc.fields.directives ? JSON.parse(doc.fields.directives.stringValue) : null;
+        if (d) B.Cloud.applyDirectives(d);
+      } catch (e) { /* yoksa/çevrimdışıysa geç */ }
+    },
+
+    /* Directives'i yerel wishes/ideas'e uygula (ebeveyn otoritedir) */
+    applyDirectives(d) {
+      let changed = false;
+      (B.State.data.wishes || []).forEach(w => {
+        const dw = d.wishes && d.wishes[w.id];
+        if (dw) {
+          if (dw.goal !== undefined) w.goal = dw.goal;
+          if (dw.note !== undefined) w.note = dw.note;
+          if (dw.status && dw.status !== w.status && !(w.status === 'earned' && dw.status === 'assigned')) w.status = dw.status;
+          changed = true;
+        }
+      });
+      (B.State.data.ideas || []).forEach(i => {
+        const di = d.ideas && d.ideas[i.id];
+        if (di) { if (di.status) i.status = di.status; if (di.note !== undefined) i.note = di.note; changed = true; }
+      });
+      if (changed) { B.Save.saveSoon(); if (B.Wish) B.Wish.checkEarned(); }
+    },
+
+    /* Ebeveyn: aile kodundaki tüm oyuncuları listele (uzaktan görüntüleme) */
+    async listPlayers() {
+      if (!enabled()) return [];
+      try {
+        const res = await req(base() + '/families/' + encodeURIComponent(getCode()) + '/players', { method: 'GET' });
+        const docs = (res && res.documents) || [];
+        return docs.map(doc => {
+          const key = doc.name.split('/').pop();
+          const f = doc.fields || {};
+          let save = null; try { save = JSON.parse(f.save.stringValue); } catch (e) {}
+          return { key, name: f.name ? f.name.stringValue : key, save, updatedAt: f.updatedAt ? f.updatedAt.stringValue : '' };
+        }).filter(p => p.save);
+      } catch (e) { return []; }
+    },
+
+    /* Ebeveyn: bir oyuncuya directives yaz (save'e DOKUNMAZ) */
+    async writeDirectives(playerKey, directives) {
+      if (!enabled()) return false;
+      const body = { fields: { directives: sv(JSON.stringify(directives)) } };
+      try {
+        await req(playerDoc(getCode(), playerKey) + '?updateMask.fieldPaths=directives', {
+          method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+        });
+        return true;
+      } catch (e) { return false; }
+    },
+
+    /* Mevcut directives'i oku (ebeveyn düzenlerken üstüne eklesin diye) */
+    async readDirectives(playerKey) {
+      if (!enabled()) return {};
+      try {
+        const doc = await req(playerDoc(getCode(), playerKey), { method: 'GET' });
+        return doc && doc.fields && doc.fields.directives ? JSON.parse(doc.fields.directives.stringValue) : {};
+      } catch (e) { return {}; }
+    },
+
+    init() {
+      if (!configured()) return;
+      // Kaydedince buluta gönder (debounce'lu)
+      let t = null;
+      B.Bus.on(B.Events.GAME_SAVED, () => {
+        if (!enabled()) return;
+        clearTimeout(t); t = setTimeout(() => B.Cloud.pushSave(), 1500);
+      });
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -5998,16 +6159,41 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     }
   }
 
+  /* Bu cihaz için aile kodunu gir/değiştir (bulut senkron) */
+  function openFamilyCode() {
+    const cur = B.Cloud.getCode();
+    const ov = B.UI.overlay(
+      '<div class="ov-big">☁️</div><h2>Aile Kodu</h2>' +
+      '<p class="ov-quote">Ebeveynin verdiği aile kodunu gir. İlerleme buluta bu kodla kaydolur; ebeveyn kendi cihazından görür.</p>' +
+      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Aile kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
+      '<div class="login-err" id="fam-msg">' + (cur ? '✓ Bu cihaz bağlı: ' + cur : '') + '</div>',
+      [{ label: 'KAYDET', onClick: null }, { label: 'Bağlantıyı kaldır', cls: 'btn-quiet', onClick: () => { B.Cloud.setCode(''); B.UI.toast('Bulut bağlantısı kaldırıldı'); } }]);
+    const btn = ov.querySelector('.overlay-btns .btn');
+    btn.onclick = () => {
+      const v = (ov.querySelector('#fam-in').value || '').trim().toUpperCase();
+      if (v.length < 6) { ov.querySelector('#fam-msg').textContent = '⚠️ Kod en az 6 karakter.'; return; }
+      B.Cloud.setCode(v);
+      ov.remove();
+      B.UI.toast('☁️ Bu cihaz aileye bağlandı: ' + v);
+    };
+  }
+
   B.UI.registerScreen('login', {
     enter(root) {
       root.classList.add('login-root');
       root.innerHTML = '<div class="login-content"></div>';
       const content = root.querySelector('.login-content');
-      const parentBtn = document.createElement('button');
-      parentBtn.className = 'chip login-parent';
-      parentBtn.textContent = '👨‍👧 Ebeveyn';
-      parentBtn.onclick = openParent;
-      root.appendChild(parentBtn);
+
+      const foot = document.createElement('div');
+      foot.className = 'login-foot';
+      foot.innerHTML =
+        '<button class="chip login-parent">👨‍👧 Ebeveyn</button>' +
+        (B.Cloud.configured() ? '<button class="chip login-fam">☁️ Aile Kodu' + (B.Cloud.getCode() ? ' ✓' : '') + '</button>' : '');
+      root.appendChild(foot);
+      foot.querySelector('.login-parent').onclick = openParent;
+      const fam = foot.querySelector('.login-fam');
+      if (fam) fam.onclick = openFamilyCode;
+
       if (!B.Auth.hasAny()) renderRegister(content, true);
       else renderSelect(content);
     },
@@ -6104,21 +6290,27 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
 /* === src/ui/screens/admin-screen.js === */
 /* BOKUL — Ebeveyn Konsolu (Admin)
- * Tüm oyuncuların gelişimini gösterir; dilekleri (gerçek ödül istekleri) ve
- * oyun fikirlerini yönetir. Ebeveyn PIN'i ile korunur (bkz. login parent).
- * Tüm veriler cihazda; her oyuncunun kendi kaydından okunur/yazılır. */
+ * İki kaynak: 📱 Bu cihaz (yerel kayıtlar) ve ☁️ Bulut (aile kodundaki tüm çocuklar).
+ * Bulut modunda ilerleme uzaktan okunur; dilek hedefleri "directives" olarak yazılır. */
 (function (B) {
 
-  function allPlayers() {
+  function localPlayers() {
     return B.Auth.users().map(key => {
       let save = null;
       try { save = JSON.parse(localStorage.getItem('bokul.save.' + key)); } catch (e) {}
-      return { key, name: B.Auth.displayName(key), save };
+      return { key, name: B.Auth.displayName(key), save, source: 'local' };
     }).filter(p => p.save);
   }
-  function writeSave(key, save) {
+  function writeLocal(key, save) {
     try { localStorage.setItem('bokul.save.' + key, JSON.stringify(save)); } catch (e) {}
-    if (B.Auth.current() === key) B.State.data = save; // aktif oyuncuysa belleği de güncelle
+    if (B.Auth.current() === key) B.State.data = save;
+  }
+  /* Kaydın dilek/fikir durumlarını directives paketine çevir (bulut için) */
+  function buildDirectives(save) {
+    const d = { wishes: {}, ideas: {} };
+    (save.wishes || []).forEach(w => { d.wishes[w.id] = { goal: w.goal || null, note: w.note || '', status: w.status }; });
+    (save.ideas || []).forEach(i => { d.ideas[i.id] = { status: i.status, note: i.note || '' }; });
+    return d;
   }
   function xpNeeded(level) { const L = B.Content.get('rewards').levels; return L.base + (level - 1) * L.perLevel; }
   function esc(s) { return String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
@@ -6126,43 +6318,98 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   B.UI.registerScreen('admin', {
     enter(root) {
       let tab = 'players';
+      let source = B.Cloud.enabled() ? 'cloud' : 'local';
+      let players = [];
       root.classList.add('admin-root');
 
+      /* Bir oyuncunun değişikliğini uygun yere yaz */
+      async function persist(player) {
+        if (player.source === 'cloud') await B.Cloud.writeDirectives(player.key, buildDirectives(player.save));
+        else writeLocal(player.key, player.save);
+      }
+
+      function findPlayer(key) { return players.find(p => p.key === key); }
+
+      async function load() {
+        const body = root.querySelector('.admin-body');
+        if (body) body.innerHTML = '<div class="wish-empty">Yükleniyor…</div>';
+        if (source === 'cloud') {
+          const list = await B.Cloud.listPlayers();
+          players = list.map(p => Object.assign({ source: 'cloud' }, p));
+        } else {
+          players = localPlayers();
+        }
+        renderBody();
+      }
+
       function shell() {
+        const code = B.Cloud.getCode();
+        const famRow = B.Cloud.configured()
+          ? '<div class="adm-fam">' +
+              (code
+                ? '<div>☁️ Aile Kodu: <b class="adm-code">' + code + '</b> <button class="chip adm-copy">Kopyala</button>' +
+                  '<div class="adm-fam-hint">Bu kodu çocukların cihazlarında giriş ekranı → "Aile Kodu" bölümüne bir kez gir.</div></div>'
+                : '<button class="chip adm-gencode">☁️ Aile kodu oluştur</button>' +
+                  '<span class="adm-fam-hint"> — çocukların cihazlarını bağlamak için</span>') +
+            '</div>'
+          : '';
         root.innerHTML =
           '<div class="admin-head">' +
             '<button class="chip admin-back">◀ Çıkış</button>' +
             '<b>👨‍👧 Ebeveyn Konsolu</b>' +
-            '<button class="chip admin-pin">🔑 PIN değiştir</button>' +
+            '<button class="chip admin-pin">🔑 PIN</button>' +
           '</div>' +
+          famRow +
           '<div class="admin-tabs">' +
+            (B.Cloud.configured()
+              ? '<button class="chip asrc" data-s="cloud">☁️ Bulut (aile)</button><button class="chip asrc" data-s="local">📱 Bu cihaz</button>' : '') +
+            '<span class="adm-sep"></span>' +
             '<button class="chip atab" data-t="players">📊 Oyuncular</button>' +
             '<button class="chip atab" data-t="wishes">🎁 İstekler</button>' +
             '<button class="chip atab" data-t="ideas">💡 Fikirler</button>' +
+            '<button class="chip adm-refresh">🔄</button>' +
           '</div>' +
           '<div class="admin-body"></div>';
         root.querySelector('.admin-back').onclick = () => B.UI.show('login');
         root.querySelector('.admin-pin').onclick = changePin;
+        root.querySelector('.admin-refresh').onclick = load;
         root.querySelectorAll('.atab').forEach(b => b.onclick = () => {
           tab = b.dataset.t;
           root.querySelectorAll('.atab').forEach(x => x.classList.toggle('tab-on', x === b));
           renderBody();
         });
-        root.querySelector('.atab[data-t="' + tab + '"]').classList.add('tab-on');
-        renderBody();
+        root.querySelectorAll('.asrc').forEach(b => b.onclick = () => {
+          source = b.dataset.s;
+          root.querySelectorAll('.asrc').forEach(x => x.classList.toggle('tab-on', x === b));
+          load();
+        });
+        const cp = root.querySelector('.adm-copy');
+        if (cp) cp.onclick = () => { try { navigator.clipboard.writeText(code); B.UI.toast('Kod kopyalandı'); } catch (e) {} };
+        const gc = root.querySelector('.adm-gencode');
+        if (gc) gc.onclick = () => { B.Cloud.setCode(B.Cloud.genCode()); source = 'cloud'; shell(); load(); };
+
+        const activeTab = root.querySelector('.atab[data-t="' + tab + '"]'); if (activeTab) activeTab.classList.add('tab-on');
+        const activeSrc = root.querySelector('.asrc[data-s="' + source + '"]'); if (activeSrc) activeSrc.classList.add('tab-on');
+        load();
       }
 
       function renderBody() {
         const body = root.querySelector('.admin-body');
-        const players = allPlayers();
-        if (!players.length) { body.innerHTML = '<div class="wish-empty">Henüz kayıtlı oyuncu yok.</div>'; return; }
-        if (tab === 'players') renderPlayers(body, players);
-        else if (tab === 'wishes') renderWishes(body, players);
-        else renderIdeas(body, players);
+        if (!body) return;
+        if (source === 'cloud' && !B.Cloud.enabled()) { body.innerHTML = '<div class="wish-empty">Önce yukarıdan bir aile kodu oluştur.</div>'; return; }
+        if (!players.length) {
+          body.innerHTML = '<div class="wish-empty">' + (source === 'cloud'
+            ? 'Bu aile kodunda henüz oyuncu yok. Çocukların cihazlarına aile kodunu girip biraz oynamalarını sağla.'
+            : 'Bu cihazda kayıtlı oyuncu yok.') + '</div>';
+          return;
+        }
+        if (tab === 'players') renderPlayers(body);
+        else if (tab === 'wishes') renderWishes(body);
+        else renderIdeas(body);
       }
 
       /* ---- 📊 Oyuncular ---- */
-      function renderPlayers(body, players) {
+      function renderPlayers(body) {
         const lessons = B.Lesson.all();
         body.innerHTML = players.map(p => {
           const s = p.save, pl = s.player, st = s.stats || {};
@@ -6176,32 +6423,22 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
               const sp = (s.progress.lessons[les.id] || { sections: {} }).sections[sec.id];
               if (sp) { earned += Object.values(sp.missions || {}).reduce((t, m) => t + (m.stars || 0), 0); if (sp.bossDefeated) bd++; }
             }));
-            return '<div class="adm-lesson"><span>' + les.icon + ' ' + esc(les.title) + '</span>' +
-              '<span>⭐ ' + earned + '/' + max + ' · 🏰 ' + bd + '/' + bt + '</span></div>';
+            return '<div class="adm-lesson"><span>' + les.icon + ' ' + esc(les.title) + '</span><span>⭐ ' + earned + '/' + max + ' · 🏰 ' + bd + '/' + bt + '</span></div>';
           }).join('');
           const last = s.meta && s.meta.lastPlayedAt ? new Date(s.meta.lastPlayedAt).toLocaleDateString('tr-TR') : '—';
           return '<div class="adm-card">' +
-            '<div class="adm-p-head">' +
-              '<span class="adm-av">' + B.Avatar.el(pl.avatar) + '</span>' +
+            '<div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(pl.avatar) + '</span>' +
               '<div><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level +
-                (pl.age ? ' · 🎂 ' + pl.age : '') + (pl.grade != null ? ' · 🎓 ' + (pl.grade === 0 ? 'okul öncesi' : pl.grade + '. sınıf') : '') + '</div></div>' +
-            '</div>' +
+                (pl.age ? ' · 🎂 ' + pl.age : '') + (pl.grade != null ? ' · 🎓 ' + (pl.grade === 0 ? 'okul öncesi' : pl.grade + '. sınıf') : '') + '</div></div></div>' +
             '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
-            '<div class="adm-stats">' +
-              '<span>💰 ' + (pl.coins || 0) + '</span>' +
-              '<span>✅ ' + (st.correct || 0) + '</span>' +
-              '<span>❌ ' + (st.wrong || 0) + '</span>' +
-              '<span>🎯 %' + acc + '</span>' +
-              '<span>🔥 en iyi ' + ((s.streaks && s.streaks.best) || 0) + '</span>' +
-              '<span>📅 ' + last + '</span>' +
-            '</div>' +
-            '<div class="adm-lessons">' + lessonRows + '</div>' +
-          '</div>';
+            '<div class="adm-stats"><span>💰 ' + (pl.coins || 0) + '</span><span>✅ ' + (st.correct || 0) + '</span><span>❌ ' + (st.wrong || 0) +
+              '</span><span>🎯 %' + acc + '</span><span>🔥 en iyi ' + ((s.streaks && s.streaks.best) || 0) + '</span><span>📅 ' + last + '</span></div>' +
+            '<div class="adm-lessons">' + lessonRows + '</div></div>';
         }).join('');
       }
 
       /* ---- 🎁 İstekler ---- */
-      function renderWishes(body, players) {
+      function renderWishes(body) {
         const metricOpts = Object.keys(B.Wish.METRICS).map(m =>
           '<option value="' + m + '">' + B.Wish.METRICS[m].icon + ' ' + B.Wish.METRICS[m].name + '</option>').join('');
         let any = false;
@@ -6209,92 +6446,72 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           const wishes = (p.save.wishes || []);
           if (!wishes.length) return '';
           any = true;
-          return '<div class="adm-card"><div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(p.save.player.avatar) +
-            '</span><b>' + esc(p.save.player.name) + '</b></div>' +
+          return '<div class="adm-card"><div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(p.save.player.avatar) + '</span><b>' + esc(p.save.player.name) + '</b></div>' +
             wishes.slice().reverse().map(w => {
               const pr = w.goal ? B.Wish.progress(p.save, w) : null;
               const progHtml = pr ? '<div class="quest-bar"><i style="width:' + pr.pct + '%"></i><span class="quest-count">' + pr.cur + '/' + pr.target + '</span></div>' : '';
-              const statusBadge = { pending: '⏳ Yeni', assigned: '🎯 Hedefli', earned: '🎉 Hak etti!', granted: '✅ Verildi' }[w.status] || w.status;
+              const badge = { pending: '⏳ Yeni', assigned: '🎯 Hedefli', earned: '🎉 Hak etti!', granted: '✅ Verildi' }[w.status] || w.status;
               return '<div class="adm-wish" data-key="' + p.key + '" data-id="' + w.id + '">' +
-                '<div class="wish-top"><b>' + esc(w.text) + '</b><span class="wish-badge">' + statusBadge + '</span></div>' +
-                progHtml +
-                '<div class="adm-wish-ctl">' +
-                  '<select class="adm-metric">' + metricOpts + '</select>' +
-                  '<input class="adm-target" type="number" min="1" value="' + (w.goal ? w.goal.target : 10) + '" placeholder="hedef">' +
-                  '<button class="chip adm-assign">🎯 Hedef ata</button>' +
-                  '<button class="chip adm-grant">✅ Ödülü verdim</button>' +
-                '</div>' +
-                '<input class="adm-note name-input" placeholder="Çocuğa not (örn: bunu bitirince alırız)" value="' + esc(w.note) + '">' +
-              '</div>';
+                '<div class="wish-top"><b>' + esc(w.text) + '</b><span class="wish-badge">' + badge + '</span></div>' + progHtml +
+                '<div class="adm-wish-ctl"><select class="adm-metric">' + metricOpts + '</select>' +
+                '<input class="adm-target" type="number" min="1" value="' + (w.goal ? w.goal.target : 10) + '">' +
+                '<button class="chip adm-assign">🎯 Hedef ata</button><button class="chip adm-grant">✅ Ödülü verdim</button></div>' +
+                '<input class="adm-note name-input" placeholder="Çocuğa not" value="' + esc(w.note) + '"></div>';
             }).join('') + '</div>';
         }).join('');
-        if (!any) body.innerHTML = '<div class="wish-empty">Henüz istek yok. Çocuklar Dilek Kutusu\'ndan ekleyebilir.</div>';
+        if (!any) body.innerHTML = '<div class="wish-empty">Henüz istek yok.</div>';
 
         body.querySelectorAll('.adm-wish').forEach(el => {
-          const key = el.dataset.key, id = el.dataset.id;
-          const metricSel = el.querySelector('.adm-metric');
-          const wish = allPlayers().find(p => p.key === key).save.wishes.find(w => w.id === id);
-          if (wish && wish.goal) metricSel.value = wish.goal.metric;
-          el.querySelector('.adm-assign').onclick = () => {
-            const players2 = allPlayers(); const p = players2.find(x => x.key === key);
-            const w = p.save.wishes.find(w => w.id === id);
-            w.goal = { metric: metricSel.value, target: Math.max(1, parseInt(el.querySelector('.adm-target').value) || 10) };
-            if (w.status === 'pending' || w.status === 'assigned') {
-              w.status = B.Wish.value(p.save, w.goal.metric) >= w.goal.target ? 'earned' : 'assigned';
-            }
+          const p = findPlayer(el.dataset.key); if (!p) return;
+          const w = p.save.wishes.find(x => x.id === el.dataset.id);
+          if (w && w.goal) el.querySelector('.adm-metric').value = w.goal.metric;
+          el.querySelector('.adm-assign').onclick = async () => {
+            w.goal = { metric: el.querySelector('.adm-metric').value, target: Math.max(1, parseInt(el.querySelector('.adm-target').value) || 10) };
             w.note = el.querySelector('.adm-note').value;
-            writeSave(key, p.save); renderBody();
+            if (w.status === 'pending' || w.status === 'assigned')
+              w.status = B.Wish.value(p.save, w.goal.metric) >= w.goal.target ? 'earned' : 'assigned';
+            await persist(p); renderBody(); B.UI.toast('Hedef atandı 🎯');
           };
-          el.querySelector('.adm-grant').onclick = () => {
-            const players2 = allPlayers(); const p = players2.find(x => x.key === key);
-            const w = p.save.wishes.find(w => w.id === id);
+          el.querySelector('.adm-grant').onclick = async () => {
             w.status = 'granted'; w.note = el.querySelector('.adm-note').value;
-            writeSave(key, p.save); renderBody();
+            await persist(p); renderBody(); B.UI.toast('Ödül verildi olarak işaretlendi ✅');
           };
         });
       }
 
       /* ---- 💡 Fikirler ---- */
-      function renderIdeas(body, players) {
-        const statusOpts = { new: 'Yeni', seen: 'Gördüm', planned: 'Yapılacak', done: 'Eklendi' };
+      function renderIdeas(body) {
+        const opts = { new: 'Yeni', seen: 'Gördüm', planned: 'Yapılacak', done: 'Eklendi' };
         let any = false;
         body.innerHTML = players.map(p => {
           const ideas = (p.save.ideas || []);
           if (!ideas.length) return '';
           any = true;
-          return '<div class="adm-card"><div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(p.save.player.avatar) +
-            '</span><b>' + esc(p.save.player.name) + '</b></div>' +
+          return '<div class="adm-card"><div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(p.save.player.avatar) + '</span><b>' + esc(p.save.player.name) + '</b></div>' +
             ideas.slice().reverse().map(i => {
-              const opts = Object.keys(statusOpts).map(k => '<option value="' + k + '"' + (i.status === k ? ' selected' : '') + '>' + statusOpts[k] + '</option>').join('');
-              return '<div class="adm-wish" data-key="' + p.key + '" data-id="' + i.id + '">' +
-                '<div class="wish-top"><b>💡 ' + esc(i.text) + '</b></div>' +
-                '<div class="adm-wish-ctl"><select class="adm-istatus">' + opts + '</select>' +
-                '<button class="chip adm-isave">💾 Kaydet</button></div>' +
+              const o = Object.keys(opts).map(k => '<option value="' + k + '"' + (i.status === k ? ' selected' : '') + '>' + opts[k] + '</option>').join('');
+              return '<div class="adm-wish" data-key="' + p.key + '" data-id="' + i.id + '"><div class="wish-top"><b>💡 ' + esc(i.text) + '</b></div>' +
+                '<div class="adm-wish-ctl"><select class="adm-istatus">' + o + '</select><button class="chip adm-isave">💾 Kaydet</button></div>' +
                 '<input class="adm-inote name-input" placeholder="Çocuğa not" value="' + esc(i.note) + '"></div>';
             }).join('') + '</div>';
         }).join('');
-        if (!any) body.innerHTML = '<div class="wish-empty">Henüz fikir yok. Çocuklar Dilek Kutusu\'ndan gönderebilir.</div>';
+        if (!any) body.innerHTML = '<div class="wish-empty">Henüz fikir yok.</div>';
 
         body.querySelectorAll('.adm-wish').forEach(el => {
-          el.querySelector('.adm-isave').onclick = () => {
-            const key = el.dataset.key, id = el.dataset.id;
-            const p = allPlayers().find(x => x.key === key);
-            const idea = p.save.ideas.find(x => x.id === id);
+          el.querySelector('.adm-isave').onclick = async () => {
+            const p = findPlayer(el.dataset.key); if (!p) return;
+            const idea = p.save.ideas.find(x => x.id === el.dataset.id);
             idea.status = el.querySelector('.adm-istatus').value;
             idea.note = el.querySelector('.adm-inote').value;
-            writeSave(key, p.save);
-            B.UI.toast('Kaydedildi 💾');
+            await persist(p); B.UI.toast('Kaydedildi 💾');
           };
         });
       }
 
       function changePin() {
-        const ov = B.UI.overlay('<div class="ov-big">🔑</div><h2>Yeni Ebeveyn PIN\'i</h2>' +
-          '<input id="new-pin" type="password" class="name-input" placeholder="En az 4 hane">' +
-          '<div class="login-err" id="pin-err"></div>',
+        const ov = B.UI.overlay('<div class="ov-big">🔑</div><h2>Yeni Ebeveyn PIN\'i</h2><input id="new-pin" type="password" class="name-input" placeholder="En az 4 hane"><div class="login-err" id="pin-err"></div>',
           [{ label: 'KAYDET', onClick: null }]);
-        const btn = ov.querySelector('.overlay-btns .btn');
-        btn.onclick = () => {
+        ov.querySelector('.overlay-btns .btn').onclick = () => {
           const res = B.Auth.setAdminPin(ov.querySelector('#new-pin').value);
           if (!res.ok) { ov.querySelector('#pin-err').textContent = res.err; return; }
           ov.remove(); B.UI.toast('PIN güncellendi 🔑');
@@ -6333,6 +6550,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       B.Chest.init();
       B.Quest.init();
       B.Wish.init();
+      B.Cloud.init();
       B.Anim.init();
       B.Commander.init();
       B.UI.init();
@@ -6362,6 +6580,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       if (!B.State.data.wishes) B.State.data.wishes = [];
       if (!B.State.data.ideas) B.State.data.ideas = [];
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
+
+      // Bulut senkron: ebeveyn hedeflerini çek, bu cihazın ilerlemesini gönder
+      if (B.Cloud.enabled()) {
+        B.Cloud.pullDirectives().then(() => B.Cloud.pushSave());
+      }
 
       // Yeni profil (henüz karakteri yok) → kullanıcı adını varsayılan yap, karakter yaratmaya git
       if (!p.name) {

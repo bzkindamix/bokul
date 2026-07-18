@@ -23,6 +23,7 @@
       B.Chest.init();
       B.Quest.init();
       B.Wish.init();
+      B.Cloud.init();
       B.Anim.init();
       B.Commander.init();
       B.UI.init();
@@ -52,6 +53,11 @@
       if (!B.State.data.wishes) B.State.data.wishes = [];
       if (!B.State.data.ideas) B.State.data.ideas = [];
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
+
+      // Bulut senkron: ebeveyn hedeflerini çek, bu cihazın ilerlemesini gönder
+      if (B.Cloud.enabled()) {
+        B.Cloud.pullDirectives().then(() => B.Cloud.pushSave());
+      }
 
       // Yeni profil (henüz karakteri yok) → kullanıcı adını varsayılan yap, karakter yaratmaya git
       if (!p.name) {

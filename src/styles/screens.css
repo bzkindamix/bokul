@@ -389,3 +389,14 @@
   margin-top: 8px; font-size: 12.5px; color: var(--warn); line-height: 1.4;
   background: rgba(255, 179, 92, .1); border-radius: 10px; padding: 8px 10px;
 }
+
+/* ---------- v0.16: Bulut senkron (aile kodu, admin kaynak) ---------- */
+.login-foot { position: absolute; left: 16px; bottom: 16px; z-index: 6; display: flex; gap: 8px; flex-wrap: wrap; }
+.login-parent, .login-fam { color: var(--ink-dim); }
+.adm-fam { padding: 10px 14px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.adm-code { color: var(--xp); font-size: 18px; letter-spacing: 2px; font-family: var(--mono); }
+.adm-copy { margin-left: 8px; }
+.adm-fam-hint { color: var(--ink-dim); font-size: 12px; margin-top: 4px; }
+.asrc.tab-on { background: var(--legendary); color: #0b3a32; }
+.adm-sep { flex: 1; }
+.admin-tabs { flex-wrap: wrap; }
