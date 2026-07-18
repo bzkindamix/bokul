@@ -43,6 +43,7 @@ const JS = [
   'src/ui/screens/boss-screen.js',
   'src/ui/screens/locker-screen.js',
   'src/ui/screens/intro-screen.js',
+  'src/ui/screens/creator-screen.js',
   'src/core/game-engine.js',
   'src/main.js',
 ];

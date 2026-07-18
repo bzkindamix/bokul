@@ -536,6 +536,25 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .home-story { position: absolute; left: 16px; bottom: 16px; z-index: 5; color: var(--ink-dim); }
 .ov-crystal { color: var(--legendary); font-weight: 800; margin-top: 6px; }
 
+/* ---------- v0.8: Karakter Yaratma ---------- */
+.creator-root { align-items: center; justify-content: center; gap: 14px; padding: 24px; }
+.creator-title { font-size: 26px; font-weight: 900; letter-spacing: 1px; text-align: center; }
+.creator-sub { color: var(--ink-dim); font-size: 16px; text-align: center; }
+.gender-row { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+.gender-card {
+  width: min(200px, 40vw); background: var(--bg-panel); border: 3px solid var(--line);
+  border-radius: 22px; padding: 18px 14px; display: flex; flex-direction: column;
+  align-items: center; gap: 10px; transition: transform .12s, border-color .12s;
+}
+.gender-card:hover, .gender-card:active { border-color: var(--accent); transform: translateY(-4px) scale(1.03); }
+.gender-prev { width: 130px; height: 130px; display: block; }
+.gender-prev svg { width: 100%; height: 100%; }
+.gender-name { font-weight: 900; letter-spacing: 3px; font-size: 17px; }
+.creator-mini { display: inline-block; width: 110px; height: 110px; }
+.creator-name { max-width: 320px; }
+.creator-go { margin-top: 6px; }
+.part-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; color: var(--xp); margin-top: 4px; }
+
 </style>
 </head>
 <body>
@@ -811,6 +830,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     { "id": "hair-curly",  "type": "hair",      "rarity": "common",    "name": "Kıvırcık Saç" },
     { "id": "mouth-grin",  "type": "mouth",     "rarity": "common",    "name": "Sırıtış" },
     { "id": "hc-blue",     "type": "hairColor", "rarity": "rare",      "name": "Gece Mavisi Saç" },
+    { "id": "hc-purple",   "type": "hairColor", "rarity": "rare",      "name": "Mor Saç" },
+    { "id": "hc-teal",     "type": "hairColor", "rarity": "epic",      "name": "Turkuaz Saç" },
+    { "id": "hair-spiky",  "type": "hair",      "rarity": "rare",      "name": "Kirpi Saç" },
     { "id": "eyes-star",   "type": "eyes",      "rarity": "rare",      "name": "Yıldız Göz" },
     { "id": "acc-glasses", "type": "acc",       "rarity": "rare",      "name": "Pilot Gözlüğü" },
     { "id": "hc-neon",     "type": "hairColor", "rarity": "epic",      "name": "Neon Pembe Saç" },
@@ -2598,29 +2620,48 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/components/avatar.js === */
-/* BOKUL — Avatar Sistemi
- * SVG parça tabanlı karakter: ten, saç, göz, ağız, aksesuar, çerçeve.
- * Fotoğraf modu: cihazdan seçilen fotoğraf CİHAZDA kalır (localStorage),
- * hiçbir yere yüklenmez — çocuk gizliliği önceliklidir.
- * Kilitli parçalar rewards.json kozmetik id'leriyle eşleşir (sandıktan çıkar). */
+/* BOKUL — Avatar Sistemi (v0.8: genişletilmiş)
+ * SVG parça tabanlı karakter: cinsiyet, ten, saç modeli/rengi, GÖZ RENGİ,
+ * göz/ağız stili, aksesuar, çerçeve. Fotoğraf modu cihazda kalır.
+ * Kilitli parçalar rewards.json kozmetik id'leriyle eşleşir. */
 (function (B) {
 
-  /* ---------- Parça kataloğu ----------
-   * cosmeticId olmayan parçalar herkese açıktır. */
+  /* ---------- Parça kataloğu (cosmeticId olmayanlar herkese açık) ---------- */
   const CATALOG = {
     skins: [
-      { id: 0, color: '#F7D2B0' }, { id: 1, color: '#EFBE93' }, { id: 2, color: '#D9A06B' },
-      { id: 3, color: '#B57843' }, { id: 4, color: '#8C5A32' },
+      { id: 0, color: '#FBE0C4' }, { id: 1, color: '#F7D2B0' }, { id: 2, color: '#EFBE93' },
+      { id: 3, color: '#D9A06B' }, { id: 4, color: '#B57843' }, { id: 5, color: '#8C5A32' },
     ],
     hairColors: [
-      { id: 0, color: '#3B2A1A', name: 'Kahve' }, { id: 1, color: '#1C1C24', name: 'Siyah' },
-      { id: 2, color: '#B7742F', name: 'Kumral' }, { id: 3, color: '#E8C25A', name: 'Sarı' },
-      { id: 4, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue' },
-      { id: 5, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon' },
+      { id: 0, color: '#3B2A1A', name: 'Kahve' },
+      { id: 1, color: '#1C1C24', name: 'Siyah' },
+      { id: 2, color: '#B7742F', name: 'Kumral' },
+      { id: 3, color: '#E8C25A', name: 'Sarı' },
+      { id: 4, color: '#C4472B', name: 'Kızıl' },
+      { id: 5, color: '#C9C9D9', name: 'Gümüş' },
+      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue' },
+      { id: 7, color: '#9D6BFF', name: 'Mor', cosmeticId: 'hc-purple' },
+      { id: 8, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon' },
+      { id: 9, color: '#3DF2D2', name: 'Turkuaz', cosmeticId: 'hc-teal' },
+    ],
+    eyeColors: [
+      { id: 0, color: '#6B4423', name: 'Kahve' },
+      { id: 1, color: '#23212B', name: 'Siyah' },
+      { id: 2, color: '#3E7BFF', name: 'Mavi' },
+      { id: 3, color: '#3E9E62', name: 'Yeşil' },
+      { id: 4, color: '#9A7B3F', name: 'Ela' },
+      { id: 5, color: '#8FA3C2', name: 'Gri' },
     ],
     hairs: [
-      { id: 0, name: 'Kısa' }, { id: 1, name: 'Uzun' }, { id: 2, name: 'Topuz' },
-      { id: 3, name: 'Kıvırcık', cosmeticId: 'hair-curly' }, { id: 4, name: 'Sıfır' },
+      { id: 0, name: 'Kısa' },
+      { id: 1, name: 'Uzun' },
+      { id: 2, name: 'Topuz' },
+      { id: 3, name: 'Kıvırcık', cosmeticId: 'hair-curly' },
+      { id: 4, name: 'Sıfır' },
+      { id: 5, name: 'At Kuyruğu' },
+      { id: 6, name: 'İki Örgü' },
+      { id: 7, name: 'Kâkül' },
+      { id: 8, name: 'Kirpi', cosmeticId: 'hair-spiky' },
     ],
     eyes: [
       { id: 0, name: 'Klasik' }, { id: 1, name: 'Neşeli' },
@@ -2629,6 +2670,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     mouths: [
       { id: 0, name: 'Gülümseme' }, { id: 1, name: 'Kocaman Gülüş' },
       { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin' },
+      { id: 3, name: 'Islık' },
     ],
     accs: [
       { id: 'none', name: 'Yok' },
@@ -2648,7 +2690,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   function normalize(a) {
     a = a || {};
     return {
-      skin: a.skin ?? 1, hair: a.hair ?? 0, hairColor: a.hairColor ?? 0,
+      gender: a.gender || null,               // 'kiz' | 'erkek' | null
+      skin: a.skin ?? 2, hair: a.hair ?? 0, hairColor: a.hairColor ?? 0,
+      eyeColor: a.eyeColor ?? 0,
       eyes: a.eyes ?? 0, mouth: a.mouth ?? 0, acc: a.acc || 'none', ring: a.ring || 'none',
       photo: a.photo || null, usePhoto: !!a.usePhoto,
     };
@@ -2661,6 +2705,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
   /* ---------- SVG çizim parçaları ---------- */
   function hairSvg(style, color) {
+    const tie = '#FFD52E'; // saç lastiği
     switch (style) {
       case 0: // kısa
         return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/>';
@@ -2673,21 +2718,41 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         return '<circle cx="34" cy="38" r="12" fill="' + color + '"/><circle cx="47" cy="26" r="13" fill="' + color + '"/>' +
                '<circle cx="62" cy="22" r="13" fill="' + color + '"/><circle cx="77" cy="27" r="13" fill="' + color + '"/>' +
                '<circle cx="88" cy="39" r="12" fill="' + color + '"/>';
-      default: return ''; // sıfır (kel)
+      case 5: // at kuyruğu
+        return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/>' +
+               '<path d="M90 34 Q108 44 103 70 Q100 90 91 100 Q85 88 90 68 Q93 50 84 40 Z" fill="' + color + '"/>' +
+               '<rect x="86" y="36" width="9" height="6" rx="3" fill="' + tie + '" transform="rotate(30 90 39)"/>';
+      case 6: // iki örgü
+        return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/>' +
+               '<circle cx="26" cy="62" r="7" fill="' + color + '"/><circle cx="24" cy="76" r="6.5" fill="' + color + '"/><circle cx="23" cy="89" r="6" fill="' + color + '"/>' +
+               '<circle cx="94" cy="62" r="7" fill="' + color + '"/><circle cx="96" cy="76" r="6.5" fill="' + color + '"/><circle cx="97" cy="89" r="6" fill="' + color + '"/>' +
+               '<rect x="20" y="94" width="8" height="5" rx="2.5" fill="' + tie + '"/><rect x="93" y="94" width="8" height="5" rx="2.5" fill="' + tie + '"/>';
+      case 7: // kâkül (perçemli)
+        return '<path d="M24 52 Q22 18 60 15 Q98 18 96 52 L96 58 L88 44 L80 56 L72 42 L64 55 L56 42 L48 56 L40 44 L32 58 L24 58 Z" fill="' + color + '"/>';
+      case 8: // kirpi
+        return '<path d="M26 50 L30 26 L40 40 L46 16 L55 36 L62 12 L70 34 L78 16 L84 38 L92 26 L94 50 Q80 34 60 34 Q40 34 26 50 Z" fill="' + color + '"/>' +
+               '<path d="M26 50 Q40 36 60 36 Q80 36 94 50 L90 52 Q75 40 60 40 Q45 40 30 52 Z" fill="' + color + '"/>';
+      default: return ''; // sıfır (4)
     }
   }
 
-  function eyesSvg(style) {
-    switch (style) {
-      case 1: // neşeli
-        return '<path d="M38 56 Q44 50 50 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>' +
-               '<path d="M70 56 Q76 50 82 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>';
-      case 2: // yıldız göz
-        return star(44, 55, 7, '#FFD52E') + star(76, 55, 7, '#FFD52E');
-      default:
-        return '<circle cx="44" cy="56" r="5" fill="#2b1d10"/><circle cx="76" cy="56" r="5" fill="#2b1d10"/>' +
-               '<circle cx="46" cy="54" r="1.6" fill="#fff"/><circle cx="78" cy="54" r="1.6" fill="#fff"/>';
+  function eyesSvg(style, eyeColor, lashes) {
+    let s = '';
+    if (style === 1) { // neşeli
+      s = '<path d="M38 56 Q44 50 50 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>' +
+          '<path d="M70 56 Q76 50 82 56" stroke="#2b1d10" stroke-width="4" fill="none" stroke-linecap="round"/>';
+    } else if (style === 2) { // yıldız göz
+      s = star(44, 55, 7, '#FFD52E') + star(76, 55, 7, '#FFD52E');
+    } else { // klasik: beyaz + renkli iris + göz bebeği + parıltı
+      s = '<ellipse cx="44" cy="56" rx="7.5" ry="8" fill="#fff"/><ellipse cx="76" cy="56" rx="7.5" ry="8" fill="#fff"/>' +
+          '<circle cx="44" cy="57" r="4.8" fill="' + eyeColor + '"/><circle cx="76" cy="57" r="4.8" fill="' + eyeColor + '"/>' +
+          '<circle cx="44" cy="57" r="2.2" fill="#16121c"/><circle cx="76" cy="57" r="2.2" fill="#16121c"/>' +
+          '<circle cx="46" cy="54.5" r="1.4" fill="#fff"/><circle cx="78" cy="54.5" r="1.4" fill="#fff"/>';
     }
+    if (lashes && style !== 2) { // kirpikler
+      s += '<path d="M35 50 L31 46 M39 47 L36 42 M85 50 L89 46 M81 47 L84 42" stroke="#2b1d10" stroke-width="2.4" stroke-linecap="round"/>';
+    }
+    return s;
   }
 
   function star(cx, cy, r, fill) {
@@ -2701,12 +2766,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
   function mouthSvg(style) {
     switch (style) {
-      case 1: // kocaman gülüş
-        return '<path d="M42 72 Q60 92 78 72 Z" fill="#7a3b2e"/><path d="M48 76 Q60 84 72 76 Q60 80 48 76 Z" fill="#fff"/>';
-      case 2: // sırıtış
-        return '<path d="M44 76 Q60 86 80 70" stroke="#7a3b2e" stroke-width="5" fill="none" stroke-linecap="round"/>';
-      default:
-        return '<path d="M46 74 Q60 84 74 74" stroke="#7a3b2e" stroke-width="5" fill="none" stroke-linecap="round"/>';
+      case 1: return '<path d="M42 72 Q60 92 78 72 Z" fill="#7a3b2e"/><path d="M48 76 Q60 84 72 76 Q60 80 48 76 Z" fill="#fff"/>';
+      case 2: return '<path d="M44 76 Q60 86 80 70" stroke="#7a3b2e" stroke-width="5" fill="none" stroke-linecap="round"/>';
+      case 3: return '<circle cx="60" cy="77" r="5.5" fill="#7a3b2e"/><path d="M68 70 Q74 66 78 68" stroke="#c9c9d9" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/>';
+      default: return '<path d="M46 74 Q60 84 74 74" stroke="#7a3b2e" stroke-width="5" fill="none" stroke-linecap="round"/>';
     }
   }
 
@@ -2745,13 +2808,14 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   function svg(a) {
     a = normalize(a);
     const skin = CATALOG.skins[a.skin].color;
-    const hairC = CATALOG.hairColors[a.hairColor].color;
+    const hairC = (CATALOG.hairColors[a.hairColor] || CATALOG.hairColors[0]).color;
+    const eyeC = (CATALOG.eyeColors[a.eyeColor] || CATALOG.eyeColors[0]).color;
     return '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">' +
       '<circle cx="60" cy="60" r="54" fill="#31245F"/>' +
       '<ellipse cx="60" cy="64" rx="32" ry="34" fill="' + skin + '"/>' +
       '<circle cx="27" cy="64" r="6" fill="' + skin + '"/><circle cx="93" cy="64" r="6" fill="' + skin + '"/>' +
       hairSvg(a.hair, hairC) +
-      eyesSvg(a.eyes) +
+      eyesSvg(a.eyes, eyeC, a.gender === 'kiz') +
       '<ellipse cx="60" cy="66" rx="5" ry="6" fill="rgba(0,0,0,.12)"/>' +
       mouthSvg(a.mouth) +
       accSvg(a.acc) +
@@ -2769,7 +2833,14 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     return '<span class="avatar-holder ' + (cls || '') + '">' + svg(a) + '</span>';
   }
 
-  B.Avatar = { CATALOG, normalize, svg, el, isUnlocked };
+  /* Cinsiyete göre başlangıç görünümü (hepsi sonradan değiştirilebilir) */
+  function preset(gender) {
+    return gender === 'kiz'
+      ? { gender: 'kiz', skin: 2, hair: 6, hairColor: 2, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false }
+      : { gender: 'erkek', skin: 2, hair: 0, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false };
+  }
+
+  B.Avatar = { CATALOG, normalize, svg, el, isUnlocked, preset };
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/components/commander.js === */
@@ -3621,7 +3692,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       if (onboarding) {
         const t = document.createElement('div');
         t.className = 'map-title';
-        t.textContent = '🎖️ Kendini tanıt: avatarını oluştur, ' + (B.State.data.player.name || 'asker') + '!';
+        t.textContent = '🎨 Görünümünü detaylandır, ' + (B.State.data.player.name || 'asker') + '! (Saç, göz rengi, yüz...)';
         root.appendChild(t);
       }
 
@@ -3705,7 +3776,12 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           host.appendChild(grid(C.mouths, (x, p) => { x.mouth = p.id; }, p => p.id === a.mouth));
           host.appendChild(grid(C.skins.map(s => ({ ...s, name: 'Ten' })), (x, p) => { x.skin = p.id; }, p => p.id === a.skin));
         } else if (tab === 'color') {
+          const l1 = document.createElement('div'); l1.className = 'part-label'; l1.textContent = '💇 SAÇ RENGİ';
+          host.appendChild(l1);
           host.appendChild(grid(C.hairColors, (x, p) => { x.hairColor = p.id; }, p => p.id === a.hairColor));
+          const l2 = document.createElement('div'); l2.className = 'part-label'; l2.textContent = '👁️ GÖZ RENGİ';
+          host.appendChild(l2);
+          host.appendChild(grid(C.eyeColors, (x, p) => { x.eyeColor = p.id; }, p => p.id === a.eyeColor));
         } else if (tab === 'acc') {
           host.appendChild(grid(C.accs, (x, p) => { x.acc = p.id; }, p => p.id === a.acc));
         } else if (tab === 'ring') {
@@ -3762,7 +3838,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         if (onboarding) {
           left.querySelector('.locker-done').onclick = () => {
             B.Save.saveNow();
-            B.UI.show('home');
+            // Karakter hazır → hikâye sinematiği (ilk kez) → üs
+            if (!B.Save.settings.get().introSeen) B.UI.show('intro', {});
+            else B.UI.show('home');
           };
         }
         renderTab();
@@ -3939,6 +4017,66 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   });
 })(window.BOKUL = window.BOKUL || {});
 
+/* === src/ui/screens/creator-screen.js === */
+/* BOKUL — Karakter Yaratma Sihirbazı (oyunun İLK adımı)
+ * Akış: 1) Cinsiyet seç → 2) İsmini yaz → 3) Dolap'ta görünümü detaylandır
+ * Sonrasında giriş sinematiği oynar ve üsse girilir. */
+(function (B) {
+
+  B.UI.registerScreen('creator', {
+    enter(root) {
+      root.classList.add('creator-root');
+
+      /* ---- Adım 1: Cinsiyet ---- */
+      function stepGender() {
+        const kiz = B.Avatar.preset('kiz');
+        const erkek = B.Avatar.preset('erkek');
+        root.innerHTML =
+          '<h2 class="creator-title">🎖️ Karakterini Yarat</h2>' +
+          '<p class="creator-sub">Önce seç: kimsin sen, asker?</p>' +
+          '<div class="gender-row">' +
+            '<button class="gender-card" data-g="kiz">' +
+              '<span class="gender-prev">' + B.Avatar.svg(kiz) + '</span>' +
+              '<span class="gender-name">KIZ</span></button>' +
+            '<button class="gender-card" data-g="erkek">' +
+              '<span class="gender-prev">' + B.Avatar.svg(erkek) + '</span>' +
+              '<span class="gender-name">ERKEK</span></button>' +
+          '</div>';
+        root.querySelectorAll('.gender-card').forEach(c => {
+          c.onclick = () => {
+            B.Audio.play('correct');
+            B.State.data.player.avatar = B.Avatar.preset(c.dataset.g);
+            stepName();
+          };
+        });
+      }
+
+      /* ---- Adım 2: İsim ---- */
+      function stepName() {
+        root.innerHTML =
+          '<h2 class="creator-title">' + B.Avatar.el(B.State.data.player.avatar, 'creator-mini') + '</h2>' +
+          '<p class="creator-sub">Peki adın ne?</p>' +
+          '<input id="creator-name" class="name-input creator-name" maxlength="14" placeholder="Adını yaz...">' +
+          '<button class="btn btn-action creator-go">DEVAM ▶</button>';
+        const input = root.querySelector('#creator-name');
+        setTimeout(() => input.focus(), 100);
+        root.querySelector('.creator-go').onclick = () => {
+          const nm = (input.value || '').trim() || 'Asker';
+          B.State.data.player.name = nm;
+          B.Save.settings.set({ playerName: nm });
+          B.Save.saveNow();
+          B.Audio.play('tick');
+          // Adım 3: görünüm detayları (Dolap, onboarding modu)
+          B.UI.show('locker', { onboarding: true });
+        };
+      }
+
+      stepGender();
+    },
+    exit() {},
+  });
+})(window.BOKUL = window.BOKUL || {});
+
 /* === src/core/game-engine.js === */
 /* BOKUL — GameEngine
  * Başlatma sırasının tek sahibi: kayıt → içerik → motorlar → arayüz. */
@@ -3972,18 +4110,20 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     },
 
     /* Splash'tan oyuna giriş (ilk dokunuş ses kilidini de açar)
-     * Akış: sinematik (ilk kez) → isim → avatar → üs */
+     * Akış: KARAKTER YARATMA (cinsiyet → isim → görünüm) → sinematik → üs */
     start() {
       B.Audio.unlock();
+      const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
+      if (!name) return B.UI.show('creator', {});   // en başta karakter yaratma
+      B.State.data.player.name = name;
       if (!B.Save.settings.get().introSeen) return B.UI.show('intro', {});
-      B.Engine.afterIntro();
+      B.UI.show('home');
     },
 
-    /* Sinematik bitince (veya daha önce izlendiyse) buradan devam edilir */
+    /* Sinematik bitince buradan devam edilir */
     afterIntro() {
       const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
-      if (!name) return B.Engine.askName();
-      B.State.data.player.name = name;
+      B.State.data.player.name = name || 'Asker';
       B.UI.show('home');
     },
 

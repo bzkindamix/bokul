@@ -178,3 +178,22 @@
 @keyframes cineBlink { 50% { opacity: .2; } }
 .home-story { position: absolute; left: 16px; bottom: 16px; z-index: 5; color: var(--ink-dim); }
 .ov-crystal { color: var(--legendary); font-weight: 800; margin-top: 6px; }
+
+/* ---------- v0.8: Karakter Yaratma ---------- */
+.creator-root { align-items: center; justify-content: center; gap: 14px; padding: 24px; }
+.creator-title { font-size: 26px; font-weight: 900; letter-spacing: 1px; text-align: center; }
+.creator-sub { color: var(--ink-dim); font-size: 16px; text-align: center; }
+.gender-row { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
+.gender-card {
+  width: min(200px, 40vw); background: var(--bg-panel); border: 3px solid var(--line);
+  border-radius: 22px; padding: 18px 14px; display: flex; flex-direction: column;
+  align-items: center; gap: 10px; transition: transform .12s, border-color .12s;
+}
+.gender-card:hover, .gender-card:active { border-color: var(--accent); transform: translateY(-4px) scale(1.03); }
+.gender-prev { width: 130px; height: 130px; display: block; }
+.gender-prev svg { width: 100%; height: 100%; }
+.gender-name { font-weight: 900; letter-spacing: 3px; font-size: 17px; }
+.creator-mini { display: inline-block; width: 110px; height: 110px; }
+.creator-name { max-width: 320px; }
+.creator-go { margin-top: 6px; }
+.part-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; color: var(--xp); margin-top: 4px; }

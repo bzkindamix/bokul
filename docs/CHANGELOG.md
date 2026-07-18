@@ -1,5 +1,18 @@
 # BOKUL — Sürüm Notları
 
+## v0.8-karakter — Karakter Yaratma Sihirbazı (2026-07-18)
+
+- Karakter yaratma artık oyunun İLK adımı: Cinsiyet seç (kız/erkek önizlemeli
+  kartlar) → isim → görünüm detayları (Dolap) → sinematik → üs.
+- Cinsiyet: başlangıç görünümünü belirler (kız: iki örgü + kirpikli gözler);
+  tüm parçalar iki cinsiyete de açık, hiçbir seçenek kilitlenmez.
+- YENİ: Göz rengi (6 renk: kahve, siyah, mavi, yeşil, ela, gri) — klasik göz
+  artık beyaz + renkli iris + ışıltılı bebek olarak çiziliyor.
+- Saç modelleri 5 → 9: at kuyruğu, iki örgü, kâkül, kirpi (kirpi kilitli/nadir).
+- Saç renkleri 6 → 10 (kızıl, gümüş, mor*, turkuaz* eklendi; *kilitli).
+- Ten 5 → 6 ton; ağızlara "Islık" eklendi. Renk sekmesi bölümlü: SAÇ / GÖZ.
+
+
 ## v0.8-hikaye — Giriş Sinematiği (2026-07-18)
 
 - HİKÂYE: KARMAŞA, Büyük Sayı Kristali'ni parçaladı — hiçbir şey adil

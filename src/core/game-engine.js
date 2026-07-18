@@ -30,18 +30,20 @@
     },
 
     /* Splash'tan oyuna giriş (ilk dokunuş ses kilidini de açar)
-     * Akış: sinematik (ilk kez) → isim → avatar → üs */
+     * Akış: KARAKTER YARATMA (cinsiyet → isim → görünüm) → sinematik → üs */
     start() {
       B.Audio.unlock();
+      const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
+      if (!name) return B.UI.show('creator', {});   // en başta karakter yaratma
+      B.State.data.player.name = name;
       if (!B.Save.settings.get().introSeen) return B.UI.show('intro', {});
-      B.Engine.afterIntro();
+      B.UI.show('home');
     },
 
-    /* Sinematik bitince (veya daha önce izlendiyse) buradan devam edilir */
+    /* Sinematik bitince buradan devam edilir */
     afterIntro() {
       const name = (B.Save.settings.get().playerName || B.State.data.player.name || '').trim();
-      if (!name) return B.Engine.askName();
-      B.State.data.player.name = name;
+      B.State.data.player.name = name || 'Asker';
       B.UI.show('home');
     },
 

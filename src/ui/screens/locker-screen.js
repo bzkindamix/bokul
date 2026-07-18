@@ -24,7 +24,7 @@
       if (onboarding) {
         const t = document.createElement('div');
         t.className = 'map-title';
-        t.textContent = '🎖️ Kendini tanıt: avatarını oluştur, ' + (B.State.data.player.name || 'asker') + '!';
+        t.textContent = '🎨 Görünümünü detaylandır, ' + (B.State.data.player.name || 'asker') + '! (Saç, göz rengi, yüz...)';
         root.appendChild(t);
       }
 
@@ -108,7 +108,12 @@
           host.appendChild(grid(C.mouths, (x, p) => { x.mouth = p.id; }, p => p.id === a.mouth));
           host.appendChild(grid(C.skins.map(s => ({ ...s, name: 'Ten' })), (x, p) => { x.skin = p.id; }, p => p.id === a.skin));
         } else if (tab === 'color') {
+          const l1 = document.createElement('div'); l1.className = 'part-label'; l1.textContent = '💇 SAÇ RENGİ';
+          host.appendChild(l1);
           host.appendChild(grid(C.hairColors, (x, p) => { x.hairColor = p.id; }, p => p.id === a.hairColor));
+          const l2 = document.createElement('div'); l2.className = 'part-label'; l2.textContent = '👁️ GÖZ RENGİ';
+          host.appendChild(l2);
+          host.appendChild(grid(C.eyeColors, (x, p) => { x.eyeColor = p.id; }, p => p.id === a.eyeColor));
         } else if (tab === 'acc') {
           host.appendChild(grid(C.accs, (x, p) => { x.acc = p.id; }, p => p.id === a.acc));
         } else if (tab === 'ring') {
@@ -165,7 +170,9 @@
         if (onboarding) {
           left.querySelector('.locker-done').onclick = () => {
             B.Save.saveNow();
-            B.UI.show('home');
+            // Karakter hazır → hikâye sinematiği (ilk kez) → üs
+            if (!B.Save.settings.get().introSeen) B.UI.show('intro', {});
+            else B.UI.show('home');
           };
         }
         renderTab();
