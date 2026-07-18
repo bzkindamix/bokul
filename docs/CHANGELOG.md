@@ -1,5 +1,22 @@
 # BOKUL — Sürüm Notları
 
+## v0.13 — Ebeveyn Konsolu ve Dilek Kutusu (2026-07-18)
+
+- 👨‍👧 EBEVEYN KONSOLU: Giriş ekranında "👨‍👧 Ebeveyn" → ebeveyn PIN'i (ilk
+  kullanımda oluşturulur, çocuklar bilmez). Üç sekme:
+  - 📊 Oyuncular: her çocuğun seviye, XP, altın, doğru/yanlış, isabet %,
+    en iyi seri, son oynama ve her cephede yıldız/boss ilerlemesi.
+  - 🎁 İstekler: çocukların ödül isteklerini görür; her isteğe oyun-içi HEDEF
+    atar (X hedef / X seviye / X yıldız / X boss), ilerlemeyi izler, "Ödülü
+    verdim" ile kapatır, not bırakır.
+  - 💡 Fikirler: çocukların oyun fikirlerini görür, durum + not verir.
+- 🎁 DİLEK KUTUSU (çocuk): Üste "🎁 Dilek Kutusu" → gerçek ödül ister
+  (oyuncak vb.) veya oyuna fikir gönderir. İstek durumunu görür: bekliyor /
+  hedef verildi (ilerleme barlı) / 🎉 HAK ETTİN. Hedefe ulaşınca oyun otomatik
+  algılar, çocuğa müjde verir; ebeveyn gerçek ödülü verir.
+- Tüm veriler cihazda, her çocuğun kendi kaydında; konsol tüm kayıtları okur.
+
+
 ## v0.12 — Kıyafetler Göründü + Bol Çeşit + Cinsiyet Filtresi (2026-07-18)
 
 - 👕 KIYAFET HATASI DÜZELDİ: Avatarlar sadece kafadan ibaretti. Artık omuz +

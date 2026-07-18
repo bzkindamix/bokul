@@ -9,6 +9,7 @@
 (function (B) {
   const USERS_KEY = 'bokul.users';
   const SESSION_KEY = 'bokul.session';
+  const ADMIN_KEY = 'bokul.admin';
 
   /* Basit, tersine çevrilemez karma (kriptografik değil) — düz metin saklamamak için */
   function hash(s) {
@@ -73,5 +74,17 @@
     resume(key) { if (readUsers()[key]) { current = key; return true; } return false; },
 
     logout() { current = null; try { localStorage.removeItem(SESSION_KEY); } catch (e) {} },
+
+    /* ---- Ebeveyn (admin) PIN'i ---- */
+    adminExists() { try { return !!localStorage.getItem(ADMIN_KEY); } catch (e) { return false; } },
+    setAdminPin(pin) {
+      if (String(pin || '').length < 4) return { ok: false, err: 'PIN en az 4 haneli olmalı.' };
+      try { localStorage.setItem(ADMIN_KEY, JSON.stringify({ pin: hash(pin) })); } catch (e) {}
+      return { ok: true };
+    },
+    checkAdmin(pin) {
+      try { return JSON.parse(localStorage.getItem(ADMIN_KEY)).pin === hash(pin); }
+      catch (e) { return false; }
+    },
   };
 })(window.BOKUL = window.BOKUL || {});

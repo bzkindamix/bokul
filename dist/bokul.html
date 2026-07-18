@@ -656,6 +656,50 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .login-new { border-style: dashed; justify-content: center; }
 .home-logout { position: absolute; right: 16px; bottom: 16px; z-index: 5; color: var(--ink-dim); }
 
+/* ---------- v0.13: Dilek Kutusu (çocuk) ---------- */
+.home-wishes { position: absolute; left: 16px; top: 64px; z-index: 5; }
+.wishes-wrap { flex: 1; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 8px 16px 20px; }
+@media (max-width: 720px) { .wishes-wrap { grid-template-columns: 1fr; } }
+.wish-col { display: flex; flex-direction: column; gap: 8px; }
+.wish-h { font-size: 18px; font-weight: 900; }
+.wish-hint { color: var(--ink-dim); font-size: 12.5px; line-height: 1.4; }
+.wish-add { display: flex; gap: 8px; }
+.wish-add .name-input { margin: 0; flex: 1; text-align: left; font-size: 14px; }
+.wish-add .btn { padding: 10px 14px; white-space: nowrap; }
+.wish-card { background: var(--bg-panel); border: 2px solid var(--line); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+.wish-card.wish-earned { border-color: var(--xp); box-shadow: 0 0 14px rgba(255,213,46,.4); animation: cardPop .4s; }
+.wish-card.wish-granted { opacity: .6; }
+.wish-card.wish-assigned { border-color: var(--accent); }
+.wish-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.wish-top b { font-size: 14px; }
+.wish-badge { font-size: 11px; font-weight: 800; white-space: nowrap; }
+.wish-goal { font-size: 12px; color: var(--ink-dim); }
+.wish-note { font-size: 12px; color: var(--xp); background: rgba(255,213,46,.08); border-radius: 8px; padding: 5px 8px; }
+.wish-empty { color: var(--ink-dim); font-size: 13px; text-align: center; padding: 16px; }
+
+/* ---------- v0.13: Ebeveyn Konsolu ---------- */
+.login-parent { position: absolute; left: 16px; bottom: 16px; z-index: 6; color: var(--ink-dim); }
+.admin-root { padding: 0; }
+.admin-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.admin-head b { font-size: 16px; }
+.admin-tabs { display: flex; gap: 8px; padding: 10px 14px; overflow-x: auto; }
+.atab.tab-on { background: var(--accent); color: #3a0a2e; }
+.admin-body { flex: 1; overflow-y: auto; padding: 4px 14px 24px; display: flex; flex-direction: column; gap: 14px; }
+.adm-card { background: var(--bg-panel); border: 2px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
+.adm-p-head { display: flex; align-items: center; gap: 10px; }
+.adm-av { width: 48px; height: 48px; flex: none; }
+.adm-av .avatar-holder { width: 100%; height: 100%; }
+.adm-rank { font-size: 12px; color: var(--ink-dim); }
+.adm-xp { height: 12px; }
+.adm-stats { display: flex; flex-wrap: wrap; gap: 10px; font-size: 13px; font-weight: 700; }
+.adm-lessons { display: flex; flex-direction: column; gap: 4px; }
+.adm-lesson { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--ink-dim); }
+.adm-wish { border-top: 1px dashed var(--line); padding-top: 8px; display: flex; flex-direction: column; gap: 6px; }
+.adm-wish-ctl { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.adm-metric, .adm-istatus, .adm-target { background: var(--bg-raised); color: var(--ink); border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; font-size: 13px; font-family: inherit; }
+.adm-target { width: 80px; }
+.adm-note, .adm-inote { margin: 0 !important; text-align: left !important; font-size: 13px !important; padding: 8px 10px !important; }
+
 </style>
 </head>
 <body>
@@ -665,7 +709,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.6 — İlk Çalışan Sürüm</div>
+      <div class="splash-note">v0.12 — Karakter & Kıyafet Güncellemesi</div>
     </div>
   </div>
 
@@ -1725,6 +1769,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     QUEST_PROGRESS:  'quest:progress',
     QUEST_COMPLETED: 'quest:completed',
 
+    // Dilek / istek
+    WISH_EARNED: 'wish:earned',   // ebeveyn hedefi tamamlandı
+
     // İlerleme
     MISSION_COMPLETED: 'mission:completed', // { missionId, stars, xp }
     SECTION_UNLOCKED:  'section:unlocked',
@@ -1791,10 +1838,12 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       player: { name: '', xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
-      stats: { correct: 0, wrong: 0, perSkill: {} }, // perSkill: { estimate: [1,0,1,...] } son 20 sonuç
+      stats: { correct: 0, wrong: 0, questionsDone: 0, perSkill: {} }, // perSkill: { estimate: [1,0,1,...] }
       progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
       inventory: { cosmetics: [], badges: [], titles: [] },
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },
+      wishes: [], // { id, text, created, status, goal:{metric,target}|null, note }
+      ideas: [],  // { id, text, created, status, note }
     };
   }
 
@@ -1834,6 +1883,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 (function (B) {
   const USERS_KEY = 'bokul.users';
   const SESSION_KEY = 'bokul.session';
+  const ADMIN_KEY = 'bokul.admin';
 
   /* Basit, tersine çevrilemez karma (kriptografik değil) — düz metin saklamamak için */
   function hash(s) {
@@ -1898,6 +1948,18 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     resume(key) { if (readUsers()[key]) { current = key; return true; } return false; },
 
     logout() { current = null; try { localStorage.removeItem(SESSION_KEY); } catch (e) {} },
+
+    /* ---- Ebeveyn (admin) PIN'i ---- */
+    adminExists() { try { return !!localStorage.getItem(ADMIN_KEY); } catch (e) { return false; } },
+    setAdminPin(pin) {
+      if (String(pin || '').length < 4) return { ok: false, err: 'PIN en az 4 haneli olmalı.' };
+      try { localStorage.setItem(ADMIN_KEY, JSON.stringify({ pin: hash(pin) })); } catch (e) {}
+      return { ok: true };
+    },
+    checkAdmin(pin) {
+      try { return JSON.parse(localStorage.getItem(ADMIN_KEY)).pin === hash(pin); }
+      catch (e) { return false; }
+    },
   };
 })(window.BOKUL = window.BOKUL || {});
 
@@ -2633,6 +2695,104 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       B.Bus.on(E.MISSION_COMPLETED, p => bump('mission:completed', p));
       B.Bus.on(E.BOSS_DEFEATED, p => bump('boss:defeated', p));
       B.Bus.on(E.STEP_ANSWERED, p => bump('step:answered', p));
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/engines/wish-engine.js === */
+/* BOKUL — Wish Engine (Dilek Kutusu + Ebeveyn Hedefleri)
+ * Çocuk gerçek hayattan bir ödül ister (oyuncak vb.) veya oyuna fikir verir.
+ * Ebeveyn konsolu bir isteğe oyun-içi HEDEF bağlar (ör. 30 hedef tamamla).
+ * Çocuk hedefe ulaşınca istek "hak edildi" olur; ebeveyn gerçek ödülü verir.
+ * Metrik hesapları hem aktif oyuncu hem admin (diğer kayıtlar) için ortaktır. */
+(function (B) {
+
+  /* Ebeveyn tarafından atanabilen, oyun-içi ölçülebilir hedefler */
+  const METRICS = {
+    targets: { name: 'Hedef tamamla', icon: '🎯' },
+    level:   { name: 'Seviyeye ulaş', icon: '⭐' },
+    stars:   { name: 'Yıldız topla',  icon: '🌟' },
+    bosses:  { name: 'Boss yen',      icon: '🏰' },
+  };
+
+  function sumStars(save) {
+    let s = 0;
+    const L = (save.progress && save.progress.lessons) || {};
+    Object.values(L).forEach(les => Object.values(les.sections || {}).forEach(sec =>
+      Object.values(sec.missions || {}).forEach(m => { s += m.stars || 0; })));
+    return s;
+  }
+  function countBosses(save) {
+    let n = 0;
+    const L = (save.progress && save.progress.lessons) || {};
+    Object.values(L).forEach(les => Object.values(les.sections || {}).forEach(sec => { if (sec.bossDefeated) n++; }));
+    return n;
+  }
+
+  function newId() { return 'w' + Date.now().toString(36) + Math.floor(Math.random() * 1000); }
+
+  B.Wish = {
+    METRICS,
+
+    /* Bir kayıt (save-like) için metrik değeri */
+    value(save, metric) {
+      switch (metric) {
+        case 'level':   return save.player.level || 1;
+        case 'targets': return (save.stats && save.stats.questionsDone) || 0;
+        case 'stars':   return sumStars(save);
+        case 'bosses':  return countBosses(save);
+        default:        return 0;
+      }
+    },
+
+    /* Hedefli bir isteğin ilerlemesi */
+    progress(save, wish) {
+      if (!wish.goal) return null;
+      const cur = B.Wish.value(save, wish.goal.metric);
+      const target = wish.goal.target || 1;
+      return { cur, target, pct: Math.min(100, Math.round(cur / target * 100)), done: cur >= target };
+    },
+
+    /* ---- Aktif oyuncu (çocuk) tarafı ---- */
+    addWish(text) {
+      text = String(text || '').trim();
+      if (!text) return;
+      B.State.data.wishes.push({ id: newId(), text, created: new Date().toISOString(), status: 'pending', goal: null, note: '' });
+      B.Save.saveSoon();
+    },
+    addIdea(text) {
+      text = String(text || '').trim();
+      if (!text) return;
+      B.State.data.ideas.push({ id: newId(), text, created: new Date().toISOString(), status: 'new', note: '' });
+      B.Save.saveSoon();
+    },
+    myWishes() { return B.State.data.wishes || []; },
+    myIdeas() { return B.State.data.ideas || []; },
+
+    /* Atanmış hedefler tamamlandı mı? Tamamlandıysa "hak edildi" yap + müjde */
+    checkEarned() {
+      let changed = false;
+      (B.State.data.wishes || []).forEach(w => {
+        if (w.goal && w.status === 'assigned') {
+          if (B.Wish.value(B.State.data, w.goal.metric) >= w.goal.target) {
+            w.status = 'earned';
+            changed = true;
+            B.UI.toast('🎉 "' + w.text + '" ödülünü hak ettin! Baba\'na göster.');
+            B.Bus.emit(B.Events.WISH_EARNED, {});
+          }
+        }
+      });
+      if (changed) B.Save.saveSoon();
+    },
+
+    init() {
+      const E = B.Events;
+      B.Bus.on(E.QUESTION_COMPLETED, () => {
+        B.State.data.stats.questionsDone = (B.State.data.stats.questionsDone || 0) + 1;
+        B.Wish.checkEarned();
+      });
+      B.Bus.on(E.LEVEL_UP, () => B.Wish.checkEarned());
+      B.Bus.on(E.BOSS_DEFEATED, () => B.Wish.checkEarned());
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -4218,6 +4378,14 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       replay.onclick = () => B.UI.show('intro', { replay: true });
       root.appendChild(replay);
 
+      // Dilek Kutusu (ödül isteği + oyun fikri)
+      const wish = document.createElement('button');
+      wish.className = 'chip home-wishes';
+      const earned = (B.State.data.wishes || []).some(w => w.status === 'earned');
+      wish.textContent = '🎁 Dilek Kutusu' + (earned ? ' 🎉' : '');
+      wish.onclick = () => B.UI.show('wishes');
+      root.appendChild(wish);
+
       // Oyuncu değiştir / çıkış
       const out = document.createElement('button');
       out.className = 'chip home-logout';
@@ -5360,11 +5528,342 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     });
   }
 
+  /* Ebeveyn konsolu erişimi: PIN oluştur (ilk kez) veya gir */
+  function openParent() {
+    if (!B.Auth.adminExists()) {
+      const ov = B.UI.overlay(
+        '<div class="ov-big">👨‍👧</div><h2>Ebeveyn Konsolu</h2>' +
+        '<p class="ov-quote">İlk kez giriyorsun. Bir ebeveyn PIN\'i oluştur (çocuklar bilmesin).</p>' +
+        '<input id="pin-new" type="password" class="name-input" placeholder="En az 4 hane">' +
+        '<div class="login-err" id="pin-err"></div>',
+        [{ label: 'OLUŞTUR ▶', onClick: null }]);
+      const btn = ov.querySelector('.overlay-btns .btn');
+      btn.onclick = () => {
+        const r = B.Auth.setAdminPin(ov.querySelector('#pin-new').value);
+        if (!r.ok) { ov.querySelector('#pin-err').textContent = r.err; return; }
+        ov.remove(); B.UI.show('admin');
+      };
+    } else {
+      const ov = B.UI.overlay(
+        '<div class="ov-big">🔒</div><h2>Ebeveyn Girişi</h2>' +
+        '<input id="pin-in" type="password" class="name-input" placeholder="Ebeveyn PIN">' +
+        '<div class="login-err" id="pin-err"></div>',
+        [{ label: 'GİR ▶', onClick: null }]);
+      const btn = ov.querySelector('.overlay-btns .btn');
+      const input = ov.querySelector('#pin-in');
+      setTimeout(() => input.focus(), 100);
+      function go() {
+        if (!B.Auth.checkAdmin(input.value)) { ov.querySelector('#pin-err').textContent = '⚠️ PIN yanlış.'; input.value = ''; return; }
+        ov.remove(); B.UI.show('admin');
+      }
+      btn.onclick = go;
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+    }
+  }
+
   B.UI.registerScreen('login', {
     enter(root) {
       root.classList.add('login-root');
-      if (!B.Auth.hasAny()) renderRegister(root, true);
-      else renderSelect(root);
+      root.innerHTML = '<div class="login-content"></div>';
+      const content = root.querySelector('.login-content');
+      const parentBtn = document.createElement('button');
+      parentBtn.className = 'chip login-parent';
+      parentBtn.textContent = '👨‍👧 Ebeveyn';
+      parentBtn.onclick = openParent;
+      root.appendChild(parentBtn);
+      if (!B.Auth.hasAny()) renderRegister(content, true);
+      else renderSelect(content);
+    },
+    exit() {},
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/wishes-screen.js === */
+/* BOKUL — Dilek Kutusu (çocuk tarafı)
+ * Çocuk gerçek ödül ister (🎁) veya oyuna fikir verir (💡).
+ * İstek durumunu görür: bekliyor / hedef verildi / HAK EDİLDİ. */
+(function (B) {
+  const WISH_STATUS = {
+    pending:  { label: '⏳ Baba görecek', cls: '' },
+    assigned: { label: '🎯 Hedef verildi', cls: 'wish-assigned' },
+    earned:   { label: '🎉 HAK ETTİN!',   cls: 'wish-earned' },
+    granted:  { label: '✅ Ödül verildi',  cls: 'wish-granted' },
+  };
+  const IDEA_STATUS = {
+    new:     '💡 Yeni',
+    seen:    '👀 Baba gördü',
+    planned: '🛠️ Yapılacak',
+    done:    '✅ Eklendi',
+  };
+
+  B.UI.registerScreen('wishes', {
+    enter(root) {
+      const hud = B.UI.buildHud(root, { backTo: 'home' });
+      this._hud = hud;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'wishes-wrap';
+      root.appendChild(wrap);
+
+      function render() {
+        wrap.innerHTML =
+          '<div class="wish-col">' +
+            '<h3 class="wish-h">🎁 Ödül İsteklerim</h3>' +
+            '<p class="wish-hint">Gerçek hayattan ne istersin? (oyuncak, kitap, gezme...) Baba görecek. Verdiği görevleri bitirince ödülü senin!</p>' +
+            '<div class="wish-add"><input id="wish-input" class="name-input" maxlength="60" placeholder="Örn: Lego uzay seti"><button class="btn btn-action" id="wish-go">İSTE</button></div>' +
+            '<div id="wish-list"></div>' +
+          '</div>' +
+          '<div class="wish-col">' +
+            '<h3 class="wish-h">💡 Oyun Fikirlerim</h3>' +
+            '<p class="wish-hint">Oyuna ne eklensin istersin? Fikrini yaz, Baba okusun!</p>' +
+            '<div class="wish-add"><input id="idea-input" class="name-input" maxlength="80" placeholder="Örn: Uzay cephesi olsun"><button class="btn btn-action" id="idea-go">GÖNDER</button></div>' +
+            '<div id="idea-list"></div>' +
+          '</div>';
+
+        // Ödül istekleri
+        const wl = wrap.querySelector('#wish-list');
+        const wishes = B.Wish.myWishes();
+        wl.innerHTML = wishes.length ? '' : '<div class="wish-empty">Henüz istek yok. Yukarıdan ekle!</div>';
+        wishes.slice().reverse().forEach(w => {
+          const st = WISH_STATUS[w.status] || WISH_STATUS.pending;
+          let prog = '';
+          if (w.goal) {
+            const pr = B.Wish.progress(B.State.data, w);
+            const m = B.Wish.METRICS[w.goal.metric];
+            prog = '<div class="wish-goal">' + m.icon + ' ' + m.name + ': ' + pr.cur + '/' + pr.target +
+                   '<div class="quest-bar"><i style="width:' + pr.pct + '%"></i></div></div>';
+          }
+          wl.insertAdjacentHTML('beforeend',
+            '<div class="wish-card ' + st.cls + '"><div class="wish-top"><b>' + w.text + '</b>' +
+            '<span class="wish-badge">' + st.label + '</span></div>' + prog +
+            (w.note ? '<div class="wish-note">📝 Baba: ' + w.note + '</div>' : '') + '</div>');
+        });
+
+        // Fikirler
+        const il = wrap.querySelector('#idea-list');
+        const ideas = B.Wish.myIdeas();
+        il.innerHTML = ideas.length ? '' : '<div class="wish-empty">Henüz fikir yok. Hayal et!</div>';
+        ideas.slice().reverse().forEach(i => {
+          il.insertAdjacentHTML('beforeend',
+            '<div class="wish-card"><div class="wish-top"><b>' + i.text + '</b>' +
+            '<span class="wish-badge">' + (IDEA_STATUS[i.status] || IDEA_STATUS.new) + '</span></div>' +
+            (i.note ? '<div class="wish-note">📝 Baba: ' + i.note + '</div>' : '') + '</div>');
+        });
+
+        wrap.querySelector('#wish-go').onclick = () => {
+          const el = wrap.querySelector('#wish-input');
+          if (el.value.trim()) { B.Wish.addWish(el.value); B.Audio.play('chest'); render(); }
+        };
+        wrap.querySelector('#idea-go').onclick = () => {
+          const el = wrap.querySelector('#idea-input');
+          if (el.value.trim()) { B.Wish.addIdea(el.value); B.Audio.play('correct'); render(); }
+        };
+      }
+      render();
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/admin-screen.js === */
+/* BOKUL — Ebeveyn Konsolu (Admin)
+ * Tüm oyuncuların gelişimini gösterir; dilekleri (gerçek ödül istekleri) ve
+ * oyun fikirlerini yönetir. Ebeveyn PIN'i ile korunur (bkz. login parent).
+ * Tüm veriler cihazda; her oyuncunun kendi kaydından okunur/yazılır. */
+(function (B) {
+
+  function allPlayers() {
+    return B.Auth.users().map(key => {
+      let save = null;
+      try { save = JSON.parse(localStorage.getItem('bokul.save.' + key)); } catch (e) {}
+      return { key, name: B.Auth.displayName(key), save };
+    }).filter(p => p.save);
+  }
+  function writeSave(key, save) {
+    try { localStorage.setItem('bokul.save.' + key, JSON.stringify(save)); } catch (e) {}
+    if (B.Auth.current() === key) B.State.data = save; // aktif oyuncuysa belleği de güncelle
+  }
+  function xpNeeded(level) { const L = B.Content.get('rewards').levels; return L.base + (level - 1) * L.perLevel; }
+  function esc(s) { return String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
+
+  B.UI.registerScreen('admin', {
+    enter(root) {
+      let tab = 'players';
+      root.classList.add('admin-root');
+
+      function shell() {
+        root.innerHTML =
+          '<div class="admin-head">' +
+            '<button class="chip admin-back">◀ Çıkış</button>' +
+            '<b>👨‍👧 Ebeveyn Konsolu</b>' +
+            '<button class="chip admin-pin">🔑 PIN değiştir</button>' +
+          '</div>' +
+          '<div class="admin-tabs">' +
+            '<button class="chip atab" data-t="players">📊 Oyuncular</button>' +
+            '<button class="chip atab" data-t="wishes">🎁 İstekler</button>' +
+            '<button class="chip atab" data-t="ideas">💡 Fikirler</button>' +
+          '</div>' +
+          '<div class="admin-body"></div>';
+        root.querySelector('.admin-back').onclick = () => B.UI.show('login');
+        root.querySelector('.admin-pin').onclick = changePin;
+        root.querySelectorAll('.atab').forEach(b => b.onclick = () => {
+          tab = b.dataset.t;
+          root.querySelectorAll('.atab').forEach(x => x.classList.toggle('tab-on', x === b));
+          renderBody();
+        });
+        root.querySelector('.atab[data-t="' + tab + '"]').classList.add('tab-on');
+        renderBody();
+      }
+
+      function renderBody() {
+        const body = root.querySelector('.admin-body');
+        const players = allPlayers();
+        if (!players.length) { body.innerHTML = '<div class="wish-empty">Henüz kayıtlı oyuncu yok.</div>'; return; }
+        if (tab === 'players') renderPlayers(body, players);
+        else if (tab === 'wishes') renderWishes(body, players);
+        else renderIdeas(body, players);
+      }
+
+      /* ---- 📊 Oyuncular ---- */
+      function renderPlayers(body, players) {
+        const lessons = B.Lesson.all();
+        body.innerHTML = players.map(p => {
+          const s = p.save, pl = s.player, st = s.stats || {};
+          const acc = (st.correct + st.wrong) ? Math.round(st.correct / (st.correct + st.wrong) * 100) : 0;
+          const rank = B.Reward.rankFor(pl.level);
+          const xpPct = Math.min(100, Math.round((pl.xp || 0) / xpNeeded(pl.level) * 100));
+          const lessonRows = lessons.map(les => {
+            let earned = 0, max = 0, bd = 0, bt = 0;
+            les.units.forEach(u => u.sections.forEach(sec => {
+              max += sec.missions.length * 3; bt++;
+              const sp = (s.progress.lessons[les.id] || { sections: {} }).sections[sec.id];
+              if (sp) { earned += Object.values(sp.missions || {}).reduce((t, m) => t + (m.stars || 0), 0); if (sp.bossDefeated) bd++; }
+            }));
+            return '<div class="adm-lesson"><span>' + les.icon + ' ' + esc(les.title) + '</span>' +
+              '<span>⭐ ' + earned + '/' + max + ' · 🏰 ' + bd + '/' + bt + '</span></div>';
+          }).join('');
+          const last = s.meta && s.meta.lastPlayedAt ? new Date(s.meta.lastPlayedAt).toLocaleDateString('tr-TR') : '—';
+          return '<div class="adm-card">' +
+            '<div class="adm-p-head">' +
+              '<span class="adm-av">' + B.Avatar.el(pl.avatar) + '</span>' +
+              '<div><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level + '</div></div>' +
+            '</div>' +
+            '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
+            '<div class="adm-stats">' +
+              '<span>💰 ' + (pl.coins || 0) + '</span>' +
+              '<span>✅ ' + (st.correct || 0) + '</span>' +
+              '<span>❌ ' + (st.wrong || 0) + '</span>' +
+              '<span>🎯 %' + acc + '</span>' +
+              '<span>🔥 en iyi ' + ((s.streaks && s.streaks.best) || 0) + '</span>' +
+              '<span>📅 ' + last + '</span>' +
+            '</div>' +
+            '<div class="adm-lessons">' + lessonRows + '</div>' +
+          '</div>';
+        }).join('');
+      }
+
+      /* ---- 🎁 İstekler ---- */
+      function renderWishes(body, players) {
+        const metricOpts = Object.keys(B.Wish.METRICS).map(m =>
+          '<option value="' + m + '">' + B.Wish.METRICS[m].icon + ' ' + B.Wish.METRICS[m].name + '</option>').join('');
+        let any = false;
+        body.innerHTML = players.map(p => {
+          const wishes = (p.save.wishes || []);
+          if (!wishes.length) return '';
+          any = true;
+          return '<div class="adm-card"><div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(p.save.player.avatar) +
+            '</span><b>' + esc(p.save.player.name) + '</b></div>' +
+            wishes.slice().reverse().map(w => {
+              const pr = w.goal ? B.Wish.progress(p.save, w) : null;
+              const progHtml = pr ? '<div class="quest-bar"><i style="width:' + pr.pct + '%"></i><span class="quest-count">' + pr.cur + '/' + pr.target + '</span></div>' : '';
+              const statusBadge = { pending: '⏳ Yeni', assigned: '🎯 Hedefli', earned: '🎉 Hak etti!', granted: '✅ Verildi' }[w.status] || w.status;
+              return '<div class="adm-wish" data-key="' + p.key + '" data-id="' + w.id + '">' +
+                '<div class="wish-top"><b>' + esc(w.text) + '</b><span class="wish-badge">' + statusBadge + '</span></div>' +
+                progHtml +
+                '<div class="adm-wish-ctl">' +
+                  '<select class="adm-metric">' + metricOpts + '</select>' +
+                  '<input class="adm-target" type="number" min="1" value="' + (w.goal ? w.goal.target : 10) + '" placeholder="hedef">' +
+                  '<button class="chip adm-assign">🎯 Hedef ata</button>' +
+                  '<button class="chip adm-grant">✅ Ödülü verdim</button>' +
+                '</div>' +
+                '<input class="adm-note name-input" placeholder="Çocuğa not (örn: bunu bitirince alırız)" value="' + esc(w.note) + '">' +
+              '</div>';
+            }).join('') + '</div>';
+        }).join('');
+        if (!any) body.innerHTML = '<div class="wish-empty">Henüz istek yok. Çocuklar Dilek Kutusu\'ndan ekleyebilir.</div>';
+
+        body.querySelectorAll('.adm-wish').forEach(el => {
+          const key = el.dataset.key, id = el.dataset.id;
+          const metricSel = el.querySelector('.adm-metric');
+          const wish = allPlayers().find(p => p.key === key).save.wishes.find(w => w.id === id);
+          if (wish && wish.goal) metricSel.value = wish.goal.metric;
+          el.querySelector('.adm-assign').onclick = () => {
+            const players2 = allPlayers(); const p = players2.find(x => x.key === key);
+            const w = p.save.wishes.find(w => w.id === id);
+            w.goal = { metric: metricSel.value, target: Math.max(1, parseInt(el.querySelector('.adm-target').value) || 10) };
+            if (w.status === 'pending' || w.status === 'assigned') {
+              w.status = B.Wish.value(p.save, w.goal.metric) >= w.goal.target ? 'earned' : 'assigned';
+            }
+            w.note = el.querySelector('.adm-note').value;
+            writeSave(key, p.save); renderBody();
+          };
+          el.querySelector('.adm-grant').onclick = () => {
+            const players2 = allPlayers(); const p = players2.find(x => x.key === key);
+            const w = p.save.wishes.find(w => w.id === id);
+            w.status = 'granted'; w.note = el.querySelector('.adm-note').value;
+            writeSave(key, p.save); renderBody();
+          };
+        });
+      }
+
+      /* ---- 💡 Fikirler ---- */
+      function renderIdeas(body, players) {
+        const statusOpts = { new: 'Yeni', seen: 'Gördüm', planned: 'Yapılacak', done: 'Eklendi' };
+        let any = false;
+        body.innerHTML = players.map(p => {
+          const ideas = (p.save.ideas || []);
+          if (!ideas.length) return '';
+          any = true;
+          return '<div class="adm-card"><div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(p.save.player.avatar) +
+            '</span><b>' + esc(p.save.player.name) + '</b></div>' +
+            ideas.slice().reverse().map(i => {
+              const opts = Object.keys(statusOpts).map(k => '<option value="' + k + '"' + (i.status === k ? ' selected' : '') + '>' + statusOpts[k] + '</option>').join('');
+              return '<div class="adm-wish" data-key="' + p.key + '" data-id="' + i.id + '">' +
+                '<div class="wish-top"><b>💡 ' + esc(i.text) + '</b></div>' +
+                '<div class="adm-wish-ctl"><select class="adm-istatus">' + opts + '</select>' +
+                '<button class="chip adm-isave">💾 Kaydet</button></div>' +
+                '<input class="adm-inote name-input" placeholder="Çocuğa not" value="' + esc(i.note) + '"></div>';
+            }).join('') + '</div>';
+        }).join('');
+        if (!any) body.innerHTML = '<div class="wish-empty">Henüz fikir yok. Çocuklar Dilek Kutusu\'ndan gönderebilir.</div>';
+
+        body.querySelectorAll('.adm-wish').forEach(el => {
+          el.querySelector('.adm-isave').onclick = () => {
+            const key = el.dataset.key, id = el.dataset.id;
+            const p = allPlayers().find(x => x.key === key);
+            const idea = p.save.ideas.find(x => x.id === id);
+            idea.status = el.querySelector('.adm-istatus').value;
+            idea.note = el.querySelector('.adm-inote').value;
+            writeSave(key, p.save);
+            B.UI.toast('Kaydedildi 💾');
+          };
+        });
+      }
+
+      function changePin() {
+        const ov = B.UI.overlay('<div class="ov-big">🔑</div><h2>Yeni Ebeveyn PIN\'i</h2>' +
+          '<input id="new-pin" type="password" class="name-input" placeholder="En az 4 hane">' +
+          '<div class="login-err" id="pin-err"></div>',
+          [{ label: 'KAYDET', onClick: null }]);
+        const btn = ov.querySelector('.overlay-btns .btn');
+        btn.onclick = () => {
+          const res = B.Auth.setAdminPin(ov.querySelector('#new-pin').value);
+          if (!res.ok) { ov.querySelector('#pin-err').textContent = res.err; return; }
+          ov.remove(); B.UI.toast('PIN güncellendi 🔑');
+        };
+      }
+
+      shell();
     },
     exit() {},
   });
@@ -5394,6 +5893,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       B.Reward.init();
       B.Chest.init();
       B.Quest.init();
+      B.Wish.init();
       B.Anim.init();
       B.Commander.init();
       B.UI.init();
@@ -5420,6 +5920,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       if (p.coins == null) p.coins = 0;
       p.avatar = B.Avatar.normalize(p.avatar);
       if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
+      if (!B.State.data.wishes) B.State.data.wishes = [];
+      if (!B.State.data.ideas) B.State.data.ideas = [];
+      if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
 
       // Yeni profil (henüz karakteri yok) → kullanıcı adını varsayılan yap, karakter yaratmaya git
       if (!p.name) {

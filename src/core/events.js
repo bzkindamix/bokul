@@ -23,6 +23,9 @@
     QUEST_PROGRESS:  'quest:progress',
     QUEST_COMPLETED: 'quest:completed',
 
+    // Dilek / istek
+    WISH_EARNED: 'wish:earned',   // ebeveyn hedefi tamamlandı
+
     // İlerleme
     MISSION_COMPLETED: 'mission:completed', // { missionId, stars, xp }
     SECTION_UNLOCKED:  'section:unlocked',

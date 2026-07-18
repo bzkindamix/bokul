@@ -21,6 +21,7 @@
       B.Reward.init();
       B.Chest.init();
       B.Quest.init();
+      B.Wish.init();
       B.Anim.init();
       B.Commander.init();
       B.UI.init();
@@ -47,6 +48,9 @@
       if (p.coins == null) p.coins = 0;
       p.avatar = B.Avatar.normalize(p.avatar);
       if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
+      if (!B.State.data.wishes) B.State.data.wishes = [];
+      if (!B.State.data.ideas) B.State.data.ideas = [];
+      if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
 
       // Yeni profil (henüz karakteri yok) → kullanıcı adını varsayılan yap, karakter yaratmaya git
       if (!p.name) {

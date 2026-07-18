@@ -46,6 +46,14 @@
       replay.onclick = () => B.UI.show('intro', { replay: true });
       root.appendChild(replay);
 
+      // Dilek Kutusu (ödül isteği + oyun fikri)
+      const wish = document.createElement('button');
+      wish.className = 'chip home-wishes';
+      const earned = (B.State.data.wishes || []).some(w => w.status === 'earned');
+      wish.textContent = '🎁 Dilek Kutusu' + (earned ? ' 🎉' : '');
+      wish.onclick = () => B.UI.show('wishes');
+      root.appendChild(wish);
+
       // Oyuncu değiştir / çıkış
       const out = document.createElement('button');
       out.className = 'chip home-logout';

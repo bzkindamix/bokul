@@ -15,10 +15,12 @@
       player: { name: '', xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
-      stats: { correct: 0, wrong: 0, perSkill: {} }, // perSkill: { estimate: [1,0,1,...] } son 20 sonuç
+      stats: { correct: 0, wrong: 0, questionsDone: 0, perSkill: {} }, // perSkill: { estimate: [1,0,1,...] }
       progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
       inventory: { cosmetics: [], badges: [], titles: [] },
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },
+      wishes: [], // { id, text, created, status, goal:{metric,target}|null, note }
+      ideas: [],  // { id, text, created, status, note }
     };
   }
 

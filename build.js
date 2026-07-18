@@ -30,6 +30,7 @@ const JS = [
   'src/engines/lesson-engine.js',
   'src/engines/chest-engine.js',
   'src/engines/quest-engine.js',
+  'src/engines/wish-engine.js',
   'src/interactions/long-division/logic.js',
   'src/interactions/long-division/teach-models.js',
   'src/interactions/long-division/view.js',
@@ -52,6 +53,8 @@ const JS = [
   'src/ui/screens/intro-screen.js',
   'src/ui/screens/creator-screen.js',
   'src/ui/screens/login-screen.js',
+  'src/ui/screens/wishes-screen.js',
+  'src/ui/screens/admin-screen.js',
   'src/core/game-engine.js',
   'src/main.js',
 ];

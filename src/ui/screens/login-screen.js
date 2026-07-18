@@ -89,11 +89,51 @@
     });
   }
 
+  /* Ebeveyn konsolu erişimi: PIN oluştur (ilk kez) veya gir */
+  function openParent() {
+    if (!B.Auth.adminExists()) {
+      const ov = B.UI.overlay(
+        '<div class="ov-big">👨‍👧</div><h2>Ebeveyn Konsolu</h2>' +
+        '<p class="ov-quote">İlk kez giriyorsun. Bir ebeveyn PIN\'i oluştur (çocuklar bilmesin).</p>' +
+        '<input id="pin-new" type="password" class="name-input" placeholder="En az 4 hane">' +
+        '<div class="login-err" id="pin-err"></div>',
+        [{ label: 'OLUŞTUR ▶', onClick: null }]);
+      const btn = ov.querySelector('.overlay-btns .btn');
+      btn.onclick = () => {
+        const r = B.Auth.setAdminPin(ov.querySelector('#pin-new').value);
+        if (!r.ok) { ov.querySelector('#pin-err').textContent = r.err; return; }
+        ov.remove(); B.UI.show('admin');
+      };
+    } else {
+      const ov = B.UI.overlay(
+        '<div class="ov-big">🔒</div><h2>Ebeveyn Girişi</h2>' +
+        '<input id="pin-in" type="password" class="name-input" placeholder="Ebeveyn PIN">' +
+        '<div class="login-err" id="pin-err"></div>',
+        [{ label: 'GİR ▶', onClick: null }]);
+      const btn = ov.querySelector('.overlay-btns .btn');
+      const input = ov.querySelector('#pin-in');
+      setTimeout(() => input.focus(), 100);
+      function go() {
+        if (!B.Auth.checkAdmin(input.value)) { ov.querySelector('#pin-err').textContent = '⚠️ PIN yanlış.'; input.value = ''; return; }
+        ov.remove(); B.UI.show('admin');
+      }
+      btn.onclick = go;
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') go(); });
+    }
+  }
+
   B.UI.registerScreen('login', {
     enter(root) {
       root.classList.add('login-root');
-      if (!B.Auth.hasAny()) renderRegister(root, true);
-      else renderSelect(root);
+      root.innerHTML = '<div class="login-content"></div>';
+      const content = root.querySelector('.login-content');
+      const parentBtn = document.createElement('button');
+      parentBtn.className = 'chip login-parent';
+      parentBtn.textContent = '👨‍👧 Ebeveyn';
+      parentBtn.onclick = openParent;
+      root.appendChild(parentBtn);
+      if (!B.Auth.hasAny()) renderRegister(content, true);
+      else renderSelect(content);
     },
     exit() {},
   });
