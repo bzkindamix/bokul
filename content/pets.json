@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "version": 1,
+  "intro": "Evcil hayvan sahibi olmak sorumluluktur Komutan! Önce onun evini/eşyalarını hazırlaman gerekir — bazıları Atölye'de craftlanır, bazıları Mağaza'dan alınır. Ön koşulları tamamlayınca hayvanını sahiplenirsin. Sonra onu düzenli beslemeli, mutlu etmelisin: acıkır ve zamanla üzülür. Her hayvanın kendine has bakımı vardır!",
+  "decayPerHour": { "tokluk": 6, "mutluluk": 4 },
+  "pets": [
+    {
+      "id": "kus", "name": "Kuş", "icon": "🐦",
+      "prereq": [ { "item": "kafes", "n": 1 } ],
+      "teach": "Kafesin hazır, kuşun içine kondu! Kuşlar küçük ama bakım ister: yemini eksik etme, ara sıra şarkı söyleterek neşelendir.",
+      "care": [
+        { "id": "besle", "label": "Yem ver", "icon": "🌾", "consume": { "kus_yemi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "sarki", "label": "Şarkı söylet", "icon": "🎶", "cooldownH": 2, "restore": { "mutluluk": 30 }, "xp": 4, "coin": 1 }
+      ]
+    },
+    {
+      "id": "kedi", "name": "Kedi", "icon": "🐈",
+      "prereq": [ { "item": "kedi_kumu", "n": 1 }, { "item": "mama_kabi", "n": 1 }, { "item": "tirmalama", "n": 1 } ],
+      "teach": "Kedin geldi! Bağımsızdır ama sevgi ister. Mamasını ver, tırmalama tahtasıyla oynat, ara sıra tımar et. Mutlu kedi mırlar!",
+      "care": [
+        { "id": "besle", "label": "Mama ver", "icon": "🐟", "consume": { "kedi_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "oyna", "label": "Oynat", "icon": "🧶", "cooldownH": 2, "restore": { "mutluluk": 35 }, "xp": 5, "coin": 2 },
+        { "id": "timar", "label": "Tımar et", "icon": "🪮", "cooldownH": 4, "restore": { "mutluluk": 25 }, "xp": 4, "coin": 1 }
+      ]
+    },
+    {
+      "id": "kopek", "name": "Köpek", "icon": "🐕",
+      "prereq": [ { "item": "kopek_kulubesi", "n": 1 }, { "item": "tasma", "n": 1 }, { "item": "mama_kabi", "n": 1 } ],
+      "teach": "En sadık dostun geldi! Köpekler enerji doludur: mamasını ver, tasmayla gezdir, kemikle oyna. Gezdirmek onları en çok mutlu eder!",
+      "care": [
+        { "id": "besle", "label": "Mama ver", "icon": "🦴", "consume": { "kopek_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "gezdir", "label": "Gezdir", "icon": "🦮", "cooldownH": 3, "restore": { "mutluluk": 45, "tokluk": -5 }, "xp": 7, "coin": 3 },
+        { "id": "oyna", "label": "Kemikle oyna", "icon": "🦴", "consume": { "oyuncak_kemik": 1 }, "restore": { "mutluluk": 30 }, "xp": 5, "coin": 2 }
+      ]
+    },
+    {
+      "id": "balik", "name": "Balık", "icon": "🐠",
+      "prereq": [ { "item": "akvaryum", "n": 1 } ],
+      "teach": "Craftladığın akvaryum işe yaradı — balığın yüzüyor! Balıklar sessizdir ama bakım ister: yemini ver, suyunu tazele. Temiz su = mutlu balık.",
+      "care": [
+        { "id": "besle", "label": "Yem ver", "icon": "🍥", "consume": { "balik_yemi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "temizle", "label": "Suyu tazele", "icon": "💧", "consume": { "temiz_su": 1 }, "restore": { "mutluluk": 35 }, "xp": 5, "coin": 2 }
+      ]
+    }
+  ]
+}

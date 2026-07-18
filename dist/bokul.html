@@ -1015,6 +1015,40 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
 .evim-levels { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
 
+/* ---------- v0.27: Evcil Hayvanlar ---------- */
+.pets-wrap { padding: 8px 10px 28px; max-width: 720px; margin: 0 auto; }
+.pets-title { font-weight: 800; font-size: 16px; margin: 6px 2px 10px; }
+.pets-title2 { margin-top: 22px; color: var(--xp); }
+.pets-empty { text-align: center; color: var(--ink-dim); padding: 20px 16px; font-size: 14.5px; background: var(--bg-deep); border: 1px dashed var(--line); border-radius: 12px; }
+.pets-list { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 560px) { .pets-list { grid-template-columns: 1fr 1fr; } }
+.pet-card { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 16px; padding: 14px; }
+.pet-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.pet-face { font-size: 40px; line-height: 1; }
+.pet-id { display: flex; flex-direction: column; }
+.pet-id b { font-size: 16px; }
+.pet-mood { font-size: 18px; }
+.pet-stat { display: flex; align-items: center; gap: 8px; font-size: 12px; margin: 4px 0; }
+.pet-stat span { width: 84px; flex: none; color: var(--ink-dim); }
+.pet-bar { flex: 1; height: 10px; background: var(--bg-deep); border-radius: 6px; overflow: hidden; }
+.pet-bar i { display: block; height: 100%; transition: width .3s; }
+.b-tok i { background: linear-gradient(90deg, #FF9F1C, #FFD52E); }
+.b-mut i { background: linear-gradient(90deg, #FF4FD8, #FF7AA8); }
+.pet-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.pet-care { font-size: 12.5px; padding: 7px 10px; background: var(--bg-raised); }
+.pet-care[disabled] { opacity: .5; pointer-events: none; }
+
+.adopt-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.adopt-card { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.adopt-owned { opacity: .8; }
+.adopt-needs { display: flex; flex-wrap: wrap; gap: 5px; }
+.adopt-need { font-size: 11px; padding: 2px 7px; border-radius: 9px; border: 1px solid var(--line); }
+.adopt-need.need-ok { color: var(--success); border-color: var(--success); }
+.adopt-need.need-no { color: var(--warn); }
+.adopt-go { width: 100%; font-size: 13px; padding: 8px; }
+.adopt-go[disabled] { opacity: .55; pointer-events: none; }
+.adopt-tag { text-align: center; font-size: 13px; font-weight: 800; color: var(--success); }
+
 </style>
 </head>
 <body>
@@ -1024,7 +1058,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.26 — Atölye/Craft · Dashboard · Al-Sat Onayı · Müzik Cephesi</div>
+      <div class="splash-note">v0.27 — Evcil Hayvanlar (Faz 2): Sahiplen · Besle · Oynat</div>
     </div>
   </div>
 
@@ -1520,6 +1554,55 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       "produces": { "type": "upgrade", "id": "homeLevel", "qty": 1 },
       "needs": { "kumas": 2, "boya": 1 },
       "teach": "İki kumaş + bir boya ile evini güzelleştir! Ev seviyen yükseldikçe üssün daha konforlu ve şık olur."
+    }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-pets">
+{
+  "schema": 1,
+  "version": 1,
+  "intro": "Evcil hayvan sahibi olmak sorumluluktur Komutan! Önce onun evini/eşyalarını hazırlaman gerekir — bazıları Atölye'de craftlanır, bazıları Mağaza'dan alınır. Ön koşulları tamamlayınca hayvanını sahiplenirsin. Sonra onu düzenli beslemeli, mutlu etmelisin: acıkır ve zamanla üzülür. Her hayvanın kendine has bakımı vardır!",
+  "decayPerHour": { "tokluk": 6, "mutluluk": 4 },
+  "pets": [
+    {
+      "id": "kus", "name": "Kuş", "icon": "🐦",
+      "prereq": [ { "item": "kafes", "n": 1 } ],
+      "teach": "Kafesin hazır, kuşun içine kondu! Kuşlar küçük ama bakım ister: yemini eksik etme, ara sıra şarkı söyleterek neşelendir.",
+      "care": [
+        { "id": "besle", "label": "Yem ver", "icon": "🌾", "consume": { "kus_yemi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "sarki", "label": "Şarkı söylet", "icon": "🎶", "cooldownH": 2, "restore": { "mutluluk": 30 }, "xp": 4, "coin": 1 }
+      ]
+    },
+    {
+      "id": "kedi", "name": "Kedi", "icon": "🐈",
+      "prereq": [ { "item": "kedi_kumu", "n": 1 }, { "item": "mama_kabi", "n": 1 }, { "item": "tirmalama", "n": 1 } ],
+      "teach": "Kedin geldi! Bağımsızdır ama sevgi ister. Mamasını ver, tırmalama tahtasıyla oynat, ara sıra tımar et. Mutlu kedi mırlar!",
+      "care": [
+        { "id": "besle", "label": "Mama ver", "icon": "🐟", "consume": { "kedi_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "oyna", "label": "Oynat", "icon": "🧶", "cooldownH": 2, "restore": { "mutluluk": 35 }, "xp": 5, "coin": 2 },
+        { "id": "timar", "label": "Tımar et", "icon": "🪮", "cooldownH": 4, "restore": { "mutluluk": 25 }, "xp": 4, "coin": 1 }
+      ]
+    },
+    {
+      "id": "kopek", "name": "Köpek", "icon": "🐕",
+      "prereq": [ { "item": "kopek_kulubesi", "n": 1 }, { "item": "tasma", "n": 1 }, { "item": "mama_kabi", "n": 1 } ],
+      "teach": "En sadık dostun geldi! Köpekler enerji doludur: mamasını ver, tasmayla gezdir, kemikle oyna. Gezdirmek onları en çok mutlu eder!",
+      "care": [
+        { "id": "besle", "label": "Mama ver", "icon": "🦴", "consume": { "kopek_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "gezdir", "label": "Gezdir", "icon": "🦮", "cooldownH": 3, "restore": { "mutluluk": 45, "tokluk": -5 }, "xp": 7, "coin": 3 },
+        { "id": "oyna", "label": "Kemikle oyna", "icon": "🦴", "consume": { "oyuncak_kemik": 1 }, "restore": { "mutluluk": 30 }, "xp": 5, "coin": 2 }
+      ]
+    },
+    {
+      "id": "balik", "name": "Balık", "icon": "🐠",
+      "prereq": [ { "item": "akvaryum", "n": 1 } ],
+      "teach": "Craftladığın akvaryum işe yaradı — balığın yüzüyor! Balıklar sessizdir ama bakım ister: yemini ver, suyunu tazele. Temiz su = mutlu balık.",
+      "care": [
+        { "id": "besle", "label": "Yem ver", "icon": "🍥", "consume": { "balik_yemi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "temizle", "label": "Suyu tazele", "icon": "💧", "consume": { "temiz_su": 1 }, "restore": { "mutluluk": 35 }, "xp": 5, "coin": 2 }
+      ]
     }
   ]
 }
@@ -2564,6 +2647,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       wishes: [], // { id, text, created, status, goal:{metric,target}|null, note }
       ideas: [],  // { id, text, created, status, note }
       perms: { lessons: {}, features: {} }, // ebeveyn kilitleri (yoksa=serbest)
+      pets: [], // sahiplenilen evcil hayvanlar
     };
   }
 
@@ -3293,6 +3377,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     FEATURES: [
       { key: 'shop', icon: '🏠', name: 'Evim / Kıyafet Dükkânı' },
       { key: 'store', icon: '📦', name: 'Eşya Mağazası / Depom' },
+      { key: 'pets', icon: '🐾', name: 'Evcil Hayvanlar' },
       { key: 'quests', icon: '📋', name: 'Günlük Görevler' },
       { key: 'wishes', icon: '🎁', name: 'Dilek Kutusu' },
       { key: 'story', icon: '🎬', name: 'Hikâye Sineması' },
@@ -3412,6 +3497,118 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       B.Bus.emit(B.Events.ITEM_CRAFTED, { recipeId: id });
       B.Save.saveSoon();
       return { ok: true, recipe: r };
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/pets.js === */
+/* BOKUL — Evcil Hayvanlar
+ * Ön koşul (craft'lanmış/satın alınmış eşyalar) sağlanınca hayvan sahiplenilir;
+ * sahiplenme ön koşul eşyalarını HARCAR (o hayvanın kurulumuna adanır).
+ * Her hayvan zamanla acıkır (tokluk) ve üzülür (mutluluk); bakımla düzelir.
+ * Her tür farklı bakım aksiyonlarına sahiptir (besle/gezdir/oynat/şarkı...).
+ * Durum: B.State.data.pets = [ { uid, type, name, tokluk, mutluluk, lastTick, cooldowns:{}, adoptedAt } ] */
+(function (B) {
+  function data() { return B.Content.get('pets') || { pets: [], decayPerHour: { tokluk: 6, mutluluk: 4 } }; }
+  function list() { const s = B.State.data; if (!s.pets) s.pets = []; return s.pets; }
+  function clamp(v) { return Math.max(0, Math.min(100, Math.round(v))); }
+  function now() { return Date.now(); }
+  let uidSeq = 0;
+
+  /* Zaman geçtikçe stat düşür (çürüme); okuma/bakım öncesi çağrılır */
+  function refresh(pet) {
+    const d = data().decayPerHour || { tokluk: 6, mutluluk: 4 };
+    const t = now();
+    const h = (t - (pet.lastTick || t)) / 3600000;
+    if (h > 0) {
+      pet.tokluk = clamp((pet.tokluk == null ? 100 : pet.tokluk) - h * d.tokluk);
+      pet.mutluluk = clamp((pet.mutluluk == null ? 100 : pet.mutluluk) - h * d.mutluluk);
+      pet.lastTick = t;
+    }
+    return pet;
+  }
+
+  B.Pets = {
+    ensure() { list(); },
+    intro() { return data().intro || ''; },
+    types() { return data().pets || []; },
+    typeDef(typeId) { return (data().pets || []).find(p => p.id === typeId) || null; },
+
+    adopted() { return list().map(refresh); },
+    get(uid) { const p = list().find(x => x.uid === uid); return p ? refresh(p) : null; },
+    hasType(typeId) { return list().some(p => p.type === typeId); },
+
+    /* Ön koşulda eksik eşyalar: [{item,name,icon,have,need}] */
+    missingPrereq(typeId) {
+      const def = B.Pets.typeDef(typeId); if (!def) return [];
+      const out = [];
+      (def.prereq || []).forEach(r => {
+        const have = B.Items.count(r.item);
+        if (have < r.n) {
+          const it = B.Items.get(r.item) || { name: r.item, icon: '❔' };
+          out.push({ item: r.item, name: it.name, icon: it.icon, have, need: r.n });
+        }
+      });
+      return out;
+    },
+    canAdopt(typeId) { return !B.Pets.hasType(typeId) && B.Pets.missingPrereq(typeId).length === 0; },
+
+    /* Sahiplen: ön koşulları HARCA, hayvanı ekle */
+    adopt(typeId, name) {
+      const def = B.Pets.typeDef(typeId);
+      if (!def) return { ok: false, err: 'Tür bulunamadı.' };
+      if (B.Pets.hasType(typeId)) return { ok: false, err: 'Bu türden zaten var.' };
+      if (B.Pets.missingPrereq(typeId).length) return { ok: false, err: 'Ön koşul eşyaların eksik.' };
+      (def.prereq || []).forEach(r => B.Items.remove(r.item, r.n)); // kurulum harcanır
+      const pet = {
+        uid: 'p' + now().toString(36) + (uidSeq++), type: typeId,
+        name: (name || def.name).trim().slice(0, 14) || def.name,
+        tokluk: 100, mutluluk: 100, lastTick: now(), cooldowns: {}, adoptedAt: new Date().toISOString(),
+      };
+      list().push(pet);
+      B.Bus.emit(B.Events.PET_ADOPTED, { petId: pet.uid, type: typeId });
+      B.Save.saveSoon();
+      return { ok: true, pet, def };
+    },
+
+    /* Bir bakım aksiyonu kaç saat sonra tekrar yapılabilir (0 = şimdi) */
+    cooldownLeft(pet, action) {
+      if (!action.cooldownH) return 0;
+      const last = (pet.cooldowns || {})[action.id] || 0;
+      const left = (last + action.cooldownH * 3600000) - now();
+      return left > 0 ? left : 0;
+    },
+
+    /* Bakım aksiyonu uygula */
+    care(uid, actionId) {
+      const pet = B.Pets.get(uid); if (!pet) return { ok: false, err: 'Hayvan yok.' };
+      const def = B.Pets.typeDef(pet.type); if (!def) return { ok: false, err: 'Tür yok.' };
+      const act = (def.care || []).find(a => a.id === actionId);
+      if (!act) return { ok: false, err: 'Aksiyon yok.' };
+      if (B.Pets.cooldownLeft(pet, act) > 0) return { ok: false, err: 'Biraz bekle, sonra tekrar yap.' };
+      // Malzeme gerekiyor mu?
+      if (act.consume) {
+        for (const k in act.consume) if (!B.Items.have(k, act.consume[k])) {
+          const it = B.Items.get(k) || { name: k };
+          return { ok: false, err: it.name + ' yok — Mağaza\'dan al.' };
+        }
+        for (const k in act.consume) B.Items.remove(k, act.consume[k]);
+      }
+      // Stat düzelt
+      if (act.restore) for (const s in act.restore) pet[s] = clamp((pet[s] || 0) + act.restore[s]);
+      if (act.cooldownH) { pet.cooldowns = pet.cooldowns || {}; pet.cooldowns[actionId] = now(); }
+      // Ödül
+      if (act.xp) B.Reward.addXp(act.xp, 'pet');
+      if (act.coin) B.Reward.addCoins(act.coin, 'pet');
+      B.Bus.emit(B.Events.PET_CARED, { petId: uid, action: actionId });
+      B.Save.saveSoon();
+      return { ok: true, pet, act };
+    },
+
+    /* Ortalama duruma göre ruh hali emojisi */
+    mood(pet) {
+      const avg = ((pet.tokluk || 0) + (pet.mutluluk || 0)) / 2;
+      return avg >= 75 ? '😀' : avg >= 50 ? '🙂' : avg >= 25 ? '😐' : '😢';
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -6982,6 +7179,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           '<button class="btn door door-ben">🧍<br>BEN<small>Tipimi ayarla</small></button>' +
           '<button class="btn door door-dolap">👕<br>DOLAP<small>Kıyafet al · sat · giy</small></button>' +
           '<button class="btn door door-store">📦<br>DEPOM<small>Eşya al · sakla</small></button>' +
+          '<button class="btn door door-pets">🐾<br>EVCİL HAYVANLARIM<small>Sahiplen · bak</small></button>' +
           '<button class="btn door door-int">🎯<br>İLGİ ALANLARIM<small>Sevdiklerim</small></button>' +
         '</div>';
       root.appendChild(wrap);
@@ -6991,6 +7189,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       const storeDoor = wrap.querySelector('.door-store');
       if (B.Perms.feature('store')) storeDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('store', {}); };
       else { storeDoor.classList.add('feat-locked'); storeDoor.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); }; }
+      const petsDoor = wrap.querySelector('.door-pets');
+      if (B.Perms.feature('pets')) petsDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };
+      else { petsDoor.classList.add('feat-locked'); petsDoor.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); }; }
       wrap.querySelector('.door-int').onclick = () => { B.Audio.play('tick'); B.UI.show('interests', {}); };
     },
     exit() { if (this._hud) this._hud.dispose(); },
@@ -7179,6 +7380,115 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       }
 
       shell();
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/pets-screen.js === */
+/* BOKUL — Evcil Hayvanlarım
+ * Sahiplenilen hayvanları bakım (besle/oynat/gezdir...) ile mutlu tut;
+ * ön koşulları tamamlanan yeni türleri sahiplen. */
+(function (B) {
+  B.UI.registerScreen('pets', {
+    enter(root) {
+      const hud = B.UI.buildHud(root, { backTo: 'evim' });
+      this._hud = hud;
+      B.Pets.ensure();
+
+      const wrap = document.createElement('div');
+      wrap.className = 'pets-wrap';
+      root.appendChild(wrap);
+
+      // Baba ilk ziyaret açıklaması (bir kez)
+      const seen = B.Save.settings.get();
+      if (!seen.tut_pets) {
+        B.Save.settings.set({ tut_pets: true });
+        B.UI.overlay('<div class="ov-baba">🐾</div><h2>Baba Komutan</h2><p class="ov-quote">' + B.Pets.intro() + '</p>', [{ label: 'Anlaşıldı!', onClick: null }]);
+      }
+
+      function bar(label, val, cls) {
+        return '<div class="pet-stat"><span>' + label + '</span><div class="pet-bar ' + cls + '"><i style="width:' + val + '%"></i></div></div>';
+      }
+
+      function render() {
+        const pets = B.Pets.adopted();
+        let html = '<div class="pets-title">🐾 Evcil Hayvanlarım</div>';
+
+        if (!pets.length) {
+          html += '<div class="pets-empty">Henüz evcil hayvanın yok. Aşağıdan ön koşulları tamamla ve ilkini sahiplen!</div>';
+        } else {
+          html += '<div class="pets-list">' + pets.map(p => {
+            const def = B.Pets.typeDef(p.type) || { icon: '🐾', care: [] };
+            const care = (def.care || []).map(a => {
+              const left = B.Pets.cooldownLeft(p, a);
+              const cd = left > 0 ? ' disabled' : '';
+              const lbl = left > 0 ? Math.ceil(left / 3600000) + ' sa' : a.label;
+              return '<button class="btn pet-care' + cd + '" data-uid="' + p.uid + '" data-act="' + a.id + '"' + cd + '>' + a.icon + ' ' + lbl + '</button>';
+            }).join('');
+            return '<div class="pet-card">' +
+              '<div class="pet-head"><span class="pet-face">' + def.icon + '</span>' +
+                '<div class="pet-id"><b>' + esc(p.name) + '</b><span class="pet-mood">' + B.Pets.mood(p) + '</span></div></div>' +
+              bar('🍖 Tokluk', p.tokluk, 'b-tok') + bar('❤️ Mutluluk', p.mutluluk, 'b-mut') +
+              '<div class="pet-actions">' + care + '</div></div>';
+          }).join('') + '</div>';
+        }
+
+        // Sahiplenilebilir türler
+        html += '<div class="pets-title pets-title2">🏠 Yeni Dost Sahiplen</div>';
+        html += '<div class="adopt-list">' + B.Pets.types().map(def => {
+          const owned = B.Pets.hasType(def.id);
+          const miss = B.Pets.missingPrereq(def.id);
+          const ready = !owned && miss.length === 0;
+          const prereqRows = (def.prereq || []).map(r => {
+            const it = B.Items.get(r.item) || { name: r.item, icon: '❔' };
+            const have = B.Items.count(r.item), ok = have >= r.n;
+            return '<span class="adopt-need' + (ok ? ' need-ok' : ' need-no') + '">' + it.icon + ' ' + it.name + ' ' + have + '/' + r.n + '</span>';
+          }).join('');
+          return '<div class="adopt-card' + (owned ? ' adopt-owned' : '') + '">' +
+            '<div class="pet-head"><span class="pet-face">' + def.icon + '</span><b>' + def.name + '</b></div>' +
+            '<div class="adopt-needs">' + prereqRows + '</div>' +
+            (owned
+              ? '<div class="adopt-tag">✓ Sahiplendin</div>'
+              : '<button class="btn adopt-go' + (ready ? ' btn-action' : ' btn-quiet') + '" data-type="' + def.id + '"' + (ready ? '' : ' disabled') + '>' +
+                  (ready ? '🐾 Sahiplen' : '🔒 Ön koşul eksik') + '</button>') +
+            '</div>';
+        }).join('') + '</div>';
+
+        wrap.innerHTML = html;
+
+        // Bakım aksiyonları
+        wrap.querySelectorAll('.pet-care').forEach(b => { if (!b.disabled) b.onclick = () => {
+          const r = B.Pets.care(b.dataset.uid, b.dataset.act);
+          if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('⚠️ ' + r.err); return; }
+          B.Audio.play('correct');
+          B.UI.toast('💛 ' + r.act.label + ' — teşekkür eder!');
+          render();
+        }; });
+
+        // Sahiplenme
+        wrap.querySelectorAll('.adopt-go').forEach(b => { if (!b.disabled) b.onclick = () => {
+          const def = B.Pets.typeDef(b.dataset.type);
+          const ov = B.UI.overlay('<div class="ov-baba">' + def.icon + '</div><h2>' + def.name + ' sahiplen</h2>' +
+            '<p class="ov-quote">Ön koşul eşyaların bu hayvanın kurulumu için harcanacak. Ona bir isim ver:</p>' +
+            '<input id="pet-name" class="name-input" maxlength="14" placeholder="' + def.name + ' adı" value="' + def.name + '">',
+            [{ label: 'Sahiplen 🐾', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: null }]);
+          const btns = ov.querySelectorAll('.overlay-btns .btn');
+          btns[0].onclick = () => {
+            const nm = ov.querySelector('#pet-name').value;
+            const r = B.Pets.adopt(b.dataset.type, nm);
+            ov.remove();
+            if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('⚠️ ' + r.err); return; }
+            B.Audio.play('fanfare'); if (B.Anim.confetti) B.Anim.confetti(40);
+            B.UI.overlay('<div class="ov-baba">' + def.icon + '</div><h2>' + esc(r.pet.name) + ' ailene katıldı! 🎉</h2><p class="ov-quote">' + (def.teach || '') + '</p>', [{ label: 'Yaşasın!', onClick: null }]);
+            render();
+          };
+          btns[1].onclick = () => ov.remove();
+        }; });
+      }
+
+      function esc(s) { return String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
+      render();
     },
     exit() { if (this._hud) this._hud.dispose(); },
   });
@@ -8347,7 +8657,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         'lessons/philo-101',
         'lessons/music-101',
       ];
-      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', ...LESSONS]);
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'pets', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-core'));
 
@@ -8393,6 +8703,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       B.Perms.ensure(B.State.data); // perms alanını garanti et
       if (!B.State.data.inventory.items) B.State.data.inventory.items = {}; // eşya envanteri
       B.Items.ensure();
+      if (!B.State.data.pets) B.State.data.pets = []; // evcil hayvanlar
+      B.Pets.ensure();
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
       if (B.State.data.stats.firstTryCorrect == null) B.State.data.stats.firstTryCorrect = 0;
       if (B.State.data.stats.timeSumMs == null) B.State.data.stats.timeSumMs = 0;

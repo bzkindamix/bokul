@@ -22,6 +22,7 @@
       wishes: [], // { id, text, created, status, goal:{metric,target}|null, note }
       ideas: [],  // { id, text, created, status, note }
       perms: { lessons: {}, features: {} }, // ebeveyn kilitleri (yoksa=serbest)
+      pets: [], // sahiplenilen evcil hayvanlar
     };
   }
 

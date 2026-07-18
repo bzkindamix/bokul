@@ -12,7 +12,7 @@
         'lessons/philo-101',
         'lessons/music-101',
       ];
-      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', ...LESSONS]);
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'pets', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-core'));
 
@@ -58,6 +58,8 @@
       B.Perms.ensure(B.State.data); // perms alanını garanti et
       if (!B.State.data.inventory.items) B.State.data.inventory.items = {}; // eşya envanteri
       B.Items.ensure();
+      if (!B.State.data.pets) B.State.data.pets = []; // evcil hayvanlar
+      B.Pets.ensure();
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
       if (B.State.data.stats.firstTryCorrect == null) B.State.data.stats.firstTryCorrect = 0;
       if (B.State.data.stats.timeSumMs == null) B.State.data.stats.timeSumMs = 0;
