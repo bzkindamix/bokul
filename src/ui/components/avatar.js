@@ -129,7 +129,8 @@
       eyes: a.eyes ?? 0, mouth: a.mouth ?? 0,
       outfit: OUTFIT_BY_ID[a.outfit] ? a.outfit : DEFAULT_OUTFIT,
       acc: a.acc || 'none', ring: a.ring || 'none',
-      photo: a.photo || null, usePhoto: !!a.usePhoto,
+      // Fotoğraf özelliği KVKK gereği kaldırıldı — avatar her zaman çizimdir.
+      photo: null, usePhoto: false,
     };
   }
 
@@ -320,15 +321,11 @@
 
   function el(a, cls) {
     a = normalize(a);
-    if (a.usePhoto && a.photo) {
-      return '<span class="avatar-holder ' + (cls || '') + '"><img class="avatar-photo" src="' + a.photo + '" alt="avatar">' +
-             '<svg viewBox="0 0 120 120" class="avatar-ring-svg">' + ringSvg(a.ring) + '</svg></span>';
-    }
     return '<span class="avatar-holder ' + (cls || '') + '">' + svg(a) + '</span>';
   }
 
   function preset(gender) {
-    const base = { gender, skin: 2, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false };
+    const base = { gender, skin: 2, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none' };
     return gender === 'kiz'
       ? Object.assign(base, { hair: 6, outfit: 'elbise-pembe' })
       : Object.assign(base, { hair: 0, outfit: 'tee-mavi' });

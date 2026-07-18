@@ -1,5 +1,19 @@
 # BOKUL — Sürüm Notları
 
+## v0.17 — İlgi Alanları + Fotoğraf Kaldırıldı (2026-07-18)
+
+- 📷 FOTOĞRAF ÖZELLİĞİ TAMAMEN KALDIRILDI (KVKK): Avatar artık her zaman çizim.
+  Dolap'taki "Fotoğraf" sekmesi, dosya yükleme ve tüm foto kodu silindi.
+- 🎯 İLGİ ALANLARI (isteğe bağlı kişiselleştirme): Karakter yaratımında ve
+  Evim → "İlgi Alanlarım"da çocuk hobilerini, sevdiği müzik/sanatçı/oyuncak/
+  kıyafet/abur cubur/sağlıklı yiyecek/spor/içecekleri seçer (hazır seçenekler
+  + kendi ekleyebilir). İsteğe bağlı, atlanabilir. Ebeveyn konsolunda görünür
+  (hediye/dilek fikirleri için). Aile-içi kişiselleştirme amaçlıdır.
+- NOT: Çocuk tercih verilerini ticari amaçla (monetizasyon) kullanmak ciddi
+  KVKK/çocuk mahremiyeti konusudur; bu veri aile-içi kişiselleştirme için
+  tasarlandı, reklam/profilleme hattı olarak DEĞİL.
+
+
 ## v0.16 — Bulut Senkron: Çocuklar kendi cihazında, ebeveyn uzaktan (2026-07-18)
 
 - ☁️ ÇOK-AİLELİ BULUT SENKRON (Firebase Firestore, REST — SDK yok): Çocuklar

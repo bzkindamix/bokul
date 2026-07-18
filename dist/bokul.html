@@ -758,6 +758,23 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .adm-sep { flex: 1; }
 .admin-tabs { flex-wrap: wrap; }
 
+/* ---------- v0.17: İlgi Alanları ---------- */
+.door-int { background: linear-gradient(180deg, #2f7a5a, #1f5a40); }
+.int-scroll { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; padding: 4px 16px 16px; max-width: 680px; width: 100%; margin: 0 auto; }
+.int-cat { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.int-catlabel { font-weight: 800; font-size: 14px; margin-bottom: 8px; }
+.int-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.int-chip { font-size: 13px; }
+.int-on { background: var(--success); color: #06331d; box-shadow: 0 0 8px rgba(82,232,140,.4); }
+.int-custom { background: var(--accent); color: #3a0a2e; }
+.int-add { display: flex; gap: 8px; margin-top: 8px; }
+.int-input { flex: 1; background: var(--bg-raised); border: 1px solid var(--line); border-radius: 10px; color: var(--ink); padding: 8px 10px; font-family: inherit; font-size: 13px; }
+.int-addbtn { white-space: nowrap; }
+.int-done { align-self: center; margin: 4px auto 14px; }
+.adm-ints { border-top: 1px dashed var(--line); padding-top: 8px; }
+.adm-int-h { font-weight: 800; font-size: 12.5px; color: var(--xp); margin-bottom: 3px; }
+.adm-int { font-size: 12px; color: var(--ink-dim); line-height: 1.5; }
+
 </style>
 </head>
 <body>
@@ -767,7 +784,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.15 — MEB Müfredatına Uygun Matematik</div>
+      <div class="splash-note">v0.16 — Bulut Senkron (Aile)</div>
     </div>
   </div>
 
@@ -2011,7 +2028,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         lastPlayedAt: new Date().toISOString(),
         introSeen: false,          // giriş sinematiği bu profilde izlendi mi
       },
-      player: { name: '', age: null, grade: null, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
+      player: { name: '', age: null, grade: null, profile: {}, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0,
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
       stats: { correct: 0, wrong: 0, questionsDone: 0, perSkill: {} }, // perSkill: { estimate: [1,0,1,...] }
@@ -4323,7 +4340,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       eyes: a.eyes ?? 0, mouth: a.mouth ?? 0,
       outfit: OUTFIT_BY_ID[a.outfit] ? a.outfit : DEFAULT_OUTFIT,
       acc: a.acc || 'none', ring: a.ring || 'none',
-      photo: a.photo || null, usePhoto: !!a.usePhoto,
+      // Fotoğraf özelliği KVKK gereği kaldırıldı — avatar her zaman çizimdir.
+      photo: null, usePhoto: false,
     };
   }
 
@@ -4514,15 +4532,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
   function el(a, cls) {
     a = normalize(a);
-    if (a.usePhoto && a.photo) {
-      return '<span class="avatar-holder ' + (cls || '') + '"><img class="avatar-photo" src="' + a.photo + '" alt="avatar">' +
-             '<svg viewBox="0 0 120 120" class="avatar-ring-svg">' + ringSvg(a.ring) + '</svg></span>';
-    }
     return '<span class="avatar-holder ' + (cls || '') + '">' + svg(a) + '</span>';
   }
 
   function preset(gender) {
-    const base = { gender, skin: 2, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false };
+    const base = { gender, skin: 2, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none' };
     return gender === 'kiz'
       ? Object.assign(base, { hair: 6, outfit: 'elbise-pembe' })
       : Object.assign(base, { hair: 0, outfit: 'tee-mavi' });
@@ -5482,7 +5496,6 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       { id: 'hair',  name: '💇 Saç' },
       { id: 'face',  name: '🙂 Yüz' },
       { id: 'color', name: '🎨 Renk' },
-      { id: 'photo', name: '📷 Fotoğraf' },
     ],
     dolap: [
       { id: 'outfit', name: '👕 Kıyafet' },
@@ -5601,8 +5614,6 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           host.appendChild(grid(C.rings, (x, p) => { x.ring = p.id; }, p => p.id === a.ring));
         } else if (tab === 'sell') {
           renderSell(host);
-        } else if (tab === 'photo') {
-          renderPhoto(host, a);
         }
       }
 
@@ -5633,46 +5644,6 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         host.appendChild(g);
       }
 
-      function renderPhoto(host, a) {
-        host.innerHTML =
-          '<div class="photo-panel">' +
-            '<p>Fotoğrafın <b>sadece bu cihazda</b> kalır, hiçbir yere gönderilmez. 📵</p>' +
-            '<input type="file" id="photo-input" accept="image/*" class="photo-input">' +
-            '<div class="photo-btns">' +
-              '<button class="btn btn-action" id="photo-pick">📷 Fotoğraf Seç</button>' +
-              (a.photo ? '<button class="btn btn-quiet" id="photo-toggle">' + (a.usePhoto ? '🎨 Çizim avatara dön' : '🖼️ Fotoğrafı avatar yap') + '</button>' : '') +
-              (a.photo ? '<button class="btn btn-quiet" id="photo-remove">🗑️ Fotoğrafı sil</button>' : '') +
-            '</div>' +
-          '</div>';
-        const input = host.querySelector('#photo-input');
-        host.querySelector('#photo-pick').onclick = () => input.click();
-        input.onchange = () => {
-          const file = input.files && input.files[0];
-          if (!file) return;
-          const reader = new FileReader();
-          reader.onload = () => {
-            const img = new Image();
-            img.onload = () => {
-              const cv = document.createElement('canvas');
-              cv.width = cv.height = 160;
-              const s = Math.min(img.width, img.height);
-              cv.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 160, 160);
-              const cur = av();
-              cur.photo = cv.toDataURL('image/jpeg', 0.82);
-              cur.usePhoto = true;
-              commit(cur);
-              B.UI.toast('📷 Fotoğraf avatarın oldu!');
-            };
-            img.src = reader.result;
-          };
-          reader.readAsDataURL(file);
-        };
-        const tg = host.querySelector('#photo-toggle');
-        if (tg) tg.onclick = () => { const cur = av(); cur.usePhoto = !cur.usePhoto; commit(cur); };
-        const rm = host.querySelector('#photo-remove');
-        if (rm) rm.onclick = () => { const cur = av(); cur.photo = null; cur.usePhoto = false; commit(cur); };
-      }
-
       function render() {
         const p = B.State.data.player;
         left.innerHTML =
@@ -5683,8 +5654,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         if (onboarding) {
           left.querySelector('.locker-done').onclick = () => {
             B.Save.saveNow();
-            if (!B.State.data.meta.introSeen) B.UI.show('intro', {});
-            else B.UI.show('home');
+            B.UI.show('interests', { onboarding: true }); // görünüm → ilgi alanları → hikâye
           };
         }
         renderTab();
@@ -5730,11 +5700,13 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         '<div class="evim-doors">' +
           '<button class="btn door door-ben">🧍<br>BEN<small>Tipimi ayarla</small></button>' +
           '<button class="btn door door-dolap">👕<br>DOLAP<small>Kıyafet al · sat · giy</small></button>' +
+          '<button class="btn door door-int">🎯<br>İLGİ ALANLARIM<small>Sevdiklerim</small></button>' +
         '</div>';
       root.appendChild(wrap);
 
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
+      wrap.querySelector('.door-int').onclick = () => { B.Audio.play('tick'); B.UI.show('interests', {}); };
     },
     exit() { if (this._hud) this._hud.dispose(); },
   });
@@ -6312,6 +6284,17 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     (save.ideas || []).forEach(i => { d.ideas[i.id] = { status: i.status, note: i.note || '' }; });
     return d;
   }
+  const PROFILE_META = {
+    hobiler: '🎨 Hobiler', muzik: '🎵 Müzik', sanatcilar: '🎤 Sanatçılar', oyuncaklar: '🧸 Oyuncaklar',
+    kiyafetler: '👕 Kıyafetler', aburcubur: '🍫 Abur cubur', saglikli: '🥗 Sağlıklı', sporlar: '⚽ Spor', icecekler: '🥤 İçecek',
+  };
+  function profileHtml(profile) {
+    if (!profile) return '';
+    const rows = Object.keys(PROFILE_META)
+      .filter(k => Array.isArray(profile[k]) && profile[k].length)
+      .map(k => '<div class="adm-int"><b>' + PROFILE_META[k] + ':</b> ' + esc(profile[k].join(', ')) + '</div>');
+    return rows.length ? '<div class="adm-ints"><div class="adm-int-h">🎯 İlgi Alanları</div>' + rows.join('') + '</div>' : '';
+  }
   function xpNeeded(level) { const L = B.Content.get('rewards').levels; return L.base + (level - 1) * L.perLevel; }
   function esc(s) { return String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
 
@@ -6372,7 +6355,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           '<div class="admin-body"></div>';
         root.querySelector('.admin-back').onclick = () => B.UI.show('login');
         root.querySelector('.admin-pin').onclick = changePin;
-        root.querySelector('.admin-refresh').onclick = load;
+        root.querySelector('.adm-refresh').onclick = load;
         root.querySelectorAll('.atab').forEach(b => b.onclick = () => {
           tab = b.dataset.t;
           root.querySelectorAll('.atab').forEach(x => x.classList.toggle('tab-on', x === b));
@@ -6433,7 +6416,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
             '<div class="adm-stats"><span>💰 ' + (pl.coins || 0) + '</span><span>✅ ' + (st.correct || 0) + '</span><span>❌ ' + (st.wrong || 0) +
               '</span><span>🎯 %' + acc + '</span><span>🔥 en iyi ' + ((s.streaks && s.streaks.best) || 0) + '</span><span>📅 ' + last + '</span></div>' +
-            '<div class="adm-lessons">' + lessonRows + '</div></div>';
+            '<div class="adm-lessons">' + lessonRows + '</div>' +
+            profileHtml(pl.profile) + '</div>';
         }).join('');
       }
 
@@ -6521,6 +6505,106 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       shell();
     },
     exit() {},
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/interests-screen.js === */
+/* BOKUL — İlgi Alanları (kişiselleştirme)
+ * Çocuğun hobileri, sevdiği müzik/oyuncak/yiyecek/spor vb. — İSTEĞE BAĞLI.
+ * Amaç: oyunu kişiselleştirmek ve ebeveynin çocuğunun neleri sevdiğini görmesi
+ * (dilek/hediye fikirleri). Aile-içi kullanım; ticari profilleme için değildir. */
+(function (B) {
+  const CATS = [
+    { id: 'hobiler',    icon: '🎨', label: 'Hobilerim',                  opts: ['Resim', 'Müzik', 'Dans', 'Lego', 'Kitap okuma', 'Video oyunu', 'Bisiklet', 'Bilim deneyleri', 'El işi', 'Doğa gezisi'] },
+    { id: 'muzik',      icon: '🎵', label: 'Sevdiğim müzik türleri',      opts: ['Pop', 'Rock', 'Rap', 'Çocuk şarkıları', 'Türkü', 'Klasik', 'Elektronik'] },
+    { id: 'sanatcilar', icon: '🎤', label: 'Sevdiğim sanatçılar',         opts: [] },
+    { id: 'oyuncaklar', icon: '🧸', label: 'Sevdiğim oyuncaklar',         opts: ['Lego', 'Bebek', 'Araba', 'Peluş', 'Puzzle', 'Robot', 'Kart oyunu', 'Top'] },
+    { id: 'kiyafetler', icon: '👕', label: 'Sevdiğim kıyafetler',         opts: ['Tişört', 'Elbise', 'Spor giyim', 'Kapüşonlu', 'Etek', 'Kot', 'Kostüm'] },
+    { id: 'aburcubur',  icon: '🍫', label: 'Sevdiğim abur cuburlar',      opts: ['Çikolata', 'Cips', 'Dondurma', 'Şeker', 'Bisküvi', 'Kek', 'Kraker'] },
+    { id: 'saglikli',   icon: '🥗', label: 'Sevdiğim sağlıklı yiyecekler', opts: ['Meyve', 'Sebze', 'Yoğurt', 'Yumurta', 'Balık', 'Kuruyemiş', 'Salata'] },
+    { id: 'sporlar',    icon: '⚽', label: 'Sevdiğim sporlar',            opts: ['Futbol', 'Basketbol', 'Voleybol', 'Yüzme', 'Jimnastik', 'Tenis', 'Koşu', 'Bisiklet'] },
+    { id: 'icecekler',  icon: '🥤', label: 'Sevdiğim içecekler',          opts: ['Su', 'Süt', 'Meyve suyu', 'Ayran', 'Limonata', 'Smoothie'] },
+  ];
+
+  B.UI.registerScreen('interests', {
+    enter(root, params) {
+      const onboarding = !!params.onboarding;
+      const hud = onboarding ? null : B.UI.buildHud(root, { backTo: 'evim' });
+      this._hud = hud;
+      const P = B.State.data.player;
+      if (!P.profile) P.profile = {};
+      const has = id => Array.isArray(P.profile[id]) ? P.profile[id] : (P.profile[id] = []);
+
+      const title = document.createElement('div');
+      title.className = 'map-title';
+      title.textContent = '🎯 İlgi Alanların — ' + (P.name || 'asker') + ' (istediğini seç, geçebilirsin)';
+      root.appendChild(title);
+
+      const scroll = document.createElement('div');
+      scroll.className = 'int-scroll';
+      root.appendChild(scroll);
+
+      CATS.forEach(cat => {
+        const sel = has(cat.id);
+        const box = document.createElement('div');
+        box.className = 'int-cat';
+        box.innerHTML = '<div class="int-catlabel">' + cat.icon + ' ' + cat.label + '</div><div class="int-chips"></div>' +
+          '<div class="int-add"><input class="int-input" maxlength="20" placeholder="Başka bir şey ekle..."><button class="chip int-addbtn">+ Ekle</button></div>';
+        const chips = box.querySelector('.int-chips');
+
+        function drawChips() {
+          chips.innerHTML = '';
+          // önce hazır seçenekler
+          cat.opts.forEach(o => {
+            const on = sel.includes(o);
+            const c = document.createElement('button');
+            c.className = 'chip int-chip' + (on ? ' int-on' : '');
+            c.textContent = o;
+            c.onclick = () => { toggle(o); };
+            chips.appendChild(c);
+          });
+          // kullanıcının eklediği özel değerler (opts'ta olmayanlar)
+          sel.filter(v => !cat.opts.includes(v)).forEach(v => {
+            const c = document.createElement('button');
+            c.className = 'chip int-chip int-on int-custom';
+            c.textContent = v + ' ✕';
+            c.onclick = () => { toggle(v); };
+            chips.appendChild(c);
+          });
+        }
+        function toggle(v) {
+          const i = sel.indexOf(v);
+          if (i >= 0) sel.splice(i, 1); else sel.push(v);
+          B.Save.saveSoon();
+          drawChips();
+        }
+        drawChips();
+
+        const input = box.querySelector('.int-input');
+        const add = () => {
+          const v = (input.value || '').trim();
+          if (v && !sel.includes(v)) { sel.push(v); B.Save.saveSoon(); drawChips(); }
+          input.value = '';
+        };
+        box.querySelector('.int-addbtn').onclick = add;
+        input.addEventListener('keydown', e => { if (e.key === 'Enter') add(); });
+
+        scroll.appendChild(box);
+      });
+
+      const done = document.createElement('button');
+      done.className = 'btn btn-action int-done';
+      done.textContent = onboarding ? 'DEVAM ▶' : '✔ KAYDET';
+      done.onclick = () => {
+        B.Save.saveNow();
+        if (onboarding) {
+          if (!B.State.data.meta.introSeen) B.UI.show('intro', {});
+          else B.UI.show('home');
+        } else B.UI.show('evim');
+      };
+      root.appendChild(done);
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
   });
 })(window.BOKUL = window.BOKUL || {});
 

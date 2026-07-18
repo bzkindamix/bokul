@@ -59,6 +59,7 @@ const JS = [
   'src/ui/screens/login-screen.js',
   'src/ui/screens/wishes-screen.js',
   'src/ui/screens/admin-screen.js',
+  'src/ui/screens/interests-screen.js',
   'src/core/game-engine.js',
   'src/main.js',
 ];

@@ -21,6 +21,17 @@
     (save.ideas || []).forEach(i => { d.ideas[i.id] = { status: i.status, note: i.note || '' }; });
     return d;
   }
+  const PROFILE_META = {
+    hobiler: '🎨 Hobiler', muzik: '🎵 Müzik', sanatcilar: '🎤 Sanatçılar', oyuncaklar: '🧸 Oyuncaklar',
+    kiyafetler: '👕 Kıyafetler', aburcubur: '🍫 Abur cubur', saglikli: '🥗 Sağlıklı', sporlar: '⚽ Spor', icecekler: '🥤 İçecek',
+  };
+  function profileHtml(profile) {
+    if (!profile) return '';
+    const rows = Object.keys(PROFILE_META)
+      .filter(k => Array.isArray(profile[k]) && profile[k].length)
+      .map(k => '<div class="adm-int"><b>' + PROFILE_META[k] + ':</b> ' + esc(profile[k].join(', ')) + '</div>');
+    return rows.length ? '<div class="adm-ints"><div class="adm-int-h">🎯 İlgi Alanları</div>' + rows.join('') + '</div>' : '';
+  }
   function xpNeeded(level) { const L = B.Content.get('rewards').levels; return L.base + (level - 1) * L.perLevel; }
   function esc(s) { return String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
 
@@ -81,7 +92,7 @@
           '<div class="admin-body"></div>';
         root.querySelector('.admin-back').onclick = () => B.UI.show('login');
         root.querySelector('.admin-pin').onclick = changePin;
-        root.querySelector('.admin-refresh').onclick = load;
+        root.querySelector('.adm-refresh').onclick = load;
         root.querySelectorAll('.atab').forEach(b => b.onclick = () => {
           tab = b.dataset.t;
           root.querySelectorAll('.atab').forEach(x => x.classList.toggle('tab-on', x === b));
@@ -142,7 +153,8 @@
             '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
             '<div class="adm-stats"><span>💰 ' + (pl.coins || 0) + '</span><span>✅ ' + (st.correct || 0) + '</span><span>❌ ' + (st.wrong || 0) +
               '</span><span>🎯 %' + acc + '</span><span>🔥 en iyi ' + ((s.streaks && s.streaks.best) || 0) + '</span><span>📅 ' + last + '</span></div>' +
-            '<div class="adm-lessons">' + lessonRows + '</div></div>';
+            '<div class="adm-lessons">' + lessonRows + '</div>' +
+            profileHtml(pl.profile) + '</div>';
         }).join('');
       }
 

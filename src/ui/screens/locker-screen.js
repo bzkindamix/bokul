@@ -10,7 +10,6 @@
       { id: 'hair',  name: '💇 Saç' },
       { id: 'face',  name: '🙂 Yüz' },
       { id: 'color', name: '🎨 Renk' },
-      { id: 'photo', name: '📷 Fotoğraf' },
     ],
     dolap: [
       { id: 'outfit', name: '👕 Kıyafet' },
@@ -129,8 +128,6 @@
           host.appendChild(grid(C.rings, (x, p) => { x.ring = p.id; }, p => p.id === a.ring));
         } else if (tab === 'sell') {
           renderSell(host);
-        } else if (tab === 'photo') {
-          renderPhoto(host, a);
         }
       }
 
@@ -161,46 +158,6 @@
         host.appendChild(g);
       }
 
-      function renderPhoto(host, a) {
-        host.innerHTML =
-          '<div class="photo-panel">' +
-            '<p>Fotoğrafın <b>sadece bu cihazda</b> kalır, hiçbir yere gönderilmez. 📵</p>' +
-            '<input type="file" id="photo-input" accept="image/*" class="photo-input">' +
-            '<div class="photo-btns">' +
-              '<button class="btn btn-action" id="photo-pick">📷 Fotoğraf Seç</button>' +
-              (a.photo ? '<button class="btn btn-quiet" id="photo-toggle">' + (a.usePhoto ? '🎨 Çizim avatara dön' : '🖼️ Fotoğrafı avatar yap') + '</button>' : '') +
-              (a.photo ? '<button class="btn btn-quiet" id="photo-remove">🗑️ Fotoğrafı sil</button>' : '') +
-            '</div>' +
-          '</div>';
-        const input = host.querySelector('#photo-input');
-        host.querySelector('#photo-pick').onclick = () => input.click();
-        input.onchange = () => {
-          const file = input.files && input.files[0];
-          if (!file) return;
-          const reader = new FileReader();
-          reader.onload = () => {
-            const img = new Image();
-            img.onload = () => {
-              const cv = document.createElement('canvas');
-              cv.width = cv.height = 160;
-              const s = Math.min(img.width, img.height);
-              cv.getContext('2d').drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 160, 160);
-              const cur = av();
-              cur.photo = cv.toDataURL('image/jpeg', 0.82);
-              cur.usePhoto = true;
-              commit(cur);
-              B.UI.toast('📷 Fotoğraf avatarın oldu!');
-            };
-            img.src = reader.result;
-          };
-          reader.readAsDataURL(file);
-        };
-        const tg = host.querySelector('#photo-toggle');
-        if (tg) tg.onclick = () => { const cur = av(); cur.usePhoto = !cur.usePhoto; commit(cur); };
-        const rm = host.querySelector('#photo-remove');
-        if (rm) rm.onclick = () => { const cur = av(); cur.photo = null; cur.usePhoto = false; commit(cur); };
-      }
-
       function render() {
         const p = B.State.data.player;
         left.innerHTML =
@@ -211,8 +168,7 @@
         if (onboarding) {
           left.querySelector('.locker-done').onclick = () => {
             B.Save.saveNow();
-            if (!B.State.data.meta.introSeen) B.UI.show('intro', {});
-            else B.UI.show('home');
+            B.UI.show('interests', { onboarding: true }); // görünüm → ilgi alanları → hikâye
           };
         }
         renderTab();
