@@ -45,6 +45,11 @@
       "Buna henüz onay veremiyorum {name}. Ama çok yaklaştın!",
       "Pes etmek bizim sözlükte yok {name}. Hücum!"
     ],
+    "timeUp": [
+      "Süre doldu {name}! Sorun değil, sıradakine geçiyoruz. Bir dahakine daha hızlı!",
+      "Zaman bitti Komutan! Panik yok, savaş uzun. Devam!",
+      "Süre yetmedi {name} — ama pes yok. Sıradaki hedef!"
+    ],
     "idle": [
       "Kalemi sağlam tut {name}, beyin birazdan fazla mesai yapacak.",
       "{name}? Hedef bekliyor. Uyuyakaldık mı?",

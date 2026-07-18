@@ -13,6 +13,8 @@
       const next = screens.get(name);
       if (!next) { console.error('[BOKUL] Kayıtsız ekran:', name); return; }
       if (current && current.exit) current.exit();
+      // Ekran değişiminde açık kalan overlay/toast'ları temizle
+      document.querySelectorAll('.overlay').forEach(o => o.remove());
       const app = document.getElementById('app');
       app.innerHTML = '';
       const root = document.createElement('div');

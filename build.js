@@ -41,6 +41,7 @@ const JS = [
   'src/interactions/arithmetic/logic.js',
   'src/interactions/arithmetic/view.js',
   'src/ui/animation-engine.js',
+  'src/ui/components/timer.js',
   'src/ui/components/svg-art.js',
   'src/ui/components/avatar.js',
   'src/ui/components/commander.js',

@@ -28,19 +28,25 @@
 
   "teachScripts": {
     "add-brief": [
-      { "say": "Brifing Komutan! TOPLAMA, iki grubu birleştirmektir. 3 elman var, 2 tane daha geldi... hepsi 5 eder! Artı işareti (+) 'birleştir' demektir." },
-      { "ask": "3 + 2 kaç eder?", "expect": 5 },
-      { "say": "Aynen! Sayıları birleştirdik. Toplama bu kadar basit. Şimdi sahaya!" }
+      { "say": "Brifing Komutan! TOPLAMA, iki grubu birleştirmektir. Bak şimdi: elmaları sayalım." },
+      { "objects": { "a": 3, "b": 2, "emoji": "🍎", "op": "+" } },
+      { "say": "3 elma ile 2 elmayı birleştirdik: 5 etti! Artı işareti (+) 'birleştir' demektir." },
+      { "ask": "4 + 3 kaç eder?", "expect": 7 },
+      { "say": "Aynen! Toplama bu kadar basit. Şimdi sahaya!" }
     ],
     "sub-brief": [
-      { "say": "ÇIKARMA, bir gruptan koparıp almaktır. 7 şekerin vardı, 3'ünü yedin... 4 kaldı! Eksi işareti (−) 'geri kalan ne' diye sorar." },
-      { "ask": "7 − 3 kaç eder?", "expect": 4 },
+      { "say": "ÇIKARMA, bir gruptan koparıp almaktır. Kurabiyelerle görelim." },
+      { "objects": { "a": 7, "b": 3, "emoji": "🍪", "op": "-" } },
+      { "say": "7 kurabiye vardı, 3'ünü yedik... 4 kaldı! Eksi işareti (−) 'geriye ne kaldı' diye sorar." },
+      { "ask": "9 − 4 kaç eder?", "expect": 5 },
       { "say": "Harika! Kalanı buldun. Çıkarma da cephaneliğe girdi." }
     ],
     "mul-brief": [
-      { "say": "ÇARPMA bir kestirme yoldur Komutan! 4 kere 3 demek, 3'ü 4 defa toplamak demektir: 3+3+3+3 = 12. Çarpı işareti (×) 'şu kadar defa' der." },
-      { "ask": "2 kere 3, yani 3+3 kaç eder?", "expect": 6 },
-      { "say": "İşte bu! Tekrar tekrar toplamak yerine çarpıyoruz. Çarpım tablosu en güçlü silahındır." }
+      { "say": "ÇARPMA bir kestirme yoldur Komutan! 'Kaç grup, her grupta kaç tane' demektir. Yıldızlara bak:" },
+      { "groups": { "n": 4, "per": 3, "emoji": "⭐" } },
+      { "say": "4 grup, her grupta 3 yıldız = 12. Yani 4 × 3 = 12. Tek tek toplamak yerine çarpıyoruz!" },
+      { "ask": "2 grup, her grupta 3 tane. 2 × 3 kaç eder?", "expect": 6 },
+      { "say": "İşte bu! Çarpım tablosu en güçlü silahındır." }
     ],
     "share-brief": [
       { "say": "Şimdi sıra BÖLMEDE. Bölme, ADİL PAYLAŞTIRMAKTIR. 12 kutuyu 3 takıma eşit dağıtalım, bakalım her takıma kaç düşecek." },

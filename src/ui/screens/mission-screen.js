@@ -44,9 +44,20 @@
       layout.appendChild(leftCol);
       const cmd = B.Commander.mount(leftCol, { compact: true });
 
+      const stageWrap = document.createElement('div');
+      stageWrap.className = 'mission-stagewrap';
+      layout.appendChild(stageWrap);
+      const timerHost = document.createElement('div');
+      timerHost.className = 'qtimer-host';
+      stageWrap.appendChild(timerHost);
       const stage = document.createElement('div');
       stage.className = 'mission-stage';
-      layout.appendChild(stage);
+      stageWrap.appendChild(stage);
+
+      // Soru süresi (config.timer): teach hariç soru bazlı tipler için
+      const tcfg = cfg.timer || {};
+      const timerSec = tcfg.enabled ? (tcfg[itype] || tcfg.default || 0) : 0;
+      let timerCtl = null;
 
       /* ---------- TEACH: senaryo oynatıcı ---------- */
       if (mission.type === 'teach') {
@@ -79,6 +90,7 @@
 
       function nextQuestion() {
         if (view) { view.destroy(); view = null; }
+        if (timerCtl) { timerCtl.stop(); timerCtl = null; }
         if (qIndex >= total) return finishMission(starList);
         targetChip.textContent = '🎯 Hedef ' + (qIndex + 1) + '/' + total;
 
@@ -107,6 +119,23 @@
 
         cmd.sayFrom(qIndex === 0 ? 'mission.start' : 'mission.next');
         let mistakes = 0;
+        let settled = false;
+
+        // Soruyu bitir: normal (timedOut=false) veya süre doldu (true)
+        function completeCurrent(timedOut) {
+          if (settled) return; settled = true;
+          if (timerCtl) { timerCtl.stop(); timerCtl = null; }
+          if (view) { view.destroy(); view = null; }
+          const th = cfg.starThresholds;
+          const stars = timedOut ? 1 : (mistakes <= th.three ? 3 : mistakes <= th.two ? 2 : 1);
+          starList.push(stars);
+          B.Reward.onQuestionDone(stars === 3);
+          B.Reward.addCoins(stars * 2, 'question');
+          const xp = B.Reward.addXp(B.Reward.questionXp(stars), 'question', { applyStreak: true });
+          B.Bus.emit(B.Events.QUESTION_COMPLETED, { stars, mistakes });
+          if (timedOut) cmd.sayFrom('timeUp');
+          showStars(stars, xp, () => { qIndex++; nextQuestion(); });
+        }
 
         view = B.Question.view(itype)(stage, q, {
           prefilled, problemText,
@@ -118,18 +147,11 @@
               if (Math.random() < 0.25) cmd.sayFrom('correct');
             } else mistakes++;
           },
-          onComplete() {
-            // Yıldız: config eşikleri (0 hata → 3★, ≤2 hata → 2★, üstü → 1★)
-            const th = cfg.starThresholds;
-            const stars = mistakes <= th.three ? 3 : mistakes <= th.two ? 2 : 1;
-            starList.push(stars);
-            B.Reward.onQuestionDone(stars === 3);
-            B.Reward.addCoins(stars * 2, 'question');
-            const xp = B.Reward.addXp(B.Reward.questionXp(stars), 'question', { applyStreak: true });
-            B.Bus.emit(B.Events.QUESTION_COMPLETED, { stars, mistakes });
-            showStars(stars, xp, () => { qIndex++; nextQuestion(); });
-          },
+          onComplete() { completeCurrent(false); },
         });
+
+        // Süre başlat (varsa)
+        if (timerSec > 0) timerCtl = B.Timer.create(timerHost, timerSec, () => completeCurrent(true));
       }
 
       /* Hedef sonu yıldız töreni */
@@ -165,11 +187,13 @@
 
       nextQuestion();
       this._view = () => view;
+      this._stopTimer = () => { if (timerCtl) { timerCtl.stop(); timerCtl = null; } };
     },
 
     exit() {
       if (this._hud) this._hud.dispose();
       if (this._offStreak) this._offStreak();
+      if (this._stopTimer) this._stopTimer();
       if (this._teach) { this._teach.destroy(); this._teach = null; }
       if (this._view) { const v = this._view(); if (v) v.destroy(); }
     },

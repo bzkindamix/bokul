@@ -1,5 +1,19 @@
 # BOKUL — Sürüm Notları
 
+## v0.18 — Okunur Sorular, Görsel Anlatım ve Süre (2026-07-18)
+
+- 🔎 OKUNUR KOMUTAN: Baba Komutan artık soruları/ipuçlarını tam genişlikte,
+  üstte, BÜYÜK ve okunur bir balonda söylüyor (font ~18-21px). Harekât düzeni
+  yeniden dizildi (Komutan üstte, soru altta geniş alanda).
+- 🖼️ GÖRSEL ANLATIM: Üniteler önce görselle anlatılıyor — toplama/çıkarmada
+  nesneler (🍎🍪), çarpmada gruplar (⭐), bölmede kutu paylaştırma. Çocuk
+  "CEVABI GÖSTER" ile keşfediyor.
+- ⏱️ SORU SÜRESİ: Her soruda geri sayım çubuğu (config.timer: aritmetik 40sn,
+  test 30sn, uzun bölme 120sn — ayarlanabilir/kapatılabilir). Süre dolunca
+  CEZALANDIRMAZ: 1 yıldız verir, Baba cesaretlendirir, sıradaki soruya geçer.
+- Sağlamlık: Ekran değişiminde açık kalan overlay'ler otomatik temizleniyor.
+
+
 ## v0.17 — İlgi Alanları + Fotoğraf Kaldırıldı (2026-07-18)
 
 - 📷 FOTOĞRAF ÖZELLİĞİ TAMAMEN KALDIRILDI (KVKK): Avatar artık her zaman çizim.

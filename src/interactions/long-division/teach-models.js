@@ -30,11 +30,66 @@
       container.innerHTML = '';
 
       if (s.say) return doSay(s);
+      if (s.objects) return doObjects(s.objects);
+      if (s.groups) return doGroups(s.groups);
       if (s.deal) return doDeal(s.deal);
       if (s.pv) return doPv(s.pv);
       if (s.ask) return doAsk(s);
       if (s.guided) return doGuided(s.guided);
       next(); // bilinmeyen adım atlanır
+    }
+
+    /* --- GÖRSEL: nesnelerle toplama/çıkarma --- */
+    function doObjects(cfg) {
+      // cfg: { a, b, emoji, op:'+'|'-' }  → a nesne (op) b nesne = ?
+      const em = cfg.emoji || '🍎';
+      const stage = el('div', 'teach-stage');
+      const row = el('div', 'obj-row');
+      const g1 = el('div', 'obj-group');
+      for (let k = 0; k < cfg.a; k++) g1.appendChild(el('span', 'obj', em));
+      const opEl = el('div', 'obj-op', cfg.op === '-' ? '−' : '+');
+      const g2 = el('div', 'obj-group' + (cfg.op === '-' ? ' obj-gone' : ''));
+      for (let k = 0; k < cfg.b; k++) g2.appendChild(el('span', 'obj', em));
+      const eq = el('div', 'obj-op', '=');
+      const res = el('div', 'obj-res', '?');
+      row.appendChild(g1); row.appendChild(opEl); row.appendChild(g2); row.appendChild(eq); row.appendChild(res);
+      stage.appendChild(row);
+      const total = cfg.op === '-' ? (cfg.a - cfg.b) : (cfg.a + cfg.b);
+      const reveal = el('button', 'btn btn-action teach-next', 'CEVABI GÖSTER 👀');
+      reveal.onclick = () => {
+        res.textContent = total; res.classList.add('obj-lit');
+        B.Audio.play('correct');
+        reveal.textContent = 'DEVAM ▶';
+        reveal.onclick = () => { B.Audio.play('tick'); next(); };
+      };
+      container.appendChild(stage);
+      container.appendChild(reveal);
+    }
+
+    /* --- GÖRSEL: gruplarla çarpma --- */
+    function doGroups(cfg) {
+      // cfg: { n, per, emoji }  → n grup × per nesne
+      const em = cfg.emoji || '⭐';
+      const stage = el('div', 'teach-stage');
+      stage.appendChild(el('div', 'grp-title', cfg.n + ' grup × ' + cfg.per + ' tane'));
+      const wrap = el('div', 'grp-wrap');
+      for (let g = 0; g < cfg.n; g++) {
+        const box = el('div', 'grp-box');
+        for (let k = 0; k < cfg.per; k++) box.appendChild(el('span', 'obj', em));
+        wrap.appendChild(box);
+      }
+      stage.appendChild(wrap);
+      const res = el('div', 'obj-res', cfg.n + ' × ' + cfg.per + ' = ?');
+      stage.appendChild(res);
+      const reveal = el('button', 'btn btn-action teach-next', 'CEVABI GÖSTER 👀');
+      reveal.onclick = () => {
+        res.textContent = cfg.n + ' × ' + cfg.per + ' = ' + (cfg.n * cfg.per); res.classList.add('obj-lit');
+        B.Audio.play('correct');
+        reveal.textContent = 'DEVAM ▶';
+        reveal.onclick = () => { B.Audio.play('tick'); next(); };
+      };
+      container.appendChild(stage);
+      container.appendChild(reveal);
     }
 
     /* --- Komutan anlatımı --- */

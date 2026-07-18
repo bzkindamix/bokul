@@ -66,9 +66,19 @@
       leftCol.className = 'mission-left';
       layout.appendChild(leftCol);
       const cmd = B.Commander.mount(leftCol, { compact: true });
+      const stageWrap = document.createElement('div');
+      stageWrap.className = 'mission-stagewrap';
+      layout.appendChild(stageWrap);
+      const timerHost = document.createElement('div');
+      timerHost.className = 'qtimer-host';
+      stageWrap.appendChild(timerHost);
       const stage = document.createElement('div');
       stage.className = 'mission-stage';
-      layout.appendChild(stage);
+      stageWrap.appendChild(stage);
+
+      const tcfg = cfg.timer || {};
+      const timerSec = tcfg.enabled ? (tcfg[itype] || tcfg.default || 0) : 0;
+      let timerCtl = null;
 
       cmd.sayFrom(isUnit ? 'boss.intro.unit' : 'boss.intro.topic', { bossName: boss.name });
 
@@ -78,6 +88,7 @@
       function nextQuestion() {
         if (over) return;
         if (view) { view.destroy(); view = null; }
+        if (timerCtl) { timerCtl.stop(); timerCtl = null; }
         const q = B.Question.generate(itype,
           B.Curriculum.forType(itype, B.Lesson.resolveGenerator(params.sectionId, boss.generator)), lesson.skills);
         let mistakes = 0;
@@ -128,6 +139,7 @@
           },
           onComplete() {
             if (over) return;
+            if (timerCtl) { timerCtl.stop(); timerCtl = null; }
             // Hatasız hedef = kritik vuruş bonusu
             if (mistakes === 0 && hp > 0) {
               hp -= 6; dealt += 6;
@@ -139,10 +151,19 @@
             setTimeout(nextQuestion, 500);
           },
         });
+
+        // Süre dolunca: hasarsız, sonraki soruya geç (nazik)
+        if (timerSec > 0) timerCtl = B.Timer.create(timerHost, timerSec, () => {
+          if (over) return;
+          if (view) { view.destroy(); view = null; }
+          cmd.sayFrom('timeUp');
+          setTimeout(nextQuestion, 400);
+        });
       }
 
       function victory() {
         over = true;
+        if (timerCtl) { timerCtl.stop(); timerCtl = null; }
         if (view) { view.destroy(); view = null; }
         B.Lesson.defeatBoss(params.sectionId);
         const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
@@ -159,6 +180,7 @@
 
       function retreat() {
         over = true;
+        if (timerCtl) { timerCtl.stop(); timerCtl = null; }
         if (view) { view.destroy(); view = null; }
         // Emek boşa gitmez: verilen hasarın yarısı taşınır (boss yorgun başlar)
         prog.bossHpCarry = Math.round(dealt * (cfg.unitBoss.regroupHpCarry || 0.5));
@@ -176,10 +198,12 @@
 
       nextQuestion();
       this._view = () => view;
+      this._stopTimer = () => { if (timerCtl) { timerCtl.stop(); timerCtl = null; } };
     },
 
     exit() {
       if (this._hud) this._hud.dispose();
+      if (this._stopTimer) this._stopTimer();
       if (this._view) { const v = this._view(); if (v) v.destroy(); }
     },
   });

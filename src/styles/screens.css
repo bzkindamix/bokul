@@ -417,3 +417,39 @@
 .adm-ints { border-top: 1px dashed var(--line); padding-top: 8px; }
 .adm-int-h { font-weight: 800; font-size: 12.5px; color: var(--xp); margin-bottom: 3px; }
 .adm-int { font-size: 12px; color: var(--ink-dim); line-height: 1.5; }
+
+/* ---------- v0.18: Okunur Komutan + süre + görsel anlatım ---------- */
+/* Komutan tam genişlikte üstte, büyük okunur balon */
+.mission-layout { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+.mission-left .commander-wrap { flex-direction: row; align-items: center; gap: 12px; }
+.mission-left .commander-face, .commander-compact .commander-face { width: 68px; height: 68px; font-size: 34px; flex: none; }
+.commander-balloon { font-size: clamp(16px, 2.5vw, 21px); line-height: 1.5; min-height: 62px; padding: 14px 18px; }
+.ld-problem { font-size: clamp(15px, 2.4vw, 18px) !important; }
+.mission-stagewrap { display: flex; flex-direction: column; min-height: 0; }
+.mission-stage { flex: 1; min-height: 0; }
+
+/* Soru süresi çubuğu */
+.qtimer-host { padding: 0 2px; }
+.qtimer { display: flex; align-items: center; gap: 8px; padding: 6px 2px; }
+.qtimer-icon { font-size: 16px; }
+.qtimer-bar { flex: 1; height: 12px; background: var(--bg-raised); border-radius: 99px; overflow: hidden; }
+.qtimer-bar i { display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--success), var(--xp)); }
+.qtimer-num { font-weight: 800; font-family: var(--mono); min-width: 2.2ch; text-align: right; font-size: 15px; }
+.qtimer-low .qtimer-bar i { background: linear-gradient(90deg, var(--warn), #e8443b); }
+.qtimer-low .qtimer-num { color: var(--warn); }
+.qtimer-low { animation: qpulse .6s ease-in-out infinite; }
+@keyframes qpulse { 50% { opacity: .6; } }
+
+/* Görsel anlatım: nesneler ve gruplar */
+.obj-row { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.obj-group { display: flex; flex-wrap: wrap; gap: 4px; max-width: 200px; justify-content: center; }
+.obj { font-size: 30px; animation: objPop .3s both; }
+.obj-gone { opacity: .35; text-decoration: line-through; }
+@keyframes objPop { from { transform: scale(0); } }
+.obj-op { font-size: 34px; font-weight: 800; color: var(--accent); font-family: var(--mono); }
+.obj-res { font-size: 40px; font-weight: 900; color: var(--xp); font-family: var(--mono); }
+.obj-res.obj-lit { animation: starPop .4s both; text-shadow: 0 0 18px rgba(255,213,46,.7); }
+.grp-title { font-weight: 800; font-size: 16px; }
+.grp-wrap { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.grp-box { display: flex; flex-wrap: wrap; gap: 3px; background: var(--bg-raised); border: 2px dashed var(--line); border-radius: 12px; padding: 8px; max-width: 120px; }
+.grp-box .obj { font-size: 22px; }
