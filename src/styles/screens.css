@@ -1070,3 +1070,9 @@
 .rtb-small, .rtb-big { background: var(--bg-raised); }
 .rtb-del { background: rgba(255,89,120,.14); border: 1px solid rgba(255,89,120,.4); color: #FF6E86; }
 .rtb-close { background: var(--bg-raised); color: var(--ink-dim); }
+
+/* === v0.62 — Sanat denetimi: tam-genişlik ekranları ortalı makul genişliğe al (tutarlılık) === */
+.wishes-wrap { max-width: 920px; margin: 0 auto; width: 100%; }
+.locker-layout { max-width: 900px; margin: 0 auto; width: 100%; }
+/* Parça gridi geniş ekranda çok dağılmasın (daha okunur kartlar) */
+.part-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }

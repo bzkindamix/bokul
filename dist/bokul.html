@@ -1453,6 +1453,12 @@ h1, h2, h3, h4,
 .rtb-del { background: rgba(255,89,120,.14); border: 1px solid rgba(255,89,120,.4); color: #FF6E86; }
 .rtb-close { background: var(--bg-raised); color: var(--ink-dim); }
 
+/* === v0.62 — Sanat denetimi: tam-genişlik ekranları ortalı makul genişliğe al (tutarlılık) === */
+.wishes-wrap { max-width: 920px; margin: 0 auto; width: 100%; }
+.locker-layout { max-width: 900px; margin: 0 auto; width: 100%; }
+/* Parça gridi geniş ekranda çok dağılmasın (daha okunur kartlar) */
+.part-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+
 </style>
 </head>
 <body>
@@ -1462,7 +1468,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.61 — Menü isimleri (BEN/Başarılarım/Görünüşüm) + oda eşya büyült-küçült + boyut düzeltme</div>
+      <div class="splash-note">v0.62 — Sanat denetimi: tam-genişlik ekranlar (Görünüşüm/Dilek) ortalı makul genişliğe alındı, parça gridi düzenlendi</div>
     </div>
   </div>
 
@@ -15544,7 +15550,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.61'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.62'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.
