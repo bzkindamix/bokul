@@ -82,11 +82,12 @@
             cells += '<div class="inv-cell empty" data-idx="' + i + '"></div>';
           }
         }
+        const upCost = B.Items.depoUpgradeCost();
         body.innerHTML =
           '<div class="inv-head">' +
             '<span class="inv-title">📦 Depo</span>' +
             '<span class="inv-cap' + (used >= cap ? ' inv-warn' : '') + '">' + used + ' / ' + cap + ' dolu</span>' +
-            '<span class="inv-lvl">🎖️ Sv.' + ((B.State.data.player.level) || 1) + ' — seviye atlayınca depo büyür</span>' +
+            '<button class="chip depo-up' + (coins() >= upCost ? '' : ' store-poor') + '">⬆️ Depoyu Yükselt · 💰 ' + upCost + '</button>' +
           '</div>' +
           filterRow +
           (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: istediğin boş hücreye taşı</div>' : '<div class="store-empty">Depon boş. Çarşı\'dan eşya al, burada saklansın!</div>') +
@@ -98,6 +99,23 @@
         body.querySelectorAll('.dchip').forEach(b => b.onclick = () => { filterCat = b.dataset.f; B.Audio.play('tick'); renderDepo(body); });
         // Sıralama (baştan sıkıştır + sırala)
         body.querySelectorAll('.schip').forEach(b => b.onclick = () => { B.Items.sortSlots(b.dataset.s); B.Audio.play('tick'); filterCat = 'all'; renderDepo(body); });
+        // Depoyu altınla yükselt (bağımsız mekanik; +4 slot)
+        const upBtn = body.querySelector('.depo-up');
+        if (upBtn) upBtn.onclick = () => {
+          const cost = B.Items.depoUpgradeCost();
+          if (coins() < cost) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+          B.UI.confirm({
+            icon: '📦', title: 'Depoyu yükselt?',
+            body: '💰 ' + cost + ' Altın karşılığında depon +4 hücre büyür (' + B.Items.capacity() + ' → ' + (B.Items.capacity() + 4) + ').',
+            yes: 'Yükselt', no: 'Vazgeç',
+            onYes: () => {
+              const r = B.Items.upgradeDepo();
+              if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
+              B.Audio.play('chest'); B.UI.toast('📦 Depo büyüdü! Yeni kapasite: ' + r.cap);
+              shell();
+            },
+          });
+        };
       }
 
       /* Hücre sürükle-diz; setPointerCapture ile dokunmatikte kaymaz.

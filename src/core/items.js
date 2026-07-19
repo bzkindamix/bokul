@@ -33,12 +33,20 @@
     have(id, n) { return (inv()[id] || 0) >= (n || 1); },
     total() { return Object.values(inv()).reduce((t, n) => t + n, 0); },
 
-    /* ---- Depo kapasitesi (level atladıkça artar) ----
+    /* ---- Depo kapasitesi (BAĞIMSIZ mekanik: altınla ya da Depo Rafı üreterek büyür) ----
      * Her farklı eşya = 1 slot (aynı eşya adetlenir, yeni slot açmaz).
-     * Kapasite oyuncu seviyesiyle büyür: 16 + (seviye-1)*2. */
-    capacity() {
-      const lvl = (B.State.data.player && B.State.data.player.level) || 1;
-      return 16 + (lvl - 1) * 2;
+     * Kapasite = 16 + depoLevel*4. depoLevel: (a) Depom'da altınla "Yükselt",
+     * (b) Atölye'de "Depo Rafı" üret — ikisi de depoLevel'ı artırır. Oyuncu SEVİYESİNDEN bağımsız. */
+    depoLevel() { return (B.State.data.player && B.State.data.player.depoLevel) || 0; },
+    capacity() { return 16 + B.Items.depoLevel() * 4; },
+    depoUpgradeCost() { return 80 + B.Items.depoLevel() * 60; }, // 80,140,200,...
+    upgradeDepo() {
+      const cost = B.Items.depoUpgradeCost();
+      if ((B.State.data.player.coins || 0) < cost) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
+      if (!B.Reward.spendCoins(cost)) return { ok: false, err: 'Altının yetmiyor!' };
+      const p = B.State.data.player; p.depoLevel = (p.depoLevel || 0) + 1;
+      B.Save.saveSoon();
+      return { ok: true, level: p.depoLevel, cap: B.Items.capacity() };
     },
     slotsUsed() { const m = inv(); return Object.keys(m).filter(k => m[k] > 0).length; },
     isFull() { return B.Items.slotsUsed() >= B.Items.capacity(); },

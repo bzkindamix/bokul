@@ -222,6 +222,22 @@
     return B.State.data.inventory.cosmetics.includes(part.cosmeticId);
   }
 
+  /* ---- Dolap kapasitesi (BAĞIMSIZ mekanik: altınla genişler) ----
+   * Sahip olunan kozmetik sayısı sınırlı; Dolap'ta altınla "Genişlet". */
+  function wardrobeUsed() { return (B.State.data.inventory.cosmetics || []).length; }
+  function dolapLevel() { return (B.State.data.player && B.State.data.player.dolapLevel) || 0; }
+  function wardrobeCap() { return 12 + dolapLevel() * 6; }
+  function wardrobeFull() { return wardrobeUsed() >= wardrobeCap(); }
+  function wardrobeCost() { return 80 + dolapLevel() * 60; }
+  function upgradeWardrobe() {
+    const cost = wardrobeCost();
+    if ((B.State.data.player.coins || 0) < cost) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
+    if (!B.Reward.spendCoins(cost)) return { ok: false, err: 'Altının yetmiyor!' };
+    const p = B.State.data.player; p.dolapLevel = (p.dolapLevel || 0) + 1;
+    B.Save.saveSoon();
+    return { ok: true, level: p.dolapLevel, cap: wardrobeCap() };
+  }
+
   /* Cinsiyet süzgeci: 'both' herkese, gendered sadece o cinsiyete */
   function genderOk(part, gender) {
     if (!part.gender || part.gender === 'both') return true;
@@ -689,5 +705,6 @@
   }
 
   B.Avatar = { CATALOG, normalize, svg, el, fullBody, elFull, isUnlocked, preset, partIdFor, unequipCosmetic,
-               genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, cosmeticCatalog, turntable };
+               genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, cosmeticCatalog, turntable,
+               wardrobeUsed, wardrobeCap, wardrobeFull, wardrobeCost, upgradeWardrobe };
 })(window.BOKUL = window.BOKUL || {});

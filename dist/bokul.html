@@ -1767,6 +1767,16 @@ h1, h2, h3, h4,
 .inv-cell.inv-dim { opacity: .22; filter: grayscale(.6); }
 .inv-cell.inv-bp { box-shadow: 0 0 0 1.5px #FFD52E inset; }
 .inv-bp-tag { position: absolute; top: 2px; left: 3px; font-size: 11px; }
+.depo-up { font-size: 12px; font-weight: 800; background: rgba(255,213,46,.16); border: 1px solid rgba(255,213,46,.5); cursor: pointer; }
+.depo-up:active { transform: scale(.97); }
+/* Dolap kapasite çubuğu */
+.wardrobe-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; padding: 6px 8px; background: rgba(255,255,255,.05); border-radius: 12px; }
+.wb-title { font-weight: 800; font-size: 13px; }
+.wb-cap { font-weight: 800; font-size: 13px; color: var(--ink-dim); }
+.wb-cap.inv-warn { color: #FF6B6B; }
+.wb-up { margin-left: auto; font-size: 12px; font-weight: 800; background: rgba(255,213,46,.16); border: 1px solid rgba(255,213,46,.5); cursor: pointer; }
+.wb-up:active { transform: scale(.97); }
+.store-poor { opacity: .55; }
 .inv-cell.filled.inv-dragging { opacity: .3; }
 .inv-cell.inv-target { border-color: var(--xp); box-shadow: 0 0 0 2px var(--xp) inset; transform: scale(1.04); }
 .inv-cell.inv-ghost { opacity: .9; transform: scale(1.08); box-shadow: 0 8px 20px rgba(0,0,0,.45); background: var(--bg-raised); }
@@ -1815,7 +1825,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.88 — Blueprintler depo item'i (Ogren/Sat, satin alinamaz) + Tarifhane kaldirildi + depo filtre/sort</div>
+      <div class="splash-note">v0.89 — Depo kapasitesi bagimsiz+altinla yukseltme (leveldan ayrildi) + dolap kapasitesi altinla genisleme</div>
     </div>
   </div>
 
@@ -36334,12 +36344,20 @@ h1, h2, h3, h4,
     have(id, n) { return (inv()[id] || 0) >= (n || 1); },
     total() { return Object.values(inv()).reduce((t, n) => t + n, 0); },
 
-    /* ---- Depo kapasitesi (level atladıkça artar) ----
+    /* ---- Depo kapasitesi (BAĞIMSIZ mekanik: altınla ya da Depo Rafı üreterek büyür) ----
      * Her farklı eşya = 1 slot (aynı eşya adetlenir, yeni slot açmaz).
-     * Kapasite oyuncu seviyesiyle büyür: 16 + (seviye-1)*2. */
-    capacity() {
-      const lvl = (B.State.data.player && B.State.data.player.level) || 1;
-      return 16 + (lvl - 1) * 2;
+     * Kapasite = 16 + depoLevel*4. depoLevel: (a) Depom'da altınla "Yükselt",
+     * (b) Atölye'de "Depo Rafı" üret — ikisi de depoLevel'ı artırır. Oyuncu SEVİYESİNDEN bağımsız. */
+    depoLevel() { return (B.State.data.player && B.State.data.player.depoLevel) || 0; },
+    capacity() { return 16 + B.Items.depoLevel() * 4; },
+    depoUpgradeCost() { return 80 + B.Items.depoLevel() * 60; }, // 80,140,200,...
+    upgradeDepo() {
+      const cost = B.Items.depoUpgradeCost();
+      if ((B.State.data.player.coins || 0) < cost) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
+      if (!B.Reward.spendCoins(cost)) return { ok: false, err: 'Altının yetmiyor!' };
+      const p = B.State.data.player; p.depoLevel = (p.depoLevel || 0) + 1;
+      B.Save.saveSoon();
+      return { ok: true, level: p.depoLevel, cap: B.Items.capacity() };
     },
     slotsUsed() { const m = inv(); return Object.keys(m).filter(k => m[k] > 0).length; },
     isFull() { return B.Items.slotsUsed() >= B.Items.capacity(); },
@@ -39171,6 +39189,22 @@ h1, h2, h3, h4,
     return B.State.data.inventory.cosmetics.includes(part.cosmeticId);
   }
 
+  /* ---- Dolap kapasitesi (BAĞIMSIZ mekanik: altınla genişler) ----
+   * Sahip olunan kozmetik sayısı sınırlı; Dolap'ta altınla "Genişlet". */
+  function wardrobeUsed() { return (B.State.data.inventory.cosmetics || []).length; }
+  function dolapLevel() { return (B.State.data.player && B.State.data.player.dolapLevel) || 0; }
+  function wardrobeCap() { return 12 + dolapLevel() * 6; }
+  function wardrobeFull() { return wardrobeUsed() >= wardrobeCap(); }
+  function wardrobeCost() { return 80 + dolapLevel() * 60; }
+  function upgradeWardrobe() {
+    const cost = wardrobeCost();
+    if ((B.State.data.player.coins || 0) < cost) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
+    if (!B.Reward.spendCoins(cost)) return { ok: false, err: 'Altının yetmiyor!' };
+    const p = B.State.data.player; p.dolapLevel = (p.dolapLevel || 0) + 1;
+    B.Save.saveSoon();
+    return { ok: true, level: p.dolapLevel, cap: wardrobeCap() };
+  }
+
   /* Cinsiyet süzgeci: 'both' herkese, gendered sadece o cinsiyete */
   function genderOk(part, gender) {
     if (!part.gender || part.gender === 'both') return true;
@@ -39638,7 +39672,8 @@ h1, h2, h3, h4,
   }
 
   B.Avatar = { CATALOG, normalize, svg, el, fullBody, elFull, isUnlocked, preset, partIdFor, unequipCosmetic,
-               genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, cosmeticCatalog, turntable };
+               genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, cosmeticCatalog, turntable,
+               wardrobeUsed, wardrobeCap, wardrobeFull, wardrobeCost, upgradeWardrobe };
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/components/commander.js === */
@@ -41211,13 +41246,42 @@ h1, h2, h3, h4,
             B.UI.show('interests', { onboarding: true }); // görünüm → ilgi alanları → hikâye
           };
         }
+        renderWardrobeBar();
         renderTab();
       }
 
       right.innerHTML =
+        '<div class="wardrobe-bar"></div>' +
         '<div class="locker-tabs">' +
         TABS.map(t => '<button class="chip tab-btn" data-tab="' + t.id + '">' + t.name + '</button>').join('') +
         '</div><div class="locker-parts"></div>';
+
+      /* Dolap kapasitesi + altınla genişletme (bağımsız mekanik) */
+      function renderWardrobeBar() {
+        const bar = right.querySelector('.wardrobe-bar'); if (!bar) return;
+        const used = B.Avatar.wardrobeUsed(), cap = B.Avatar.wardrobeCap(), cost = B.Avatar.wardrobeCost();
+        const full = used >= cap;
+        bar.innerHTML =
+          '<span class="wb-title">👗 Dolap</span>' +
+          '<span class="wb-cap' + (full ? ' inv-warn' : '') + '">' + used + ' / ' + cap + '</span>' +
+          '<button class="chip wb-up' + ((p2().coins || 0) >= cost ? '' : ' store-poor') + '">⬆️ Genişlet · 💰 ' + cost + '</button>';
+        bar.querySelector('.wb-up').onclick = () => {
+          const c = B.Avatar.wardrobeCost();
+          if ((p2().coins || 0) < c) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+          B.UI.confirm({
+            icon: '👗', title: 'Dolabı genişlet?',
+            body: '💰 ' + c + ' Altın karşılığında dolabın +6 yer büyür (' + cap + ' → ' + (cap + 6) + ').',
+            yes: 'Genişlet', no: 'Vazgeç',
+            onYes: () => {
+              const r = B.Avatar.upgradeWardrobe();
+              if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
+              B.Audio.play('chest'); B.UI.toast('👗 Dolap büyüdü! Yeni kapasite: ' + r.cap);
+              render();
+            },
+          });
+        };
+      }
+      function p2() { return B.State.data.player; }
       right.querySelectorAll('.tab-btn').forEach(b => {
         b.onclick = () => {
           tab = b.dataset.tab;
@@ -41483,6 +41547,7 @@ h1, h2, h3, h4,
           if (!c) return;
           const price = priceOf(c.part);
           if (coins() < price) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return; }
+          if (B.Avatar.wardrobeFull && B.Avatar.wardrobeFull()) { B.Audio.play('wrong'); B.UI.toast('👗 Dolabın dolu! Dolap\'tan "Genişlet" ile büyüt ya da eşya sat.'); return; }
           B.UI.confirm({
             icon: '👕', title: c.name + ' alınsın mı?',
             body: '💰 ' + price + ' Altın — alınca Dolabına eklenir, Görünüşüm\'den giyersin.',
@@ -41590,11 +41655,12 @@ h1, h2, h3, h4,
             cells += '<div class="inv-cell empty" data-idx="' + i + '"></div>';
           }
         }
+        const upCost = B.Items.depoUpgradeCost();
         body.innerHTML =
           '<div class="inv-head">' +
             '<span class="inv-title">📦 Depo</span>' +
             '<span class="inv-cap' + (used >= cap ? ' inv-warn' : '') + '">' + used + ' / ' + cap + ' dolu</span>' +
-            '<span class="inv-lvl">🎖️ Sv.' + ((B.State.data.player.level) || 1) + ' — seviye atlayınca depo büyür</span>' +
+            '<button class="chip depo-up' + (coins() >= upCost ? '' : ' store-poor') + '">⬆️ Depoyu Yükselt · 💰 ' + upCost + '</button>' +
           '</div>' +
           filterRow +
           (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: istediğin boş hücreye taşı</div>' : '<div class="store-empty">Depon boş. Çarşı\'dan eşya al, burada saklansın!</div>') +
@@ -41606,6 +41672,23 @@ h1, h2, h3, h4,
         body.querySelectorAll('.dchip').forEach(b => b.onclick = () => { filterCat = b.dataset.f; B.Audio.play('tick'); renderDepo(body); });
         // Sıralama (baştan sıkıştır + sırala)
         body.querySelectorAll('.schip').forEach(b => b.onclick = () => { B.Items.sortSlots(b.dataset.s); B.Audio.play('tick'); filterCat = 'all'; renderDepo(body); });
+        // Depoyu altınla yükselt (bağımsız mekanik; +4 slot)
+        const upBtn = body.querySelector('.depo-up');
+        if (upBtn) upBtn.onclick = () => {
+          const cost = B.Items.depoUpgradeCost();
+          if (coins() < cost) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+          B.UI.confirm({
+            icon: '📦', title: 'Depoyu yükselt?',
+            body: '💰 ' + cost + ' Altın karşılığında depon +4 hücre büyür (' + B.Items.capacity() + ' → ' + (B.Items.capacity() + 4) + ').',
+            yes: 'Yükselt', no: 'Vazgeç',
+            onYes: () => {
+              const r = B.Items.upgradeDepo();
+              if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
+              B.Audio.play('chest'); B.UI.toast('📦 Depo büyüdü! Yeni kapasite: ' + r.cap);
+              shell();
+            },
+          });
+        };
       }
 
       /* Hücre sürükle-diz; setPointerCapture ile dokunmatikte kaymaz.
@@ -43855,7 +43938,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.88'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.89'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

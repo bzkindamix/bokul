@@ -247,13 +247,42 @@
             B.UI.show('interests', { onboarding: true }); // görünüm → ilgi alanları → hikâye
           };
         }
+        renderWardrobeBar();
         renderTab();
       }
 
       right.innerHTML =
+        '<div class="wardrobe-bar"></div>' +
         '<div class="locker-tabs">' +
         TABS.map(t => '<button class="chip tab-btn" data-tab="' + t.id + '">' + t.name + '</button>').join('') +
         '</div><div class="locker-parts"></div>';
+
+      /* Dolap kapasitesi + altınla genişletme (bağımsız mekanik) */
+      function renderWardrobeBar() {
+        const bar = right.querySelector('.wardrobe-bar'); if (!bar) return;
+        const used = B.Avatar.wardrobeUsed(), cap = B.Avatar.wardrobeCap(), cost = B.Avatar.wardrobeCost();
+        const full = used >= cap;
+        bar.innerHTML =
+          '<span class="wb-title">👗 Dolap</span>' +
+          '<span class="wb-cap' + (full ? ' inv-warn' : '') + '">' + used + ' / ' + cap + '</span>' +
+          '<button class="chip wb-up' + ((p2().coins || 0) >= cost ? '' : ' store-poor') + '">⬆️ Genişlet · 💰 ' + cost + '</button>';
+        bar.querySelector('.wb-up').onclick = () => {
+          const c = B.Avatar.wardrobeCost();
+          if ((p2().coins || 0) < c) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+          B.UI.confirm({
+            icon: '👗', title: 'Dolabı genişlet?',
+            body: '💰 ' + c + ' Altın karşılığında dolabın +6 yer büyür (' + cap + ' → ' + (cap + 6) + ').',
+            yes: 'Genişlet', no: 'Vazgeç',
+            onYes: () => {
+              const r = B.Avatar.upgradeWardrobe();
+              if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
+              B.Audio.play('chest'); B.UI.toast('👗 Dolap büyüdü! Yeni kapasite: ' + r.cap);
+              render();
+            },
+          });
+        };
+      }
+      function p2() { return B.State.data.player; }
       right.querySelectorAll('.tab-btn').forEach(b => {
         b.onclick = () => {
           tab = b.dataset.tab;

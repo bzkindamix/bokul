@@ -165,6 +165,7 @@
           if (!c) return;
           const price = priceOf(c.part);
           if (coins() < price) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return; }
+          if (B.Avatar.wardrobeFull && B.Avatar.wardrobeFull()) { B.Audio.play('wrong'); B.UI.toast('👗 Dolabın dolu! Dolap\'tan "Genişlet" ile büyüt ya da eşya sat.'); return; }
           B.UI.confirm({
             icon: '👕', title: c.name + ' alınsın mı?',
             body: '💰 ' + price + ' Altın — alınca Dolabına eklenir, Görünüşüm\'den giyersin.',
