@@ -33,6 +33,14 @@
     { "id": "hali", "name": "Yumuşak Halı", "icon": "🟫", "price": 200, "cat": "oda", "unique": true, "desc": "Sıcacık, yumuşacık." },
     { "id": "lego", "name": "Dev Lego Seti", "icon": "🧱", "price": 500, "cat": "oda", "unique": true, "desc": "Binlerce parça, sonsuz macera." },
     { "id": "lamba", "name": "Yıldız Lambası", "icon": "🪩", "price": 180, "cat": "oda", "unique": true, "desc": "Tavana yıldızlar yansıtır." },
+    { "id": "saksi", "name": "Çiçek Saksısı", "icon": "🪴", "price": 90, "cat": "oda", "unique": true, "desc": "Odana biraz yeşillik." },
+    { "id": "sehpa", "name": "Sehpa", "icon": "🛎️", "price": 160, "cat": "oda", "unique": true, "desc": "Küçük yan sehpa." },
+    { "id": "tv", "name": "Televizyon", "icon": "📺", "price": 700, "cat": "oda", "unique": true, "desc": "Büyük ekran televizyon." },
+    { "id": "poster_uzay", "name": "Galaksi Posteri", "icon": "🌌", "price": 130, "cat": "oda", "unique": true, "desc": "Duvarına galaksi manzarası." },
+
+    { "id": "eski_sandalye", "name": "Eski Sandalye", "icon": "🪑", "price": 0, "cat": "oda", "junk": true, "scrap": 15, "craftOnly": true, "desc": "Sallanan eski sandalye. Hurdaya satabilirsin." },
+    { "id": "yirtik_hali", "name": "Yırtık Halı", "icon": "🟫", "price": 0, "cat": "oda", "junk": true, "scrap": 12, "craftOnly": true, "desc": "Kenarı yırtık eski halı. Hurda değeri var." },
+    { "id": "bos_kutu", "name": "Boş Karton Kutu", "icon": "📦", "price": 0, "cat": "oda", "junk": true, "scrap": 8, "craftOnly": true, "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al." },
 
     { "id": "akvaryum_cam", "name": "Akvaryum Camı", "icon": "🔲", "price": 120, "cat": "pet", "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)" },
     { "id": "filtre", "name": "Su Filtresi", "icon": "🌀", "price": 150, "cat": "pet", "desc": "Suyu temiz tutan filtre." },

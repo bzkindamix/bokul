@@ -61,6 +61,13 @@
       B.Perms.ensure(B.State.data); // perms alanını garanti et
       if (!B.State.data.inventory.items) B.State.data.inventory.items = {}; // eşya envanteri
       B.Items.ensure();
+      // Odam: durum + başlangıç hurda eşyaları (bir kez)
+      if (!p.room) p.room = { wall: 0, floor: 0, placed: [] };
+      if (!Array.isArray(p.room.placed)) p.room.placed = [];
+      if (!B.State.data.meta.junkGiven) {
+        ['eski_sandalye', 'yirtik_hali', 'bos_kutu'].forEach(id => { B.State.data.inventory.items[id] = (B.State.data.inventory.items[id] || 0) + 1; });
+        B.State.data.meta.junkGiven = true;
+      }
       if (!B.State.data.pets) B.State.data.pets = []; // evcil hayvanlar
       B.Pets.ensure();
       if (!B.State.data.daily) B.State.data.daily = { lastClaim: '', streak: 0 }; // günlük ödül

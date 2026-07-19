@@ -1,0 +1,149 @@
+/* BOKUL — Odam (oda editörü)
+ * Sahip olunan 'oda' eşyalarını odaya sürükleyerek yerleştir; duvar rengi/kağıdı ve
+ * zemin seç. Başlangıçta gelen hurda eşyaları hurdaya satılabilir (yerine güzel eşya al). */
+(function (B) {
+  const WALLS = [
+    '#2A1F55', '#3a2470', '#1E3A5F', '#5B3FA8', '#7A2E5E', '#2E5E4E',
+    'linear-gradient(180deg,#3a2470,#241850)',
+    'repeating-linear-gradient(90deg,#2A1F55 0 22px,#31245F 22px 44px)',
+    'radial-gradient(circle at 30% 20%, #4a2e8a, #241850)',
+  ];
+  const FLOORS = ['#4A3690', '#6B4423', '#3E3060', '#8C5A32', '#2E4E5E', '#5A4A2E', '#7A2E5E'];
+
+  B.UI.registerScreen('room', {
+    enter(root) {
+      const hud = B.UI.buildHud(root, { backTo: 'evim' });
+      this._hud = hud;
+      const p = B.State.data.player;
+      const room = p.room = p.room || { wall: 0, floor: 0, placed: [] };
+      if (!Array.isArray(room.placed)) room.placed = [];
+      let tab = 'items';
+
+      const save = () => B.Save.saveSoon();
+      const itemDef = id => B.Items.get(id) || { icon: '📦', name: id };
+      const ownedRoom = () => { const inv = B.State.data.inventory.items || {}; return B.Items.catalog().filter(it => it.cat === 'oda' && (inv[it.id] || 0) > 0); };
+      const isPlaced = id => room.placed.some(pp => pp.id === id);
+
+      const wrap = document.createElement('div'); wrap.className = 'room-wrap'; root.appendChild(wrap);
+      wrap.innerHTML =
+        '<div class="room-view"><div class="room-wall"></div><div class="room-floor"></div>' +
+          '<div class="room-items"></div><div class="room-hint2">👆 Eşyaları sürükle · dokun→kaldır</div></div>' +
+        '<div class="room-tabs">' +
+          '<button class="chip rtab" data-t="items">🛋️ Eşyalarım</button>' +
+          '<button class="chip rtab" data-t="wall">🖼️ Duvar</button>' +
+          '<button class="chip rtab" data-t="floor">▦ Zemin</button>' +
+        '</div><div class="room-panel"></div>';
+      const view = wrap.querySelector('.room-view');
+      const wallEl = wrap.querySelector('.room-wall');
+      const floorEl = wrap.querySelector('.room-floor');
+      const itemsEl = wrap.querySelector('.room-items');
+      const panel = wrap.querySelector('.room-panel');
+
+      function applyRoom() {
+        wallEl.style.background = WALLS[room.wall] || WALLS[0];
+        floorEl.style.background = FLOORS[room.floor] || FLOORS[0];
+      }
+
+      function renderPlaced() {
+        itemsEl.innerHTML = room.placed.map((pp, i) =>
+          '<button class="room-obj" data-i="' + i + '" style="left:' + pp.x + '%;top:' + pp.y + '%">' + itemDef(pp.id).icon + '</button>'
+        ).join('');
+        itemsEl.querySelectorAll('.room-obj').forEach(attachDrag);
+      }
+
+      function attachDrag(el) {
+        const i = +el.dataset.i;
+        el.addEventListener('pointerdown', e => {
+          e.preventDefault();
+          let moved = false;
+          el.setPointerCapture(e.pointerId); el.classList.add('dragging');
+          const rect = view.getBoundingClientRect();
+          const move = ev => {
+            moved = true;
+            let x = (ev.clientX - rect.left) / rect.width * 100;
+            let y = (ev.clientY - rect.top) / rect.height * 100;
+            x = Math.max(5, Math.min(95, x)); y = Math.max(8, Math.min(92, y));
+            room.placed[i].x = Math.round(x); room.placed[i].y = Math.round(y);
+            el.style.left = x + '%'; el.style.top = y + '%';
+          };
+          const up = () => {
+            el.classList.remove('dragging');
+            el.removeEventListener('pointermove', move);
+            el.removeEventListener('pointerup', up);
+            if (moved) save(); else removeFromRoom(i);
+          };
+          el.addEventListener('pointermove', move);
+          el.addEventListener('pointerup', up);
+        });
+      }
+
+      function removeFromRoom(i) {
+        const pp = room.placed[i]; if (!pp) return;
+        B.UI.confirm({
+          icon: '🛋️', title: itemDef(pp.id).name + ' kaldırılsın mı?',
+          body: 'Eşya Depom\'da kalır; sadece odadan kaldırılır.', yes: 'Kaldır', no: 'Vazgeç',
+          onYes: () => { room.placed.splice(i, 1); save(); renderPlaced(); renderPanel(); },
+        });
+      }
+
+      function placeInRoom(id) {
+        if (isPlaced(id)) return;
+        room.placed.push({ id: id, x: 50, y: 62 });
+        B.Audio.play('tick'); save(); renderPlaced(); renderPanel();
+      }
+
+      function sellJunk(it) {
+        const scrap = it.scrap || 10;
+        B.UI.confirm({
+          icon: '💰', title: it.name + ' hurdaya satılsın mı?',
+          body: 'Bu eski eşyayı satıp <b>+' + scrap + ' Altın</b> alırsın; eşya kaybolur.', yes: 'Hurdaya Sat', no: 'Vazgeç',
+          onYes: () => {
+            B.Items.remove(it.id, 1);
+            const idx = room.placed.findIndex(pp => pp.id === it.id); if (idx >= 0) room.placed.splice(idx, 1);
+            B.Reward.addCoins(scrap, 'scrap'); B.Audio.play('tick'); B.UI.toast('💰 +' + scrap + ' Altın (hurda)');
+            save(); renderPlaced(); renderPanel();
+          },
+        });
+      }
+
+      function renderPanel() {
+        if (tab === 'items') {
+          const owned = ownedRoom();
+          if (!owned.length) { panel.innerHTML = '<div class="dash-empty">Henüz oda eşyan yok. 🏪 Mağaza → 🛋️ Odam kategorisinden al, sonra buradan yerleştir!</div>'; return; }
+          panel.innerHTML = '<div class="room-shelf-grid">' + owned.map(it => {
+            const placed = isPlaced(it.id);
+            return '<div class="room-shelf' + (placed ? ' shelf-on' : '') + (it.junk ? ' shelf-junk' : '') + '">' +
+              '<button class="shelf-item" data-id="' + it.id + '"><span class="shelf-ic">' + it.icon + '</span>' +
+                '<span class="shelf-nm">' + it.name + '</span>' +
+                '<span class="shelf-act">' + (placed ? '✓ Odada (kaldır)' : '➕ Yerleştir') + '</span></button>' +
+              (it.junk ? '<button class="chip shelf-sell" data-sell="' + it.id + '">💰 Hurda +' + (it.scrap || 10) + '</button>' : '') +
+            '</div>';
+          }).join('') + '</div>';
+          panel.querySelectorAll('.shelf-item').forEach(b => b.onclick = () => {
+            const id = b.dataset.id;
+            if (isPlaced(id)) removeFromRoom(room.placed.findIndex(pp => pp.id === id));
+            else placeInRoom(id);
+          });
+          panel.querySelectorAll('.shelf-sell').forEach(b => b.onclick = () => sellJunk(itemDef(b.dataset.sell)));
+        } else if (tab === 'wall') {
+          panel.innerHTML = '<div class="room-swatch-grid">' + WALLS.map((w, i) =>
+            '<button class="room-swatch' + (i === room.wall ? ' sw-on' : '') + '" data-w="' + i + '" style="background:' + w + '"></button>').join('') + '</div>';
+          panel.querySelectorAll('.room-swatch').forEach(b => b.onclick = () => { room.wall = +b.dataset.w; save(); applyRoom(); renderPanel(); B.Audio.play('tick'); });
+        } else if (tab === 'floor') {
+          panel.innerHTML = '<div class="room-swatch-grid">' + FLOORS.map((f, i) =>
+            '<button class="room-swatch' + (i === room.floor ? ' sw-on' : '') + '" data-f="' + i + '" style="background:' + f + '"></button>').join('') + '</div>';
+          panel.querySelectorAll('.room-swatch').forEach(b => b.onclick = () => { room.floor = +b.dataset.f; save(); applyRoom(); renderPanel(); B.Audio.play('tick'); });
+        }
+      }
+
+      wrap.querySelectorAll('.rtab').forEach(b => b.onclick = () => {
+        tab = b.dataset.t;
+        wrap.querySelectorAll('.rtab').forEach(x => x.classList.toggle('rtab-on', x === b));
+        renderPanel();
+      });
+      wrap.querySelector('.rtab').classList.add('rtab-on');
+      applyRoom(); renderPlaced(); renderPanel();
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
