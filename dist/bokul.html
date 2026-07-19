@@ -385,6 +385,8 @@ h1, h2, h3, h4,
 /* BOKUL — Ekran yerleşimleri: splash, üs, harita, harekât, boss, teach */
 
 .screen { flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+/* İçeriğini doğrudan köke yazan ekranlar (ayrı scroll wrap'ı yok) taşarsa kaysın */
+.screen-creator, .screen-intro, .screen-login { overflow-y: auto; -webkit-overflow-scrolling: touch; }
 
 /* ---------- Splash ---------- */
 #splash {
@@ -1125,7 +1127,7 @@ h1, h2, h3, h4,
 .evim-levels { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
 
 /* ---------- v0.27: Evcil Hayvanlar ---------- */
-.pets-wrap { padding: 8px 10px 28px; max-width: 720px; margin: 0 auto; }
+.pets-wrap { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; min-height: 0; padding: 8px 10px 28px; max-width: 720px; width: 100%; margin: 0 auto; }
 .pets-title { font-weight: 800; font-size: 16px; margin: 6px 2px 10px; }
 .pets-title2 { margin-top: 22px; color: var(--xp); }
 .pets-empty { text-align: center; color: var(--ink-dim); padding: 20px 16px; font-size: 14.5px; background: var(--bg-deep); border: 1px dashed var(--line); border-radius: 12px; }
@@ -1519,7 +1521,7 @@ h1, h2, h3, h4,
 
 /* === v0.62 — Sanat denetimi: tam-genişlik ekranları ortalı makul genişliğe al (tutarlılık) === */
 .wishes-wrap { max-width: 920px; margin: 0 auto; width: 100%; }
-.locker-layout { max-width: 900px; margin: 0 auto; width: 100%; }
+.locker-layout { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; min-height: 0; max-width: 900px; margin: 0 auto; width: 100%; }
 /* Parça gridi geniş ekranda çok dağılmasın (daha okunur kartlar) */
 .part-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
 
@@ -1802,7 +1804,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.86 — Blueprint sistemi: craft blueprint gerektirir + Carsi Tarifhane (Ogren) + Atolye kilit gostergesi</div>
+      <div class="splash-note">v0.87 — Konumsal depo yerlesimi (bosluklu, kalici) + genel rank kademeleri + pets/dolap/creator overflow fix</div>
     </div>
   </div>
 
@@ -2077,43 +2079,43 @@ h1, h2, h3, h4,
     {
       "minLevel": 1,
       "id": "rank1",
-      "title": "Çaylak Komutan",
+      "title": "Çaylak",
       "icon": "🐣"
     },
     {
       "minLevel": 4,
       "id": "rank2",
-      "title": "Hedef Gözcüsü",
-      "icon": "🔭"
+      "title": "Acemi Er",
+      "icon": "🎖️"
     },
     {
       "minLevel": 8,
       "id": "rank3",
-      "title": "Bölme Eri",
-      "icon": "🎖️"
+      "title": "Onbaşı",
+      "icon": "🏅"
     },
     {
       "minLevel": 13,
       "id": "rank4",
-      "title": "Takım Lideri",
+      "title": "Çavuş",
       "icon": "⭐"
     },
     {
       "minLevel": 19,
       "id": "rank5",
-      "title": "Komutan Yardımcısı",
+      "title": "Üsteğmen",
       "icon": "🌟"
     },
     {
       "minLevel": 26,
       "id": "rank6",
-      "title": "Komutan",
+      "title": "Yüzbaşı",
       "icon": "👑"
     },
     {
       "minLevel": 35,
       "id": "rank7",
-      "title": "Sürünün Gururu",
+      "title": "Komutan",
       "icon": "🦁"
     }
   ],
@@ -36328,29 +36330,54 @@ h1, h2, h3, h4,
         .filter(x => x.item);
     },
 
-    /* ---- Depo özel dizilişi (oyuncu hücreleri sürükleyip diler) ----
-     * inventory.order = [itemId,...] oyuncunun seçtiği sıra. Sırada olmayan
-     * (yeni alınan) eşyalar kategori+ad ile sona eklenir. */
-    orderList() { const i = B.State.data.inventory; if (!i.order) i.order = []; return i.order; },
-    orderedOwned() {
-      const owned = B.Items.ownedList();
-      const byId = {}; owned.forEach(o => { byId[o.item.id] = o; });
-      const out = [];
-      B.Items.orderList().forEach(id => { if (byId[id]) { out.push(byId[id]); delete byId[id]; } });
-      Object.values(byId)
-        .sort((a, b) => (a.item.cat + a.item.name).localeCompare(b.item.cat + b.item.name, 'tr'))
-        .forEach(o => out.push(o));
-      return out;
+    /* ---- Konumsal depo yerleşimi (Arc Raiders gibi: boşluklu, kalıcı) ----
+     * inventory.slots[i] = itemId (boş hücre = null). Her farklı eşya TAM bir
+     * hücrede durur (aynı eşya adetlenir); oyuncu istediği hücreye, aralarında
+     * BOŞLUK bırakarak koyabilir. Çıkıp girince eşya en son bıraktığı hücrede kalır. */
+    slotArray() {
+      const i = B.State.data.inventory;
+      if (!Array.isArray(i.slots)) i.slots = [];
+      return i.slots;
     },
-    /* fromId eşyasını toId'nin yerine taşı (toId yoksa sona) */
-    reorder(fromId, toId) {
-      const ids = B.Items.orderedOwned().map(o => o.item.id);
-      const from = ids.indexOf(fromId); if (from < 0) return;
-      ids.splice(from, 1);
-      let to = toId ? ids.indexOf(toId) : ids.length;
-      if (to < 0) to = ids.length;
-      ids.splice(to, 0, fromId);
-      B.State.data.inventory.order = ids;
+    /* Slot'ları sahip olunan eşyalarla uyumla: artık olmayanları temizle,
+     * henüz yerleşmemiş (yeni alınan) eşyaları ilk BOŞ hücreye koy. Konumları korur. */
+    syncSlots() {
+      const invItems = inv();
+      const slots = B.Items.slotArray();
+      const cap = B.Items.capacity();
+      const ownedIds = Object.keys(invItems).filter(k => invItems[k] > 0);
+      const ownedSet = {}; ownedIds.forEach(id => { ownedSet[id] = true; });
+      while (slots.length < cap) slots.push(null);
+      // kapasite küçüldüyse taşan eşyaları topla; sahip olunmayanları temizle
+      const overflow = [];
+      for (let i = 0; i < slots.length; i++) {
+        if (i >= cap && slots[i]) { overflow.push(slots[i]); slots[i] = null; }
+        else if (slots[i] && !ownedSet[slots[i]]) slots[i] = null;
+      }
+      if (slots.length > cap) slots.length = cap;
+      const placed = {}; slots.forEach(id => { if (id) placed[id] = true; });
+      const toPlace = ownedIds.filter(id => !placed[id]);
+      overflow.forEach(id => { if (ownedSet[id] && !placed[id] && toPlace.indexOf(id) < 0) toPlace.push(id); });
+      toPlace.forEach(id => {
+        let idx = slots.indexOf(null);
+        if (idx < 0) { if (slots.length < cap) { idx = slots.length; slots.push(null); } else return; }
+        slots[idx] = id; placed[id] = true;
+      });
+      return slots;
+    },
+    /* i. hücredeki eşya {item,count} ya da null */
+    cellItem(i) {
+      const id = B.Items.slotArray()[i];
+      if (!id) return null;
+      const it = B.Items.get(id); if (!it) return null;
+      return { item: it, count: B.Items.count(id) };
+    },
+    /* from ve to hücrelerini takas et (to boşsa taşı) — konumsal sürükle-bırak */
+    moveSlot(from, to) {
+      const slots = B.Items.slotArray();
+      if (from === to || from < 0 || to < 0 || from >= slots.length || to >= slots.length) return;
+      const a = slots[from] || null, b = slots[to] || null;
+      slots[to] = a; slots[from] = b;
       B.Save.saveSoon();
     },
 
@@ -41521,26 +41548,31 @@ h1, h2, h3, h4,
       }
 
       function renderDepo(body) {
-        const owned = B.Items.orderedOwned(); // oyuncunun seçtiği sıra
+        B.Items.syncSlots();               // yeni eşyaları ilk boşa yerleştir
+        const slots = B.Items.slotArray();
         const cap = B.Items.capacity();
-        const used = owned.length;
-        const overfull = used > cap;
-        const cells = owned.map(o =>
-          '<button class="inv-cell filled rar-' + (o.item.rarity || 'common') + '" data-id="' + o.item.id + '" title="' + esc(o.item.name) + '">' +
-            '<span class="inv-ic">' + o.item.icon + '</span>' +
-            (o.count > 1 ? '<span class="inv-count">' + o.count + '</span>' : '') +
-          '</button>').join('');
-        const emptyN = Math.max(0, cap - used);
-        const empties = Array.from({ length: emptyN }, () => '<div class="inv-cell empty"></div>').join('');
+        const used = slots.filter(Boolean).length;
+        let cells = '';
+        for (let i = 0; i < cap; i++) {
+          const ci = B.Items.cellItem(i);
+          if (ci) {
+            cells += '<button class="inv-cell filled rar-' + (ci.item.rarity || 'common') + '" data-idx="' + i + '" data-id="' + ci.item.id + '" title="' + esc(ci.item.name) + '">' +
+              '<span class="inv-ic">' + ci.item.icon + '</span>' +
+              (ci.count > 1 ? '<span class="inv-count">' + ci.count + '</span>' : '') +
+            '</button>';
+          } else {
+            cells += '<div class="inv-cell empty" data-idx="' + i + '"></div>';
+          }
+        }
         body.innerHTML =
           '<div class="inv-head">' +
             '<span class="inv-title">📦 Depo</span>' +
-            '<span class="inv-cap' + (overfull ? ' inv-over' : (used >= cap ? ' inv-warn' : '')) + '">' + used + ' / ' + cap + ' dolu</span>' +
+            '<span class="inv-cap' + (used >= cap ? ' inv-warn' : '') + '">' + used + ' / ' + cap + ' dolu</span>' +
             '<span class="inv-lvl">🎖️ Sv.' + ((B.State.data.player.level) || 1) + ' — seviye atlayınca depo büyür</span>' +
           '</div>' +
-          (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: dizilişi değiştir</div>' : '<div class="store-empty">Depon boş. Çarşı\'dan eşya al, burada saklansın!</div>') +
-          '<div class="inv-grid">' + cells + empties + '</div>' +
-          (overfull ? '<div class="adm-warn">⚠️ Depo kapasiten aşıldı — seviye atla ya da eşyaları üretimde/bakımında kullan.</div>' : '');
+          (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: istediğin boş hücreye taşı</div>' : '<div class="store-empty">Depon boş. Çarşı\'dan eşya al, burada saklansın!</div>') +
+          '<div class="inv-grid">' + cells + '</div>' +
+          (B.Items.slotsUsed() > used ? '<div class="adm-warn">⚠️ Bazı eşyalar depoya sığmadı — seviye atla ya da eşyaları üretimde/bakımında kullan.</div>' : '');
         const grid = body.querySelector('.inv-grid');
         body.querySelectorAll('.inv-cell.filled').forEach(cell => makeCellDraggable(cell, grid, body));
       }
@@ -41590,7 +41622,7 @@ h1, h2, h3, h4,
           pid = null; dragging = false;
           clear();
           if (!wasDrag) { openItemPopup(B.Items.get(cell.dataset.id)); return; }
-          if (tgt) { B.Items.reorder(cell.dataset.id, tgt.dataset.id || null); renderDepo(body); }
+          if (tgt) { B.Items.moveSlot(+cell.dataset.idx, +tgt.dataset.idx); renderDepo(body); }
         });
         cell.addEventListener('pointercancel', (e) => {
           if (pid == null || e.pointerId !== pid) return;
@@ -43792,7 +43824,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.86'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.87'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

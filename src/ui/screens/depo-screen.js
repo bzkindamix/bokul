@@ -38,26 +38,31 @@
       }
 
       function renderDepo(body) {
-        const owned = B.Items.orderedOwned(); // oyuncunun seçtiği sıra
+        B.Items.syncSlots();               // yeni eşyaları ilk boşa yerleştir
+        const slots = B.Items.slotArray();
         const cap = B.Items.capacity();
-        const used = owned.length;
-        const overfull = used > cap;
-        const cells = owned.map(o =>
-          '<button class="inv-cell filled rar-' + (o.item.rarity || 'common') + '" data-id="' + o.item.id + '" title="' + esc(o.item.name) + '">' +
-            '<span class="inv-ic">' + o.item.icon + '</span>' +
-            (o.count > 1 ? '<span class="inv-count">' + o.count + '</span>' : '') +
-          '</button>').join('');
-        const emptyN = Math.max(0, cap - used);
-        const empties = Array.from({ length: emptyN }, () => '<div class="inv-cell empty"></div>').join('');
+        const used = slots.filter(Boolean).length;
+        let cells = '';
+        for (let i = 0; i < cap; i++) {
+          const ci = B.Items.cellItem(i);
+          if (ci) {
+            cells += '<button class="inv-cell filled rar-' + (ci.item.rarity || 'common') + '" data-idx="' + i + '" data-id="' + ci.item.id + '" title="' + esc(ci.item.name) + '">' +
+              '<span class="inv-ic">' + ci.item.icon + '</span>' +
+              (ci.count > 1 ? '<span class="inv-count">' + ci.count + '</span>' : '') +
+            '</button>';
+          } else {
+            cells += '<div class="inv-cell empty" data-idx="' + i + '"></div>';
+          }
+        }
         body.innerHTML =
           '<div class="inv-head">' +
             '<span class="inv-title">📦 Depo</span>' +
-            '<span class="inv-cap' + (overfull ? ' inv-over' : (used >= cap ? ' inv-warn' : '')) + '">' + used + ' / ' + cap + ' dolu</span>' +
+            '<span class="inv-cap' + (used >= cap ? ' inv-warn' : '') + '">' + used + ' / ' + cap + ' dolu</span>' +
             '<span class="inv-lvl">🎖️ Sv.' + ((B.State.data.player.level) || 1) + ' — seviye atlayınca depo büyür</span>' +
           '</div>' +
-          (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: dizilişi değiştir</div>' : '<div class="store-empty">Depon boş. Çarşı\'dan eşya al, burada saklansın!</div>') +
-          '<div class="inv-grid">' + cells + empties + '</div>' +
-          (overfull ? '<div class="adm-warn">⚠️ Depo kapasiten aşıldı — seviye atla ya da eşyaları üretimde/bakımında kullan.</div>' : '');
+          (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: istediğin boş hücreye taşı</div>' : '<div class="store-empty">Depon boş. Çarşı\'dan eşya al, burada saklansın!</div>') +
+          '<div class="inv-grid">' + cells + '</div>' +
+          (B.Items.slotsUsed() > used ? '<div class="adm-warn">⚠️ Bazı eşyalar depoya sığmadı — seviye atla ya da eşyaları üretimde/bakımında kullan.</div>' : '');
         const grid = body.querySelector('.inv-grid');
         body.querySelectorAll('.inv-cell.filled').forEach(cell => makeCellDraggable(cell, grid, body));
       }
@@ -107,7 +112,7 @@
           pid = null; dragging = false;
           clear();
           if (!wasDrag) { openItemPopup(B.Items.get(cell.dataset.id)); return; }
-          if (tgt) { B.Items.reorder(cell.dataset.id, tgt.dataset.id || null); renderDepo(body); }
+          if (tgt) { B.Items.moveSlot(+cell.dataset.idx, +tgt.dataset.idx); renderDepo(body); }
         });
         cell.addEventListener('pointercancel', (e) => {
           if (pid == null || e.pointerId !== pid) return;

@@ -40,29 +40,54 @@
         .filter(x => x.item);
     },
 
-    /* ---- Depo özel dizilişi (oyuncu hücreleri sürükleyip diler) ----
-     * inventory.order = [itemId,...] oyuncunun seçtiği sıra. Sırada olmayan
-     * (yeni alınan) eşyalar kategori+ad ile sona eklenir. */
-    orderList() { const i = B.State.data.inventory; if (!i.order) i.order = []; return i.order; },
-    orderedOwned() {
-      const owned = B.Items.ownedList();
-      const byId = {}; owned.forEach(o => { byId[o.item.id] = o; });
-      const out = [];
-      B.Items.orderList().forEach(id => { if (byId[id]) { out.push(byId[id]); delete byId[id]; } });
-      Object.values(byId)
-        .sort((a, b) => (a.item.cat + a.item.name).localeCompare(b.item.cat + b.item.name, 'tr'))
-        .forEach(o => out.push(o));
-      return out;
+    /* ---- Konumsal depo yerleşimi (Arc Raiders gibi: boşluklu, kalıcı) ----
+     * inventory.slots[i] = itemId (boş hücre = null). Her farklı eşya TAM bir
+     * hücrede durur (aynı eşya adetlenir); oyuncu istediği hücreye, aralarında
+     * BOŞLUK bırakarak koyabilir. Çıkıp girince eşya en son bıraktığı hücrede kalır. */
+    slotArray() {
+      const i = B.State.data.inventory;
+      if (!Array.isArray(i.slots)) i.slots = [];
+      return i.slots;
     },
-    /* fromId eşyasını toId'nin yerine taşı (toId yoksa sona) */
-    reorder(fromId, toId) {
-      const ids = B.Items.orderedOwned().map(o => o.item.id);
-      const from = ids.indexOf(fromId); if (from < 0) return;
-      ids.splice(from, 1);
-      let to = toId ? ids.indexOf(toId) : ids.length;
-      if (to < 0) to = ids.length;
-      ids.splice(to, 0, fromId);
-      B.State.data.inventory.order = ids;
+    /* Slot'ları sahip olunan eşyalarla uyumla: artık olmayanları temizle,
+     * henüz yerleşmemiş (yeni alınan) eşyaları ilk BOŞ hücreye koy. Konumları korur. */
+    syncSlots() {
+      const invItems = inv();
+      const slots = B.Items.slotArray();
+      const cap = B.Items.capacity();
+      const ownedIds = Object.keys(invItems).filter(k => invItems[k] > 0);
+      const ownedSet = {}; ownedIds.forEach(id => { ownedSet[id] = true; });
+      while (slots.length < cap) slots.push(null);
+      // kapasite küçüldüyse taşan eşyaları topla; sahip olunmayanları temizle
+      const overflow = [];
+      for (let i = 0; i < slots.length; i++) {
+        if (i >= cap && slots[i]) { overflow.push(slots[i]); slots[i] = null; }
+        else if (slots[i] && !ownedSet[slots[i]]) slots[i] = null;
+      }
+      if (slots.length > cap) slots.length = cap;
+      const placed = {}; slots.forEach(id => { if (id) placed[id] = true; });
+      const toPlace = ownedIds.filter(id => !placed[id]);
+      overflow.forEach(id => { if (ownedSet[id] && !placed[id] && toPlace.indexOf(id) < 0) toPlace.push(id); });
+      toPlace.forEach(id => {
+        let idx = slots.indexOf(null);
+        if (idx < 0) { if (slots.length < cap) { idx = slots.length; slots.push(null); } else return; }
+        slots[idx] = id; placed[id] = true;
+      });
+      return slots;
+    },
+    /* i. hücredeki eşya {item,count} ya da null */
+    cellItem(i) {
+      const id = B.Items.slotArray()[i];
+      if (!id) return null;
+      const it = B.Items.get(id); if (!it) return null;
+      return { item: it, count: B.Items.count(id) };
+    },
+    /* from ve to hücrelerini takas et (to boşsa taşı) — konumsal sürükle-bırak */
+    moveSlot(from, to) {
+      const slots = B.Items.slotArray();
+      if (from === to || from < 0 || to < 0 || from >= slots.length || to >= slots.length) return;
+      const a = slots[from] || null, b = slots[to] || null;
+      slots[to] = a; slots[from] = b;
       B.Save.saveSoon();
     },
 

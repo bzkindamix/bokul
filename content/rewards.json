@@ -28,43 +28,43 @@
     {
       "minLevel": 1,
       "id": "rank1",
-      "title": "Çaylak Komutan",
+      "title": "Çaylak",
       "icon": "🐣"
     },
     {
       "minLevel": 4,
       "id": "rank2",
-      "title": "Hedef Gözcüsü",
-      "icon": "🔭"
+      "title": "Acemi Er",
+      "icon": "🎖️"
     },
     {
       "minLevel": 8,
       "id": "rank3",
-      "title": "Bölme Eri",
-      "icon": "🎖️"
+      "title": "Onbaşı",
+      "icon": "🏅"
     },
     {
       "minLevel": 13,
       "id": "rank4",
-      "title": "Takım Lideri",
+      "title": "Çavuş",
       "icon": "⭐"
     },
     {
       "minLevel": 19,
       "id": "rank5",
-      "title": "Komutan Yardımcısı",
+      "title": "Üsteğmen",
       "icon": "🌟"
     },
     {
       "minLevel": 26,
       "id": "rank6",
-      "title": "Komutan",
+      "title": "Yüzbaşı",
       "icon": "👑"
     },
     {
       "minLevel": 35,
       "id": "rank7",
-      "title": "Sürünün Gururu",
+      "title": "Komutan",
       "icon": "🦁"
     }
   ],
