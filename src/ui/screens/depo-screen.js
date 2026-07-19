@@ -123,11 +123,11 @@
         B.UI.overlay(
           '<div class="ov-big">📦</div><h2>Depoyu Yükselt</h2>' +
           '<p class="ov-quote">Kapasite ' + capNow + ' → ' + (capNow + 4) + ' (+4 hücre) · Depo Sv.' + B.Items.depoLevel() + '/' + B.Items.maxDepoLevel() + '</p>' +
-          '<div class="up-opt"><div class="up-h">💰 Altınla <b class="up-tag pahali">pahalı</b></div>' +
+          '<div class="up-opt"><div class="up-h">💰 Altınla al <b class="up-tag pahali">hazır</b></div>' +
             '<div class="up-cost' + (canGold ? '' : ' up-miss') + '">' + goldCost + ' Altın</div></div>' +
-          '<div class="up-opt"><div class="up-h">🧰 Ham madde ile <b class="up-tag ucuz">%30 ucuz</b></div>' +
+          '<div class="up-opt"><div class="up-h">🧰 Ham madde ile <b class="up-tag ucuz">topla = bedava</b></div>' +
             '<div class="up-mats">' + matList + '</div>' +
-            '<div class="up-note">Toplam değer ≈ ' + matVal + ' (altından ucuz)</div></div>',
+            '<div class="up-note">Malzemeyi oyunla toplarsan altın harcamazsın (değeri ≈ ' + matVal + ').</div></div>',
           [
             { label: '💰 Altınla (' + goldCost + ')', onClick: () => doUpgrade('gold') },
             { label: '🧰 Ham madde ile', onClick: () => doUpgrade('mats') },

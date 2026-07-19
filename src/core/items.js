@@ -57,8 +57,11 @@
       for (const k in m) { const it = B.Items.get(k); v += (it ? (it.price || 0) : 0) * m[k]; }
       return v;
     },
-    /* ALTIN maliyeti = ham madde değeri / 0.7 → ham madde yolu tam %30 daha ucuz kalır */
-    depoUpgradeCost() { return Math.ceil(B.Items.depoMaterialsValue() / 0.7 / 10) * 10; },
+    /* ALTIN maliyeti = ham madde paketinin ADİL DEĞERİ. Yani "satın al ya da topla":
+     * altınla yapmak = malzemeyi satın almak (aynı fiyat), malzemeyi OYUNLA TOPLAMAK ise
+     * altını hiç harcamaz (emek = indirim). Böylece altınla yapmak toplamaktan HEP pahalı
+     * kalır ve "ucuza malzeme alıp altın yolunu delme" açığı kapanır. */
+    depoUpgradeCost() { return B.Items.depoMaterialsValue(); },
     depoMaterialsMissing() {
       const m = B.Items.depoMaterials(); const out = [];
       for (const k in m) { const have = B.Items.count(k); if (have < m[k]) { const it = B.Items.get(k) || { name: k, icon: '❔' }; out.push({ id: k, name: it.name, icon: it.icon, have, need: m[k] }); } }

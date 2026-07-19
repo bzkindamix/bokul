@@ -1839,7 +1839,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.91 — Depo yukseltme tavani = karakter seviyesi (altin/ham madde/raf hepsi bu tavana tabi)</div>
+      <div class="splash-note">v0.92 — Altin ekonomi tutarliligi: depo altin maliyeti = ham madde degeri (arbitraj acigi kapandi, topla=bedava)</div>
     </div>
   </div>
 
@@ -36382,8 +36382,11 @@ h1, h2, h3, h4,
       for (const k in m) { const it = B.Items.get(k); v += (it ? (it.price || 0) : 0) * m[k]; }
       return v;
     },
-    /* ALTIN maliyeti = ham madde değeri / 0.7 → ham madde yolu tam %30 daha ucuz kalır */
-    depoUpgradeCost() { return Math.ceil(B.Items.depoMaterialsValue() / 0.7 / 10) * 10; },
+    /* ALTIN maliyeti = ham madde paketinin ADİL DEĞERİ. Yani "satın al ya da topla":
+     * altınla yapmak = malzemeyi satın almak (aynı fiyat), malzemeyi OYUNLA TOPLAMAK ise
+     * altını hiç harcamaz (emek = indirim). Böylece altınla yapmak toplamaktan HEP pahalı
+     * kalır ve "ucuza malzeme alıp altın yolunu delme" açığı kapanır. */
+    depoUpgradeCost() { return B.Items.depoMaterialsValue(); },
     depoMaterialsMissing() {
       const m = B.Items.depoMaterials(); const out = [];
       for (const k in m) { const have = B.Items.count(k); if (have < m[k]) { const it = B.Items.get(k) || { name: k, icon: '❔' }; out.push({ id: k, name: it.name, icon: it.icon, have, need: m[k] }); } }
@@ -41750,11 +41753,11 @@ h1, h2, h3, h4,
         B.UI.overlay(
           '<div class="ov-big">📦</div><h2>Depoyu Yükselt</h2>' +
           '<p class="ov-quote">Kapasite ' + capNow + ' → ' + (capNow + 4) + ' (+4 hücre) · Depo Sv.' + B.Items.depoLevel() + '/' + B.Items.maxDepoLevel() + '</p>' +
-          '<div class="up-opt"><div class="up-h">💰 Altınla <b class="up-tag pahali">pahalı</b></div>' +
+          '<div class="up-opt"><div class="up-h">💰 Altınla al <b class="up-tag pahali">hazır</b></div>' +
             '<div class="up-cost' + (canGold ? '' : ' up-miss') + '">' + goldCost + ' Altın</div></div>' +
-          '<div class="up-opt"><div class="up-h">🧰 Ham madde ile <b class="up-tag ucuz">%30 ucuz</b></div>' +
+          '<div class="up-opt"><div class="up-h">🧰 Ham madde ile <b class="up-tag ucuz">topla = bedava</b></div>' +
             '<div class="up-mats">' + matList + '</div>' +
-            '<div class="up-note">Toplam değer ≈ ' + matVal + ' (altından ucuz)</div></div>',
+            '<div class="up-note">Malzemeyi oyunla toplarsan altın harcamazsın (değeri ≈ ' + matVal + ').</div></div>',
           [
             { label: '💰 Altınla (' + goldCost + ')', onClick: () => doUpgrade('gold') },
             { label: '🧰 Ham madde ile', onClick: () => doUpgrade('mats') },
@@ -44021,7 +44024,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.91'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.92'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.
