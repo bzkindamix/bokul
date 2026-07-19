@@ -101,8 +101,16 @@
       { id: 16, name: 'İki Topuz',   gender: 'kiz' },
     ],
     eyes: [
-      { id: 0, name: 'Klasik' }, { id: 1, name: 'Neşeli' },
+      { id: 0, name: 'Klasik' }, { id: 3, name: 'Badem' }, { id: 4, name: 'Kocaman' },
+      { id: 5, name: 'Sakin' }, { id: 1, name: 'Neşeli' },
       { id: 2, name: 'Yıldız Göz', cosmeticId: 'eyes-star', rarity: 'rare' },
+    ],
+    noses: [
+      { id: 0, name: 'Küçük' }, { id: 1, name: 'Yuvarlak' }, { id: 2, name: 'Sivri' },
+      { id: 3, name: 'Geniş' }, { id: 4, name: 'Minik' },
+    ],
+    ears: [
+      { id: 0, name: 'Yuvarlak' }, { id: 1, name: 'Küçük' }, { id: 2, name: 'Sivri' }, { id: 3, name: 'Geniş' },
     ],
     mouths: [
       { id: 0, name: 'Gülümseme' }, { id: 1, name: 'Kocaman Gülüş' },
@@ -128,7 +136,7 @@
     return {
       gender: a.gender || null,
       skin: a.skin ?? 2, hair: a.hair ?? 0, hairColor: a.hairColor ?? 0, eyeColor: a.eyeColor ?? 0,
-      eyes: a.eyes ?? 0, mouth: a.mouth ?? 0,
+      eyes: a.eyes ?? 0, mouth: a.mouth ?? 0, nose: a.nose ?? 0, ear: a.ear ?? 0,
       outfit: OUTFIT_BY_ID[a.outfit] ? a.outfit : DEFAULT_OUTFIT,
       acc: a.acc || 'none', ring: a.ring || 'none',
       // Fotoğraf özelliği KVKK gereği kaldırıldı — avatar her zaman çizimdir.
@@ -235,24 +243,64 @@
   }
 
   /* ---------- GÖZ ---------- */
+  // Açık göz: beyaz + iris(göz rengi) + göz bebeği + parıltı. rx/ry ile şekil değişir.
+  function openEye(cx, cy, rx, ry, eyeColor) {
+    return '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + rx + '" ry="' + ry + '" fill="#fff" stroke="#2b1d10" stroke-width="1.2"/>' +
+      '<circle cx="' + cx + '" cy="' + (cy + 1) + '" r="' + (Math.min(rx, ry) * 0.66).toFixed(1) + '" fill="' + eyeColor + '"/>' +
+      '<circle cx="' + cx + '" cy="' + (cy + 1) + '" r="' + (Math.min(rx, ry) * 0.29).toFixed(1) + '" fill="#16121c"/>' +
+      '<circle cx="' + (cx + 2.5) + '" cy="' + (cy - 2) + '" r="1.9" fill="#fff"/>';
+  }
   function eyesSvg(style, eyeColor, lashes) {
     let s = '';
-    if (style === 1) {
+    if (style === 1) { // Neşeli (kapalı, gülen)
       s = '<path d="M35 58 Q44 49 53 58" stroke="#2b1d10" stroke-width="4.5" fill="none" stroke-linecap="round"/>' +
           '<path d="M67 58 Q76 49 85 58" stroke="#2b1d10" stroke-width="4.5" fill="none" stroke-linecap="round"/>';
-    } else if (style === 2) {
+    } else if (style === 2) { // Yıldız göz
       s = star(44, 57, 9, eyeColor) + star(76, 57, 9, eyeColor);
-    } else {
-      s = '<ellipse cx="44" cy="57" rx="9" ry="9.5" fill="#fff" stroke="#2b1d10" stroke-width="1.2"/>' +
-          '<ellipse cx="76" cy="57" rx="9" ry="9.5" fill="#fff" stroke="#2b1d10" stroke-width="1.2"/>' +
-          '<circle cx="44" cy="58" r="6" fill="' + eyeColor + '"/><circle cx="76" cy="58" r="6" fill="' + eyeColor + '"/>' +
-          '<circle cx="44" cy="58" r="2.6" fill="#16121c"/><circle cx="76" cy="58" r="2.6" fill="#16121c"/>' +
-          '<circle cx="46.5" cy="55" r="1.9" fill="#fff"/><circle cx="78.5" cy="55" r="1.9" fill="#fff"/>';
+    } else if (style === 3) { // Badem (yatay oval)
+      s = openEye(44, 57, 10, 7.5, eyeColor) + openEye(76, 57, 10, 7.5, eyeColor);
+    } else if (style === 4) { // Kocaman (büyük yuvarlak)
+      s = openEye(44, 57, 11, 11.5, eyeColor) + openEye(76, 57, 11, 11.5, eyeColor);
+    } else if (style === 5) { // Sakin (yarı kapaklı ama açık)
+      s = openEye(44, 58, 9, 8, eyeColor) + openEye(76, 58, 9, 8, eyeColor) +
+          '<path d="M35 52 Q44 49 53 52 M67 52 Q76 49 85 52" stroke="#2b1d10" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".8"/>';
+    } else { // 0 Klasik (varsayılan açık)
+      s = openEye(44, 57, 9, 9.5, eyeColor) + openEye(76, 57, 9, 9.5, eyeColor);
     }
     if (lashes && style !== 2) {
       s += '<path d="M33 51 L29 46 M38 48 L35 42 M87 51 L91 46 M82 48 L85 42" stroke="#2b1d10" stroke-width="2.6" stroke-linecap="round"/>';
     }
     return s;
+  }
+
+  /* ---------- BURUN ---------- */
+  function shade(hex, amt) {
+    const n = parseInt(hex.slice(1), 16);
+    const cl = v => Math.max(0, Math.min(255, v));
+    const r = cl((n >> 16) + amt), g = cl(((n >> 8) & 255) + amt), b = cl((n & 255) + amt);
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  }
+  function noseSvg(style, skin) {
+    const sh = shade(skin, -26);
+    switch (style) {
+      case 1: return '<ellipse cx="60" cy="69" rx="5.5" ry="5" fill="' + sh + '" opacity=".45"/>'; // yuvarlak
+      case 2: return '<path d="M60 61 L55.5 71 Q60 74 64.5 71 Z" fill="' + sh + '" opacity=".4"/>'; // sivri
+      case 3: return '<ellipse cx="60" cy="70" rx="8" ry="4.5" fill="' + sh + '" opacity=".4"/>'; // geniş
+      case 4: return '<circle cx="60" cy="69" r="2.4" fill="' + sh + '" opacity=".5"/>'; // minik
+      default: return '<path d="M58 62 Q56.5 70 60 72 Q63.5 70 62 62" fill="none" stroke="' + sh + '" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>'; // küçük çizgi
+    }
+  }
+
+  /* ---------- KULAK ---------- */
+  function earSvg(style, skin) {
+    const sh = shade(skin, -22);
+    switch (style) {
+      case 1: return '<circle cx="29" cy="64" r="4.5" fill="' + skin + '"/><circle cx="91" cy="64" r="4.5" fill="' + skin + '"/>'; // küçük
+      case 2: return '<path d="M28 56 L22 66 L32 65 Z" fill="' + skin + '" stroke="' + sh + '" stroke-width="1"/>' +
+                     '<path d="M92 56 L98 66 L88 65 Z" fill="' + skin + '" stroke="' + sh + '" stroke-width="1"/>'; // sivri (elf)
+      case 3: return '<ellipse cx="25" cy="64" rx="7.5" ry="9.5" fill="' + skin + '"/><ellipse cx="95" cy="64" rx="7.5" ry="9.5" fill="' + skin + '"/>'; // geniş
+      default: return '<circle cx="27" cy="64" r="6" fill="' + skin + '"/><circle cx="93" cy="64" r="6" fill="' + skin + '"/>'; // yuvarlak
+    }
   }
 
   function star(cx, cy, r, fill) {
@@ -311,11 +359,11 @@
         // arka gölge (derinlik) — figürün arkasında
         '<ellipse cx="78" cy="88" rx="46" ry="42" fill="url(#sh' + id + ')"/>' +
         outfitSvg(a.outfit, skin) +
+        earSvg(a.ear, skin) + // kulaklar yüzün arkasında (dışarı taşar)
         '<ellipse cx="60" cy="64" rx="32" ry="34" fill="' + skin + '"/>' +
-        '<circle cx="27" cy="64" r="6" fill="' + skin + '"/><circle cx="93" cy="64" r="6" fill="' + skin + '"/>' +
         hairSvg(a.hair, hairC) +
         eyesSvg(a.eyes, eyeC, a.gender === 'kiz') +
-        '<ellipse cx="60" cy="66" rx="5" ry="6" fill="rgba(0,0,0,.12)"/>' +
+        noseSvg(a.nose, skin) +
         mouthSvg(a.mouth) +
         accSvg(a.acc) +
         // yüz ışığı (yumuşak parlaklık, sol-üst) — hacim hissi
