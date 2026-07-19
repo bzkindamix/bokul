@@ -7,6 +7,24 @@
       this._hud = hud;
 
       const p = B.State.data.player;
+
+      // Evcil hayvan eşlikçileri (Evim'de görsel bağ + bakım hatırlatma)
+      const petsOn = B.Perms.feature('pets') && !(B.Demo && B.Demo.featureLocked('pets'));
+      const myPets = (petsOn && B.Pets) ? B.Pets.adopted() : [];
+      const needy = myPets.filter(pt => B.Pets.isCaptured(pt) || (pt.tokluk || 0) < 50 || (pt.mutluluk || 0) < 50);
+      const petBadge = needy.length ? '<span class="door-badge pet-need">' + needy.length + '</span>' : '';
+      const compHtml = myPets.length ? ('<div class="evim-pets">' + myPets.map(pt => {
+        const d = B.Pets.typeDef(pt.type) || { icon: '🐾', name: 'Dost' };
+        const cap = B.Pets.isCaptured(pt);
+        const care = cap || (pt.tokluk || 0) < 50 || (pt.mutluluk || 0) < 50;
+        return '<button class="evim-pet' + (cap ? ' pet-cap' : (care ? ' pet-care' : '')) + '" data-uid="' + pt.uid + '">' +
+          '<span class="ep-ico">' + d.icon + '</span>' +
+          '<span class="ep-mood">' + B.Pets.mood(pt) + '</span>' +
+          '<span class="ep-name">' + (pt.name || d.name) + '</span>' +
+          (care ? '<span class="ep-flag">' + (cap ? '😈' : '🐾') + '</span>' : '') +
+        '</button>';
+      }).join('') + '</div>') : '';
+
       const wrap = document.createElement('div');
       wrap.className = 'evim-wrap';
       wrap.innerHTML =
@@ -18,15 +36,19 @@
             '<span class="chip">🏠 Ev Sv.' + (p.homeLevel || 1) + '</span>' +
             '<span class="chip">📦 Depo Sv.' + (p.depoLevel || 1) + '</span>' +
           '</div>' +
+          compHtml +
         '</div>' +
         '<div class="evim-doors">' +
           '<button class="btn door door-ben">🧍<br>BEN<small>Tipimi ayarla</small></button>' +
           '<button class="btn door door-dolap">👕<br>DOLAP<small>Kıyafet al · sat · giy</small></button>' +
           '<button class="btn door door-store">📦<br>DEPOM<small>Eşya al · sakla</small></button>' +
-          '<button class="btn door door-pets">🐾<br>EVCİL HAYVANLARIM<small>Sahiplen · bak</small></button>' +
+          '<button class="btn door door-pets">' + petBadge + '🐾<br>EVCİL HAYVANLARIM<small>' + (needy.length ? '🐾 ' + needy.length + ' dost bakım bekliyor' : 'Sahiplen · bak') + '</small></button>' +
           '<button class="btn door door-int">🎯<br>İLGİ ALANLARIM<small>Sevdiklerim</small></button>' +
         '</div>';
       root.appendChild(wrap);
+
+      // Eşlikçiye tıkla → evcil hayvan ekranı
+      wrap.querySelectorAll('.evim-pet').forEach(b => b.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
 
       const evimTurn = wrap.querySelector('.evim-avatar .avatar-holder');
       if (evimTurn) B.Avatar.turntable(evimTurn); // pseudo-3D döndürme

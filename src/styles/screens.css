@@ -761,3 +761,22 @@
 .tour-step { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 4px 0 2px; }
 .adm-p-id { flex: 1; min-width: 0; }
 .adm-del { flex: none; padding: 5px 9px; }
+
+/* === v0.41 — Evim eşlikçi pet + bakım rozeti === */
+.door-badge.pet-need { background: var(--warn); color: #2a1a00; box-shadow: 0 0 10px var(--warn); }
+.evim-pets { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+.evim-pet {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: var(--bg-raised); border: 1px solid var(--line); border-radius: 16px;
+  padding: 8px 12px 6px; min-width: 74px; cursor: pointer; transition: transform .12s ease;
+}
+.evim-pet:active { transform: scale(.96); }
+.evim-pet .ep-ico { font-size: 30px; line-height: 1; animation: epBob 2.4s ease-in-out infinite; }
+@keyframes epBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .evim-pet .ep-ico { animation: none; } }
+.evim-pet .ep-mood { position: absolute; top: 4px; right: 6px; font-size: 15px; }
+.evim-pet .ep-name { font-size: 11px; font-weight: 700; color: var(--ink-dim); max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.evim-pet .ep-flag { position: absolute; top: -6px; left: -6px; font-size: 15px; filter: drop-shadow(0 0 4px rgba(0,0,0,.5)); }
+.evim-pet.pet-care { border-color: var(--warn); box-shadow: 0 0 12px rgba(255,179,92,.28); }
+.evim-pet.pet-cap { border-color: #7a4bd0; background: #1a1030; }
+.evim-pet.pet-cap .ep-ico { animation: none; filter: grayscale(.4) brightness(.8); }

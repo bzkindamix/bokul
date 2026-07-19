@@ -1121,6 +1121,25 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .adm-p-id { flex: 1; min-width: 0; }
 .adm-del { flex: none; padding: 5px 9px; }
 
+/* === v0.41 — Evim eşlikçi pet + bakım rozeti === */
+.door-badge.pet-need { background: var(--warn); color: #2a1a00; box-shadow: 0 0 10px var(--warn); }
+.evim-pets { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+.evim-pet {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: var(--bg-raised); border: 1px solid var(--line); border-radius: 16px;
+  padding: 8px 12px 6px; min-width: 74px; cursor: pointer; transition: transform .12s ease;
+}
+.evim-pet:active { transform: scale(.96); }
+.evim-pet .ep-ico { font-size: 30px; line-height: 1; animation: epBob 2.4s ease-in-out infinite; }
+@keyframes epBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+@media (prefers-reduced-motion: reduce) { .evim-pet .ep-ico { animation: none; } }
+.evim-pet .ep-mood { position: absolute; top: 4px; right: 6px; font-size: 15px; }
+.evim-pet .ep-name { font-size: 11px; font-weight: 700; color: var(--ink-dim); max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.evim-pet .ep-flag { position: absolute; top: -6px; left: -6px; font-size: 15px; filter: drop-shadow(0 0 4px rgba(0,0,0,.5)); }
+.evim-pet.pet-care { border-color: var(--warn); box-shadow: 0 0 12px rgba(255,179,92,.28); }
+.evim-pet.pet-cap { border-color: #7a4bd0; background: #1a1030; }
+.evim-pet.pet-cap .ep-ico { animation: none; filter: grayscale(.4) brightness(.8); }
+
 </style>
 </head>
 <body>
@@ -1130,7 +1149,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.40 — İlk giriş onboarding (Baba anlatır) + admin oyuncu silme (yerel+bulut)</div>
+      <div class="splash-note">v0.41 — Evim'de evcil hayvan eşlikçi + bakım bekliyor rozeti (QA cilası)</div>
     </div>
   </div>
 
@@ -7706,6 +7725,24 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       this._hud = hud;
 
       const p = B.State.data.player;
+
+      // Evcil hayvan eşlikçileri (Evim'de görsel bağ + bakım hatırlatma)
+      const petsOn = B.Perms.feature('pets') && !(B.Demo && B.Demo.featureLocked('pets'));
+      const myPets = (petsOn && B.Pets) ? B.Pets.adopted() : [];
+      const needy = myPets.filter(pt => B.Pets.isCaptured(pt) || (pt.tokluk || 0) < 50 || (pt.mutluluk || 0) < 50);
+      const petBadge = needy.length ? '<span class="door-badge pet-need">' + needy.length + '</span>' : '';
+      const compHtml = myPets.length ? ('<div class="evim-pets">' + myPets.map(pt => {
+        const d = B.Pets.typeDef(pt.type) || { icon: '🐾', name: 'Dost' };
+        const cap = B.Pets.isCaptured(pt);
+        const care = cap || (pt.tokluk || 0) < 50 || (pt.mutluluk || 0) < 50;
+        return '<button class="evim-pet' + (cap ? ' pet-cap' : (care ? ' pet-care' : '')) + '" data-uid="' + pt.uid + '">' +
+          '<span class="ep-ico">' + d.icon + '</span>' +
+          '<span class="ep-mood">' + B.Pets.mood(pt) + '</span>' +
+          '<span class="ep-name">' + (pt.name || d.name) + '</span>' +
+          (care ? '<span class="ep-flag">' + (cap ? '😈' : '🐾') + '</span>' : '') +
+        '</button>';
+      }).join('') + '</div>') : '';
+
       const wrap = document.createElement('div');
       wrap.className = 'evim-wrap';
       wrap.innerHTML =
@@ -7717,15 +7754,19 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             '<span class="chip">🏠 Ev Sv.' + (p.homeLevel || 1) + '</span>' +
             '<span class="chip">📦 Depo Sv.' + (p.depoLevel || 1) + '</span>' +
           '</div>' +
+          compHtml +
         '</div>' +
         '<div class="evim-doors">' +
           '<button class="btn door door-ben">🧍<br>BEN<small>Tipimi ayarla</small></button>' +
           '<button class="btn door door-dolap">👕<br>DOLAP<small>Kıyafet al · sat · giy</small></button>' +
           '<button class="btn door door-store">📦<br>DEPOM<small>Eşya al · sakla</small></button>' +
-          '<button class="btn door door-pets">🐾<br>EVCİL HAYVANLARIM<small>Sahiplen · bak</small></button>' +
+          '<button class="btn door door-pets">' + petBadge + '🐾<br>EVCİL HAYVANLARIM<small>' + (needy.length ? '🐾 ' + needy.length + ' dost bakım bekliyor' : 'Sahiplen · bak') + '</small></button>' +
           '<button class="btn door door-int">🎯<br>İLGİ ALANLARIM<small>Sevdiklerim</small></button>' +
         '</div>';
       root.appendChild(wrap);
+
+      // Eşlikçiye tıkla → evcil hayvan ekranı
+      wrap.querySelectorAll('.evim-pet').forEach(b => b.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
 
       const evimTurn = wrap.querySelector('.evim-avatar .avatar-holder');
       if (evimTurn) B.Avatar.turntable(evimTurn); // pseudo-3D döndürme
@@ -9350,7 +9391,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.40'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.41'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.
