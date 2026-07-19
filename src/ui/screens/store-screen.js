@@ -245,52 +245,62 @@
         body.querySelectorAll('.inv-cell.filled').forEach(cell => makeCellDraggable(cell, grid, body));
       }
 
-      /* Bir depo hücresini sürüklenebilir yap; eşik altı hareket = dokun→popup */
+      /* Bir depo hücresini sürüklenebilir yap; eşik altı hareket = dokun→popup.
+       * setPointerCapture ile move/up olayları hücreye kilitlenir → dokunmatikte
+       * kaymaz/kopmaz (önceki document-dinleme mobilde güvenilmezdi). */
       function makeCellDraggable(cell, grid, body) {
-        let sx = 0, sy = 0, dragging = false, ghost = null;
+        let sx = 0, sy = 0, dragging = false, ghost = null, pid = null;
         const TH = 7;
         cell.style.touchAction = 'none';
+        function clear() {
+          if (ghost) { ghost.remove(); ghost = null; }
+          cell.classList.remove('inv-dragging');
+          grid.querySelectorAll('.inv-cell.inv-target').forEach(t => t.classList.remove('inv-target'));
+        }
         cell.addEventListener('pointerdown', (e) => {
-          if (e.button != null && e.button !== 0) return;
-          sx = e.clientX; sy = e.clientY; dragging = false;
-          const onMove = (ev) => {
-            const dx = ev.clientX - sx, dy = ev.clientY - sy;
-            if (!dragging && Math.hypot(dx, dy) > TH) {
-              dragging = true;
-              cell.classList.add('inv-dragging');
-              ghost = cell.cloneNode(true);
-              ghost.className = 'inv-cell filled inv-ghost ' + (cell.className.match(/rar-\w+/) || [''])[0];
-              ghost.style.position = 'fixed'; ghost.style.pointerEvents = 'none'; ghost.style.zIndex = 9999;
-              ghost.style.width = cell.offsetWidth + 'px'; ghost.style.height = cell.offsetHeight + 'px';
-              document.body.appendChild(ghost);
-              B.Audio.play('tick');
-            }
-            if (dragging && ghost) {
-              ghost.style.left = (ev.clientX - ghost.offsetWidth / 2) + 'px';
-              ghost.style.top = (ev.clientY - ghost.offsetHeight / 2) + 'px';
-              // hedef hücreyi vurgula
-              grid.querySelectorAll('.inv-cell.inv-target').forEach(t => t.classList.remove('inv-target'));
-              const tgt = cellUnder(ev.clientX, ev.clientY, grid, cell);
-              if (tgt) tgt.classList.add('inv-target');
-            }
-          };
-          const onUp = (ev) => {
-            document.removeEventListener('pointermove', onMove);
-            document.removeEventListener('pointerup', onUp);
-            if (ghost) { ghost.remove(); ghost = null; }
-            cell.classList.remove('inv-dragging');
+          if (e.button != null && e.button > 0) return; // sadece sol/ana veya dokunma
+          pid = e.pointerId; sx = e.clientX; sy = e.clientY; dragging = false;
+          try { cell.setPointerCapture(pid); } catch (_) {}
+          e.preventDefault();
+        });
+        cell.addEventListener('pointermove', (e) => {
+          if (pid == null || e.pointerId !== pid) return;
+          const dx = e.clientX - sx, dy = e.clientY - sy;
+          if (!dragging && Math.hypot(dx, dy) > TH) {
+            dragging = true;
+            cell.classList.add('inv-dragging');
+            ghost = cell.cloneNode(true);
+            ghost.className = 'inv-cell filled inv-ghost ' + (cell.className.match(/rar-\w+/) || [''])[0];
+            Object.assign(ghost.style, { position: 'fixed', pointerEvents: 'none', zIndex: 9999, margin: 0, width: cell.offsetWidth + 'px', height: cell.offsetHeight + 'px' });
+            document.body.appendChild(ghost);
+            B.Audio.play('tick');
+          }
+          if (dragging && ghost) {
+            ghost.style.left = (e.clientX - ghost.offsetWidth / 2) + 'px';
+            ghost.style.top = (e.clientY - ghost.offsetHeight / 2) + 'px';
             grid.querySelectorAll('.inv-cell.inv-target').forEach(t => t.classList.remove('inv-target'));
-            if (!dragging) { openItemPopup(B.Items.get(cell.dataset.id)); return; } // dokun
-            const tgt = cellUnder(ev.clientX, ev.clientY, grid, cell);
-            const toId = tgt ? (tgt.dataset.id || null) : null; // boş hücre → sona
-            if (tgt) { B.Items.reorder(cell.dataset.id, toId); renderDepo(body); }
-          };
-          document.addEventListener('pointermove', onMove);
-          document.addEventListener('pointerup', onUp);
+            const tgt = cellUnder(e.clientX, e.clientY, grid, cell);
+            if (tgt) tgt.classList.add('inv-target');
+          }
+        });
+        cell.addEventListener('pointerup', (e) => {
+          if (pid == null || e.pointerId !== pid) return;
+          const wasDrag = dragging;
+          const tgt = wasDrag ? cellUnder(e.clientX, e.clientY, grid, cell) : null;
+          try { cell.releasePointerCapture(pid); } catch (_) {}
+          pid = null; dragging = false;
+          clear();
+          if (!wasDrag) { openItemPopup(B.Items.get(cell.dataset.id)); return; } // dokun
+          if (tgt) { B.Items.reorder(cell.dataset.id, tgt.dataset.id || null); renderDepo(body); }
+        });
+        cell.addEventListener('pointercancel', (e) => {
+          if (pid == null || e.pointerId !== pid) return;
+          try { cell.releasePointerCapture(pid); } catch (_) {}
+          pid = null; dragging = false; clear();
         });
       }
 
-      /* Noktadaki grid hücresi (kendisi hariç) */
+      /* Noktadaki grid hücresi (kendisi hariç); boş hücre de geçerli hedef */
       function cellUnder(x, y, grid, self) {
         const el = document.elementFromPoint(x, y);
         if (!el) return null;

@@ -50,7 +50,7 @@
       "price": 30,
       "cat": "malzeme",
       "desc": "Sağlam üretim malzemesi.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "cam",
@@ -59,7 +59,7 @@
       "price": 35,
       "cat": "malzeme",
       "desc": "Panel ve akvaryum için.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "vida",
@@ -86,7 +86,7 @@
       "price": 25,
       "cat": "malzeme",
       "desc": "Renk ve süsleme için.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "konsol",
@@ -116,7 +116,7 @@
       "cat": "tech",
       "unique": true,
       "desc": "Cepte taşınan mini bilgisayar.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "kulaklik",
@@ -126,7 +126,7 @@
       "cat": "tech",
       "unique": true,
       "desc": "Kablosuz, gürültü engelli.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "vr",
@@ -176,7 +176,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Oyun molası için süper rahat.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "masa",
@@ -186,7 +186,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Ders ve proje masası.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "kitaplik",
@@ -196,7 +196,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Kitapların yeni evi.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "poster",
@@ -206,7 +206,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Duvarını süsleyen galaksi posteri.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "hali",
@@ -216,7 +216,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Sıcacık, yumuşacık.",
-      "rarity": "legendary"
+      "rarity": "rare"
     },
     {
       "id": "lego",
@@ -226,7 +226,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Binlerce parça, sonsuz macera.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "lamba",
@@ -236,7 +236,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Tavana yıldızlar yansıtır.",
-      "rarity": "legendary"
+      "rarity": "rare"
     },
     {
       "id": "saksi",
@@ -246,7 +246,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Odana biraz yeşillik.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "sehpa",
@@ -256,7 +256,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Küçük yan sehpa.",
-      "rarity": "legendary"
+      "rarity": "rare"
     },
     {
       "id": "tv",
@@ -266,7 +266,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Büyük ekran televizyon.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "poster_uzay",
@@ -276,7 +276,7 @@
       "cat": "oda",
       "unique": true,
       "desc": "Duvarına galaksi manzarası.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "eski_sandalye",
@@ -321,7 +321,7 @@
       "price": 120,
       "cat": "pet",
       "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "filtre",
@@ -330,7 +330,7 @@
       "price": 150,
       "cat": "pet",
       "desc": "Suyu temiz tutan filtre.",
-      "rarity": "legendary"
+      "rarity": "rare"
     },
     {
       "id": "temiz_su",
@@ -339,7 +339,7 @@
       "price": 30,
       "cat": "pet",
       "desc": "Akvaryumu doldurmak için.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "cakil",
@@ -348,7 +348,7 @@
       "price": 40,
       "cat": "pet",
       "desc": "Akvaryum tabanı için renkli çakıl.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "balik_yemi",
@@ -357,7 +357,7 @@
       "price": 25,
       "cat": "pet",
       "desc": "Balığını beslemek için.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "tasma",
@@ -366,7 +366,7 @@
       "price": 90,
       "cat": "pet",
       "desc": "Köpeğini gezdirmek için.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "mama_kabi",
@@ -375,7 +375,7 @@
       "price": 50,
       "cat": "pet",
       "desc": "Beslenme kabı.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "kopek_mamasi",
@@ -384,7 +384,7 @@
       "price": 60,
       "cat": "pet",
       "desc": "Enerji dolu mama.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "oyuncak_kemik",
@@ -393,7 +393,7 @@
       "price": 45,
       "cat": "pet",
       "desc": "Köpeğinle oynamak için.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "kedi_kumu",
@@ -411,7 +411,7 @@
       "price": 60,
       "cat": "pet",
       "desc": "Kedinin favorisi.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "tirmalama",
@@ -420,7 +420,7 @@
       "price": 110,
       "cat": "pet",
       "desc": "Kedinin tırmalama alanı.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "kafes",
@@ -429,7 +429,7 @@
       "price": 130,
       "cat": "pet",
       "desc": "Kuşun evi.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "kus_yemi",
@@ -438,7 +438,7 @@
       "price": 25,
       "cat": "pet",
       "desc": "Kuşunu beslemek için.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "cam_panel",
@@ -502,7 +502,7 @@
       "cat": "koleksiyon",
       "unique": true,
       "desc": "Başarının simgesi.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "madalya",
@@ -512,7 +512,7 @@
       "cat": "koleksiyon",
       "unique": true,
       "desc": "Nadir bir onur nişanı.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "model_araba",
@@ -522,7 +522,7 @@
       "cat": "koleksiyon",
       "unique": true,
       "desc": "Detaylı koleksiyon arabası.",
-      "rarity": "legendary"
+      "rarity": "epic"
     },
     {
       "id": "nadir_kart",
@@ -604,7 +604,7 @@
       "price": 30,
       "cat": "pet",
       "desc": "Hamster koşup eğlenir.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "hamster_yemi",
@@ -640,7 +640,7 @@
       "price": 65,
       "cat": "pet",
       "desc": "Kaplumbağa için camlı yaşam alanı.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "isitici_lamba",
@@ -649,7 +649,7 @@
       "price": 40,
       "cat": "pet",
       "desc": "Kaplumbağayı ısıtır.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "kaplumbaga_yemi",
@@ -667,7 +667,7 @@
       "price": 65,
       "cat": "pet",
       "desc": "Papağan için geniş kafes.",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "papagan_yemi",
@@ -685,7 +685,7 @@
       "price": 50,
       "cat": "pet",
       "desc": "Kirpinin saklanma yuvası.",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "kirpi_yemi",
