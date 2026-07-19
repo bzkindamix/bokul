@@ -113,10 +113,10 @@
       { id: 0, color: '#3B2A1A', name: 'Kahve' }, { id: 1, color: '#1C1C24', name: 'Siyah' },
       { id: 2, color: '#B7742F', name: 'Kumral' }, { id: 3, color: '#E8C25A', name: 'Sarı' },
       { id: 4, color: '#C4472B', name: 'Kızıl' },  { id: 5, color: '#C9C9D9', name: 'Gümüş' },
-      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue', rarity: 'rare' },
-      { id: 7, color: '#9D6BFF', name: 'Mor', cosmeticId: 'hc-purple', rarity: 'rare' },
-      { id: 8, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon', rarity: 'epic' },
-      { id: 9, color: '#3DF2D2', name: 'Turkuaz', cosmeticId: 'hc-teal', rarity: 'epic' },
+      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi' },
+      { id: 7, color: '#9D6BFF', name: 'Mor' },
+      { id: 8, color: '#FF4FD8', name: 'Neon Pembe' },
+      { id: 9, color: '#3DF2D2', name: 'Turkuaz' },
     ],
     eyeColors: [
       { id: 0, color: '#6B4423', name: 'Kahve' }, { id: 1, color: '#23212B', name: 'Siyah' },
@@ -127,16 +127,16 @@
       { id: 0,  name: 'Kısa',        gender: 'both' },
       { id: 1,  name: 'Uzun',        gender: 'kiz' },
       { id: 2,  name: 'Topuz',       gender: 'kiz' },
-      { id: 3,  name: 'Kıvırcık',    gender: 'both', cosmeticId: 'hair-curly', rarity: 'common' },
+      { id: 3,  name: 'Kıvırcık',    gender: 'both' },
       { id: 4,  name: 'Sıfır',       gender: 'erkek' },
       { id: 5,  name: 'At Kuyruğu',  gender: 'kiz' },
       { id: 6,  name: 'İki Örgü',    gender: 'kiz' },
       { id: 7,  name: 'Kâkül',       gender: 'both' },
-      { id: 8,  name: 'Kirpi',       gender: 'erkek', cosmeticId: 'hair-spiky', rarity: 'common' },
-      { id: 9,  name: 'Mohawk',      gender: 'erkek', cosmeticId: 'hair-mohawk', rarity: 'rare' },
+      { id: 8,  name: 'Kirpi',       gender: 'erkek' },
+      { id: 9,  name: 'Mohawk',      gender: 'erkek' },
       { id: 10, name: 'Afro',        gender: 'both' },
       { id: 11, name: 'Bob',         gender: 'kiz' },
-      { id: 12, name: 'Uzun Dalgalı', gender: 'kiz', cosmeticId: 'hair-wavy', rarity: 'rare' },
+      { id: 12, name: 'Uzun Dalgalı', gender: 'kiz' },
       { id: 13, name: 'Yan Ayrık',   gender: 'both' },
       { id: 14, name: 'Yüksek Topuz', gender: 'kiz' },
       { id: 15, name: 'Undercut',    gender: 'erkek' },
@@ -145,7 +145,7 @@
     eyes: [
       { id: 0, name: 'Klasik' }, { id: 3, name: 'Badem' }, { id: 4, name: 'Kocaman' },
       { id: 5, name: 'Sakin' }, { id: 1, name: 'Neşeli' },
-      { id: 2, name: 'Yıldız Göz', cosmeticId: 'eyes-star', rarity: 'rare' },
+      { id: 2, name: 'Yıldız Göz' },
     ],
     noses: [
       { id: 0, name: 'Küçük' }, { id: 1, name: 'Yuvarlak' }, { id: 2, name: 'Sivri' },
@@ -156,7 +156,7 @@
     ],
     mouths: [
       { id: 0, name: 'Gülümseme' }, { id: 1, name: 'Kocaman Gülüş' },
-      { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin', rarity: 'common' }, { id: 3, name: 'Islık' },
+      { id: 2, name: 'Sırıtış' }, { id: 3, name: 'Islık' },
     ],
     outfits: OUTFITS,
     bottoms: BOTTOMS,
@@ -540,18 +540,15 @@
   function unlockKey(part) { return part.cosmeticId || part.id; }
   function isGated(part) { return !part.free && !!(part.cosmeticId || part.rarity); }
 
-  /* Satın alınabilir TÜM kozmetikler (kilitli parçalar) — Mağaza için.
+  /* Satın alınabilir kozmetikler (kilitli GİYİLEBİLİR parçalar) — Mağaza + sandık havuzu için.
+   * Görünüm (saç/göz rengi, saç modeli, yüz) ÜCRETSİZDİR; burada YER ALMAZ.
    * type = avatar slotu, id = kilit anahtarı, typeLabel = kullanıcıya görünen grup adı. */
   function cosmeticCatalog() {
     const groups = [
-      ['outfit', 'Üst',        CATALOG.outfits],
-      ['bottom', 'Alt',        CATALOG.bottoms],
-      ['hair',   'Saç',        CATALOG.hairs],
-      ['hairColor', 'Saç Rengi', CATALOG.hairColors],
-      ['eyes',   'Göz',        CATALOG.eyes],
-      ['mouth',  'Ağız',       CATALOG.mouths],
-      ['acc',    'Aksesuar',   CATALOG.accs],
-      ['ring',   'Çerçeve',    CATALOG.rings],
+      ['outfit', 'Üst',      CATALOG.outfits],
+      ['bottom', 'Alt',      CATALOG.bottoms],
+      ['acc',    'Aksesuar', CATALOG.accs],
+      ['ring',   'Çerçeve',  CATALOG.rings],
     ];
     const out = [];
     groups.forEach(([type, typeLabel, list]) => list.forEach(p => {

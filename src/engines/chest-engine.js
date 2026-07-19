@@ -42,17 +42,21 @@
     return i;
   }
 
-  /* Nadirlik dağılımından açılmamış bir kozmetik çek (yoksa alta düş) */
+  /* Nadirlik dağılımından açılmamış bir kozmetik çek (yoksa alta düş).
+   * Kaynak: B.Avatar.cosmeticCatalog() — kilitli GİYİLEBİLİR parçalar (görünüm hariç,
+   * çünkü saç/göz rengi vb. artık ücretsiz). Cinsiyete uygun olanlardan seçilir. */
   function rollCosmetic(dist) {
     let r = Math.random() * 100, rarity = null;
     for (const k of Object.keys(dist)) { r -= dist[k]; if (r <= 0) { rarity = k; break; } }
     if (!rarity) rarity = Object.keys(dist)[0];
     const order = ['legendary', 'epic', 'rare', 'common'];
     const owned = B.State.data.inventory.cosmetics;
+    const gender = (B.State.data.player.avatar || {}).gender;
+    const cat = (B.Avatar && B.Avatar.cosmeticCatalog) ? B.Avatar.cosmeticCatalog() : [];
     let idx = order.indexOf(rarity); if (idx < 0) idx = order.length - 1;
     for (let i = idx; i < order.length; i++) {
-      const pool = (R().cosmetics || []).filter(c => c.rarity === order[i] && !owned.includes(c.id));
-      if (pool.length) return pool[Math.floor(Math.random() * pool.length)];
+      const pool = cat.filter(c => c.rarity === order[i] && !owned.includes(c.id) && B.Avatar.genderOk(c.part, gender));
+      if (pool.length) { const p = pool[Math.floor(Math.random() * pool.length)]; return { id: p.id, type: p.type, rarity: p.rarity, name: p.name }; }
     }
     return null; // her şey açık
   }

@@ -143,11 +143,12 @@
           renderSell(host);
         }
 
-        // Dolapta yeni parça yok → Mağaza'ya yönlendir (satış ve onboarding hariç)
-        if (tab !== 'sell' && !onboarding) {
+        // Giyilebilir sekmelerde (üst/alt/aksesuar/çerçeve) Mağaza'ya yönlendir.
+        // Görünüm sekmeleri (saç/yüz/renk) ücretsizdir → mağaza yönlendirmesi yok.
+        if (['outfit', 'bottom', 'acc', 'ring'].includes(tab) && !onboarding) {
           const shopBtn = document.createElement('button');
           shopBtn.className = 'btn locker-shop';
-          shopBtn.innerHTML = '🛒 Yeni kıyafet & kozmetik → Mağaza';
+          shopBtn.innerHTML = '🛒 Yeni kıyafet & aksesuar → Mağaza';
           shopBtn.onclick = () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'kiyafet' }); };
           host.appendChild(shopBtn);
         }
