@@ -26,6 +26,18 @@
     },
     canCraft(r) { return B.Craft.missing(r).length === 0; },
 
+    /* Sürükle-bırak: tezgaha konan grup {itemId:adet} hangi tarife TAM uyar?
+     * (aynı malzemeler + aynı adetler). Yoksa null. */
+    match(group) {
+      const keys = Object.keys(group || {}).filter(k => group[k] > 0);
+      if (!keys.length) return null;
+      return (data().recipes || []).find(r => {
+        const nk = Object.keys(r.needs || {});
+        if (nk.length !== keys.length) return false;
+        return nk.every(k => (group[k] || 0) === r.needs[k]);
+      }) || null;
+    },
+
     /* Üret: malzemeleri harca, ürünü ekle (eşya) veya seviyeyi yükselt (upgrade) */
     craft(id) {
       const r = B.Craft.get(id);
