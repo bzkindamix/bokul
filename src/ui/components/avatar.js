@@ -540,6 +540,26 @@
   function unlockKey(part) { return part.cosmeticId || part.id; }
   function isGated(part) { return !part.free && !!(part.cosmeticId || part.rarity); }
 
+  /* Satın alınabilir TÜM kozmetikler (kilitli parçalar) — Mağaza için.
+   * type = avatar slotu, id = kilit anahtarı, typeLabel = kullanıcıya görünen grup adı. */
+  function cosmeticCatalog() {
+    const groups = [
+      ['outfit', 'Üst',        CATALOG.outfits],
+      ['bottom', 'Alt',        CATALOG.bottoms],
+      ['hair',   'Saç',        CATALOG.hairs],
+      ['hairColor', 'Saç Rengi', CATALOG.hairColors],
+      ['eyes',   'Göz',        CATALOG.eyes],
+      ['mouth',  'Ağız',       CATALOG.mouths],
+      ['acc',    'Aksesuar',   CATALOG.accs],
+      ['ring',   'Çerçeve',    CATALOG.rings],
+    ];
+    const out = [];
+    groups.forEach(([type, typeLabel, list]) => list.forEach(p => {
+      if (isGated(p)) out.push({ type, typeLabel, part: p, id: unlockKey(p), name: p.name, rarity: p.rarity || 'common', gender: p.gender || 'both' });
+    }));
+    return out;
+  }
+
   /* Envanterdeki bir id'ye karşılık gelen katalog parçasını bul (satış için) */
   function findByUnlock(key) {
     const groups = [['hair', CATALOG.hairs], ['hairColor', CATALOG.hairColors], ['eyes', CATALOG.eyes],
@@ -598,5 +618,5 @@
   }
 
   B.Avatar = { CATALOG, normalize, svg, el, fullBody, elFull, isUnlocked, preset, partIdFor, unequipCosmetic,
-               genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, turntable };
+               genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, cosmeticCatalog, turntable };
 })(window.BOKUL = window.BOKUL || {});

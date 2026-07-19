@@ -10,6 +10,7 @@
       let tab = (params && params.tab) || 'shop';
       if (tab === 'craft') tab = 'shop'; // craft artık kendi ekranı (atolye)
       let cat = 'all';
+      let kcat = 'all'; // kıyafet sekmesi tür süzgeci
 
       const wrap = document.createElement('div');
       wrap.className = 'store-wrap';
@@ -21,7 +22,8 @@
         wrap.innerHTML =
           '<div class="store-top"><div class="chip store-gold">💰 ' + coins() + ' Altın</div></div>' +
           '<div class="store-tabs">' +
-            '<button class="chip stab" data-t="shop">🏪 Mağaza</button>' +
+            '<button class="chip stab" data-t="shop">🏪 Eşya</button>' +
+            '<button class="chip stab" data-t="kiyafet">👕 Kıyafet</button>' +
             '<button class="chip stab" data-t="depo">📦 Depom (' + B.Items.total() + ')</button>' +
             '<button class="chip stab store-goatolye">🔨 Atölye ▶</button>' +
           '</div>' +
@@ -40,6 +42,7 @@
       function renderBody() {
         const body = wrap.querySelector('.store-body');
         if (tab === 'shop') renderShop(body);
+        else if (tab === 'kiyafet') renderKiyafet(body);
         else renderDepo(body);
       }
 
@@ -107,6 +110,66 @@
       }
 
       /* Not: Atölye (craft) artık ayrı ekran → src/ui/screens/atolye-screen.js */
+
+      /* ---- 👕 Kıyafet & Kozmetik (sahip OLMADIĞIN her şey) ---- */
+      function renderKiyafet(body) {
+        babaSays('kiyafet', '👕', 'Burası Kıyafet Reyonu! Sahip olmadığın tüm kıyafet, saç, aksesuar burada. Altınla al → Dolabına gider → Görünüşüm\'den giyersin. Sahip olduklarını Dolabında bulursun.');
+        const gender = (B.State.data.player.avatar || {}).gender;
+        const prices = B.Content.get('rewards').shopPrices;
+        const priceOf = p => prices[p.rarity] || 50;
+        // Cinsiyete uygun + henüz sahip OLMADIĞIN kozmetikler
+        const all = B.Avatar.cosmeticCatalog().filter(c => B.Avatar.genderOk(c.part, gender) && !B.Avatar.isUnlocked(c.part));
+        if (!all.length) {
+          body.innerHTML = '<div class="store-empty">👑 Harika Komutan! Tüm kıyafet ve kozmetikler artık senin. Dolabından giyebilirsin.</div>';
+          return;
+        }
+        // Tür süzgeci (Üst/Alt/Saç…)
+        const types = [];
+        all.forEach(c => { if (!types.some(t => t.id === c.type)) types.push({ id: c.type, label: c.typeLabel }); });
+        const filterRow = '<div class="store-cats">' +
+          '<button class="chip kcat" data-c="all">Hepsi</button>' +
+          types.map(t => '<button class="chip kcat" data-c="' + t.id + '">' + t.label + '</button>').join('') +
+          '</div>';
+        const shown = all.filter(c => kcat === 'all' || c.type === kcat);
+        const cards = shown.map(c => {
+          const a = B.Avatar.normalize(B.State.data.player.avatar); a.usePhoto = false; a[c.type] = c.part.id;
+          const full = c.type === 'outfit' || c.type === 'bottom';
+          const afford = coins() >= priceOf(c.part);
+          return '<button class="store-card cos-card' + (full ? ' cos-tall' : '') + (afford ? '' : ' store-poor') + '" data-type="' + c.type + '" data-id="' + c.id + '">' +
+            '<span class="cos-prev' + (full ? ' cos-prev-tall' : '') + '">' + (full ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
+            '<span class="store-nm">' + c.name + '</span>' +
+            '<span class="store-sub">' + c.typeLabel + '</span>' +
+            '<span class="store-price">💰 ' + priceOf(c.part) + '</span>' +
+            '</button>';
+        }).join('');
+        body.innerHTML = filterRow + '<div class="store-grid cos-grid">' + cards + '</div>';
+
+        body.querySelectorAll('.kcat').forEach(b => b.onclick = () => {
+          kcat = b.dataset.c;
+          renderKiyafet(body);
+        });
+        const active = body.querySelector('.kcat[data-c="' + kcat + '"]'); if (active) active.classList.add('tab-on');
+
+        body.querySelectorAll('.cos-card[data-id]').forEach(el => el.onclick = () => {
+          const c = all.find(x => x.type === el.dataset.type && x.id === el.dataset.id);
+          if (!c) return;
+          const price = priceOf(c.part);
+          if (coins() < price) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return; }
+          B.UI.confirm({
+            icon: '👕', title: c.name + ' alınsın mı?',
+            body: '💰 ' + price + ' Altın — alınca Dolabına eklenir, Görünüşüm\'den giyersin.',
+            yes: 'Satın al', no: 'Vazgeç',
+            onYes: () => {
+              if (!B.Reward.spendCoins(price)) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+              B.State.data.inventory.cosmetics.push(c.id);
+              if (B.Bus && B.Events && B.Events.COSMETIC_UNLOCKED) B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: c.id });
+              B.Audio.play('chest'); B.Save.saveSoon();
+              B.UI.toast('✨ ' + c.name + ' alındı! Dolabında.');
+              shell(); // altın + liste güncellensin (satın alınan kaybolur)
+            },
+          });
+        });
+      }
 
       /* ---- 📦 Depom ---- */
       function renderDepo(body) {

@@ -1480,6 +1480,17 @@ h1, h2, h3, h4,
 .part-tall .part-prev { width: 100%; height: 118px; display: flex; align-items: center; justify-content: center; }
 .part-tall .part-prev svg { width: auto; height: 100%; max-width: 100%; }
 
+/* === v0.66 — Dolap sadece envanter; Mağaza'da Kıyafet reyonu === */
+.locker-shop { display: block; width: 100%; margin: 14px 0 4px; background: linear-gradient(135deg,#3DF2D2,#3E7BFF); color: #08131f; font-weight: 800; border: none; }
+.locker-empty { grid-column: 1 / -1; text-align: center; padding: 18px 10px; opacity: .8; font-size: 14px; }
+.part-grid-empty { display: block; }
+.cos-prev { width: 72px; height: 72px; margin: 0 auto 4px; }
+.cos-prev svg { width: 100%; height: 100%; }
+.cos-prev-tall { width: 100%; height: 116px; display: flex; align-items: center; justify-content: center; }
+.cos-prev-tall svg { width: auto; height: 100%; max-width: 100%; }
+.cos-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+.store-sub { font-size: 11px; opacity: .6; }
+
 </style>
 </head>
 <body>
@@ -1489,7 +1500,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.65 — Cinsiyete göre alt giyim (pantolon/etek/şort/kapri/eşofman) + atlet üstü; üst/alt tam vücut önizleme</div>
+      <div class="splash-note">v0.66 — Dolapta yalnızca envanterdeki parçalar; sahip olunmayan kıyafet/kozmetik Mağaza'nın Kıyafet reyonunda</div>
     </div>
   </div>
 
@@ -12625,6 +12636,26 @@ h1, h2, h3, h4,
   function unlockKey(part) { return part.cosmeticId || part.id; }
   function isGated(part) { return !part.free && !!(part.cosmeticId || part.rarity); }
 
+  /* Satın alınabilir TÜM kozmetikler (kilitli parçalar) — Mağaza için.
+   * type = avatar slotu, id = kilit anahtarı, typeLabel = kullanıcıya görünen grup adı. */
+  function cosmeticCatalog() {
+    const groups = [
+      ['outfit', 'Üst',        CATALOG.outfits],
+      ['bottom', 'Alt',        CATALOG.bottoms],
+      ['hair',   'Saç',        CATALOG.hairs],
+      ['hairColor', 'Saç Rengi', CATALOG.hairColors],
+      ['eyes',   'Göz',        CATALOG.eyes],
+      ['mouth',  'Ağız',       CATALOG.mouths],
+      ['acc',    'Aksesuar',   CATALOG.accs],
+      ['ring',   'Çerçeve',    CATALOG.rings],
+    ];
+    const out = [];
+    groups.forEach(([type, typeLabel, list]) => list.forEach(p => {
+      if (isGated(p)) out.push({ type, typeLabel, part: p, id: unlockKey(p), name: p.name, rarity: p.rarity || 'common', gender: p.gender || 'both' });
+    }));
+    return out;
+  }
+
   /* Envanterdeki bir id'ye karşılık gelen katalog parçasını bul (satış için) */
   function findByUnlock(key) {
     const groups = [['hair', CATALOG.hairs], ['hairColor', CATALOG.hairColors], ['eyes', CATALOG.eyes],
@@ -12683,7 +12714,7 @@ h1, h2, h3, h4,
   }
 
   B.Avatar = { CATALOG, normalize, svg, el, fullBody, elFull, isUnlocked, preset, partIdFor, unequipCosmetic,
-               genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, turntable };
+               genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, cosmeticCatalog, turntable };
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/components/commander.js === */
@@ -14022,16 +14053,6 @@ h1, h2, h3, h4,
 
       const priceOf = part => prices[part.rarity] || 50;
 
-      /* Katalog parçasını satın al (kilit anahtarı envantere eklenir) */
-      function buyPart(part) {
-        if (!B.Reward.spendCoins(priceOf(part))) { B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return false; }
-        B.State.data.inventory.cosmetics.push(B.Avatar.unlockKey(part));
-        B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: B.Avatar.unlockKey(part) });
-        B.Audio.play('chest');
-        B.UI.toast('✨ ' + part.name + ' satın alındı!');
-        return true;
-      }
-
       /* Sahip olunan bir parçayı sat (alış fiyatının bir kısmı geri döner) */
       function sellPart(part) {
         const price = Math.round(priceOf(part) * sellRatio);
@@ -14052,41 +14073,34 @@ h1, h2, h3, h4,
       const label = txt => { const d = document.createElement('div'); d.className = 'part-label'; d.textContent = txt; return d; };
 
       /* Parça kartı: önizleme = o parça takılı mini avatar (previewFn ile önizleme özelleştirilir)
+       * Dolapta yalnızca SAHİP OLUNAN parçalar gösterilir → kart tıklanınca doğrudan giyilir.
        * fullPrev=true → dairesel yüz yerine tam vücut önizleme (kıyafet/alt giyim için) */
       function partCard(part, apply, isEquipped, previewFn, fullPrev) {
         const a = av(); a.usePhoto = false; apply(a, part); if (previewFn) previewFn(a);
-        const unlocked = B.Avatar.isUnlocked(part);
         const card = document.createElement('button');
-        card.className = 'part-card' + (fullPrev ? ' part-tall' : '') + (isEquipped ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
+        card.className = 'part-card' + (fullPrev ? ' part-tall' : '') + (isEquipped ? ' part-on' : '');
         card.innerHTML =
           '<span class="part-prev">' + (fullPrev ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
-          '<span class="part-name">' + (part.name || '') + '</span>' +
-          (!unlocked ? '<span class="part-price">💰 ' + priceOf(part) + '</span>' : '');
+          '<span class="part-name">' + (part.name || '') + '</span>';
         card.onclick = () => {
           B.Audio.play('tick');
-          if (!unlocked) {
-            // Satın alma onayı
-            B.UI.confirm({
-              icon: '👕', title: (part.name || 'Bu parça') + ' alınsın mı?',
-              body: '💰 ' + priceOf(part) + ' Altın karşılığında satın alıp giyeceksin.',
-              yes: 'Satın al', no: 'Vazgeç',
-              onYes: () => {
-                if (!buyPart(part)) return;
-                const cur = av(); cur.usePhoto = false; apply(cur, part);
-                commit(cur);
-              },
-            });
-            return;
-          }
           const cur = av(); cur.usePhoto = false; apply(cur, part);
           commit(cur);
         };
         return card;
       }
 
+      /* Grid yalnızca sahip olunan (kilidi açık) parçaları listeler.
+       * Hiç sahip olunan yoksa mağaza yönlendirmesi gösterilir. */
       function grid(parts, apply, equippedCheck, previewFn, fullPrev) {
+        const owned = parts.filter(p => B.Avatar.isUnlocked(p));
         const g = document.createElement('div'); g.className = 'part-grid' + (fullPrev ? ' grid-tall' : '');
-        parts.forEach(p => g.appendChild(partCard(p, apply, equippedCheck(p), previewFn, fullPrev)));
+        if (!owned.length) {
+          g.classList.add('part-grid-empty');
+          g.innerHTML = '<div class="locker-empty">Bu kategoride henüz eşyan yok.<br><small>🛒 Mağaza\'dan alabilirsin.</small></div>';
+          return g;
+        }
+        owned.forEach(p => g.appendChild(partCard(p, apply, equippedCheck(p), previewFn, fullPrev)));
         return g;
       }
 
@@ -14129,6 +14143,15 @@ h1, h2, h3, h4,
           host.appendChild(grid(C.rings, (x, p) => { x.ring = p.id; }, p => p.id === a.ring));
         } else if (tab === 'sell') {
           renderSell(host);
+        }
+
+        // Dolapta yeni parça yok → Mağaza'ya yönlendir (satış ve onboarding hariç)
+        if (tab !== 'sell' && !onboarding) {
+          const shopBtn = document.createElement('button');
+          shopBtn.className = 'btn locker-shop';
+          shopBtn.innerHTML = '🛒 Yeni kıyafet & kozmetik → Mağaza';
+          shopBtn.onclick = () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'kiyafet' }); };
+          host.appendChild(shopBtn);
         }
       }
 
@@ -14298,6 +14321,7 @@ h1, h2, h3, h4,
       let tab = (params && params.tab) || 'shop';
       if (tab === 'craft') tab = 'shop'; // craft artık kendi ekranı (atolye)
       let cat = 'all';
+      let kcat = 'all'; // kıyafet sekmesi tür süzgeci
 
       const wrap = document.createElement('div');
       wrap.className = 'store-wrap';
@@ -14309,7 +14333,8 @@ h1, h2, h3, h4,
         wrap.innerHTML =
           '<div class="store-top"><div class="chip store-gold">💰 ' + coins() + ' Altın</div></div>' +
           '<div class="store-tabs">' +
-            '<button class="chip stab" data-t="shop">🏪 Mağaza</button>' +
+            '<button class="chip stab" data-t="shop">🏪 Eşya</button>' +
+            '<button class="chip stab" data-t="kiyafet">👕 Kıyafet</button>' +
             '<button class="chip stab" data-t="depo">📦 Depom (' + B.Items.total() + ')</button>' +
             '<button class="chip stab store-goatolye">🔨 Atölye ▶</button>' +
           '</div>' +
@@ -14328,6 +14353,7 @@ h1, h2, h3, h4,
       function renderBody() {
         const body = wrap.querySelector('.store-body');
         if (tab === 'shop') renderShop(body);
+        else if (tab === 'kiyafet') renderKiyafet(body);
         else renderDepo(body);
       }
 
@@ -14395,6 +14421,66 @@ h1, h2, h3, h4,
       }
 
       /* Not: Atölye (craft) artık ayrı ekran → src/ui/screens/atolye-screen.js */
+
+      /* ---- 👕 Kıyafet & Kozmetik (sahip OLMADIĞIN her şey) ---- */
+      function renderKiyafet(body) {
+        babaSays('kiyafet', '👕', 'Burası Kıyafet Reyonu! Sahip olmadığın tüm kıyafet, saç, aksesuar burada. Altınla al → Dolabına gider → Görünüşüm\'den giyersin. Sahip olduklarını Dolabında bulursun.');
+        const gender = (B.State.data.player.avatar || {}).gender;
+        const prices = B.Content.get('rewards').shopPrices;
+        const priceOf = p => prices[p.rarity] || 50;
+        // Cinsiyete uygun + henüz sahip OLMADIĞIN kozmetikler
+        const all = B.Avatar.cosmeticCatalog().filter(c => B.Avatar.genderOk(c.part, gender) && !B.Avatar.isUnlocked(c.part));
+        if (!all.length) {
+          body.innerHTML = '<div class="store-empty">👑 Harika Komutan! Tüm kıyafet ve kozmetikler artık senin. Dolabından giyebilirsin.</div>';
+          return;
+        }
+        // Tür süzgeci (Üst/Alt/Saç…)
+        const types = [];
+        all.forEach(c => { if (!types.some(t => t.id === c.type)) types.push({ id: c.type, label: c.typeLabel }); });
+        const filterRow = '<div class="store-cats">' +
+          '<button class="chip kcat" data-c="all">Hepsi</button>' +
+          types.map(t => '<button class="chip kcat" data-c="' + t.id + '">' + t.label + '</button>').join('') +
+          '</div>';
+        const shown = all.filter(c => kcat === 'all' || c.type === kcat);
+        const cards = shown.map(c => {
+          const a = B.Avatar.normalize(B.State.data.player.avatar); a.usePhoto = false; a[c.type] = c.part.id;
+          const full = c.type === 'outfit' || c.type === 'bottom';
+          const afford = coins() >= priceOf(c.part);
+          return '<button class="store-card cos-card' + (full ? ' cos-tall' : '') + (afford ? '' : ' store-poor') + '" data-type="' + c.type + '" data-id="' + c.id + '">' +
+            '<span class="cos-prev' + (full ? ' cos-prev-tall' : '') + '">' + (full ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
+            '<span class="store-nm">' + c.name + '</span>' +
+            '<span class="store-sub">' + c.typeLabel + '</span>' +
+            '<span class="store-price">💰 ' + priceOf(c.part) + '</span>' +
+            '</button>';
+        }).join('');
+        body.innerHTML = filterRow + '<div class="store-grid cos-grid">' + cards + '</div>';
+
+        body.querySelectorAll('.kcat').forEach(b => b.onclick = () => {
+          kcat = b.dataset.c;
+          renderKiyafet(body);
+        });
+        const active = body.querySelector('.kcat[data-c="' + kcat + '"]'); if (active) active.classList.add('tab-on');
+
+        body.querySelectorAll('.cos-card[data-id]').forEach(el => el.onclick = () => {
+          const c = all.find(x => x.type === el.dataset.type && x.id === el.dataset.id);
+          if (!c) return;
+          const price = priceOf(c.part);
+          if (coins() < price) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return; }
+          B.UI.confirm({
+            icon: '👕', title: c.name + ' alınsın mı?',
+            body: '💰 ' + price + ' Altın — alınca Dolabına eklenir, Görünüşüm\'den giyersin.',
+            yes: 'Satın al', no: 'Vazgeç',
+            onYes: () => {
+              if (!B.Reward.spendCoins(price)) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+              B.State.data.inventory.cosmetics.push(c.id);
+              if (B.Bus && B.Events && B.Events.COSMETIC_UNLOCKED) B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: c.id });
+              B.Audio.play('chest'); B.Save.saveSoon();
+              B.UI.toast('✨ ' + c.name + ' alındı! Dolabında.');
+              shell(); // altın + liste güncellensin (satın alınan kaybolur)
+            },
+          });
+        });
+      }
 
       /* ---- 📦 Depom ---- */
       function renderDepo(body) {
@@ -16344,7 +16430,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.65'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.66'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

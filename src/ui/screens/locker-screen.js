@@ -51,16 +51,6 @@
 
       const priceOf = part => prices[part.rarity] || 50;
 
-      /* Katalog parçasını satın al (kilit anahtarı envantere eklenir) */
-      function buyPart(part) {
-        if (!B.Reward.spendCoins(priceOf(part))) { B.UI.toast('💰 Altının yetmiyor! Görev ve harekâtlardan kazan.'); return false; }
-        B.State.data.inventory.cosmetics.push(B.Avatar.unlockKey(part));
-        B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: B.Avatar.unlockKey(part) });
-        B.Audio.play('chest');
-        B.UI.toast('✨ ' + part.name + ' satın alındı!');
-        return true;
-      }
-
       /* Sahip olunan bir parçayı sat (alış fiyatının bir kısmı geri döner) */
       function sellPart(part) {
         const price = Math.round(priceOf(part) * sellRatio);
@@ -81,41 +71,34 @@
       const label = txt => { const d = document.createElement('div'); d.className = 'part-label'; d.textContent = txt; return d; };
 
       /* Parça kartı: önizleme = o parça takılı mini avatar (previewFn ile önizleme özelleştirilir)
+       * Dolapta yalnızca SAHİP OLUNAN parçalar gösterilir → kart tıklanınca doğrudan giyilir.
        * fullPrev=true → dairesel yüz yerine tam vücut önizleme (kıyafet/alt giyim için) */
       function partCard(part, apply, isEquipped, previewFn, fullPrev) {
         const a = av(); a.usePhoto = false; apply(a, part); if (previewFn) previewFn(a);
-        const unlocked = B.Avatar.isUnlocked(part);
         const card = document.createElement('button');
-        card.className = 'part-card' + (fullPrev ? ' part-tall' : '') + (isEquipped ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
+        card.className = 'part-card' + (fullPrev ? ' part-tall' : '') + (isEquipped ? ' part-on' : '');
         card.innerHTML =
           '<span class="part-prev">' + (fullPrev ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
-          '<span class="part-name">' + (part.name || '') + '</span>' +
-          (!unlocked ? '<span class="part-price">💰 ' + priceOf(part) + '</span>' : '');
+          '<span class="part-name">' + (part.name || '') + '</span>';
         card.onclick = () => {
           B.Audio.play('tick');
-          if (!unlocked) {
-            // Satın alma onayı
-            B.UI.confirm({
-              icon: '👕', title: (part.name || 'Bu parça') + ' alınsın mı?',
-              body: '💰 ' + priceOf(part) + ' Altın karşılığında satın alıp giyeceksin.',
-              yes: 'Satın al', no: 'Vazgeç',
-              onYes: () => {
-                if (!buyPart(part)) return;
-                const cur = av(); cur.usePhoto = false; apply(cur, part);
-                commit(cur);
-              },
-            });
-            return;
-          }
           const cur = av(); cur.usePhoto = false; apply(cur, part);
           commit(cur);
         };
         return card;
       }
 
+      /* Grid yalnızca sahip olunan (kilidi açık) parçaları listeler.
+       * Hiç sahip olunan yoksa mağaza yönlendirmesi gösterilir. */
       function grid(parts, apply, equippedCheck, previewFn, fullPrev) {
+        const owned = parts.filter(p => B.Avatar.isUnlocked(p));
         const g = document.createElement('div'); g.className = 'part-grid' + (fullPrev ? ' grid-tall' : '');
-        parts.forEach(p => g.appendChild(partCard(p, apply, equippedCheck(p), previewFn, fullPrev)));
+        if (!owned.length) {
+          g.classList.add('part-grid-empty');
+          g.innerHTML = '<div class="locker-empty">Bu kategoride henüz eşyan yok.<br><small>🛒 Mağaza\'dan alabilirsin.</small></div>';
+          return g;
+        }
+        owned.forEach(p => g.appendChild(partCard(p, apply, equippedCheck(p), previewFn, fullPrev)));
         return g;
       }
 
@@ -158,6 +141,15 @@
           host.appendChild(grid(C.rings, (x, p) => { x.ring = p.id; }, p => p.id === a.ring));
         } else if (tab === 'sell') {
           renderSell(host);
+        }
+
+        // Dolapta yeni parça yok → Mağaza'ya yönlendir (satış ve onboarding hariç)
+        if (tab !== 'sell' && !onboarding) {
+          const shopBtn = document.createElement('button');
+          shopBtn.className = 'btn locker-shop';
+          shopBtn.innerHTML = '🛒 Yeni kıyafet & kozmetik → Mağaza';
+          shopBtn.onclick = () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'kiyafet' }); };
+          host.appendChild(shopBtn);
         }
       }
 
