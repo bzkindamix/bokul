@@ -687,7 +687,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .wish-empty { color: var(--ink-dim); font-size: 13px; text-align: center; padding: 16px; }
 
 /* ---------- v0.13: Ebeveyn Konsolu ---------- */
-.login-parent { position: absolute; left: 16px; bottom: 16px; z-index: 6; color: var(--ink-dim); }
+.login-parent { color: var(--ink-dim); } /* konum .login-foot flex'inden gelir (üst üste binmesin) */
 .admin-root { padding: 0; }
 .admin-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .admin-head b { font-size: 16px; }
@@ -1106,6 +1106,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   .home-reasons { margin: 0 auto 4px; }
 }
 
+/* ---------- v0.38: Demo/anonim kısıtlama ---------- */
+.map-demolock { margin-top: 6px; font-size: 12.5px; color: var(--xp); background: color-mix(in srgb, var(--xp) 12%, transparent); border: 1px solid color-mix(in srgb, var(--xp) 35%, transparent); border-radius: 10px; padding: 6px 10px; }
+.home-demo { background: linear-gradient(180deg, #FF9F1C, #F07E00); color: #3a2600; font-weight: 800; }
+
 </style>
 </head>
 <body>
@@ -1115,7 +1119,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.37 — Ebeveyn oturumu kalıcı: bir kez girince tekrar sormaz</div>
+      <div class="splash-note">v0.38 — Demo/anonim kısıtlama + buton çakışması düzeltmesi</div>
     </div>
   </div>
 
@@ -3867,6 +3871,26 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   };
 })(window.BOKUL = window.BOKUL || {});
 
+/* === src/core/demo.js === */
+/* BOKUL — Demo / Anonim Kullanıcı Kısıtlaması
+ * Davet kodu OLMADAN ("Kodsuz oyna") giren kullanıcı DEMO'dur: sınırlı deneme.
+ * Aile koduna bağlanınca (ebeveynden kod alınca) tam sürüme geçer.
+ * Demo kısıtları:
+ *   - Altın kazanamaz (ekonomi kapalı)
+ *   - Sandık kazanamaz
+ *   - Her dersten yalnızca İLK bölüm (1 ünite 1 konu) oynanır
+ *   - Mağaza, Evcil Hayvan, Günlük Ödül kapalı (ekonomiye bağlı) */
+(function (B) {
+  const LOCKED = ['store', 'pets']; // demo'da kapalı oyun bölümleri
+
+  B.Demo = {
+    /* Aile koduna bağlı DEĞİLSE demo. Kod girilince (bağlanınca) tam sürüm. */
+    isDemo() { return !(B.Cloud && B.Cloud.getCode()); },
+    sectionLimit: 1,          // ders başına açık bölüm sayısı
+    featureLocked(f) { return B.Demo.isDemo() && LOCKED.indexOf(f) >= 0; },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
 /* === src/core/content-registry.js === */
 /* BOKUL — ContentRegistry
  * JSON içerik paketlerini yükler: önce sayfaya gömülü blok (dist/tek dosya modu),
@@ -4152,6 +4176,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
     /* ---- Altın (para) ---- */
     addCoins(amount, source) {
+      if (B.Demo && B.Demo.isDemo()) return 0; // demo: altın kazanılamaz
       const p = B.State.data.player;
       p.coins = (p.coins || 0) + amount;
       B.Bus.emit(B.Events.COINS_CHANGED, { total: p.coins, delta: amount });
@@ -4285,6 +4310,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       if (B.Lesson.gradeLocked(sectionId)) return false; // sınıf kilidi
       const list = B.Lesson.sections();
       const idx = list.findIndex(x => x.section.id === sectionId);
+      if (B.Demo && B.Demo.isDemo() && idx >= B.Demo.sectionLimit) return false; // demo: 1 ders 1 bölüm
       if (idx <= 0) return true;
       const prev = list[idx - 1].section;
       const need = (list[idx].section.unlock || {}).starsRequired ?? (cfg().sectionUnlockStars || 16);
@@ -4447,6 +4473,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     queue() { return inv().chests; },
 
     earn(type) {
+      if (B.Demo && B.Demo.isDemo()) return; // demo: sandık kazanılamaz
       type = norm(type);
       inv().chests.push(type);
       const m = meta(type);
@@ -6665,8 +6692,13 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         '<button class="btn door door-side door-store">🏪<br>MAĞAZA</button>';
       root.appendChild(doors);
 
-      // Ebeveyn kilidi: engelli özellikler tıklanınca uyarı verir
+      // Kilit: demo kısıtı VEYA ebeveyn kilidi → tıklanınca uyarı
       function gate(el, feature, go) {
+        if (B.Demo && B.Demo.featureLocked(feature)) {
+          el.classList.add('feat-locked');
+          el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🎫 Demo sürüm — davet koduyla açılır.'); };
+          return;
+        }
         if (B.Perms.feature(feature)) { el.onclick = go; return; }
         el.classList.add('feat-locked');
         el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); };
@@ -6692,12 +6724,40 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       gate(wish, 'wishes', () => B.UI.show('wishes'));
       root.appendChild(wish);
 
-      // Günlük ödül (retention)
-      const daily = document.createElement('button');
-      daily.className = 'chip home-daily' + (B.Daily.canClaim() ? ' daily-ready' : '');
-      daily.textContent = B.Daily.canClaim() ? '🎁 Günlük Ödül!' : '🎁 Seri: ' + B.Daily.streak() + ' gün';
-      daily.onclick = () => B.Daily.show();
-      root.appendChild(daily);
+      const demoMode = B.Demo && B.Demo.isDemo();
+
+      // Günlük ödül (retention) — demo'da kapalı (ödül vermiyor)
+      if (!demoMode) {
+        const daily = document.createElement('button');
+        daily.className = 'chip home-daily' + (B.Daily.canClaim() ? ' daily-ready' : '');
+        daily.textContent = B.Daily.canClaim() ? '🎁 Günlük Ödül!' : '🎁 Seri: ' + B.Daily.streak() + ' gün';
+        daily.onclick = () => B.Daily.show();
+        root.appendChild(daily);
+      }
+
+      // Demo bilgi + tam sürüme geçiş (davet kodu)
+      if (demoMode) {
+        const demo = document.createElement('button');
+        demo.className = 'chip home-demo';
+        demo.textContent = '🎫 Demo — Tam Sürüm İçin Davet Kodu';
+        demo.onclick = () => {
+          const ov = B.UI.overlay('<div class="ov-big">🎫</div><h2>Tam Sürümü Aç</h2>' +
+            '<p class="ov-quote">Ebeveyninin davet kodunu gir; tüm dersler, altın, mağaza ve evcil hayvanlar açılsın!</p>' +
+            '<input id="demo-code" class="name-input" maxlength="14" placeholder="Davet kodu" style="text-transform:uppercase">' +
+            '<div class="login-err" id="demo-err"></div>',
+            [{ label: 'AÇ ▶', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: null }]);
+          const btns = ov.querySelectorAll('.overlay-btns .btn');
+          btns[0].onclick = () => {
+            const v = (ov.querySelector('#demo-code').value || '').trim().toUpperCase();
+            if (v.length < 6) { ov.querySelector('#demo-err').textContent = '⚠️ Kod en az 6 karakter.'; return; }
+            B.Cloud.setCode(v); ov.remove();
+            B.Audio.play('fanfare'); B.UI.toast('🎉 Tam sürüm açıldı! Aileye bağlandın.');
+            B.UI.show('home');
+          };
+          btns[1].onclick = () => ov.remove();
+        };
+        root.appendChild(demo);
+      }
 
       // Oyuncu değiştir / çıkış
       const out = document.createElement('button');
@@ -6706,8 +6766,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       out.onclick = () => B.Engine.logout();
       root.appendChild(out);
 
-      // Günlük ödül hazırsa otomatik aç (günde bir; ekran korunuyorsa)
-      if (B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
+      // Günlük ödül hazırsa otomatik aç (günde bir; demo değilse)
+      if (!demoMode && B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
 
       this._hud = hud;
     },
@@ -6826,12 +6886,14 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           const card = document.createElement('div');
           card.className = 'map-section' + (unlocked ? '' : ' map-locked');
           const secPct = maxStars ? Math.round(stars / maxStars * 100) : 0;
+          const demoLocked = !unlocked && !gradeLocked && B.Demo && B.Demo.isDemo();
           card.innerHTML =
             '<div class="map-sec-head"><b>' + section.title + '</b>' +
             '<span class="map-stars">⭐ ' + stars + '/' + maxStars + '</span>' +
             (unlocked ? '' : '<span class="map-lock">🔒</span>') + '</div>' +
             (unlocked ? '<div class="map-sec-bar"><i style="width:' + secPct + '%"></i></div>' : '') +
-            (gradeLocked ? '<div class="map-gradelock">🎓 Bu bölümü ' + section.minGrade + '. sınıfta açacaksın. Şimdilik seviyene uygun bölümlere odaklan!</div>' : '');
+            (gradeLocked ? '<div class="map-gradelock">🎓 Bu bölümü ' + section.minGrade + '. sınıfta açacaksın. Şimdilik seviyene uygun bölümlere odaklan!</div>' : '') +
+            (demoLocked ? '<div class="map-demolock">🎫 Demo sürüm — bu bölüm davet koduyla açılır. Ebeveyninden kod iste!</div>' : '');
 
           if (unlocked) {
             const path = document.createElement('div');
@@ -7572,12 +7634,18 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
-      const storeDoor = wrap.querySelector('.door-store');
-      if (B.Perms.feature('store')) storeDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'depo' }); };
-      else { storeDoor.classList.add('feat-locked'); storeDoor.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); }; }
-      const petsDoor = wrap.querySelector('.door-pets');
-      if (B.Perms.feature('pets')) petsDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };
-      else { petsDoor.classList.add('feat-locked'); petsDoor.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); }; }
+      function evimGate(el, feature, go) {
+        if (B.Demo && B.Demo.featureLocked(feature)) {
+          el.classList.add('feat-locked');
+          el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🎫 Demo sürüm — davet koduyla açılır.'); };
+          return;
+        }
+        if (B.Perms.feature(feature)) { el.onclick = go; return; }
+        el.classList.add('feat-locked');
+        el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); };
+      }
+      evimGate(wrap.querySelector('.door-store'), 'store', () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'depo' }); });
+      evimGate(wrap.querySelector('.door-pets'), 'pets', () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
       wrap.querySelector('.door-int').onclick = () => { B.Audio.play('tick'); B.UI.show('interests', {}); };
     },
     exit() { if (this._hud) this._hud.dispose(); },
@@ -9137,7 +9205,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.37'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.38'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

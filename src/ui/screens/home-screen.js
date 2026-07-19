@@ -98,8 +98,13 @@
         '<button class="btn door door-side door-store">🏪<br>MAĞAZA</button>';
       root.appendChild(doors);
 
-      // Ebeveyn kilidi: engelli özellikler tıklanınca uyarı verir
+      // Kilit: demo kısıtı VEYA ebeveyn kilidi → tıklanınca uyarı
       function gate(el, feature, go) {
+        if (B.Demo && B.Demo.featureLocked(feature)) {
+          el.classList.add('feat-locked');
+          el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🎫 Demo sürüm — davet koduyla açılır.'); };
+          return;
+        }
         if (B.Perms.feature(feature)) { el.onclick = go; return; }
         el.classList.add('feat-locked');
         el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); };
@@ -125,12 +130,40 @@
       gate(wish, 'wishes', () => B.UI.show('wishes'));
       root.appendChild(wish);
 
-      // Günlük ödül (retention)
-      const daily = document.createElement('button');
-      daily.className = 'chip home-daily' + (B.Daily.canClaim() ? ' daily-ready' : '');
-      daily.textContent = B.Daily.canClaim() ? '🎁 Günlük Ödül!' : '🎁 Seri: ' + B.Daily.streak() + ' gün';
-      daily.onclick = () => B.Daily.show();
-      root.appendChild(daily);
+      const demoMode = B.Demo && B.Demo.isDemo();
+
+      // Günlük ödül (retention) — demo'da kapalı (ödül vermiyor)
+      if (!demoMode) {
+        const daily = document.createElement('button');
+        daily.className = 'chip home-daily' + (B.Daily.canClaim() ? ' daily-ready' : '');
+        daily.textContent = B.Daily.canClaim() ? '🎁 Günlük Ödül!' : '🎁 Seri: ' + B.Daily.streak() + ' gün';
+        daily.onclick = () => B.Daily.show();
+        root.appendChild(daily);
+      }
+
+      // Demo bilgi + tam sürüme geçiş (davet kodu)
+      if (demoMode) {
+        const demo = document.createElement('button');
+        demo.className = 'chip home-demo';
+        demo.textContent = '🎫 Demo — Tam Sürüm İçin Davet Kodu';
+        demo.onclick = () => {
+          const ov = B.UI.overlay('<div class="ov-big">🎫</div><h2>Tam Sürümü Aç</h2>' +
+            '<p class="ov-quote">Ebeveyninin davet kodunu gir; tüm dersler, altın, mağaza ve evcil hayvanlar açılsın!</p>' +
+            '<input id="demo-code" class="name-input" maxlength="14" placeholder="Davet kodu" style="text-transform:uppercase">' +
+            '<div class="login-err" id="demo-err"></div>',
+            [{ label: 'AÇ ▶', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: null }]);
+          const btns = ov.querySelectorAll('.overlay-btns .btn');
+          btns[0].onclick = () => {
+            const v = (ov.querySelector('#demo-code').value || '').trim().toUpperCase();
+            if (v.length < 6) { ov.querySelector('#demo-err').textContent = '⚠️ Kod en az 6 karakter.'; return; }
+            B.Cloud.setCode(v); ov.remove();
+            B.Audio.play('fanfare'); B.UI.toast('🎉 Tam sürüm açıldı! Aileye bağlandın.');
+            B.UI.show('home');
+          };
+          btns[1].onclick = () => ov.remove();
+        };
+        root.appendChild(demo);
+      }
 
       // Oyuncu değiştir / çıkış
       const out = document.createElement('button');
@@ -139,8 +172,8 @@
       out.onclick = () => B.Engine.logout();
       root.appendChild(out);
 
-      // Günlük ödül hazırsa otomatik aç (günde bir; ekran korunuyorsa)
-      if (B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
+      // Günlük ödül hazırsa otomatik aç (günde bir; demo değilse)
+      if (!demoMode && B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
 
       this._hud = hud;
     },

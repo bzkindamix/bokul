@@ -33,12 +33,18 @@
 
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
-      const storeDoor = wrap.querySelector('.door-store');
-      if (B.Perms.feature('store')) storeDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'depo' }); };
-      else { storeDoor.classList.add('feat-locked'); storeDoor.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); }; }
-      const petsDoor = wrap.querySelector('.door-pets');
-      if (B.Perms.feature('pets')) petsDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };
-      else { petsDoor.classList.add('feat-locked'); petsDoor.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); }; }
+      function evimGate(el, feature, go) {
+        if (B.Demo && B.Demo.featureLocked(feature)) {
+          el.classList.add('feat-locked');
+          el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🎫 Demo sürüm — davet koduyla açılır.'); };
+          return;
+        }
+        if (B.Perms.feature(feature)) { el.onclick = go; return; }
+        el.classList.add('feat-locked');
+        el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); };
+      }
+      evimGate(wrap.querySelector('.door-store'), 'store', () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'depo' }); });
+      evimGate(wrap.querySelector('.door-pets'), 'pets', () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
       wrap.querySelector('.door-int').onclick = () => { B.Audio.play('tick'); B.UI.show('interests', {}); };
     },
     exit() { if (this._hud) this._hud.dispose(); },

@@ -78,6 +78,7 @@
 
     /* ---- Altın (para) ---- */
     addCoins(amount, source) {
+      if (B.Demo && B.Demo.isDemo()) return 0; // demo: altın kazanılamaz
       const p = B.State.data.player;
       p.coins = (p.coins || 0) + amount;
       B.Bus.emit(B.Events.COINS_CHANGED, { total: p.coins, delta: amount });

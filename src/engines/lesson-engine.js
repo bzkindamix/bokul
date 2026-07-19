@@ -60,6 +60,7 @@
       if (B.Lesson.gradeLocked(sectionId)) return false; // sınıf kilidi
       const list = B.Lesson.sections();
       const idx = list.findIndex(x => x.section.id === sectionId);
+      if (B.Demo && B.Demo.isDemo() && idx >= B.Demo.sectionLimit) return false; // demo: 1 ders 1 bölüm
       if (idx <= 0) return true;
       const prev = list[idx - 1].section;
       const need = (list[idx].section.unlock || {}).starsRequired ?? (cfg().sectionUnlockStars || 16);

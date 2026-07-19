@@ -56,6 +56,7 @@
     queue() { return inv().chests; },
 
     earn(type) {
+      if (B.Demo && B.Demo.isDemo()) return; // demo: sandık kazanılamaz
       type = norm(type);
       inv().chests.push(type);
       const m = meta(type);

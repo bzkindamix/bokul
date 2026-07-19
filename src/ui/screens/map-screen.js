@@ -47,12 +47,14 @@
           const card = document.createElement('div');
           card.className = 'map-section' + (unlocked ? '' : ' map-locked');
           const secPct = maxStars ? Math.round(stars / maxStars * 100) : 0;
+          const demoLocked = !unlocked && !gradeLocked && B.Demo && B.Demo.isDemo();
           card.innerHTML =
             '<div class="map-sec-head"><b>' + section.title + '</b>' +
             '<span class="map-stars">⭐ ' + stars + '/' + maxStars + '</span>' +
             (unlocked ? '' : '<span class="map-lock">🔒</span>') + '</div>' +
             (unlocked ? '<div class="map-sec-bar"><i style="width:' + secPct + '%"></i></div>' : '') +
-            (gradeLocked ? '<div class="map-gradelock">🎓 Bu bölümü ' + section.minGrade + '. sınıfta açacaksın. Şimdilik seviyene uygun bölümlere odaklan!</div>' : '');
+            (gradeLocked ? '<div class="map-gradelock">🎓 Bu bölümü ' + section.minGrade + '. sınıfta açacaksın. Şimdilik seviyene uygun bölümlere odaklan!</div>' : '') +
+            (demoLocked ? '<div class="map-demolock">🎫 Demo sürüm — bu bölüm davet koduyla açılır. Ebeveyninden kod iste!</div>' : '');
 
           if (unlocked) {
             const path = document.createElement('div');

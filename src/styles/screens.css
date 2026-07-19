@@ -328,7 +328,7 @@
 .wish-empty { color: var(--ink-dim); font-size: 13px; text-align: center; padding: 16px; }
 
 /* ---------- v0.13: Ebeveyn Konsolu ---------- */
-.login-parent { position: absolute; left: 16px; bottom: 16px; z-index: 6; color: var(--ink-dim); }
+.login-parent { color: var(--ink-dim); } /* konum .login-foot flex'inden gelir (üst üste binmesin) */
 .admin-root { padding: 0; }
 .admin-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .admin-head b { font-size: 16px; }
@@ -746,3 +746,7 @@
   .dash-paths { gap: 5px; }
   .home-reasons { margin: 0 auto 4px; }
 }
+
+/* ---------- v0.38: Demo/anonim kısıtlama ---------- */
+.map-demolock { margin-top: 6px; font-size: 12.5px; color: var(--xp); background: color-mix(in srgb, var(--xp) 12%, transparent); border: 1px solid color-mix(in srgb, var(--xp) 35%, transparent); border-radius: 10px; padding: 6px 10px; }
+.home-demo { background: linear-gradient(180deg, #FF9F1C, #F07E00); color: #3a2600; font-weight: 800; }
