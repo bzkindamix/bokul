@@ -220,10 +220,10 @@
     },
     {
       "id": "barinak",
-      "name": "Barınak Teyze",
+      "name": "Pet Shop",
       "icon": "🐾",
       "color": "#66BB6A",
-      "tagline": "Dostlarını sahiplen, malzemeni al",
+      "tagline": "Evcil dostların için mama, yuva, oyuncak",
       "cats": [
         "pet"
       ],

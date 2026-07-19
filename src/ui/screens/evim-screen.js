@@ -71,7 +71,7 @@
         el.classList.add('feat-locked');
         el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); };
       }
-      evimGate(wrap.querySelector('.door-store'), 'store', () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'depo' }); });
+      evimGate(wrap.querySelector('.door-store'), 'store', () => { B.Audio.play('tick'); B.UI.show('depo', {}); });
       evimGate(wrap.querySelector('.door-pets'), 'pets', () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
       wrap.querySelector('.door-int').onclick = () => { B.Audio.play('tick'); B.UI.show('interests', {}); };
     },

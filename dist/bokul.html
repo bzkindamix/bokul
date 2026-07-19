@@ -964,8 +964,31 @@ h1, h2, h3, h4,
 
 /* ---------- v0.24: Eşya Mağazası + Depom ---------- */
 .store-wrap { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; min-height: 0; padding: 8px 10px 24px; max-width: 720px; width: 100%; margin: 0 auto; }
-.store-top { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.store-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
+.store-top .store-gold { margin-left: auto; }
 .store-gold { font-size: 15px; font-weight: 800; }
+.store-back { font-weight: 800; cursor: pointer; }
+
+/* ---- Çarşı: dükkan kartları ---- */
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.shop-card {
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px;
+  padding: 18px 12px; border-radius: 18px; cursor: pointer;
+  background: color-mix(in srgb, var(--vc, #888) 14%, var(--bg-panel));
+  border: 1.5px solid color-mix(in srgb, var(--vc, #888) 45%, var(--line));
+  border-bottom: 4px solid var(--vc, #888);
+  transition: transform .12s ease, filter .12s ease;
+}
+.shop-card:active { transform: translateY(2px) scale(.98); }
+@media (hover: hover) { .shop-card:hover { transform: translateY(-3px); filter: brightness(1.06); } }
+.shop-face {
+  width: 60px; height: 60px; border-radius: 50%; font-size: 34px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--vc, #888); box-shadow: 0 3px 10px rgba(0,0,0,.28);
+}
+.shop-name { font-weight: 800; font-size: 15px; color: var(--vc, var(--ink)); }
+.shop-tag { font-size: 11.5px; color: var(--ink-dim); line-height: 1.3; }
+.shop-barinak { border-style: dashed; }
 .store-tabs { display: flex; gap: 8px; margin-bottom: 10px; }
 .stab.tab-on { background: var(--accent); color: #3a0a2e; }
 .store-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
@@ -1766,7 +1789,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.84 — Grid surukle duzeltmesi (pointer capture) + item rarity piramit dengesi</div>
+      <div class="splash-note">v0.85 — Magaza yeniden yapilanmasi: Carsi (dukkan kartlari, sekmesiz) + ayri Depom ekrani + Pet Shop/Barinak ayrimi</div>
     </div>
   </div>
 
@@ -4061,10 +4084,10 @@ h1, h2, h3, h4,
     },
     {
       "id": "barinak",
-      "name": "Barınak Teyze",
+      "name": "Pet Shop",
       "icon": "🐾",
       "color": "#66BB6A",
-      "tagline": "Dostlarını sahiplen, malzemeni al",
+      "tagline": "Evcil dostların için mama, yuva, oyuncak",
       "cats": [
         "pet"
       ],
@@ -41075,7 +41098,7 @@ h1, h2, h3, h4,
         el.classList.add('feat-locked');
         el.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); };
       }
-      evimGate(wrap.querySelector('.door-store'), 'store', () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'depo' }); });
+      evimGate(wrap.querySelector('.door-store'), 'store', () => { B.Audio.play('tick'); B.UI.show('depo', {}); });
       evimGate(wrap.querySelector('.door-pets'), 'pets', () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
       wrap.querySelector('.door-int').onclick = () => { B.Audio.play('tick'); B.UI.show('interests', {}); };
     },
@@ -41084,20 +41107,19 @@ h1, h2, h3, h4,
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/screens/store-screen.js === */
-/* BOKUL — Mağaza & Depom
- * 🏪 Mağaza: altınla eşya satın al (kategori süzgeçli).
- * 📦 Depom : sahip olduğun eşyalar (adetli), Evim'de saklanır.
- * Eşyalar ileride evcil hayvan craft'ında ön koşul olur. */
+/* BOKUL — Çarşı (Mağaza)
+ * Dükkan kartları: her satıcı ayrı bir dükkan (Demirci / Robotçu / Marangoz /
+ * Pet Shop / Terzi) + Barınak (dost sahiplen → pets). Bir dükkana girince
+ * SADECE o dükkanın ürünleri gösterilir; sekme YOK. Depom ve Atölye artık
+ * Evim'de kendi kapılarında (v0.85 yeniden yapılanması). */
 (function (B) {
   function esc(s) { return String(s == null ? '' : s).replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
   B.UI.registerScreen('store', {
     enter(root, params) {
       const hud = B.UI.buildHud(root, { backTo: 'evim' });
       this._hud = hud;
-      let tab = (params && params.tab) || 'shop';
-      if (tab === 'craft') tab = 'shop'; // craft artık kendi ekranı (atolye)
-      let vendorId = null; // Eşya sekmesinde seçili satıcı
-      let kcat = 'all'; // kıyafet sekmesi tür süzgeci
+      let view = (params && params.vendor) || 'carsi'; // 'carsi' | vendorId
+      let kcat = 'all'; // Terzi (kıyafet) tür süzgeci
 
       const wrap = document.createElement('div');
       wrap.className = 'store-wrap';
@@ -41106,34 +41128,19 @@ h1, h2, h3, h4,
       function coins() { return B.State.data.player.coins || 0; }
 
       function shell() {
+        const back = view === 'carsi' ? '' : '<button class="chip store-back">◀ Çarşı</button>';
         wrap.innerHTML =
-          '<div class="store-top"><div class="chip store-gold">💰 ' + coins() + ' Altın</div></div>' +
-          '<div class="store-tabs">' +
-            '<button class="chip stab" data-t="shop">🏪 Eşya</button>' +
-            '<button class="chip stab" data-t="kiyafet">👕 Kıyafet</button>' +
-            '<button class="chip stab" data-t="depo">📦 Depom (' + B.Items.total() + ')</button>' +
-            '<button class="chip stab store-goatolye">🔨 Atölye ▶</button>' +
-          '</div>' +
+          '<div class="store-top">' + back +
+            '<div class="chip store-gold">💰 ' + coins() + ' Altın</div></div>' +
           '<div class="store-body"></div>';
-        wrap.querySelectorAll('.stab[data-t]').forEach(b => b.onclick = () => {
-          tab = b.dataset.t;
-          wrap.querySelectorAll('.stab').forEach(x => x.classList.toggle('tab-on', x === b));
-          renderBody();
-        });
-        const goAt = wrap.querySelector('.store-goatolye');
-        if (goAt) goAt.onclick = () => { B.Audio.play('tick'); B.UI.show('atolye'); };
-        wrap.querySelector('.stab[data-t="' + tab + '"]').classList.add('tab-on');
-        renderBody();
-      }
-
-      function renderBody() {
+        const bk = wrap.querySelector('.store-back');
+        if (bk) bk.onclick = () => { B.Audio.play('tick'); view = 'carsi'; shell(); };
         const body = wrap.querySelector('.store-body');
-        if (tab === 'shop') renderShop(body);
-        else if (tab === 'kiyafet') renderKiyafet(body);
-        else renderDepo(body);
+        if (view === 'carsi') renderCarsi(body);
+        else if (view === 'terzi') renderKiyafet(body);
+        else renderVendor(body, view);
       }
 
-      /* Baba bir mekaniği ilk kez açıklıyor (bir kez gösterilir) */
       function babaSays(key, icon, text) {
         const seen = B.Save.settings.get();
         if (seen['tut_' + key]) return;
@@ -41142,7 +41149,6 @@ h1, h2, h3, h4,
           '<p class="ov-quote">' + text + '</p>', [{ label: 'Anlaşıldı!', onClick: null }]);
       }
 
-      /* Satıcı afişi: karakter yüzü + adı + o an söylediği replik */
       function vendorBanner(v) {
         if (!v) return '';
         return '<div class="vendor-banner" style="--vc:' + v.color + '">' +
@@ -41153,21 +41159,35 @@ h1, h2, h3, h4,
           '</div></div>';
       }
 
-      /* ---- 🏪 Mağaza (satıcı gruplarına ayrılmış) ---- */
-      function renderShop(body) {
-        babaSays('shop', '🛒', 'Burası Çarşı! Her satıcının kendi tezgâhı var: Demirci Baba ham madde, Robotçu Zeki teknoloji, Marangoz Usta oda eşyası, Barınak Teyze evcil malzemesi satar. Altınla al, aldıkların Depom\'a gider. Ham maddeyi sonra 🔨 Atölye\'de birleştirip yeni şeyler ÜRET.');
-        // Terzi kıyafet sekmesinde; burada eşya satıcıları
-        const vendors = B.Vendors.all().filter(v => (v.cats || []).some(c => c !== 'kiyafet'));
-        if (!vendors.length) { body.innerHTML = '<div class="store-empty">Satıcı bulunamadı.</div>'; return; }
-        if (!vendorId || !vendors.some(v => v.id === vendorId)) vendorId = vendors[0].id;
+      /* ---- 🏙️ Çarşı: dükkan kartları ---- */
+      function renderCarsi(body) {
+        babaSays('carsi', '🏙️', 'Burası Çarşı! Her dükkanın kendi ustası var: 🔨 Demirci ham madde, 🤖 Robotçu teknoloji, 🪚 Marangoz oda eşyası, 🐾 Pet Shop evcil malzemesi, ✂️ Terzi kıyafet satar. 🏠 Barınak\'tan ise dost ÜCRETSİZ sahiplenirsin. Aldığın eşyalar Depom\'a gider.');
+        const vendors = B.Vendors.all();
+        const cards = vendors.map(v =>
+          '<button class="shop-card" data-v="' + v.id + '" style="--vc:' + v.color + '">' +
+            '<span class="shop-face">' + v.icon + '</span>' +
+            '<span class="shop-name">' + esc(v.name) + '</span>' +
+            '<span class="shop-tag">' + esc(v.tagline || '') + '</span>' +
+          '</button>').join('');
+        // Barınak (sahiplenme) — satıcı değil, özel kart
+        const barinak =
+          '<button class="shop-card shop-barinak" data-go="pets" style="--vc:#8E7CC3">' +
+            '<span class="shop-face">🏠</span>' +
+            '<span class="shop-name">Barınak</span>' +
+            '<span class="shop-tag">Dostunu ÜCRETSİZ sahiplen</span>' +
+          '</button>';
+        body.innerHTML = '<div class="shop-grid">' + cards + barinak + '</div>';
+        body.querySelectorAll('.shop-card[data-v]').forEach(c => c.onclick = () => {
+          B.Audio.play('tick'); view = c.dataset.v; shell();
+        });
+        const bar = body.querySelector('.shop-card[data-go="pets"]');
+        if (bar) bar.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };
+      }
+
+      /* ---- 🛒 Tek dükkan: satıcının ürünleri (sekme yok) ---- */
+      function renderVendor(body, vendorId) {
         const vendor = B.Vendors.get(vendorId);
-        const vrow = '<div class="store-vendors">' + vendors.map(v =>
-          '<button class="chip vchip' + (v.id === vendorId ? ' tab-on' : '') + '" data-v="' + v.id + '" style="--vc:' + v.color + '">' +
-            v.icon + ' ' + esc(v.name) + '</button>').join('') + '</div>';
-        const banner = vendorBanner(vendor);
-        // Barınak: ücretsiz sahiplenme kısayolu
-        const adoptBtn = vendor.id === 'barinak'
-          ? '<button class="btn-adopt">🐾 Dostunu ÜCRETSİZ sahiplen ▶</button>' : '';
+        if (!vendor) { view = 'carsi'; shell(); return; }
         const buyable = B.Items.catalog().filter(it => !it.craftOnly && (vendor.cats || []).includes(it.cat));
         const cards = buyable.map(it => {
           const owned = B.Items.count(it.id);
@@ -41188,16 +41208,8 @@ h1, h2, h3, h4,
             '</button>';
         }).join('');
         const grid = cards ? '<div class="store-grid">' + cards + '</div>'
-                           : '<div class="store-empty">Bu tezgâhta şimdilik bir şey yok.</div>';
-        body.innerHTML = vrow + banner + adoptBtn + grid;
-
-        body.querySelectorAll('.vchip').forEach(b => b.onclick = () => {
-          vendorId = b.dataset.v;
-          B.Audio.play('tick');
-          renderShop(body);
-        });
-        const adoptEl = body.querySelector('.btn-adopt');
-        if (adoptEl) adoptEl.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };
+                           : '<div class="store-empty">Bu dükkanda şimdilik bir şey yok.</div>';
+        body.innerHTML = vendorBanner(vendor) + grid;
 
         body.querySelectorAll('.store-card[data-id]').forEach(cardEl => {
           if (cardEl.disabled) return;
@@ -41214,31 +41226,27 @@ h1, h2, h3, h4,
                 if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
                 B.Audio.play('chest');
                 B.UI.toast('✨ ' + r.item.name + ' alındı! Depom\'da.');
-                shell(); // altın + depo sayısı güncellensin
+                shell();
               },
             });
           };
         });
       }
 
-      /* Not: Atölye (craft) artık ayrı ekran → src/ui/screens/atolye-screen.js */
-
-      /* ---- 👕 Kıyafet & Kozmetik (sahip OLMADIĞIN her şey) ---- */
+      /* ---- ✂️ Terzi: kıyafet & kozmetik (sahip OLMADIĞIN her şey) ---- */
       function renderKiyafet(body) {
-        babaSays('kiyafet', '👕', 'Burası Kıyafet Reyonu! Sahip olmadığın tüm kıyafet, saç, aksesuar burada. Altınla al → Dolabına gider → Görünüşüm\'den giyersin. Sahip olduklarını Dolabında bulursun.');
+        babaSays('kiyafet', '✂️', 'Terzi Moda\'dasın! Sahip olmadığın tüm kıyafet, saç, aksesuar burada. Altınla al → Dolabına gider → Görünüşüm\'den giyersin.');
         const gender = (B.State.data.player.avatar || {}).gender;
         const prices = B.Content.get('rewards').shopPrices;
         const priceOf = p => prices[p.rarity] || 50;
-        // Cinsiyete uygun + henüz sahip OLMADIĞIN kozmetikler
         const all = B.Avatar.cosmeticCatalog().filter(c => B.Avatar.genderOk(c.part, gender) && !B.Avatar.isUnlocked(c.part));
+        const terziBanner = vendorBanner(B.Vendors.get('terzi'));
         if (!all.length) {
-          body.innerHTML = '<div class="store-empty">👑 Harika Komutan! Tüm kıyafet ve kozmetikler artık senin. Dolabından giyebilirsin.</div>';
+          body.innerHTML = terziBanner + '<div class="store-empty">👑 Harika Komutan! Tüm kıyafet ve kozmetikler artık senin. Dolabından giyebilirsin.</div>';
           return;
         }
-        // Tür süzgeci (Üst/Alt/Saç…)
         const types = [];
         all.forEach(c => { if (!types.some(t => t.id === c.type)) types.push({ id: c.type, label: c.typeLabel }); });
-        const terziBanner = vendorBanner(B.Vendors.get('terzi'));
         const filterRow = terziBanner + '<div class="store-cats">' +
           '<button class="chip kcat" data-c="all">Hepsi</button>' +
           types.map(t => '<button class="chip kcat" data-c="' + t.id + '">' + t.label + '</button>').join('') +
@@ -41258,10 +41266,7 @@ h1, h2, h3, h4,
         }).join('');
         body.innerHTML = filterRow + '<div class="store-grid cos-grid">' + cards + '</div>';
 
-        body.querySelectorAll('.kcat').forEach(b => b.onclick = () => {
-          kcat = b.dataset.c;
-          renderKiyafet(body);
-        });
+        body.querySelectorAll('.kcat').forEach(b => b.onclick = () => { kcat = b.dataset.c; renderKiyafet(body); });
         const active = body.querySelector('.kcat[data-c="' + kcat + '"]'); if (active) active.classList.add('tab-on');
 
         body.querySelectorAll('.cos-card[data-id]').forEach(el => el.onclick = () => {
@@ -41279,10 +41284,38 @@ h1, h2, h3, h4,
               if (B.Bus && B.Events && B.Events.COSMETIC_UNLOCKED) B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: c.id });
               B.Audio.play('chest'); B.Save.saveSoon();
               B.UI.toast('✨ ' + c.name + ' alındı! Dolabında.');
-              shell(); // altın + liste güncellensin (satın alınan kaybolur)
+              shell();
             },
           });
         });
+      }
+
+      shell();
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/depo-screen.js === */
+/* BOKUL — Depom (kare-ızgara envanter)
+ * Sahip olunan eşyalar adetli hücrelerde; sürükleyip dizilebilir, dokununca
+ * bilgi/sat. Evim → DEPOM kapısından açılır. (Mağazadan ayrıldı: v0.85) */
+(function (B) {
+  function esc(s) { return String(s == null ? '' : s).replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
+  B.UI.registerScreen('depo', {
+    enter(root) {
+      const hud = B.UI.buildHud(root, { backTo: 'evim' });
+      this._hud = hud;
+      const wrap = document.createElement('div');
+      wrap.className = 'store-wrap';
+      root.appendChild(wrap);
+      function coins() { return B.State.data.player.coins || 0; }
+
+      function shell() {
+        wrap.innerHTML =
+          '<div class="store-top"><div class="chip store-gold">💰 ' + coins() + ' Altın</div></div>' +
+          '<div class="store-body"></div>';
+        renderDepo(wrap.querySelector('.store-body'));
       }
 
       /* Eşya bilgisi + Sat popup'ı */
@@ -41297,13 +41330,12 @@ h1, h2, h3, h4,
             { label: '💰 Sat (' + sellPrice + ')', onClick: () => {
               const r = B.Items.sell(it.id);
               if (r.ok) { B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın'); }
-              shell(); // altın + depo tazelensin (depo sekmesinde kal)
+              shell();
             } },
             { label: 'Kapat', onClick: null },
           ]);
       }
 
-      /* ---- 📦 Depom (kare-ızgara envanter; sürükleyip dizilebilir) ---- */
       function renderDepo(body) {
         const owned = B.Items.orderedOwned(); // oyuncunun seçtiği sıra
         const cap = B.Items.capacity();
@@ -41322,18 +41354,15 @@ h1, h2, h3, h4,
             '<span class="inv-cap' + (overfull ? ' inv-over' : (used >= cap ? ' inv-warn' : '')) + '">' + used + ' / ' + cap + ' dolu</span>' +
             '<span class="inv-lvl">🎖️ Sv.' + ((B.State.data.player.level) || 1) + ' — seviye atlayınca depo büyür</span>' +
           '</div>' +
-          (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: dizilişi değiştir</div>' : '<div class="store-empty">Depon boş. Mağazadan eşya al, burada saklansın!</div>') +
+          (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: dizilişi değiştir</div>' : '<div class="store-empty">Depon boş. Çarşı\'dan eşya al, burada saklansın!</div>') +
           '<div class="inv-grid">' + cells + empties + '</div>' +
-          (overfull ? '<div class="adm-warn">⚠️ Depo kapasiten aşıldı — seviye atla ya da eşyaları üretimde/bakımunda kullan.</div>' : '');
-
-        // Hücreleri sürükle-diz (pointer: fare+dokunmatik); az hareket = dokun (popup)
+          (overfull ? '<div class="adm-warn">⚠️ Depo kapasiten aşıldı — seviye atla ya da eşyaları üretimde/bakımında kullan.</div>' : '');
         const grid = body.querySelector('.inv-grid');
         body.querySelectorAll('.inv-cell.filled').forEach(cell => makeCellDraggable(cell, grid, body));
       }
 
-      /* Bir depo hücresini sürüklenebilir yap; eşik altı hareket = dokun→popup.
-       * setPointerCapture ile move/up olayları hücreye kilitlenir → dokunmatikte
-       * kaymaz/kopmaz (önceki document-dinleme mobilde güvenilmezdi). */
+      /* Hücre sürükle-diz; setPointerCapture ile dokunmatikte kaymaz.
+       * Eşik altı hareket = dokun→popup, üstü = sürükle→yeniden diz. */
       function makeCellDraggable(cell, grid, body) {
         let sx = 0, sy = 0, dragging = false, ghost = null, pid = null;
         const TH = 7;
@@ -41344,7 +41373,7 @@ h1, h2, h3, h4,
           grid.querySelectorAll('.inv-cell.inv-target').forEach(t => t.classList.remove('inv-target'));
         }
         cell.addEventListener('pointerdown', (e) => {
-          if (e.button != null && e.button > 0) return; // sadece sol/ana veya dokunma
+          if (e.button != null && e.button > 0) return;
           pid = e.pointerId; sx = e.clientX; sy = e.clientY; dragging = false;
           try { cell.setPointerCapture(pid); } catch (_) {}
           e.preventDefault();
@@ -41376,7 +41405,7 @@ h1, h2, h3, h4,
           try { cell.releasePointerCapture(pid); } catch (_) {}
           pid = null; dragging = false;
           clear();
-          if (!wasDrag) { openItemPopup(B.Items.get(cell.dataset.id)); return; } // dokun
+          if (!wasDrag) { openItemPopup(B.Items.get(cell.dataset.id)); return; }
           if (tgt) { B.Items.reorder(cell.dataset.id, tgt.dataset.id || null); renderDepo(body); }
         });
         cell.addEventListener('pointercancel', (e) => {
@@ -41386,7 +41415,6 @@ h1, h2, h3, h4,
         });
       }
 
-      /* Noktadaki grid hücresi (kendisi hariç); boş hücre de geçerli hedef */
       function cellUnder(x, y, grid, self) {
         const el = document.elementFromPoint(x, y);
         if (!el) return null;
@@ -43574,7 +43602,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.84'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.85'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

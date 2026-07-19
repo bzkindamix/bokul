@@ -69,6 +69,7 @@ const JS = [
   'src/ui/screens/locker-screen.js',
   'src/ui/screens/evim-screen.js',
   'src/ui/screens/store-screen.js',
+  'src/ui/screens/depo-screen.js',
   'src/ui/screens/pets-screen.js',
   'src/ui/screens/quests-screen.js',
   'src/ui/screens/intro-screen.js',
