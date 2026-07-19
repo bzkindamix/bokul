@@ -1628,6 +1628,25 @@ h1, h2, h3, h4,
 @media (max-height: 760px) { .home-figure-char { width: 108px; height: 168px; } .home-pet .hp-emoji { font-size: 26px; } .home-figure { padding-top: 2px; } }
 @media (max-height: 640px) { .home-figure { display: none; } }
 
+/* === v0.75 — Giriş: oyuncu kendi profilini silebilir (düzenle modu) === */
+.login-card { position: relative; }
+.login-del {
+  position: absolute; top: -7px; right: -7px; z-index: 5;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: #E8443B; color: #fff; font-size: 14px; font-weight: 800; line-height: 24px; text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.4); border: 2px solid var(--bg-panel, #211840);
+  display: none; cursor: pointer;
+}
+.login-cards.login-editing .login-del { display: block; }
+.login-cards.login-editing .login-new .login-del { display: none; } /* Yeni Oyuncu'da yok (zaten ✕ yok) */
+.login-cards.login-editing .login-card:not(.login-new) { cursor: default; }
+.login-manage { margin-top: 12px; font-size: 13px; opacity: .85; }
+@media (prefers-reduced-motion: no-preference) {
+  .login-cards.login-editing .login-card:not(.login-new) { animation: login-wiggle .4s ease-in-out infinite; }
+  .login-cards.login-editing .login-card:nth-child(even) { animation-delay: .08s; }
+  @keyframes login-wiggle { 0%,100% { transform: rotate(-1.1deg); } 50% { transform: rotate(1.1deg); } }
+}
+
 </style>
 </head>
 <body>
@@ -1637,7 +1656,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.74 — Ana ekrana karakter vitrini: güncel kıyafetli tam-vücut avatar + yanında evcil hayvan(lar)</div>
+      <div class="splash-note">v0.75 — Oyuncu kendi kayıtlı profillerini silebilir (giriş ekranı düzenle modu, onaylı, yerel+bulut)</div>
     </div>
   </div>
 
@@ -34268,7 +34287,9 @@ h1, h2, h3, h4,
     let cards = keys.map(k => {
       const info = B.Auth.peek(k);
       const av = info.avatar ? B.Avatar.el(info.avatar) : '<span class="login-anon">🧑</span>';
-      return '<button class="login-card" data-key="' + k + '"><span class="login-av">' + av + '</span>' +
+      return '<button class="login-card" data-key="' + k + '">' +
+        '<span class="login-del" data-key="' + k + '" title="Bu oyuncuyu sil">✕</span>' +
+        '<span class="login-av">' + av + '</span>' +
         '<span class="login-cardname">' + info.name + '</span><span class="login-lvl">Seviye ' + (info.level || 1) + '</span></button>';
     }).join('');
     cards += '<button class="login-card login-new"><span class="login-av"><span class="login-anon">➕</span></span><span class="login-cardname">Yeni Oyuncu</span></button>';
@@ -34276,14 +34297,46 @@ h1, h2, h3, h4,
       '<div class="login-box login-box-wide"><div class="login-hero">' + hero() + '</div>' +
       '<h2 class="login-title">Kim oynuyor?</h2>' +
       '<p class="login-sub">Profiline dokun ve oyna!</p>' +
-      '<div class="login-cards">' + cards + '</div></div>';
+      '<div class="login-cards">' + cards + '</div>' +
+      (keys.length ? '<button class="btn btn-quiet login-manage">🗑️ Oyuncuları düzenle</button>' : '') +
+      '</div>';
+
+    const wrap = root.querySelector('.login-cards');
+    const manageBtn = root.querySelector('.login-manage');
+    if (manageBtn) manageBtn.onclick = () => {
+      const on = wrap.classList.toggle('login-editing');
+      manageBtn.textContent = on ? '✓ Bitti' : '🗑️ Oyuncuları düzenle';
+      B.Audio.play('tick');
+    };
+
+    // Kart gövdesi: düzenleme modunda giriş yapmaz (yalnız ✕ ile silinir)
     root.querySelectorAll('.login-card').forEach(c => {
       c.onclick = () => {
+        if (wrap.classList.contains('login-editing') && !c.classList.contains('login-new')) return;
         B.Audio.play('tick');
         if (c.classList.contains('login-new')) return renderRegister(root, false);
         B.Auth.loginByKey(c.dataset.key);
         B.Engine.enterAs();
       };
+    });
+
+    // Kendi oyuncunu sil (yerel + bulut) — onaylı, geri alınamaz
+    root.querySelectorAll('.login-del').forEach(d => d.onclick = (e) => {
+      e.stopPropagation();
+      const key = d.dataset.key;
+      const info = B.Auth.peek(key);
+      B.UI.confirm({
+        icon: '🗑️', title: (info.name || 'Bu oyuncu') + ' silinsin mi?',
+        body: 'Bu oyuncunun TÜM ilerlemesi (seviye, altın, rozetler, eşyalar) kalıcı silinecek. Bu işlem geri alınamaz.',
+        yes: 'Kalıcı sil', no: 'Vazgeç',
+        onYes: async () => {
+          B.Auth.deleteUser(key);
+          if (B.Cloud && B.Cloud.enabled && B.Cloud.enabled()) { try { await B.Cloud.deletePlayer(key); } catch (e) {} }
+          B.Audio.play('wrong');
+          B.UI.toast('🗑️ ' + (info.name || 'Oyuncu') + ' silindi');
+          renderSelect(root); // listeyi tazele
+        },
+      });
     });
   }
 
@@ -35243,7 +35296,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.74'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.75'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

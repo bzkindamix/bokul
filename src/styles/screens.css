@@ -1243,3 +1243,22 @@
 @media (hover: hover) { .home-pet:hover { transform: translateY(-2px); } }
 @media (max-height: 760px) { .home-figure-char { width: 108px; height: 168px; } .home-pet .hp-emoji { font-size: 26px; } .home-figure { padding-top: 2px; } }
 @media (max-height: 640px) { .home-figure { display: none; } }
+
+/* === v0.75 — Giriş: oyuncu kendi profilini silebilir (düzenle modu) === */
+.login-card { position: relative; }
+.login-del {
+  position: absolute; top: -7px; right: -7px; z-index: 5;
+  width: 24px; height: 24px; border-radius: 50%;
+  background: #E8443B; color: #fff; font-size: 14px; font-weight: 800; line-height: 24px; text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.4); border: 2px solid var(--bg-panel, #211840);
+  display: none; cursor: pointer;
+}
+.login-cards.login-editing .login-del { display: block; }
+.login-cards.login-editing .login-new .login-del { display: none; } /* Yeni Oyuncu'da yok (zaten ✕ yok) */
+.login-cards.login-editing .login-card:not(.login-new) { cursor: default; }
+.login-manage { margin-top: 12px; font-size: 13px; opacity: .85; }
+@media (prefers-reduced-motion: no-preference) {
+  .login-cards.login-editing .login-card:not(.login-new) { animation: login-wiggle .4s ease-in-out infinite; }
+  .login-cards.login-editing .login-card:nth-child(even) { animation-delay: .08s; }
+  @keyframes login-wiggle { 0%,100% { transform: rotate(-1.1deg); } 50% { transform: rotate(1.1deg); } }
+}

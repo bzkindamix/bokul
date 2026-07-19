@@ -251,7 +251,9 @@
     let cards = keys.map(k => {
       const info = B.Auth.peek(k);
       const av = info.avatar ? B.Avatar.el(info.avatar) : '<span class="login-anon">🧑</span>';
-      return '<button class="login-card" data-key="' + k + '"><span class="login-av">' + av + '</span>' +
+      return '<button class="login-card" data-key="' + k + '">' +
+        '<span class="login-del" data-key="' + k + '" title="Bu oyuncuyu sil">✕</span>' +
+        '<span class="login-av">' + av + '</span>' +
         '<span class="login-cardname">' + info.name + '</span><span class="login-lvl">Seviye ' + (info.level || 1) + '</span></button>';
     }).join('');
     cards += '<button class="login-card login-new"><span class="login-av"><span class="login-anon">➕</span></span><span class="login-cardname">Yeni Oyuncu</span></button>';
@@ -259,14 +261,46 @@
       '<div class="login-box login-box-wide"><div class="login-hero">' + hero() + '</div>' +
       '<h2 class="login-title">Kim oynuyor?</h2>' +
       '<p class="login-sub">Profiline dokun ve oyna!</p>' +
-      '<div class="login-cards">' + cards + '</div></div>';
+      '<div class="login-cards">' + cards + '</div>' +
+      (keys.length ? '<button class="btn btn-quiet login-manage">🗑️ Oyuncuları düzenle</button>' : '') +
+      '</div>';
+
+    const wrap = root.querySelector('.login-cards');
+    const manageBtn = root.querySelector('.login-manage');
+    if (manageBtn) manageBtn.onclick = () => {
+      const on = wrap.classList.toggle('login-editing');
+      manageBtn.textContent = on ? '✓ Bitti' : '🗑️ Oyuncuları düzenle';
+      B.Audio.play('tick');
+    };
+
+    // Kart gövdesi: düzenleme modunda giriş yapmaz (yalnız ✕ ile silinir)
     root.querySelectorAll('.login-card').forEach(c => {
       c.onclick = () => {
+        if (wrap.classList.contains('login-editing') && !c.classList.contains('login-new')) return;
         B.Audio.play('tick');
         if (c.classList.contains('login-new')) return renderRegister(root, false);
         B.Auth.loginByKey(c.dataset.key);
         B.Engine.enterAs();
       };
+    });
+
+    // Kendi oyuncunu sil (yerel + bulut) — onaylı, geri alınamaz
+    root.querySelectorAll('.login-del').forEach(d => d.onclick = (e) => {
+      e.stopPropagation();
+      const key = d.dataset.key;
+      const info = B.Auth.peek(key);
+      B.UI.confirm({
+        icon: '🗑️', title: (info.name || 'Bu oyuncu') + ' silinsin mi?',
+        body: 'Bu oyuncunun TÜM ilerlemesi (seviye, altın, rozetler, eşyalar) kalıcı silinecek. Bu işlem geri alınamaz.',
+        yes: 'Kalıcı sil', no: 'Vazgeç',
+        onYes: async () => {
+          B.Auth.deleteUser(key);
+          if (B.Cloud && B.Cloud.enabled && B.Cloud.enabled()) { try { await B.Cloud.deletePlayer(key); } catch (e) {} }
+          B.Audio.play('wrong');
+          B.UI.toast('🗑️ ' + (info.name || 'Oyuncu') + ' silindi');
+          renderSelect(root); // listeyi tazele
+        },
+      });
     });
   }
 
