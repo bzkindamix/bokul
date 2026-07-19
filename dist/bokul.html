@@ -584,8 +584,13 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   padding: 14px 12px; font-size: 15px; font-weight: 600; line-height: 1.4;
   min-height: 56px; transition: border-color .12s, transform .1s;
 }
-.mc-opt:hover { border-color: var(--accent); }
+.mc-opt:focus, .mc-opt:focus-visible { outline: none; } /* seçili gibi çerçeve olmasın */
 .mc-opt:active { transform: scale(.98); }
+/* Hover vurgusu YALNIZCA gerçek fare cihazlarında — dokunmatikte (iPad) hover
+   "yapışıp" bir şık önceden seçili gibi görünmesin. */
+@media (hover: hover) and (pointer: fine) {
+  .mc-opt:hover { border-color: var(--accent); }
+}
 .mc-opt.mc-right { border-color: var(--success); background: rgba(82, 232, 140, .15); box-shadow: 0 0 14px rgba(82, 232, 140, .5); }
 .mc-opt.mc-wrong { opacity: .35; border-color: var(--warn); text-decoration: line-through; }
 .boss-emoji { font-size: 36px; }
@@ -1108,7 +1113,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.33 — iPad zoom/yatay düzeltmeleri · Mağaza ana menüde · Bulut admin</div>
+      <div class="splash-note">v0.34 — Şıklarda "seçili gibi" çerçeve kaldırıldı (dokunmatik hover)</div>
     </div>
   </div>
 
