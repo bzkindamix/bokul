@@ -9,10 +9,13 @@
     granted:  { label: '✅ Ödül verildi',  cls: 'wish-granted' },
   };
   const IDEA_STATUS = {
-    new:     '💡 Yeni',
-    seen:    '👀 Baba gördü',
-    planned: '🛠️ Yapılacak',
-    done:    '✅ Eklendi',
+    new:       '💡 Yeni',
+    sent:      '📤 Gönderiliyor…',
+    delivered: '🚀 Geliştiricide!',
+    queued:    '⏳ Çevrimdışı — bağlanınca gider',
+    seen:      '👀 Görüldü',
+    planned:   '🛠️ Yapılacak',
+    done:      '✅ Eklendi',
   };
 
   B.UI.registerScreen('wishes', {
@@ -34,7 +37,7 @@
           '</div>' +
           '<div class="wish-col">' +
             '<h3 class="wish-h">💡 Oyun Fikirlerim</h3>' +
-            '<p class="wish-hint">Oyuna ne eklensin istersin? Fikrini yaz, Baba okusun!</p>' +
+            '<p class="wish-hint">Oyuna ne eklensin istersin? Fikrini yaz — <b>doğrudan oyunu yapan geliştiricilere</b> gider! 🚀</p>' +
             '<div class="wish-add"><input id="idea-input" class="name-input" maxlength="80" placeholder="Örn: Uzay cephesi olsun"><button class="btn btn-action" id="idea-go">GÖNDER</button></div>' +
             '<div id="idea-list"></div>' +
           '</div>';
@@ -65,8 +68,7 @@
         ideas.slice().reverse().forEach(i => {
           il.insertAdjacentHTML('beforeend',
             '<div class="wish-card"><div class="wish-top"><b>' + i.text + '</b>' +
-            '<span class="wish-badge">' + (IDEA_STATUS[i.status] || IDEA_STATUS.new) + '</span></div>' +
-            (i.note ? '<div class="wish-note">📝 Baba: ' + i.note + '</div>' : '') + '</div>');
+            '<span class="wish-badge">' + (IDEA_STATUS[i.status] || IDEA_STATUS.new) + '</span></div></div>');
         });
 
         wrap.querySelector('#wish-go').onclick = () => {
@@ -75,7 +77,14 @@
         };
         wrap.querySelector('#idea-go').onclick = () => {
           const el = wrap.querySelector('#idea-input');
-          if (el.value.trim()) { B.Wish.addIdea(el.value); B.Audio.play('correct'); render(); }
+          const v = el.value.trim();
+          if (!v) return;
+          B.Audio.play('correct');
+          Promise.resolve(B.Wish.addIdea(v)).then(r => {
+            B.UI.toast(r && r.sent ? '🚀 Fikrin geliştiricilere ulaştı! Teşekkürler!' : '💡 Fikrin kaydedildi — bağlanınca geliştiricilere gidecek.');
+            render();
+          });
+          el.value = ''; render();
         };
       }
       render();

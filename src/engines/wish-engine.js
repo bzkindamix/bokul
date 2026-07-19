@@ -58,11 +58,23 @@
       B.State.data.wishes.push({ id: newId(), text, created: new Date().toISOString(), status: 'pending', goal: null, note: '' });
       B.Save.saveSoon();
     },
+    /* Oyun fikri: çocuğun kendi listesine eklenir + GELİŞTİRİCİYE gönderilir (ebeveyne DEĞİL).
+     * Döner: Promise<{ok, sent}> — sent=true ise bulut geliştirici kutusuna ulaştı. */
     addIdea(text) {
       text = String(text || '').trim();
-      if (!text) return;
-      B.State.data.ideas.push({ id: newId(), text, created: new Date().toISOString(), status: 'new', note: '' });
+      if (!text) return Promise.resolve({ ok: false });
+      const rec = { id: newId(), text, created: new Date().toISOString(), status: 'sent', note: '' };
+      B.State.data.ideas.push(rec);
       B.Save.saveSoon();
+      // Geliştirici kutusuna gönder (merkezi Firestore koleksiyonu)
+      if (B.Cloud && B.Cloud.sendDevIdea) {
+        const player = (B.State.data.player && B.State.data.player.name) || '';
+        const version = B.VERSION || '';
+        return B.Cloud.sendDevIdea({ text: text, player: player, version: version })
+          .then(r => { rec.status = r && r.ok ? 'delivered' : 'queued'; B.Save.saveSoon(); return { ok: true, sent: !!(r && r.ok) }; })
+          .catch(() => ({ ok: true, sent: false }));
+      }
+      return Promise.resolve({ ok: true, sent: false });
     },
     myWishes() { return B.State.data.wishes || []; },
     myIdeas() { return B.State.data.ideas || []; },

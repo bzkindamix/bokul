@@ -16,9 +16,9 @@
   }
   /* Kaydın dilek/fikir durumlarını directives paketine çevir (bulut için) */
   function buildDirectives(save) {
-    const d = { wishes: {}, ideas: {} };
+    const d = { wishes: {} };
     (save.wishes || []).forEach(w => { d.wishes[w.id] = { goal: w.goal || null, note: w.note || '', status: w.status }; });
-    (save.ideas || []).forEach(i => { d.ideas[i.id] = { status: i.status, note: i.note || '' }; });
+    // Oyun fikirleri artık geliştiriciye gidiyor (v0.58) — ebeveyn directive'i yok.
     d.perms = save.perms || { lessons: {}, features: {} }; // ders/özellik kilitleri (uzaktan)
     return d;
   }
@@ -96,7 +96,6 @@
             '<button class="chip atab" data-t="players">📊 Oyuncular</button>' +
             '<button class="chip atab" data-t="perms">🔒 İzinler</button>' +
             '<button class="chip atab" data-t="wishes">🎁 İstekler</button>' +
-            '<button class="chip atab" data-t="ideas">💡 Fikirler</button>' +
             '<button class="chip atab" data-t="account">⚙️ Hesap</button>' +
             '<button class="chip adm-refresh">🔄</button>' +
           '</div>' +
@@ -145,7 +144,6 @@
         if (tab === 'players') renderPlayers(body);
         else if (tab === 'perms') renderPerms(body);
         else if (tab === 'wishes') renderWishes(body);
-        else if (tab === 'ideas') renderIdeas(body);
         else renderAccount(body);
       }
 

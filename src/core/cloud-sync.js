@@ -55,6 +55,27 @@
     apiKey() { return CFG.apiKey; },
     projectId() { return CFG.projectId; },
 
+    /* Oyun fikrini GELİŞTİRİCİ kutusuna gönder (ebeveyne değil).
+     * Merkezi koleksiyon: families/dev-ideas/ideas — mevcut families kuralıyla uyumlu.
+     * (NOT: Firestore __x__ desenli ID'leri rezerve eder; bu yüzden "dev-ideas".)
+     * Aile kodu olmasa da (kodsuz oyuncu) çalışır; sadece apiKey yeter. */
+    async sendDevIdea(idea) {
+      if (!configured()) return { ok: false, err: 'offline' };
+      try {
+        const body = { fields: {
+          text: sv((idea && idea.text) || ''),
+          player: sv((idea && idea.player) || ''),
+          family: sv((idea && idea.family) || getCode() || ''),
+          version: sv((idea && idea.version) || ''),
+          createdAt: sv(new Date().toISOString()),
+        } };
+        await req(base() + '/families/dev-ideas/ideas', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+        });
+        return { ok: true };
+      } catch (e) { return { ok: false, err: String(e) }; }
+    },
+
     /* Aktif profilin kaydını buluta yaz (directives'e DOKUNMAZ) */
     async pushSave() {
       if (!enabled() || !B.Auth || !B.Auth.current()) return;
@@ -94,10 +115,8 @@
           changed = true;
         }
       });
-      (B.State.data.ideas || []).forEach(i => {
-        const di = d.ideas && d.ideas[i.id];
-        if (di) { if (di.status) i.status = di.status; if (di.note !== undefined) i.note = di.note; changed = true; }
-      });
+      // NOT: Oyun fikirleri artık ebeveyne değil GELİŞTİRİCİYE gidiyor (v0.58);
+      // ebeveyn directive'leri fikir durumunu ARTIK değiştirmez.
       // Ebeveyn izinleri (ders/özellik kilitleri) uzaktan uygulanır — ebeveyn otoritedir
       if (d.perms && typeof d.perms === 'object') {
         B.State.data.perms = { lessons: d.perms.lessons || {}, features: d.perms.features || {} };
