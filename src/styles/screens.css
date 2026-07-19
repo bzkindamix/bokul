@@ -1005,3 +1005,22 @@
   .home-doors .door-side { padding: 8px 6px; font-size: 13px; }
   .home-doors .door-ic, .home-doors .door-main .door-ic, .home-doors .door-side .door-ic { font-size: 22px; }
 }
+
+/* === v0.55 — Footer çiplerini topla + öğrenme yolları grid + masaüstü genişlik === */
+/* Saçılan çipleri (Hikâye/Dilek/Çıkış) footer satırına çek — eski absolute konumu iptal */
+.home-footer > .chip { position: static !important; left: auto !important; right: auto !important; top: auto !important; bottom: auto !important; z-index: auto; }
+.home-footer { max-width: 960px; padding: 8px 14px 6px; }
+/* Öğrenme yolları: geniş ekranda çok sütun — yatay alanı kullan, dikeyde kısal */
+.dash-paths { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 8px; }
+/* İçerik kolonu masaüstünde genişlesin (yanlar boş kalmasın) */
+.home-dash { max-width: 960px; }
+.home-reasons { max-width: 960px; }
+.screen-home .home-doors { max-width: 960px; }
+.home-scroll { width: 100%; align-items: stretch; }
+/* HAREKÂT ölçülü */
+.home-doors .door-main { padding: 12px 8px; font-size: 18px; }
+
+/* === v0.55b — flex kolonda width:100% ki max-width devreye girsin (grid çok sütun olsun) === */
+.home-dash, .home-reasons, .home-footer { width: 100%; }
+.screen-home .home-doors { width: 100%; }
+.home-scroll { align-items: stretch; }
