@@ -1610,6 +1610,24 @@ h1, h2, h3, h4,
 /* Rozet (bekleyen görev sayısı) buton içinde kalsın (overflow:hidden ile kırpılmasın) */
 .home-doors .door-badge { top: 9px; right: 11px; z-index: 3; }
 
+/* === v0.74 — Ana ekran karakter vitrini (güncel kıyafet + pet) === */
+.home-figure { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 12px 4px; flex: 0 0 auto; }
+.home-figure-stage { display: flex; align-items: flex-end; justify-content: center; gap: 16px; }
+.home-figure-char { position: relative; width: 132px; height: 208px; }
+.home-figure-char::after { content: ""; position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); width: 108px; height: 24px; border-radius: 50%; background: radial-gradient(ellipse, rgba(157,107,255,.5), transparent 70%); filter: blur(3px); z-index: 0; pointer-events: none; }
+.home-figure-char .avatar-holder { position: relative; z-index: 1; width: 100%; height: 100%; }
+.home-figure-char .avatar-holder svg { width: 100%; height: 100%; }
+.home-pets-side { display: flex; flex-direction: column; gap: 8px; }
+.home-pet { display: flex; flex-direction: column; align-items: center; gap: 1px; background: linear-gradient(180deg, var(--bg-raised), rgba(0,0,0,.18)); border: 1px solid var(--line); border-radius: 15px; padding: 8px 13px; box-shadow: 0 3px 10px rgba(0,0,0,.3); cursor: pointer; transition: transform .12s ease; }
+.home-pet:active { transform: scale(.94); }
+.home-pet.hp-cap { border-color: rgba(255,79,216,.5); box-shadow: 0 0 12px rgba(255,79,216,.35); }
+.home-pet .hp-emoji { font-size: 30px; line-height: 1; filter: drop-shadow(0 2px 3px rgba(0,0,0,.4)); }
+.home-pet .hp-name { font-size: 11px; font-weight: 700; color: var(--ink-dim); max-width: 64px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.home-figure-name { font-family: var(--display); font-weight: 800; font-size: 15px; color: var(--ink); }
+@media (hover: hover) { .home-pet:hover { transform: translateY(-2px); } }
+@media (max-height: 760px) { .home-figure-char { width: 108px; height: 168px; } .home-pet .hp-emoji { font-size: 26px; } .home-figure { padding-top: 2px; } }
+@media (max-height: 640px) { .home-figure { display: none; } }
+
 </style>
 </head>
 <body>
@@ -1619,7 +1637,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.73 — Ana ekran butonları yeniden tasarlandı — 3D kenar, ikon rozeti, işlev-bazlı aksan renkleri, basma efekti</div>
+      <div class="splash-note">v0.74 — Ana ekrana karakter vitrini: güncel kıyafetli tam-vücut avatar + yanında evcil hayvan(lar)</div>
     </div>
   </div>
 
@@ -31890,6 +31908,30 @@ h1, h2, h3, h4,
         scroll.appendChild(rz);
       }
 
+      // ---- Karakter vitrini: güncel kıyafetli tam-vücut avatar + yanında pet'i ----
+      // Kaydırılır alanın altına oturur (öğrenme yolları ile HAREKÂT arasındaki orta boşluk).
+      const figPetsOn = B.Perms.feature('pets') && !(B.Demo && B.Demo.featureLocked('pets'));
+      const figPets = (figPetsOn && B.Pets) ? B.Pets.adopted() : [];
+      const petSide = figPets.slice(0, 3).map(pt => {
+        const d = B.Pets.typeDef(pt.type) || { icon: '🐾', name: 'Dost' };
+        const cap = B.Pets.isCaptured(pt);
+        return '<button class="home-pet' + (cap ? ' hp-cap' : '') + '" data-uid="' + pt.uid + '" title="' + (pt.name || d.name) + '">' +
+          '<span class="hp-emoji">' + (cap ? '😈' : d.icon) + '</span>' +
+          '<span class="hp-name">' + (pt.name || d.name) + '</span></button>';
+      }).join('');
+      const figure = document.createElement('div');
+      figure.className = 'home-figure';
+      figure.innerHTML =
+        '<div class="home-figure-stage">' +
+          '<div class="home-figure-char">' + B.Avatar.elFull(p.avatar, 'avatar-home') + '</div>' +
+          (petSide ? '<div class="home-pets-side">' + petSide + '</div>' : '') +
+        '</div>' +
+        '<div class="home-figure-name">🧍 ' + (p.name || 'Asker') + '</div>';
+      root.appendChild(figure); // kaydırma alanının DIŞINDA — kapıların üstünde sabit bant (hep tam görünür)
+      const figHold = figure.querySelector('.home-figure-char .avatar-holder');
+      if (figHold && B.Avatar.turntable) B.Avatar.turntable(figHold); // parmakla döndür (pseudo-3D)
+      figure.querySelectorAll('.home-pet').forEach(b => b.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
+
       // Toplanmayı bekleyen görev sayısı (kapıda rozet)
       const pending = B.Quest.pending();
       const badge = pending ? '<span class="door-badge">' + pending + '</span>' : '';
@@ -35201,7 +35243,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.73'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.74'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

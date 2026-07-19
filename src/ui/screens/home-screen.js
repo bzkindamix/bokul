@@ -114,6 +114,30 @@
         scroll.appendChild(rz);
       }
 
+      // ---- Karakter vitrini: güncel kıyafetli tam-vücut avatar + yanında pet'i ----
+      // Kaydırılır alanın altına oturur (öğrenme yolları ile HAREKÂT arasındaki orta boşluk).
+      const figPetsOn = B.Perms.feature('pets') && !(B.Demo && B.Demo.featureLocked('pets'));
+      const figPets = (figPetsOn && B.Pets) ? B.Pets.adopted() : [];
+      const petSide = figPets.slice(0, 3).map(pt => {
+        const d = B.Pets.typeDef(pt.type) || { icon: '🐾', name: 'Dost' };
+        const cap = B.Pets.isCaptured(pt);
+        return '<button class="home-pet' + (cap ? ' hp-cap' : '') + '" data-uid="' + pt.uid + '" title="' + (pt.name || d.name) + '">' +
+          '<span class="hp-emoji">' + (cap ? '😈' : d.icon) + '</span>' +
+          '<span class="hp-name">' + (pt.name || d.name) + '</span></button>';
+      }).join('');
+      const figure = document.createElement('div');
+      figure.className = 'home-figure';
+      figure.innerHTML =
+        '<div class="home-figure-stage">' +
+          '<div class="home-figure-char">' + B.Avatar.elFull(p.avatar, 'avatar-home') + '</div>' +
+          (petSide ? '<div class="home-pets-side">' + petSide + '</div>' : '') +
+        '</div>' +
+        '<div class="home-figure-name">🧍 ' + (p.name || 'Asker') + '</div>';
+      root.appendChild(figure); // kaydırma alanının DIŞINDA — kapıların üstünde sabit bant (hep tam görünür)
+      const figHold = figure.querySelector('.home-figure-char .avatar-holder');
+      if (figHold && B.Avatar.turntable) B.Avatar.turntable(figHold); // parmakla döndür (pseudo-3D)
+      figure.querySelectorAll('.home-pet').forEach(b => b.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
+
       // Toplanmayı bekleyen görev sayısı (kapıda rozet)
       const pending = B.Quest.pending();
       const badge = pending ? '<span class="door-badge">' + pending + '</span>' : '';

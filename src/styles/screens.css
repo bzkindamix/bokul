@@ -1225,3 +1225,21 @@
 }
 /* Rozet (bekleyen görev sayısı) buton içinde kalsın (overflow:hidden ile kırpılmasın) */
 .home-doors .door-badge { top: 9px; right: 11px; z-index: 3; }
+
+/* === v0.74 — Ana ekran karakter vitrini (güncel kıyafet + pet) === */
+.home-figure { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 12px 12px 4px; flex: 0 0 auto; }
+.home-figure-stage { display: flex; align-items: flex-end; justify-content: center; gap: 16px; }
+.home-figure-char { position: relative; width: 132px; height: 208px; }
+.home-figure-char::after { content: ""; position: absolute; left: 50%; bottom: 4px; transform: translateX(-50%); width: 108px; height: 24px; border-radius: 50%; background: radial-gradient(ellipse, rgba(157,107,255,.5), transparent 70%); filter: blur(3px); z-index: 0; pointer-events: none; }
+.home-figure-char .avatar-holder { position: relative; z-index: 1; width: 100%; height: 100%; }
+.home-figure-char .avatar-holder svg { width: 100%; height: 100%; }
+.home-pets-side { display: flex; flex-direction: column; gap: 8px; }
+.home-pet { display: flex; flex-direction: column; align-items: center; gap: 1px; background: linear-gradient(180deg, var(--bg-raised), rgba(0,0,0,.18)); border: 1px solid var(--line); border-radius: 15px; padding: 8px 13px; box-shadow: 0 3px 10px rgba(0,0,0,.3); cursor: pointer; transition: transform .12s ease; }
+.home-pet:active { transform: scale(.94); }
+.home-pet.hp-cap { border-color: rgba(255,79,216,.5); box-shadow: 0 0 12px rgba(255,79,216,.35); }
+.home-pet .hp-emoji { font-size: 30px; line-height: 1; filter: drop-shadow(0 2px 3px rgba(0,0,0,.4)); }
+.home-pet .hp-name { font-size: 11px; font-weight: 700; color: var(--ink-dim); max-width: 64px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.home-figure-name { font-family: var(--display); font-weight: 800; font-size: 15px; color: var(--ink); }
+@media (hover: hover) { .home-pet:hover { transform: translateY(-2px); } }
+@media (max-height: 760px) { .home-figure-char { width: 108px; height: 168px; } .home-pet .hp-emoji { font-size: 26px; } .home-figure { padding-top: 2px; } }
+@media (max-height: 640px) { .home-figure { display: none; } }
