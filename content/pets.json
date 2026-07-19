@@ -3,6 +3,8 @@
   "version": 1,
   "intro": "Evcil hayvan sahibi olmak sorumluluktur Komutan! Önce onun evini/eşyalarını hazırlaman gerekir — bazıları Atölye'de craftlanır, bazıları Mağaza'dan alınır. Ön koşulları tamamlayınca hayvanını sahiplenirsin. Sonra onu düzenli beslemeli, mutlu etmelisin: acıkır ve zamanla üzülür. Her hayvanın kendine has bakımı vardır!",
   "decayPerHour": { "tokluk": 6, "mutluluk": 4 },
+  "villain": "Bulanık",
+  "capture": { "afterHours": 24, "freeAt": 50 },
   "pets": [
     {
       "id": "kus", "name": "Kuş", "icon": "🐦",

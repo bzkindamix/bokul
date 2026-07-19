@@ -24,6 +24,8 @@
     ITEM_CRAFTED: 'item:crafted', // { recipeId }
     PET_ADOPTED: 'pet:adopted',   // { petId }
     PET_CARED:   'pet:cared',     // { petId, action }
+    PET_CAPTURED: 'pet:captured', // { petId } — ihmal → Bulanık kaçırdı
+    PET_RESCUED:  'pet:rescued',  // { petId } — bakımla kurtarıldı
 
     // Görevler
     QUEST_PROGRESS:  'quest:progress',

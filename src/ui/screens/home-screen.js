@@ -74,7 +74,10 @@
       // "Seni bekleyenler" — geri gelme kancaları (retention, reklamsız)
       const reasons = [];
       if (B.Daily.canClaim()) reasons.push('🎁 Günlük ödül hazır!');
-      const needy = (B.Perms.feature('pets') && B.Pets ? B.Pets.adopted() : []).filter(p => p.tokluk < 50 || p.mutluluk < 50);
+      const petsList = (B.Perms.feature('pets') && B.Pets ? B.Pets.adopted() : []);
+      const captured = petsList.filter(p => B.Pets.isCaptured(p));
+      if (captured.length) reasons.push('😈 ' + captured.length + ' dostun ' + B.Pets.villain() + "'a kaçırıldı — kurtar!");
+      const needy = petsList.filter(p => !B.Pets.isCaptured(p) && (p.tokluk < 50 || p.mutluluk < 50));
       if (needy.length) reasons.push('🐾 ' + needy.length + ' dostun bakım istiyor');
       const chq = B.Chest.queue ? B.Chest.queue().length : 0;
       if (chq) reasons.push('📦 ' + chq + ' sandık seni bekliyor');

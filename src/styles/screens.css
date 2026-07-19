@@ -750,3 +750,9 @@
 /* ---------- v0.38: Demo/anonim kısıtlama ---------- */
 .map-demolock { margin-top: 6px; font-size: 12.5px; color: var(--xp); background: color-mix(in srgb, var(--xp) 12%, transparent); border: 1px solid color-mix(in srgb, var(--xp) 35%, transparent); border-radius: 10px; padding: 6px 10px; }
 .home-demo { background: linear-gradient(180deg, #FF9F1C, #F07E00); color: #3a2600; font-weight: 800; }
+
+/* ---------- v0.39: İhmal → Bulanık kaçırır (karanlık pet) ---------- */
+.pet-captured { border-color: #FF5A6E !important; background: linear-gradient(180deg, #2a0f1e, var(--bg-panel)); }
+.pet-captured .pet-face { filter: grayscale(.6) brightness(.65); }
+.pet-capmsg { font-size: 12.5px; color: #FF8A9A; background: rgba(255,90,110,.12); border: 1px solid rgba(255,90,110,.4); border-radius: 10px; padding: 7px 10px; margin: 6px 0; line-height: 1.45; }
+.pet-capmsg b { color: #FF5A6E; }

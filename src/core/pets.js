@@ -11,15 +11,29 @@
   function now() { return Date.now(); }
   let uidSeq = 0;
 
-  /* Zaman geçtikçe stat düşür (çürüme); okuma/bakım öncesi çağrılır */
+  function capCfg() { return data().capture || { afterHours: 24, freeAt: 50 }; }
+
+  /* Zaman geçtikçe stat düşür (çürüme); okuma/bakım öncesi çağrılır.
+   * Kaçırılmışsa çürüme DURUR (Bulanık'ta donmuş). Uzun süre ihmal edilirse
+   * (statlar dipte + afterHours bakımsız) Bulanık kaçırır. */
   function refresh(pet) {
-    const d = data().decayPerHour || { tokluk: 6, mutluluk: 4 };
     const t = now();
+    if (pet.captured) { pet.lastTick = t; return pet; } // donmuş
+    const d = data().decayPerHour || { tokluk: 6, mutluluk: 4 };
     const h = (t - (pet.lastTick || t)) / 3600000;
     if (h > 0) {
       pet.tokluk = clamp((pet.tokluk == null ? 100 : pet.tokluk) - h * d.tokluk);
       pet.mutluluk = clamp((pet.mutluluk == null ? 100 : pet.mutluluk) - h * d.mutluluk);
       pet.lastTick = t;
+    }
+    // İhmal → kaçırma: statlar dipte VE afterHours boyunca bakım yapılmadı
+    if (pet.tokluk <= 2 && pet.mutluluk <= 2) {
+      const since = t - (pet.lastCared || pet.adoptedTs || pet.lastTick || t);
+      if (since >= (capCfg().afterHours || 24) * 3600000) {
+        pet.captured = true; pet.capturedAt = t;
+        B.Bus.emit(B.Events.PET_CAPTURED, { petId: pet.uid, type: pet.type });
+        B.Save.saveSoon();
+      }
     }
     return pet;
   }
@@ -59,7 +73,8 @@
       const pet = {
         uid: 'p' + now().toString(36) + (uidSeq++), type: typeId,
         name: (name || def.name).trim().slice(0, 14) || def.name,
-        tokluk: 100, mutluluk: 100, lastTick: now(), cooldowns: {}, adoptedAt: new Date().toISOString(),
+        tokluk: 100, mutluluk: 100, lastTick: now(), lastCared: now(), captured: false,
+        cooldowns: {}, adoptedAt: new Date().toISOString(), adoptedTs: now(),
       };
       list().push(pet);
       B.Bus.emit(B.Events.PET_ADOPTED, { petId: pet.uid, type: typeId });
@@ -98,16 +113,30 @@
       // Stat düzelt
       if (act.restore) for (const s in act.restore) pet[s] = clamp((pet[s] || 0) + act.restore[s]);
       if (act.cooldownH) { pet.cooldowns = pet.cooldowns || {}; pet.cooldowns[actionId] = now(); }
+      pet.lastCared = now(); // ihmal sayacını sıfırla
+      // Kaçırılmışsa: bakım = KURTARMA. Ortalama freeAt'e ulaşınca serbest kalır.
+      let rescued = false;
+      if (pet.captured) {
+        const avg = ((pet.tokluk || 0) + (pet.mutluluk || 0)) / 2;
+        if (avg >= (capCfg().freeAt || 50)) {
+          pet.captured = false; delete pet.capturedAt; rescued = true;
+          B.Bus.emit(B.Events.PET_RESCUED, { petId: uid });
+        }
+      }
       // Ödül
       if (act.xp) B.Reward.addXp(act.xp, 'pet');
       if (act.coin) B.Reward.addCoins(act.coin, 'pet');
       B.Bus.emit(B.Events.PET_CARED, { petId: uid, action: actionId });
       B.Save.saveSoon();
-      return { ok: true, pet, act };
+      return { ok: true, pet, act, rescued };
     },
 
-    /* Ortalama duruma göre ruh hali emojisi */
+    villain() { return data().villain || 'Bulanık'; },
+    isCaptured(pet) { return !!(pet && pet.captured); },
+
+    /* Ruh hali emojisi (kaçırılmışsa karanlık) */
     mood(pet) {
+      if (pet && pet.captured) return '😈';
       const avg = ((pet.tokluk || 0) + (pet.mutluluk || 0)) / 2;
       return avg >= 75 ? '😀' : avg >= 50 ? '🙂' : avg >= 25 ? '😐' : '😢';
     },

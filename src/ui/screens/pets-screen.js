@@ -32,15 +32,17 @@
         } else {
           html += '<div class="pets-list">' + pets.map(p => {
             const def = B.Pets.typeDef(p.type) || { icon: '🐾', care: [] };
+            const cap = B.Pets.isCaptured(p);
             const care = (def.care || []).map(a => {
               const left = B.Pets.cooldownLeft(p, a);
               const cd = left > 0 ? ' disabled' : '';
-              const lbl = left > 0 ? Math.ceil(left / 3600000) + ' sa' : a.label;
+              const lbl = left > 0 ? Math.ceil(left / 3600000) + ' sa' : (cap ? '🦸 ' + a.label : a.label);
               return '<button class="btn pet-care' + cd + '" data-uid="' + p.uid + '" data-act="' + a.id + '"' + cd + '>' + a.icon + ' ' + lbl + '</button>';
             }).join('');
-            return '<div class="pet-card">' +
+            return '<div class="pet-card' + (cap ? ' pet-captured' : '') + '">' +
               '<div class="pet-head"><span class="pet-face">' + def.icon + '</span>' +
                 '<div class="pet-id"><b>' + esc(p.name) + '</b><span class="pet-mood">' + B.Pets.mood(p) + '</span></div></div>' +
+              (cap ? '<div class="pet-capmsg">😈 <b>' + B.Pets.villain() + '</b> ' + esc(p.name) + '\'i kaçırdı! Besleyip mutlu ederek KURTAR (tokluk + mutluluk ortalaması 50\'ye ulaşınca geri döner).</div>' : '') +
               bar('🍖 Tokluk', p.tokluk, 'b-tok') + bar('❤️ Mutluluk', p.mutluluk, 'b-mut') +
               '<div class="pet-actions">' + care + '</div></div>';
           }).join('') + '</div>';
@@ -73,8 +75,15 @@
         wrap.querySelectorAll('.pet-care').forEach(b => { if (!b.disabled) b.onclick = () => {
           const r = B.Pets.care(b.dataset.uid, b.dataset.act);
           if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('⚠️ ' + r.err); return; }
-          B.Audio.play('correct');
-          B.UI.toast('💛 ' + r.act.label + ' — teşekkür eder!');
+          if (r.rescued) {
+            B.Audio.play('fanfare'); if (B.Anim.confetti) B.Anim.confetti(60);
+            B.UI.overlay('<div class="ov-baba">🦸</div><h2>' + esc(r.pet.name) + ' kurtarıldı! 🎉</h2>' +
+              '<p class="ov-quote">Sevgin ' + B.Pets.villain() + '\'ı yendi. Bir daha ihmal etme — düzenli besle ve oyna!</p>',
+              [{ label: 'Yaşasın!', onClick: null }]);
+          } else {
+            B.Audio.play('correct');
+            B.UI.toast('💛 ' + r.act.label + ' — teşekkür eder!');
+          }
           render();
         }; });
 
