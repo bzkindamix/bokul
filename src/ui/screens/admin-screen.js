@@ -368,9 +368,12 @@
             B.Perms.ensure(p.save);
             const lessonRows = lessons.map(l => swRow('L', p.key, l.id, l.icon + ' ' + esc(l.title), B.Perms.lesson(l.id, p.save))).join('');
             const featRows = B.Perms.FEATURES.map(f => swRow('F', p.key, f.key, f.icon + ' ' + f.name, B.Perms.feature(f.key, p.save))).join('');
+            // Uyarı: evcil hayvan açık ama mağaza kapalıysa çocuk mama alamaz → hayvan aç kalır
+            const petStoreWarn = (B.Perms.feature('pets', p.save) && !B.Perms.feature('store', p.save))
+              ? '<div class="adm-warn">⚠️ Evcil hayvan açık ama Eşya Mağazası kapalı — çocuk mama alamaz, hayvan aç kalabilir. İkisini birlikte açık tutman önerilir.</div>' : '';
             return '<div class="adm-card"><div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(p.save.player.avatar) + '</span><b>' + esc(p.save.player.name) + '</b></div>' +
               '<div class="adm-perm-h">📚 Dersler (Cepheler)</div>' + lessonRows +
-              '<div class="adm-perm-h">🎮 Oyun Bölümleri</div>' + featRows + '</div>';
+              '<div class="adm-perm-h">🎮 Oyun Bölümleri</div>' + featRows + petStoreWarn + '</div>';
           }).join('');
         if (locked) body.querySelectorAll('.adm-perm').forEach(inp => { inp.disabled = true; });
         body.querySelectorAll('.adm-perm').forEach(inp => {
@@ -382,6 +385,7 @@
             else B.Perms.setFeature(inp.dataset.id, on, p.save);
             await persist(p);
             B.UI.toast(on ? 'Açıldı ✓' : 'Kapatıldı 🔒');
+            if (inp.dataset.kind === 'F' && (inp.dataset.id === 'pets' || inp.dataset.id === 'store')) renderPerms(body); // pet/mağaza uyarısını tazele
           };
         });
       }
