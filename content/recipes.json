@@ -3,58 +3,238 @@
   "version": 1,
   "intro": "Atölyeye hoş geldin Komutan! Burada ham malzemeleri birleştirip yeni şeyler ÜRETİRSİN. Önce küçük parçalar (panel, çerçeve, kumaş), sonra onlarla büyük eşyalar (akvaryum, kulübe), en sonunda evini ve deponu geliştirirsin. Bir üretim için birden fazla adet malzeme gerekebilir — deponu kontrol et!",
   "tiers": [
-    { "id": "t1", "name": "① Temel Parçalar", "hint": "Ham malzemeden ilk parçalar" },
-    { "id": "t2", "name": "② Büyük Eşyalar", "hint": "Parçaları birleştir" },
-    { "id": "t3", "name": "③ Ev & Depo Geliştirme", "hint": "Üssünü yükselt" }
+    {
+      "id": "t1",
+      "name": "① Temel Parçalar",
+      "hint": "Ham malzemeden ilk parçalar"
+    },
+    {
+      "id": "t2",
+      "name": "② Büyük Eşyalar",
+      "hint": "Parçaları birleştir"
+    },
+    {
+      "id": "t3",
+      "name": "③ Ev & Depo Geliştirme",
+      "hint": "Üssünü yükselt"
+    },
+    {
+      "id": "t4",
+      "name": "④ Oda Dekoru",
+      "hint": "Odanı craft eşyalarıyla süsle"
+    }
   ],
   "recipes": [
     {
-      "id": "r_cam_panel", "tier": "t1", "icon": "🔲", "name": "Cam Panel",
-      "produces": { "type": "item", "id": "cam_panel", "qty": 1 },
-      "needs": { "cam": 2, "vida": 1 },
+      "id": "r_cam_panel",
+      "tier": "t1",
+      "icon": "🔲",
+      "name": "Cam Panel",
+      "produces": {
+        "type": "item",
+        "id": "cam_panel",
+        "qty": 1
+      },
+      "needs": {
+        "cam": 2,
+        "vida": 1
+      },
       "teach": "İki cam + bir vida = sağlam bir panel. Panel, akvaryumun duvarı olacak. Bir şeyi üretmek için parçaları BİRLEŞTİRMEK gerekir — tıpkı legolar gibi!"
     },
     {
-      "id": "r_metal_cerceve", "tier": "t1", "icon": "🖼️", "name": "Metal Çerçeve",
-      "produces": { "type": "item", "id": "metal_cerceve", "qty": 1 },
-      "needs": { "metal": 2, "vida": 2 },
+      "id": "r_metal_cerceve",
+      "tier": "t1",
+      "icon": "🖼️",
+      "name": "Metal Çerçeve",
+      "produces": {
+        "type": "item",
+        "id": "metal_cerceve",
+        "qty": 1
+      },
+      "needs": {
+        "metal": 2,
+        "vida": 2
+      },
       "teach": "İki metal + iki vida = dayanıklı bir çerçeve. Çerçeve, raf ve mobilyanın iskeletidir. Sağlam iskelet, sağlam eşya demektir!"
     },
     {
-      "id": "r_kumas", "tier": "t1", "icon": "🧶", "name": "Kumaş Parça",
-      "produces": { "type": "item", "id": "kumas", "qty": 1 },
-      "needs": { "ip": 3 },
+      "id": "r_kumas",
+      "tier": "t1",
+      "icon": "🧶",
+      "name": "Kumaş Parça",
+      "produces": {
+        "type": "item",
+        "id": "kumas",
+        "qty": 1
+      },
+      "needs": {
+        "ip": 3
+      },
       "teach": "Üç ipi ör, kumaş elde et! İplikler tek başına zayıftır ama birleşince güçlenir. Kumaş; yatak, dekor ve kulübe için lazım olacak."
     },
     {
-      "id": "r_akvaryum", "tier": "t2", "icon": "🐠", "name": "Çalışır Akvaryum",
-      "produces": { "type": "item", "id": "akvaryum", "qty": 1 },
-      "needs": { "cam_panel": 2, "filtre": 1, "temiz_su": 2, "cakil": 1 },
+      "id": "r_akvaryum",
+      "tier": "t2",
+      "icon": "🐠",
+      "name": "Çalışır Akvaryum",
+      "produces": {
+        "type": "item",
+        "id": "akvaryum",
+        "qty": 1
+      },
+      "needs": {
+        "cam_panel": 2,
+        "filtre": 1,
+        "temiz_su": 2,
+        "cakil": 1
+      },
       "teach": "İşte gerçek craft! İki cam PANEL (bunları sen ürettin), bir filtre, iki temiz su ve bir çakıl → ÇALIŞIR bir akvaryum. Gördün mü? Ürettiğin parçalarla daha büyük şeyler üretiyorsun. Bu akvaryumla ileride BALIK sahibi olacaksın!"
     },
     {
-      "id": "r_kopek_kulubesi", "tier": "t2", "icon": "🏠", "name": "Köpek Kulübesi",
-      "produces": { "type": "item", "id": "kopek_kulubesi", "qty": 1 },
-      "needs": { "tahta": 3, "vida": 2, "kumas": 1 },
+      "id": "r_kopek_kulubesi",
+      "tier": "t2",
+      "icon": "🏠",
+      "name": "Köpek Kulübesi",
+      "produces": {
+        "type": "item",
+        "id": "kopek_kulubesi",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 3,
+        "vida": 2,
+        "kumas": 1
+      },
       "teach": "Üç tahta + iki vida ile iskeleti kur, içine bir kumaş ser → sıcacık köpek kulübesi. Bir köpek dostun için ilk adım!"
     },
     {
-      "id": "r_kus_yuvasi", "tier": "t2", "icon": "🐣", "name": "Kuş Yuvası",
-      "produces": { "type": "item", "id": "kus_yuvasi", "qty": 1 },
-      "needs": { "tahta": 2, "ip": 2 },
+      "id": "r_kus_yuvasi",
+      "tier": "t2",
+      "icon": "🐣",
+      "name": "Kuş Yuvası",
+      "produces": {
+        "type": "item",
+        "id": "kus_yuvasi",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 2,
+        "ip": 2
+      },
       "teach": "İki tahta + iki ip = küçük bir kuş yuvası. Küçük ama önemli — her dostun bir evi olmalı!"
     },
     {
-      "id": "r_depo_raf", "tier": "t3", "icon": "📦", "name": "Depo Rafı",
-      "produces": { "type": "upgrade", "id": "depoLevel", "qty": 1 },
-      "needs": { "tahta": 2, "metal_cerceve": 1 },
+      "id": "r_depo_raf",
+      "tier": "t3",
+      "icon": "📦",
+      "name": "Depo Rafı",
+      "produces": {
+        "type": "upgrade",
+        "id": "depoLevel",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 2,
+        "metal_cerceve": 1
+      },
       "teach": "İki tahta + bir metal çerçeve ile deponu bir kademe büyüt! Depon büyüdükçe daha düzenli komutan olursun. Kademe arttıkça Depom rozeti yükselir."
     },
     {
-      "id": "r_ev_dekor", "tier": "t3", "icon": "🛋️", "name": "Ev Geliştirme",
-      "produces": { "type": "upgrade", "id": "homeLevel", "qty": 1 },
-      "needs": { "kumas": 2, "boya": 1 },
+      "id": "r_ev_dekor",
+      "tier": "t3",
+      "icon": "🛋️",
+      "name": "Ev Geliştirme",
+      "produces": {
+        "type": "upgrade",
+        "id": "homeLevel",
+        "qty": 1
+      },
+      "needs": {
+        "kumas": 2,
+        "boya": 1
+      },
       "teach": "İki kumaş + bir boya ile evini güzelleştir! Ev seviyen yükseldikçe üssün daha konforlu ve şık olur."
+    },
+    {
+      "id": "r_pencere",
+      "tier": "t4",
+      "icon": "🪟",
+      "name": "Pencere",
+      "produces": {
+        "type": "item",
+        "id": "pencere",
+        "qty": 1
+      },
+      "needs": {
+        "cam": 2,
+        "tahta": 1
+      },
+      "teach": "İki cam + bir tahta ile pencere yap! Odana as, ışık girsin. Camı önce Mağaza’dan al."
+    },
+    {
+      "id": "r_tablo",
+      "tier": "t4",
+      "icon": "🖼️",
+      "name": "Tablo",
+      "produces": {
+        "type": "item",
+        "id": "tablo",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 1,
+        "boya": 1
+      },
+      "teach": "Bir tahta çerçeve + bir boya = kendi tablon! Duvarına as, odan sanat galerisi olsun."
+    },
+    {
+      "id": "r_ahsap_raf",
+      "tier": "t4",
+      "icon": "🗄️",
+      "name": "Ahşap Raf",
+      "produces": {
+        "type": "item",
+        "id": "ahsap_raf",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 2,
+        "metal_cerceve": 1
+      },
+      "teach": "İki tahta + bir metal çerçeve ile sağlam bir raf! (Çerçeveyi de sen craftladın — parça üstüne parça!)"
+    },
+    {
+      "id": "r_yatak",
+      "tier": "t4",
+      "icon": "🛏️",
+      "name": "Rahat Yatak",
+      "produces": {
+        "type": "item",
+        "id": "yatak",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 3,
+        "kumas": 2
+      },
+      "teach": "Üç tahta iskelet + iki kumaş şilte = rahat bir yatak. Odanın en önemli eşyası!"
+    },
+    {
+      "id": "r_vitrin",
+      "tier": "t4",
+      "icon": "🏆",
+      "name": "Başarı Vitrini",
+      "produces": {
+        "type": "item",
+        "id": "vitrin",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 2,
+        "metal_cerceve": 1,
+        "cam": 1
+      },
+      "teach": "İki tahta + bir metal çerçeve + bir cam ile başarı vitrini yap! Odana koy — kazandığın TÜM rozetler burada sergilenir. Ne kadar çok boss yenersen o kadar dolar!"
     }
   ]
 }

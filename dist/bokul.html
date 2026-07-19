@@ -1459,6 +1459,15 @@ h1, h2, h3, h4,
 /* Parça gridi geniş ekranda çok dağılmasın (daha okunur kartlar) */
 .part-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
 
+/* === v0.63 — Craft oda dekoru + Başarı Vitrini (rozet sergileme) === */
+.obj-vitrin .vit-box { display: flex; flex-direction: column; align-items: center; gap: .3em;
+  width: 9.5em; padding: .5em .5em .6em; background: linear-gradient(180deg, #3a2470, #201640);
+  border: 0.14em solid #B8890A; border-radius: .55em; box-shadow: 0 .25em .5em rgba(0,0,0,.55), inset 0 .1em 0 rgba(255,255,255,.06); }
+.vit-cap { font-size: .8em; font-weight: 800; color: var(--xp); white-space: nowrap; }
+.vit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .22em; width: 100%; }
+.vit-b { font-size: 1.5em; text-align: center; filter: drop-shadow(0 1px 1px rgba(0,0,0,.5)); }
+.vit-empty { font-size: .72em; color: var(--ink-dim); grid-column: 1 / -1; text-align: center; line-height: 1.2; }
+
 </style>
 </head>
 <body>
@@ -1468,7 +1477,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.62 — Sanat denetimi: tam-genişlik ekranlar (Görünüşüm/Dilek) ortalı makul genişliğe alındı, parça gridi düzenlendi</div>
+      <div class="splash-note">v0.63 — Craft oda dekoru (pencere/tablo/raf/yatak) + Başarı Vitrini (odada rozet sergileme)</div>
     </div>
   </div>
 
@@ -2188,78 +2197,528 @@ h1, h2, h3, h4,
   "schema": 1,
   "version": 1,
   "categories": [
-    { "id": "malzeme", "name": "Ham Malzeme", "icon": "🧰" },
-    { "id": "tech", "name": "Teknoloji", "icon": "🎮" },
-    { "id": "oda", "name": "Odam", "icon": "🛋️" },
-    { "id": "pet", "name": "Evcil Malzemeleri", "icon": "🐾" },
-    { "id": "craft", "name": "Atölye Ürünleri", "icon": "🔨" },
-    { "id": "koleksiyon", "name": "Koleksiyon", "icon": "🏆" }
+    {
+      "id": "malzeme",
+      "name": "Ham Malzeme",
+      "icon": "🧰"
+    },
+    {
+      "id": "tech",
+      "name": "Teknoloji",
+      "icon": "🎮"
+    },
+    {
+      "id": "oda",
+      "name": "Odam",
+      "icon": "🛋️"
+    },
+    {
+      "id": "pet",
+      "name": "Evcil Malzemeleri",
+      "icon": "🐾"
+    },
+    {
+      "id": "craft",
+      "name": "Atölye Ürünleri",
+      "icon": "🔨"
+    },
+    {
+      "id": "koleksiyon",
+      "name": "Koleksiyon",
+      "icon": "🏆"
+    }
   ],
   "items": [
-    { "id": "tahta", "name": "Tahta", "icon": "🪵", "price": 20, "cat": "malzeme", "desc": "Craft için temel malzeme." },
-    { "id": "metal", "name": "Metal Parça", "icon": "⛓️", "price": 30, "cat": "malzeme", "desc": "Sağlam craft malzemesi." },
-    { "id": "cam", "name": "Cam", "icon": "🪟", "price": 35, "cat": "malzeme", "desc": "Panel ve akvaryum için." },
-    { "id": "vida", "name": "Vida", "icon": "🔩", "price": 10, "cat": "malzeme", "desc": "Parçaları birleştirir." },
-    { "id": "ip", "name": "İp", "icon": "🧵", "price": 12, "cat": "malzeme", "desc": "Örgü ve kumaş için." },
-    { "id": "boya", "name": "Boya", "icon": "🎨", "price": 25, "cat": "malzeme", "desc": "Renk ve süsleme için." },
-
-    { "id": "konsol", "name": "Oyun Konsolu", "icon": "🎮", "price": 900, "cat": "tech", "unique": true, "desc": "Son model oyun konsolu. Odanın yıldızı!" },
-    { "id": "tablet", "name": "Son Model Tablet", "icon": "📱", "price": 750, "cat": "tech", "unique": true, "desc": "İnce, hızlı, kocaman ekran." },
-    { "id": "telefon", "name": "Akıllı Telefon", "icon": "📲", "price": 650, "cat": "tech", "unique": true, "desc": "Cepte taşınan mini bilgisayar." },
-    { "id": "kulaklik", "name": "Kablosuz Kulaklık", "icon": "🎧", "price": 300, "cat": "tech", "unique": true, "desc": "Kablosuz, gürültü engelli." },
-    { "id": "vr", "name": "VR Gözlük", "icon": "🥽", "price": 1100, "cat": "tech", "unique": true, "desc": "Sanal gerçeklik dünyasına giriş." },
-    { "id": "dizustu", "name": "Dizüstü Bilgisayar", "icon": "💻", "price": 1300, "cat": "tech", "unique": true, "desc": "Kodlama ve oyun için güçlü makine." },
-    { "id": "drone", "name": "Kameralı Drone", "icon": "🚁", "price": 950, "cat": "tech", "unique": true, "desc": "Gökyüzünden çekim yapan uçan robot." },
-    { "id": "robot", "name": "Robot Arkadaş", "icon": "🤖", "price": 1500, "cat": "tech", "unique": true, "desc": "Konuşan, hareket eden robot dostun." },
-
-    { "id": "koltuk", "name": "Rahat Koltuk", "icon": "🛋️", "price": 400, "cat": "oda", "unique": true, "desc": "Oyun molası için süper rahat." },
-    { "id": "masa", "name": "Çalışma Masası", "icon": "🪑", "price": 350, "cat": "oda", "unique": true, "desc": "Ders ve proje masası." },
-    { "id": "kitaplik", "name": "Kitaplık", "icon": "📚", "price": 300, "cat": "oda", "unique": true, "desc": "Kitapların yeni evi." },
-    { "id": "poster", "name": "Uzay Posteri", "icon": "🖼️", "price": 120, "cat": "oda", "unique": true, "desc": "Duvarını süsleyen galaksi posteri." },
-    { "id": "hali", "name": "Yumuşak Halı", "icon": "🟫", "price": 200, "cat": "oda", "unique": true, "desc": "Sıcacık, yumuşacık." },
-    { "id": "lego", "name": "Dev Lego Seti", "icon": "🧱", "price": 500, "cat": "oda", "unique": true, "desc": "Binlerce parça, sonsuz macera." },
-    { "id": "lamba", "name": "Yıldız Lambası", "icon": "🪩", "price": 180, "cat": "oda", "unique": true, "desc": "Tavana yıldızlar yansıtır." },
-    { "id": "saksi", "name": "Çiçek Saksısı", "icon": "🪴", "price": 90, "cat": "oda", "unique": true, "desc": "Odana biraz yeşillik." },
-    { "id": "sehpa", "name": "Sehpa", "icon": "🛎️", "price": 160, "cat": "oda", "unique": true, "desc": "Küçük yan sehpa." },
-    { "id": "tv", "name": "Televizyon", "icon": "📺", "price": 700, "cat": "oda", "unique": true, "desc": "Büyük ekran televizyon." },
-    { "id": "poster_uzay", "name": "Galaksi Posteri", "icon": "🌌", "price": 130, "cat": "oda", "unique": true, "desc": "Duvarına galaksi manzarası." },
-
-    { "id": "eski_sandalye", "name": "Eski Sandalye", "icon": "🪑", "price": 0, "cat": "oda", "junk": true, "scrap": 15, "craftOnly": true, "desc": "Sallanan eski sandalye. Hurdaya satabilirsin." },
-    { "id": "yirtik_hali", "name": "Yırtık Halı", "icon": "🟫", "price": 0, "cat": "oda", "junk": true, "scrap": 12, "craftOnly": true, "desc": "Kenarı yırtık eski halı. Hurda değeri var." },
-    { "id": "bos_kutu", "name": "Boş Karton Kutu", "icon": "📦", "price": 0, "cat": "oda", "junk": true, "scrap": 8, "craftOnly": true, "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al." },
-
-    { "id": "akvaryum_cam", "name": "Akvaryum Camı", "icon": "🔲", "price": 120, "cat": "pet", "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)" },
-    { "id": "filtre", "name": "Su Filtresi", "icon": "🌀", "price": 150, "cat": "pet", "desc": "Suyu temiz tutan filtre." },
-    { "id": "temiz_su", "name": "Temiz Su", "icon": "💧", "price": 30, "cat": "pet", "desc": "Akvaryumu doldurmak için." },
-    { "id": "cakil", "name": "Akvaryum Çakılı", "icon": "🪨", "price": 40, "cat": "pet", "desc": "Akvaryum tabanı için renkli çakıl." },
-    { "id": "balik_yemi", "name": "Balık Yemi", "icon": "🍥", "price": 25, "cat": "pet", "desc": "Balığını beslemek için." },
-
-    { "id": "tasma", "name": "Köpek Tasması", "icon": "🦮", "price": 90, "cat": "pet", "desc": "Köpeğini gezdirmek için." },
-    { "id": "mama_kabi", "name": "Mama Kabı", "icon": "🥣", "price": 50, "cat": "pet", "desc": "Beslenme kabı." },
-    { "id": "kopek_mamasi", "name": "Köpek Maması", "icon": "🦴", "price": 60, "cat": "pet", "desc": "Enerji dolu mama." },
-    { "id": "oyuncak_kemik", "name": "Oyuncak Kemik", "icon": "🦴", "price": 45, "cat": "pet", "desc": "Köpeğinle oynamak için." },
-
-    { "id": "kedi_kumu", "name": "Kedi Kumu", "icon": "🏖️", "price": 55, "cat": "pet", "desc": "Kum kabı için." },
-    { "id": "kedi_mamasi", "name": "Kedi Maması", "icon": "🥫", "price": 60, "cat": "pet", "desc": "Kedinin favorisi." },
-    { "id": "tirmalama", "name": "Tırmalama Tahtası", "icon": "🪵", "price": 110, "cat": "pet", "desc": "Kedinin tırmalama alanı." },
-
-    { "id": "kafes", "name": "Kuş Kafesi", "icon": "🪺", "price": 130, "cat": "pet", "desc": "Kuşun evi." },
-    { "id": "kus_yemi", "name": "Kuş Yemi", "icon": "🌾", "price": 25, "cat": "pet", "desc": "Kuşunu beslemek için." },
-
-    { "id": "cam_panel", "name": "Cam Panel", "icon": "🔲", "cat": "craft", "craftOnly": true, "desc": "Camlardan üretilmiş panel. Akvaryum yapımında kullanılır." },
-    { "id": "metal_cerceve", "name": "Metal Çerçeve", "icon": "🖼️", "cat": "craft", "craftOnly": true, "desc": "Sağlam iskelet. Raf ve mobilya için." },
-    { "id": "kumas", "name": "Kumaş Parça", "icon": "🧶", "cat": "craft", "craftOnly": true, "desc": "İpten örülmüş kumaş. Yumuşak eşyalar için." },
-    { "id": "akvaryum", "name": "Çalışır Akvaryum", "icon": "🐠", "cat": "craft", "craftOnly": true, "desc": "Filtreli, sulu, çakıllı — balık için hazır! (Evcil hayvan ön koşulu)" },
-    { "id": "kopek_kulubesi", "name": "Köpek Kulübesi", "icon": "🏠", "cat": "craft", "craftOnly": true, "desc": "Sıcacık köpek evi." },
-    { "id": "kus_yuvasi", "name": "Kuş Yuvası", "icon": "🐣", "cat": "craft", "craftOnly": true, "desc": "Örgü kuş yuvası." },
-
-    { "id": "kupa", "name": "Altın Kupa", "icon": "🏆", "price": 700, "cat": "koleksiyon", "unique": true, "desc": "Başarının simgesi." },
-    { "id": "madalya", "name": "Şeref Madalyası", "icon": "🥇", "price": 500, "cat": "koleksiyon", "unique": true, "desc": "Nadir bir onur nişanı." },
-    { "id": "model_araba", "name": "Model Yarış Arabası", "icon": "🏎️", "price": 600, "cat": "koleksiyon", "unique": true, "desc": "Detaylı koleksiyon arabası." },
-    { "id": "nadir_kart", "name": "Nadir Koleksiyon Kartı", "icon": "🃏", "price": 800, "cat": "koleksiyon", "unique": true, "desc": "Efsanevi, parlayan kart." }
+    {
+      "id": "tahta",
+      "name": "Tahta",
+      "icon": "🪵",
+      "price": 20,
+      "cat": "malzeme",
+      "desc": "Craft için temel malzeme."
+    },
+    {
+      "id": "metal",
+      "name": "Metal Parça",
+      "icon": "⛓️",
+      "price": 30,
+      "cat": "malzeme",
+      "desc": "Sağlam craft malzemesi."
+    },
+    {
+      "id": "cam",
+      "name": "Cam",
+      "icon": "🪟",
+      "price": 35,
+      "cat": "malzeme",
+      "desc": "Panel ve akvaryum için."
+    },
+    {
+      "id": "vida",
+      "name": "Vida",
+      "icon": "🔩",
+      "price": 10,
+      "cat": "malzeme",
+      "desc": "Parçaları birleştirir."
+    },
+    {
+      "id": "ip",
+      "name": "İp",
+      "icon": "🧵",
+      "price": 12,
+      "cat": "malzeme",
+      "desc": "Örgü ve kumaş için."
+    },
+    {
+      "id": "boya",
+      "name": "Boya",
+      "icon": "🎨",
+      "price": 25,
+      "cat": "malzeme",
+      "desc": "Renk ve süsleme için."
+    },
+    {
+      "id": "konsol",
+      "name": "Oyun Konsolu",
+      "icon": "🎮",
+      "price": 900,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Son model oyun konsolu. Odanın yıldızı!"
+    },
+    {
+      "id": "tablet",
+      "name": "Son Model Tablet",
+      "icon": "📱",
+      "price": 750,
+      "cat": "tech",
+      "unique": true,
+      "desc": "İnce, hızlı, kocaman ekran."
+    },
+    {
+      "id": "telefon",
+      "name": "Akıllı Telefon",
+      "icon": "📲",
+      "price": 650,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Cepte taşınan mini bilgisayar."
+    },
+    {
+      "id": "kulaklik",
+      "name": "Kablosuz Kulaklık",
+      "icon": "🎧",
+      "price": 300,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Kablosuz, gürültü engelli."
+    },
+    {
+      "id": "vr",
+      "name": "VR Gözlük",
+      "icon": "🥽",
+      "price": 1100,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Sanal gerçeklik dünyasına giriş."
+    },
+    {
+      "id": "dizustu",
+      "name": "Dizüstü Bilgisayar",
+      "icon": "💻",
+      "price": 1300,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Kodlama ve oyun için güçlü makine."
+    },
+    {
+      "id": "drone",
+      "name": "Kameralı Drone",
+      "icon": "🚁",
+      "price": 950,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Gökyüzünden çekim yapan uçan robot."
+    },
+    {
+      "id": "robot",
+      "name": "Robot Arkadaş",
+      "icon": "🤖",
+      "price": 1500,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Konuşan, hareket eden robot dostun."
+    },
+    {
+      "id": "koltuk",
+      "name": "Rahat Koltuk",
+      "icon": "🛋️",
+      "price": 400,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Oyun molası için süper rahat."
+    },
+    {
+      "id": "masa",
+      "name": "Çalışma Masası",
+      "icon": "🪑",
+      "price": 350,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Ders ve proje masası."
+    },
+    {
+      "id": "kitaplik",
+      "name": "Kitaplık",
+      "icon": "📚",
+      "price": 300,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Kitapların yeni evi."
+    },
+    {
+      "id": "poster",
+      "name": "Uzay Posteri",
+      "icon": "🖼️",
+      "price": 120,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Duvarını süsleyen galaksi posteri."
+    },
+    {
+      "id": "hali",
+      "name": "Yumuşak Halı",
+      "icon": "🟫",
+      "price": 200,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Sıcacık, yumuşacık."
+    },
+    {
+      "id": "lego",
+      "name": "Dev Lego Seti",
+      "icon": "🧱",
+      "price": 500,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Binlerce parça, sonsuz macera."
+    },
+    {
+      "id": "lamba",
+      "name": "Yıldız Lambası",
+      "icon": "🪩",
+      "price": 180,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Tavana yıldızlar yansıtır."
+    },
+    {
+      "id": "saksi",
+      "name": "Çiçek Saksısı",
+      "icon": "🪴",
+      "price": 90,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Odana biraz yeşillik."
+    },
+    {
+      "id": "sehpa",
+      "name": "Sehpa",
+      "icon": "🛎️",
+      "price": 160,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Küçük yan sehpa."
+    },
+    {
+      "id": "tv",
+      "name": "Televizyon",
+      "icon": "📺",
+      "price": 700,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Büyük ekran televizyon."
+    },
+    {
+      "id": "poster_uzay",
+      "name": "Galaksi Posteri",
+      "icon": "🌌",
+      "price": 130,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Duvarına galaksi manzarası."
+    },
+    {
+      "id": "eski_sandalye",
+      "name": "Eski Sandalye",
+      "icon": "🪑",
+      "price": 0,
+      "cat": "oda",
+      "junk": true,
+      "scrap": 15,
+      "craftOnly": true,
+      "desc": "Sallanan eski sandalye. Hurdaya satabilirsin."
+    },
+    {
+      "id": "yirtik_hali",
+      "name": "Yırtık Halı",
+      "icon": "🟫",
+      "price": 0,
+      "cat": "oda",
+      "junk": true,
+      "scrap": 12,
+      "craftOnly": true,
+      "desc": "Kenarı yırtık eski halı. Hurda değeri var."
+    },
+    {
+      "id": "bos_kutu",
+      "name": "Boş Karton Kutu",
+      "icon": "📦",
+      "price": 0,
+      "cat": "oda",
+      "junk": true,
+      "scrap": 8,
+      "craftOnly": true,
+      "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al."
+    },
+    {
+      "id": "akvaryum_cam",
+      "name": "Akvaryum Camı",
+      "icon": "🔲",
+      "price": 120,
+      "cat": "pet",
+      "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)"
+    },
+    {
+      "id": "filtre",
+      "name": "Su Filtresi",
+      "icon": "🌀",
+      "price": 150,
+      "cat": "pet",
+      "desc": "Suyu temiz tutan filtre."
+    },
+    {
+      "id": "temiz_su",
+      "name": "Temiz Su",
+      "icon": "💧",
+      "price": 30,
+      "cat": "pet",
+      "desc": "Akvaryumu doldurmak için."
+    },
+    {
+      "id": "cakil",
+      "name": "Akvaryum Çakılı",
+      "icon": "🪨",
+      "price": 40,
+      "cat": "pet",
+      "desc": "Akvaryum tabanı için renkli çakıl."
+    },
+    {
+      "id": "balik_yemi",
+      "name": "Balık Yemi",
+      "icon": "🍥",
+      "price": 25,
+      "cat": "pet",
+      "desc": "Balığını beslemek için."
+    },
+    {
+      "id": "tasma",
+      "name": "Köpek Tasması",
+      "icon": "🦮",
+      "price": 90,
+      "cat": "pet",
+      "desc": "Köpeğini gezdirmek için."
+    },
+    {
+      "id": "mama_kabi",
+      "name": "Mama Kabı",
+      "icon": "🥣",
+      "price": 50,
+      "cat": "pet",
+      "desc": "Beslenme kabı."
+    },
+    {
+      "id": "kopek_mamasi",
+      "name": "Köpek Maması",
+      "icon": "🦴",
+      "price": 60,
+      "cat": "pet",
+      "desc": "Enerji dolu mama."
+    },
+    {
+      "id": "oyuncak_kemik",
+      "name": "Oyuncak Kemik",
+      "icon": "🦴",
+      "price": 45,
+      "cat": "pet",
+      "desc": "Köpeğinle oynamak için."
+    },
+    {
+      "id": "kedi_kumu",
+      "name": "Kedi Kumu",
+      "icon": "🏖️",
+      "price": 55,
+      "cat": "pet",
+      "desc": "Kum kabı için."
+    },
+    {
+      "id": "kedi_mamasi",
+      "name": "Kedi Maması",
+      "icon": "🥫",
+      "price": 60,
+      "cat": "pet",
+      "desc": "Kedinin favorisi."
+    },
+    {
+      "id": "tirmalama",
+      "name": "Tırmalama Tahtası",
+      "icon": "🪵",
+      "price": 110,
+      "cat": "pet",
+      "desc": "Kedinin tırmalama alanı."
+    },
+    {
+      "id": "kafes",
+      "name": "Kuş Kafesi",
+      "icon": "🪺",
+      "price": 130,
+      "cat": "pet",
+      "desc": "Kuşun evi."
+    },
+    {
+      "id": "kus_yemi",
+      "name": "Kuş Yemi",
+      "icon": "🌾",
+      "price": 25,
+      "cat": "pet",
+      "desc": "Kuşunu beslemek için."
+    },
+    {
+      "id": "cam_panel",
+      "name": "Cam Panel",
+      "icon": "🔲",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Camlardan üretilmiş panel. Akvaryum yapımında kullanılır."
+    },
+    {
+      "id": "metal_cerceve",
+      "name": "Metal Çerçeve",
+      "icon": "🖼️",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Sağlam iskelet. Raf ve mobilya için."
+    },
+    {
+      "id": "kumas",
+      "name": "Kumaş Parça",
+      "icon": "🧶",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "İpten örülmüş kumaş. Yumuşak eşyalar için."
+    },
+    {
+      "id": "akvaryum",
+      "name": "Çalışır Akvaryum",
+      "icon": "🐠",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Filtreli, sulu, çakıllı — balık için hazır! (Evcil hayvan ön koşulu)"
+    },
+    {
+      "id": "kopek_kulubesi",
+      "name": "Köpek Kulübesi",
+      "icon": "🏠",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Sıcacık köpek evi."
+    },
+    {
+      "id": "kus_yuvasi",
+      "name": "Kuş Yuvası",
+      "icon": "🐣",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Örgü kuş yuvası."
+    },
+    {
+      "id": "kupa",
+      "name": "Altın Kupa",
+      "icon": "🏆",
+      "price": 700,
+      "cat": "koleksiyon",
+      "unique": true,
+      "desc": "Başarının simgesi."
+    },
+    {
+      "id": "madalya",
+      "name": "Şeref Madalyası",
+      "icon": "🥇",
+      "price": 500,
+      "cat": "koleksiyon",
+      "unique": true,
+      "desc": "Nadir bir onur nişanı."
+    },
+    {
+      "id": "model_araba",
+      "name": "Model Yarış Arabası",
+      "icon": "🏎️",
+      "price": 600,
+      "cat": "koleksiyon",
+      "unique": true,
+      "desc": "Detaylı koleksiyon arabası."
+    },
+    {
+      "id": "nadir_kart",
+      "name": "Nadir Koleksiyon Kartı",
+      "icon": "🃏",
+      "price": 800,
+      "cat": "koleksiyon",
+      "unique": true,
+      "desc": "Efsanevi, parlayan kart."
+    },
+    {
+      "id": "pencere",
+      "name": "Pencere",
+      "icon": "🪟",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "Camdan pencere. Duvarına asılır, oda ferahlar."
+    },
+    {
+      "id": "tablo",
+      "name": "Tablo",
+      "icon": "🖼️",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "El yapımı çerçeveli tablo. Duvarını süsler."
+    },
+    {
+      "id": "ahsap_raf",
+      "name": "Ahşap Raf",
+      "icon": "🗄️",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "Tahtadan raf. Odana koy, eşyalarını diz."
+    },
+    {
+      "id": "yatak",
+      "name": "Rahat Yatak",
+      "icon": "🛏️",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "Tahta + kumaştan yatak. Odanın olmazsa olmazı."
+    },
+    {
+      "id": "vitrin",
+      "name": "Başarı Vitrini",
+      "icon": "🏆",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "Kazandığın rozetleri sergilediğin dolap. Odana koy, tüm başarılarını göster!"
+    }
   ]
 }
-
 </script>
 <script type="application/json" id="bokul-content-recipes">
 {
@@ -2267,62 +2726,241 @@ h1, h2, h3, h4,
   "version": 1,
   "intro": "Atölyeye hoş geldin Komutan! Burada ham malzemeleri birleştirip yeni şeyler ÜRETİRSİN. Önce küçük parçalar (panel, çerçeve, kumaş), sonra onlarla büyük eşyalar (akvaryum, kulübe), en sonunda evini ve deponu geliştirirsin. Bir üretim için birden fazla adet malzeme gerekebilir — deponu kontrol et!",
   "tiers": [
-    { "id": "t1", "name": "① Temel Parçalar", "hint": "Ham malzemeden ilk parçalar" },
-    { "id": "t2", "name": "② Büyük Eşyalar", "hint": "Parçaları birleştir" },
-    { "id": "t3", "name": "③ Ev & Depo Geliştirme", "hint": "Üssünü yükselt" }
+    {
+      "id": "t1",
+      "name": "① Temel Parçalar",
+      "hint": "Ham malzemeden ilk parçalar"
+    },
+    {
+      "id": "t2",
+      "name": "② Büyük Eşyalar",
+      "hint": "Parçaları birleştir"
+    },
+    {
+      "id": "t3",
+      "name": "③ Ev & Depo Geliştirme",
+      "hint": "Üssünü yükselt"
+    },
+    {
+      "id": "t4",
+      "name": "④ Oda Dekoru",
+      "hint": "Odanı craft eşyalarıyla süsle"
+    }
   ],
   "recipes": [
     {
-      "id": "r_cam_panel", "tier": "t1", "icon": "🔲", "name": "Cam Panel",
-      "produces": { "type": "item", "id": "cam_panel", "qty": 1 },
-      "needs": { "cam": 2, "vida": 1 },
+      "id": "r_cam_panel",
+      "tier": "t1",
+      "icon": "🔲",
+      "name": "Cam Panel",
+      "produces": {
+        "type": "item",
+        "id": "cam_panel",
+        "qty": 1
+      },
+      "needs": {
+        "cam": 2,
+        "vida": 1
+      },
       "teach": "İki cam + bir vida = sağlam bir panel. Panel, akvaryumun duvarı olacak. Bir şeyi üretmek için parçaları BİRLEŞTİRMEK gerekir — tıpkı legolar gibi!"
     },
     {
-      "id": "r_metal_cerceve", "tier": "t1", "icon": "🖼️", "name": "Metal Çerçeve",
-      "produces": { "type": "item", "id": "metal_cerceve", "qty": 1 },
-      "needs": { "metal": 2, "vida": 2 },
+      "id": "r_metal_cerceve",
+      "tier": "t1",
+      "icon": "🖼️",
+      "name": "Metal Çerçeve",
+      "produces": {
+        "type": "item",
+        "id": "metal_cerceve",
+        "qty": 1
+      },
+      "needs": {
+        "metal": 2,
+        "vida": 2
+      },
       "teach": "İki metal + iki vida = dayanıklı bir çerçeve. Çerçeve, raf ve mobilyanın iskeletidir. Sağlam iskelet, sağlam eşya demektir!"
     },
     {
-      "id": "r_kumas", "tier": "t1", "icon": "🧶", "name": "Kumaş Parça",
-      "produces": { "type": "item", "id": "kumas", "qty": 1 },
-      "needs": { "ip": 3 },
+      "id": "r_kumas",
+      "tier": "t1",
+      "icon": "🧶",
+      "name": "Kumaş Parça",
+      "produces": {
+        "type": "item",
+        "id": "kumas",
+        "qty": 1
+      },
+      "needs": {
+        "ip": 3
+      },
       "teach": "Üç ipi ör, kumaş elde et! İplikler tek başına zayıftır ama birleşince güçlenir. Kumaş; yatak, dekor ve kulübe için lazım olacak."
     },
     {
-      "id": "r_akvaryum", "tier": "t2", "icon": "🐠", "name": "Çalışır Akvaryum",
-      "produces": { "type": "item", "id": "akvaryum", "qty": 1 },
-      "needs": { "cam_panel": 2, "filtre": 1, "temiz_su": 2, "cakil": 1 },
+      "id": "r_akvaryum",
+      "tier": "t2",
+      "icon": "🐠",
+      "name": "Çalışır Akvaryum",
+      "produces": {
+        "type": "item",
+        "id": "akvaryum",
+        "qty": 1
+      },
+      "needs": {
+        "cam_panel": 2,
+        "filtre": 1,
+        "temiz_su": 2,
+        "cakil": 1
+      },
       "teach": "İşte gerçek craft! İki cam PANEL (bunları sen ürettin), bir filtre, iki temiz su ve bir çakıl → ÇALIŞIR bir akvaryum. Gördün mü? Ürettiğin parçalarla daha büyük şeyler üretiyorsun. Bu akvaryumla ileride BALIK sahibi olacaksın!"
     },
     {
-      "id": "r_kopek_kulubesi", "tier": "t2", "icon": "🏠", "name": "Köpek Kulübesi",
-      "produces": { "type": "item", "id": "kopek_kulubesi", "qty": 1 },
-      "needs": { "tahta": 3, "vida": 2, "kumas": 1 },
+      "id": "r_kopek_kulubesi",
+      "tier": "t2",
+      "icon": "🏠",
+      "name": "Köpek Kulübesi",
+      "produces": {
+        "type": "item",
+        "id": "kopek_kulubesi",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 3,
+        "vida": 2,
+        "kumas": 1
+      },
       "teach": "Üç tahta + iki vida ile iskeleti kur, içine bir kumaş ser → sıcacık köpek kulübesi. Bir köpek dostun için ilk adım!"
     },
     {
-      "id": "r_kus_yuvasi", "tier": "t2", "icon": "🐣", "name": "Kuş Yuvası",
-      "produces": { "type": "item", "id": "kus_yuvasi", "qty": 1 },
-      "needs": { "tahta": 2, "ip": 2 },
+      "id": "r_kus_yuvasi",
+      "tier": "t2",
+      "icon": "🐣",
+      "name": "Kuş Yuvası",
+      "produces": {
+        "type": "item",
+        "id": "kus_yuvasi",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 2,
+        "ip": 2
+      },
       "teach": "İki tahta + iki ip = küçük bir kuş yuvası. Küçük ama önemli — her dostun bir evi olmalı!"
     },
     {
-      "id": "r_depo_raf", "tier": "t3", "icon": "📦", "name": "Depo Rafı",
-      "produces": { "type": "upgrade", "id": "depoLevel", "qty": 1 },
-      "needs": { "tahta": 2, "metal_cerceve": 1 },
+      "id": "r_depo_raf",
+      "tier": "t3",
+      "icon": "📦",
+      "name": "Depo Rafı",
+      "produces": {
+        "type": "upgrade",
+        "id": "depoLevel",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 2,
+        "metal_cerceve": 1
+      },
       "teach": "İki tahta + bir metal çerçeve ile deponu bir kademe büyüt! Depon büyüdükçe daha düzenli komutan olursun. Kademe arttıkça Depom rozeti yükselir."
     },
     {
-      "id": "r_ev_dekor", "tier": "t3", "icon": "🛋️", "name": "Ev Geliştirme",
-      "produces": { "type": "upgrade", "id": "homeLevel", "qty": 1 },
-      "needs": { "kumas": 2, "boya": 1 },
+      "id": "r_ev_dekor",
+      "tier": "t3",
+      "icon": "🛋️",
+      "name": "Ev Geliştirme",
+      "produces": {
+        "type": "upgrade",
+        "id": "homeLevel",
+        "qty": 1
+      },
+      "needs": {
+        "kumas": 2,
+        "boya": 1
+      },
       "teach": "İki kumaş + bir boya ile evini güzelleştir! Ev seviyen yükseldikçe üssün daha konforlu ve şık olur."
+    },
+    {
+      "id": "r_pencere",
+      "tier": "t4",
+      "icon": "🪟",
+      "name": "Pencere",
+      "produces": {
+        "type": "item",
+        "id": "pencere",
+        "qty": 1
+      },
+      "needs": {
+        "cam": 2,
+        "tahta": 1
+      },
+      "teach": "İki cam + bir tahta ile pencere yap! Odana as, ışık girsin. Camı önce Mağaza’dan al."
+    },
+    {
+      "id": "r_tablo",
+      "tier": "t4",
+      "icon": "🖼️",
+      "name": "Tablo",
+      "produces": {
+        "type": "item",
+        "id": "tablo",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 1,
+        "boya": 1
+      },
+      "teach": "Bir tahta çerçeve + bir boya = kendi tablon! Duvarına as, odan sanat galerisi olsun."
+    },
+    {
+      "id": "r_ahsap_raf",
+      "tier": "t4",
+      "icon": "🗄️",
+      "name": "Ahşap Raf",
+      "produces": {
+        "type": "item",
+        "id": "ahsap_raf",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 2,
+        "metal_cerceve": 1
+      },
+      "teach": "İki tahta + bir metal çerçeve ile sağlam bir raf! (Çerçeveyi de sen craftladın — parça üstüne parça!)"
+    },
+    {
+      "id": "r_yatak",
+      "tier": "t4",
+      "icon": "🛏️",
+      "name": "Rahat Yatak",
+      "produces": {
+        "type": "item",
+        "id": "yatak",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 3,
+        "kumas": 2
+      },
+      "teach": "Üç tahta iskelet + iki kumaş şilte = rahat bir yatak. Odanın en önemli eşyası!"
+    },
+    {
+      "id": "r_vitrin",
+      "tier": "t4",
+      "icon": "🏆",
+      "name": "Başarı Vitrini",
+      "produces": {
+        "type": "item",
+        "id": "vitrin",
+        "qty": 1
+      },
+      "needs": {
+        "tahta": 2,
+        "metal_cerceve": 1,
+        "cam": 1
+      },
+      "teach": "İki tahta + bir metal çerçeve + bir cam ile başarı vitrini yap! Odana koy — kazandığın TÜM rozetler burada sergilenir. Ne kadar çok boss yenersen o kadar dolar!"
     }
   ]
 }
-
 </script>
 <script type="application/json" id="bokul-content-pets">
 {
@@ -14136,9 +14774,10 @@ h1, h2, h3, h4,
     konsol: 30, tablet: 26, telefon: 24, kulaklik: 26, vr: 30, dizustu: 32, drone: 32, hali: 54,
     eski_sandalye: 40, kirik_dolap: 46, yirtik_hali: 52, bos_kutu: 36,
     poster: 46, poster_uzay: 46, lamba: 38,
+    pencere: 44, tablo: 40, ahsap_raf: 48, yatak: 56, vitrin: 13,
   };
-  // Duvara asılanlar (poster, tavan lambası/disko) — gerisi yere oturur
-  const WALL_ITEMS = ['poster', 'poster_uzay', 'lamba'];
+  // Duvara asılanlar (poster, pencere, tablo, tavan lambası/disko) — gerisi yere oturur
+  const WALL_ITEMS = ['poster', 'poster_uzay', 'lamba', 'pencere', 'tablo'];
   const sizeOf = id => ITEM_SIZE[id] || 46;
   const isWall = id => WALL_ITEMS.indexOf(id) >= 0;
   // Yerleşim bölgeleri (%): yer eşyaları tabanı zeminde, duvar eşyaları duvarda
@@ -14183,14 +14822,21 @@ h1, h2, h3, h4,
         floorEl.style.background = FLOORS[room.floor] || FLOORS[0];
       }
 
+      // Başarı vitrini: kazanılan rozetleri sergiler (özel iç render)
+      function vitrinInner() {
+        const owned = (B.Badges ? B.Badges.ownedList() : []);
+        const cells = owned.slice(0, 9).map(b => '<span class="vit-b" title="' + (b.name || '') + '">' + b.icon + '</span>').join('');
+        return '<span class="obj-shadow"></span><span class="vit-box"><span class="vit-cap">🏆 Başarılarım</span>' +
+          '<span class="vit-grid">' + (cells || '<span class="vit-empty">Rozet yok — boss yen!</span>') + '</span></span>';
+      }
       function renderPlaced() {
         itemsEl.innerHTML = room.placed.map((pp, i) => {
           const wall = isWall(pp.id);
           const fs = Math.round(sizeOf(pp.id) * (pp.s || 1)); // kişisel ölçek
-          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + (selected === i ? ' obj-selected' : '') + '" data-i="' + i + '" ' +
-            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + fs + 'px">' +
-            (wall ? '' : '<span class="obj-shadow"></span>') +
-            '<span class="obj-em">' + itemDef(pp.id).icon + '</span></button>';
+          const inner = pp.id === 'vitrin' ? vitrinInner()
+            : (wall ? '' : '<span class="obj-shadow"></span>') + '<span class="obj-em">' + itemDef(pp.id).icon + '</span>';
+          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + (pp.id === 'vitrin' ? ' obj-vitrin' : '') + (selected === i ? ' obj-selected' : '') + '" data-i="' + i + '" ' +
+            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + fs + 'px">' + inner + '</button>';
         }).join('');
         itemsEl.querySelectorAll('.room-obj').forEach(attachDrag);
         renderToolbar();
@@ -15550,7 +16196,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.62'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.63'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

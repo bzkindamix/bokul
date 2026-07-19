@@ -2,74 +2,525 @@
   "schema": 1,
   "version": 1,
   "categories": [
-    { "id": "malzeme", "name": "Ham Malzeme", "icon": "🧰" },
-    { "id": "tech", "name": "Teknoloji", "icon": "🎮" },
-    { "id": "oda", "name": "Odam", "icon": "🛋️" },
-    { "id": "pet", "name": "Evcil Malzemeleri", "icon": "🐾" },
-    { "id": "craft", "name": "Atölye Ürünleri", "icon": "🔨" },
-    { "id": "koleksiyon", "name": "Koleksiyon", "icon": "🏆" }
+    {
+      "id": "malzeme",
+      "name": "Ham Malzeme",
+      "icon": "🧰"
+    },
+    {
+      "id": "tech",
+      "name": "Teknoloji",
+      "icon": "🎮"
+    },
+    {
+      "id": "oda",
+      "name": "Odam",
+      "icon": "🛋️"
+    },
+    {
+      "id": "pet",
+      "name": "Evcil Malzemeleri",
+      "icon": "🐾"
+    },
+    {
+      "id": "craft",
+      "name": "Atölye Ürünleri",
+      "icon": "🔨"
+    },
+    {
+      "id": "koleksiyon",
+      "name": "Koleksiyon",
+      "icon": "🏆"
+    }
   ],
   "items": [
-    { "id": "tahta", "name": "Tahta", "icon": "🪵", "price": 20, "cat": "malzeme", "desc": "Craft için temel malzeme." },
-    { "id": "metal", "name": "Metal Parça", "icon": "⛓️", "price": 30, "cat": "malzeme", "desc": "Sağlam craft malzemesi." },
-    { "id": "cam", "name": "Cam", "icon": "🪟", "price": 35, "cat": "malzeme", "desc": "Panel ve akvaryum için." },
-    { "id": "vida", "name": "Vida", "icon": "🔩", "price": 10, "cat": "malzeme", "desc": "Parçaları birleştirir." },
-    { "id": "ip", "name": "İp", "icon": "🧵", "price": 12, "cat": "malzeme", "desc": "Örgü ve kumaş için." },
-    { "id": "boya", "name": "Boya", "icon": "🎨", "price": 25, "cat": "malzeme", "desc": "Renk ve süsleme için." },
-
-    { "id": "konsol", "name": "Oyun Konsolu", "icon": "🎮", "price": 900, "cat": "tech", "unique": true, "desc": "Son model oyun konsolu. Odanın yıldızı!" },
-    { "id": "tablet", "name": "Son Model Tablet", "icon": "📱", "price": 750, "cat": "tech", "unique": true, "desc": "İnce, hızlı, kocaman ekran." },
-    { "id": "telefon", "name": "Akıllı Telefon", "icon": "📲", "price": 650, "cat": "tech", "unique": true, "desc": "Cepte taşınan mini bilgisayar." },
-    { "id": "kulaklik", "name": "Kablosuz Kulaklık", "icon": "🎧", "price": 300, "cat": "tech", "unique": true, "desc": "Kablosuz, gürültü engelli." },
-    { "id": "vr", "name": "VR Gözlük", "icon": "🥽", "price": 1100, "cat": "tech", "unique": true, "desc": "Sanal gerçeklik dünyasına giriş." },
-    { "id": "dizustu", "name": "Dizüstü Bilgisayar", "icon": "💻", "price": 1300, "cat": "tech", "unique": true, "desc": "Kodlama ve oyun için güçlü makine." },
-    { "id": "drone", "name": "Kameralı Drone", "icon": "🚁", "price": 950, "cat": "tech", "unique": true, "desc": "Gökyüzünden çekim yapan uçan robot." },
-    { "id": "robot", "name": "Robot Arkadaş", "icon": "🤖", "price": 1500, "cat": "tech", "unique": true, "desc": "Konuşan, hareket eden robot dostun." },
-
-    { "id": "koltuk", "name": "Rahat Koltuk", "icon": "🛋️", "price": 400, "cat": "oda", "unique": true, "desc": "Oyun molası için süper rahat." },
-    { "id": "masa", "name": "Çalışma Masası", "icon": "🪑", "price": 350, "cat": "oda", "unique": true, "desc": "Ders ve proje masası." },
-    { "id": "kitaplik", "name": "Kitaplık", "icon": "📚", "price": 300, "cat": "oda", "unique": true, "desc": "Kitapların yeni evi." },
-    { "id": "poster", "name": "Uzay Posteri", "icon": "🖼️", "price": 120, "cat": "oda", "unique": true, "desc": "Duvarını süsleyen galaksi posteri." },
-    { "id": "hali", "name": "Yumuşak Halı", "icon": "🟫", "price": 200, "cat": "oda", "unique": true, "desc": "Sıcacık, yumuşacık." },
-    { "id": "lego", "name": "Dev Lego Seti", "icon": "🧱", "price": 500, "cat": "oda", "unique": true, "desc": "Binlerce parça, sonsuz macera." },
-    { "id": "lamba", "name": "Yıldız Lambası", "icon": "🪩", "price": 180, "cat": "oda", "unique": true, "desc": "Tavana yıldızlar yansıtır." },
-    { "id": "saksi", "name": "Çiçek Saksısı", "icon": "🪴", "price": 90, "cat": "oda", "unique": true, "desc": "Odana biraz yeşillik." },
-    { "id": "sehpa", "name": "Sehpa", "icon": "🛎️", "price": 160, "cat": "oda", "unique": true, "desc": "Küçük yan sehpa." },
-    { "id": "tv", "name": "Televizyon", "icon": "📺", "price": 700, "cat": "oda", "unique": true, "desc": "Büyük ekran televizyon." },
-    { "id": "poster_uzay", "name": "Galaksi Posteri", "icon": "🌌", "price": 130, "cat": "oda", "unique": true, "desc": "Duvarına galaksi manzarası." },
-
-    { "id": "eski_sandalye", "name": "Eski Sandalye", "icon": "🪑", "price": 0, "cat": "oda", "junk": true, "scrap": 15, "craftOnly": true, "desc": "Sallanan eski sandalye. Hurdaya satabilirsin." },
-    { "id": "yirtik_hali", "name": "Yırtık Halı", "icon": "🟫", "price": 0, "cat": "oda", "junk": true, "scrap": 12, "craftOnly": true, "desc": "Kenarı yırtık eski halı. Hurda değeri var." },
-    { "id": "bos_kutu", "name": "Boş Karton Kutu", "icon": "📦", "price": 0, "cat": "oda", "junk": true, "scrap": 8, "craftOnly": true, "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al." },
-
-    { "id": "akvaryum_cam", "name": "Akvaryum Camı", "icon": "🔲", "price": 120, "cat": "pet", "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)" },
-    { "id": "filtre", "name": "Su Filtresi", "icon": "🌀", "price": 150, "cat": "pet", "desc": "Suyu temiz tutan filtre." },
-    { "id": "temiz_su", "name": "Temiz Su", "icon": "💧", "price": 30, "cat": "pet", "desc": "Akvaryumu doldurmak için." },
-    { "id": "cakil", "name": "Akvaryum Çakılı", "icon": "🪨", "price": 40, "cat": "pet", "desc": "Akvaryum tabanı için renkli çakıl." },
-    { "id": "balik_yemi", "name": "Balık Yemi", "icon": "🍥", "price": 25, "cat": "pet", "desc": "Balığını beslemek için." },
-
-    { "id": "tasma", "name": "Köpek Tasması", "icon": "🦮", "price": 90, "cat": "pet", "desc": "Köpeğini gezdirmek için." },
-    { "id": "mama_kabi", "name": "Mama Kabı", "icon": "🥣", "price": 50, "cat": "pet", "desc": "Beslenme kabı." },
-    { "id": "kopek_mamasi", "name": "Köpek Maması", "icon": "🦴", "price": 60, "cat": "pet", "desc": "Enerji dolu mama." },
-    { "id": "oyuncak_kemik", "name": "Oyuncak Kemik", "icon": "🦴", "price": 45, "cat": "pet", "desc": "Köpeğinle oynamak için." },
-
-    { "id": "kedi_kumu", "name": "Kedi Kumu", "icon": "🏖️", "price": 55, "cat": "pet", "desc": "Kum kabı için." },
-    { "id": "kedi_mamasi", "name": "Kedi Maması", "icon": "🥫", "price": 60, "cat": "pet", "desc": "Kedinin favorisi." },
-    { "id": "tirmalama", "name": "Tırmalama Tahtası", "icon": "🪵", "price": 110, "cat": "pet", "desc": "Kedinin tırmalama alanı." },
-
-    { "id": "kafes", "name": "Kuş Kafesi", "icon": "🪺", "price": 130, "cat": "pet", "desc": "Kuşun evi." },
-    { "id": "kus_yemi", "name": "Kuş Yemi", "icon": "🌾", "price": 25, "cat": "pet", "desc": "Kuşunu beslemek için." },
-
-    { "id": "cam_panel", "name": "Cam Panel", "icon": "🔲", "cat": "craft", "craftOnly": true, "desc": "Camlardan üretilmiş panel. Akvaryum yapımında kullanılır." },
-    { "id": "metal_cerceve", "name": "Metal Çerçeve", "icon": "🖼️", "cat": "craft", "craftOnly": true, "desc": "Sağlam iskelet. Raf ve mobilya için." },
-    { "id": "kumas", "name": "Kumaş Parça", "icon": "🧶", "cat": "craft", "craftOnly": true, "desc": "İpten örülmüş kumaş. Yumuşak eşyalar için." },
-    { "id": "akvaryum", "name": "Çalışır Akvaryum", "icon": "🐠", "cat": "craft", "craftOnly": true, "desc": "Filtreli, sulu, çakıllı — balık için hazır! (Evcil hayvan ön koşulu)" },
-    { "id": "kopek_kulubesi", "name": "Köpek Kulübesi", "icon": "🏠", "cat": "craft", "craftOnly": true, "desc": "Sıcacık köpek evi." },
-    { "id": "kus_yuvasi", "name": "Kuş Yuvası", "icon": "🐣", "cat": "craft", "craftOnly": true, "desc": "Örgü kuş yuvası." },
-
-    { "id": "kupa", "name": "Altın Kupa", "icon": "🏆", "price": 700, "cat": "koleksiyon", "unique": true, "desc": "Başarının simgesi." },
-    { "id": "madalya", "name": "Şeref Madalyası", "icon": "🥇", "price": 500, "cat": "koleksiyon", "unique": true, "desc": "Nadir bir onur nişanı." },
-    { "id": "model_araba", "name": "Model Yarış Arabası", "icon": "🏎️", "price": 600, "cat": "koleksiyon", "unique": true, "desc": "Detaylı koleksiyon arabası." },
-    { "id": "nadir_kart", "name": "Nadir Koleksiyon Kartı", "icon": "🃏", "price": 800, "cat": "koleksiyon", "unique": true, "desc": "Efsanevi, parlayan kart." }
+    {
+      "id": "tahta",
+      "name": "Tahta",
+      "icon": "🪵",
+      "price": 20,
+      "cat": "malzeme",
+      "desc": "Craft için temel malzeme."
+    },
+    {
+      "id": "metal",
+      "name": "Metal Parça",
+      "icon": "⛓️",
+      "price": 30,
+      "cat": "malzeme",
+      "desc": "Sağlam craft malzemesi."
+    },
+    {
+      "id": "cam",
+      "name": "Cam",
+      "icon": "🪟",
+      "price": 35,
+      "cat": "malzeme",
+      "desc": "Panel ve akvaryum için."
+    },
+    {
+      "id": "vida",
+      "name": "Vida",
+      "icon": "🔩",
+      "price": 10,
+      "cat": "malzeme",
+      "desc": "Parçaları birleştirir."
+    },
+    {
+      "id": "ip",
+      "name": "İp",
+      "icon": "🧵",
+      "price": 12,
+      "cat": "malzeme",
+      "desc": "Örgü ve kumaş için."
+    },
+    {
+      "id": "boya",
+      "name": "Boya",
+      "icon": "🎨",
+      "price": 25,
+      "cat": "malzeme",
+      "desc": "Renk ve süsleme için."
+    },
+    {
+      "id": "konsol",
+      "name": "Oyun Konsolu",
+      "icon": "🎮",
+      "price": 900,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Son model oyun konsolu. Odanın yıldızı!"
+    },
+    {
+      "id": "tablet",
+      "name": "Son Model Tablet",
+      "icon": "📱",
+      "price": 750,
+      "cat": "tech",
+      "unique": true,
+      "desc": "İnce, hızlı, kocaman ekran."
+    },
+    {
+      "id": "telefon",
+      "name": "Akıllı Telefon",
+      "icon": "📲",
+      "price": 650,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Cepte taşınan mini bilgisayar."
+    },
+    {
+      "id": "kulaklik",
+      "name": "Kablosuz Kulaklık",
+      "icon": "🎧",
+      "price": 300,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Kablosuz, gürültü engelli."
+    },
+    {
+      "id": "vr",
+      "name": "VR Gözlük",
+      "icon": "🥽",
+      "price": 1100,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Sanal gerçeklik dünyasına giriş."
+    },
+    {
+      "id": "dizustu",
+      "name": "Dizüstü Bilgisayar",
+      "icon": "💻",
+      "price": 1300,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Kodlama ve oyun için güçlü makine."
+    },
+    {
+      "id": "drone",
+      "name": "Kameralı Drone",
+      "icon": "🚁",
+      "price": 950,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Gökyüzünden çekim yapan uçan robot."
+    },
+    {
+      "id": "robot",
+      "name": "Robot Arkadaş",
+      "icon": "🤖",
+      "price": 1500,
+      "cat": "tech",
+      "unique": true,
+      "desc": "Konuşan, hareket eden robot dostun."
+    },
+    {
+      "id": "koltuk",
+      "name": "Rahat Koltuk",
+      "icon": "🛋️",
+      "price": 400,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Oyun molası için süper rahat."
+    },
+    {
+      "id": "masa",
+      "name": "Çalışma Masası",
+      "icon": "🪑",
+      "price": 350,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Ders ve proje masası."
+    },
+    {
+      "id": "kitaplik",
+      "name": "Kitaplık",
+      "icon": "📚",
+      "price": 300,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Kitapların yeni evi."
+    },
+    {
+      "id": "poster",
+      "name": "Uzay Posteri",
+      "icon": "🖼️",
+      "price": 120,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Duvarını süsleyen galaksi posteri."
+    },
+    {
+      "id": "hali",
+      "name": "Yumuşak Halı",
+      "icon": "🟫",
+      "price": 200,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Sıcacık, yumuşacık."
+    },
+    {
+      "id": "lego",
+      "name": "Dev Lego Seti",
+      "icon": "🧱",
+      "price": 500,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Binlerce parça, sonsuz macera."
+    },
+    {
+      "id": "lamba",
+      "name": "Yıldız Lambası",
+      "icon": "🪩",
+      "price": 180,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Tavana yıldızlar yansıtır."
+    },
+    {
+      "id": "saksi",
+      "name": "Çiçek Saksısı",
+      "icon": "🪴",
+      "price": 90,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Odana biraz yeşillik."
+    },
+    {
+      "id": "sehpa",
+      "name": "Sehpa",
+      "icon": "🛎️",
+      "price": 160,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Küçük yan sehpa."
+    },
+    {
+      "id": "tv",
+      "name": "Televizyon",
+      "icon": "📺",
+      "price": 700,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Büyük ekran televizyon."
+    },
+    {
+      "id": "poster_uzay",
+      "name": "Galaksi Posteri",
+      "icon": "🌌",
+      "price": 130,
+      "cat": "oda",
+      "unique": true,
+      "desc": "Duvarına galaksi manzarası."
+    },
+    {
+      "id": "eski_sandalye",
+      "name": "Eski Sandalye",
+      "icon": "🪑",
+      "price": 0,
+      "cat": "oda",
+      "junk": true,
+      "scrap": 15,
+      "craftOnly": true,
+      "desc": "Sallanan eski sandalye. Hurdaya satabilirsin."
+    },
+    {
+      "id": "yirtik_hali",
+      "name": "Yırtık Halı",
+      "icon": "🟫",
+      "price": 0,
+      "cat": "oda",
+      "junk": true,
+      "scrap": 12,
+      "craftOnly": true,
+      "desc": "Kenarı yırtık eski halı. Hurda değeri var."
+    },
+    {
+      "id": "bos_kutu",
+      "name": "Boş Karton Kutu",
+      "icon": "📦",
+      "price": 0,
+      "cat": "oda",
+      "junk": true,
+      "scrap": 8,
+      "craftOnly": true,
+      "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al."
+    },
+    {
+      "id": "akvaryum_cam",
+      "name": "Akvaryum Camı",
+      "icon": "🔲",
+      "price": 120,
+      "cat": "pet",
+      "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)"
+    },
+    {
+      "id": "filtre",
+      "name": "Su Filtresi",
+      "icon": "🌀",
+      "price": 150,
+      "cat": "pet",
+      "desc": "Suyu temiz tutan filtre."
+    },
+    {
+      "id": "temiz_su",
+      "name": "Temiz Su",
+      "icon": "💧",
+      "price": 30,
+      "cat": "pet",
+      "desc": "Akvaryumu doldurmak için."
+    },
+    {
+      "id": "cakil",
+      "name": "Akvaryum Çakılı",
+      "icon": "🪨",
+      "price": 40,
+      "cat": "pet",
+      "desc": "Akvaryum tabanı için renkli çakıl."
+    },
+    {
+      "id": "balik_yemi",
+      "name": "Balık Yemi",
+      "icon": "🍥",
+      "price": 25,
+      "cat": "pet",
+      "desc": "Balığını beslemek için."
+    },
+    {
+      "id": "tasma",
+      "name": "Köpek Tasması",
+      "icon": "🦮",
+      "price": 90,
+      "cat": "pet",
+      "desc": "Köpeğini gezdirmek için."
+    },
+    {
+      "id": "mama_kabi",
+      "name": "Mama Kabı",
+      "icon": "🥣",
+      "price": 50,
+      "cat": "pet",
+      "desc": "Beslenme kabı."
+    },
+    {
+      "id": "kopek_mamasi",
+      "name": "Köpek Maması",
+      "icon": "🦴",
+      "price": 60,
+      "cat": "pet",
+      "desc": "Enerji dolu mama."
+    },
+    {
+      "id": "oyuncak_kemik",
+      "name": "Oyuncak Kemik",
+      "icon": "🦴",
+      "price": 45,
+      "cat": "pet",
+      "desc": "Köpeğinle oynamak için."
+    },
+    {
+      "id": "kedi_kumu",
+      "name": "Kedi Kumu",
+      "icon": "🏖️",
+      "price": 55,
+      "cat": "pet",
+      "desc": "Kum kabı için."
+    },
+    {
+      "id": "kedi_mamasi",
+      "name": "Kedi Maması",
+      "icon": "🥫",
+      "price": 60,
+      "cat": "pet",
+      "desc": "Kedinin favorisi."
+    },
+    {
+      "id": "tirmalama",
+      "name": "Tırmalama Tahtası",
+      "icon": "🪵",
+      "price": 110,
+      "cat": "pet",
+      "desc": "Kedinin tırmalama alanı."
+    },
+    {
+      "id": "kafes",
+      "name": "Kuş Kafesi",
+      "icon": "🪺",
+      "price": 130,
+      "cat": "pet",
+      "desc": "Kuşun evi."
+    },
+    {
+      "id": "kus_yemi",
+      "name": "Kuş Yemi",
+      "icon": "🌾",
+      "price": 25,
+      "cat": "pet",
+      "desc": "Kuşunu beslemek için."
+    },
+    {
+      "id": "cam_panel",
+      "name": "Cam Panel",
+      "icon": "🔲",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Camlardan üretilmiş panel. Akvaryum yapımında kullanılır."
+    },
+    {
+      "id": "metal_cerceve",
+      "name": "Metal Çerçeve",
+      "icon": "🖼️",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Sağlam iskelet. Raf ve mobilya için."
+    },
+    {
+      "id": "kumas",
+      "name": "Kumaş Parça",
+      "icon": "🧶",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "İpten örülmüş kumaş. Yumuşak eşyalar için."
+    },
+    {
+      "id": "akvaryum",
+      "name": "Çalışır Akvaryum",
+      "icon": "🐠",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Filtreli, sulu, çakıllı — balık için hazır! (Evcil hayvan ön koşulu)"
+    },
+    {
+      "id": "kopek_kulubesi",
+      "name": "Köpek Kulübesi",
+      "icon": "🏠",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Sıcacık köpek evi."
+    },
+    {
+      "id": "kus_yuvasi",
+      "name": "Kuş Yuvası",
+      "icon": "🐣",
+      "cat": "craft",
+      "craftOnly": true,
+      "desc": "Örgü kuş yuvası."
+    },
+    {
+      "id": "kupa",
+      "name": "Altın Kupa",
+      "icon": "🏆",
+      "price": 700,
+      "cat": "koleksiyon",
+      "unique": true,
+      "desc": "Başarının simgesi."
+    },
+    {
+      "id": "madalya",
+      "name": "Şeref Madalyası",
+      "icon": "🥇",
+      "price": 500,
+      "cat": "koleksiyon",
+      "unique": true,
+      "desc": "Nadir bir onur nişanı."
+    },
+    {
+      "id": "model_araba",
+      "name": "Model Yarış Arabası",
+      "icon": "🏎️",
+      "price": 600,
+      "cat": "koleksiyon",
+      "unique": true,
+      "desc": "Detaylı koleksiyon arabası."
+    },
+    {
+      "id": "nadir_kart",
+      "name": "Nadir Koleksiyon Kartı",
+      "icon": "🃏",
+      "price": 800,
+      "cat": "koleksiyon",
+      "unique": true,
+      "desc": "Efsanevi, parlayan kart."
+    },
+    {
+      "id": "pencere",
+      "name": "Pencere",
+      "icon": "🪟",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "Camdan pencere. Duvarına asılır, oda ferahlar."
+    },
+    {
+      "id": "tablo",
+      "name": "Tablo",
+      "icon": "🖼️",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "El yapımı çerçeveli tablo. Duvarını süsler."
+    },
+    {
+      "id": "ahsap_raf",
+      "name": "Ahşap Raf",
+      "icon": "🗄️",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "Tahtadan raf. Odana koy, eşyalarını diz."
+    },
+    {
+      "id": "yatak",
+      "name": "Rahat Yatak",
+      "icon": "🛏️",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "Tahta + kumaştan yatak. Odanın olmazsa olmazı."
+    },
+    {
+      "id": "vitrin",
+      "name": "Başarı Vitrini",
+      "icon": "🏆",
+      "cat": "oda",
+      "craftOnly": true,
+      "desc": "Kazandığın rozetleri sergilediğin dolap. Odana koy, tüm başarılarını göster!"
+    }
   ]
 }

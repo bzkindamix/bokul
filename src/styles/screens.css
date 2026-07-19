@@ -1076,3 +1076,12 @@
 .locker-layout { max-width: 900px; margin: 0 auto; width: 100%; }
 /* Parça gridi geniş ekranda çok dağılmasın (daha okunur kartlar) */
 .part-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
+
+/* === v0.63 — Craft oda dekoru + Başarı Vitrini (rozet sergileme) === */
+.obj-vitrin .vit-box { display: flex; flex-direction: column; align-items: center; gap: .3em;
+  width: 9.5em; padding: .5em .5em .6em; background: linear-gradient(180deg, #3a2470, #201640);
+  border: 0.14em solid #B8890A; border-radius: .55em; box-shadow: 0 .25em .5em rgba(0,0,0,.55), inset 0 .1em 0 rgba(255,255,255,.06); }
+.vit-cap { font-size: .8em; font-weight: 800; color: var(--xp); white-space: nowrap; }
+.vit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .22em; width: 100%; }
+.vit-b { font-size: 1.5em; text-align: center; filter: drop-shadow(0 1px 1px rgba(0,0,0,.5)); }
+.vit-empty { font-size: .72em; color: var(--ink-dim); grid-column: 1 / -1; text-align: center; line-height: 1.2; }

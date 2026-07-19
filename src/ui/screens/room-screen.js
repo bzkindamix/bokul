@@ -16,9 +16,10 @@
     konsol: 30, tablet: 26, telefon: 24, kulaklik: 26, vr: 30, dizustu: 32, drone: 32, hali: 54,
     eski_sandalye: 40, kirik_dolap: 46, yirtik_hali: 52, bos_kutu: 36,
     poster: 46, poster_uzay: 46, lamba: 38,
+    pencere: 44, tablo: 40, ahsap_raf: 48, yatak: 56, vitrin: 13,
   };
-  // Duvara asılanlar (poster, tavan lambası/disko) — gerisi yere oturur
-  const WALL_ITEMS = ['poster', 'poster_uzay', 'lamba'];
+  // Duvara asılanlar (poster, pencere, tablo, tavan lambası/disko) — gerisi yere oturur
+  const WALL_ITEMS = ['poster', 'poster_uzay', 'lamba', 'pencere', 'tablo'];
   const sizeOf = id => ITEM_SIZE[id] || 46;
   const isWall = id => WALL_ITEMS.indexOf(id) >= 0;
   // Yerleşim bölgeleri (%): yer eşyaları tabanı zeminde, duvar eşyaları duvarda
@@ -63,14 +64,21 @@
         floorEl.style.background = FLOORS[room.floor] || FLOORS[0];
       }
 
+      // Başarı vitrini: kazanılan rozetleri sergiler (özel iç render)
+      function vitrinInner() {
+        const owned = (B.Badges ? B.Badges.ownedList() : []);
+        const cells = owned.slice(0, 9).map(b => '<span class="vit-b" title="' + (b.name || '') + '">' + b.icon + '</span>').join('');
+        return '<span class="obj-shadow"></span><span class="vit-box"><span class="vit-cap">🏆 Başarılarım</span>' +
+          '<span class="vit-grid">' + (cells || '<span class="vit-empty">Rozet yok — boss yen!</span>') + '</span></span>';
+      }
       function renderPlaced() {
         itemsEl.innerHTML = room.placed.map((pp, i) => {
           const wall = isWall(pp.id);
           const fs = Math.round(sizeOf(pp.id) * (pp.s || 1)); // kişisel ölçek
-          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + (selected === i ? ' obj-selected' : '') + '" data-i="' + i + '" ' +
-            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + fs + 'px">' +
-            (wall ? '' : '<span class="obj-shadow"></span>') +
-            '<span class="obj-em">' + itemDef(pp.id).icon + '</span></button>';
+          const inner = pp.id === 'vitrin' ? vitrinInner()
+            : (wall ? '' : '<span class="obj-shadow"></span>') + '<span class="obj-em">' + itemDef(pp.id).icon + '</span>';
+          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + (pp.id === 'vitrin' ? ' obj-vitrin' : '') + (selected === i ? ' obj-selected' : '') + '" data-i="' + i + '" ' +
+            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + fs + 'px">' + inner + '</button>';
         }).join('');
         itemsEl.querySelectorAll('.room-obj').forEach(attachDrag);
         renderToolbar();
