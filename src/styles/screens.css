@@ -1147,3 +1147,81 @@
 
 /* v0.72 — Ebeveyn izin uyarısı (pet açık / mağaza kapalı) */
 .adm-warn { margin-top: 10px; padding: 9px 12px; border-radius: 10px; font-size: 12.5px; font-weight: 700; line-height: 1.4; background: rgba(255,159,28,.15); color: #FFB74D; border: 1px solid rgba(255,159,28,.35); }
+
+/* === v0.73 — Ana ekran butonları: yüksek kaliteli, oyun-hissi, anlam-bazlı renk === */
+.home-doors { gap: 14px; }
+.home-doors .door {
+  position: relative; border: none; border-radius: 20px; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  font-weight: 800; letter-spacing: .7px; padding: 16px 10px;
+  transition: transform .12s ease, box-shadow .14s ease, filter .14s ease;
+}
+.home-doors .door br { display: none; }
+/* Üst parlaklık (gloss) — sadece üst yarı, yazıya değmez */
+.home-doors .door::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 46%;
+  background: linear-gradient(180deg, rgba(255,255,255,.24), rgba(255,255,255,0));
+  pointer-events: none; z-index: 0; border-radius: 20px 20px 0 0;
+}
+/* İkon rozeti (SVG ikonu çerçeveler → derinlik) */
+.home-doors .door-ic {
+  position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;
+  width: 48px; height: 48px; margin: 0 auto 7px; border-radius: 15px;
+  background: linear-gradient(180deg, rgba(255,255,255,.15), rgba(255,255,255,.03));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.3), inset 0 -3px 6px rgba(0,0,0,.22), 0 3px 8px rgba(0,0,0,.3);
+}
+.home-doors .door-ic .icn, .home-doors .door-ic svg { width: 26px; height: 26px; }
+.home-doors .door > br + *, .home-doors .door { line-height: 1.25; }
+
+/* HAREKÂT — birincil CTA: zengin amber + kalın 3D kenar + hafif ışıltı */
+.home-doors .door-main {
+  background: linear-gradient(180deg, #FFC64F 0%, #F58A10 56%, #E06E00 100%);
+  color: #3a2200; font-size: 19px; letter-spacing: 1.2px; padding: 18px 12px;
+  box-shadow: 0 6px 0 #a84e00, 0 14px 30px rgba(240,120,0,.42), inset 0 1px 0 rgba(255,255,255,.55);
+}
+.home-doors .door-main .door-ic {
+  width: 54px; height: 54px; border-radius: 17px;
+  background: linear-gradient(180deg, rgba(58,34,0,.30), rgba(58,34,0,.12));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.5), inset 0 -3px 6px rgba(120,60,0,.25), 0 3px 9px rgba(120,60,0,.3);
+}
+.home-doors .door-main .door-ic .icn, .home-doors .door-main .door-ic svg { width: 30px; height: 30px; }
+/* Işıltı süpürmesi (hareket azaltma kapalıysa) */
+@media (prefers-reduced-motion: no-preference) {
+  .home-doors .door-main::after {
+    content: ""; position: absolute; top: -10%; bottom: -10%; width: 34%; left: -60%;
+    background: linear-gradient(105deg, transparent, rgba(255,255,255,.38), transparent);
+    transform: skewX(-18deg); pointer-events: none; z-index: 1;
+    animation: harekat-shine 5s ease-in-out infinite;
+  }
+  @keyframes harekat-shine { 0%, 100% { left: -60%; } 58%, 74% { left: 135%; } }
+}
+
+/* Yan kapılar — koyu mor taban (CTA'nın gerisinde kalır) + anlam-bazlı aksan */
+.home-doors .door-side {
+  background: linear-gradient(180deg, #3F3179 0%, #271C4E 100%);
+  color: #F3EEFF; font-size: 15px;
+  box-shadow: 0 6px 0 #1b1440, 0 12px 24px rgba(0,0,0,.42), inset 0 1px 0 rgba(255,255,255,.12);
+}
+/* Üstte ince aksan çizgisi = butonun işlevine dair renk kimliği */
+.home-doors .door-side::after {
+  content: ""; position: absolute; top: 0; left: 16%; right: 16%; height: 3px;
+  border-radius: 0 0 5px 5px; z-index: 2;
+}
+.home-doors .door-quests::after { background: #3DF2D2; box-shadow: 0 0 12px #3DF2D2; }
+.home-doors .door-evim::after   { background: #FF4FD8; box-shadow: 0 0 12px #FF4FD8; }
+.home-doors .door-store::after  { background: #FFD52E; box-shadow: 0 0 12px #FFD52E; }
+/* İkon rozetine aksan parıltısı */
+.home-doors .door-quests .door-ic { box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 0 14px rgba(61,242,210,.30), 0 3px 8px rgba(0,0,0,.3); }
+.home-doors .door-evim .door-ic   { box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 0 14px rgba(255,79,216,.30), 0 3px 8px rgba(0,0,0,.3); }
+.home-doors .door-store .door-ic  { box-shadow: inset 0 1px 0 rgba(255,255,255,.28), 0 0 14px rgba(255,213,46,.30), 0 3px 8px rgba(0,0,0,.3); }
+
+/* Basma: 3D kenar çöker (tatmin edici) */
+.home-doors .door:active { transform: translateY(4px); }
+.home-doors .door-main:active { box-shadow: 0 2px 0 #a84e00, 0 6px 14px rgba(240,120,0,.4), inset 0 1px 0 rgba(255,255,255,.5); }
+.home-doors .door-side:active { box-shadow: 0 2px 0 #1b1440, 0 6px 12px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.12); }
+@media (hover: hover) {
+  .home-doors .door:hover { filter: brightness(1.05); transform: translateY(-2px); }
+  .home-doors .door-main:hover { box-shadow: 0 8px 0 #a84e00, 0 18px 34px rgba(240,120,0,.5), inset 0 1px 0 rgba(255,255,255,.55); }
+}
+/* Rozet (bekleyen görev sayısı) buton içinde kalsın (overflow:hidden ile kırpılmasın) */
+.home-doors .door-badge { top: 9px; right: 11px; z-index: 3; }
