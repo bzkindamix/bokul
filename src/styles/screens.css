@@ -1124,3 +1124,23 @@
 .cos-grid > .cos-card { flex: 0 1 150px; }
 /* boş dolap ipucu bloğu tam satır kaplasın (flex bozmasın) */
 .part-grid.part-grid-empty { display: block; }
+
+/* === v0.70 — Çok ebeveyn / tek admin: rol şeridi + ebeveyn yönetimi === */
+.adm-rolebar { margin: 8px 0; padding: 9px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; line-height: 1.4; }
+.adm-rolebar.role-admin   { background: rgba(255,213,46,.16); color: #FFD52E; border: 1px solid rgba(255,213,46,.35); }
+.adm-rolebar.role-parent  { background: rgba(61,242,210,.14); color: #3DF2D2; border: 1px solid rgba(61,242,210,.30); }
+.adm-rolebar.role-pending { background: rgba(255,159,28,.16); color: #FF9F1C; border: 1px solid rgba(255,159,28,.35); }
+.par-badge:not(:empty) { display: inline-block; min-width: 16px; margin-left: 5px; padding: 0 5px; border-radius: 9px; background: #FF4FD8; color: #fff; font-size: 11px; font-weight: 800; }
+.adm-parents-h { font-weight: 800; font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.adm-code2 { font-family: monospace; letter-spacing: 2px; background: rgba(255,255,255,.08); padding: 2px 8px; border-radius: 8px; }
+.adm-parent { display: flex; align-items: center; gap: 10px; padding: 9px 4px; border-top: 1px solid rgba(255,255,255,.08); }
+.adm-parent .par-name { flex: 1; font-weight: 700; }
+.adm-parent .par-role { font-size: 12px; font-weight: 800; }
+.adm-parent .par-role.role-admin { color: #FFD52E; }
+.adm-parent .par-role.role-parent { color: #3DF2D2; }
+.adm-parent .par-role.role-pending { color: #FF9F1C; }
+.adm-joinbox { margin-top: 12px; padding: 12px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); }
+.adm-join-h { font-weight: 800; margin-bottom: 4px; }
+.adm-join-row { display: flex; gap: 8px; margin-top: 8px; }
+.adm-join-code { flex: 1; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.15); background: rgba(0,0,0,.25); color: #fff; font-family: monospace; letter-spacing: 2px; text-transform: uppercase; }
+.adm-join-leave { margin-top: 8px; }

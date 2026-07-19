@@ -76,10 +76,16 @@
     for (let i = 0; i < 4; i++) { s += abc[b % abc.length]; b = Math.floor(b / abc.length); }
     return s;
   }
-  /* Giriş yapan ebeveynin bu cihazını kendi ailesine bağla */
+  /* Başka bir ailenin koduyla bağlanıldıysa (eş/ikinci ebeveyn), o kod önceliklidir.
+   * Yoksa ebeveynin KENDİ ailesi (uid'den türeyen kod) kullanılır. */
+  const JOIN_KEY = 'bokul.familyJoined';
+  function joinedCode() { try { return localStorage.getItem(JOIN_KEY) || ''; } catch (e) { return ''; } }
+  function setJoinedCode(c) { try { c ? localStorage.setItem(JOIN_KEY, c) : localStorage.removeItem(JOIN_KEY); } catch (e) {} }
+  function familyCode() { const s = readSess(); const jc = joinedCode(); return jc || (s && s.localId ? deriveCode(s.localId) : ''); }
+  /* Giriş yapan ebeveynin bu cihazını (kendi ya da bağlandığı) ailesine bağla */
   function linkFamily() {
-    const s = readSess();
-    if (s && s.localId && B.Cloud) B.Cloud.setCode(deriveCode(s.localId));
+    const c = familyCode();
+    if (c && B.Cloud) B.Cloud.setCode(c);
   }
 
   B.AuthCloud = {
@@ -90,6 +96,12 @@
     firstName() { const n = B.AuthCloud.name(); return (n || '').trim().split(/\s+/)[0] || ''; },
     isVerified() { const s = readSess(); return !!(s && s.emailVerified); },
     inviteCode() { const s = readSess(); return s && s.localId ? deriveCode(s.localId) : ''; },
+    // Bu cihazın etkin aile kodu (bağlanılan aile ya da kendi ailesi)
+    familyCode, joinedCode,
+    // Başka bir aileye kodla bağlan / kendi ailene dön
+    joinFamily(code) { setJoinedCode((code || '').trim().toUpperCase()); linkFamily(); },
+    leaveJoinedFamily() { setJoinedCode(''); linkFamily(); },
+    isJoined() { return !!joinedCode(); },
     logout() { try { localStorage.removeItem(SESS); } catch (e) {} },
 
     async register(email, pass, name) {

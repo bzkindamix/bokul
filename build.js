@@ -25,6 +25,7 @@ const JS = [
   'src/core/save-manager.js',
   'src/core/cloud-sync.js',
   'src/core/auth-cloud.js',
+  'src/core/family.js',
   'src/core/consent.js',
   'src/core/perms.js',
   'src/core/items.js',

@@ -1509,6 +1509,26 @@ h1, h2, h3, h4,
 /* boş dolap ipucu bloğu tam satır kaplasın (flex bozmasın) */
 .part-grid.part-grid-empty { display: block; }
 
+/* === v0.70 — Çok ebeveyn / tek admin: rol şeridi + ebeveyn yönetimi === */
+.adm-rolebar { margin: 8px 0; padding: 9px 12px; border-radius: 12px; font-size: 13px; font-weight: 700; line-height: 1.4; }
+.adm-rolebar.role-admin   { background: rgba(255,213,46,.16); color: #FFD52E; border: 1px solid rgba(255,213,46,.35); }
+.adm-rolebar.role-parent  { background: rgba(61,242,210,.14); color: #3DF2D2; border: 1px solid rgba(61,242,210,.30); }
+.adm-rolebar.role-pending { background: rgba(255,159,28,.16); color: #FF9F1C; border: 1px solid rgba(255,159,28,.35); }
+.par-badge:not(:empty) { display: inline-block; min-width: 16px; margin-left: 5px; padding: 0 5px; border-radius: 9px; background: #FF4FD8; color: #fff; font-size: 11px; font-weight: 800; }
+.adm-parents-h { font-weight: 800; font-size: 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.adm-code2 { font-family: monospace; letter-spacing: 2px; background: rgba(255,255,255,.08); padding: 2px 8px; border-radius: 8px; }
+.adm-parent { display: flex; align-items: center; gap: 10px; padding: 9px 4px; border-top: 1px solid rgba(255,255,255,.08); }
+.adm-parent .par-name { flex: 1; font-weight: 700; }
+.adm-parent .par-role { font-size: 12px; font-weight: 800; }
+.adm-parent .par-role.role-admin { color: #FFD52E; }
+.adm-parent .par-role.role-parent { color: #3DF2D2; }
+.adm-parent .par-role.role-pending { color: #FF9F1C; }
+.adm-joinbox { margin-top: 12px; padding: 12px; border-radius: 14px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); }
+.adm-join-h { font-weight: 800; margin-bottom: 4px; }
+.adm-join-row { display: flex; gap: 8px; margin-top: 8px; }
+.adm-join-code { flex: 1; padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.15); background: rgba(0,0,0,.25); color: #fff; font-family: monospace; letter-spacing: 2px; text-transform: uppercase; }
+.adm-join-leave { margin-top: 8px; }
+
 </style>
 </head>
 <body>
@@ -1518,7 +1538,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.69 — Her derse 10+ ünite + ders-geneli FINAL boss (en zor); 24 saç modeli (satın alınabilir); menü ortalama; Ş dahil tam Türkçe font</div>
+      <div class="splash-note">v0.70 — Çok ebeveyn + tek admin: aile koduyla bağlanan ebeveynler 'pending' başlar, izinleri admin ebeveyn verir/onaylar</div>
     </div>
   </div>
 
@@ -27901,10 +27921,16 @@ h1, h2, h3, h4,
     for (let i = 0; i < 4; i++) { s += abc[b % abc.length]; b = Math.floor(b / abc.length); }
     return s;
   }
-  /* Giriş yapan ebeveynin bu cihazını kendi ailesine bağla */
+  /* Başka bir ailenin koduyla bağlanıldıysa (eş/ikinci ebeveyn), o kod önceliklidir.
+   * Yoksa ebeveynin KENDİ ailesi (uid'den türeyen kod) kullanılır. */
+  const JOIN_KEY = 'bokul.familyJoined';
+  function joinedCode() { try { return localStorage.getItem(JOIN_KEY) || ''; } catch (e) { return ''; } }
+  function setJoinedCode(c) { try { c ? localStorage.setItem(JOIN_KEY, c) : localStorage.removeItem(JOIN_KEY); } catch (e) {} }
+  function familyCode() { const s = readSess(); const jc = joinedCode(); return jc || (s && s.localId ? deriveCode(s.localId) : ''); }
+  /* Giriş yapan ebeveynin bu cihazını (kendi ya da bağlandığı) ailesine bağla */
   function linkFamily() {
-    const s = readSess();
-    if (s && s.localId && B.Cloud) B.Cloud.setCode(deriveCode(s.localId));
+    const c = familyCode();
+    if (c && B.Cloud) B.Cloud.setCode(c);
   }
 
   B.AuthCloud = {
@@ -27915,6 +27941,12 @@ h1, h2, h3, h4,
     firstName() { const n = B.AuthCloud.name(); return (n || '').trim().split(/\s+/)[0] || ''; },
     isVerified() { const s = readSess(); return !!(s && s.emailVerified); },
     inviteCode() { const s = readSess(); return s && s.localId ? deriveCode(s.localId) : ''; },
+    // Bu cihazın etkin aile kodu (bağlanılan aile ya da kendi ailesi)
+    familyCode, joinedCode,
+    // Başka bir aileye kodla bağlan / kendi ailene dön
+    joinFamily(code) { setJoinedCode((code || '').trim().toUpperCase()); linkFamily(); },
+    leaveJoinedFamily() { setJoinedCode(''); linkFamily(); },
+    isJoined() { return !!joinedCode(); },
     logout() { try { localStorage.removeItem(SESS); } catch (e) {} },
 
     async register(email, pass, name) {
@@ -28013,6 +28045,123 @@ h1, h2, h3, h4,
         return v;
       } catch (e) { return B.AuthCloud.isVerified(); }
     },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/family.js === */
+/* BOKUL — Aile & Ebeveyn Rolleri (çok ebeveyn, TEK admin)
+ * Bir aile = bir aile kodu. Meta: families/{code}/meta/family
+ *   { admin: <uid>, adminName, parents: { <uid>: { name, role, ts } } }
+ * Roller:
+ *   admin   — aileyi kuran (kod sahibi). Tam yetki: izinler + ebeveyn yönetimi.
+ *   parent  — admin'in ONAYLADIĞI ebeveyn. Çocukları görür + izin düzenleyebilir.
+ *   pending — kodla bağlandı ama admin onayı bekliyor. Sadece görüntüler.
+ * Aile kodunu bilmek admin yapmaz: yeni bağlanan HERKES 'pending' başlar; yetkiyi admin verir.
+ * NOT: Firestore kuralları açık (public apiKey) olduğundan bu ÜRÜN-DÜZEYİ bir kapıdır;
+ *      kriptografik güvenlik için ileride Firestore Security Rules (request.auth) gerekir. */
+(function (B) {
+  function base() {
+    return 'https://firestore.googleapis.com/v1/projects/' + B.Cloud.projectId() + '/databases/(default)/documents';
+  }
+  function metaUrl(code) { return base() + '/families/' + encodeURIComponent(code) + '/meta/family'; }
+  function sv(s) { return { stringValue: String(s == null ? '' : s) }; }
+
+  async function req(url, opts) {
+    const r = await fetch(url + (url.includes('?') ? '&' : '?') + 'key=' + B.Cloud.apiKey(), opts);
+    if (r.status === 404) return null;
+    if (!r.ok) throw new Error('FS ' + r.status);
+    return r.status === 200 ? r.json() : null;
+  }
+
+  let meta = null; // önbellek: { admin, adminName, parents }
+
+  function parseMeta(doc) {
+    if (!doc || !doc.fields) return null;
+    const f = doc.fields;
+    let parents = {};
+    try { parents = JSON.parse((f.parents && f.parents.stringValue) || '{}'); } catch (e) {}
+    return { admin: (f.admin && f.admin.stringValue) || '', adminName: (f.adminName && f.adminName.stringValue) || '', parents: parents };
+  }
+
+  async function fetchMeta(code) {
+    code = code || B.Cloud.getCode();
+    if (!code || !B.Cloud.configured()) return null;
+    try { meta = parseMeta(await req(metaUrl(code), { method: 'GET' })); return meta; }
+    catch (e) { return meta; }
+  }
+
+  async function writeMeta(code, m) {
+    const body = { fields: { admin: sv(m.admin), adminName: sv(m.adminName), parents: sv(JSON.stringify(m.parents || {})) } };
+    await req(metaUrl(code) + '?updateMask.fieldPaths=admin&updateMask.fieldPaths=adminName&updateMask.fieldPaths=parents', {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+    });
+    meta = m;
+  }
+
+  /* Kod sahibi/giren ebeveyni aileye bağla:
+   *   meta yoksa → bu ebeveyn ADMIN olur (aileyi kurar).
+   *   admin bu ebeveynse → admin kaydını doğrula.
+   *   farklı admin varsa → 'pending' üye olarak eklenir (admin onaylayana dek). */
+  async function claimOrJoin(uid, name, code) {
+    code = code || B.Cloud.getCode();
+    if (!code || !uid || !B.Cloud.configured()) return null;
+    let m = await fetchMeta(code);
+    if (!m || !m.admin) {
+      m = { admin: uid, adminName: name || '', parents: {} };
+      m.parents[uid] = { name: name || '', role: 'admin', ts: Date.now() };
+      await writeMeta(code, m);
+      return m;
+    }
+    if (m.admin === uid) {
+      if (!m.parents[uid] || m.parents[uid].role !== 'admin') {
+        m.parents[uid] = { name: name || m.adminName, role: 'admin', ts: Date.now() };
+        await writeMeta(code, m);
+      }
+      return m;
+    }
+    if (!m.parents[uid]) {
+      m.parents[uid] = { name: name || '', role: 'pending', ts: Date.now() };
+      await writeMeta(code, m);
+    }
+    return m;
+  }
+
+  function current() { const s = B.AuthCloud && B.AuthCloud.current(); return s ? s.localId : null; }
+  function roleOf(uid) {
+    if (!meta) return 'none';
+    if (meta.admin === uid) return 'admin';
+    const p = meta.parents && meta.parents[uid];
+    return p ? p.role : 'none';
+  }
+  function myRole() { return roleOf(current()); }
+  function isAdmin() { return myRole() === 'admin'; }
+  /* İzin düzenleyebilir mi? admin ya da onaylı ebeveyn. pending/none HAYIR. */
+  function canManagePerms() { const r = myRole(); return r === 'admin' || r === 'parent'; }
+
+  async function setRole(uid, role) {
+    if (!isAdmin() || uid === meta.admin || !meta.parents[uid]) return false;
+    meta.parents[uid].role = role;
+    await writeMeta(B.Cloud.getCode(), meta);
+    return true;
+  }
+  async function removeParent(uid) {
+    if (!isAdmin() || uid === meta.admin || !meta.parents[uid]) return false;
+    delete meta.parents[uid];
+    await writeMeta(B.Cloud.getCode(), meta);
+    return true;
+  }
+  function parentList() {
+    if (!meta) return [];
+    return Object.keys(meta.parents || {}).map(uid => ({
+      uid, name: meta.parents[uid].name || '', role: meta.parents[uid].role, self: uid === current(),
+    })).sort((a, b) => (a.role === 'admin' ? -1 : b.role === 'admin' ? 1 : 0));
+  }
+
+  B.Family = {
+    fetchMeta, claimOrJoin, roleOf, myRole, isAdmin, canManagePerms,
+    setRole, removeParent, parentList,
+    meta: () => meta, adminName: () => (meta ? meta.adminName : ''),
+    pendingCount: () => (meta ? Object.values(meta.parents || {}).filter(p => p.role === 'pending').length : 0),
   };
 })(window.BOKUL = window.BOKUL || {});
 
@@ -34243,10 +34392,22 @@ h1, h2, h3, h4,
       // shell()'de set edildiğinden, kaynağı baştan 'cloud' seçmek güvenli.
       let source = (B.Cloud.enabled() || (B.AuthCloud && B.AuthCloud.current())) ? 'cloud' : 'local';
       let players = [];
+      let famRole = 'admin'; // bulut ailesindeki rolüm: admin/parent/pending/none (yerelde admin sayılır)
       root.classList.add('admin-root');
+
+      /* Bulut ailesine bağlan (kodu ilk kuran ADMIN; sonra bağlananlar 'pending') + rolü çöz */
+      async function ensureFamily() {
+        if (source !== 'cloud' || !B.Cloud.enabled() || !(B.AuthCloud && B.AuthCloud.current()) || !B.Family) { famRole = 'admin'; return; }
+        const s = B.AuthCloud.current();
+        try { await B.Family.claimOrJoin(s.localId, B.AuthCloud.name() || B.AuthCloud.firstName() || ''); } catch (e) {}
+        famRole = B.Family.myRole();
+      }
+      /* İzin/değişiklik yapabilir miyim? Yerelde her zaman; bulutta admin ya da onaylı ebeveyn. */
+      function canEdit() { return !(source === 'cloud' && B.Cloud.enabled() && B.Family) || B.Family.canManagePerms(); }
 
       /* Bir oyuncunun değişikliğini uygun yere yaz */
       async function persist(player) {
+        if (!canEdit()) { B.UI.toast('🔒 İzin yetkisi admin ebeveynde. Seni onaylaması gerekiyor.'); return; }
         if (player.source === 'cloud') await B.Cloud.writeDirectives(player.key, buildDirectives(player.save));
         else writeLocal(player.key, player.save);
       }
@@ -34256,20 +34417,24 @@ h1, h2, h3, h4,
       async function load() {
         const body = root.querySelector('.admin-body');
         if (body) body.innerHTML = '<div class="wish-empty">Yükleniyor…</div>';
+        await ensureFamily();
         if (source === 'cloud') {
           const list = await B.Cloud.listPlayers();
           players = list.map(p => Object.assign({ source: 'cloud' }, p));
         } else {
           players = localPlayers();
         }
+        // Rol satırını (varsa) tazele
+        const rr = root.querySelector('.adm-rolebar'); if (rr) rr.outerHTML = roleBarHtml();
+        const pt = root.querySelector('.atab[data-t="parents"] .par-badge'); if (pt) pt.textContent = B.Family && B.Family.pendingCount() ? B.Family.pendingCount() : '';
         renderBody();
       }
 
       function shell() {
         // Ebeveynin adı (Google profili ya da kayıt formundan) — Baba "Binbaşı X" der
         const pName = (B.AuthCloud && B.AuthCloud.firstName) ? B.AuthCloud.firstName() : '';
-        // Davet kodu öncelikle e-posta hesabından (hesaba bağlı, hep aynı)
-        const emailCode = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : '';
+        // Etkin aile kodu: bağlanılan aile (eş/ikinci ebeveyn) ya da kendi ailesi
+        const emailCode = (B.AuthCloud && B.AuthCloud.familyCode) ? B.AuthCloud.familyCode() : ((B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : '');
         if (emailCode && B.Cloud.getCode() !== emailCode) B.Cloud.setCode(emailCode);
         const code = emailCode || B.Cloud.getCode();
         const famRow = B.Cloud.configured()
@@ -34289,6 +34454,7 @@ h1, h2, h3, h4,
             '<button class="chip admin-pin">🔑 PIN</button>' +
           '</div>' +
           famRow +
+          roleBarHtml() +
           '<div class="admin-tabs">' +
             (B.Cloud.configured()
               ? '<button class="chip asrc" data-s="cloud">☁️ Bulut (aile)</button><button class="chip asrc" data-s="local">📱 Bu cihaz</button>' : '') +
@@ -34296,6 +34462,7 @@ h1, h2, h3, h4,
             '<button class="chip atab" data-t="players">📊 Oyuncular</button>' +
             '<button class="chip atab" data-t="perms">🔒 İzinler</button>' +
             '<button class="chip atab" data-t="wishes">🎁 İstekler</button>' +
+            (B.Cloud.configured() ? '<button class="chip atab" data-t="parents">👪 Ebeveynler<span class="par-badge"></span></button>' : '') +
             '<button class="chip atab" data-t="account">⚙️ Hesap</button>' +
             '<button class="chip adm-refresh">🔄</button>' +
           '</div>' +
@@ -34334,6 +34501,7 @@ h1, h2, h3, h4,
         const body = root.querySelector('.admin-body');
         if (!body) return;
         if (tab === 'account') return renderAccount(body); // ebeveyn ayarları — oyuncu gerekmez
+        if (tab === 'parents') return renderParents(body); // ebeveyn yönetimi — oyuncu gerekmez
         if (source === 'cloud' && !B.Cloud.enabled()) { body.innerHTML = '<div class="wish-empty">Önce yukarıdan bir aile kodu oluştur.</div>'; return; }
         if (!players.length) {
           body.innerHTML = '<div class="wish-empty">' + (source === 'cloud'
@@ -34383,6 +34551,7 @@ h1, h2, h3, h4,
 
         // Oyuncu silme (eski/silinmiş kayıtları temizle) — hem yerel hem bulut
         body.querySelectorAll('.adm-del').forEach(btn => btn.onclick = () => {
+          if (!canEdit()) { B.UI.toast('🔒 Silme yetkisi admin ebeveynde.'); return; }
           const key = btn.dataset.key;
           const pp = findPlayer(key);
           const nm = pp && pp.save && pp.save.player ? pp.save.player.name : key;
@@ -34397,6 +34566,69 @@ h1, h2, h3, h4,
             },
           });
         });
+      }
+
+      /* Bulut ailesindeki rolümü açıklayan üst şerit */
+      function roleBarHtml() {
+        if (source !== 'cloud' || !B.Cloud.enabled() || !B.Family) return '<div class="adm-rolebar" style="display:none"></div>';
+        if (famRole === 'admin') return '<div class="adm-rolebar role-admin">👑 Bu ailenin ADMIN ebeveynisin — izinleri yalnızca sen yönetirsin.</div>';
+        if (famRole === 'parent') return '<div class="adm-rolebar role-parent">✅ Onaylı ebeveynsin — çocukları görür, izin düzenleyebilirsin.</div>';
+        if (famRole === 'pending') return '<div class="adm-rolebar role-pending">⏳ Admin ebeveynin onayını bekliyorsun — onaylanana kadar sadece görüntülersin.</div>';
+        return '<div class="adm-rolebar" style="display:none"></div>';
+      }
+
+      /* ---- 👪 Ebeveynler (çok ebeveyn · tek admin) ---- */
+      async function renderParents(body) {
+        if (!B.Cloud.configured()) { body.innerHTML = '<div class="wish-empty">Bulut yapılandırılmamış.</div>'; return; }
+        body.innerHTML = '<div class="wish-empty">Yükleniyor…</div>';
+        const code = (B.AuthCloud && B.AuthCloud.familyCode) ? B.AuthCloud.familyCode() : B.Cloud.getCode();
+        const joinBox =
+          '<div class="adm-joinbox"><div class="adm-join-h">👥 Başka bir aileye bağlan</div>' +
+          '<div class="adm-fam-hint">Eşinin/ikinci ebeveynin aile kodunu gir — o ailenin ebeveyni olmak için başvurursun; admin onaylar.</div>' +
+          '<div class="adm-join-row"><input class="adm-join-code" maxlength="12" placeholder="AİLE KODU"><button class="chip adm-join-go">Bağlan</button></div>' +
+          (B.AuthCloud.isJoined() ? '<button class="chip adm-join-leave">↩︎ Kendi aileme dön</button>' : '') +
+          '</div>';
+        function wireJoin() {
+          const go = body.querySelector('.adm-join-go');
+          if (go) go.onclick = () => {
+            const c = (body.querySelector('.adm-join-code').value || '').trim().toUpperCase();
+            if (c.length < 4) { B.UI.toast('Geçerli bir aile kodu gir'); return; }
+            B.AuthCloud.joinFamily(c); B.UI.toast('Aileye bağlanılıyor…'); source = 'cloud'; shell();
+          };
+          const lv = body.querySelector('.adm-join-leave');
+          if (lv) lv.onclick = () => { B.AuthCloud.leaveJoinedFamily(); B.UI.toast('Kendi ailene dönüldü'); shell(); };
+        }
+        if (!code || !(B.AuthCloud && B.AuthCloud.current())) {
+          body.innerHTML = '<div class="adm-card"><div class="wish-empty">Ebeveyn yönetimi için e-posta/Google ile giriş yapıp bir aile kodun olmalı.</div></div>' + joinBox;
+          wireJoin(); return;
+        }
+        await B.Family.claimOrJoin(B.AuthCloud.current().localId, B.AuthCloud.name() || '');
+        await B.Family.fetchMeta(code);
+        famRole = B.Family.myRole();
+        const admin = B.Family.isAdmin();
+        const rows = B.Family.parentList().map(p => {
+          const roleLabel = { admin: '👑 Admin', parent: '✅ Ebeveyn', pending: '⏳ Onay bekliyor' }[p.role] || p.role;
+          const name = esc(p.name || 'Ebeveyn') + (p.self ? ' (sen)' : '');
+          let ctl = '';
+          if (admin && !p.self && p.role !== 'admin') {
+            ctl += (p.role === 'pending')
+              ? '<button class="chip par-approve" data-uid="' + p.uid + '">Onayla</button>'
+              : '<button class="chip par-demote" data-uid="' + p.uid + '">Onayı kaldır</button>';
+            ctl += '<button class="chip par-remove" data-uid="' + p.uid + '">🗑️</button>';
+          }
+          return '<div class="adm-parent"><span class="par-name">' + name + '</span><span class="par-role role-' + p.role + '">' + roleLabel + '</span>' + ctl + '</div>';
+        }).join('');
+        body.innerHTML = roleBarHtml() +
+          '<div class="adm-card"><div class="adm-parents-h">👪 Ailedeki Ebeveynler <b class="adm-code2">' + esc(code) + '</b></div>' +
+          (admin ? '<div class="adm-fam-hint">Aile kodunu bilen yeni ebeveynler burada "onay bekliyor" görünür. Yalnızca onayladıkların izin düzenleyebilir.</div>' : '') +
+          (rows || '<div class="wish-empty">Henüz ebeveyn yok.</div>') + '</div>' + joinBox;
+        body.querySelectorAll('.par-approve').forEach(b => b.onclick = async () => { await B.Family.setRole(b.dataset.uid, 'parent'); B.UI.toast('Onaylandı ✅'); renderParents(body); });
+        body.querySelectorAll('.par-demote').forEach(b => b.onclick = async () => { await B.Family.setRole(b.dataset.uid, 'pending'); renderParents(body); });
+        body.querySelectorAll('.par-remove').forEach(b => b.onclick = () => B.UI.confirm({
+          icon: '🗑️', title: 'Ebeveyn çıkarılsın mı?', body: 'Bu ebeveyn aileden çıkarılacak.', yes: 'Çıkar', no: 'Vazgeç',
+          onYes: async () => { await B.Family.removeParent(b.dataset.uid); B.UI.toast('Çıkarıldı'); renderParents(body); },
+        }));
+        wireJoin();
       }
 
       /* ---- 🎁 İstekler ---- */
@@ -34477,7 +34709,9 @@ h1, h2, h3, h4,
       }
       function renderPerms(body) {
         const lessons = B.Lesson.all();
+        const locked = !canEdit();
         body.innerHTML =
+          (locked ? '<div class="adm-rolebar role-pending">🔒 İzinleri yalnızca admin ebeveyn (ya da onayladığı ebeveyn) düzenleyebilir. Sen görüntüleme modundasın.</div>' : '') +
           '<div class="adm-hint">Kapatılan ders veya bölüm çocuğun ekranında 🔒 kilitli görünür. Bulut modunda değişiklik çocuğun cihazına bir sonraki açılışta yansır.</div>' +
           players.map(p => {
             B.Perms.ensure(p.save);
@@ -34487,8 +34721,10 @@ h1, h2, h3, h4,
               '<div class="adm-perm-h">📚 Dersler (Cepheler)</div>' + lessonRows +
               '<div class="adm-perm-h">🎮 Oyun Bölümleri</div>' + featRows + '</div>';
           }).join('');
+        if (locked) body.querySelectorAll('.adm-perm').forEach(inp => { inp.disabled = true; });
         body.querySelectorAll('.adm-perm').forEach(inp => {
           inp.onchange = async () => {
+            if (!canEdit()) { B.UI.toast('🔒 İzin yetkisi admin ebeveynde.'); load(); return; }
             const p = findPlayer(inp.dataset.key); if (!p) return;
             const on = inp.checked;
             if (inp.dataset.kind === 'L') B.Perms.setLesson(inp.dataset.id, on, p.save);
@@ -34915,7 +35151,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.69'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.70'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.
