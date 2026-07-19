@@ -1251,6 +1251,12 @@ h1, h2, h3, h4,
   .login-hero, .lg-halo, .lg-orbit, .lg-cry, .lg-spark { animation: none !important; }
 }
 
+/* === v0.47 — Ebeveyn kayıt formu + rütbe hitabı === */
+.reg-form { display: flex; flex-direction: column; gap: 9px; width: 100%; max-width: 320px; margin: 4px auto 0; }
+.reg-form .name-input { width: 100%; }
+.acc-rank { display: inline-block; margin-left: 6px; font-size: 12px; font-weight: 800; color: var(--xp);
+  background: rgba(255,213,46,.12); border: 1px solid rgba(255,213,46,.35); border-radius: 99px; padding: 1px 8px; }
+
 </style>
 </head>
 <body>
@@ -1260,7 +1266,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.46 — Giriş ekranı görsel zenginliği: animasyonlu galaksi sahnesi + Bilgi Kristali amblemi</div>
+      <div class="splash-note">v0.47 — Ebeveyne 'Binbaşı [isim]' hitabı (Google/form adı) + Google'sız formla kayıt (ad/soyad/e-posta/şifre)</div>
     </div>
   </div>
 
@@ -4095,18 +4101,32 @@ h1, h2, h3, h4,
     available,
     current() { return readSess(); },
     email() { const s = readSess(); return s ? s.email : ''; },
+    name() { const s = readSess(); return s && s.name ? s.name : ''; },
+    firstName() { const n = B.AuthCloud.name(); return (n || '').trim().split(/\s+/)[0] || ''; },
     isVerified() { const s = readSess(); return !!(s && s.emailVerified); },
     inviteCode() { const s = readSess(); return s && s.localId ? deriveCode(s.localId) : ''; },
     logout() { try { localStorage.removeItem(SESS); } catch (e) {} },
 
-    async register(email, pass) {
+    async register(email, pass, name) {
       try {
         const d = await post(IDT + 'signUp', { email: (email || '').trim(), password: pass, returnSecureToken: true });
-        store(d);
+        store(d, { name: (name || '').trim() });
         linkFamily(); // davet kodu = bu hesap
+        if (name) await B.AuthCloud.setDisplayName(name); // Firebase profiline de yaz
         await B.AuthCloud.sendVerify();
         return { ok: true, needVerify: true };
       } catch (e) { return { ok: false, err: trErr(e.message) }; }
+    },
+
+    /* Ebeveynin görünen adını (ad soyad) Firebase profiline ve yerel oturuma yaz */
+    async setDisplayName(name) {
+      const t = await freshToken();
+      if (!t || !name) return { ok: false };
+      try {
+        await post(IDT + 'update', { idToken: t, displayName: (name || '').trim(), returnSecureToken: false });
+        const s = readSess(); if (s) { s.name = (name || '').trim(); writeSess(s); }
+        return { ok: true };
+      } catch (e) { return { ok: false }; }
     },
 
     async login(email, pass) {
@@ -4160,6 +4180,7 @@ h1, h2, h3, h4,
         const u = res.user;
         const idToken = await u.getIdToken();
         writeSess({ idToken, refreshToken: u.refreshToken, localId: u.uid, email: u.email,
+          name: u.displayName || '', // Google profil adı (Binbaşı hitabı için)
           emailVerified: !!u.emailVerified, expiresAt: Date.now() + 3600000 });
         linkFamily();
         return { ok: true };
@@ -4176,8 +4197,9 @@ h1, h2, h3, h4,
       if (!t) return false;
       try {
         const d = await post(IDT + 'lookup', { idToken: t });
-        const v = !!(d.users && d.users[0] && d.users[0].emailVerified);
-        const s = readSess(); if (s) { s.emailVerified = v; writeSess(s); }
+        const u = d.users && d.users[0];
+        const v = !!(u && u.emailVerified);
+        const s = readSess(); if (s) { s.emailVerified = v; if (u && u.displayName) s.name = u.displayName; writeSess(s); }
         return v;
       } catch (e) { return B.AuthCloud.isVerified(); }
     },
@@ -9203,7 +9225,7 @@ h1, h2, h3, h4,
       '<input id="pe-email" type="email" class="name-input" placeholder="E-posta" value="' + (savedEmail || '') + '">' +
       '<input id="pe-pass" type="password" class="name-input" placeholder="Şifre (en az 6 karakter)">' +
       '<div class="login-err" id="pe-msg"></div>',
-      [{ label: 'GİRİŞ ▶', onClick: null }, { label: 'Kayıt ol', cls: 'btn-quiet', onClick: null }, { label: 'Şifremi unuttum', cls: 'btn-quiet', onClick: null }]);
+      [{ label: 'GİRİŞ ▶', onClick: null }, { label: '📝 Formla Kayıt Ol', cls: 'btn-quiet', onClick: null }, { label: 'Şifremi unuttum', cls: 'btn-quiet', onClick: null }]);
     const btns = ov.querySelectorAll('.overlay-btns .btn');
     const emailEl = ov.querySelector('#pe-email'), passEl = ov.querySelector('#pe-pass'), msg = ov.querySelector('#pe-msg');
     function busy(t) { msg.style.color = ''; msg.textContent = t; }
@@ -9230,13 +9252,7 @@ h1, h2, h3, h4,
       if (!r.verified) B.UI.toast('📧 E-postanı doğrulaman önerilir (şifre kurtarma için).');
       B.UI.show('admin');
     };
-    btns[1].onclick = () => B.Consent.require(async () => { // KAYIT OL (onay şart)
-      busy('Hesap oluşturuluyor…');
-      const r = await B.AuthCloud.register(emailEl.value, passEl.value);
-      if (!r.ok) return err(r.err);
-      msg.style.color = 'var(--success)';
-      msg.innerHTML = '✓ Doğrulama e-postası gönderildi! Gelen kutunu (ve spam) kontrol et, linke tıkla, sonra "GİRİŞ"e bas.';
-    });
+    btns[1].onclick = () => { ov.remove(); parentRegisterForm((emailEl.value || '').trim()); }; // KAYIT OL → form
     btns[2].onclick = async () => { // ŞİFREMİ UNUTTUM
       if (!emailEl.value.trim()) return err('Önce e-posta adresini yaz.');
       busy('Sıfırlama e-postası gönderiliyor…');
@@ -9246,6 +9262,46 @@ h1, h2, h3, h4,
       msg.textContent = '✓ Şifre sıfırlama e-postası gönderildi. E-postandaki linkten yeni şifre belirle.';
     };
     setTimeout(() => emailEl.focus(), 100);
+  }
+
+  /* ---------- Ebeveyn: FORMLA kayıt (Google'sız — ad/soyad/e-posta/şifre) ---------- */
+  function parentRegisterForm(prefillEmail) {
+    const ov = B.UI.overlay(
+      '<div class="ov-big">📝</div><h2>Ebeveyn Kaydı</h2>' +
+      '<p class="ov-quote">Bilgilerini gir; Baba Komutan sana rütbenle hitap etsin: <b>Binbaşı!</b></p>' +
+      '<div class="reg-form">' +
+        '<input id="rf-ad" class="name-input" placeholder="Adın *" maxlength="20" autocomplete="given-name">' +
+        '<input id="rf-soyad" class="name-input" placeholder="Soyadın *" maxlength="24" autocomplete="family-name">' +
+        '<input id="rf-email" type="email" class="name-input" placeholder="E-posta *" autocomplete="email" value="' + (prefillEmail || '') + '">' +
+        '<input id="rf-pass" type="password" class="name-input" placeholder="Şifre (en az 6 karakter) *" autocomplete="new-password">' +
+        '<input id="rf-pass2" type="password" class="name-input" placeholder="Şifre (tekrar) *" autocomplete="new-password">' +
+      '</div>' +
+      '<div class="login-err" id="rf-msg"></div>',
+      [{ label: 'KAYIT OL ▶', onClick: null }, { label: 'Zaten hesabım var', cls: 'btn-quiet', onClick: null }]);
+    const btns = ov.querySelectorAll('.overlay-btns .btn');
+    const val = id => (ov.querySelector('#' + id).value || '').trim();
+    const msg = ov.querySelector('#rf-msg');
+    const err = t => { msg.style.color = 'var(--warn)'; msg.textContent = '⚠️ ' + t; };
+    btns[0].onclick = () => {
+      const ad = val('rf-ad'), soyad = val('rf-soyad'), email = val('rf-email');
+      const p1 = ov.querySelector('#rf-pass').value, p2 = ov.querySelector('#rf-pass2').value;
+      if (ad.length < 2) return err('Adını gir (en az 2 harf).');
+      if (soyad.length < 2) return err('Soyadını gir (en az 2 harf).');
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return err('Geçerli bir e-posta gir.');
+      if (p1.length < 6) return err('Şifre en az 6 karakter olmalı.');
+      if (p1 !== p2) return err('Şifreler uyuşmuyor.');
+      B.Consent.require(async () => { // KVKK/Sözleşme onayı olmadan kayıt yok
+        msg.style.color = ''; msg.textContent = 'Hesap oluşturuluyor…';
+        const r = await B.AuthCloud.register(email, p1, ad + ' ' + soyad);
+        if (!r.ok) return err(r.err);
+        B.Audio.play('fanfare');
+        msg.style.color = 'var(--success)';
+        msg.innerHTML = '✓ Hoş geldin <b>Binbaşı ' + ad + '</b>! Doğrulama e-postası gönderildi (şifre kurtarma için). Panele geçiliyor…';
+        setTimeout(() => { ov.remove(); B.UI.show('admin'); }, 1500);
+      });
+    };
+    btns[1].onclick = () => { ov.remove(); parentEmailFlow(); };
+    setTimeout(() => ov.querySelector('#rf-ad').focus(), 100);
   }
 
   /* ---------- Ebeveyn: yerel PIN akışı (çevrimdışı) ---------- */
@@ -9583,6 +9639,8 @@ h1, h2, h3, h4,
       }
 
       function shell() {
+        // Ebeveynin adı (Google profili ya da kayıt formundan) — Baba "Binbaşı X" der
+        const pName = (B.AuthCloud && B.AuthCloud.firstName) ? B.AuthCloud.firstName() : '';
         // Davet kodu öncelikle e-posta hesabından (hesaba bağlı, hep aynı)
         const emailCode = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : '';
         if (emailCode && B.Cloud.getCode() !== emailCode) B.Cloud.setCode(emailCode);
@@ -9599,7 +9657,7 @@ h1, h2, h3, h4,
         root.innerHTML =
           '<div class="admin-head">' +
             '<button class="chip admin-back">◀ Çıkış</button>' +
-            '<b>👨‍👧 Ebeveyn Konsolu</b>' +
+            '<b>👨‍👧 ' + (pName ? 'Binbaşı ' + pName : 'Ebeveyn Konsolu') + '</b>' +
             '<button class="chip admin-help" title="Nasıl çalışır?">❓</button>' +
             '<button class="chip admin-pin">🔑 PIN</button>' +
           '</div>' +
@@ -9836,7 +9894,9 @@ h1, h2, h3, h4,
         const verified = B.AuthCloud.isVerified();
         const ov = B.UI.overlay(
           '<div class="ov-big">👤</div><h2>Hesap Bilgileri</h2>' +
-          '<div class="acc-info"><div><b>E-posta:</b> ' + esc(B.AuthCloud.email()) + '</div>' +
+          '<div class="acc-info">' +
+          (B.AuthCloud.name() ? '<div><b>Ad Soyad:</b> ' + esc(B.AuthCloud.name()) + ' <span class="acc-rank">🎖️ Binbaşı</span></div>' : '') +
+          '<div><b>E-posta:</b> ' + esc(B.AuthCloud.email()) + '</div>' +
           '<div><b>Durum:</b> ' + (verified ? '✅ Doğrulanmış' : '⚠️ Doğrulanmamış') + '</div></div>' +
           '<div class="acc-actions">' +
             (verified ? '' : '<button class="btn btn-quiet" id="ai-verify">📧 E-postamı doğrula</button>') +
@@ -9956,8 +10016,10 @@ h1, h2, h3, h4,
       function parentTour() {
         if (!B.Tour) return;
         const code = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode();
+        const pName = (B.AuthCloud && B.AuthCloud.firstName) ? B.AuthCloud.firstName() : '';
+        const selam = pName ? 'Hoş geldin Binbaşı ' + pName + '!' : 'Hoş geldin Komutan Baba!';
         B.Tour.run([
-          { icon: '🧑‍✈️', title: 'Hoş geldin Komutan Baba!', text: 'Ben Baba Komutan. Bu panel senin — çocuklarının nasıl öğrendiğini buradan takip edersin. Kısaca nasıl işlediğini anlatayım.' },
+          { icon: '🧑‍✈️', title: selam, text: 'Ben Baba Komutan. Bu panel senin' + (pName ? ', Binbaşı ' + pName : '') + ' — çocuklarının nasıl öğrendiğini buradan takip edersin. Kısaca nasıl işlediğini anlatayım.' },
           { icon: '🔑', title: '1) Kaydoldun', text: 'Google ya da e-postanla giriş yaptın. Bu tek seferlik — bir daha sormaz, seni hep hatırlar.' },
           { icon: '🎟️', title: '2) Davet Kodun', text: 'Yukarıda "Davet Kodun" yazıyor' + (code ? ': <b>' + code + '</b>' : '') + '. Bu ailene özel koddur. "Kopyala" ile al.' },
           { icon: '📲', title: '3) Çocuğuna İlet', text: 'Çocuğunun cihazında oyunu aç → "🎮 Oyuncuyum → 🎟️ Davet Kodu" → bu kodu gir. Böylece çocuk ailene bağlanır ve tam sürüm açılır.' },
@@ -10189,7 +10251,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.46'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.47'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

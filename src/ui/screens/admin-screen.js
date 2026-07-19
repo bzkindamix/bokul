@@ -66,6 +66,8 @@
       }
 
       function shell() {
+        // Ebeveynin adı (Google profili ya da kayıt formundan) — Baba "Binbaşı X" der
+        const pName = (B.AuthCloud && B.AuthCloud.firstName) ? B.AuthCloud.firstName() : '';
         // Davet kodu öncelikle e-posta hesabından (hesaba bağlı, hep aynı)
         const emailCode = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : '';
         if (emailCode && B.Cloud.getCode() !== emailCode) B.Cloud.setCode(emailCode);
@@ -82,7 +84,7 @@
         root.innerHTML =
           '<div class="admin-head">' +
             '<button class="chip admin-back">◀ Çıkış</button>' +
-            '<b>👨‍👧 Ebeveyn Konsolu</b>' +
+            '<b>👨‍👧 ' + (pName ? 'Binbaşı ' + pName : 'Ebeveyn Konsolu') + '</b>' +
             '<button class="chip admin-help" title="Nasıl çalışır?">❓</button>' +
             '<button class="chip admin-pin">🔑 PIN</button>' +
           '</div>' +
@@ -319,7 +321,9 @@
         const verified = B.AuthCloud.isVerified();
         const ov = B.UI.overlay(
           '<div class="ov-big">👤</div><h2>Hesap Bilgileri</h2>' +
-          '<div class="acc-info"><div><b>E-posta:</b> ' + esc(B.AuthCloud.email()) + '</div>' +
+          '<div class="acc-info">' +
+          (B.AuthCloud.name() ? '<div><b>Ad Soyad:</b> ' + esc(B.AuthCloud.name()) + ' <span class="acc-rank">🎖️ Binbaşı</span></div>' : '') +
+          '<div><b>E-posta:</b> ' + esc(B.AuthCloud.email()) + '</div>' +
           '<div><b>Durum:</b> ' + (verified ? '✅ Doğrulanmış' : '⚠️ Doğrulanmamış') + '</div></div>' +
           '<div class="acc-actions">' +
             (verified ? '' : '<button class="btn btn-quiet" id="ai-verify">📧 E-postamı doğrula</button>') +
@@ -439,8 +443,10 @@
       function parentTour() {
         if (!B.Tour) return;
         const code = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode();
+        const pName = (B.AuthCloud && B.AuthCloud.firstName) ? B.AuthCloud.firstName() : '';
+        const selam = pName ? 'Hoş geldin Binbaşı ' + pName + '!' : 'Hoş geldin Komutan Baba!';
         B.Tour.run([
-          { icon: '🧑‍✈️', title: 'Hoş geldin Komutan Baba!', text: 'Ben Baba Komutan. Bu panel senin — çocuklarının nasıl öğrendiğini buradan takip edersin. Kısaca nasıl işlediğini anlatayım.' },
+          { icon: '🧑‍✈️', title: selam, text: 'Ben Baba Komutan. Bu panel senin' + (pName ? ', Binbaşı ' + pName : '') + ' — çocuklarının nasıl öğrendiğini buradan takip edersin. Kısaca nasıl işlediğini anlatayım.' },
           { icon: '🔑', title: '1) Kaydoldun', text: 'Google ya da e-postanla giriş yaptın. Bu tek seferlik — bir daha sormaz, seni hep hatırlar.' },
           { icon: '🎟️', title: '2) Davet Kodun', text: 'Yukarıda "Davet Kodun" yazıyor' + (code ? ': <b>' + code + '</b>' : '') + '. Bu ailene özel koddur. "Kopyala" ile al.' },
           { icon: '📲', title: '3) Çocuğuna İlet', text: 'Çocuğunun cihazında oyunu aç → "🎮 Oyuncuyum → 🎟️ Davet Kodu" → bu kodu gir. Böylece çocuk ailene bağlanır ve tam sürüm açılır.' },

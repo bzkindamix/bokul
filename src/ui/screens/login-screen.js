@@ -63,7 +63,7 @@
       '<input id="pe-email" type="email" class="name-input" placeholder="E-posta" value="' + (savedEmail || '') + '">' +
       '<input id="pe-pass" type="password" class="name-input" placeholder="Şifre (en az 6 karakter)">' +
       '<div class="login-err" id="pe-msg"></div>',
-      [{ label: 'GİRİŞ ▶', onClick: null }, { label: 'Kayıt ol', cls: 'btn-quiet', onClick: null }, { label: 'Şifremi unuttum', cls: 'btn-quiet', onClick: null }]);
+      [{ label: 'GİRİŞ ▶', onClick: null }, { label: '📝 Formla Kayıt Ol', cls: 'btn-quiet', onClick: null }, { label: 'Şifremi unuttum', cls: 'btn-quiet', onClick: null }]);
     const btns = ov.querySelectorAll('.overlay-btns .btn');
     const emailEl = ov.querySelector('#pe-email'), passEl = ov.querySelector('#pe-pass'), msg = ov.querySelector('#pe-msg');
     function busy(t) { msg.style.color = ''; msg.textContent = t; }
@@ -90,13 +90,7 @@
       if (!r.verified) B.UI.toast('📧 E-postanı doğrulaman önerilir (şifre kurtarma için).');
       B.UI.show('admin');
     };
-    btns[1].onclick = () => B.Consent.require(async () => { // KAYIT OL (onay şart)
-      busy('Hesap oluşturuluyor…');
-      const r = await B.AuthCloud.register(emailEl.value, passEl.value);
-      if (!r.ok) return err(r.err);
-      msg.style.color = 'var(--success)';
-      msg.innerHTML = '✓ Doğrulama e-postası gönderildi! Gelen kutunu (ve spam) kontrol et, linke tıkla, sonra "GİRİŞ"e bas.';
-    });
+    btns[1].onclick = () => { ov.remove(); parentRegisterForm((emailEl.value || '').trim()); }; // KAYIT OL → form
     btns[2].onclick = async () => { // ŞİFREMİ UNUTTUM
       if (!emailEl.value.trim()) return err('Önce e-posta adresini yaz.');
       busy('Sıfırlama e-postası gönderiliyor…');
@@ -106,6 +100,46 @@
       msg.textContent = '✓ Şifre sıfırlama e-postası gönderildi. E-postandaki linkten yeni şifre belirle.';
     };
     setTimeout(() => emailEl.focus(), 100);
+  }
+
+  /* ---------- Ebeveyn: FORMLA kayıt (Google'sız — ad/soyad/e-posta/şifre) ---------- */
+  function parentRegisterForm(prefillEmail) {
+    const ov = B.UI.overlay(
+      '<div class="ov-big">📝</div><h2>Ebeveyn Kaydı</h2>' +
+      '<p class="ov-quote">Bilgilerini gir; Baba Komutan sana rütbenle hitap etsin: <b>Binbaşı!</b></p>' +
+      '<div class="reg-form">' +
+        '<input id="rf-ad" class="name-input" placeholder="Adın *" maxlength="20" autocomplete="given-name">' +
+        '<input id="rf-soyad" class="name-input" placeholder="Soyadın *" maxlength="24" autocomplete="family-name">' +
+        '<input id="rf-email" type="email" class="name-input" placeholder="E-posta *" autocomplete="email" value="' + (prefillEmail || '') + '">' +
+        '<input id="rf-pass" type="password" class="name-input" placeholder="Şifre (en az 6 karakter) *" autocomplete="new-password">' +
+        '<input id="rf-pass2" type="password" class="name-input" placeholder="Şifre (tekrar) *" autocomplete="new-password">' +
+      '</div>' +
+      '<div class="login-err" id="rf-msg"></div>',
+      [{ label: 'KAYIT OL ▶', onClick: null }, { label: 'Zaten hesabım var', cls: 'btn-quiet', onClick: null }]);
+    const btns = ov.querySelectorAll('.overlay-btns .btn');
+    const val = id => (ov.querySelector('#' + id).value || '').trim();
+    const msg = ov.querySelector('#rf-msg');
+    const err = t => { msg.style.color = 'var(--warn)'; msg.textContent = '⚠️ ' + t; };
+    btns[0].onclick = () => {
+      const ad = val('rf-ad'), soyad = val('rf-soyad'), email = val('rf-email');
+      const p1 = ov.querySelector('#rf-pass').value, p2 = ov.querySelector('#rf-pass2').value;
+      if (ad.length < 2) return err('Adını gir (en az 2 harf).');
+      if (soyad.length < 2) return err('Soyadını gir (en az 2 harf).');
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return err('Geçerli bir e-posta gir.');
+      if (p1.length < 6) return err('Şifre en az 6 karakter olmalı.');
+      if (p1 !== p2) return err('Şifreler uyuşmuyor.');
+      B.Consent.require(async () => { // KVKK/Sözleşme onayı olmadan kayıt yok
+        msg.style.color = ''; msg.textContent = 'Hesap oluşturuluyor…';
+        const r = await B.AuthCloud.register(email, p1, ad + ' ' + soyad);
+        if (!r.ok) return err(r.err);
+        B.Audio.play('fanfare');
+        msg.style.color = 'var(--success)';
+        msg.innerHTML = '✓ Hoş geldin <b>Binbaşı ' + ad + '</b>! Doğrulama e-postası gönderildi (şifre kurtarma için). Panele geçiliyor…';
+        setTimeout(() => { ov.remove(); B.UI.show('admin'); }, 1500);
+      });
+    };
+    btns[1].onclick = () => { ov.remove(); parentEmailFlow(); };
+    setTimeout(() => ov.querySelector('#rf-ad').focus(), 100);
   }
 
   /* ---------- Ebeveyn: yerel PIN akışı (çevrimdışı) ---------- */

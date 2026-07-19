@@ -868,3 +868,9 @@
   .lfx-neb-1, .lfx-neb-2, .lfx-planet, .lfx-star, .lfx-shoot,
   .login-hero, .lg-halo, .lg-orbit, .lg-cry, .lg-spark { animation: none !important; }
 }
+
+/* === v0.47 — Ebeveyn kayıt formu + rütbe hitabı === */
+.reg-form { display: flex; flex-direction: column; gap: 9px; width: 100%; max-width: 320px; margin: 4px auto 0; }
+.reg-form .name-input { width: 100%; }
+.acc-rank { display: inline-block; margin-left: 6px; font-size: 12px; font-weight: 800; color: var(--xp);
+  background: rgba(255,213,46,.12); border: 1px solid rgba(255,213,46,.35); border-radius: 99px; padding: 1px 8px; }

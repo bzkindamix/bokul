@@ -86,18 +86,32 @@
     available,
     current() { return readSess(); },
     email() { const s = readSess(); return s ? s.email : ''; },
+    name() { const s = readSess(); return s && s.name ? s.name : ''; },
+    firstName() { const n = B.AuthCloud.name(); return (n || '').trim().split(/\s+/)[0] || ''; },
     isVerified() { const s = readSess(); return !!(s && s.emailVerified); },
     inviteCode() { const s = readSess(); return s && s.localId ? deriveCode(s.localId) : ''; },
     logout() { try { localStorage.removeItem(SESS); } catch (e) {} },
 
-    async register(email, pass) {
+    async register(email, pass, name) {
       try {
         const d = await post(IDT + 'signUp', { email: (email || '').trim(), password: pass, returnSecureToken: true });
-        store(d);
+        store(d, { name: (name || '').trim() });
         linkFamily(); // davet kodu = bu hesap
+        if (name) await B.AuthCloud.setDisplayName(name); // Firebase profiline de yaz
         await B.AuthCloud.sendVerify();
         return { ok: true, needVerify: true };
       } catch (e) { return { ok: false, err: trErr(e.message) }; }
+    },
+
+    /* Ebeveynin görünen adını (ad soyad) Firebase profiline ve yerel oturuma yaz */
+    async setDisplayName(name) {
+      const t = await freshToken();
+      if (!t || !name) return { ok: false };
+      try {
+        await post(IDT + 'update', { idToken: t, displayName: (name || '').trim(), returnSecureToken: false });
+        const s = readSess(); if (s) { s.name = (name || '').trim(); writeSess(s); }
+        return { ok: true };
+      } catch (e) { return { ok: false }; }
     },
 
     async login(email, pass) {
@@ -151,6 +165,7 @@
         const u = res.user;
         const idToken = await u.getIdToken();
         writeSess({ idToken, refreshToken: u.refreshToken, localId: u.uid, email: u.email,
+          name: u.displayName || '', // Google profil adı (Binbaşı hitabı için)
           emailVerified: !!u.emailVerified, expiresAt: Date.now() + 3600000 });
         linkFamily();
         return { ok: true };
@@ -167,8 +182,9 @@
       if (!t) return false;
       try {
         const d = await post(IDT + 'lookup', { idToken: t });
-        const v = !!(d.users && d.users[0] && d.users[0].emailVerified);
-        const s = readSess(); if (s) { s.emailVerified = v; writeSess(s); }
+        const u = d.users && d.users[0];
+        const v = !!(u && u.emailVerified);
+        const s = readSess(); if (s) { s.emailVerified = v; if (u && u.displayName) s.name = u.displayName; writeSess(s); }
         return v;
       } catch (e) { return B.AuthCloud.isVerified(); }
     },
