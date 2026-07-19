@@ -39,11 +39,40 @@
      * (b) Atölye'de "Depo Rafı" üret — ikisi de depoLevel'ı artırır. Oyuncu SEVİYESİNDEN bağımsız. */
     depoLevel() { return (B.State.data.player && B.State.data.player.depoLevel) || 0; },
     capacity() { return 16 + B.Items.depoLevel() * 4; },
-    depoUpgradeCost() { return 80 + B.Items.depoLevel() * 60; }, // 80,140,200,...
-    upgradeDepo() {
+
+    /* İki yükseltme yolu:
+     *  1) ALTIN — çok pahalı (kolay ama masraflı).
+     *  2) HAM MADDE toplayarak — toplam değeri altın maliyetinin %70'i (yani %30 DAHA UCUZ),
+     *     ama malzeme biriktirmek emek ister. Altın maliyeti, ham madde paketinin değerinden türetilir. */
+    depoMaterials() {
+      const L = B.Items.depoLevel();
+      return { tahta: 8 + L * 6, metal: 5 + L * 4, cam: 4 + L * 3, vida: 10 + L * 8, boya: 3 + L * 2 };
+    },
+    depoMaterialsValue() {
+      const m = B.Items.depoMaterials(); let v = 0;
+      for (const k in m) { const it = B.Items.get(k); v += (it ? (it.price || 0) : 0) * m[k]; }
+      return v;
+    },
+    /* ALTIN maliyeti = ham madde değeri / 0.7 → ham madde yolu tam %30 daha ucuz kalır */
+    depoUpgradeCost() { return Math.ceil(B.Items.depoMaterialsValue() / 0.7 / 10) * 10; },
+    depoMaterialsMissing() {
+      const m = B.Items.depoMaterials(); const out = [];
+      for (const k in m) { const have = B.Items.count(k); if (have < m[k]) { const it = B.Items.get(k) || { name: k, icon: '❔' }; out.push({ id: k, name: it.name, icon: it.icon, have, need: m[k] }); } }
+      return out;
+    },
+    upgradeDepo() { // ALTIN yolu (pahalı)
       const cost = B.Items.depoUpgradeCost();
       if ((B.State.data.player.coins || 0) < cost) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
       if (!B.Reward.spendCoins(cost)) return { ok: false, err: 'Altının yetmiyor!' };
+      const p = B.State.data.player; p.depoLevel = (p.depoLevel || 0) + 1;
+      B.Save.saveSoon();
+      return { ok: true, level: p.depoLevel, cap: B.Items.capacity() };
+    },
+    upgradeDepoWithMaterials() { // HAM MADDE yolu (%30 ucuz)
+      const missing = B.Items.depoMaterialsMissing();
+      if (missing.length) return { ok: false, err: 'Ham maddelerin eksik.', missing };
+      const m = B.Items.depoMaterials();
+      for (const k in m) B.Items.remove(k, m[k]);
       const p = B.State.data.player; p.depoLevel = (p.depoLevel || 0) + 1;
       B.Save.saveSoon();
       return { ok: true, level: p.depoLevel, cap: B.Items.capacity() };

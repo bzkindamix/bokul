@@ -99,23 +99,48 @@
         body.querySelectorAll('.dchip').forEach(b => b.onclick = () => { filterCat = b.dataset.f; B.Audio.play('tick'); renderDepo(body); });
         // Sıralama (baştan sıkıştır + sırala)
         body.querySelectorAll('.schip').forEach(b => b.onclick = () => { B.Items.sortSlots(b.dataset.s); B.Audio.play('tick'); filterCat = 'all'; renderDepo(body); });
-        // Depoyu altınla yükselt (bağımsız mekanik; +4 slot)
+        // Depoyu yükselt: iki yol — ALTIN (pahalı) ya da HAM MADDE (%30 ucuz)
         const upBtn = body.querySelector('.depo-up');
-        if (upBtn) upBtn.onclick = () => {
-          const cost = B.Items.depoUpgradeCost();
-          if (coins() < cost) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
-          B.UI.confirm({
-            icon: '📦', title: 'Depoyu yükselt?',
-            body: '💰 ' + cost + ' Altın karşılığında depon +4 hücre büyür (' + B.Items.capacity() + ' → ' + (B.Items.capacity() + 4) + ').',
-            yes: 'Yükselt', no: 'Vazgeç',
-            onYes: () => {
-              const r = B.Items.upgradeDepo();
-              if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
-              B.Audio.play('chest'); B.UI.toast('📦 Depo büyüdü! Yeni kapasite: ' + r.cap);
-              shell();
-            },
-          });
-        };
+        if (upBtn) upBtn.onclick = () => openUpgrade();
+      }
+
+      function openUpgrade() {
+        const goldCost = B.Items.depoUpgradeCost();
+        const mats = B.Items.depoMaterials();
+        const matVal = B.Items.depoMaterialsValue();
+        const canGold = coins() >= goldCost;
+        const canMats = B.Items.depoMaterialsMissing().length === 0;
+        const capNow = B.Items.capacity();
+        const matList = Object.keys(mats).map(k => {
+          const it = B.Items.get(k) || { icon: '❔', name: k };
+          const have = B.Items.count(k), ok = have >= mats[k];
+          return '<span class="up-mat' + (ok ? ' up-ok' : ' up-miss') + '">' + it.icon + ' ' + mats[k] + ' <small>(' + have + ')</small></span>';
+        }).join('');
+        B.UI.overlay(
+          '<div class="ov-big">📦</div><h2>Depoyu Yükselt</h2>' +
+          '<p class="ov-quote">Kapasite ' + capNow + ' → ' + (capNow + 4) + ' (+4 hücre)</p>' +
+          '<div class="up-opt"><div class="up-h">💰 Altınla <b class="up-tag pahali">pahalı</b></div>' +
+            '<div class="up-cost' + (canGold ? '' : ' up-miss') + '">' + goldCost + ' Altın</div></div>' +
+          '<div class="up-opt"><div class="up-h">🧰 Ham madde ile <b class="up-tag ucuz">%30 ucuz</b></div>' +
+            '<div class="up-mats">' + matList + '</div>' +
+            '<div class="up-note">Toplam değer ≈ ' + matVal + ' (altından ucuz)</div></div>',
+          [
+            { label: '💰 Altınla (' + goldCost + ')', onClick: () => doUpgrade('gold') },
+            { label: '🧰 Ham madde ile', onClick: () => doUpgrade('mats') },
+            { label: 'Kapat', onClick: null },
+          ]);
+      }
+      function doUpgrade(via) {
+        const r = via === 'gold' ? B.Items.upgradeDepo() : B.Items.upgradeDepoWithMaterials();
+        if (!r.ok) {
+          B.Audio.play('wrong');
+          if (via === 'mats' && r.missing) {
+            B.UI.toast('🧰 Ham madde eksik: ' + r.missing.map(m => m.icon + m.name + ' ' + m.have + '/' + m.need).join(', '));
+          } else { B.UI.toast('💰 ' + r.err); }
+          return;
+        }
+        B.Audio.play('chest'); B.UI.toast('📦 Depo büyüdü! Yeni kapasite: ' + r.cap);
+        shell();
       }
 
       /* Hücre sürükle-diz; setPointerCapture ile dokunmatikte kaymaz.
