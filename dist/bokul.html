@@ -962,7 +962,7 @@ h1, h2, h3, h4,
 .legal-view p { margin-bottom: 6px; }
 
 /* ---------- v0.24: Eşya Mağazası + Depom ---------- */
-.store-wrap { padding: 8px 10px 24px; max-width: 720px; margin: 0 auto; }
+.store-wrap { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; min-height: 0; padding: 8px 10px 24px; max-width: 720px; width: 100%; margin: 0 auto; }
 .store-top { display: flex; justify-content: flex-end; margin-bottom: 8px; }
 .store-gold { font-size: 15px; font-weight: 800; }
 .store-tabs { display: flex; gap: 8px; margin-bottom: 10px; }
@@ -1538,7 +1538,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.70 — Çok ebeveyn + tek admin: aile koduyla bağlanan ebeveynler 'pending' başlar, izinleri admin ebeveyn verir/onaylar</div>
+      <div class="splash-note">v0.71 — Mağaza mobil scroll fix + ünite adımlarında soru tekrarı önleme (shuffle-torba) + her adımda sandık, boss'ta daha çok, final'de en çok</div>
     </div>
   </div>
 
@@ -30225,19 +30225,27 @@ h1, h2, h3, h4,
  *               skill: "beceri-adı", hint: "yanlışta gösterilecek ipucu" } */
 (function (B) {
 
-  /* params: { pool: [bankItem...] } — havuzdan rastgele soru seçer.
-   * Aynı sorunun art arda gelmemesi için son seçilenler hatırlanır. */
-  const recent = [];
+  /* params: { pool: [bankItem...] } — "karıştırılmış torba": havuz karıştırılır ve
+   * sırayla tüketilir; TÜM banka bitmeden aynı soru TEKRAR gelmez (ünitenin farklı
+   * adımları boyunca tekrar önlenir). Torba bitince yeniden karışır. Her havuzun
+   * kendi torbası vardır (imza = uzunluk + ilk sorunun başı). */
+  const bags = new Map();
+  function sig(pool) { return pool.length + '|' + ((pool[0] && pool[0].q) ? pool[0].q.slice(0, 16) : ''); }
+  function shuffled(n) {
+    const a = []; for (let i = 0; i < n; i++) a.push(i);
+    for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
   function generate(params) {
     const pool = params.pool || [];
     if (!pool.length) throw new Error('Çoktan seçmeli havuz boş!');
-    let item, guard = 40;
-    do { item = pool[Math.floor(Math.random() * pool.length)]; }
-    while (recent.includes(item.q) && --guard);
-    recent.push(item.q);
-    // Havuzun neredeyse tamamı dönmeden aynı soru tekrar gelmesin (tazelik hissi)
-    const cap = Math.max(1, Math.min(pool.length - 1, 14));
-    while (recent.length > cap) recent.shift();
+    const key = sig(pool);
+    let bag = bags.get(key);
+    if (!bag || bag.pos >= bag.order.length || bag.order.length !== pool.length) {
+      bag = { order: shuffled(pool.length), pos: 0 };
+      bags.set(key, bag);
+    }
+    const item = pool[bag.order[bag.pos++]] || pool[Math.floor(Math.random() * pool.length)];
     return { item, params };
   }
 
@@ -32336,6 +32344,14 @@ h1, h2, h3, h4,
         B.Lesson.completeMission(params.sectionId, params.missionId, stars);
         const bonus = B.Reward.addXp(B.Reward.missionBonus(), 'mission');
         const coins = B.Reward.addCoins(10, 'mission');
+        // Her adımda bir SANDIK — kategori adıma göre değişir (çeşit). Boss/final daha çok verir.
+        let gotChest = false;
+        if (B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
+          const cats = ['altin', 'esya', 'kiyafet', 'nadir'];
+          const mid = params.missionId || 'm';
+          B.Chest.earn(cats[mid.charCodeAt(mid.length - 1) % cats.length]);
+          gotChest = true;
+        }
         B.Bus.emit(B.Events.MISSION_COMPLETED, { missionId: params.missionId, stars, xp: bonus });
         if (B.Anim.confetti) B.Anim.confetti(stars === 3 ? 55 : 30); // küçük kutlama
 
@@ -32343,7 +32359,7 @@ h1, h2, h3, h4,
           '<div class="ov-big">🎖️</div><h2>HAREKÂT TAMAM!</h2>' +
           '<div class="ov-stars">' +
             [1, 2, 3].map(i => '<span class="ov-star' + (i <= stars ? ' lit' : '') + '">★</span>').join('') +
-          '</div><p class="ov-xp">Görev bonusu: +' + bonus + ' XP · +' + coins + ' 💰</p>' +
+          '</div><p class="ov-xp">Görev bonusu: +' + bonus + ' XP · +' + coins + ' 💰' + (gotChest ? ' · 🎁 Sandık!' : '') + '</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('mission.done') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
         );
@@ -32545,13 +32561,22 @@ h1, h2, h3, h4,
         const isFinal = boss.tier === 'final';
         const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
         const coins = B.Reward.addCoins(isFinal ? 250 : isUnit ? 100 : 50, 'boss');
+        // Sandıklar ESKALASYON: adım 1 · konu boss'u 2 · ünite boss'u 3 · FINAL (ders bitti) 4 en iyi
+        let chestCount = 0;
+        if (B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
+          const drop = isFinal ? ['nadir', 'nadir', 'kiyafet', 'esya']
+                     : isUnit  ? ['nadir', 'kiyafet', 'altin']
+                               : ['nadir', 'altin'];
+          drop.forEach(t => B.Chest.earn(t));
+          chestCount = drop.length;
+        }
         head.classList.remove('boss-hit', 'boss-enter'); void head.offsetWidth;
         head.classList.add('boss-defeated'); // patlama animasyonu
         B.Bus.emit(B.Events.BOSS_DEFEATED, { bossId: boss.id, tier: boss.tier }); // konfeti + ekran parlaması
         // Zafer kartını biraz geciktir: önce boss'un patlaması + konfeti görünsün
         setTimeout(() => B.UI.overlay(
           '<div class="ov-big">' + boss.icon + '💥</div><h2>' + boss.name.toUpperCase() + ' DEVRİLDİ!</h2>' +
-          '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (isFinal ? ' · 🐉 DERS USTASI OLDUN!' : isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
+          '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (chestCount ? ' · 🎁 ' + chestCount + ' sandık' : '') + (isFinal ? ' · 🐉 DERS USTASI OLDUN!' : isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
           '<p class="ov-crystal">💠 Bir Sayı Kristali parçası daha kurtarıldı!</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('boss.win') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
@@ -35151,7 +35176,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.70'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.71'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

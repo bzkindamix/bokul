@@ -4,19 +4,27 @@
  *               skill: "beceri-adı", hint: "yanlışta gösterilecek ipucu" } */
 (function (B) {
 
-  /* params: { pool: [bankItem...] } — havuzdan rastgele soru seçer.
-   * Aynı sorunun art arda gelmemesi için son seçilenler hatırlanır. */
-  const recent = [];
+  /* params: { pool: [bankItem...] } — "karıştırılmış torba": havuz karıştırılır ve
+   * sırayla tüketilir; TÜM banka bitmeden aynı soru TEKRAR gelmez (ünitenin farklı
+   * adımları boyunca tekrar önlenir). Torba bitince yeniden karışır. Her havuzun
+   * kendi torbası vardır (imza = uzunluk + ilk sorunun başı). */
+  const bags = new Map();
+  function sig(pool) { return pool.length + '|' + ((pool[0] && pool[0].q) ? pool[0].q.slice(0, 16) : ''); }
+  function shuffled(n) {
+    const a = []; for (let i = 0; i < n; i++) a.push(i);
+    for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
   function generate(params) {
     const pool = params.pool || [];
     if (!pool.length) throw new Error('Çoktan seçmeli havuz boş!');
-    let item, guard = 40;
-    do { item = pool[Math.floor(Math.random() * pool.length)]; }
-    while (recent.includes(item.q) && --guard);
-    recent.push(item.q);
-    // Havuzun neredeyse tamamı dönmeden aynı soru tekrar gelmesin (tazelik hissi)
-    const cap = Math.max(1, Math.min(pool.length - 1, 14));
-    while (recent.length > cap) recent.shift();
+    const key = sig(pool);
+    let bag = bags.get(key);
+    if (!bag || bag.pos >= bag.order.length || bag.order.length !== pool.length) {
+      bag = { order: shuffled(pool.length), pos: 0 };
+      bags.set(key, bag);
+    }
+    const item = pool[bag.order[bag.pos++]] || pool[Math.floor(Math.random() * pool.length)];
     return { item, params };
   }
 

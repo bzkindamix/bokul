@@ -178,13 +178,22 @@
         const isFinal = boss.tier === 'final';
         const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
         const coins = B.Reward.addCoins(isFinal ? 250 : isUnit ? 100 : 50, 'boss');
+        // Sandıklar ESKALASYON: adım 1 · konu boss'u 2 · ünite boss'u 3 · FINAL (ders bitti) 4 en iyi
+        let chestCount = 0;
+        if (B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
+          const drop = isFinal ? ['nadir', 'nadir', 'kiyafet', 'esya']
+                     : isUnit  ? ['nadir', 'kiyafet', 'altin']
+                               : ['nadir', 'altin'];
+          drop.forEach(t => B.Chest.earn(t));
+          chestCount = drop.length;
+        }
         head.classList.remove('boss-hit', 'boss-enter'); void head.offsetWidth;
         head.classList.add('boss-defeated'); // patlama animasyonu
         B.Bus.emit(B.Events.BOSS_DEFEATED, { bossId: boss.id, tier: boss.tier }); // konfeti + ekran parlaması
         // Zafer kartını biraz geciktir: önce boss'un patlaması + konfeti görünsün
         setTimeout(() => B.UI.overlay(
           '<div class="ov-big">' + boss.icon + '💥</div><h2>' + boss.name.toUpperCase() + ' DEVRİLDİ!</h2>' +
-          '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (isFinal ? ' · 🐉 DERS USTASI OLDUN!' : isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
+          '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (chestCount ? ' · 🎁 ' + chestCount + ' sandık' : '') + (isFinal ? ' · 🐉 DERS USTASI OLDUN!' : isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
           '<p class="ov-crystal">💠 Bir Sayı Kristali parçası daha kurtarıldı!</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('boss.win') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]

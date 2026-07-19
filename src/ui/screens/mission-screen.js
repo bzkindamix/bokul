@@ -180,6 +180,14 @@
         B.Lesson.completeMission(params.sectionId, params.missionId, stars);
         const bonus = B.Reward.addXp(B.Reward.missionBonus(), 'mission');
         const coins = B.Reward.addCoins(10, 'mission');
+        // Her adımda bir SANDIK — kategori adıma göre değişir (çeşit). Boss/final daha çok verir.
+        let gotChest = false;
+        if (B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
+          const cats = ['altin', 'esya', 'kiyafet', 'nadir'];
+          const mid = params.missionId || 'm';
+          B.Chest.earn(cats[mid.charCodeAt(mid.length - 1) % cats.length]);
+          gotChest = true;
+        }
         B.Bus.emit(B.Events.MISSION_COMPLETED, { missionId: params.missionId, stars, xp: bonus });
         if (B.Anim.confetti) B.Anim.confetti(stars === 3 ? 55 : 30); // küçük kutlama
 
@@ -187,7 +195,7 @@
           '<div class="ov-big">🎖️</div><h2>HAREKÂT TAMAM!</h2>' +
           '<div class="ov-stars">' +
             [1, 2, 3].map(i => '<span class="ov-star' + (i <= stars ? ' lit' : '') + '">★</span>').join('') +
-          '</div><p class="ov-xp">Görev bonusu: +' + bonus + ' XP · +' + coins + ' 💰</p>' +
+          '</div><p class="ov-xp">Görev bonusu: +' + bonus + ' XP · +' + coins + ' 💰' + (gotChest ? ' · 🎁 Sandık!' : '') + '</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('mission.done') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
         );

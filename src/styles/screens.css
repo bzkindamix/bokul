@@ -578,7 +578,7 @@
 .legal-view p { margin-bottom: 6px; }
 
 /* ---------- v0.24: Eşya Mağazası + Depom ---------- */
-.store-wrap { padding: 8px 10px 24px; max-width: 720px; margin: 0 auto; }
+.store-wrap { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; min-height: 0; padding: 8px 10px 24px; max-width: 720px; width: 100%; margin: 0 auto; }
 .store-top { display: flex; justify-content: flex-end; margin-bottom: 8px; }
 .store-gold { font-size: 15px; font-weight: 800; }
 .store-tabs { display: flex; gap: 8px; margin-bottom: 10px; }
