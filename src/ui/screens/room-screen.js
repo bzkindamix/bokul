@@ -12,10 +12,10 @@
 
   // Eşya görsel boyutu (px) — gerçek dünyadaki orana yakın (mobilya büyük, küçük eşya küçük)
   const ITEM_SIZE = {
-    koltuk: 60, masa: 54, kitaplik: 56, tv: 58, sehpa: 38, lego: 42, saksi: 40, robot: 48,
-    konsol: 34, tablet: 30, telefon: 26, kulaklik: 30, vr: 34, dizustu: 38, drone: 38, hali: 66,
-    eski_sandalye: 48, kirik_dolap: 56, yirtik_hali: 62, bos_kutu: 42,
-    poster: 54, poster_uzay: 54, lamba: 44,
+    koltuk: 48, masa: 44, kitaplik: 46, tv: 48, sehpa: 32, lego: 36, saksi: 34, robot: 40,
+    konsol: 30, tablet: 26, telefon: 24, kulaklik: 26, vr: 30, dizustu: 32, drone: 32, hali: 54,
+    eski_sandalye: 40, kirik_dolap: 46, yirtik_hali: 52, bos_kutu: 36,
+    poster: 46, poster_uzay: 46, lamba: 38,
   };
   // Duvara asılanlar (poster, tavan lambası/disko) — gerisi yere oturur
   const WALL_ITEMS = ['poster', 'poster_uzay', 'lamba'];
@@ -34,6 +34,7 @@
       // Eski yerleşimleri mantıklı bölgeye oturt (yer eşyası zeminde, duvar eşyası duvarda)
       room.placed.forEach(pp => { pp.y = clampY(pp.id, pp.y); });
       let tab = 'items';
+      let selected = -1; // seçili eşya (büyült/küçült için)
 
       const save = () => B.Save.saveSoon();
       const itemDef = id => B.Items.get(id) || { icon: '📦', name: id };
@@ -43,7 +44,8 @@
       const wrap = document.createElement('div'); wrap.className = 'room-wrap'; root.appendChild(wrap);
       wrap.innerHTML =
         '<div class="room-view"><div class="room-wall"></div><div class="room-floor"></div>' +
-          '<div class="room-items"></div><div class="room-hint2">👆 Eşyaları sürükle · dokun→kaldır</div></div>' +
+          '<div class="room-items"></div><div class="room-hint2">👆 Sürükle · dokun→seç (büyült/küçült)</div></div>' +
+        '<div class="room-toolbar" hidden></div>' +
         '<div class="room-tabs">' +
           '<button class="chip rtab" data-t="items">🛋️ Eşyalarım</button>' +
           '<button class="chip rtab" data-t="wall">🖼️ Duvar</button>' +
@@ -54,6 +56,7 @@
       const floorEl = wrap.querySelector('.room-floor');
       const itemsEl = wrap.querySelector('.room-items');
       const panel = wrap.querySelector('.room-panel');
+      const toolbar = wrap.querySelector('.room-toolbar');
 
       function applyRoom() {
         wallEl.style.background = WALLS[room.wall] || WALLS[0];
@@ -63,13 +66,44 @@
       function renderPlaced() {
         itemsEl.innerHTML = room.placed.map((pp, i) => {
           const wall = isWall(pp.id);
-          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + '" data-i="' + i + '" ' +
-            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + sizeOf(pp.id) + 'px">' +
+          const fs = Math.round(sizeOf(pp.id) * (pp.s || 1)); // kişisel ölçek
+          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + (selected === i ? ' obj-selected' : '') + '" data-i="' + i + '" ' +
+            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + fs + 'px">' +
             (wall ? '' : '<span class="obj-shadow"></span>') +
             '<span class="obj-em">' + itemDef(pp.id).icon + '</span></button>';
         }).join('');
         itemsEl.querySelectorAll('.room-obj').forEach(attachDrag);
+        renderToolbar();
       }
+
+      /* Seçili eşya için büyült/küçült/kaldır araç çubuğu */
+      function renderToolbar() {
+        if (selected < 0 || !room.placed[selected]) { toolbar.hidden = true; toolbar.innerHTML = ''; return; }
+        const pp = room.placed[selected];
+        const pct = Math.round((pp.s || 1) * 100);
+        toolbar.hidden = false;
+        toolbar.innerHTML =
+          '<span class="rtb-name">' + itemDef(pp.id).icon + ' ' + itemDef(pp.id).name + '</span>' +
+          '<div class="rtb-btns">' +
+            '<button class="chip rtb-small">🔍➖ Küçült</button>' +
+            '<span class="rtb-pct">' + pct + '%</span>' +
+            '<button class="chip rtb-big">🔍➕ Büyült</button>' +
+            '<button class="chip rtb-del">🗑️ Kaldır</button>' +
+            '<button class="chip rtb-close">✕</button>' +
+          '</div>';
+        toolbar.querySelector('.rtb-small').onclick = () => resize(-0.15);
+        toolbar.querySelector('.rtb-big').onclick = () => resize(0.15);
+        toolbar.querySelector('.rtb-del').onclick = () => removeFromRoom(selected);
+        toolbar.querySelector('.rtb-close').onclick = () => { selected = -1; renderPlaced(); };
+      }
+
+      function resize(delta) {
+        const pp = room.placed[selected]; if (!pp) return;
+        pp.s = Math.max(0.5, Math.min(2.4, (pp.s || 1) + delta));
+        B.Audio.play('tick'); save(); renderPlaced();
+      }
+
+      function selectObj(i) { selected = (selected === i ? -1 : i); renderPlaced(); }
 
       function attachDrag(el) {
         const i = +el.dataset.i;
@@ -91,7 +125,7 @@
             el.classList.remove('dragging');
             el.removeEventListener('pointermove', move);
             el.removeEventListener('pointerup', up);
-            if (moved) save(); else removeFromRoom(i);
+            if (moved) { selected = i; save(); renderToolbar(); } else selectObj(i); // sürükle→seçili kalsın, dokun→seç
           };
           el.addEventListener('pointermove', move);
           el.addEventListener('pointerup', up);
@@ -103,7 +137,7 @@
         B.UI.confirm({
           icon: '🛋️', title: itemDef(pp.id).name + ' kaldırılsın mı?',
           body: 'Eşya Depom\'da kalır; sadece odadan kaldırılır.', yes: 'Kaldır', no: 'Vazgeç',
-          onYes: () => { room.placed.splice(i, 1); save(); renderPlaced(); renderPanel(); },
+          onYes: () => { room.placed.splice(i, 1); selected = -1; save(); renderPlaced(); renderPanel(); },
         });
       }
 

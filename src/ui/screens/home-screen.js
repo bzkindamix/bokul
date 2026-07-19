@@ -124,7 +124,7 @@
       doors.innerHTML =
         '<button class="btn door door-main">' + (ic('sword') || '⚔️') + '<br>HAREKÂT</button>' +
         '<button class="btn door door-side door-quests">' + (ic('quests') || '📋') + '<br>GÖREVLER' + badge + '</button>' +
-        '<button class="btn door door-side door-evim">' + (ic('home') || '🏠') + '<br>EVİM</button>' +
+        '<button class="btn door door-side door-evim">' + (ic('home') || '🏠') + '<br>BEN</button>' +
         '<button class="btn door door-side door-store">' + (ic('shop') || '🏪') + '<br>MAĞAZA</button>';
       root.appendChild(doors);
 
@@ -217,7 +217,7 @@
         setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Tour.run([
           { icon: '🧑‍✈️', title: 'Hoş geldin asker!', text: 'Ben Baba Komutan. Burası senin ÜSSÜN! Etrafı hızlıca tanıtayım.' },
           { icon: '⚔️', title: 'HAREKÂT', text: 'Buradan derslere girersin. Soruları çözüp yıldız, altın ve XP kazanırsın. Her cephe bir ders!' },
-          { icon: '🏠', title: 'EVİM', text: 'Karakterini süsle (kıyafet, saç), eşyalarını Depom\'da sakla, evcil hayvanına bak.' },
+          { icon: '🧍', title: 'BEN', text: 'Görünüşünü ayarla (kıyafet, saç), başarılarını gör, odanı süsle, evcil hayvanına bak.' },
           { icon: '🏪', title: 'MAĞAZA', text: 'Kazandığın altınla eşya al; Atölye\'de parçaları birleştirip yeni şeyler ÜRET (craft).' },
           { icon: '🐾', title: 'Evcil Hayvan', text: 'Bir dost sahiplen — ama sakın ihmal etme! Beslemez, oynamazsan Bulanık onu kaçırır. Düzenli bak!' },
           { icon: '🎁', title: 'Her Gün Gel', text: 'Her gün girince günlük ödül kazanır, serin büyür. Hadi göreve başla, Komutan!' },

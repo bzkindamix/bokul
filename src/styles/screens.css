@@ -1059,3 +1059,14 @@
 .mat-chip { font-size: 12px; font-weight: 700; background: var(--bg-raised); border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; }
 .mat-chip b { color: var(--xp); }
 .atolye-recipes { display: flex; flex-direction: column; gap: 6px; }
+
+/* === v0.61 — Oda eşya seçimi + büyült/küçült araç çubuğu === */
+.obj-selected .obj-em { outline: 2px dashed var(--xp); outline-offset: 3px; border-radius: 6px; }
+.room-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;
+  background: var(--bg-panel); border: 1px solid var(--accent); border-radius: 14px; padding: 8px 12px; }
+.rtb-name { font-weight: 800; font-size: 14px; }
+.rtb-btns { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.rtb-pct { font-size: 12px; font-weight: 800; color: var(--xp); min-width: 40px; text-align: center; }
+.rtb-small, .rtb-big { background: var(--bg-raised); }
+.rtb-del { background: rgba(255,89,120,.14); border: 1px solid rgba(255,89,120,.4); color: #FF6E86; }
+.rtb-close { background: var(--bg-raised); color: var(--ink-dim); }

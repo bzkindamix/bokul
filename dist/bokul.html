@@ -1442,6 +1442,17 @@ h1, h2, h3, h4,
 .mat-chip b { color: var(--xp); }
 .atolye-recipes { display: flex; flex-direction: column; gap: 6px; }
 
+/* === v0.61 — Oda eşya seçimi + büyült/küçült araç çubuğu === */
+.obj-selected .obj-em { outline: 2px dashed var(--xp); outline-offset: 3px; border-radius: 6px; }
+.room-toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;
+  background: var(--bg-panel); border: 1px solid var(--accent); border-radius: 14px; padding: 8px 12px; }
+.rtb-name { font-weight: 800; font-size: 14px; }
+.rtb-btns { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.rtb-pct { font-size: 12px; font-weight: 800; color: var(--xp); min-width: 40px; text-align: center; }
+.rtb-small, .rtb-big { background: var(--bg-raised); }
+.rtb-del { background: rgba(255,89,120,.14); border: 1px solid rgba(255,89,120,.4); color: #FF6E86; }
+.rtb-close { background: var(--bg-raised); color: var(--ink-dim); }
+
 </style>
 </head>
 <body>
@@ -1451,7 +1462,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.60 — Kedi maması balık ikonu yerine konserve mama ikonu (hayvansever hassasiyeti)</div>
+      <div class="splash-note">v0.61 — Menü isimleri (BEN/Başarılarım/Görünüşüm) + oda eşya büyült-küçült + boyut düzeltme</div>
     </div>
   </div>
 
@@ -12454,7 +12465,7 @@ h1, h2, h3, h4,
       doors.innerHTML =
         '<button class="btn door door-main">' + (ic('sword') || '⚔️') + '<br>HAREKÂT</button>' +
         '<button class="btn door door-side door-quests">' + (ic('quests') || '📋') + '<br>GÖREVLER' + badge + '</button>' +
-        '<button class="btn door door-side door-evim">' + (ic('home') || '🏠') + '<br>EVİM</button>' +
+        '<button class="btn door door-side door-evim">' + (ic('home') || '🏠') + '<br>BEN</button>' +
         '<button class="btn door door-side door-store">' + (ic('shop') || '🏪') + '<br>MAĞAZA</button>';
       root.appendChild(doors);
 
@@ -12547,7 +12558,7 @@ h1, h2, h3, h4,
         setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Tour.run([
           { icon: '🧑‍✈️', title: 'Hoş geldin asker!', text: 'Ben Baba Komutan. Burası senin ÜSSÜN! Etrafı hızlıca tanıtayım.' },
           { icon: '⚔️', title: 'HAREKÂT', text: 'Buradan derslere girersin. Soruları çözüp yıldız, altın ve XP kazanırsın. Her cephe bir ders!' },
-          { icon: '🏠', title: 'EVİM', text: 'Karakterini süsle (kıyafet, saç), eşyalarını Depom\'da sakla, evcil hayvanına bak.' },
+          { icon: '🧍', title: 'BEN', text: 'Görünüşünü ayarla (kıyafet, saç), başarılarını gör, odanı süsle, evcil hayvanına bak.' },
           { icon: '🏪', title: 'MAĞAZA', text: 'Kazandığın altınla eşya al; Atölye\'de parçaları birleştirip yeni şeyler ÜRET (craft).' },
           { icon: '🐾', title: 'Evcil Hayvan', text: 'Bir dost sahiplen — ama sakın ihmal etme! Beslemez, oynamazsan Bulanık onu kaçırır. Düzenli bak!' },
           { icon: '🎁', title: 'Her Gün Gel', text: 'Her gün girince günlük ödül kazanır, serin büyür. Hadi göreve başla, Komutan!' },
@@ -13433,7 +13444,7 @@ h1, h2, h3, h4,
       wrap.innerHTML =
         '<div class="evim-hero">' +
           '<div class="evim-avatar">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
-          '<div class="evim-name">' + (p.name || 'Asker') + '\'in Evi 🏠</div>' +
+          '<div class="evim-name">🧍 ' + (p.name || 'Asker') + '</div>' +
           '<div class="evim-levels">' +
             '<span class="chip">💰 ' + (p.coins || 0) + '</span>' +
             '<span class="chip">🏠 Ev Sv.' + (p.homeLevel || 1) + '</span>' +
@@ -13442,8 +13453,8 @@ h1, h2, h3, h4,
           compHtml +
         '</div>' +
         '<div class="evim-doors">' +
-          '<button class="btn door door-char"><span class="door-ico">🎖️</span><span class="door-tt">KARAKTERİM</span><small>Kimlik · rozetler · istatistik</small></button>' +
-          '<button class="btn door door-ben"><span class="door-ico">🧍</span><span class="door-tt">BEN</span><small>Tipimi ayarla</small></button>' +
+          '<button class="btn door door-char"><span class="door-ico">🎖️</span><span class="door-tt">BAŞARILARIM</span><small>Rozetler · istatistik · kimlik</small></button>' +
+          '<button class="btn door door-ben"><span class="door-ico">🧍</span><span class="door-tt">GÖRÜNÜŞÜM</span><small>Kıyafet · saç · yüz</small></button>' +
           '<button class="btn door door-dolap"><span class="door-ico">👕</span><span class="door-tt">DOLAP</span><small>Kıyafet al · sat · giy</small></button>' +
           '<button class="btn door door-room"><span class="door-ico">🛋️</span><span class="door-tt">ODAM</span><small>Eşya yerleştir · süsle</small></button>' +
           '<button class="btn door door-store"><span class="door-ico">📦</span><span class="door-tt">DEPOM</span><small>Eşya al · sakla</small></button>' +
@@ -14115,10 +14126,10 @@ h1, h2, h3, h4,
 
   // Eşya görsel boyutu (px) — gerçek dünyadaki orana yakın (mobilya büyük, küçük eşya küçük)
   const ITEM_SIZE = {
-    koltuk: 60, masa: 54, kitaplik: 56, tv: 58, sehpa: 38, lego: 42, saksi: 40, robot: 48,
-    konsol: 34, tablet: 30, telefon: 26, kulaklik: 30, vr: 34, dizustu: 38, drone: 38, hali: 66,
-    eski_sandalye: 48, kirik_dolap: 56, yirtik_hali: 62, bos_kutu: 42,
-    poster: 54, poster_uzay: 54, lamba: 44,
+    koltuk: 48, masa: 44, kitaplik: 46, tv: 48, sehpa: 32, lego: 36, saksi: 34, robot: 40,
+    konsol: 30, tablet: 26, telefon: 24, kulaklik: 26, vr: 30, dizustu: 32, drone: 32, hali: 54,
+    eski_sandalye: 40, kirik_dolap: 46, yirtik_hali: 52, bos_kutu: 36,
+    poster: 46, poster_uzay: 46, lamba: 38,
   };
   // Duvara asılanlar (poster, tavan lambası/disko) — gerisi yere oturur
   const WALL_ITEMS = ['poster', 'poster_uzay', 'lamba'];
@@ -14137,6 +14148,7 @@ h1, h2, h3, h4,
       // Eski yerleşimleri mantıklı bölgeye oturt (yer eşyası zeminde, duvar eşyası duvarda)
       room.placed.forEach(pp => { pp.y = clampY(pp.id, pp.y); });
       let tab = 'items';
+      let selected = -1; // seçili eşya (büyült/küçült için)
 
       const save = () => B.Save.saveSoon();
       const itemDef = id => B.Items.get(id) || { icon: '📦', name: id };
@@ -14146,7 +14158,8 @@ h1, h2, h3, h4,
       const wrap = document.createElement('div'); wrap.className = 'room-wrap'; root.appendChild(wrap);
       wrap.innerHTML =
         '<div class="room-view"><div class="room-wall"></div><div class="room-floor"></div>' +
-          '<div class="room-items"></div><div class="room-hint2">👆 Eşyaları sürükle · dokun→kaldır</div></div>' +
+          '<div class="room-items"></div><div class="room-hint2">👆 Sürükle · dokun→seç (büyült/küçült)</div></div>' +
+        '<div class="room-toolbar" hidden></div>' +
         '<div class="room-tabs">' +
           '<button class="chip rtab" data-t="items">🛋️ Eşyalarım</button>' +
           '<button class="chip rtab" data-t="wall">🖼️ Duvar</button>' +
@@ -14157,6 +14170,7 @@ h1, h2, h3, h4,
       const floorEl = wrap.querySelector('.room-floor');
       const itemsEl = wrap.querySelector('.room-items');
       const panel = wrap.querySelector('.room-panel');
+      const toolbar = wrap.querySelector('.room-toolbar');
 
       function applyRoom() {
         wallEl.style.background = WALLS[room.wall] || WALLS[0];
@@ -14166,13 +14180,44 @@ h1, h2, h3, h4,
       function renderPlaced() {
         itemsEl.innerHTML = room.placed.map((pp, i) => {
           const wall = isWall(pp.id);
-          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + '" data-i="' + i + '" ' +
-            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + sizeOf(pp.id) + 'px">' +
+          const fs = Math.round(sizeOf(pp.id) * (pp.s || 1)); // kişisel ölçek
+          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + (selected === i ? ' obj-selected' : '') + '" data-i="' + i + '" ' +
+            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + fs + 'px">' +
             (wall ? '' : '<span class="obj-shadow"></span>') +
             '<span class="obj-em">' + itemDef(pp.id).icon + '</span></button>';
         }).join('');
         itemsEl.querySelectorAll('.room-obj').forEach(attachDrag);
+        renderToolbar();
       }
+
+      /* Seçili eşya için büyült/küçült/kaldır araç çubuğu */
+      function renderToolbar() {
+        if (selected < 0 || !room.placed[selected]) { toolbar.hidden = true; toolbar.innerHTML = ''; return; }
+        const pp = room.placed[selected];
+        const pct = Math.round((pp.s || 1) * 100);
+        toolbar.hidden = false;
+        toolbar.innerHTML =
+          '<span class="rtb-name">' + itemDef(pp.id).icon + ' ' + itemDef(pp.id).name + '</span>' +
+          '<div class="rtb-btns">' +
+            '<button class="chip rtb-small">🔍➖ Küçült</button>' +
+            '<span class="rtb-pct">' + pct + '%</span>' +
+            '<button class="chip rtb-big">🔍➕ Büyült</button>' +
+            '<button class="chip rtb-del">🗑️ Kaldır</button>' +
+            '<button class="chip rtb-close">✕</button>' +
+          '</div>';
+        toolbar.querySelector('.rtb-small').onclick = () => resize(-0.15);
+        toolbar.querySelector('.rtb-big').onclick = () => resize(0.15);
+        toolbar.querySelector('.rtb-del').onclick = () => removeFromRoom(selected);
+        toolbar.querySelector('.rtb-close').onclick = () => { selected = -1; renderPlaced(); };
+      }
+
+      function resize(delta) {
+        const pp = room.placed[selected]; if (!pp) return;
+        pp.s = Math.max(0.5, Math.min(2.4, (pp.s || 1) + delta));
+        B.Audio.play('tick'); save(); renderPlaced();
+      }
+
+      function selectObj(i) { selected = (selected === i ? -1 : i); renderPlaced(); }
 
       function attachDrag(el) {
         const i = +el.dataset.i;
@@ -14194,7 +14239,7 @@ h1, h2, h3, h4,
             el.classList.remove('dragging');
             el.removeEventListener('pointermove', move);
             el.removeEventListener('pointerup', up);
-            if (moved) save(); else removeFromRoom(i);
+            if (moved) { selected = i; save(); renderToolbar(); } else selectObj(i); // sürükle→seçili kalsın, dokun→seç
           };
           el.addEventListener('pointermove', move);
           el.addEventListener('pointerup', up);
@@ -14206,7 +14251,7 @@ h1, h2, h3, h4,
         B.UI.confirm({
           icon: '🛋️', title: itemDef(pp.id).name + ' kaldırılsın mı?',
           body: 'Eşya Depom\'da kalır; sadece odadan kaldırılır.', yes: 'Kaldır', no: 'Vazgeç',
-          onYes: () => { room.placed.splice(i, 1); save(); renderPlaced(); renderPanel(); },
+          onYes: () => { room.placed.splice(i, 1); selected = -1; save(); renderPlaced(); renderPanel(); },
         });
       }
 
@@ -15499,7 +15544,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.60'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.61'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

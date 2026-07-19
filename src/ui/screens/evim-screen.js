@@ -30,7 +30,7 @@
       wrap.innerHTML =
         '<div class="evim-hero">' +
           '<div class="evim-avatar">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
-          '<div class="evim-name">' + (p.name || 'Asker') + '\'in Evi 🏠</div>' +
+          '<div class="evim-name">🧍 ' + (p.name || 'Asker') + '</div>' +
           '<div class="evim-levels">' +
             '<span class="chip">💰 ' + (p.coins || 0) + '</span>' +
             '<span class="chip">🏠 Ev Sv.' + (p.homeLevel || 1) + '</span>' +
@@ -39,8 +39,8 @@
           compHtml +
         '</div>' +
         '<div class="evim-doors">' +
-          '<button class="btn door door-char"><span class="door-ico">🎖️</span><span class="door-tt">KARAKTERİM</span><small>Kimlik · rozetler · istatistik</small></button>' +
-          '<button class="btn door door-ben"><span class="door-ico">🧍</span><span class="door-tt">BEN</span><small>Tipimi ayarla</small></button>' +
+          '<button class="btn door door-char"><span class="door-ico">🎖️</span><span class="door-tt">BAŞARILARIM</span><small>Rozetler · istatistik · kimlik</small></button>' +
+          '<button class="btn door door-ben"><span class="door-ico">🧍</span><span class="door-tt">GÖRÜNÜŞÜM</span><small>Kıyafet · saç · yüz</small></button>' +
           '<button class="btn door door-dolap"><span class="door-ico">👕</span><span class="door-tt">DOLAP</span><small>Kıyafet al · sat · giy</small></button>' +
           '<button class="btn door door-room"><span class="door-ico">🛋️</span><span class="door-tt">ODAM</span><small>Eşya yerleştir · süsle</small></button>' +
           '<button class="btn door door-store"><span class="door-ico">📦</span><span class="door-tt">DEPOM</span><small>Eşya al · sakla</small></button>' +
