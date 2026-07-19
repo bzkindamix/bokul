@@ -10,7 +10,7 @@
       this._hud = hud;
       let tab = (params && params.tab) || 'shop';
       if (tab === 'craft') tab = 'shop'; // craft artık kendi ekranı (atolye)
-      let cat = 'all';
+      let vendorId = null; // Eşya sekmesinde seçili satıcı
       let kcat = 'all'; // kıyafet sekmesi tür süzgeci
 
       const wrap = document.createElement('div');
@@ -56,17 +56,34 @@
           '<p class="ov-quote">' + text + '</p>', [{ label: 'Anlaşıldı!', onClick: null }]);
       }
 
-      /* ---- 🏪 Mağaza ---- */
+      /* Satıcı afişi: karakter yüzü + adı + o an söylediği replik */
+      function vendorBanner(v) {
+        if (!v) return '';
+        return '<div class="vendor-banner" style="--vc:' + v.color + '">' +
+          '<div class="vendor-face">' + v.icon + '</div>' +
+          '<div class="vendor-info">' +
+            '<div class="vendor-name">' + esc(v.name) + '</div>' +
+            '<div class="vendor-say">💬 ' + esc(B.Vendors.say(v.id)) + '</div>' +
+          '</div></div>';
+      }
+
+      /* ---- 🏪 Mağaza (satıcı gruplarına ayrılmış) ---- */
       function renderShop(body) {
-        babaSays('shop', '🛒', 'Burası Mağaza! Kazandığın altınla eşya alırsın; aldıkların Depom\'a gider. Ham malzemeleri (tahta, cam, metal…) buradan al, sonra 🔨 Atölye\'de birleştirip yeni şeyler ÜRET. İpucu: bir eşyanın üstüne dokun, "emin misin?" diye sorar.');
-        const buyable = B.Items.catalog().filter(it => !it.craftOnly);
-        const cats = B.Items.categories().filter(c => buyable.some(it => it.cat === c.id));
-        const filterRow = '<div class="store-cats">' +
-          '<button class="chip scat" data-c="all">Hepsi</button>' +
-          cats.map(c => '<button class="chip scat" data-c="' + c.id + '">' + c.icon + ' ' + c.name + '</button>').join('') +
-          '</div>';
-        const items = buyable.filter(it => cat === 'all' || it.cat === cat);
-        const cards = items.map(it => {
+        babaSays('shop', '🛒', 'Burası Çarşı! Her satıcının kendi tezgâhı var: Demirci Baba ham madde, Robotçu Zeki teknoloji, Marangoz Usta oda eşyası, Barınak Teyze evcil malzemesi satar. Altınla al, aldıkların Depom\'a gider. Ham maddeyi sonra 🔨 Atölye\'de birleştirip yeni şeyler ÜRET.');
+        // Terzi kıyafet sekmesinde; burada eşya satıcıları
+        const vendors = B.Vendors.all().filter(v => (v.cats || []).some(c => c !== 'kiyafet'));
+        if (!vendors.length) { body.innerHTML = '<div class="store-empty">Satıcı bulunamadı.</div>'; return; }
+        if (!vendorId || !vendors.some(v => v.id === vendorId)) vendorId = vendors[0].id;
+        const vendor = B.Vendors.get(vendorId);
+        const vrow = '<div class="store-vendors">' + vendors.map(v =>
+          '<button class="chip vchip' + (v.id === vendorId ? ' tab-on' : '') + '" data-v="' + v.id + '" style="--vc:' + v.color + '">' +
+            v.icon + ' ' + esc(v.name) + '</button>').join('') + '</div>';
+        const banner = vendorBanner(vendor);
+        // Barınak: ücretsiz sahiplenme kısayolu
+        const adoptBtn = vendor.id === 'barinak'
+          ? '<button class="btn-adopt">🐾 Dostunu ÜCRETSİZ sahiplen ▶</button>' : '';
+        const buyable = B.Items.catalog().filter(it => !it.craftOnly && (vendor.cats || []).includes(it.cat));
+        const cards = buyable.map(it => {
           const owned = B.Items.count(it.id);
           const isOwnedUnique = it.unique && owned > 0;
           const afford = coins() >= it.price;
@@ -84,14 +101,17 @@
                                          : '<span class="store-price">💰 ' + it.price + ' <small class="store-stock">📦' + stockLeft + '</small></span>')) +
             '</button>';
         }).join('');
-        body.innerHTML = filterRow + '<div class="store-grid">' + cards + '</div>';
+        const grid = cards ? '<div class="store-grid">' + cards + '</div>'
+                           : '<div class="store-empty">Bu tezgâhta şimdilik bir şey yok.</div>';
+        body.innerHTML = vrow + banner + adoptBtn + grid;
 
-        body.querySelectorAll('.scat').forEach(b => b.onclick = () => {
-          cat = b.dataset.c;
-          body.querySelectorAll('.scat').forEach(x => x.classList.toggle('tab-on', x === b));
+        body.querySelectorAll('.vchip').forEach(b => b.onclick = () => {
+          vendorId = b.dataset.v;
+          B.Audio.play('tick');
           renderShop(body);
         });
-        const active = body.querySelector('.scat[data-c="' + cat + '"]'); if (active) active.classList.add('tab-on');
+        const adoptEl = body.querySelector('.btn-adopt');
+        if (adoptEl) adoptEl.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };
 
         body.querySelectorAll('.store-card[data-id]').forEach(cardEl => {
           if (cardEl.disabled) return;
@@ -132,7 +152,8 @@
         // Tür süzgeci (Üst/Alt/Saç…)
         const types = [];
         all.forEach(c => { if (!types.some(t => t.id === c.type)) types.push({ id: c.type, label: c.typeLabel }); });
-        const filterRow = '<div class="store-cats">' +
+        const terziBanner = vendorBanner(B.Vendors.get('terzi'));
+        const filterRow = terziBanner + '<div class="store-cats">' +
           '<button class="chip kcat" data-c="all">Hepsi</button>' +
           types.map(t => '<button class="chip kcat" data-c="' + t.id + '">' + t.label + '</button>').join('') +
           '</div>';

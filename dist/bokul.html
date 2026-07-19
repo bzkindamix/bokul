@@ -970,6 +970,31 @@ h1, h2, h3, h4,
 .stab.tab-on { background: var(--accent); color: #3a0a2e; }
 .store-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 .scat.tab-on { background: var(--xp); color: #3a2e05; }
+
+/* ---- Satıcılar (mağaza grupları) ---- */
+.store-vendors { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.vchip { border: 1px solid var(--line); }
+.vchip.tab-on { background: var(--vc, var(--xp)); color: #fff; border-color: var(--vc, var(--xp)); font-weight: 800; }
+.vendor-banner {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  background: color-mix(in srgb, var(--vc, #888) 14%, var(--bg-panel));
+  border: 1px solid color-mix(in srgb, var(--vc, #888) 45%, var(--line));
+  border-left: 5px solid var(--vc, #888); border-radius: 16px; padding: 10px 14px;
+}
+.vendor-face {
+  flex: none; width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 30px;
+  background: var(--vc, #888); box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+.vendor-info { min-width: 0; }
+.vendor-name { font-weight: 800; font-size: 14px; color: var(--vc, var(--ink)); }
+.vendor-say { font-size: 13px; color: var(--ink); line-height: 1.35; margin-top: 2px; }
+.btn-adopt {
+  display: block; width: 100%; margin-bottom: 12px; padding: 11px;
+  background: color-mix(in srgb, #66BB6A 22%, var(--bg-panel)); color: var(--ink);
+  border: 1px dashed #66BB6A; border-radius: 14px; font-weight: 800; font-size: 14px; cursor: pointer;
+}
+.btn-adopt:active { transform: scale(.98); }
 .store-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
 .store-card {
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px;
@@ -1737,7 +1762,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.81 — 5 yeni evcil hayvan (hamster/tavşan/kaplumbağa/papağan/kirpi) + bakım item'ları (yuva/yem/oyuncak) ve bakım mekanikleri</div>
+      <div class="splash-note">v0.82 — Magaza satici gruplari (5 karakter, 60 replik) + ucretsiz barinak sahiplenme</div>
     </div>
   </div>
 
@@ -3807,6 +3832,383 @@ h1, h2, h3, h4,
       ]
     }
   ]
+}
+</script>
+<script type="application/json" id="bokul-content-vendors">
+{
+  "vendors": [
+    {
+      "id": "demirci",
+      "name": "Demirci Baba",
+      "icon": "🔨",
+      "color": "#B87333",
+      "tagline": "Ham madde ve atölye ürünleri",
+      "cats": [
+        "malzeme",
+        "craft"
+      ],
+      "lines": [
+        "Tahtayi severim, cunku hic 'hayir' demez, hep 'evet agac' der! Hih.",
+        "Vidayi neden severim biliyor musun? Cunku hep isini ciddiye sarar da ondan!",
+        "Cam gunes gorunce parlar, ben gorunce homurdanirim; herkesin bir yetenegi var evlat.",
+        "Metal soguktur derler, ama benim yanimda durunca isinir, cunku ben kaynarim! Hih.",
+        "Ipi cok severim; tek kusuru fazla baglayici olmasi, tipki benim gibi.",
+        "Boya kutusunu actim, renkler firladi, 'usta uyu' dediler; ben de homurdanip devam ettim.",
+        "Vida donerken 'basim dondu' diyor; ben de 'sen benim islerimi biliyor musun' diyorum. Hih.",
+        "Cekicimle konusurum bazen; o hic cevap vermez, en sevdigim sohbet arkadasi.",
+        "Tahtaya soru sordum, cevap vermedi; mesenin sessizligi altindan degerlidir evlat.",
+        "Bir cam bir metale demis ki: 'sen sertsin', metal demis ki: 'sen seffafsin, seni gorebiliyorum bile!'",
+        "Vida ile civi kavga etmis; vida kazanmis cunku sonuna kadar donmus. Hih.",
+        "Boyayla resim yaptim, sakalima bulast ; simdi gokkusagi sakalli demirciyim.",
+        "Ipe dugum attim, cozemedim; demirci degil hokkabaz oldum sanki bugun.",
+        "Metali isittim, isittim; sonunda o bana 'yeter usta, terledim' dedi. Hih.",
+        "Tahta talasi burnuma kacti, hapsurdum, atolye 'cok yasa usta' dedi.",
+        "Cam bardagi severim; hem su tutar hem de icine bakip surat asabilirim.",
+        "Vidalar kucuktur ama koca dolabi ayakta tutar; kucugu kucumseme evlat.",
+        "Cekicle piyano calmayi denedim; komsular 'usta lutfen demire don' dediler. Hih.",
+        "Boya kurusun diye bekledim, uyuyakalmisim; ruyamda bile homurdanmisim derler.",
+        "Iple metali baglamaya calistim, metal 'ben zaten saglamim' dedi; inatci malzeme!",
+        "Yine mi geldin evlat? Neyse, al bakalim su vidayi da git isine.",
+        "Hih. Elini cabuk tut, bu demir kendi kendine sekillenmeyecek.",
+        "Ne o, yine tahta mi lazim? Al su meseyi, ama hor kullanma sonra bana gelme.",
+        "Homurdaniyorum diye korkma, isirmam; sadece dislerim demirden, o kadar.",
+        "Camla oynama evlat, kirilir; sonra parcalari toplamak yine bana kalir.",
+        "Bak simdi vidayi verdim, ama akilli kullan; her deligi kendin acacaksin.",
+        "Hih, acelen ne? Iyi is soguk demirle degil, sabirla olur; otur bekle.",
+        "Yine bos torbayla geldin ha? Neyse, doldurayim su boyalari, minnet bekliyorum degil.",
+        "Ipi dolastirma, sinirime dokunma; duzgun sarilmis ip demircinin gururudur.",
+        "Ne bakiyorsun oyle? Metali aldin mi al, almadin mi cekil, isim gucum var.",
+        "Hih, gene mi kaybettin aletini? Al su yenisini, ama bu sefer cebine koy.",
+        "Cok soru soruyorsun evlat; ama sorman iyi, cahil kalmandan iyidir, al su tahtayi.",
+        "Homur homur ediyorum ama seni sevdim; sakin kimseye soyleme, itibarim gider.",
+        "Vidayi ters takmissin yine; sok basimi, cikar da dogru tak, ogren artik.",
+        "Neyse neyse, gel bakalim; bosuna gelmedin ya, su malzemeleri al da yola koyul.",
+        "Hih, benim atolyem oyuncak degil; ama madem geldin, su boyayi al, dikkatli tasi.",
+        "Cam istedin, kirilir dedim, yine istedin; inatta beni gecersin evlat.",
+        "Gene erken kalkmis buraya gelmissin; demircinin uykusu kutsaldir, ama al iste vidani.",
+        "Homurdanmam bosuna degil; her homurtu bir tecrube, dinlersen ogrenirsin.",
+        "Tamam tamam, cekme suratini; al su ipi de gul biraz, atolye neseli olsun.",
+        "Bir sorunu cozemedin mi? Malzemeyi zorlama, DUSUN; aklin en iyi aletindir evlat.",
+        "Olcmeden kesme derler; once iyi olc, sonra bir kere kes, iki kere pisman olma.",
+        "Ders calisirken de demir doverken de sabir sart; acele ise seytan karisir.",
+        "Bir seyi bilmiyorsan sorman ayip degil; asil ayip, ogrenmeden vazgecmektir.",
+        "Kucuk vidalar buyuk dolaplari tutar; kucuk bilgiler de buyuk sinavlari kazanir.",
+        "Hatan olursa uzulme; ben de nice demiri egdim buktum, en guzelini deneye deneye yaptim.",
+        "Kitap da bir alettir evlat; okudukca aklin keskinlesir, kor birakma onu.",
+        "Once temizle sonra calis; dagink masada ne is yurur ne de akil calisir.",
+        "Zor gelen dersi paslanmis demir gibi gor; sabirla ovarsan altin gibi parlar.",
+        "Ogrenmek tahta gibidir; ne kadar yontarsan o kadar guzel sekil alir, birak kolayi.",
+        "Bir ipin ucunu bulamiyorsan basa don; her dugumun bir baslangici vardir evlat.",
+        "Matematik korkutmaz, tanimadigin icin oyle gelir; tanidikca dostun olur, hih.",
+        "Elini isten kacirma; en usta demirci bile bir gun cekici ilk kez tutmustu.",
+        "Yanlis yaptin diye alet suclama; kotu isci aletini suclar, iyi isci aklini kullanir.",
+        "Her gun bir sey ogren; kucuk kivilcimlar birikince koca bir ates olur evlat.",
+        "Camdan ders al: kirilgan gorunur ama isigi gecirir; sen de bilgiyi ic dunyana gecir.",
+        "Yorulunca dinlen, birak degil; demir bile sogumadan sekil almaz, sen de mola ver.",
+        "Sorunu parcalara ayir; koca demiri de kucuk kucuk doverek sekillendiririz evlat.",
+        "Merak en iyi ustadir; 'neden' diye sordukca aklinin atolyesi genisler, hih.",
+        "Bugun ogrendigini yarin unutma diye tekrar et; alet de kullanilmazsa paslanir evlat."
+      ]
+    },
+    {
+      "id": "robotcu",
+      "name": "Robotçu Zeki",
+      "icon": "🤖",
+      "color": "#3DA5F2",
+      "tagline": "Teknoloji ve koleksiyon",
+      "cats": [
+        "tech",
+        "koleksiyon"
+      ],
+      "lines": [
+        "Robotum bana espri anlattı ama gülmedim, çünkü hâlâ yükleniyordu! Vaov!",
+        "Tabletim uyudu, ben de ona ninni söyledim: bip-bip, uykucu-bip!",
+        "Konsolum karnının acıktığını söyledi, ben de fişini beslemeye taktım!",
+        "Robotum dans etmek istedi ama pili şarjda kaldı, tek ayak zıpladı!",
+        "Bilgisayarım hapşırınca ekranından minik pikseller uçtu, çok tatlıydı!",
+        "Gadget'ım saklambaç oynadı ama antenini saklamayı hep unutuyor!",
+        "Robotum yüzmek istedi, ben de ona su geçirmez şaka anlattım: pıtır-splash!",
+        "Klavyem bana şarkı söyledi: tık-tık-tık, en sevdiğim ritim bu, vaov!",
+        "Fare imlecim yarışa girdi ama ekranın kenarına çarpıp durdu, hihi!",
+        "Robotum yıldızları saymak istedi ama ikiye kadar sayınca uyuyakaldı!",
+        "Kulaklığım bana sır fısıldadı: bip-bop, ama Türkçesini çözemedim!",
+        "Drone'um uçmak istedi ama önce bana el sallamayı öğrendi, çok kibar!",
+        "Robotum resim yaptı, tamamı kare çıktı, çünkü daireyi henüz öğrenmedi!",
+        "Ekranım kararınca korktum sandın mı? Yok, sadece göz kırptı, vaov!",
+        "Robotum bilmece sordu: sesi var eli yok, cevabı zil! Bunu biliyor muydun?",
+        "Şarj kablom düğüm attı, sanırım dün gece jimnastik yapmış!",
+        "Robotum futbol oynadı ama topu tekerlek sandı, peşinden yuvarlandı!",
+        "Kameram gülümsememi çekti, sonra kendi de gülümsedi: klik-klik-mutlu!",
+        "Robotum masal dinledi ve mutlu sonda alkışladı: klap-klap-bip, harika!",
+        "Kumandam saklandı, meğer koltuğun altında pil dolduruyormuş, seni gidi!",
+        "Bunu bilmiyor musun? Şaka yapıyorsun herhâlde, neyse ben anlatırım!",
+        "Ben mi? Üç yaşında ilk robotumu kurmuştum, sen daha yeni mi başlıyorsun?",
+        "Vaov, bu gadget'ın on iki parçası var ve hepsinin adını ezbere bilirim!",
+        "Bunu daha duymadın mı? Ben yıllar önce keşfetmiştim aslında, öhöm!",
+        "Benim tabletim en hızlısıdır, çünkü onu ben ayarladım, elbette!",
+        "Kolay iş bu, ben gözüm kapalı bile devreyi bağlarım, izle beni!",
+        "Sen bunu zor mu sandın? Benim için çocuk oyuncağı, hatta robot oyuncağı!",
+        "Ben her gadget'ı tamir ederim, en zorunu bile, çünkü ben Robotçu Zeki'yim!",
+        "Vaov, sen daha pili mi arıyorsun? Ben çoktan takıp çalıştırırdım!",
+        "Bu bilgiyi bilmemek olur mu? Neyse üzülme, öğreten benim işte!",
+        "Benim koleksiyonumda yüz parça var, sende kaç tane? Say bakalım, hihi!",
+        "Ben en nadir parçaları toplarım, çünkü nerede olduklarını hep bilirim!",
+        "Sen düğmeye mi bastın? Ben zaten sesli komutla açıyorum, çok kolay!",
+        "Vaov, bunu bir kere görsem yeter, ben hemen aklımda tutarım, deneme beni!",
+        "Benim robotum en akıllısı, tabii ki onu ben programladım, öhöm!",
+        "Sen daha okuyorsun, ben çoktan çözdüm bile, ama acele etme sen!",
+        "Bu gadget bende ilk çıktığı gün vardı, sen daha yeni mi duyuyorsun?",
+        "Ben uzaya bile robot gönderirdim, tabii önce kahvaltımı yapardım!",
+        "Kolay soru, cevabı biliyorum ama sen de bul, sana bir ipucu vereyim mi?",
+        "Vaov, benim hafızam bir bilgisayar kadar güçlü, hatta belki daha da fazla!",
+        "Bir soruda takıldın mı? Bir robot gibi düşün: adım adım böl, sonra çöz!",
+        "Merak ettiğin şeyi sor, çünkü her büyük mucit önce soru sormuştur!",
+        "Vaov, hata yaptın mı? Robotlar da hata yapar, sonra öğrenip düzeltir!",
+        "Bir bilgiyi öğrenmek yeni bir parça toplamak gibidir, koleksiyonun büyüsün!",
+        "Zor gelen şeyi ikiye böl, sonra tekrar böl, en sonunda kolaycık olur!",
+        "Bir şeyi merak ettin mi, o zaman beynin şarj oluyor demektir, devam et!",
+        "Cevabı hemen bulamazsan panik yok, robotlar bile üç kere dener, sen de dene!",
+        "Yeni bir şey öğrenince beynin güncellenir, tıpkı benim yazılımım gibi, vaov!",
+        "Bir bulmacayı çözmek için önce ipuçlarını topla, dedektif robot gibi ol!",
+        "Sayıları sevmiyor musun? Onları oyun gibi düşün, her biri bir bilmece!",
+        "Kitap okumak beynine yeni programlar yükler, ne kadar çok o kadar iyi!",
+        "Takıldığın yerde derin bir nefes al, sonra baştan bak, çözüm hep oradadır!",
+        "Bir soruyu çözmek çikolata gibidir: yavaş yavaş tadını çıkararak yap!",
+        "Merakını hiç kaybetme, çünkü en güzel icatlar merakla başlar, biliyor muydun?",
+        "Yanlış cevap kötü değildir, sana doğruya giden yolu gösterir, korkma!",
+        "Her gün bir yeni şey öğren, bir hafta sonra koca bir bilgi kalesi olur!",
+        "Zor bir işi küçük adımlara böl, robotlar hep böyle çalışır, sen de yapabilirsin!",
+        "Bir arkadaşına öğret, çünkü anlattığın şeyi daha iyi öğrenirsin, dene bak!",
+        "Hayal kurmak da öğrenmektir, aklında robotlar tasarla, belki bir gün yaparsın!",
+        "Pes etmek yok, her bilmecenin bir anahtarı vardır, sen aramaya devam et!"
+      ]
+    },
+    {
+      "id": "marangoz",
+      "name": "Marangoz Usta",
+      "icon": "🪚",
+      "color": "#8D6E63",
+      "tagline": "Odanı güzelleştiren her şey",
+      "cats": [
+        "oda"
+      ],
+      "lines": [
+        "Koltuğa sordum 'yorgun musun?' dedi ki 'hayır, ben hep otururum zaten!'",
+        "Halı bugün çok gururlu, sabah üç kişi üstünde bastı geçti.",
+        "Lambaya 'ışık ver' dedim, o da 'önce sen bir gülümse' dedi.",
+        "Masa ile sandalye kavga etmiş, sebep: kim daha çok destek oluyor?",
+        "Yastık dün gece o kadar rahattı ki, kendisi bile uyuyakaldı.",
+        "Poster duvara bakıp 'ben burada yıldızım' diye böbürlendi.",
+        "Dolap ağzını açtı ama içinden sadece bir çorap 'merhaba' dedi.",
+        "Perde rüzgarla dans ediyordu, bale yapıyorum sandı.",
+        "Sehpa çok küçük ama 'ben minik dev'im' diye gururlanıyor.",
+        "Ayna bana baktı, ben de ona baktım, ikimiz de gülmekten kırıldık.",
+        "Kitaplık öyle doldu ki bir kitap 'bana da yer aç' diye seslendi.",
+        "Vazodaki çiçek 'ben burada tatildeyim' diye keyif yapıyor.",
+        "Puf koltuk zıpladı zıpladı, kendini yastık zannetti sonunda.",
+        "Duvar saati 'tik tak' derken, aslında şarkı söylediğini iddia ediyor.",
+        "Örtü masaya sarıldı, 'üşüdün mü?' dedim, 'hayır, şıklık bu' dedi.",
+        "Sandalye dört ayağıyla dans etmeye kalktı, biraz sallandı ama oldu.",
+        "Abajur akşam olunca 'sıra bende' der, güneşe bayrağı devreder.",
+        "Kilim öyle renkli ki, gökkuşağı ondan ders alıyor.",
+        "Raf 'ben düz duruyorum' dedi ama biraz eğri, kimseye söyleme.",
+        "Minder o kadar yumuşak ki, uyku bile ona misafir geliyor.",
+        "Şu poster oraya olmaz! Estetik meselesi bu, herkes anlamaz.",
+        "Ah, o rengi oraya koyma, gözüm huzur bulmuyor öyle.",
+        "Koltuğu iki santim sağa al, yoksa bütün oda somurtacak.",
+        "Halıyı ters serdin, desen bana sırtını dönmüş resmen.",
+        "Yok yok, o lamba çok parlak; ben yumuşak ışığın şairiyim.",
+        "Vazoyu pencere önüne koy, çiçek de manzara ister canım.",
+        "Bu masa buraya ağır gelir, oda nefes alamıyor görmüyor musun?",
+        "Perdeyi öyle asma, kırışıkları içimi acıtıyor.",
+        "Şu tabloyu biraz yukarı; sanat göz hizasında saygı görür.",
+        "Olmadı, olmadı; renkler birbiriyle küsmüş, barıştıralım.",
+        "Sandalyeyi köşeye atma, o da odanın bir parçası, gönlü var.",
+        "İki mavi yan yana durmaz, biri incinir; araya biraz sarı koy.",
+        "Bu kilim çok bağırıyor, oda sessiz bir şiir olmalı.",
+        "Rafı doldururken acele etme; boşluk da bir güzelliktir bilmez misin?",
+        "Abajuru oraya değil; ışığın da gideceği bir yön vardır.",
+        "Duvarı bomboş bırakma, ama tıka basa da doldurma; ölçü ister.",
+        "O yastığın yeri orası değil, gözüm ona her bakışta üzülüyor.",
+        "Simetriyi bozdun; bir milim bile beni rahatsız eder, düzeltelim.",
+        "Aynayı karşıya as ki oda kendini görüp gülümsesin.",
+        "Bu köşe çok sade kaldı, minicik bir dokunuş bekliyor benden.",
+        "Bir odayı ev yapan sensin; sevgiyle diz, o zaman güzel olur.",
+        "Güzel bir oda gibi, güzel bir bilgi de emekle kurulur, sabret, yerine koy.",
+        "Her eşyanın bir yeri vardır; her bilginin de, düzenli koy, kaybolmasın.",
+        "Ağaç sabırla büyür, oda da öyle; acele eden usta güzellik göremez.",
+        "Önce planla, sonra yerleştir; iyi marangoz iki kez ölçer bir kez keser.",
+        "Dağınıklık gözü yorar; toplarsan aklın da ferahlar, dene bak.",
+        "Bir eşyayı sevmek, ona yer açmakla başlar; kalbinde de öyledir.",
+        "Renkler uyum ister, insanlar da; birbirini dinleyen güzel durur.",
+        "Küçük bir düzen, büyük bir huzur getirir; başla, gerisi gelir.",
+        "Emek verdiğin köşe en güzel köşendir, unutma bunu.",
+        "Işık nereden gelirse gölge oraya düşer; bilgiyi de aydınlıktan al.",
+        "Sabırla zımparalanan tahta pürüzsüz olur; sen de öyle olgunlaşırsın.",
+        "Her akşam yerine koyarsan, sabah aramazsın; düzen zaman armağanıdır.",
+        "Güzellik gösterişte değil, uyumdadır; az ama yerinde koy.",
+        "Bir işi bitirmeden yenisine başlama, yarım kalan güzel olmaz.",
+        "Elinle yaptığın şeyin değeri, verdiğin emek kadardır.",
+        "Odanı sevgiyle süsle, sevgi görünür bir şeydir orada.",
+        "Ölçmeden kesme, düşünmeden söyleme; ikisi de geri dönmez.",
+        "En sağlam mobilya, sabırla birleştirilendir; dostluk da öyle.",
+        "Güzel bir yer, seni her gün biraz daha mutlu eder; ona iyi bak."
+      ]
+    },
+    {
+      "id": "barinak",
+      "name": "Barınak Teyze",
+      "icon": "🐾",
+      "color": "#66BB6A",
+      "tagline": "Dostlarını sahiplen, malzemeni al",
+      "cats": [
+        "pet"
+      ],
+      "lines": [
+        "Kedi bana baktı, ben ona baktım, sonra o kazandı, hemen mama verdim!",
+        "Köpeğim topu getirdi ama geri vermedi, galiba artık top onun oldu!",
+        "Papağanım günaydın demeyi öğrendi, şimdi sabahları beni o uyandırıyor!",
+        "Tavşan havuç için burnunu oynatıyor, ben de dayanamayıp iki tane veriyorum!",
+        "Kedi kutuya girdi, kutu küçük geldi ama o tam oldu der gibi baktı!",
+        "Köpek çamura girdi, sonra bana sarıldı, şimdi ikimiz de kahverengiyiz!",
+        "Balığıma el salladım, o da kuyruğunu salladı, birbirimizi anladık işte!",
+        "Yavru kedi kuyruğunu kovaladı, üç tur döndü, sonra bana yardım et der gibi baktı!",
+        "Köpeğim horlarken rüyasında koşuyor, bacakları havada tıpış tıpış gidiyor!",
+        "Hamster iki yanağını yemle doldurdu, şimdi konuşamıyor ama çok mutlu!",
+        "Kedim klavyeme oturdu, belki bu cümleyi o yazdı: mrrşdkjf, ne dersin?",
+        "Köpek postacıyı görünce önce havladı, sonra kuyruk salladı, kararsız kaldı!",
+        "Kedi süte daldı, çıkınca bıyıkları bembeyaz oldu, minik bir dede gibi!",
+        "Tavşanım zıpladı da zıpladı, sanırım havuçları uçuyor sandı, yakalayamadı!",
+        "Papağan telefon sesini taklit etti, üç kere boşuna cebimi aradım!",
+        "Yavru köpek terliğimi sakladı, tek ayağım üşüdü ama yine de gülüyorum!",
+        "Kedim güneşte uzandı, bir saat kımıldamadı, ben ısınıyorum dedi gözleriyle!",
+        "Kobayım ıslık çalınca koşarak geliyor, sanki minik bir tren geliyor!",
+        "Köpek kendi gölgesiyle oynadı, gölge kaçtı, o da peşinden koştu durdu!",
+        "Kedi çiçeğe pati attı, çiçek sallandı, o da korkup kanepeye zıpladı!",
+        "Sahiplenmek oyuncak almak değildir canım, her gün bakım ister, söz mü?",
+        "Bir dostu eve almadan önce ailene sor, hep birlikte bakmak daha güzeldir.",
+        "Mamasını ve suyunu her gün tazele yavrum, aç kalan bir dost mutsuz olur.",
+        "Kışın üşür o minik kalpler, onlara sıcacık bir yuva hazırlamayı unutma.",
+        "Kuyruğu kısılmışsa korkmuş demektir, yavaşça yaklaş, hiç acele etme olur mu?",
+        "Onları uzun süre yalnız bırakma canım, dostlar da arkadaşlık ister.",
+        "Bir dost yaşadığı sürece sorumluluk sürer, bu söz kocaman bir sözdür.",
+        "Küçük hayvanlar da yorulur, oynarken onlara dinlenme molası ver olur mu?",
+        "Kuyruğunu çekme, kulağını sıkma; sevgi hep nazik ellerle verilir yavrum.",
+        "Yeni bir dost eve gelince sabırlı ol, alışması için ona zaman tanı.",
+        "Hasta görünürse hemen bir büyüğe söyle, veteriner amca ona iyi bakar.",
+        "Sokakta bir dost görürsen yalnız yaklaşma, mutlaka bir büyükle birlikte git.",
+        "Onlar konuşamaz ama gözleriyle anlatır, dinlemeyi öğrenmek de sevgidir.",
+        "Çikolata ve soğan onlara zararlıdır, sadece kendi mamasını ver canım.",
+        "Bir dost seçtin mi vazgeçmek yok, zor günde de yanında olmak gerçek sevgidir.",
+        "Tuvalet eğitimi zaman ister, sakın kızma, sabırla öğretmek en güzelidir.",
+        "Onları çok sıkı kucaklama, minik kemikler naziktir, yumuşacık sarıl.",
+        "Uyurken uyandırma yavrum, dostlar da tıpkı senin gibi tatlı rüyalar görür.",
+        "Her canlının bir yuvası olmalı, sahiplendiğin dostu asla yolda bırakma.",
+        "Yeni bir dost gelince eskisini unutma, kalpte herkese ayrı bir yer vardır.",
+        "Bir dosta bakmak bir dersi öğrenmek gibidir: her gün azıcık, büyük sevgi.",
+        "Sabah mama, akşam sevgi; güzel bir düzen dostları çok mutlu eder.",
+        "Bir hayvan seni koşulsuz sever, sen de ona aynısını vermeyi öğren.",
+        "Tüylerini nazikçe taramak hem onları rahatlatır hem sizi yakınlaştırır.",
+        "Sabır en güzel öğretmendir, dostların öğrenirken senden zaman ister.",
+        "Onlarla yumuşak sesle konuş, sakin bir ses onlara güven verir.",
+        "Dostun mutlu mu merak ettin mi? Kuyruğuna ve gözlerine bak, hepsini anlatır.",
+        "Sorumluluk bir oyun gibidir, her gün küçük görevler yaparak büyürsün.",
+        "Yürüyüşe çıkarmak köpeğine çok iyi gelir, temiz hava ikinize de yarar.",
+        "Paylaşmayı dostlarından öğren, onlar son lokmayı bile seninle paylaşır.",
+        "Nazik olmak güçlü olmaktır, en küçük canlıya bile şefkat göstermeyi bil.",
+        "Dostuna bir isim seç ve hep aynı isimle çağır, böylece o seni tanır.",
+        "Temizlik de sevgidir, dostunun yuvasını temiz tutarsan sağlıklı kalır.",
+        "Her canlı farklıdır, kimi oyuncu kimi utangaç; hepsini olduğu gibi sev.",
+        "Bir söz verdiysen tut, dostların sana güvenmeyi işte böyle öğrenir.",
+        "Onları gözlemle, neyi sevdiğini keşfet; tanımak sevmenin ilk adımıdır.",
+        "Küçük iyilikler büyür, her gün verdiğin sevgi koca bir dostluğa dönüşür.",
+        "Korkmuş bir dosta bağırma, yavaşça otur ve bekle, güven yavaşça büyür.",
+        "Bir dosta bakmayı öğrenen çocuk, kalbi kocaman bir insan olarak büyür.",
+        "Sevgi paylaştıkça çoğalır, bir dosta verdiğin asla eksilmez, hep artar."
+      ]
+    },
+    {
+      "id": "terzi",
+      "name": "Terzi Moda",
+      "icon": "✂️",
+      "color": "#EC407A",
+      "tagline": "Kıyafet ve stil",
+      "cats": [
+        "kiyafet"
+      ],
+      "lines": [
+        "Bir çorap kayboldu, diğeri hâlâ onu arıyor; moda dünyası acımasız canım!",
+        "Şapkam o kadar şık ki aynadaki yansımam bile bana el sallıyor!",
+        "Bu kravat sabah 'bugün müthiş görüneceğiz' diye söz verdi bana!",
+        "Düğmeler saymayı öğrendi ama hep 'bir, iki, muhteşem' diye sayıyorlar!",
+        "Ceketimin cebi o kadar derin ki içine bir moda haftası sığdı!",
+        "Fularım rüzgârda öyle bir dalgalandı ki alkış aldı, yemin ederim!",
+        "Bir ayakkabı diğerine dedi ki: 'Sensiz bir adım bile atamam canım!'",
+        "Bu elbise dolapta o kadar sıkıldı ki dışarı çıkmak için yalvardı!",
+        "Kemerim bel ölçümü tuttuğunda sevinçten bir tur döndü, gördüm!",
+        "Eldivenler el ele tutuşunca bütün dolap 'ah ne romantik' dedi!",
+        "Bu desenli gömlek o kadar konuşkan ki susması için ütü gerekti!",
+        "Papyonum aynanın karşısında poz verirken selfie istedi benden!",
+        "Çorapların rengi tutmayınca ben değil, gökkuşağı utandı canım!",
+        "Bir etek uçuşurken 'ben dans ederim, sen izle' dedi bana, inanılmaz!",
+        "Bu mont o kadar sıcak tutuyor ki kışa 'bana ihtiyacın yok' dedim!",
+        "Kolyem boynuma sarılınca 'sonsuza dek şık kalalım' diye fısıldadı!",
+        "Terzi makasım o kadar hızlı ki kumaşlar sıraya girip bekliyor!",
+        "Bu bere kafama oturunca 'işte evim' dedi, kira bile istemedi!",
+        "İki gömlek yarıştı, kazanan 'en şık benim' diye bütün gün övündü!",
+        "Bu yelek o kadar klasik ki modası hiç geçmiyor, resmen ölümsüz canım!",
+        "O kombin mi? Ah hayır hayır, kalbim dayanmaz; bir dokunuş daha lazım!",
+        "Ah muhteşem, ama bu renk seni öyle parlatıyor ki gözlerim kamaştı!",
+        "Dur, dur! Bu ceketin yakası azıcık kıvrılsın, mükemmellik detayda saklı!",
+        "Ah canım, bu kumaşa dokununca kalbim üç kez çarptı, ne dram ama!",
+        "Hayır hayır, o düğme oraya değil; sanatım bu kadar acele kaldıramaz!",
+        "Oh la la, bu kombini görünce koleksiyonumun tamamı kıskançlıktan soldu!",
+        "Ah bu ayakkabı, bu çorap, bu şıklık; bayılacağım, biri beni tutsun!",
+        "Bir milim, sadece bir milim! O yaka çizgisi kaderimizi belirler canım!",
+        "Ah muhteşem değil, muhteşemin de ötesi; kelimeler yetersiz kalıyor bana!",
+        "Bu renk uyumu karşısında diz çöktüm, moda tanrıçaları affetsin beni!",
+        "Hayır, o kemer bir tık yukarı! Ah, işte şimdi ruhum huzura erdi!",
+        "Bu kumaşın dökümüne bakın; ipek bile 'ben mi bu kadar güzelim' dedi!",
+        "Ah, bu şapkayı görünce bir sanat eseri karşısındaymış gibi titredim!",
+        "Dur canım, bu fular biraz daha zarif düşsün; dramatik giriş şart!",
+        "Oh, bu kombin öyle asil ki karşısında reverans yapası geliyor insanın!",
+        "Ah hayır, o iki renk yan yana gelince kalbim pır pır etti resmen!",
+        "Bu manşet, bu detay, bu incelik; ah bir bayılıp bir ayılıyorum canım!",
+        "Mükemmel! Ama bir eksik var; o gülümseme, en şık aksesuar o çünkü!",
+        "Ah bu elbisenin belindeki kıvrım; sanki bir vals ediyor, muhteşem!",
+        "Hayır hayır, acele etme; gerçek şıklık sabırla dikilir, öyle bilesin!",
+        "En güzel aksesuar özgüvendir; bir soruyu çözdükçe daha da şıklaşırsın!",
+        "Emekle dikilen bir kombin gibisin; her denemeyle biraz daha güzelleşiyorsun!",
+        "Renkleri karıştırmaktan korkma; en cesur kombinler en çok göze çarpar!",
+        "Bir dikiş atarken yanılırsan sök, tekrar dik; hata da öğrenmenin parçası!",
+        "Şıklık aynada değil, doğru cevabı bulduğunda içinde parlar canım!",
+        "Sabırla dikilen elbise gibi, sabırla çalışan çocuk da en güzel sonuca ulaşır!",
+        "Kendine güven en şık kıyafettir; onu giydin mi her kombin yakışır!",
+        "Yeni bir şey denemek dolabına yeni renk katmak gibidir, hep dene!",
+        "Zorlanınca pes etme; en güzel desenler en karmaşık ipliklerden doğar!",
+        "Her gün küçük bir şey öğren; şıklık gibi bilgi de zamanla katlanır!",
+        "Bir soruyu çözmek düğmeyi ilikemek gibidir; sırayla gidersen tamamlanır!",
+        "Farklı olmaktan çekinme; en özel kombin herkesten farklı olandır canım!",
+        "Emek en güzel süstür; çalıştıkça üzerinde ışıl ışıl parlar, göreceksin!",
+        "Bir hata dikişi bozmaz; sadece bir sonraki dikişi daha güzel yapar!",
+        "Nazik ol, düzenli ol; şık bir dolap gibi zihnin de tertemiz olsun!",
+        "Kendi tarzını bul; başkasını taklit eden kombin asla parlamaz canım!",
+        "Merak en güzel iğnedir; her yeni soru seni bilgiyle süsler durur!",
+        "Yavaş yavaş öğren, acele dikiş söküğü açar; sağlam olan kalıcı olur!",
+        "Bir kez düşünüp iki kez cevapla; terzi de bir ölçer iki keser çünkü!",
+        "Gülümsemeni asla çıkarma; o senin hiç eskimeyen en değerli parçandır!"
+      ]
+    }
+  ],
+  "catVendor": {
+    "malzeme": "demirci",
+    "craft": "demirci",
+    "tech": "robotcu",
+    "koleksiyon": "robotcu",
+    "oda": "marangoz",
+    "pet": "barinak",
+    "kiyafet": "terzi"
+  }
 }
 </script>
 <script type="application/json" id="bokul-content-lessons-math-core">
@@ -36002,15 +36404,14 @@ h1, h2, h3, h4,
       });
       return out;
     },
-    canAdopt(typeId) { return !B.Pets.hasType(typeId) && B.Pets.missingPrereq(typeId).length === 0; },
+    // Barınaktan sahiplenme ÜCRETSİZ (ön koşul aranmaz) — bakım/besleme sorumluluk gerektirir.
+    canAdopt(typeId) { return !B.Pets.hasType(typeId); },
 
-    /* Sahiplen: ön koşulları HARCA, hayvanı ekle */
+    /* Sahiplen: barınaktan ÜCRETSİZ; hayvanı ekle (ön koşul/harcama yok) */
     adopt(typeId, name) {
       const def = B.Pets.typeDef(typeId);
       if (!def) return { ok: false, err: 'Tür bulunamadı.' };
       if (B.Pets.hasType(typeId)) return { ok: false, err: 'Bu türden zaten var.' };
-      if (B.Pets.missingPrereq(typeId).length) return { ok: false, err: 'Ön koşul eşyaların eksik.' };
-      (def.prereq || []).forEach(r => B.Items.remove(r.item, r.n)); // kurulum harcanır
       const pet = {
         uid: 'p' + now().toString(36) + (uidSeq++), type: typeId,
         name: (name || def.name).trim().slice(0, 14) || def.name,
@@ -36080,6 +36481,38 @@ h1, h2, h3, h4,
       if (pet && pet.captured) return '😈';
       const avg = ((pet.tokluk || 0) + (pet.mutluluk || 0)) / 2;
       return avg >= 75 ? '😀' : avg >= 50 ? '🙂' : avg >= 25 ? '😐' : '😢';
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/vendors.js === */
+/* BOKUL — Satıcılar (Mağaza karakterleri)
+ * Mağaza eşya tipine göre satıcı gruplarına ayrılır. Her satıcının kendi
+ * karakteri (ikon+renk), sattığı kategoriler ve 60 repliği vardır (espri /
+ * ters/naz / ipucu karışık). Store açıldıkça satıcı bir replik "söyler".
+ * İçerik: content/vendors.json → { vendors:[{id,name,icon,color,tagline,cats,lines[]}], catVendor:{cat:vendorId} } */
+(function (B) {
+  function data() { return B.Content.get('vendors') || { vendors: [], catVendor: {} }; }
+  let sayCount = 0; // her çağrıda değişsin diye artan sayaç (Math.random yerine deterministik döngü)
+
+  B.Vendors = {
+    all() { return data().vendors || []; },
+    get(id) { return (data().vendors || []).find(v => v.id === id) || null; },
+    /* Bir kategoriyi hangi satıcı satar? */
+    forCat(cat) {
+      const id = (data().catVendor || {})[cat];
+      return id ? B.Vendors.get(id) : null;
+    },
+    /* Satıcının sattığı kategoriler (store sekmesi filtresi için) */
+    cats(id) { const v = B.Vendors.get(id); return v ? (v.cats || []) : []; },
+    /* Satıcı bir replik söyler — her çağrıda sıradaki satıra döner (tekdüze değil). */
+    say(id) {
+      const v = B.Vendors.get(id);
+      if (!v || !v.lines || !v.lines.length) return '';
+      const i = (sayCount++) % v.lines.length;
+      // sayaç + vendor id uzunluğu ile hafif kaydır ki her satıcı farklı yerden başlasın
+      const off = (v.id.length * 7) % v.lines.length;
+      return v.lines[(i + off) % v.lines.length];
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -40633,7 +41066,7 @@ h1, h2, h3, h4,
       this._hud = hud;
       let tab = (params && params.tab) || 'shop';
       if (tab === 'craft') tab = 'shop'; // craft artık kendi ekranı (atolye)
-      let cat = 'all';
+      let vendorId = null; // Eşya sekmesinde seçili satıcı
       let kcat = 'all'; // kıyafet sekmesi tür süzgeci
 
       const wrap = document.createElement('div');
@@ -40679,17 +41112,34 @@ h1, h2, h3, h4,
           '<p class="ov-quote">' + text + '</p>', [{ label: 'Anlaşıldı!', onClick: null }]);
       }
 
-      /* ---- 🏪 Mağaza ---- */
+      /* Satıcı afişi: karakter yüzü + adı + o an söylediği replik */
+      function vendorBanner(v) {
+        if (!v) return '';
+        return '<div class="vendor-banner" style="--vc:' + v.color + '">' +
+          '<div class="vendor-face">' + v.icon + '</div>' +
+          '<div class="vendor-info">' +
+            '<div class="vendor-name">' + esc(v.name) + '</div>' +
+            '<div class="vendor-say">💬 ' + esc(B.Vendors.say(v.id)) + '</div>' +
+          '</div></div>';
+      }
+
+      /* ---- 🏪 Mağaza (satıcı gruplarına ayrılmış) ---- */
       function renderShop(body) {
-        babaSays('shop', '🛒', 'Burası Mağaza! Kazandığın altınla eşya alırsın; aldıkların Depom\'a gider. Ham malzemeleri (tahta, cam, metal…) buradan al, sonra 🔨 Atölye\'de birleştirip yeni şeyler ÜRET. İpucu: bir eşyanın üstüne dokun, "emin misin?" diye sorar.');
-        const buyable = B.Items.catalog().filter(it => !it.craftOnly);
-        const cats = B.Items.categories().filter(c => buyable.some(it => it.cat === c.id));
-        const filterRow = '<div class="store-cats">' +
-          '<button class="chip scat" data-c="all">Hepsi</button>' +
-          cats.map(c => '<button class="chip scat" data-c="' + c.id + '">' + c.icon + ' ' + c.name + '</button>').join('') +
-          '</div>';
-        const items = buyable.filter(it => cat === 'all' || it.cat === cat);
-        const cards = items.map(it => {
+        babaSays('shop', '🛒', 'Burası Çarşı! Her satıcının kendi tezgâhı var: Demirci Baba ham madde, Robotçu Zeki teknoloji, Marangoz Usta oda eşyası, Barınak Teyze evcil malzemesi satar. Altınla al, aldıkların Depom\'a gider. Ham maddeyi sonra 🔨 Atölye\'de birleştirip yeni şeyler ÜRET.');
+        // Terzi kıyafet sekmesinde; burada eşya satıcıları
+        const vendors = B.Vendors.all().filter(v => (v.cats || []).some(c => c !== 'kiyafet'));
+        if (!vendors.length) { body.innerHTML = '<div class="store-empty">Satıcı bulunamadı.</div>'; return; }
+        if (!vendorId || !vendors.some(v => v.id === vendorId)) vendorId = vendors[0].id;
+        const vendor = B.Vendors.get(vendorId);
+        const vrow = '<div class="store-vendors">' + vendors.map(v =>
+          '<button class="chip vchip' + (v.id === vendorId ? ' tab-on' : '') + '" data-v="' + v.id + '" style="--vc:' + v.color + '">' +
+            v.icon + ' ' + esc(v.name) + '</button>').join('') + '</div>';
+        const banner = vendorBanner(vendor);
+        // Barınak: ücretsiz sahiplenme kısayolu
+        const adoptBtn = vendor.id === 'barinak'
+          ? '<button class="btn-adopt">🐾 Dostunu ÜCRETSİZ sahiplen ▶</button>' : '';
+        const buyable = B.Items.catalog().filter(it => !it.craftOnly && (vendor.cats || []).includes(it.cat));
+        const cards = buyable.map(it => {
           const owned = B.Items.count(it.id);
           const isOwnedUnique = it.unique && owned > 0;
           const afford = coins() >= it.price;
@@ -40707,14 +41157,17 @@ h1, h2, h3, h4,
                                          : '<span class="store-price">💰 ' + it.price + ' <small class="store-stock">📦' + stockLeft + '</small></span>')) +
             '</button>';
         }).join('');
-        body.innerHTML = filterRow + '<div class="store-grid">' + cards + '</div>';
+        const grid = cards ? '<div class="store-grid">' + cards + '</div>'
+                           : '<div class="store-empty">Bu tezgâhta şimdilik bir şey yok.</div>';
+        body.innerHTML = vrow + banner + adoptBtn + grid;
 
-        body.querySelectorAll('.scat').forEach(b => b.onclick = () => {
-          cat = b.dataset.c;
-          body.querySelectorAll('.scat').forEach(x => x.classList.toggle('tab-on', x === b));
+        body.querySelectorAll('.vchip').forEach(b => b.onclick = () => {
+          vendorId = b.dataset.v;
+          B.Audio.play('tick');
           renderShop(body);
         });
-        const active = body.querySelector('.scat[data-c="' + cat + '"]'); if (active) active.classList.add('tab-on');
+        const adoptEl = body.querySelector('.btn-adopt');
+        if (adoptEl) adoptEl.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };
 
         body.querySelectorAll('.store-card[data-id]').forEach(cardEl => {
           if (cardEl.disabled) return;
@@ -40755,7 +41208,8 @@ h1, h2, h3, h4,
         // Tür süzgeci (Üst/Alt/Saç…)
         const types = [];
         all.forEach(c => { if (!types.some(t => t.id === c.type)) types.push({ id: c.type, label: c.typeLabel }); });
-        const filterRow = '<div class="store-cats">' +
+        const terziBanner = vendorBanner(B.Vendors.get('terzi'));
+        const filterRow = terziBanner + '<div class="store-cats">' +
           '<button class="chip kcat" data-c="all">Hepsi</button>' +
           types.map(t => '<button class="chip kcat" data-c="' + t.id + '">' + t.label + '</button>').join('') +
           '</div>';
@@ -42928,7 +43382,7 @@ h1, h2, h3, h4,
         'lessons/sanat-101',
         'lessons/bilim-101',
       ];
-      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'pets', ...LESSONS]);
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'pets', 'vendors', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-core'));
 
@@ -43023,7 +43477,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.81'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.82'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

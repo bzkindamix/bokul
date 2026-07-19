@@ -61,15 +61,14 @@
       });
       return out;
     },
-    canAdopt(typeId) { return !B.Pets.hasType(typeId) && B.Pets.missingPrereq(typeId).length === 0; },
+    // Barınaktan sahiplenme ÜCRETSİZ (ön koşul aranmaz) — bakım/besleme sorumluluk gerektirir.
+    canAdopt(typeId) { return !B.Pets.hasType(typeId); },
 
-    /* Sahiplen: ön koşulları HARCA, hayvanı ekle */
+    /* Sahiplen: barınaktan ÜCRETSİZ; hayvanı ekle (ön koşul/harcama yok) */
     adopt(typeId, name) {
       const def = B.Pets.typeDef(typeId);
       if (!def) return { ok: false, err: 'Tür bulunamadı.' };
       if (B.Pets.hasType(typeId)) return { ok: false, err: 'Bu türden zaten var.' };
-      if (B.Pets.missingPrereq(typeId).length) return { ok: false, err: 'Ön koşul eşyaların eksik.' };
-      (def.prereq || []).forEach(r => B.Items.remove(r.item, r.n)); // kurulum harcanır
       const pet = {
         uid: 'p' + now().toString(36) + (uidSeq++), type: typeId,
         name: (name || def.name).trim().slice(0, 14) || def.name,

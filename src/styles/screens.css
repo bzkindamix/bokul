@@ -586,6 +586,31 @@
 .stab.tab-on { background: var(--accent); color: #3a0a2e; }
 .store-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
 .scat.tab-on { background: var(--xp); color: #3a2e05; }
+
+/* ---- Satıcılar (mağaza grupları) ---- */
+.store-vendors { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.vchip { border: 1px solid var(--line); }
+.vchip.tab-on { background: var(--vc, var(--xp)); color: #fff; border-color: var(--vc, var(--xp)); font-weight: 800; }
+.vendor-banner {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+  background: color-mix(in srgb, var(--vc, #888) 14%, var(--bg-panel));
+  border: 1px solid color-mix(in srgb, var(--vc, #888) 45%, var(--line));
+  border-left: 5px solid var(--vc, #888); border-radius: 16px; padding: 10px 14px;
+}
+.vendor-face {
+  flex: none; width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 30px;
+  background: var(--vc, #888); box-shadow: 0 2px 8px rgba(0,0,0,.25);
+}
+.vendor-info { min-width: 0; }
+.vendor-name { font-weight: 800; font-size: 14px; color: var(--vc, var(--ink)); }
+.vendor-say { font-size: 13px; color: var(--ink); line-height: 1.35; margin-top: 2px; }
+.btn-adopt {
+  display: block; width: 100%; margin-bottom: 12px; padding: 11px;
+  background: color-mix(in srgb, #66BB6A 22%, var(--bg-panel)); color: var(--ink);
+  border: 1px dashed #66BB6A; border-radius: 14px; font-weight: 800; font-size: 14px; cursor: pointer;
+}
+.btn-adopt:active { transform: scale(.98); }
 .store-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
 .store-card {
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 3px;
