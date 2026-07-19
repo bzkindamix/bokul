@@ -250,148 +250,199 @@
           },
           "bank": [
             {
-              "q": "Üzerinde yaşadığımız gezegenin adı nedir?",
+              "q": "Gökyüzüne bakan bir çocuk Güneş'i çıplak gözle uzun süre izlerse gözü zarar görür. Bunun en olası sebebi hangisidir?",
               "skill": "uzay",
               "options": [
+                "Güneş çok parlak ve güçlü ışık verir",
+                "Güneş sadece geceleri parlar",
+                "Güneş soğuktur",
+                "Güneş çok küçüktür"
+              ],
+              "correct": 0,
+              "hint": "Güneş dev bir ateş topudur.",
+              "lvl": 1
+            },
+            {
+              "q": "Ali gece camdan Ay'ı, gündüz ise Güneş'i görüyor. Bu gözlem neyi gösterir?",
+              "skill": "uzay",
+              "options": [
+                "Ay Güneş'ten büyüktür",
+                "Gece ve gündüz sırayla olur",
+                "Ay hiç görünmez",
+                "Güneş geceleri de parlar"
+              ],
+              "correct": 1,
+              "hint": "Dünya döndükçe sıra değişir.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir arkadaşın 'Ay kendi ışığını üretir' diyor. Bu bilgi doğru mu?",
+              "skill": "uzay",
+              "options": [
+                "Yanlış, Ay Güneş'in ışığını yansıtır",
+                "Yanlış, Ay hiç parlamaz",
+                "Doğru, Ay bir yıldızdır",
+                "Doğru, Ay yanan bir toptur"
+              ],
+              "correct": 0,
+              "hint": "Ay bir ayna gibidir.",
+              "lvl": 1
+            },
+            {
+              "q": "Saksıdaki fasulye birkaç gün sonra soldu ve toprağı kupkuru. En olası sebep nedir?",
+              "skill": "doga",
+              "options": [
+                "Uzun süre su verilmedi",
+                "Gece oldu",
+                "Adı söylenmedi",
+                "Çok konuşuldu"
+              ],
+              "correct": 0,
+              "hint": "Bitkinin en temel ihtiyacı.",
+              "lvl": 1
+            },
+            {
+              "q": "Yaşadığımız gezegen uzaydan mavi görünür. Bu gezegen hangisidir?",
+              "skill": "uzay",
+              "options": [
+                "Ay",
+                "Mars",
                 "Dünya",
-                "Mars",
-                "Güneş",
-                "Ay"
+                "Güneş"
               ],
-              "correct": 0,
-              "hint": "Mavi gezegen."
+              "correct": 2,
+              "hint": "Suyu bol olan gezegen.",
+              "lvl": 1
             },
             {
-              "q": "Güneş aslında nedir?",
+              "q": "Bir top ile küçük bir boncuğu Güneş ve Dünya'ya benzetiyoruz. Hangisi Güneş olmalı, neden?",
               "skill": "uzay",
               "options": [
-                "Bir yıldız",
-                "Bir gezegen",
-                "Bir uydu",
-                "Bir bulut"
+                "İkisi de olur, boyut önemsiz",
+                "Boncuk, çünkü Güneş küçüktür",
+                "Top, çünkü Güneş Dünya'dan çok daha büyüktür",
+                "Fark etmez"
               ],
-              "correct": 0,
-              "hint": "Kendi ışığını üreten dev ateş topu."
+              "correct": 2,
+              "hint": "Güneş dev bir yıldız.",
+              "lvl": 2
             },
             {
-              "q": "Ay'ın ışığı nereden gelir?",
+              "q": "Bir şehirde saat öğlen iken Dünya'nın öbür yüzündeki şehirde gecedir. Bunu en iyi ne açıklar?",
               "skill": "uzay",
               "options": [
-                "Güneş'in ışığını yansıtır",
-                "Kendi yanar",
+                "Bulutlar engeller",
+                "Güneş bazı şehirleri sevmez",
+                "O şehirde hiç Güneş yoktur",
+                "Dünya döndüğü için her yer aynı anda Güneş'e bakmaz"
+              ],
+              "correct": 3,
+              "hint": "Güneş'e bakan yüz gündüz olur.",
+              "lvl": 2
+            },
+            {
+              "q": "İki özdeş çiçekten biri karanlık odada, biri güneşli pencerede tutuldu. Hangisinin daha iyi büyümesini beklersin, neden?",
+              "skill": "doga",
+              "options": [
+                "Penceredeki, çünkü ışıkla besin üretir",
+                "İkisi de aynı olur",
+                "Karanlıktaki, çünkü sıcaktır",
+                "Karanlıktaki, çünkü ışık zararlı"
+              ],
+              "correct": 0,
+              "hint": "Bitkiler ışıkla beslenir.",
+              "lvl": 2
+            },
+            {
+              "q": "Yağmurdan önce gökyüzü koyu gri bulutlarla kaplanır. Bu bulutlar aslında neyden oluşur?",
+              "skill": "doga",
+              "options": [
+                "Havada toplanmış küçük su damlacıklarından",
+                "Sadece tozdan",
                 "Yıldızlardan",
-                "Dünya'dan"
+                "Dumandan"
               ],
               "correct": 0,
-              "hint": "Ay kendi ışığını üretmez."
+              "hint": "Bulut ağırlaşınca yağmur düşer.",
+              "lvl": 2
             },
             {
-              "q": "Gece ve gündüz neden olur?",
-              "skill": "uzay",
-              "options": [
-                "Dünya kendi ekseninde döndüğü için",
-                "Güneş söndüğü için",
-                "Ay engellediği için",
-                "Bulutlar yüzünden"
-              ],
-              "correct": 0,
-              "hint": "Güneş'e bakan yüz gündüz olur."
-            },
-            {
-              "q": "Güneş sisteminde kaç gezegen vardır?",
-              "skill": "uzay",
-              "options": [
-                "8",
-                "5",
-                "12",
-                "3"
-              ],
-              "correct": 0,
-              "hint": "Merkür'den Neptün'e kadar say."
-            },
-            {
-              "q": "'Kızıl gezegen' diye bilinen gezegen hangisidir?",
-              "skill": "uzay",
-              "options": [
-                "Mars",
-                "Venüs",
-                "Jüpiter",
-                "Dünya"
-              ],
-              "correct": 0,
-              "hint": "Toprağı kırmızımsıdır."
-            },
-            {
-              "q": "Dünya'nın tek doğal uydusu nedir?",
-              "skill": "uzay",
-              "options": [
-                "Ay",
-                "Güneş",
-                "Mars",
-                "Yıldız"
-              ],
-              "correct": 0,
-              "hint": "Geceleri gökyüzünde parlar."
-            },
-            {
-              "q": "Bitkiler büyümek için en çok neye ihtiyaç duyar?",
+              "q": "Ormanın içi şehir merkezinden daha temiz havalıdır. Bunun ana sebebi nedir?",
               "skill": "doga",
               "options": [
-                "Su, ışık ve toprak",
-                "Sadece karanlık",
-                "Sadece taş",
-                "Hiçbir şey"
+                "Ağaçlar duman üretir",
+                "Ormanda hiç canlı yoktur",
+                "Ağaçlar suyu kirletir",
+                "Ağaçlar oksijen verip havayı temizler"
               ],
-              "correct": 0,
-              "hint": "Güneş ışığı + su = fotosentez."
+              "correct": 3,
+              "hint": "Ağaçların bize hediyesi.",
+              "lvl": 2
             },
             {
-              "q": "Hava durumunda 'yağmur' nasıl oluşur?",
-              "skill": "doga",
-              "options": [
-                "Bulutlardaki su damlaları ağırlaşıp düşünce",
-                "Güneş eridiği için",
-                "Rüzgâr estiği için sadece",
-                "Yıldızlar düştüğü için"
-              ],
-              "correct": 0,
-              "hint": "Bulut = küçük su damlacıkları."
-            },
-            {
-              "q": "Canlılar nefes almak için havadan neyi kullanır?",
-              "skill": "doga",
-              "options": [
-                "Oksijen",
-                "Kum",
-                "Işık",
-                "Ses"
-              ],
-              "correct": 0,
-              "hint": "Ciğerlerimize çektiğimiz hayat gazı."
-            },
-            {
-              "q": "Ağaçlar bizim için havaya neyi verir?",
-              "skill": "doga",
-              "options": [
-                "Oksijen",
-                "Duman",
-                "Toz",
-                "Karbondioksit yerine hiçbir şey"
-              ],
-              "correct": 0,
-              "hint": "Bu yüzden orman = temiz hava."
-            },
-            {
-              "q": "En yakın yıldızımız hangisidir?",
+              "q": "Bir astronot Ay'da zıpladığında Dünya'dakinden çok daha yükseğe çıkıyor. Bunu en iyi ne açıklar?",
               "skill": "uzay",
               "options": [
-                "Güneş",
-                "Ay",
-                "Kutup Yıldızı",
-                "Mars"
+                "Ay sıcak olduğu için",
+                "Astronot çok güçlüdür",
+                "Ay'da hiç taş yoktur",
+                "Ay'ın çekim gücü Dünya'nınkinden daha zayıftır"
+              ],
+              "correct": 3,
+              "hint": "Çekim az olursa daha çok yükselirsin.",
+              "lvl": 3
+            },
+            {
+              "q": "Merkür Güneş'e en yakın, Neptün en uzak gezegendir. Buna göre hangi çıkarım en mantıklıdır?",
+              "skill": "uzay",
+              "options": [
+                "Merkür genelde Neptün'den daha sıcaktır",
+                "Merkür en soğuk gezegendir",
+                "Uzaklık sıcaklığı etkilemez",
+                "Neptün Güneş'e en yakındır"
               ],
               "correct": 0,
-              "hint": "Her sabah doğar."
+              "hint": "Sobaya yakın oturan daha çok ısınır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir öğrenci aynı tohumları üç saksıya ekti; birine hiç su, birine az, birine bol su verdi. Bu deneyle en çok neyi öğrenmek istiyor?",
+              "skill": "doga",
+              "options": [
+                "Suyun bitki büyümesine etkisini",
+                "Işığın rengini",
+                "Havanın sesini",
+                "Toprağın ağırlığını"
+              ],
+              "correct": 0,
+              "hint": "Sadece su miktarı değişmiş.",
+              "lvl": 3
+            },
+            {
+              "q": "Çölde yaşayan bir bitkinin ince, dikensi yaprakları vardır. Bu özellik ona nasıl bir avantaj sağlar?",
+              "skill": "doga",
+              "options": [
+                "Daha çok su harcamasını sağlar",
+                "Işığı engellemesini sağlar",
+                "Az su kaybederek kurak yerde yaşamasını sağlar",
+                "Daha hızlı koşmasını sağlar"
+              ],
+              "correct": 2,
+              "hint": "Çölde su çok değerlidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk 'Geceleri Güneş sönüyor, sabah tekrar yanıyor' diyor. Bu açıklama neden yanlıştır?",
+              "skill": "uzay",
+              "options": [
+                "Güneş sönmez; Dünya döndüğü için gece olur",
+                "Doğrudur, Güneş her gece söner",
+                "Güneş geceleri Ay'a döner",
+                "Güneş yalnızca kışın yanar"
+              ],
+              "correct": 0,
+              "hint": "Sönen değil, dönen bir şey var.",
+              "lvl": 3
             }
           ]
         },
@@ -471,148 +522,199 @@
           },
           "bank": [
             {
-              "q": "Maddenin üç temel hali hangileridir?",
+              "q": "Elindeki buz küpünü avucunda tutuyorsun ve bir süre sonra elin ıslanıyor. Ne oldu?",
               "skill": "madde",
               "options": [
-                "Katı, sıvı, gaz",
-                "Sıcak, soğuk, ılık",
-                "Büyük, orta, küçük",
-                "Kırmızı, mavi, sarı"
+                "Buz gaz oldu hemen",
+                "Buz taşa döndü",
+                "Buz eridi, su oldu",
+                "Buz kayboldu"
               ],
-              "correct": 0,
-              "hint": "Buz, su, buhar."
+              "correct": 2,
+              "hint": "Elin buza ısı verdi.",
+              "lvl": 1
             },
             {
-              "q": "Buz hangi haldedir?",
-              "skill": "madde",
-              "options": [
-                "Katı",
-                "Sıvı",
-                "Gaz",
-                "Işık"
-              ],
-              "correct": 0,
-              "hint": "Sert ve şekli belli."
-            },
-            {
-              "q": "Buzu ısıtırsak ne olur?",
-              "skill": "madde",
-              "options": [
-                "Erir, su (sıvı) olur",
-                "Taş olur",
-                "Kaybolur",
-                "Gaz olur hemen"
-              ],
-              "correct": 0,
-              "hint": "Katıdan sıvıya geçiş = erime."
-            },
-            {
-              "q": "Suyu çok ısıtırsak (kaynatırsak) ne olur?",
-              "skill": "madde",
-              "options": [
-                "Buhara (gaza) dönüşür",
-                "Buz olur",
-                "Katılaşır",
-                "Renk değiştirir sadece"
-              ],
-              "correct": 0,
-              "hint": "Tencerenin üstündeki buhar."
-            },
-            {
-              "q": "Hava hangi haldedir?",
+              "q": "Bir bardak suyu farklı şekilli kaplara döktüğünde su her seferinde kabın şeklini alıyor. Su hangi haldedir?",
               "skill": "madde",
               "options": [
                 "Gaz",
                 "Katı",
-                "Sıvı",
-                "Işık"
+                "Işık",
+                "Sıvı"
               ],
-              "correct": 0,
-              "hint": "Gözle görünmez ama vardır."
+              "correct": 3,
+              "hint": "Akan ve kabın şeklini alan hal.",
+              "lvl": 1
             },
             {
-              "q": "Bir bilim insanı yeni bir şeyi anlamak için önce ne yapar?",
+              "q": "Balonu şişirdiğinde içini dolduran şey görünmez ama vardır. Bu hangi haldedir?",
+              "skill": "madde",
+              "options": [
+                "Sıvı",
+                "Taş",
+                "Gaz",
+                "Katı"
+              ],
+              "correct": 2,
+              "hint": "Havayı düşün.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir bilim insanı yeni bir şeyi merak edince önce ne yapar?",
               "skill": "bilim-genel",
               "options": [
+                "Uyur",
+                "Hiç düşünmez",
                 "Gözlemler ve soru sorar",
-                "Hemen pes eder",
-                "Tahmin etmeden bilir",
-                "Uyur"
+                "Hemen vazgeçer"
               ],
-              "correct": 0,
-              "hint": "Merak → gözlem → deney."
+              "correct": 2,
+              "hint": "Merak, sonra gözlem.",
+              "lvl": 1
             },
             {
-              "q": "Bir deneyde 'tahmin' (hipotez) ne işe yarar?",
-              "skill": "bilim-genel",
-              "options": [
-                "Ne olacağını önceden düşünmek",
-                "Deneyi bitirmek",
-                "Sonucu gizlemek",
-                "Hiçbir işe yaramaz"
-              ],
-              "correct": 0,
-              "hint": "Denemeden önce 'sanırım şöyle olur' demek."
-            },
-            {
-              "q": "Mıknatıs hangisini kendine çeker?",
+              "q": "Masanın üstündeki taş şeklini korur ve elimizde durur. Taş hangi haldedir?",
               "skill": "madde",
               "options": [
-                "Demir/metal cisimleri",
-                "Kağıdı",
-                "Suyu",
-                "Ahşabı"
+                "Katı",
+                "Sıvı",
+                "Gaz",
+                "Ses"
               ],
               "correct": 0,
-              "hint": "Buzdolabı mıknatısını düşün."
+              "hint": "Sert ve şekli sabit.",
+              "lvl": 1
             },
             {
-              "q": "Suda tuz karıştırıp beklersek tuz ne olur?",
+              "q": "Dolaptan çıkan soğuk su şişesinin dışı bir süre sonra terliyor. Bu su nereden geldi?",
               "skill": "madde",
               "options": [
-                "Suda çözünür (görünmez olur)",
-                "Buz olur",
-                "Renk verir sadece",
-                "Patlar"
+                "Havadaki su buharı şişede yoğuştu",
+                "Su dışarı sızdı",
+                "Cam eridi",
+                "Şişe delindi"
               ],
               "correct": 0,
-              "hint": "Görünmez ama tadı kalır: çözünme."
+              "hint": "Gaz soğuyunca sıvıya döner.",
+              "lvl": 2
             },
             {
-              "q": "Bir cismin suda batması ya da yüzmesi neye bağlıdır?",
+              "q": "Islak çamaşırlar güneşli, rüzgârlı günde daha çabuk kurur. Bunu en iyi ne açıklar?",
               "skill": "madde",
               "options": [
-                "Ağırlığına ve şekline (yoğunluk)",
-                "Rengine",
-                "Kokusuna",
-                "Sesine"
+                "Rüzgârın etkisi yoktur",
+                "Güneş suyu dondurur",
+                "Rüzgâr çamaşırı ıslatır",
+                "Sıcak ve rüzgâr suyun buharlaşmasını hızlandırır"
               ],
-              "correct": 0,
-              "hint": "Tahta yüzer, taş batar."
+              "correct": 3,
+              "hint": "Buharlaşma su miktarını azaltır.",
+              "lvl": 2
             },
             {
-              "q": "Gölge nasıl oluşur?",
-              "skill": "bilim-genel",
+              "q": "Bir bardak suya kaşık şeker atıp karıştırdın; şeker gözden kayboldu ama su tatlandı. Şeker ne oldu?",
+              "skill": "madde",
               "options": [
-                "Işık bir cisme çarpıp arkasına geçemeyince",
-                "Karanlık aktığı için",
-                "Renk yüzünden",
-                "Rüzgârdan"
+                "Suda çözündü",
+                "Buza döndü",
+                "Yok oldu",
+                "Gaz oldu"
               ],
               "correct": 0,
-              "hint": "Işığı engelleyen cismin arkası karanlık kalır."
+              "hint": "Görünmez oldu ama hâlâ orada.",
+              "lvl": 2
             },
             {
-              "q": "Bir bilim deneyini yaparken en önemli kural nedir?",
+              "q": "Bir deney yapmadan önce 'Sanırım buz güneşte erir' dedin. Bu cümle nedir?",
               "skill": "bilim-genel",
               "options": [
-                "Dikkatli ve güvenli olmak (gerekirse büyükten yardım)",
-                "Hızlı olmak için kural tanımamak",
-                "Gözleri kapatmak",
-                "Tek başına ateşle oynamak"
+                "Bir tahmin (hipotez)",
+                "Bir kural",
+                "Bir hata",
+                "Kesin bir sonuç"
               ],
               "correct": 0,
-              "hint": "Güvenlik her zaman önce gelir."
+              "hint": "Denemeden önceki öngörü.",
+              "lvl": 2
+            },
+            {
+              "q": "Aynı boyuttaki tahta kaşık suda yüzerken demir kaşık batıyor. Bu farkın sebebi en çok neyle ilgilidir?",
+              "skill": "madde",
+              "options": [
+                "Kokuları farklıdır",
+                "Maddelerin ağırlığı/yoğunluğu farklıdır",
+                "Sesleri farklıdır",
+                "Renkleri farklıdır"
+              ],
+              "correct": 1,
+              "hint": "Aynı boyutta biri daha ağır.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir öğrenci buzun ne kadar sürede eridiğini araştırıyor. Doğru (adil) bir sonuç için hangisini yapmalı?",
+              "skill": "bilim-genel",
+              "options": [
+                "Buzların boyutunu çok farklı yapmalı",
+                "İki farklı sıvı kullanmalı",
+                "Hiç ölçüm yapmamalı",
+                "Diğer her şeyi aynı tutup sadece sıcaklığı değiştirmeli"
+              ],
+              "correct": 3,
+              "hint": "Adil deneyde tek bir şey değişir.",
+              "lvl": 3
+            },
+            {
+              "q": "Su ısıtılınca buhara, soğutulunca buza döner ama hep 'su' kalır. Bu neyi gösterir?",
+              "skill": "madde",
+              "options": [
+                "Buhar sudan farklı bir maddedir",
+                "Su başka bir maddeye dönüşür",
+                "Aynı madde ısıyla hal değiştirebilir",
+                "Buz ve su farklı maddelerdir"
+              ],
+              "correct": 2,
+              "hint": "Katı-sıvı-gaz aynı maddenin halleridir.",
+              "lvl": 3
+            },
+            {
+              "q": "Aynı miktar su, geniş tabakta dar bardaktan daha hızlı buharlaşıyor. Bunu en iyi ne açıklar?",
+              "skill": "madde",
+              "options": [
+                "Tabak suyu emer",
+                "Su miktarları farklıdır",
+                "Geniş yüzeyde su havayla daha çok temas eder",
+                "Bardak suyu dondurur"
+              ],
+              "correct": 2,
+              "hint": "Yüzey genişse buharlaşma hızlanır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir mıknatısı kum dolu kaba sokup çıkardığında ucuna küçük siyah parçacıklar yapıştı. Bunlar büyük olasılıkla nedir?",
+              "skill": "madde",
+              "options": [
+                "Kumdaki demir içeren taneler",
+                "Su damlaları",
+                "Cam kırıkları",
+                "Şeker taneleri"
+              ],
+              "correct": 0,
+              "hint": "Mıknatıs sadece belli metalleri çeker.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk deneyde 'sonuç benim tahminime uymadı' diyor. Bir bilim insanı bu durumda ne yapmalı?",
+              "skill": "bilim-genel",
+              "options": [
+                "Sonucu dürüstçe kabul edip yeniden düşünmeli",
+                "Deneyi hiç yapmamış gibi davranmalı",
+                "Sonucu gizleyip tahminini doğru göstermeli",
+                "Kızıp bırakmalı"
+              ],
+              "correct": 0,
+              "hint": "Bilimde gerçek sonuç değerlidir.",
+              "lvl": 3
             }
           ]
         }
@@ -698,7 +800,7 @@
           },
           "bank": [
             {
-              "q": "Bir bitkinin toprağa tutunup su çeken kısmı hangisidir?",
+              "q": "Bir bitkiyi topraktan çektiğinde alttan ince, dallı yapılar çıkıyor. Bunlar bitkinin hangi kısmıdır?",
               "skill": "bil-bitki",
               "options": [
                 "Kök",
@@ -707,139 +809,190 @@
                 "Meyve"
               ],
               "correct": 0,
-              "hint": "Toprağın altında saklıdır."
+              "hint": "Toprağın altında kalan kısım.",
+              "lvl": 1
             },
             {
-              "q": "Bitkiler güneş ışığıyla besin ürettiği olaya ne denir?",
+              "q": "Annenin sulamayı unuttuğu saksı çiçeği sarardı ve sarktı. En olası sebep nedir?",
               "skill": "bil-bitki",
               "options": [
-                "Fotosentez",
-                "Erime",
-                "Yağış",
-                "Deprem"
+                "Çok sevildi",
+                "Susuz kaldı",
+                "Gece oldu",
+                "Rengi değişti"
               ],
-              "correct": 0,
-              "hint": "Yapraklar güneşi yakalar."
+              "correct": 1,
+              "hint": "Bitkinin temel içeceği.",
+              "lvl": 1
             },
             {
-              "q": "Bitkiler fotosentez için havadan neyi alır?",
+              "q": "Bir elmayı ikiye böldüğünde içinden çekirdekler çıkıyor. Bu çekirdekler ekilirse ne olabilir?",
               "skill": "bil-bitki",
               "options": [
-                "Karbondioksit",
-                "Kum",
-                "Ses",
-                "Metal"
+                "Kaybolur",
+                "Yeni bir elma ağacı olabilir",
+                "Taş olur",
+                "Hayvan olur"
               ],
-              "correct": 0,
-              "hint": "Bizim verdiğimiz gazı bitki kullanır."
+              "correct": 1,
+              "hint": "Tohumun içinde yeni bitki saklı.",
+              "lvl": 1
             },
             {
-              "q": "Bitkiler havaya bizim için hangi gazı verir?",
+              "q": "Ayçiçeği gün boyunca yönünü Güneş'e çevirir. Bitki Güneş'i hangi kısmıyla 'yakalar'?",
               "skill": "bil-bitki",
               "options": [
-                "Oksijen",
-                "Duman",
-                "Toz",
-                "Buhar"
+                "Kökleriyle",
+                "Gölgesiyle",
+                "Çekirdeğiyle",
+                "Yapraklarıyla"
               ],
-              "correct": 0,
-              "hint": "Nefes aldığımız hayat gazı."
-            },
-            {
-              "q": "Bir bitki büyümek için en çok neye ihtiyaç duyar?",
-              "skill": "bil-bitki",
-              "options": [
-                "Su, ışık ve toprak",
-                "Sadece karanlık",
-                "Sadece taş",
-                "Hiçbir şey"
-              ],
-              "correct": 0,
-              "hint": "Üç dostu birlikte gerekir."
-            },
-            {
-              "q": "Yeni bir bitki hangisinden çıkar?",
-              "skill": "bil-bitki",
-              "options": [
-                "Tohum",
-                "Taş",
-                "Cam",
-                "Demir"
-              ],
-              "correct": 0,
-              "hint": "Küçücüktür ama içinde koca ağaç saklıdır."
-            },
-            {
-              "q": "Bitkinin güneş ışığını yakalayan yeşil kısmı hangisidir?",
-              "skill": "bil-bitki",
-              "options": [
-                "Yaprak",
-                "Kök",
-                "Tohum",
-                "Diken"
-              ],
-              "correct": 0,
-              "hint": "Genelde yeşil ve yassıdır."
-            },
-            {
-              "q": "Elma, armut ve domates bitkinin hangi bölümünde oluşur?",
-              "skill": "bil-bitki",
-              "options": [
-                "Meyve",
-                "Kök",
-                "Gövde",
-                "Yaprak"
-              ],
-              "correct": 0,
-              "hint": "İçinde tohumları taşır."
-            },
-            {
-              "q": "Çiçekler bitki için ne işe yarar?",
-              "skill": "bil-bitki",
-              "options": [
-                "Yeni tohumların oluşmasını sağlar",
-                "Suyu içer",
-                "Toprağı tutar",
-                "Işık verir"
-              ],
-              "correct": 0,
-              "hint": "Arılar buraya konar."
+              "correct": 3,
+              "hint": "Yeşil ve yassı kısım.",
+              "lvl": 1
             },
             {
               "q": "Aşağıdakilerden hangisi bir bitkidir?",
               "skill": "bil-bitki",
               "options": [
-                "Ayçiçeği",
-                "Kelebek",
+                "Bulut",
                 "Taş",
-                "Bulut"
+                "Gül",
+                "Kelebek"
               ],
-              "correct": 0,
-              "hint": "Güneşe dönen sarı çiçek."
+              "correct": 2,
+              "hint": "Kökü, gövdesi, yaprağı olan.",
+              "lvl": 1
             },
             {
-              "q": "Kaktüs çok az suyla yaşayabilir; peki genelde nerede yetişir?",
+              "q": "Bitki fotosentez yaparken havadaki karbondioksiti alır ve oksijen verir. Bu neden bizim için önemlidir?",
               "skill": "bil-bitki",
               "options": [
-                "Çölde",
-                "Denizin dibinde",
-                "Buzulda",
-                "Ateşte"
+                "Suyu tüketir",
+                "Işığı azaltır",
+                "Havayı kirletir",
+                "Soluduğumuz oksijeni sağlar"
               ],
-              "correct": 0,
-              "hint": "Çok sıcak ve kurak yer."
+              "correct": 3,
+              "hint": "Nefes aldığımız gaz.",
+              "lvl": 2
             },
             {
-              "q": "Ağaçların çok olduğu, temiz hava veren yere ne denir?",
+              "q": "Pencere önündeki bitki bir süre sonra tüm yapraklarını cama, ışığa doğru eğdi. Bunu en iyi ne açıklar?",
               "skill": "bil-bitki",
               "options": [
-                "Orman",
-                "Çöl",
-                "Fabrika",
-                "Otopark"
+                "Bitki büyümek için ışığa yönelir",
+                "Cam bitkiyi iter",
+                "Rüzgâr eğdi",
+                "Bitki ışıktan kaçar"
               ],
               "correct": 0,
-              "hint": "Yeşilin ve gölgenin bol olduğu yer."
+              "hint": "Işık besin üretmek için gerekli.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir bahçıvan fideyi köküyle birlikte dikkatlice taşıyor. Kökü korumak neden önemlidir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Kök su ve besini emer, zarar görürse bitki susuz kalır",
+                "Kök işe yaramaz",
+                "Kök ışık toplar",
+                "Kök sadece süstür"
+              ],
+              "correct": 0,
+              "hint": "Kökün görevini düşün.",
+              "lvl": 2
+            },
+            {
+              "q": "Domates, salatalık ve biberin hepsi içinde tohum taşır. Bu yüzden bunlar bitkinin hangi kısmıdır?",
+              "skill": "bil-bitki",
+              "options": [
+                "Gövde",
+                "Meyve",
+                "Kök",
+                "Yaprak"
+              ],
+              "correct": 1,
+              "hint": "Tohumu taşıyan kısım.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir arı çiçekten çiçeğe konarak bal toplar. Bu sırada bitkilere farkında olmadan nasıl yardım eder?",
+              "skill": "bil-bitki",
+              "options": [
+                "Yaprakları yer",
+                "Çiçek tozunu taşıyıp yeni tohum oluşmasını sağlar",
+                "Çiçekleri koparır",
+                "Kökleri sular"
+              ],
+              "correct": 1,
+              "hint": "Polen taşıma.",
+              "lvl": 2
+            },
+            {
+              "q": "İki özdeş fasulyeden biri karanlık dolapta, biri güneşli pencerede büyütüldü. Penceredeki yeşil ve sağlıklı, dolaptaki sarı ve cılız oldu. Bu farkı en iyi ne açıklar?",
+              "skill": "bil-bitki",
+              "options": [
+                "Bitkiler besin üretmek için ışığa ihtiyaç duyar",
+                "Karanlık bitkiyi büyütür",
+                "Tohumlar baştan farklıydı",
+                "Rastgele oldu"
+              ],
+              "correct": 0,
+              "hint": "Fotosentez neyle olur?",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çölde ve bir yağmur ormanında yetişen bitkiler çok farklı görünür. Bunun ana sebebi nedir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Her bitki yaşadığı yerin koşullarına uyum sağlar",
+                "Bitkiler rastgele büyür",
+                "Ormanda su yoktur",
+                "Çölde bitki hiç yoktur"
+              ],
+              "correct": 0,
+              "hint": "Uyum: az su - çok su.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir saksı bitkisinin sadece bir yanı pencereye bakıyor. Birkaç hafta sonra gövdesi pencereye doğru eğilmiş. Bu gözlemden çıkarılacak en iyi sonuç nedir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Gövde kendiliğinden eğrilir",
+                "Bitki ışığın geldiği yöne doğru büyür",
+                "Pencere bitkiyi çeker",
+                "Bitki pencereden korkar"
+              ],
+              "correct": 1,
+              "hint": "Işık yönü büyümeyi yönlendirir.",
+              "lvl": 3
+            },
+            {
+              "q": "Sonbaharda birçok ağaç yapraklarını döker. Bu davranış ağaca kışın nasıl yardımcı olur?",
+              "skill": "bil-bitki",
+              "options": [
+                "Hiçbir yararı yoktur",
+                "Daha hızlı büyümesini sağlar",
+                "Daha çok su harcamasını sağlar",
+                "Su ve enerji kaybını azaltarak soğuğa dayanmasını sağlar"
+              ],
+              "correct": 3,
+              "hint": "Kışın su ve ışık azdır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir öğrenci 'Bitkiler besinini topraktan hazır alır, kendi üretmez' diyor. Bu ifade neden yanlıştır?",
+              "skill": "bil-bitki",
+              "options": [
+                "Doğrudur, bitki besin üretmez",
+                "Bitkiler besini havadan hazır alır",
+                "Bitkiler ışıkla kendi besinini üretir (fotosentez)",
+                "Bitkiler hiç beslenmez"
+              ],
+              "correct": 2,
+              "hint": "Yeşil yapraklar mutfak gibidir.",
+              "lvl": 3
             }
           ]
         }
@@ -925,148 +1078,199 @@
           },
           "bank": [
             {
-              "q": "Balıklar nerede yaşar?",
+              "q": "Bir balığı sudan çıkarırsak zorlanır. Çünkü balık nerede yaşamaya uygundur?",
               "skill": "bil-hayvan",
               "options": [
-                "Suda",
-                "Çölde",
                 "Bulutta",
-                "Ateşte"
+                "Suda",
+                "Ateşte",
+                "Çölde"
               ],
-              "correct": 0,
-              "hint": "Yüzgeçleriyle yüzerler."
+              "correct": 1,
+              "hint": "Yüzgeç ve solungaç.",
+              "lvl": 1
             },
             {
-              "q": "Sadece bitki (ot, yaprak) yiyen hayvanlara ne denir?",
+              "q": "Tavşan ve inek yalnızca ot, yaprak yer. Bu hayvanlara ne denir?",
               "skill": "bil-hayvan",
               "options": [
-                "Otçul",
-                "Etçil",
                 "Taşçıl",
-                "Camcıl"
-              ],
-              "correct": 0,
-              "hint": "İnek ve tavşan gibi."
-            },
-            {
-              "q": "Aslan ve kartal gibi et yiyen hayvanlara ne denir?",
-              "skill": "bil-hayvan",
-              "options": [
-                "Etçil",
+                "Hepçil",
                 "Otçul",
-                "Bitki",
-                "Böcek"
+                "Etçil"
               ],
-              "correct": 0,
-              "hint": "Avlanarak beslenirler."
+              "correct": 2,
+              "hint": "Sadece bitki yiyen.",
+              "lvl": 1
             },
             {
-              "q": "Aşağıdaki hayvanlardan hangisi yumurtlar?",
+              "q": "Aşağıdaki hayvanlardan hangisi yumurtlayarak çoğalır?",
               "skill": "bil-hayvan",
               "options": [
                 "Tavuk",
                 "Kedi",
-                "At",
-                "Köpek"
+                "Köpek",
+                "At"
               ],
               "correct": 0,
-              "hint": "Kümeste toplarız."
+              "hint": "Kümeste toplarız.",
+              "lvl": 1
             },
             {
-              "q": "Kutup ayısı hangi soğuk bölgede yaşar?",
+              "q": "Bir kuşun gökyüzünde uçmasını sağlayan vücut kısmı hangisidir?",
               "skill": "bil-hayvan",
               "options": [
-                "Buzul (kutuplar)",
-                "Çöl",
-                "Orman kenarı sıcak",
-                "Deniz dibi"
-              ],
-              "correct": 0,
-              "hint": "Her yer kar ve buz."
-            },
-            {
-              "q": "Deve çölde susuz uzun süre dayanır; peki suyu nerede depolar?",
-              "skill": "bil-hayvan",
-              "options": [
-                "Vücudunda (hörgücünde yağ olarak)",
-                "Ayaklarında su torbasında",
-                "Kulaklarında",
-                "Hiç depolamaz"
-              ],
-              "correct": 0,
-              "hint": "Sırtındaki tümseği düşün."
-            },
-            {
-              "q": "Kuşların uçmasını sağlayan vücut kısmı nedir?",
-              "skill": "bil-hayvan",
-              "options": [
-                "Kanatları",
-                "Kuyruğu tek başına",
                 "Gagası",
-                "Pençesi"
+                "Kanatları",
+                "Pençesi",
+                "Sadece kuyruğu"
               ],
-              "correct": 0,
-              "hint": "Tüylerle kaplı, çırpar."
+              "correct": 1,
+              "hint": "Tüylü ve çırpılan kısım.",
+              "lvl": 1
             },
             {
-              "q": "Arı çiçekten çiçeğe konarken doğaya nasıl yardım eder?",
+              "q": "Aslan avlanıp et yiyerek beslenir. Aslan ne tür bir hayvandır?",
               "skill": "bil-hayvan",
               "options": [
-                "Çiçek tozu taşıyıp bitkilerin çoğalmasını sağlar",
-                "Çiçekleri koparır",
-                "Suyu içer",
-                "Toprağı bozar"
-              ],
-              "correct": 0,
-              "hint": "Polen taşır, bal yapar."
-            },
-            {
-              "q": "Kurbağa hem suda hem karada yaşar; böyle hayvanlara ne denir?",
-              "skill": "bil-hayvan",
-              "options": [
-                "İki yaşamlı (amfibi)",
-                "Sürüngen",
-                "Kuş",
-                "Balık"
-              ],
-              "correct": 0,
-              "hint": "Hem yüzer hem zıplar."
-            },
-            {
-              "q": "Hem et hem bitki yiyen hayvanlara ne denir?",
-              "skill": "bil-hayvan",
-              "options": [
-                "Hepçil",
+                "Böcek",
                 "Otçul",
                 "Etçil",
-                "Suçul"
+                "Bitki"
               ],
-              "correct": 0,
-              "hint": "Ayı ve insan gibi."
+              "correct": 2,
+              "hint": "Et yiyen.",
+              "lvl": 1
             },
             {
-              "q": "Yılan, kaplumbağa ve kertenkele hangi hayvan grubundandır?",
+              "q": "Kutup ayısının kalın, yağlı ve tüylü bir vücudu vardır. Bu özellik ona nasıl yardım eder?",
               "skill": "bil-hayvan",
               "options": [
-                "Sürüngenler",
-                "Kuşlar",
-                "Balıklar",
-                "Böcekler"
+                "Hızlı uçmasını sağlar",
+                "Suda batmasını sağlar",
+                "Çölde serin kalmasını sağlar",
+                "Soğuk buzul ortamında sıcak kalmasını sağlar"
               ],
-              "correct": 0,
-              "hint": "Vücutları pullu, karın üstü sürünür."
+              "correct": 3,
+              "hint": "Yaşadığı yer çok soğuk.",
+              "lvl": 2
             },
             {
-              "q": "Bir hayvanın yaşadığı, beslendiği ve barındığı doğal yere ne denir?",
+              "q": "Deve çölde günlerce susuz dayanabilir. Bunu en çok neye borçludur?",
               "skill": "bil-hayvan",
               "options": [
-                "Yaşam alanı (habitat)",
-                "Otopark",
-                "Market",
-                "Fabrika"
+                "Hiç su içmemesine",
+                "Kanatlarına",
+                "Vücudunda depoladığı enerji ve suyu idareli kullanmasına",
+                "Çok hızlı koşmasına"
+              ],
+              "correct": 2,
+              "hint": "Hörgücündeki yağı düşün.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir kurbağa hem suda yüzer hem karada zıplar. Böyle iki ortamda yaşayan hayvanlara ne denir?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Sadece kuş",
+                "İki yaşamlı (amfibi)",
+                "Sürüngen",
+                "Sadece balık"
+              ],
+              "correct": 1,
+              "hint": "Hem su hem kara.",
+              "lvl": 2
+            },
+            {
+              "q": "Ayı hem bal ve meyve hem de balık yer. Beslenmesine göre ayı hangi gruba girer?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Otçul",
+                "Suçul",
+                "Etçil",
+                "Hepçil"
+              ],
+              "correct": 3,
+              "hint": "Hem et hem bitki.",
+              "lvl": 2
+            },
+            {
+              "q": "Baykuş geceleri avlanır, karanlıkta çok iyi görür ve sessizce uçar. Bu özellikler ona ne sağlar?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Gündüz uyumamayı",
+                "Ot yemeyi",
+                "Karanlıkta avını fark ettirmeden yakalamayı",
+                "Suda yüzmeyi"
+              ],
+              "correct": 2,
+              "hint": "Gece avcısı.",
+              "lvl": 2
+            },
+            {
+              "q": "Çöl tilkisinin kocaman, kutup tilkisinin küçücük kulakları vardır. Bu farkı en iyi ne açıklar?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Büyük kulak daha iyi koklar",
+                "Kulaklar sadece süstür",
+                "Büyük kulaklar sıcakta vücudu serinletmeye yardım eder",
+                "Fark rastgeledir"
+              ],
+              "correct": 2,
+              "hint": "Çölde serinlemek, kutupta ısıyı tutmak gerekir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir kelebeğin kanatlarındaki desenler ağaç kabuğuna çok benzer. Bu benzerlik ona nasıl avantaj sağlar?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Daha hızlı uçmasını sağlar",
+                "Daha çok yemesini sağlar",
+                "Işık üretmesini sağlar",
+                "Düşmanlarından gizlenmesini (kamuflaj) sağlar"
+              ],
+              "correct": 3,
+              "hint": "Fark edilmeden saklanmak.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir gölde balıklar azalınca, o balıklarla beslenen kuşların da sayısı azaldı. Bu durum neyi gösterir?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Aralarında hiç ilişki yoktur",
+                "Canlılar besin zinciriyle birbirine bağlıdır",
+                "Balıklar kuşları yer",
+                "Kuşlar balıktan korkar"
+              ],
+              "correct": 1,
+              "hint": "Biri azalınca ötekini etkiler.",
+              "lvl": 3
+            },
+            {
+              "q": "Kışın bazı kuşlar sıcak ülkelere göç eder. Bu davranışın en olası sebebi nedir?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Sıcak ülkeleri merak ederler",
+                "Soğukta besin azalır, sıcak yerde besin bulurlar",
+                "Rastgele uçarlar",
+                "Kanatlarını denemek isterler"
+              ],
+              "correct": 1,
+              "hint": "Kışın yiyecek bulmak zorlaşır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir öğrenci 'Balina suda yaşadığı için balıktır' diyor. Bu ifade neden tartışmalıdır?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Balina yavru doğurup akciğerle nefes alır, balıktan farklıdır",
+                "Balina yumurtlar",
+                "Balina solungaçla nefes alır",
+                "Doğrudur, suda yaşayan her hayvan balıktır"
               ],
               "correct": 0,
-              "hint": "Onun doğadaki evi."
+              "hint": "Suda yaşamak balık olmayı gerektirmez.",
+              "lvl": 3
             }
           ]
         }
@@ -1152,148 +1356,199 @@
           },
           "bank": [
             {
-              "q": "Vücudumuzu dik tutan sert yapı nedir?",
+              "q": "Elini göğsünün sol tarafına koyunca 'küt küt' bir atış hissedersin. Bu hangi organdır?",
               "skill": "bil-vucut",
               "options": [
-                "İskelet (kemikler)",
-                "Bulutlar",
-                "Saçlar",
-                "Tırnaklar"
-              ],
-              "correct": 0,
-              "hint": "Kemiklerden oluşur."
-            },
-            {
-              "q": "Kanı tüm vücuda pompalayan organ hangisidir?",
-              "skill": "bil-vucut",
-              "options": [
-                "Kalp",
-                "Mide",
-                "Göz",
-                "Kulak"
-              ],
-              "correct": 0,
-              "hint": "Göğsümüzde atar: küt küt."
-            },
-            {
-              "q": "Nefes aldığımızda havayı hangi organımız alır?",
-              "skill": "bil-vucut",
-              "options": [
-                "Akciğerler",
-                "Kalp",
-                "Böbrek",
-                "Dil"
-              ],
-              "correct": 0,
-              "hint": "İki tanedir, göğüste şişip iner."
-            },
-            {
-              "q": "Düşünmemizi ve hareketlerimizi yöneten komuta merkezi nedir?",
-              "skill": "bil-vucut",
-              "options": [
-                "Beyin",
-                "Ayak",
-                "Saç",
-                "Diş"
-              ],
-              "correct": 0,
-              "hint": "Kafamızın içinde."
-            },
-            {
-              "q": "Yediğimiz besinlerin sindirildiği (öğütüldüğü) organ hangisidir?",
-              "skill": "bil-vucut",
-              "options": [
-                "Mide",
-                "Göz",
                 "Kulak",
-                "Kalp"
-              ],
-              "correct": 0,
-              "hint": "Karnımızda, yemek buraya iner."
-            },
-            {
-              "q": "Kemikleri hareket ettiren, çekip gevşeyen yapılar nedir?",
-              "skill": "bil-vucut",
-              "options": [
-                "Kaslar",
-                "Tırnaklar",
-                "Kirpikler",
-                "Saçlar"
-              ],
-              "correct": 0,
-              "hint": "Kolunu bükünce şişer."
-            },
-            {
-              "q": "Dişlerimizi neden fırçalamalıyız?",
-              "skill": "bil-vucut",
-              "options": [
-                "Çürükleri ve mikropları önlemek için",
-                "Daha hızlı koşmak için",
-                "Uzasınlar diye",
-                "Renk değiştirsinler diye"
-              ],
-              "correct": 0,
-              "hint": "Günde iki kez, sağlık için."
-            },
-            {
-              "q": "Aşağıdakilerden hangisi bir duyu organımızdır?",
-              "skill": "bil-vucut",
-              "options": [
                 "Göz",
-                "Kemik",
-                "Kas",
+                "Mide",
                 "Kalp"
               ],
-              "correct": 0,
-              "hint": "Onunla görürüz."
+              "correct": 3,
+              "hint": "Kanı pompalar.",
+              "lvl": 1
             },
             {
-              "q": "Sağlıklı kalmak için hangisini yapmalıyız?",
+              "q": "Derin nefes aldığında göğsün şişer. Havayı içine alan organ hangisidir?",
               "skill": "bil-vucut",
               "options": [
-                "Dengeli beslenip hareket etmek",
-                "Hiç su içmemek",
-                "Hep hareketsiz durmak",
-                "Uyumamak"
+                "Böbrek",
+                "Dil",
+                "Akciğerler",
+                "Kalp"
               ],
-              "correct": 0,
-              "hint": "Meyve-sebze, su ve spor."
+              "correct": 2,
+              "hint": "İki tanedir.",
+              "lvl": 1
             },
             {
-              "q": "Mikroplardan korunmak için ellerimizi ne zaman yıkamalıyız?",
+              "q": "Vücudumuzu dik tutan, kemiklerden oluşan sert yapı nedir?",
               "skill": "bil-vucut",
               "options": [
-                "Yemekten önce ve tuvaletten sonra",
-                "Hiçbir zaman",
-                "Sadece yılbaşında",
-                "Sadece uyurken"
+                "Ter",
+                "İskelet",
+                "Saç",
+                "Tırnak"
               ],
-              "correct": 0,
-              "hint": "Sabun ve suyla, sık sık."
+              "correct": 1,
+              "hint": "Kemiklerin tamamı.",
+              "lvl": 1
             },
             {
-              "q": "Vücudumuzun büyümesi ve enerji alması için ne gerekir?",
+              "q": "Bir soruyu çözerken, yürürken ve konuşurken çalışan komuta merkezi neresidir?",
               "skill": "bil-vucut",
               "options": [
-                "Sağlıklı besinler ve su",
-                "Sadece şeker",
-                "Sadece uyku",
-                "Hiçbir şey"
+                "Saç",
+                "Beyin",
+                "Diş",
+                "Ayak"
               ],
-              "correct": 0,
-              "hint": "Tabağında renkli sebzeler olsun."
+              "correct": 1,
+              "hint": "Kafamızın içinde.",
+              "lvl": 1
             },
             {
-              "q": "Kanımızın kırmızı olmasının bir sebebi vücuda neyi taşımasıdır?",
+              "q": "Yemekten önce ve tuvaletten sonra ellerimizi yıkamalıyız. Bunun sebebi nedir?",
               "skill": "bil-vucut",
               "options": [
-                "Oksijen",
-                "Kum",
-                "Işık",
-                "Ses"
+                "Mikroplardan korunmak",
+                "Renk değişimi",
+                "Hızlı koşmak",
+                "Ellerin uzaması"
               ],
               "correct": 0,
-              "hint": "Akciğerden aldığımız gazı hücrelere götürür."
+              "hint": "Görünmez mikroplar.",
+              "lvl": 1
+            },
+            {
+              "q": "Koşarken kalbin daha hızlı atar ve nefesin sıklaşır. Bunun sebebi en çok nedir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Beynin uyur",
+                "Vücudun soğur",
+                "Kaslarına daha çok oksijen ve enerji gerekir",
+                "Kalbin yorulup durur"
+              ],
+              "correct": 2,
+              "hint": "Hareket enerji ister.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çocuk sadece şeker ve cips yiyip meyve-sebze yemiyor. Zamanla ne olması beklenir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Daha hızlı büyür",
+                "Daha güçlü olur",
+                "Hiçbir şey olmaz",
+                "Sağlığı bozulur, gerekli besinleri alamaz"
+              ],
+              "correct": 3,
+              "hint": "Dengeli beslenme gerekir.",
+              "lvl": 2
+            },
+            {
+              "q": "Kolunu büktüğünde ön kolundaki kas şişip sertleşir. Kaslar ne işe yarar?",
+              "skill": "bil-vucut",
+              "options": [
+                "Kemikleri çekerek hareketi sağlar",
+                "Havayı alır",
+                "Kan üretir",
+                "Sadece süstür"
+              ],
+              "correct": 0,
+              "hint": "Hareket kaslarla olur.",
+              "lvl": 2
+            },
+            {
+              "q": "Yediğimiz yemek ağızda çiğnenir, sonra mideye iner. Midenin görevi nedir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Kanı pompalamak",
+                "Besinleri öğütüp sindirmeye başlamak",
+                "Görmek",
+                "Havayı almak"
+              ],
+              "correct": 1,
+              "hint": "Yemek buraya iner.",
+              "lvl": 2
+            },
+            {
+              "q": "Karanlıkta gözümüz iyi görmez, ışık yanınca görürüz. Bu, gözün nasıl bir organ olduğunu gösterir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Kan pompalayan bir organ",
+                "Besin öğüten bir organ",
+                "Ses üreten bir organ",
+                "Işığı kullanan bir duyu organı"
+              ],
+              "correct": 3,
+              "hint": "Görme organı.",
+              "lvl": 2
+            },
+            {
+              "q": "Akciğere giren oksijen, kalbin pompaladığı kanla tüm vücuda taşınır. Bu iki organ arasındaki ilişki neyi gösterir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Kalp oksijen üretir",
+                "Akciğer kan pompalar",
+                "Organlar birbirinden bağımsızdır",
+                "Organlar birlikte çalışarak vücudu yaşatır"
+              ],
+              "correct": 3,
+              "hint": "Takım oyunu.",
+              "lvl": 3
+            },
+            {
+              "q": "Düzenli spor yapan biri merdiven çıkarken daha az yorulur. Bunu en iyi ne açıklar?",
+              "skill": "bil-vucut",
+              "options": [
+                "Merdivenler kısalır",
+                "Kalp ve kaslar güçlenip daha verimli çalışır",
+                "Yerçekimi azalır",
+                "Vücut aniden hafifler"
+              ],
+              "correct": 1,
+              "hint": "Egzersiz vücudu güçlendirir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk düşüp kolunu kırdı ve doktor alçıya aldı; zamanla kemik iyileşti. Bu, kemiğin hangi özelliğini gösterir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Kemikler canlıdır ve zamanla kendini onarabilir",
+                "Kemikler kastan yapılır",
+                "Kemikler hiç iyileşmez",
+                "Kemikler cansız taştır"
+              ],
+              "correct": 0,
+              "hint": "Kemik canlı bir dokudur.",
+              "lvl": 3
+            },
+            {
+              "q": "Hasta biri hapşırırken ağzını kapatması istenir. Bunun bilimsel sebebi nedir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Sesin kısılması için",
+                "Sadece görgü, başka sebep yok",
+                "Mikropların havaya yayılıp başkalarına bulaşmasını önlemek",
+                "Daha hızlı iyileşmek için"
+              ],
+              "correct": 2,
+              "hint": "Mikroplar damlacıkla yayılır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir öğrenci 'Uyku zaman kaybıdır, hiç uyumasak daha iyi olurdu' diyor. Bu neden yanlıştır?",
+              "skill": "bil-vucut",
+              "options": [
+                "Doğrudur, uyku gereksizdir",
+                "Uyku, vücudun dinlenip onarıldığı önemli bir süreçtir",
+                "Uyku vücuda zarar verir",
+                "Uyku sadece geceyi geçirmektir"
+              ],
+              "correct": 1,
+              "hint": "Dinlenmenin faydası.",
+              "lvl": 3
             }
           ]
         }
@@ -1379,148 +1634,199 @@
           },
           "bank": [
             {
-              "q": "Maddenin üç temel hali hangileridir?",
+              "q": "Buzdolabından çıkardığın çikolata elinde bir süre sonra yumuşayıp erimeye başladı. Sebebi nedir?",
               "skill": "bil-madde",
               "options": [
-                "Katı, sıvı, gaz",
-                "Sıcak, soğuk, ılık",
-                "Büyük, orta, küçük",
-                "Sarı, mavi, yeşil"
+                "Elinin sıcaklığı çikolatayı ısıttı",
+                "Çikolata büyüdü",
+                "Çikolata dondu",
+                "El çikolatayı soğuttu"
               ],
               "correct": 0,
-              "hint": "Buz, su, buhar."
+              "hint": "Isı katıyı yumuşatır.",
+              "lvl": 1
             },
             {
-              "q": "Taş hangi haldedir?",
+              "q": "Meyve suyunu bardaktan sürahiye döktüğünde kabın şeklini alıyor. Meyve suyu hangi haldedir?",
               "skill": "bil-madde",
               "options": [
-                "Katı",
-                "Sıvı",
+                "Işık",
                 "Gaz",
-                "Işık"
-              ],
-              "correct": 0,
-              "hint": "Sert ve şekli belli."
-            },
-            {
-              "q": "Süt hangi haldedir?",
-              "skill": "bil-madde",
-              "options": [
                 "Sıvı",
-                "Katı",
-                "Gaz",
-                "Ses"
+                "Katı"
               ],
-              "correct": 0,
-              "hint": "Bardağa dökülür, akar."
-            },
-            {
-              "q": "Buzu ısıtınca ne olur?",
-              "skill": "bil-madde",
-              "options": [
-                "Erir, su olur",
-                "Taşa döner",
-                "Kaybolur",
-                "Renk değiştirir"
-              ],
-              "correct": 0,
-              "hint": "Katıdan sıvıya: erime."
-            },
-            {
-              "q": "Suyu kaynatınca yükselen buhar hangi haldedir?",
-              "skill": "bil-madde",
-              "options": [
-                "Gaz",
-                "Katı",
-                "Sıvı",
-                "Metal"
-              ],
-              "correct": 0,
-              "hint": "Tencerenin üstünde uçuşur."
-            },
-            {
-              "q": "Suyu buzlukta soğutursak ne olur?",
-              "skill": "bil-madde",
-              "options": [
-                "Donar, buz (katı) olur",
-                "Buhar olur",
-                "Yok olur",
-                "Süt olur"
-              ],
-              "correct": 0,
-              "hint": "Sıvıdan katıya: donma."
-            },
-            {
-              "q": "Bir sıvının şekli neden sürekli değişir?",
-              "skill": "bil-madde",
-              "options": [
-                "Konulduğu kabın şeklini alır",
-                "Kendi şeklini korur",
-                "Havada durur",
-                "Hiç değişmez"
-              ],
-              "correct": 0,
-              "hint": "Şişeye de bardağa da uyar."
-            },
-            {
-              "q": "Balonu şişiren şey hangi haldedir?",
-              "skill": "bil-madde",
-              "options": [
-                "Gaz (hava)",
-                "Katı",
-                "Buz",
-                "Taş"
-              ],
-              "correct": 0,
-              "hint": "Görünmez ama balonu doldurur."
-            },
-            {
-              "q": "Soğuk bir bardağın dışının terlemesinin sebebi nedir?",
-              "skill": "bil-madde",
-              "options": [
-                "Havadaki su buharının yoğuşup damla olması",
-                "Bardağın delik olması",
-                "Suyun kaçması",
-                "Camın erimesi"
-              ],
-              "correct": 0,
-              "hint": "Gazdan sıvıya geçiş: yoğuşma."
+              "correct": 2,
+              "hint": "Akan hal.",
+              "lvl": 1
             },
             {
               "q": "Aşağıdakilerden hangisi katı bir maddedir?",
               "skill": "bil-madde",
               "options": [
-                "Tahta kaşık",
-                "Portakal suyu",
                 "Rüzgâr",
-                "Buhar"
+                "Buhar",
+                "Tahta kaşık",
+                "Portakal suyu"
               ],
-              "correct": 0,
-              "hint": "Elinle tutabildiğin, şekli sabit olan."
+              "correct": 2,
+              "hint": "Şekli sabit, elle tutulur.",
+              "lvl": 1
             },
             {
-              "q": "Erimenin (katıdan sıvıya geçiş) olması için ne gerekir?",
+              "q": "Suyu buzluğa koyup beklettin ve sertleşti. Su ne oldu?",
               "skill": "bil-madde",
               "options": [
-                "Isı vermek (ısıtmak)",
-                "Soğutmak",
-                "Karanlık",
-                "Ses"
+                "Süt oldu",
+                "Buhar oldu",
+                "Dondu, buz (katı) oldu",
+                "Kayboldu"
               ],
-              "correct": 0,
-              "hint": "Güneşte kalan dondurmayı düşün."
+              "correct": 2,
+              "hint": "Soğuk sıvıyı katıya çevirir.",
+              "lvl": 1
             },
             {
-              "q": "Islak çamaşırın kuruması hangi olayla açıklanır?",
+              "q": "Balonun içini dolduran, gözle görünmeyen madde hangi haldedir?",
               "skill": "bil-madde",
               "options": [
-                "Sudaki nemin buharlaşması",
-                "Suyun donması",
-                "Bezlerin erimesi",
-                "Rüzgârın yağması"
+                "Taş",
+                "Gaz",
+                "Sıvı",
+                "Katı"
+              ],
+              "correct": 1,
+              "hint": "Havayı düşün.",
+              "lvl": 1
+            },
+            {
+              "q": "Sıcak çorbadan yükselen buğu, soğuk bir kaşığa değince ne olur?",
+              "skill": "bil-madde",
+              "options": [
+                "Kaşığı eritir",
+                "Yoğuşup küçük su damlaları oluşturur",
+                "Kaybolur",
+                "Hemen buza döner"
+              ],
+              "correct": 1,
+              "hint": "Gaz soğuyunca sıvıya döner.",
+              "lvl": 2
+            },
+            {
+              "q": "Aynı buz küpü sıcak odada mı yoksa buzdolabında mı daha hızlı erir? Neden?",
+              "skill": "bil-madde",
+              "options": [
+                "Hiç erimez",
+                "Sıcak odada, çünkü daha çok ısı alır",
+                "İkisinde de aynı",
+                "Buzdolabında, çünkü soğuktur"
+              ],
+              "correct": 1,
+              "hint": "Erime için ısı gerekir.",
+              "lvl": 2
+            },
+            {
+              "q": "Kışın camdaki buz çiçekleri, camdaki su buharının çok soğumasıyla oluşur. Bu hangi hal değişimidir?",
+              "skill": "bil-madde",
+              "options": [
+                "Sıvıdan gaza",
+                "Katıdan sıvıya",
+                "Değişim yoktur",
+                "Gazdan doğrudan katıya geçiş"
+              ],
+              "correct": 3,
+              "hint": "Su buharı doğrudan buza döner.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir sıvının belirli bir şekli yoktur ama bir katının vardır. Bu farkın en iyi açıklaması nedir?",
+              "skill": "bil-madde",
+              "options": [
+                "Sıvı hiç ısınmaz",
+                "Katı görünmezdir",
+                "Sıvı konduğu kabın şeklini alır, katı kendi şeklini korur",
+                "Sıvı daha ağırdır"
+              ],
+              "correct": 2,
+              "hint": "Kabın şeklini alma.",
+              "lvl": 2
+            },
+            {
+              "q": "Yağmurdan sonra yollardaki su birikintileri güneşli günde kaybolur. Su nereye gitti?",
+              "skill": "bil-madde",
+              "options": [
+                "Buharlaşıp havaya karıştı",
+                "Buza döndü",
+                "Yok oldu",
+                "Tamamen toprağa gizlendi"
               ],
               "correct": 0,
-              "hint": "Su havaya karışır, gaza döner."
+              "hint": "Sıvıdan gaza geçiş.",
+              "lvl": 2
+            },
+            {
+              "q": "Su ısıtılınca buhar, soğutulunca buz olur; her seferinde tekrar suya dönebilir. Bu döngü neyi kanıtlar?",
+              "skill": "bil-madde",
+              "options": [
+                "Buz ve su ayrı maddelerdir",
+                "Hal değişimi maddeyi yok etmez, sadece halini değiştirir",
+                "Su her seferinde farklı maddeye döner",
+                "Buhar kalıcı olarak kaybolur"
+              ],
+              "correct": 1,
+              "hint": "Madde korunur.",
+              "lvl": 3
+            },
+            {
+              "q": "Aynı miktar su biri geniş tabağa biri dar bardağa konuldu; tabaktaki daha hızlı buharlaştı. En iyi açıklama nedir?",
+              "skill": "bil-madde",
+              "options": [
+                "Su miktarları farklıdır",
+                "Tabak suyu emer",
+                "Bardak daha sıcaktır",
+                "Geniş yüzey havayla daha çok temas ettiği için buharlaşma hızlanır"
+              ],
+              "correct": 3,
+              "hint": "Yüzey alanı buharlaşmayı etkiler.",
+              "lvl": 3
+            },
+            {
+              "q": "Dondurmacı, dondurmayı erimesin diye buz kalıpları arasında taşır. Buradaki bilimsel mantık nedir?",
+              "skill": "bil-madde",
+              "options": [
+                "Soğuk ışığı engeller",
+                "Düşük sıcaklık erimeyi (katıdan sıvıya geçişi) yavaşlatır",
+                "Buz dondurmaya renk verir",
+                "Soğuk dondurmayı büyütür"
+              ],
+              "correct": 1,
+              "hint": "Erime ısı ister; soğuk onu geciktirir.",
+              "lvl": 3
+            },
+            {
+              "q": "Tuzlu su ısıtılıp tamamen buharlaştırıldığında kabın dibinde beyaz tuz kalır. Bu deney neyi gösterir?",
+              "skill": "bil-madde",
+              "options": [
+                "Su buharlaşır ama çözünmüş tuz geride kalır",
+                "Tuz yok olur",
+                "Tuz suya dönüşür",
+                "Tuz da buharlaşıp gider"
+              ],
+              "correct": 0,
+              "hint": "Sadece su gaza döner.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk 'Buz ve su tamamen farklı iki maddedir' diyor. Bu ifade neden yanlıştır?",
+              "skill": "bil-madde",
+              "options": [
+                "Su bir gazdır",
+                "İkisi de sudur; sadece halleri (katı ve sıvı) farklıdır",
+                "Buz bir metaldir",
+                "Doğrudur, buz sudan başka maddedir"
+              ],
+              "correct": 1,
+              "hint": "Aynı maddenin farklı halleri.",
+              "lvl": 3
             }
           ]
         }
@@ -1606,148 +1912,199 @@
           },
           "bank": [
             {
-              "q": "Kuvvet en basit haliyle nedir?",
+              "q": "Bir kapıyı açmak için ya iteriz ya çekeriz. İtme ve çekmeye tek kelimeyle ne denir?",
               "skill": "bil-kuvvet",
               "options": [
-                "İtme ya da çekme",
-                "Bir renk",
-                "Bir ses",
-                "Bir koku"
+                "Kuvvet",
+                "Renk",
+                "Ses",
+                "Koku"
               ],
               "correct": 0,
-              "hint": "Kapıyı iter ya da çekersin."
+              "hint": "İt ya da çek.",
+              "lvl": 1
             },
             {
-              "q": "Duran bir topu harekete geçirmek için ne yaparız?",
+              "q": "Duran bir futbol topunu hareket ettirmek için ne yaparız?",
               "skill": "bil-kuvvet",
               "options": [
-                "Ona kuvvet uygularız (iteriz/vururuz)",
-                "Ona bakarız",
                 "Adını söyleriz",
-                "Bekleriz"
+                "Ona bakarız",
+                "Bekleriz",
+                "Ona kuvvet uygularız (vururuz)"
               ],
-              "correct": 0,
-              "hint": "Tekme at, hareket etsin."
+              "correct": 3,
+              "hint": "Tekme at.",
+              "lvl": 1
             },
             {
-              "q": "Havaya attığımız topu tekrar yere indiren kuvvet nedir?",
+              "q": "Havaya attığın top bir süre sonra yere düşer. Onu aşağı çeken kuvvet nedir?",
               "skill": "bil-kuvvet",
               "options": [
-                "Yerçekimi",
-                "Rüzgâr sesi",
+                "Koku",
+                "Ses",
                 "Işık",
-                "Mıknatıs"
+                "Yerçekimi"
               ],
-              "correct": 0,
-              "hint": "Dünya her şeyi aşağı çeker."
+              "correct": 3,
+              "hint": "Dünya her şeyi aşağı çeker.",
+              "lvl": 1
             },
             {
-              "q": "Buzda kaymak neden halıda kaymaktan kolaydır?",
+              "q": "Buzdolabına yapışan renkli süsler neyle tutunur?",
               "skill": "bil-kuvvet",
               "options": [
-                "Buzda sürtünme az olduğu için",
-                "Buz sıcak olduğu için",
-                "Halı ıslak olduğu için",
-                "Işık az olduğu için"
+                "Işıkla",
+                "Sesle",
+                "Suyla",
+                "Mıknatısla"
               ],
-              "correct": 0,
-              "hint": "Pürüzsüz yüzey daha az frenler."
+              "correct": 3,
+              "hint": "Metali çeken güç.",
+              "lvl": 1
             },
             {
-              "q": "Mıknatıs aşağıdakilerden hangisini çeker?",
+              "q": "Kızağı karda çekmek için ipi kendine doğru çekersin. Bu ne tür bir kuvvettir?",
               "skill": "bil-kuvvet",
               "options": [
-                "Demir çivi",
-                "Kağıt",
-                "Su",
-                "Tahta"
+                "Çekme",
+                "İtme",
+                "Isı",
+                "Işık"
               ],
               "correct": 0,
-              "hint": "Metal cisimleri sever."
+              "hint": "Kendine doğru.",
+              "lvl": 1
             },
             {
-              "q": "Bisiklette fren yapınca tekerleği yavaşlatan kuvvet nedir?",
+              "q": "Aynı topu buz üstünde ve halı üstünde ittiğinde buzda çok daha uzağa gidiyor. Sebebi nedir?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Buz daha sıcaktır",
+                "Buzda sürtünme daha azdır",
+                "Halı topu çeker",
+                "Buz topu iter"
+              ],
+              "correct": 1,
+              "hint": "Pürüzsüz yüzey az frenler.",
+              "lvl": 2
+            },
+            {
+              "q": "Bisiklette fren yaptığında tekerlek yavaşlar ve durur. Bunu sağlayan kuvvet nedir?",
               "skill": "bil-kuvvet",
               "options": [
                 "Sürtünme kuvveti",
+                "Ses",
                 "Yerçekimi yukarı çeker",
-                "Işık",
-                "Ses"
+                "Işık"
               ],
               "correct": 0,
-              "hint": "Fren balatası tekere sürtünür."
+              "hint": "Fren tekere sürtünür.",
+              "lvl": 2
             },
             {
-              "q": "Bir arabayı hem hızlandırıp hem yavaşlatan şey nedir?",
+              "q": "İki mıknatısın aynı kutuplarını yaklaştırdığında birbirini itiyor. Bu neyi gösterir?",
               "skill": "bil-kuvvet",
               "options": [
-                "Uygulanan kuvvet",
-                "Rengi",
-                "Camının şekli",
-                "Kornası"
+                "Mıknatıslar erir",
+                "Mıknatıs ışık verir",
+                "Aynı kutuplar birbirini iter",
+                "Aynı kutuplar yapışır"
               ],
-              "correct": 0,
-              "hint": "Gaz iter, fren çeker."
+              "correct": 2,
+              "hint": "Aynı kutup, itme.",
+              "lvl": 2
             },
             {
-              "q": "Salıncakta yüksek çıkıp sonra geri inmemizin sebebi nedir?",
+              "q": "Ayakkabıların tabanı tırtıklıdır. Bu tasarımın amacı nedir?",
               "skill": "bil-kuvvet",
               "options": [
-                "Yerçekimi bizi aşağı çeker",
-                "Rüzgâr iter sadece",
-                "Salıncak ağır olduğu için",
-                "Ses yüzünden"
+                "Ses çıkarmak",
+                "Ağırlık katmak",
+                "Sadece süs olmak",
+                "Sürtünmeyi artırıp kaymayı önlemek"
               ],
-              "correct": 0,
-              "hint": "Yukarı çıkarız ama Dünya bırakmaz."
+              "correct": 3,
+              "hint": "Islak zeminde kaymamak için.",
+              "lvl": 2
             },
             {
-              "q": "İki mıknatısın aynı kutupları birbirine yaklaşınca ne yapar?",
+              "q": "Salıncakta yukarı çıkarsın ama her seferinde geri inersin. Seni geri indiren nedir?",
               "skill": "bil-kuvvet",
               "options": [
-                "Birbirini iter",
-                "Yapışır kalır",
-                "Erir",
-                "Işık verir"
+                "Yerçekimi",
+                "Rüzgâr",
+                "Ses",
+                "Salıncağın rengi"
               ],
               "correct": 0,
-              "hint": "Aynı kutuplar dosttan çok ittirir."
+              "hint": "Dünya aşağı çeker.",
+              "lvl": 2
             },
             {
-              "q": "Sürtünme kuvveti bir cisme ne yapar?",
+              "q": "Bir tüy ile bir taşı aynı yükseklikten bıraktığında taş daha hızlı düşer. Bunun ana sebebi nedir?",
               "skill": "bil-kuvvet",
               "options": [
-                "Hareketini yavaşlatır",
-                "Hızlandırır",
-                "Renk verir",
-                "Uçurur"
+                "Havanın tüye yaptığı direnç düşüşünü yavaşlatır",
+                "Yerçekimi taşı daha çok sever",
+                "Tüy hafif olduğu için yükselir",
+                "Taş birileri tarafından itilmiştir"
               ],
               "correct": 0,
-              "hint": "Kaymayı zorlaştıran güç."
+              "hint": "Hava direnci hafif ve geniş cisimleri etkiler.",
+              "lvl": 3
             },
             {
-              "q": "Ayakkabıların altındaki tırtıklı desen ne işe yarar?",
+              "q": "Bir kutuyu halıda itmek, aynı kutuyu tekerlekli arabaya koyup itmekten daha zordur. Tekerlek işi neden kolaylaştırır?",
               "skill": "bil-kuvvet",
               "options": [
-                "Sürtünmeyi artırıp kaymayı önler",
-                "Sadece süs",
-                "Ağırlık verir",
-                "Ses çıkarır"
+                "Tekerlek sürtünmeyi azaltır",
+                "Tekerlek kutuyu hafifletir",
+                "Tekerlek yerçekimini kapatır",
+                "Tekerlek kuvvet üretir"
               ],
               "correct": 0,
-              "hint": "Yağmurda kaymamak için."
+              "hint": "Yuvarlanma sürtünmeyi azaltır.",
+              "lvl": 3
             },
             {
-              "q": "Bir cismi çekince kendine doğru hareket ettiren kuvvet çeşidi nedir?",
+              "q": "Bir top rampadan aşağı bırakıldığında gittikçe hızlanır. Bunu en iyi ne açıklar?",
               "skill": "bil-kuvvet",
               "options": [
-                "Çekme kuvveti",
-                "İtme kuvveti",
-                "Işık",
-                "Isı"
+                "Top kendi kendine hızlanır",
+                "Yerçekimi topu sürekli aşağı doğru çeker",
+                "Rüzgâr onu iter",
+                "Rampa topu ısıtır"
               ],
-              "correct": 0,
-              "hint": "İpi kendine doğru çekmek gibi."
+              "correct": 1,
+              "hint": "Aşağı çeken kuvvet iş yapar.",
+              "lvl": 3
+            },
+            {
+              "q": "Paraşütçü atlayınca paraşütünü açar ve yavaşça iner. Paraşüt bunu nasıl sağlar?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Paraşütçüyü yukarı iter",
+                "Geniş yüzeyiyle hava direncini artırıp düşüşü yavaşlatır",
+                "Ağırlığı azaltır",
+                "Yerçekimini yok eder"
+              ],
+              "correct": 1,
+              "hint": "Geniş yüzey daha çok hava direnci.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk 'Sürtünme her zaman kötüdür, hep zarar verir' diyor. Bu ifade neden yanlıştır?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Doğrudur, sürtünme hep zararlıdır",
+                "Sürtünme sayesinde yürüyebilir, tutabilir ve durabiliriz",
+                "Sürtünme diye bir şey yoktur",
+                "Sürtünme sadece hızlandırır"
+              ],
+              "correct": 1,
+              "hint": "Buz gibi kaygan yerde yürümeyi düşün.",
+              "lvl": 3
             }
           ]
         }
@@ -1833,148 +2190,199 @@
           },
           "bank": [
             {
-              "q": "Işık nasıl ilerler?",
+              "q": "El fenerini duvara tuttuğunda ışık düz bir çizgi hâlinde gidiyor. Işık nasıl ilerler?",
               "skill": "bil-isik",
               "options": [
-                "Düz bir çizgide",
+                "Hiç ilerlemez",
                 "Zikzak yaparak",
-                "Geri geri",
-                "Hiç ilerlemez"
+                "Düz bir çizgide",
+                "Geri geri"
               ],
-              "correct": 0,
-              "hint": "El fenerinin ışınını düşün."
+              "correct": 2,
+              "hint": "Fenerin ışını.",
+              "lvl": 1
             },
             {
-              "q": "Gölge nasıl oluşur?",
-              "skill": "bil-isik",
-              "options": [
-                "Işık bir cisme çarpıp arkasına geçemeyince",
-                "Karanlık aktığı için",
-                "Renk yüzünden",
-                "Rüzgârdan"
-              ],
-              "correct": 0,
-              "hint": "Işığı engelleyen cismin arkası."
-            },
-            {
-              "q": "Aşağıdakilerden hangisi bir ışık kaynağıdır?",
-              "skill": "bil-isik",
-              "options": [
-                "Güneş",
-                "Ayna",
-                "Taş",
-                "Defter"
-              ],
-              "correct": 0,
-              "hint": "Kendi ışığını üretir."
-            },
-            {
-              "q": "Ses nasıl oluşur?",
-              "skill": "bil-ses",
-              "options": [
-                "Titreşimle",
-                "Renkle",
-                "Gölgeyle",
-                "Kokuyla"
-              ],
-              "correct": 0,
-              "hint": "Davula vurunca yüzeyi titrer."
-            },
-            {
-              "q": "Işığın aynadan geri dönmesine ne denir?",
+              "q": "Güneşli günde ağacın altında koyu bir bölge oluşur. Buna ne denir?",
               "skill": "bil-isik",
               "options": [
                 "Yansıma",
-                "Erime",
-                "Donma",
-                "Yağış"
+                "Gökkuşağı",
+                "Gölge",
+                "Ses"
               ],
-              "correct": 0,
-              "hint": "Aynada kendini görmenin sebebi."
+              "correct": 2,
+              "hint": "Işığın engellendiği yer.",
+              "lvl": 1
             },
             {
-              "q": "Sesleri hangi organımızla duyarız?",
+              "q": "Aşağıdakilerden hangisi kendi ışığını üreten bir ışık kaynağıdır?",
+              "skill": "bil-isik",
+              "options": [
+                "Ayna",
+                "Taş",
+                "Defter",
+                "Güneş"
+              ],
+              "correct": 3,
+              "hint": "Kendisi parlar.",
+              "lvl": 1
+            },
+            {
+              "q": "Davula vurduğunda yüzeyi titrer ve ses çıkar. Ses neyle oluşur?",
               "skill": "bil-ses",
               "options": [
-                "Kulak",
+                "Titreşimle",
+                "Kokuyla",
+                "Renkle",
+                "Gölgeyle"
+              ],
+              "correct": 0,
+              "hint": "Titreşim.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir arkadaşının seslendiğini duyarsın. Sesi hangi organınla duyarsın?",
+              "skill": "bil-ses",
+              "options": [
                 "Göz",
-                "Burun",
-                "Dil"
+                "Dil",
+                "Kulak",
+                "Burun"
               ],
-              "correct": 0,
-              "hint": "Titreşimi yakalar."
+              "correct": 2,
+              "hint": "Ses organı.",
+              "lvl": 1
             },
             {
-              "q": "Beyaz ışık bir yağmur damlasından geçince ne görülür?",
+              "q": "Aynanın karşısına geçince kendini görürsün. Bunun sebebi nedir?",
               "skill": "bil-isik",
               "options": [
-                "Gökkuşağı (renkler)",
-                "Sadece siyah",
-                "Ses",
-                "Duman"
+                "Ayna ışık üretir",
+                "Ayna gölge yapar",
+                "Işık aynadan yansır (geri döner)",
+                "Ayna ses çıkarır"
               ],
-              "correct": 0,
-              "hint": "Yağmurdan sonra gökte belirir."
+              "correct": 2,
+              "hint": "Yansıma.",
+              "lvl": 2
             },
             {
-              "q": "Ses en iyi hangisinin içinde yayılır, en kötü nerede?",
+              "q": "Şimşeği gördükten birkaç saniye sonra gök gürültüsünü duyarız. Bunun sebebi nedir?",
               "skill": "bil-ses",
               "options": [
-                "Havada yayılır, boşlukta (uzayda) yayılmaz",
-                "Sadece karanlıkta",
-                "Hiçbir yerde",
-                "Sadece camda"
+                "Ses ışıktan hızlıdır",
+                "Işık sesten çok daha hızlıdır",
+                "İkisi de hiç ulaşmaz",
+                "Gürültü önce gelir"
               ],
-              "correct": 0,
-              "hint": "Uzayda kimse çığlığını duyamaz."
+              "correct": 1,
+              "hint": "Işık yıldırım hızında.",
+              "lvl": 2
             },
             {
-              "q": "Karanlık bir odada bir şeyi görebilmemiz için ne gerekir?",
+              "q": "Sabah perde kapalıyken oda karanlık, perdeyi açınca aydınlanır. Bir şeyi görebilmemiz için ne gerekir?",
               "skill": "bil-isik",
               "options": [
-                "Işık",
                 "Ses",
+                "Işık",
                 "Koku",
                 "Rüzgâr"
               ],
-              "correct": 0,
-              "hint": "Fenerini aç, görürsün."
+              "correct": 1,
+              "hint": "Karanlıkta göremeyiz.",
+              "lvl": 2
             },
             {
-              "q": "Şimşek çaktıktan sonra gök gürültüsünü neden biraz sonra duyarız?",
+              "q": "Bir davula yavaş vurunca hafif, sert vurunca gür ses çıkar. Bu neyi gösterir?",
               "skill": "bil-ses",
               "options": [
-                "Işık sesten çok daha hızlı olduğu için",
-                "Ses önce gelir",
-                "İkisi aynı anda gelir hep",
-                "Ses hiç gelmez"
+                "Titreşimin sesle ilgisi yoktur",
+                "Ses ışıkla oluşur",
+                "Ses renkle değişir",
+                "Güçlü titreşim daha yüksek ses üretir"
               ],
-              "correct": 0,
-              "hint": "Işık yıldırım hızında, ses ondan yavaş."
+              "correct": 3,
+              "hint": "Titreşim gücü sesin şiddetini belirler.",
+              "lvl": 2
             },
             {
-              "q": "Bir davula sert vurunca çıkan ses nasıl olur?",
-              "skill": "bil-ses",
-              "options": [
-                "Daha yüksek (gür) olur",
-                "Hiç ses çıkmaz",
-                "Renk değiştirir",
-                "Işık verir"
-              ],
-              "correct": 0,
-              "hint": "Güçlü titreşim, güçlü ses."
-            },
-            {
-              "q": "Camdan ışığın geçebilmesinin sebebi camın nasıl olmasıdır?",
+              "q": "Camın arkasından dışarıyı görebiliriz ama tahta duvarın arkasını göremeyiz. Bu farkın sebebi nedir?",
               "skill": "bil-isik",
               "options": [
-                "Saydam (şeffaf) olması",
-                "Siyah olması",
-                "Kalın taş olması",
-                "Ahşap olması"
+                "Cam saydamdır, ışığı geçirir; tahta geçirmez",
+                "Tahta ışık üretir",
+                "Cam ışık üretir",
+                "Cam ses çıkarır"
               ],
               "correct": 0,
-              "hint": "İçinden görebildiğin madde."
+              "hint": "Saydam madde ışığı geçirir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir cismin gölgesi sabah uzun, öğlen kısa olur. Bunu en iyi ne açıklar?",
+              "skill": "bil-isik",
+              "options": [
+                "Güneş'in gökteki konumu (açısı) gün boyunca değişir",
+                "Gölge ısınır",
+                "Cisim büyüyüp küçülür",
+                "Güneş söner"
+              ],
+              "correct": 0,
+              "hint": "Işık kaynağının açısı gölgeyi değiştirir.",
+              "lvl": 3
+            },
+            {
+              "q": "Uzayda astronotlar yan yana olsalar bile telsiz kullanmadan birbirlerini duyamaz. Bunun sebebi nedir?",
+              "skill": "bil-ses",
+              "options": [
+                "Uzayda hiç ışık yoktur",
+                "Ses yayılmak için havaya ihtiyaç duyar, uzayda hava yoktur",
+                "Astronotlar sağırdır",
+                "Uzayda ses çok hızlıdır"
+              ],
+              "correct": 1,
+              "hint": "Ses boşlukta yayılamaz.",
+              "lvl": 3
+            },
+            {
+              "q": "Beyaz güneş ışığı bir cam prizmadan veya yağmur damlasından geçince gökkuşağı renklerine ayrılır. Bu neyi gösterir?",
+              "skill": "bil-isik",
+              "options": [
+                "Işık aslında renksizdir",
+                "Beyaz ışık aslında farklı renklerin karışımıdır",
+                "Yağmur içinde boya vardır",
+                "Cam kendisi renk üretir"
+              ],
+              "correct": 1,
+              "hint": "Gökkuşağının sırrı.",
+              "lvl": 3
+            },
+            {
+              "q": "Uzaktaki bir kişinin baltayı vuruşunu önce görür, sesini biraz sonra duyarız. Bu gözlem neyi kanıtlar?",
+              "skill": "bil-ses",
+              "options": [
+                "Kulak gözden hızlıdır",
+                "Işık sesten daha hızlı yol alır",
+                "Ses ışıktan hızlıdır",
+                "Balta ses üretmez"
+              ],
+              "correct": 1,
+              "hint": "Şimşek-gürültü örneğiyle aynı.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk 'Kedi karanlıkta bizden iyi görür, demek ki hiç ışık olmadan da görebilir' diyor. Tam karanlıkta (hiç ışık yokken) ne olur?",
+              "skill": "bil-isik",
+              "options": [
+                "Gözler kendisi ışık üretir",
+                "Hiçbir göz göremez, çünkü görmek için biraz ışık şarttır",
+                "Kedi ışıksız da net görür",
+                "Karanlık göz için yeterlidir"
+              ],
+              "correct": 1,
+              "hint": "Az ışıkta iyi görmek, sıfır ışıkta görmek değildir.",
+              "lvl": 3
             }
           ]
         }
@@ -2060,64 +2468,56 @@
           },
           "bank": [
             {
-              "q": "Gece ve gündüz neden olur?",
+              "q": "Bir yerde saat öğlen güneşliyken, Dünya'nın öbür tarafında gecedir. Gece-gündüzün sebebi nedir?",
               "skill": "bil-uzay2",
               "options": [
-                "Dünya kendi ekseninde döndüğü için",
-                "Güneş söndüğü için",
-                "Ay engellediği için",
-                "Bulutlar yüzünden"
+                "Bulutlar örter",
+                "Ay engeller",
+                "Dünya kendi ekseninde döner",
+                "Güneş söner"
               ],
-              "correct": 0,
-              "hint": "Güneş'e bakan yüz gündüz olur."
+              "correct": 2,
+              "hint": "Güneş'e bakan yüz gündüz.",
+              "lvl": 1
             },
             {
-              "q": "Ay'ın ışığı nereden gelir?",
+              "q": "Geceleri Ay parlak görünür. Ay bu ışığı nereden alır?",
               "skill": "bil-uzay2",
               "options": [
-                "Güneş'in ışığını yansıtır",
                 "Kendi yanar",
-                "Yıldızlardan",
-                "Dünya'dan"
+                "Dünya'dan alır",
+                "Güneş'in ışığını yansıtır",
+                "Yıldızlardan çeker"
               ],
-              "correct": 0,
-              "hint": "Ay kendi ışığını üretmez."
+              "correct": 2,
+              "hint": "Ay bir ayna gibidir.",
+              "lvl": 1
             },
             {
-              "q": "Ay, Dünya için nedir?",
+              "q": "Ay, Dünya'nın etrafında döner ve onun tek doğal ne'sidir?",
               "skill": "bil-uzay2",
               "options": [
-                "Doğal uydusu",
-                "Yıldızı",
-                "Güneşi",
-                "Gezegeni"
+                "Gezegenidir",
+                "Güneşidir",
+                "Yıldızıdır",
+                "Uydusudur"
               ],
-              "correct": 0,
-              "hint": "Etrafında döner, geceleri parlar."
+              "correct": 3,
+              "hint": "Etrafımızda dönen gök cismi.",
+              "lvl": 1
             },
             {
-              "q": "Dünya'nın Güneş etrafında bir tam turu ne kadar sürer?",
+              "q": "Sabah Güneş hangi yönden doğar?",
               "skill": "bil-uzay2",
               "options": [
-                "Bir yıl",
-                "Bir gün",
-                "Bir saat",
-                "Bir hafta"
+                "Batıdan",
+                "Doğudan",
+                "Kuzeyden",
+                "Yerin altından"
               ],
-              "correct": 0,
-              "hint": "365 gün."
-            },
-            {
-              "q": "Dünya'nın kendi ekseninde bir tam dönüşü ne kadar sürer?",
-              "skill": "bil-uzay2",
-              "options": [
-                "Bir gün (24 saat)",
-                "Bir yıl",
-                "Bir ay",
-                "Bir dakika"
-              ],
-              "correct": 0,
-              "hint": "Bir gece ve bir gündüz."
+              "correct": 1,
+              "hint": "Adı yönden gelir.",
+              "lvl": 1
             },
             {
               "q": "Güneş aslında nedir?",
@@ -2125,83 +2525,142 @@
               "options": [
                 "Bir yıldız",
                 "Bir gezegen",
-                "Bir uydu",
-                "Bir bulut"
+                "Bir bulut",
+                "Bir uydu"
               ],
               "correct": 0,
-              "hint": "Kendi ışığını üreten dev ateş topu."
+              "hint": "Kendi ışığını üreten dev ateş topu.",
+              "lvl": 1
             },
             {
-              "q": "Ay'ın gökyüzünde hilal, dolunay gibi farklı görünmelerine ne denir?",
+              "q": "Ay bazen hilal, bazen dolunay olarak görünür. Bu düzenli değişimlere ne denir?",
               "skill": "bil-uzay2",
               "options": [
-                "Ay evreleri",
-                "Mevsimler",
                 "Tutulma",
+                "Mevsimler",
+                "Ay evreleri",
                 "Yağış"
               ],
-              "correct": 0,
-              "hint": "Her gece biraz değişir."
+              "correct": 2,
+              "hint": "Her gece biraz farklı.",
+              "lvl": 2
             },
             {
-              "q": "Güneş tutulması ne zaman olur?",
+              "q": "Bir top (Dünya) ve bir el feneri (Güneş) ile karanlık odada oynuyoruz. Topun ışık alan yüzü gündüz, arkası gece. Bu deney neyi gösterir?",
               "skill": "bil-uzay2",
               "options": [
-                "Ay, Dünya ile Güneş arasına girince",
-                "Güneş söndüğünde",
-                "Gece yarısı",
-                "Yağmur yağınca"
+                "Dünya döndükçe aynı yer sırayla gece ve gündüz yaşar",
+                "Ay gündüzü yaratır",
+                "Güneş sürekli hareket eder",
+                "Gece, Güneş sönünce olur"
               ],
               "correct": 0,
-              "hint": "Ay, Güneş'in önünü kapatır."
+              "hint": "Dönen top modeli.",
+              "lvl": 2
             },
             {
-              "q": "Güneş, Dünya ve Ay'ı büyükten küçüğe sıralarsak hangisi doğrudur?",
+              "q": "Güneş tutulması, Ay'ın Dünya ile Güneş arasına girmesiyle olur. O anda ne olur?",
               "skill": "bil-uzay2",
               "options": [
-                "Güneş > Dünya > Ay",
-                "Ay > Dünya > Güneş",
-                "Dünya > Güneş > Ay",
-                "Hepsi aynı büyüklükte"
+                "Ay yanmaya başlar",
+                "Dünya durur",
+                "Güneş söner",
+                "Ay, Güneş'in önünü kapatıp gölge düşürür"
               ],
-              "correct": 0,
-              "hint": "Güneş dev bir yıldız, Ay ise en küçük."
+              "correct": 3,
+              "hint": "Ay perde gibi önü kapatır.",
+              "lvl": 2
             },
             {
-              "q": "Sabah Güneş hangi yönden doğar?",
+              "q": "Dünya kendi ekseninde bir turunu bir günde, Güneş etrafında bir turunu bir yılda tamamlar. Buna göre hangisi doğrudur?",
               "skill": "bil-uzay2",
               "options": [
-                "Doğudan",
-                "Batıdan",
-                "Kuzeyden",
-                "Yerin altından"
+                "Gün yıldan uzundur",
+                "Yıl, günden çok daha uzun sürer",
+                "İkisi aynıdır",
+                "Yıl bir saattir"
               ],
-              "correct": 0,
-              "hint": "Adı da oradan gelir."
+              "correct": 1,
+              "hint": "365 gün bir yıldır.",
+              "lvl": 2
             },
             {
-              "q": "Mevsimlerin oluşmasının ana sebebi nedir?",
+              "q": "Geceleri gökyüzünde parlayan sayısız küçük ışık noktası vardır. Bunlar nedir?",
               "skill": "bil-uzay2",
               "options": [
-                "Dünya'nın eğik ekseniyle Güneş etrafında dönmesi",
-                "Ay'ın rengi",
-                "Yıldızların sayısı",
-                "Rüzgârın yönü"
+                "Sadece uçaklar",
+                "Bulutlar",
+                "Sokak lambaları",
+                "Çok uzaktaki yıldızlar"
               ],
-              "correct": 0,
-              "hint": "Dünya biraz yana yatık döner."
+              "correct": 3,
+              "hint": "Uzaktaki güneşler gibi.",
+              "lvl": 2
             },
             {
-              "q": "Geceleri gökyüzünde parlayan, Güneş dışındaki uzak ışık noktaları nedir?",
+              "q": "Güneş, Dünya'dan çok büyük olmasına rağmen gökyüzünde küçük bir daire gibi görünür. Bunu en iyi ne açıklar?",
               "skill": "bil-uzay2",
               "options": [
-                "Yıldızlar",
-                "Lambalar",
-                "Uçaklar sadece",
-                "Bulutlar"
+                "Dünya Güneş'ten büyüktür",
+                "Güneş gerçekten küçüktür",
+                "Güneş bize çok uzak olduğu için küçük görünür",
+                "Bulutlar onu küçültür"
               ],
-              "correct": 0,
-              "hint": "Çok uzaktaki güneşler gibidir."
+              "correct": 2,
+              "hint": "Uzaktaki büyük şeyler küçük görünür.",
+              "lvl": 3
+            },
+            {
+              "q": "Dünya'nın ekseni eğik olduğu için Güneş ışınları yıl boyunca farklı açılarla gelir. Bu durum neye yol açar?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Gece ve gündüze",
+                "Ay evrelerine",
+                "Mevsimlerin oluşmasına",
+                "Yıldızların sönmesine"
+              ],
+              "correct": 2,
+              "hint": "Eğik eksen ve Güneş turu.",
+              "lvl": 3
+            },
+            {
+              "q": "Ay'da gökyüzü gündüz bile simsiyahtır ve yıldızlar görülür; Dünya'da gündüz gökyüzü mavidir. Bu farkın ana sebebi nedir?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Ay'da daha çok yıldız vardır",
+                "Dünya'nın atmosferi (havası) ışığı dağıtır, Ay'ın havası yoktur",
+                "Ay Güneş'e daha yakındır",
+                "Dünya daha büyüktür"
+              ],
+              "correct": 1,
+              "hint": "Mavi gökyüzü hava sayesinde.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir gözlemci Ay'ın her gece biraz farklı göründüğünü, birkaç haftada bir aynı şekle döndüğünü not etti. Bu düzenli değişimin sebebi nedir?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Bulutlar şeklini bozar",
+                "Ay büyüyüp küçülür",
+                "Ay her gece yenilenir",
+                "Ay Dünya etrafında döndükçe aydınlık yüzünü farklı açılardan görürüz"
+              ],
+              "correct": 3,
+              "hint": "Ay evrelerinin sebebi.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk 'Yaz sıcaktır çünkü Dünya yazın Güneş'e çok yaklaşır' diyor. Aslında mevsimlerin sebebi nedir?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Dünya'nın Güneş'e yaklaşıp uzaklaşması",
+                "Dünya'nın eğik ekseni ve ışınların geliş açısı",
+                "Güneş'in büyümesi",
+                "Ay'ın rengi"
+              ],
+              "correct": 1,
+              "hint": "Yaygın bir yanlış anlama.",
+              "lvl": 3
             }
           ]
         }
@@ -2287,55 +2746,46 @@
           },
           "bank": [
             {
-              "q": "Yağmur nasıl oluşur?",
+              "q": "Gökyüzü koyu bulutlarla kaplandıktan sonra damlalar düşmeye başladı. Buna ne denir?",
               "skill": "bil-hava",
               "options": [
-                "Bulutlardaki su damlaları ağırlaşıp düşünce",
-                "Güneş eridiği için",
-                "Yıldızlar düştüğü için",
-                "Rüzgâr durduğu için"
+                "Dolu",
+                "Yağmur",
+                "Kar",
+                "Rüzgâr"
               ],
-              "correct": 0,
-              "hint": "Bulut = küçük su damlacıkları."
-            },
-            {
-              "q": "Suyun buharlaşıp bulut, sonra yağmur olarak geri dönmesine ne denir?",
-              "skill": "bil-hava",
-              "options": [
-                "Su döngüsü",
-                "Fotosentez",
-                "Erime",
-                "Deprem"
-              ],
-              "correct": 0,
-              "hint": "Su hiç bitmez, hep döner."
+              "correct": 1,
+              "hint": "Su damlaları düşer.",
+              "lvl": 1
             },
             {
               "q": "Bir yılda kaç mevsim vardır?",
               "skill": "bil-hava",
               "options": [
+                "12",
                 "4",
-                "2",
                 "7",
-                "12"
+                "2"
               ],
-              "correct": 0,
-              "hint": "İlkbahar, yaz, sonbahar, kış."
+              "correct": 1,
+              "hint": "İlkbahar, yaz, sonbahar, kış.",
+              "lvl": 1
             },
             {
-              "q": "Hangi mevsimde kar yağar ve hava en soğuktur?",
+              "q": "Kardan adam yapabildiğimiz, havanın en soğuk olduğu mevsim hangisidir?",
               "skill": "bil-hava",
               "options": [
                 "Kış",
                 "Yaz",
-                "İlkbahar",
-                "Sonbahar"
+                "Sonbahar",
+                "İlkbahar"
               ],
               "correct": 0,
-              "hint": "Kardan adam mevsimi."
+              "hint": "Kar mevsimi.",
+              "lvl": 1
             },
             {
-              "q": "Ağaçların yapraklarının sararıp döküldüğü mevsim hangisidir?",
+              "q": "Yaprakların sararıp döküldüğü mevsim hangisidir?",
               "skill": "bil-hava",
               "options": [
                 "Sonbahar",
@@ -2344,91 +2794,151 @@
                 "İlkbahar"
               ],
               "correct": 0,
-              "hint": "Yaz ile kış arası."
+              "hint": "Yaz ile kış arası.",
+              "lvl": 1
             },
             {
-              "q": "Çiçeklerin açtığı, doğanın canlandığı mevsim hangisidir?",
+              "q": "Bahçedeki yaprakları uçuran, görünmeyen ama hissedilen şey nedir?",
               "skill": "bil-hava",
               "options": [
-                "İlkbahar",
-                "Kış",
-                "Sonbahar",
-                "Gece"
+                "Işık",
+                "Ses",
+                "Rüzgâr",
+                "Gölge"
               ],
-              "correct": 0,
-              "hint": "Kıştan sonra gelir."
+              "correct": 2,
+              "hint": "Hareket eden hava.",
+              "lvl": 1
             },
             {
-              "q": "Bulutlardaki su damlaları çok soğursa yağış ne olarak düşer?",
+              "q": "Deniz suyu Güneş'le ısınıp buharlaşır, yükselir, soğuyup bulut olur, sonra yağmur olarak geri döner. Bu döngünün adı nedir?",
               "skill": "bil-hava",
               "options": [
-                "Kar",
-                "Kum",
+                "Deprem",
+                "Fotosentez",
+                "Su döngüsü",
+                "Erime"
+              ],
+              "correct": 2,
+              "hint": "Su hiç bitmez, döner.",
+              "lvl": 2
+            },
+            {
+              "q": "Bulutlardaki su damlaları çok soğuk havada donarak yere düşerse yağış ne olur?",
+              "skill": "bil-hava",
+              "options": [
                 "Toz",
-                "Işık"
+                "Işık",
+                "Kum",
+                "Kar"
               ],
-              "correct": 0,
-              "hint": "Beyaz ve soğuk, yere yığılır."
-            },
-            {
-              "q": "Hava durumunu ölçen, sıcaklığı gösteren alete ne denir?",
-              "skill": "bil-hava",
-              "options": [
-                "Termometre",
-                "Teleskop",
-                "Pusula",
-                "Cetvel"
-              ],
-              "correct": 0,
-              "hint": "Ateşin de ölçer."
-            },
-            {
-              "q": "Rüzgâr nedir?",
-              "skill": "bil-hava",
-              "options": [
-                "Hareket eden hava",
-                "Akan su",
-                "Düşen taş",
-                "Parlayan ışık"
-              ],
-              "correct": 0,
-              "hint": "Görünmez ama yaprakları uçurur."
+              "correct": 3,
+              "hint": "Beyaz ve soğuk.",
+              "lvl": 2
             },
             {
               "q": "Yaz mevsiminde havanın sıcak olmasının sebebi nedir?",
               "skill": "bil-hava",
               "options": [
-                "Güneş ışınlarının daha dik ve uzun süre gelmesi",
-                "Güneş'in sönmesi",
-                "Ay'ın büyümesi",
-                "Rüzgârın durması"
+                "Güneş söner",
+                "Güneş ışınları daha dik ve uzun süre gelir",
+                "Rüzgâr durur",
+                "Ay büyür"
               ],
-              "correct": 0,
-              "hint": "Güneş daha çok ısıtır."
+              "correct": 1,
+              "hint": "Güneş daha çok ısıtır.",
+              "lvl": 2
             },
             {
               "q": "Gökkuşağı genellikle ne zaman görülür?",
               "skill": "bil-hava",
               "options": [
-                "Yağmurdan sonra güneş çıkınca",
-                "Gece yarısı",
                 "Karlı havada hep",
-                "Rüzgârsız gecede"
+                "Rüzgârsız gecede",
+                "Yağmurdan sonra Güneş çıkınca",
+                "Gece yarısı"
               ],
-              "correct": 0,
-              "hint": "Işık + su damlaları gerekir."
+              "correct": 2,
+              "hint": "Işık ve su damlaları.",
+              "lvl": 2
             },
             {
-              "q": "Kışın uygun giyinmek için hangisini seçeriz?",
+              "q": "Sabah pikniğe çıkacak biri gökyüzünü koyu bulutlarla kaplı görüyor. En mantıklı hazırlık nedir?",
               "skill": "bil-hava",
               "options": [
-                "Kalın mont ve atkı",
-                "Mayo ve şort",
-                "Sadece terlik",
-                "Şemsiye yerine güneş gözlüğü tek başına"
+                "Sadece mayo giymek",
+                "Şemsiyeyi bırakıp sadece güneş kremi sürmek",
+                "Hiçbir önlem almamak",
+                "Yanına şemsiye ya da yağmurluk almak"
               ],
-              "correct": 0,
-              "hint": "Soğuğa karşı sıcak tutan."
+              "correct": 3,
+              "hint": "Koyu bulut yağmur habercisi.",
+              "lvl": 2
+            },
+            {
+              "q": "Sıcak bir yaz günü soğuk limonata bardağının dışı terler. Bu damlalar aslında nereden gelir?",
+              "skill": "bil-hava",
+              "options": [
+                "Limonata dışarı taşar",
+                "Cam erir",
+                "Bardaktan su sızar",
+                "Havadaki su buharı soğuk camda yoğuşur"
+              ],
+              "correct": 3,
+              "hint": "Yoğuşmanın küçük bir örneği.",
+              "lvl": 3
+            },
+            {
+              "q": "Kışın sabahları çimenlerin üzerinde ince buz tabakası (kırağı) oluşur. Bu nasıl meydana gelir?",
+              "skill": "bil-hava",
+              "options": [
+                "Sadece yağmur yağıp donar",
+                "Havadaki nem gece çok soğuyup donar",
+                "Toprak buz püskürtür",
+                "Çimen su üretir"
+              ],
+              "correct": 1,
+              "hint": "Soğuk gece ve havadaki nem.",
+              "lvl": 3
+            },
+            {
+              "q": "Deniz kenarındaki bir şehir, iç bölgelere göre yazın daha serin, kışın daha ılıktır. Bunu en iyi ne açıklar?",
+              "skill": "bil-hava",
+              "options": [
+                "Kıyıda hava yoktur",
+                "Deniz Güneş'i engeller",
+                "Deniz hiç ısı tutmaz",
+                "Deniz suyu sıcaklığı dengeleyip ani değişimleri azaltır"
+              ],
+              "correct": 3,
+              "hint": "Su yavaş ısınıp yavaş soğur.",
+              "lvl": 3
+            },
+            {
+              "q": "Dünya'nın kuzey yarısında yaz iken güney yarısında kıştır. Bu durumun sebebi nedir?",
+              "skill": "bil-hava",
+              "options": [
+                "Güneş bir yarıya hiç bakmaz",
+                "Dünya'nın eğik ekseni yüzünden iki yarım küre Güneş'ten farklı açıyla ışık alır",
+                "Bir yarıda hava yoktur",
+                "Rastgele olur"
+              ],
+              "correct": 1,
+              "hint": "Mevsimler ekseni eğik Dünya'yla oluşur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk 'Rüzgâr ağaçları salladığı için ağaçlar rüzgârı üretir' diyor. Bu ifade neden yanlıştır?",
+              "skill": "bil-hava",
+              "options": [
+                "Rüzgâr ağaçların içinden çıkar",
+                "Rüzgâr hareket eden havadır; ağaçlar onu üretmez, sadece etkisini gösterir",
+                "Rüzgâr diye bir şey yoktur",
+                "Doğrudur, ağaçlar rüzgâr üretir"
+              ],
+              "correct": 1,
+              "hint": "Sebep-sonuç ters çevrilmiş.",
+              "lvl": 3
             }
           ]
         }
@@ -2514,148 +3024,199 @@
           },
           "bank": [
             {
-              "q": "Geri dönüşüm ne demektir?",
+              "q": "Kullandığımız cam şişeyi çöpe atmak yerine geri dönüşüm kutusuna atarız. Geri dönüşüm ne demektir?",
               "skill": "bil-cevre",
               "options": [
-                "Kullanılmış maddeleri yeniden işleyip tekrar kullanmak",
+                "Toprağa gömüp unutmak",
+                "Kullanılmış maddeyi yeniden işleyip tekrar kullanmak",
                 "Çöpü yakmak",
-                "Her şeyi denize dökmek",
-                "Ağaç kesmek"
+                "Denize dökmek"
               ],
-              "correct": 0,
-              "hint": "Atık yeniden ürün olur."
+              "correct": 1,
+              "hint": "Atık yeniden ürün olur.",
+              "lvl": 1
             },
             {
-              "q": "Aşağıdakilerden hangisi geri dönüştürülebilir?",
-              "skill": "bil-cevre",
-              "options": [
-                "Cam şişe",
-                "Yenmiş elma çöpü",
-                "Duman",
-                "Ses"
-              ],
-              "correct": 0,
-              "hint": "Eritilip yeniden şişe olabilir."
-            },
-            {
-              "q": "Kağıt geri dönüşümü neyi korur?",
-              "skill": "bil-cevre",
-              "options": [
-                "Ağaçları (ormanları)",
-                "Denizleri kurutur",
-                "Havayı kirletir",
-                "Hiçbir şeyi"
-              ],
-              "correct": 0,
-              "hint": "Kağıt ağaçtan yapılır."
-            },
-            {
-              "q": "Suyu boşa harcamamak için ne yapmalıyız?",
-              "skill": "bil-cevre",
-              "options": [
-                "Dişimizi fırçalarken musluğu kapatmak",
-                "Musluğu hep açık bırakmak",
-                "Suyla oyun oynamak",
-                "Bahçeyi öğlen sıcağında sürekli sulamak"
-              ],
-              "correct": 0,
-              "hint": "Gerekmedikçe akıtma."
-            },
-            {
-              "q": "Çöpleri doğaya (ormana, denize) atmak ne yapar?",
-              "skill": "bil-cevre",
-              "options": [
-                "Doğayı ve canlıları kirletir, zarar verir",
-                "Toprağı güzelleştirir",
-                "Havayı temizler",
-                "Hiçbir şey olmaz"
-              ],
-              "correct": 0,
-              "hint": "Hayvanlar zarar görür."
-            },
-            {
-              "q": "Hava kirliliğini azaltmak için hangisi faydalıdır?",
-              "skill": "bil-cevre",
-              "options": [
-                "Ağaç dikmek",
-                "Daha çok duman çıkarmak",
-                "Ormanları kesmek",
-                "Çöp yakmak"
-              ],
-              "correct": 0,
-              "hint": "Ağaçlar havayı temizler."
-            },
-            {
-              "q": "Elektriği ve suyu tasarruflu kullanmak neden önemlidir?",
-              "skill": "bil-cevre",
-              "options": [
-                "Doğal kaynakları korumak için",
-                "Daha fazla çöp için",
-                "Işıkları söndürmemek için",
-                "Hiçbir sebep yok"
-              ],
-              "correct": 0,
-              "hint": "Kaynaklar sınırsız değil."
-            },
-            {
-              "q": "Pili çöpe değil, özel kutusuna atmalıyız çünkü pil...",
-              "skill": "bil-cevre",
-              "options": [
-                "Toprağa ve suya zararlı maddeler yayar",
-                "Çok güzel kokar",
-                "Kendiliğinden yok olur",
-                "Yenilebilir"
-              ],
-              "correct": 0,
-              "hint": "İçinde zehirli maddeler var."
-            },
-            {
-              "q": "Alışverişe giderken en çevreci seçenek hangisidir?",
-              "skill": "bil-cevre",
-              "options": [
-                "Bez (kullanılabilir) çanta kullanmak",
-                "Her seferinde yeni poşet almak",
-                "Poşetleri yere atmak",
-                "Çift kat naylon kullanmak"
-              ],
-              "correct": 0,
-              "hint": "Tekrar tekrar kullanılabilen."
-            },
-            {
-              "q": "Organik atıklar (meyve-sebze kabukları) neye dönüştürülebilir?",
-              "skill": "bil-cevre",
-              "options": [
-                "Kompost (doğal gübre)",
-                "Cam",
-                "Metal",
-                "Plastik"
-              ],
-              "correct": 0,
-              "hint": "Toprağı besleyen doğal gübre."
-            },
-            {
-              "q": "Çevreyi korumak neden hepimizin görevidir?",
-              "skill": "bil-cevre",
-              "options": [
-                "Dünya hepimizin ortak evi olduğu için",
-                "Sadece bilim insanlarının işi olduğu için",
-                "Gerekli olmadığı için",
-                "Sadece yazın önemli olduğu için"
-              ],
-              "correct": 0,
-              "hint": "Tek gezegenimiz var."
-            },
-            {
-              "q": "Odadan çıkarken enerji tasarrufu için ne yapmalıyız?",
+              "q": "Odadan çıkarken elektrik tasarrufu için ne yapmalıyız?",
               "skill": "bil-cevre",
               "options": [
                 "Işıkları kapatmak",
                 "Tüm ışıkları açık bırakmak",
                 "Televizyonu açık unutmak",
-                "Musluğu açmak"
+                "Hiçbir şey"
               ],
               "correct": 0,
-              "hint": "Boşuna yanmasın."
+              "hint": "Boşuna yanmasın.",
+              "lvl": 1
+            },
+            {
+              "q": "Dişini fırçalarken musluğu açık bırakmak neye yol açar?",
+              "skill": "bil-cevre",
+              "options": [
+                "Elektrik üretimine",
+                "Hiçbir şeye",
+                "Boşuna su harcanmasına",
+                "Suyun temizlenmesine"
+              ],
+              "correct": 2,
+              "hint": "Su değerli bir kaynaktır.",
+              "lvl": 1
+            },
+            {
+              "q": "Aşağıdakilerden hangisi geri dönüştürülebilen bir maddedir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Ses",
+                "Gölge",
+                "Kağıt",
+                "Duman"
+              ],
+              "correct": 2,
+              "hint": "Ağaçtan yapılır, yeniden işlenir.",
+              "lvl": 1
+            },
+            {
+              "q": "Piknik sonrası çöpleri ne yapmalıyız?",
+              "skill": "bil-cevre",
+              "options": [
+                "Göle atmak",
+                "Ormana bırakmak",
+                "Toplayıp çöp kutusuna atmak",
+                "Yakmak"
+              ],
+              "correct": 2,
+              "hint": "Doğayı temiz bırak.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir sınıf kullandığı kağıtları biriktirip geri dönüşüme veriyor. Bu davranış en çok neyi korur?",
+              "skill": "bil-cevre",
+              "options": [
+                "Denizleri kurutur",
+                "Ağaçları (ormanları)",
+                "Hiçbir şeyi",
+                "Havayı kirletir"
+              ],
+              "correct": 1,
+              "hint": "Kağıt ağaçtan yapılır.",
+              "lvl": 2
+            },
+            {
+              "q": "Bitmiş pilleri normal çöpe değil özel kutulara atmamız istenir. Bunun sebebi nedir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Pil yenilebilir",
+                "Pil toprağa ve suya zararlı maddeler yayar",
+                "Pil çok güzel kokar",
+                "Pil kendiliğinden yok olur"
+              ],
+              "correct": 1,
+              "hint": "İçinde zehirli maddeler var.",
+              "lvl": 2
+            },
+            {
+              "q": "Markete giderken en çevreci seçenek hangisidir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Her seferinde yeni poşet almak",
+                "Tekrar kullanılabilen bez çanta götürmek",
+                "Poşetleri yere atmak",
+                "Çift kat naylon kullanmak"
+              ],
+              "correct": 1,
+              "hint": "Tekrar tekrar kullanılabilen.",
+              "lvl": 2
+            },
+            {
+              "q": "Meyve-sebze kabukları gibi organik atıklar toprağa gömülünce zamanla neye dönüşebilir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Metale",
+                "Cama",
+                "Doğal gübreye (komposta)",
+                "Plastiğe"
+              ],
+              "correct": 2,
+              "hint": "Toprağı besler.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir şehirde çok sayıda ağaç dikmek havayı nasıl etkiler?",
+              "skill": "bil-cevre",
+              "options": [
+                "Havayı kirletir",
+                "Dumanı artırır",
+                "Ağaçlar oksijen verip havayı temizler",
+                "Hiç etkilemez"
+              ],
+              "correct": 2,
+              "hint": "Ağaçların hediyesi.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir mahallede geri dönüşüm başladıktan sonra çöp sahasına giden atık azaldı. Bu durum çevreye nasıl yansır?",
+              "skill": "bil-cevre",
+              "options": [
+                "Daha az çöp birikir ve doğal kaynaklar korunur",
+                "Hiçbir değişiklik olmaz",
+                "Hava daha çok kirlenir",
+                "Daha çok ağaç kesilir"
+              ],
+              "correct": 0,
+              "hint": "Atık azalır, kaynak korunur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir fabrika atık suyunu arıtmadan dereye bırakıyor. Bu davranışın en olası sonucu nedir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Su daha temiz olur",
+                "Hiçbir şey olmaz",
+                "Sudaki canlılar zarar görür, su kirlenir",
+                "Balıklar çoğalır"
+              ],
+              "correct": 2,
+              "hint": "Kirli su canlıları etkiler.",
+              "lvl": 3
+            },
+            {
+              "q": "'Önce azalt, sonra tekrar kullan, en son geri dönüştür' kuralına göre en çevreci ilk adım hangisidir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Daha çok satın almak",
+                "Sadece geri dönüşüme güvenmek",
+                "Her şeyi bir kez kullanıp atmak",
+                "İhtiyacımız kadar tüketip israfı azaltmak"
+              ],
+              "correct": 3,
+              "hint": "En iyisi hiç atık üretmemek.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir okul bahçesine ağaç dikip çöpleri ayrıştırmaya başladı. Bu küçük adımların önemi nedir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Doğaya zarar verir",
+                "Sadece okulu güzelleştirir",
+                "Tek başına hiçbir işe yaramaz",
+                "Birçok kişinin küçük çabası büyük bir fark yaratır"
+              ],
+              "correct": 3,
+              "hint": "Küçük hareketler toplanır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk 'Doğayı korumak sadece bilim insanlarının işidir, bana düşmez' diyor. Bu düşünce neden yanlıştır?",
+              "skill": "bil-cevre",
+              "options": [
+                "Doğa korunmaya ihtiyaç duymaz",
+                "Doğrudur, bize düşmez",
+                "Dünya hepimizin ortak evidir; korumak herkesin görevidir",
+                "Sadece yazın önemlidir"
+              ],
+              "correct": 2,
+              "hint": "Tek gezegenimiz var.",
+              "lvl": 3
             }
           ]
         }
@@ -2730,7 +3291,204 @@
               "chest": "legendary",
               "badge": "b-bil-final"
             }
-          }
+          },
+          "bank": [
+            {
+              "q": "Uzaydan mavi görünen, üzerinde yaşadığımız gezegen hangisidir?",
+              "skill": "bilim-genel",
+              "options": [
+                "Dünya",
+                "Ay",
+                "Mars",
+                "Güneş"
+              ],
+              "correct": 0,
+              "hint": "Suyu bol olan gezegen.",
+              "lvl": 1
+            },
+            {
+              "q": "Güneşin altında bırakılan dondurma bir süre sonra ne olur?",
+              "skill": "bilim-genel",
+              "options": [
+                "Erir, sıvı olur",
+                "Daha da donar",
+                "Taşa döner",
+                "Büyür"
+              ],
+              "correct": 0,
+              "hint": "Isı katıyı sıvıya çevirir.",
+              "lvl": 1
+            },
+            {
+              "q": "Sulanmayan saksı çiçeğinin solmasının en olası sebebi nedir?",
+              "skill": "bilim-genel",
+              "options": [
+                "Adının söylenmemesi",
+                "Gece olması",
+                "Susuz kalması",
+                "Renginin değişmesi"
+              ],
+              "correct": 2,
+              "hint": "Bitkinin temel ihtiyacı.",
+              "lvl": 1
+            },
+            {
+              "q": "Kanı tüm vücuda pompalayan organ hangisidir?",
+              "skill": "bilim-genel",
+              "options": [
+                "Diş",
+                "Kalp",
+                "Göz",
+                "Kulak"
+              ],
+              "correct": 1,
+              "hint": "Göğüste küt küt atar.",
+              "lvl": 1
+            },
+            {
+              "q": "Cam şişeyi çöpe atmak yerine ne yapmak daha doğrudur?",
+              "skill": "bilim-genel",
+              "options": [
+                "Yakmak",
+                "Geri dönüşüm kutusuna atmak",
+                "Denize atmak",
+                "Yere atmak"
+              ],
+              "correct": 1,
+              "hint": "Cam yeniden işlenebilir.",
+              "lvl": 1
+            },
+            {
+              "q": "Soğuk su şişesinin dışının bir süre sonra terlemesinin sebebi nedir?",
+              "skill": "bilim-genel",
+              "options": [
+                "Suyun dışarı sızması",
+                "Camın erimesi",
+                "Havadaki su buharının yoğuşması",
+                "Şişenin delinmesi"
+              ],
+              "correct": 2,
+              "hint": "Gazdan sıvıya geçiş.",
+              "lvl": 2
+            },
+            {
+              "q": "Buzda kaymak halıda kaymaktan neden daha kolaydır?",
+              "skill": "bilim-genel",
+              "options": [
+                "Buzda sürtünme daha azdır",
+                "Buz sıcak olduğu için",
+                "Buz ittiği için",
+                "Halı ıslak olduğu için"
+              ],
+              "correct": 0,
+              "hint": "Pürüzsüz yüzey az frenler.",
+              "lvl": 2
+            },
+            {
+              "q": "Karanlık bir odada bir cismi görebilmek için ne gereklidir?",
+              "skill": "bilim-genel",
+              "options": [
+                "Işık",
+                "Rüzgâr",
+                "Ses",
+                "Koku"
+              ],
+              "correct": 0,
+              "hint": "Fenerini açınca görürsün.",
+              "lvl": 2
+            },
+            {
+              "q": "Kutup ayısının kalın yağ ve tüy tabakası ona ne sağlar?",
+              "skill": "bilim-genel",
+              "options": [
+                "Uçmasını",
+                "Suda batmasını",
+                "Soğuk ortamda sıcak kalmasını",
+                "Çölde serinlemesini"
+              ],
+              "correct": 2,
+              "hint": "Yaşadığı yer buzul.",
+              "lvl": 2
+            },
+            {
+              "q": "Yaz mevsiminde havanın sıcak olmasının sebebi nedir?",
+              "skill": "bilim-genel",
+              "options": [
+                "Ayın büyümesi",
+                "Güneşin sönmesi",
+                "Rüzgârın durması",
+                "Güneş ışınlarının daha dik gelmesi"
+              ],
+              "correct": 3,
+              "hint": "Güneş daha çok ısıtır.",
+              "lvl": 2
+            },
+            {
+              "q": "İki özdeş tohumdan biri karanlıkta, biri ışıkta yetişti; ışıktaki daha sağlıklı oldu. Bunu en iyi ne açıklar?",
+              "skill": "bilim-genel",
+              "options": [
+                "Rastgele oldu",
+                "Bitkiler besin üretmek için ışığa ihtiyaç duyar",
+                "Tohumlar baştan farklıydı",
+                "Karanlık bitkiyi büyütür"
+              ],
+              "correct": 1,
+              "hint": "Fotosentez neyle olur?",
+              "lvl": 3
+            },
+            {
+              "q": "Uzayda astronotlar telsiz kullanmadan birbirini duyamaz. Sebebi nedir?",
+              "skill": "bilim-genel",
+              "options": [
+                "Ses uzayda çok hızlıdır",
+                "Ses yayılmak için havaya ihtiyaç duyar, uzayda hava yoktur",
+                "Uzayda hiç ışık yoktur",
+                "Astronotlar sağırdır"
+              ],
+              "correct": 1,
+              "hint": "Ses boşlukta yayılmaz.",
+              "lvl": 3
+            },
+            {
+              "q": "Şimşeği görüp gök gürültüsünü biraz sonra duymamız neyi kanıtlar?",
+              "skill": "bilim-genel",
+              "options": [
+                "Işık sesten daha hızlıdır",
+                "Ses hiç ulaşmaz",
+                "İkisi aynı hızdadır",
+                "Ses ışıktan hızlıdır"
+              ],
+              "correct": 0,
+              "hint": "Işık yıldırım hızında.",
+              "lvl": 3
+            },
+            {
+              "q": "Su ısıtılınca buhar, soğutulunca buz olup tekrar suya dönebiliyor. Bu döngü neyi kanıtlar?",
+              "skill": "bilim-genel",
+              "options": [
+                "Buz ayrı bir maddedir",
+                "Buhar kalıcı kaybolur",
+                "Su her seferinde başka maddeye döner",
+                "Hal değişimi maddeyi yok etmez, sadece halini değiştirir"
+              ],
+              "correct": 3,
+              "hint": "Madde korunur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk 'Mevsimler Dünya Güneş'e yaklaşınca oluşur' diyor. Doğru sebep nedir?",
+              "skill": "bilim-genel",
+              "options": [
+                "Güneşin büyümesi",
+                "Dünya'nın eğik ekseni ve ışınların geliş açısı",
+                "Dünya'nın Güneşe yaklaşıp uzaklaşması",
+                "Ay'ın rengi"
+              ],
+              "correct": 1,
+              "hint": "Yaygın bir yanlış anlama.",
+              "lvl": 3
+            }
+          ]
         }
       ]
     }

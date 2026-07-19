@@ -111,6 +111,7 @@
               ? '<button class="chip asrc" data-s="cloud">☁️ Bulut (aile)</button><button class="chip asrc" data-s="local">📱 Bu cihaz</button>' : '') +
             '<span class="adm-sep"></span>' +
             '<button class="chip atab" data-t="players">📊 Oyuncular</button>' +
+            '<button class="chip atab" data-t="report">📈 Karne</button>' +
             '<button class="chip atab" data-t="perms">🔒 İzinler</button>' +
             '<button class="chip atab" data-t="wishes">🎁 İstekler</button>' +
             (B.Cloud.configured() ? '<button class="chip atab" data-t="parents">👪 Ebeveynler<span class="par-badge"></span></button>' : '') +
@@ -161,6 +162,7 @@
           return;
         }
         if (tab === 'players') renderPlayers(body);
+        else if (tab === 'report') renderReport(body);
         else if (tab === 'perms') renderPerms(body);
         else if (tab === 'wishes') renderWishes(body);
         else renderAccount(body);
@@ -280,6 +282,60 @@
           onYes: async () => { await B.Family.removeParent(b.dataset.uid); B.UI.toast('Çıkarıldı'); renderParents(body); },
         }));
         wireJoin();
+      }
+
+      /* ---- 📈 Karne (ebeveyn özeti: zayıf/güçlü konu raporu, istatistikli) ---- */
+      function renderReport(body) {
+        const th = ((B.Content.get('config') || {}).adaptive) || { weakThreshold: 0.6, strongThreshold: 0.85 };
+        const lessons = B.Lesson.all();
+        // Her ders için beceri (skill) listesi — soru bankalarından toplanır
+        const lessonSkills = lessons.map(l => {
+          const set = {};
+          l.units.forEach(u => u.sections.forEach(sec => (sec.bank || []).forEach(q => { if (q.skill) set[q.skill] = 1; })));
+          return { lesson: l, skills: Object.keys(set) };
+        });
+        const mastery = (per, sk) => {
+          const arr = (per && per[sk]) || [];
+          if (!arr.length) return null; // veri yok = başlanmadı
+          return (arr.reduce((a, b) => a + b, 0) / arr.length) * Math.min(1, arr.length / 8);
+        };
+        body.innerHTML =
+          '<div class="adm-hint">Karne, çocuğun ilk-deneme doğruluk verisine dayanır. Konu barı: 💪 iyi · 🟡 orta · ⚠️ zayıf · ⚪ başlanmadı. Zayıf konularda tekrar önerilir.</div>' +
+          players.map(p => {
+            const s = p.save, st = s.stats || {}, per = st.perSkill || {};
+            const acc = (st.correct + st.wrong) ? Math.round(st.correct / (st.correct + st.wrong) * 100) : 0;
+            const firstTry = st.questionsDone ? Math.round((st.firstTryCorrect || 0) / st.questionsDone * 100) : 0;
+            const rows = lessonSkills.map(ls => {
+              const vals = ls.skills.map(sk => mastery(per, sk)).filter(v => v !== null);
+              const m = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+              let cls, label, pct = 0;
+              if (m === null) { cls = 'rep-none'; label = '⚪ Başlanmadı'; }
+              else { pct = Math.round(m * 100);
+                if (m >= th.strongThreshold) { cls = 'rep-strong'; label = '💪 İyi'; }
+                else if (m < th.weakThreshold) { cls = 'rep-weak'; label = '⚠️ Zayıf'; }
+                else { cls = 'rep-mid'; label = '🟡 Orta'; }
+              }
+              return { title: ls.lesson.title, icon: ls.lesson.icon, m: m, pct: pct, cls: cls, label: label };
+            });
+            const withData = rows.filter(r => r.m !== null);
+            const strong = withData.slice().sort((a, b) => b.m - a.m)[0];
+            const weak = withData.slice().sort((a, b) => a.m - b.m)[0];
+            const verdict = withData.length
+              ? '<div class="rep-verdict">' +
+                  (strong ? '<span class="rv-strong">💪 En güçlü: ' + esc(strong.title) + ' (%' + strong.pct + ')</span>' : '') +
+                  (weak && weak !== strong ? '<span class="rv-weak">⚠️ Desteklenmeli: ' + esc(weak.title) + ' (%' + weak.pct + ')</span>' : '') +
+                '</div>'
+              : '<div class="rep-verdict rep-empty2">Henüz yeterli veri yok — çocuk biraz oynayınca konu karnesi oluşur.</div>';
+            return '<div class="adm-card rep-card">' +
+              '<div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(s.player.avatar) + '</span>' +
+                '<div class="adm-p-id"><b>' + esc(s.player.name) + '</b>' +
+                  '<div class="rep-stats">🎯 Doğruluk %' + acc + ' · 🥇 İlk deneme %' + firstTry + ' · ✅ ' + (st.questionsDone || 0) + ' soru</div></div></div>' +
+              '<div class="rep-topics">' + rows.map(r =>
+                '<div class="rep-topic ' + r.cls + '"><span class="rt-name">' + r.icon + ' ' + esc(r.title) + '</span>' +
+                  '<span class="rt-bar"><i style="width:' + r.pct + '%"></i></span>' +
+                  '<span class="rt-badge">' + r.label + (r.m !== null ? ' %' + r.pct : '') + '</span></div>'
+              ).join('') + '</div>' + verdict + '</div>';
+          }).join('');
       }
 
       /* ---- 🎁 İstekler ---- */

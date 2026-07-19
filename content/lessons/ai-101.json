@@ -248,172 +248,199 @@
           },
           "bank": [
             {
-              "q": "Yapay zekâ nasıl öğrenir?",
+              "q": "Elif telefonuna 'yarın hava nasıl olacak?' diye sesle sordu ve sözlü bir cevap aldı. Ona cevap veren nedir?",
               "skill": "ai-temel",
               "options": [
-                "Milyonlarca örneğe bakarak",
-                "Uyuyarak",
-                "Şans eseri",
-                "İnsan beyni takarak"
+                "Sesli asistan denen bir yapay zekâ",
+                "Konuşan bir oyuncak",
+                "Küçük bir insan",
+                "Bir kuş"
               ],
               "correct": 0,
-              "hint": "Biz nasıl çok soru çözerek öğreniyorsak, o da çok örnek görerek öğrenir."
+              "hint": "Sesini duyup yardım eden yazılımı düşün.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekâ hangisini YAPAMAZ?",
+              "q": "Bir uygulama, çektiğin çiçek fotoğrafına bakıp 'bu bir papatya' dedi. Bu ne tür bir beceridir?",
               "skill": "ai-temel",
               "options": [
-                "Senin yerine gerçekten hissedemez",
-                "Metin yazamaz",
-                "Soru cevaplayamaz",
-                "Resim üretemez"
+                "Yapay zekânın görüntüyü tanıması",
+                "Çiçeğin konuşması",
+                "Şans eseri bir tahmin",
+                "Bir sihir numarası"
               ],
               "correct": 0,
-              "hint": "Yazar, çizer, cevaplar... ama duyguları taklit eder, gerçekten hissetmez."
+              "hint": "Resimlere bakıp ne olduğunu söyleyen beceriyi düşün.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekâ bir cevap verdi ama emin değilsin. Ne yaparsın?",
-              "skill": "ai-guvenlik",
-              "options": [
-                "Başka kaynaktan kontrol ederim",
-                "Hemen herkese anlatırım",
-                "Kesin doğrudur derim",
-                "Bilgisayarı kapatırım"
-              ],
-              "correct": 0,
-              "hint": "Yapay zekâ bazen kendinden emin şekilde yanılır. İyi komutan teyit eder!"
-            },
-            {
-              "q": "Yapay zekâya hangisini ASLA vermezsin?",
-              "skill": "ai-guvenlik",
-              "options": [
-                "Ev adresini ve şifreni",
-                "Matematik sorusunu",
-                "Hava durumu sorusunu",
-                "Masal isteğini"
-              ],
-              "correct": 0,
-              "hint": "Kişisel bilgiler ailede kalır. Yapay zekâ bir araçtır, sırdaş değildir."
-            },
-            {
-              "q": "Hangisi günlük hayatta yapay zekâ KULLANIR?",
+              "q": "Aşağıdakilerden hangisi yapay zekânın YAPAMAYACAĞI bir şeydir?",
               "skill": "ai-temel",
               "options": [
-                "Video önerileri ve sesli asistanlar",
-                "Makarna süzgeci",
-                "Ayakkabı bağcığı",
-                "Kâğıt uçak"
+                "Bir arkadaşın gibi seni gerçekten sevmek",
+                "Metin yazmak",
+                "Soruları yanıtlamak",
+                "Resim üretmek"
               ],
               "correct": 0,
-              "hint": "'Bunu da izle' diyen öneriler... o listeyi bir yapay zekâ hazırlıyor."
+              "hint": "Yazar, çizer, cevaplar; ama duyguları yalnızca taklit eder.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekâ ödevinin TAMAMINI yazsın ister misin? En akıllıca cevap hangisi?",
+              "q": "Bir arkadaşın 'yapay zekâ her şeyi kesin doğru bilir' dedi. Bu doğru mu?",
               "skill": "ai-guvenlik",
               "options": [
-                "Hayır — ondan öğrenirim ama işi ben yaparım",
-                "Evet, ben hiç uğraşmam",
-                "Evet, kimse anlamaz",
-                "Ödev nedir bilmiyorum"
+                "Hayır; bazen yanlış da söyleyebilir",
+                "Evet, hiç yanılmaz",
+                "Evet, geleceği bile bilir",
+                "Evet, hiç şaşırmaz"
               ],
               "correct": 0,
-              "hint": "Kası kim çalıştırırsa güç ona gider. Beynin de kas gibidir!"
+              "hint": "Kendinden emin görünmesi doğru olduğu anlamına gelmez.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekâ ile insan beyninin farkı nedir?",
+              "q": "Bir sohbet uygulaması senden ev adresini istedi. En doğru davranış hangisi?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Vermem ve bir büyüğüme söylerim",
+                "Hemen adresimi yazarım",
+                "Fotoğrafımı da eklerim",
+                "Okulumun adını da veririm"
+              ],
+              "correct": 0,
+              "hint": "Kişisel bilgiler sadece ailende kalır.",
+              "lvl": 1
+            },
+            {
+              "q": "Sen bir kediyi sadece birkaç kez görüp tanırsın; bir yapay zekânın kedi tanıması için binlerce kedi fotoğrafı gerekir. Bu fark ne gösterir?",
               "skill": "ai-temel",
               "options": [
                 "İnsan az örnekle ve yaşayarak öğrenir",
-                "Hiç fark yoktur",
-                "Yapay zekâ her zaman daha akıllıdır",
-                "İnsan hiç yanılmaz"
+                "İnsan hiçbir şey öğrenemez",
+                "Yapay zekâ hiç öğrenemez",
+                "İkisi tamamen aynıdır"
               ],
               "correct": 0,
-              "hint": "Sen bir kediyi 3 kez görüp tanırsın; yapay zekâya binlerce kedi fotoğrafı gerekir."
+              "hint": "Sen deneyimleyerek, o ise çok veriyle öğrenir.",
+              "lvl": 2
             },
             {
-              "q": "Yapay zekânın verdiği bilgi eskimiş olabilir mi?",
+              "q": "Bir video uygulaması sen izledikçe sana yeni videolar öneriyor. Uygulama bunu neye bakarak yapıyor?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Senin daha önce izlediğin videolara (verilerine)",
+                "Senin boyuna",
+                "Havanın durumuna",
+                "Tamamen rastgele"
+              ],
+              "correct": 0,
+              "hint": "Öneriler senin geçmiş seçimlerinden öğrenilir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir yapay zekâ sana 'dünyanın en yüksek dağı Uludağ'dır' dedi. Sen bunun yanlış olabileceğini düşünüyorsun. En akıllıca adım nedir?",
               "skill": "ai-guvenlik",
               "options": [
-                "Evet — belli bir tarihe kadar olanları bilir",
-                "Hayır, geleceği de bilir",
-                "Hayır, her an her şeyi bilir",
-                "Bilgi hiç eskimez"
+                "Güvenilir bir kitaptan ya da büyüğümden doğrularım",
+                "Hemen doğru kabul ederim",
+                "Arkadaşlarıma yayarım",
+                "Hiç önemsemem"
               ],
               "correct": 0,
-              "hint": "Öğrendiği tarihten sonra olanları bilemeyebilir. Güncel haber için haber kaynağı!"
+              "hint": "İyi komutan her bilgiyi teyit eder.",
+              "lvl": 2
             },
             {
-              "q": "İnternette bir robotla mı insanla mı konuştuğundan emin değilsin. Ne yapmalısın?",
+              "q": "Bir yapay zekâ 2023'e kadar olan bilgilerle öğrenmiş. Ona 'bu haftaki maçı kim kazandı?' diye sorarsan ne olur?",
               "skill": "ai-guvenlik",
               "options": [
-                "Kişisel bilgi vermem ve büyüğüme söylerim",
-                "Adresimi veririm",
-                "Fotoğraf gönderirim",
-                "Şifremi paylaşırım"
+                "Güncel sonucu bilemeyebilir, çünkü bilgisi eskimiş olabilir",
+                "Kesinlikle doğru bilir",
+                "Geleceği de bilir",
+                "Her şeyi anında öğrenir"
               ],
               "correct": 0,
-              "hint": "Emin olmadığın yerde kural hep aynı: paylaşma, aileye danış."
+              "hint": "Öğrendiği tarihten sonrasını bilmeyebilir.",
+              "lvl": 2
             },
             {
-              "q": "Yapay zekâ resim de üretebilir. Bu resimler...",
+              "q": "İnternette bir sohbet penceresinde karşındakinin insan mı yoksa yapay zekâ mı olduğundan emin değilsin. En güvenli tutum hangisi?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Kişisel bilgi vermem ve durumu bir büyüğüme anlatırım",
+                "Şifremi paylaşırım",
+                "Fotoğrafımı gönderirim",
+                "Okulumun yerini söylerim"
+              ],
+              "correct": 0,
+              "hint": "Emin olmadığın yerde kural hep aynı: paylaşma, danış.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir yapay zekâ, bir ödev sorusuna çok emin bir dille yanlış cevap verdi. Neden 'kendinden emin görünmek' bir kanıt değildir?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Yapay zekâ öğrendiği kalıpları taklit eder; emin görünse de yanılabilir",
+                "Çünkü yapay zekâ hiç konuşmaz",
+                "Çünkü emin olan her zaman haklıdır",
+                "Çünkü bilgisayarlar utanır"
+              ],
+              "correct": 0,
+              "hint": "Ses tonu değil, kaynağın doğruluğu önemlidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir yapay zekâ resim üretebiliyor ve ürettiği resim gerçek fotoğraf gibi görünüyor. Bu durum neden dikkatli olmayı gerektirir?",
               "skill": "ai-temel",
               "options": [
-                "Gerçek fotoğraf sanılabilir, dikkatli olmak gerekir",
-                "Her zaman gerçektir",
-                "Asla gerçekçi olamaz",
-                "Sadece siyah beyazdır"
+                "Gerçek olmayan bir görüntü gerçekmiş gibi sanılabilir",
+                "Çünkü tüm resimler siyah beyazdır",
+                "Çünkü yapay zekâ hiç resim yapamaz",
+                "Çünkü resimler her zaman gerçektir"
               ],
               "correct": 0,
-              "hint": "Gördüğün her görüntü gerçek olmayabilir — 'bu gerçek mi?' diye sormak süper güçtür."
+              "hint": "'Bu gerçek mi?' diye sormak bir süper güçtür.",
+              "lvl": 3
             },
             {
-              "q": "Yapay zekâ insan gibi 'düşünen' bir varlık mı?",
-              "skill": "ai-temel",
-              "options": [
-                "Hayır; çok veriden kalıp öğrenip taklit eder, bilinci yoktur",
-                "Evet, insan gibi düşünür",
-                "Evet, duyguları vardır",
-                "Rüya görür"
-              ],
-              "correct": 0,
-              "hint": "Görüp taklit eder; hissetmez, bilmez."
-            },
-            {
-              "q": "Yapay zekâya şifreni veya ev adresini vermeli misin?",
+              "q": "Bir arkadaşın ödevinin tamamını yapay zekâya yazdırmak istiyor. Ona neden 'öğrenerek yap' önerirsin?",
               "skill": "ai-guvenlik",
               "options": [
-                "Hayır, kişisel bilgiler paylaşılmaz",
-                "Evet, hepsini ver",
-                "Sadece şifreyi",
-                "Sadece adresi"
+                "Beyin de kas gibidir; kendin çalışınca güçlenir ve gerçekten öğrenirsin",
+                "Çünkü yapay zekâ yazı yazamaz",
+                "Çünkü öğretmen anlamaz",
+                "Çünkü yapay zekâ pahalıdır"
               ],
               "correct": 0,
-              "hint": "Kişisel bilgiler yalnızca sana aittir."
+              "hint": "Aracı kim kullanırsa güç ona geçmez; işi kim yaparsa ona geçer.",
+              "lvl": 3
             },
             {
-              "q": "Yapay zekânın verdiği bilgi yanlış olabilir mi?",
-              "skill": "ai-guvenlik",
-              "options": [
-                "Evet; önemli şeyleri başka kaynaktan doğrula",
-                "Hayır, hep doğrudur",
-                "Sadece geceleri yanlış olur",
-                "Asla konuşmaz"
-              ],
-              "correct": 0,
-              "hint": "Emin olmak için ikinci bir kaynağa bak."
-            },
-            {
-              "q": "Hangisi günlük hayatta yapay zekâ örneğidir?",
+              "q": "Yapay zekânın 'düşündüğünü' söyleyen bir reklam gördün. Aslında yapay zekâ nasıl çalışır?",
               "skill": "ai-temel",
               "options": [
-                "Sesli asistan ve harita yol tarifi",
-                "Tahta kaşık",
-                "Kurşun kalem",
-                "Cam bardak"
+                "Çok veriden kalıp öğrenip taklit eder; bilinci ve duygusu yoktur",
+                "İnsan gibi düşünüp hisseder",
+                "Rüya görür ve hayal kurar",
+                "Kendi kararlarını duygularıyla verir"
               ],
               "correct": 0,
-              "hint": "Telefonundaki asistanı düşün."
+              "hint": "Görüp taklit eder; hissetmez, bilmez.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir uygulama 'seni daha iyi tanımak için' adını, okulunu ve fotoğrafını istiyor. Bu isteği neden sorgulamalısın?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Kişisel bilgiler toplanıp kötüye kullanılabilir; önce büyüğüme danışmalıyım",
+                "Çünkü uygulamalar hiç bilgi istemez",
+                "Çünkü bilgi vermek her zaman güvenlidir",
+                "Çünkü fotoğraf paylaşmak zorunludur"
+              ],
+              "correct": 0,
+              "hint": "Bir şey 'faydalı' diye sunulsa bile gizliliğini korumalısın.",
+              "lvl": 3
             }
           ]
         },
@@ -493,172 +520,199 @@
           },
           "bank": [
             {
-              "q": "Hangisi daha İYİ bir prompt?",
+              "q": "Ali yapay zekâya sadece 'kedi' yazdı ve karışık bir cevap aldı. Sorun ne olabilir?",
               "skill": "prompt-aciklik",
               "options": [
-                "\"Kedilerle ilgili 3 şaşırtıcı bilgiyi çocuklara göre anlat\"",
-                "\"Kedi\"",
-                "\"Bana bir şeyler söyle\"",
-                "\"Hayvan işte\""
+                "İstediğini açıkça söylemedi",
+                "Yazısı çok uzundu",
+                "Çok kibardı",
+                "Yanlış dil kullandı"
               ],
               "correct": 0,
-              "hint": "İyi prompt ne istediğini, kimin için ve nasıl istediğini söyler."
+              "hint": "Ne istediğini net söylemek iyi promptun ilk sırrıdır.",
+              "lvl": 1
             },
             {
-              "q": "\"Bana bir hikâye yaz\" promptunun EKSİĞİ ne?",
+              "q": "Yapay zekâya verdiğin komuta ne ad verilir?",
               "skill": "prompt-aciklik",
               "options": [
-                "Konu, uzunluk ve kahraman belirtilmemiş",
-                "Çok uzun olması",
-                "Yanlış dilde olması",
-                "Hiçbir eksiği yok"
+                "Prompt",
+                "Şifre",
+                "Antivirüs",
+                "Klavye"
               ],
               "correct": 0,
-              "hint": "Nasıl bir hikâye? Kim için? Ne kadar? Ayrıntı yoksa cevap da bulanık olur."
+              "hint": "Yapay zekâya 'ne yapmasını' söyleyen komut.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekâya kim olduğunu söylemek (örn. \"10 yaşındayım\") neden faydalı?",
+              "q": "Cevabı liste hâlinde istiyorsun. Prompta hangisini eklemelisin?",
               "skill": "prompt-baglam",
               "options": [
-                "Cevabı sana göre ayarlar",
-                "Seni tanıyıp evine gelir",
-                "Not defterine yazar",
-                "Hiç faydası yok"
+                "'Madde madde yaz'",
+                "'Bağırarak yaz'",
+                "'Çok yavaş yaz'",
+                "'Renkli yaz'"
               ],
               "correct": 0,
-              "hint": "Buna BAĞLAM denir: kime anlattığını bilen, ona göre anlatır."
+              "hint": "İstediğin biçimi sen söylersin.",
+              "lvl": 1
             },
             {
-              "q": "Cevabı liste hâlinde istiyorsun. Prompta ne eklersin?",
-              "skill": "prompt-baglam",
-              "options": [
-                "\"Madde madde yaz\"",
-                "\"Şiir gibi olsun\"",
-                "Hiçbir şey, kendisi anlar",
-                "\"Çok uzun yaz\""
-              ],
-              "correct": 0,
-              "hint": "Biçimi sen seçersin: 'madde madde', 'tablo yap', 'kısa tut'..."
-            },
-            {
-              "q": "Yapay zekânın cevabı çok karışık geldi. En iyi hamle hangisi?",
-              "skill": "prompt-baglam",
-              "options": [
-                "\"Daha basit, kısa cümlelerle tekrar anlat\" derim",
-                "Ağlarım",
-                "Bilgisayarı kapatırım",
-                "Aynı promptu bağırarak yazarım"
-              ],
-              "correct": 0,
-              "hint": "Prompt bir konuşmadır: beğenmediysen düzeltme iste!"
-            },
-            {
-              "q": "Zor bir işi yapay zekâya nasıl yaptırırsın?",
-              "skill": "prompt-baglam",
-              "options": [
-                "Adım adım, parça parça isterim",
-                "Tek kelimeyle",
-                "Hiç yazmadan beklerim",
-                "Sadece emoji göndererek"
-              ],
-              "correct": 0,
-              "hint": "Büyük görev = küçük adımlar. Komutanlar da harekâtı bölümlere ayırır!"
-            },
-            {
-              "q": "\"Ödevimi yap\" yerine hangisi daha akıllıca bir prompt?",
+              "q": "Hangisi daha iyi bir prompttur?",
               "skill": "prompt-aciklik",
               "options": [
-                "\"Bu konuyu bana örnekle açıkla, sonra kendim yazacağım\"",
-                "\"Ödevimi yap ve kimseye söyleme\"",
-                "\"Her şeyi sen yaz\"",
-                "\"Öğretmenim gibi imzala\""
+                "'Uzayı 8 yaşındaki birine 3 kısa maddeyle eğlenceli anlat'",
+                "'Bana bir şey anlat'",
+                "'Anlat işte'",
+                "'Bir şeyler'"
               ],
               "correct": 0,
-              "hint": "Yapay zekâ öğretmen gibi kullanılırsa seni güçlendirir; kopya makinesi gibi kullanılırsa zayıflatır."
+              "hint": "Kim için, ne kadar, nasıl? Hepsi promptta olmalı.",
+              "lvl": 1
             },
             {
-              "q": "Örnek vermek promptu nasıl etkiler? (\"Şöyle bir tarzda: ...\")",
-              "skill": "prompt-baglam",
-              "options": [
-                "Ne istediğini çok daha iyi anlar",
-                "Yapay zekâyı üzer",
-                "Cevabı yavaşlatır",
-                "Hiç etkilemez"
-              ],
-              "correct": 0,
-              "hint": "Örnek göstermek, tarif etmekten güçlüdür. 'Bunun gibisinden istiyorum!'"
-            },
-            {
-              "q": "İlk cevap harika değilse ne yaparsın?",
+              "q": "İlk cevabı beğenmedin. En akıllıca hamle nedir?",
               "skill": "prompt-aciklik",
               "options": [
-                "Promptu geliştirip tekrar denerim",
-                "Pes ederim",
-                "Aynısını 10 kez gönderirim",
-                "Cevabı beğenmek zorundayım"
-              ],
-              "correct": 0,
-              "hint": "Komutanlar ilk atışta tutturamayınca nişanı düzeltir. Prompt da böyle!"
-            },
-            {
-              "q": "Hangi prompt bir MASAL için en iyisi?",
-              "skill": "prompt-aciklik",
-              "options": [
-                "\"Uzayda geçen, kahramanı korkak bir robot olan, komik ve kısa bir masal yaz\"",
-                "\"Masal\"",
-                "\"Bir şeyler yaz işte\"",
-                "\"Uzun yaz\""
-              ],
-              "correct": 0,
-              "hint": "Yer + kahraman + ton + uzunluk... hepsi promptta!"
-            },
-            {
-              "q": "İyi bir prompt için en önemlisi hangisi?",
-              "skill": "prompt-aciklik",
-              "options": [
-                "Ne istediğini açık ve ayrıntılı söylemek",
-                "Tek kelime yazmak",
-                "Bağırarak yazmak",
-                "Boş bırakmak"
-              ],
-              "correct": 0,
-              "hint": "Ne kadar net, o kadar iyi cevap."
-            },
-            {
-              "q": "Cevabı adım adım istiyorsan prompta ne eklersin?",
-              "skill": "prompt-baglam",
-              "options": [
-                "\"Adım adım açıkla\"",
-                "\"Çok hızlı ol\"",
-                "\"Kısa kes\"",
-                "Hiçbir şey"
-              ],
-              "correct": 0,
-              "hint": "İstediğin biçimi sen söylersin."
-            },
-            {
-              "q": "Yapay zekâya örnek vermek (\"şu tarzda yaz:\") ne sağlar?",
-              "skill": "prompt-baglam",
-              "options": [
-                "İstediğin tarza daha yakın cevap",
-                "Cevabı yavaşlatır",
-                "Hiçbir şey",
-                "Cevabı bozar"
-              ],
-              "correct": 0,
-              "hint": "Örnek, hedefi gösterir."
-            },
-            {
-              "q": "İlk cevap istediğin gibi çıkmadıysa en akıllıcası?",
-              "skill": "prompt-aciklik",
-              "options": [
-                "Promptu düzeltip tekrar denerim",
+                "Promptu düzeltip yeniden denerim",
                 "Hemen vazgeçerim",
-                "Sinirlenirim",
-                "Kapatırım"
+                "Aynısını 10 kez gönderirim",
+                "Ekrana kızarım"
               ],
               "correct": 0,
-              "hint": "Prompt yazmak bir sohbet — düzelterek ilerler."
+              "hint": "Prompt yazmak bir sohbet gibidir; düzelterek ilerler.",
+              "lvl": 1
+            },
+            {
+              "q": "'Bana bir hikâye yaz' promptunu daha iyi hâle getirmek istiyorsun. Hangi ekleme en çok işe yarar?",
+              "skill": "prompt-aciklik",
+              "options": [
+                "Konu, kahraman ve uzunluk belirtmek",
+                "Daha büyük harflerle yazmak",
+                "Üç ünlem eklemek",
+                "Promptu boş bırakmak"
+              ],
+              "correct": 0,
+              "hint": "Ayrıntı yoksa cevap da bulanık olur.",
+              "lvl": 2
+            },
+            {
+              "q": "Yapay zekâya '10 yaşındayım' bilgisini vermek cevabı nasıl etkiler?",
+              "skill": "prompt-baglam",
+              "options": [
+                "Cevabı senin yaşına uygun hâle getirir",
+                "Seni bulup evine gelir",
+                "Cevabı yavaşlatır",
+                "Hiçbir şey değişmez"
+              ],
+              "correct": 0,
+              "hint": "Buna bağlam denir: kime anlattığını bilen ona göre anlatır.",
+              "lvl": 2
+            },
+            {
+              "q": "Yapay zekânın cevabı çok karmaşık geldi. Prompta ne eklersen daha anlaşılır olur?",
+              "skill": "prompt-baglam",
+              "options": [
+                "'Daha basit ve kısa cümlelerle anlat'",
+                "'Daha zor kelimeler kullan'",
+                "'İki kat uzun yaz'",
+                "'Hiç açıklama yapma'"
+              ],
+              "correct": 0,
+              "hint": "Beğenmediğin cevabı düzeltmesini isteyebilirsin.",
+              "lvl": 2
+            },
+            {
+              "q": "Ödevin için bir konuyu öğrenmek istiyorsun. Hangi prompt seni gerçekten güçlendirir?",
+              "skill": "prompt-aciklik",
+              "options": [
+                "'Bu konuyu örneklerle açıkla, sonra kendim yazacağım'",
+                "'Ödevimi tamamen sen yap'",
+                "'Kimseye söyleme ve sen yaz'",
+                "'Öğretmenim gibi imzala'"
+              ],
+              "correct": 0,
+              "hint": "Yapay zekâ öğretmen gibi kullanılırsa seni güçlendirir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir resim istiyorsun ve tarzını göstermek için 'şuna benzer olsun' diye bir örnek veriyorsun. Örnek vermek ne sağlar?",
+              "skill": "prompt-baglam",
+              "options": [
+                "İstediğin tarza çok daha yakın bir cevap",
+                "Cevabı bozar",
+                "Yapay zekâyı üzer",
+                "Hiçbir işe yaramaz"
+              ],
+              "correct": 0,
+              "hint": "Örnek göstermek, tarif etmekten güçlüdür.",
+              "lvl": 2
+            },
+            {
+              "q": "Çok adımlı zor bir işi (örneğin bir sunum hazırlamak) yapay zekâya yaptırmak istiyorsun. Neden 'adım adım' istemek daha iyi sonuç verir?",
+              "skill": "prompt-baglam",
+              "options": [
+                "Büyük görev küçük adımlara bölününce her adım daha net ve doğru olur",
+                "Çünkü yapay zekâ tek adımı sever",
+                "Çünkü uzun prompt yasaktır",
+                "Çünkü adımlar cevabı yavaşlatır"
+              ],
+              "correct": 0,
+              "hint": "Komutanlar da harekâtı bölümlere ayırır.",
+              "lvl": 3
+            },
+            {
+              "q": "İki prompt: (A) 'yemek tarifi ver' (B) '4 kişilik, 20 dakikada biten, fırın gerektirmeyen kolay bir makarna tarifi ver'. B neden daha iyi cevap getirir?",
+              "skill": "prompt-aciklik",
+              "options": [
+                "Kişi sayısı, süre ve koşulları belirterek bağlamı netleştirir",
+                "Çünkü B daha kısadır",
+                "Çünkü A yasaktır",
+                "Çünkü B kibar değildir"
+              ],
+              "correct": 0,
+              "hint": "Ne kadar çok net bilgi, o kadar hedefe yakın cevap.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir arkadaşın 'promptu ne kadar bağırarak yazarsam o kadar iyi cevap gelir' diyor. Ona nasıl bir düzeltme yaparsın?",
+              "skill": "prompt-aciklik",
+              "options": [
+                "Önemli olan sesin yüksekliği değil, isteğin açık ve ayrıntılı olmasıdır",
+                "Haklısın, büyük harf her şeyi çözer",
+                "Bağırmak cevabı hızlandırır",
+                "Bağırınca yapay zekâ korkar"
+              ],
+              "correct": 0,
+              "hint": "İyi promptun sırrı ton değil, netliktir.",
+              "lvl": 3
+            },
+            {
+              "q": "İlk cevap istediğin gibi olmadı. Promptu 'geliştirerek tekrar denemek', vazgeçmekten neden daha iyi bir strateji?",
+              "skill": "prompt-aciklik",
+              "options": [
+                "Prompt bir konuşmadır; geri bildirimle sonucu adım adım hedefe yaklaştırırsın",
+                "Çünkü ilk cevap her zaman en iyisidir",
+                "Çünkü tekrar denemek yasaktır",
+                "Çünkü yapay zekâ ikinci kez cevap vermez"
+              ],
+              "correct": 0,
+              "hint": "Nişancı ilk atışı tutturamayınca nişanı düzeltir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir masal için en zengin promptu seçmelisin. Hangisi kahraman, yer, ton ve uzunluğu birlikte veriyor?",
+              "skill": "prompt-baglam",
+              "options": [
+                "'Uzayda geçen, korkak bir robotu kahraman yapan, komik ve kısa bir masal yaz'",
+                "'Masal yaz'",
+                "'Bir şeyler yaz'",
+                "'Uzun olsun'"
+              ],
+              "correct": 0,
+              "hint": "İyi bir promptta birden çok ayrıntı bir arada bulunur.",
+              "lvl": 3
             }
           ]
         }
@@ -744,19 +798,20 @@
           },
           "bank": [
             {
-              "q": "Robot nedir?",
+              "q": "Bir fabrikada arabaların parçalarını takan, kol şeklinde bir makine görüyorsun. Bu nedir?",
               "skill": "ai-robot",
               "options": [
-                "Görevleri yapabilen bir makine",
-                "Bir tür hayvan",
-                "Bir meyve türü",
-                "Bir bulut çeşidi"
+                "Bir robot",
+                "Bir hayvan",
+                "Bir meyve",
+                "Bir bulut"
               ],
               "correct": 0,
-              "hint": "İnsanlara işlerinde yardım eden makineleri düşün."
+              "hint": "Görev yapabilen makineleri düşün.",
+              "lvl": 1
             },
             {
-              "q": "Robotlar nerede çalışabilir?",
+              "q": "Robotlar aşağıdaki yerlerden hangisinde çalışabilir?",
               "skill": "ai-robot",
               "options": [
                 "Fabrikada, hastanede ve uzayda",
@@ -765,127 +820,177 @@
                 "Hiçbir yerde"
               ],
               "correct": 0,
-              "hint": "Zor veya tehlikeli işlerde insanlara yardım ederler."
+              "hint": "Zor veya tehlikeli işlerde insanlara yardım ederler.",
+              "lvl": 1
             },
             {
-              "q": "Her robot yapay zekâ mıdır?",
+              "q": "Evdeki süpürge robotu duvara çarpmadan nasıl dolaşır?",
               "skill": "ai-robot",
               "options": [
-                "Hayır; bazıları sadece aynı hareketi tekrarlar",
-                "Evet, hepsi düşünür",
-                "Evet, hepsi konuşur",
-                "Robot diye bir şey yok"
+                "Sensörleriyle etrafını algılayarak",
+                "Gözleriyle görerek",
+                "Sihirle",
+                "Tamamen tesadüfen"
               ],
               "correct": 0,
-              "hint": "Bir robotun karar verebilmesi için sensör ve öğrenme gerekir."
+              "hint": "Çevresini hissetmesini sağlayan parçaları düşün.",
+              "lvl": 1
             },
             {
-              "q": "Robotların karar vermesini ne sağlar?",
+              "q": "Bir robotun gerçekten üzülüp ağladığını söyleyen bir çizgi film izledin. Gerçekte robotlar için bu doğru mu?",
               "skill": "ai-robot",
               "options": [
-                "Sensörlerden gelen bilgi ve yazılım",
-                "Sihirli bir toz",
-                "Şans",
-                "Pil rengi"
+                "Hayır; duyguyu taklit edebilir ama gerçekten hissetmez",
+                "Evet, gerçekten ağlar",
+                "Evet, seni özler",
+                "Evet, kızıp küser"
               ],
               "correct": 0,
-              "hint": "Çevresini hissedip ona göre hareket eder."
+              "hint": "Makinelerin bilinci ve kalbi yoktur.",
+              "lvl": 1
             },
             {
-              "q": "Robotların gerçek duyguları var mıdır?",
-              "skill": "ai-robot",
-              "options": [
-                "Hayır; duyguları taklit edebilir ama hissetmez",
-                "Evet, üzülür ve ağlar",
-                "Evet, sever ve kızar",
-                "Sadece geceleri hisseder"
-              ],
-              "correct": 0,
-              "hint": "Makinelerin bilinci ve kalbi yoktur."
-            },
-            {
-              "q": "Bir robot sana adresini sorarsa ne yaparsın?",
+              "q": "Bir robot oyuncak sana adresini soruyor. Ne yaparsın?",
               "skill": "ai-robot",
               "options": [
                 "Vermem ve büyüğüme söylerim",
-                "Hemen veririm",
-                "Fotoğrafımı da eklerim",
-                "Şifremi de yazarım"
+                "Hemen adresimi veririm",
+                "Şifremi de eklerim",
+                "Fotoğrafımı gönderirim"
               ],
               "correct": 0,
-              "hint": "Kişisel bilgiler ailede kalır."
+              "hint": "Kişisel bilgiler ailede kalır.",
+              "lvl": 1
             },
             {
-              "q": "Hangisi bir robot örneğidir?",
+              "q": "İki makine var: biri her gün aynı hareketle kutu itiyor, diğeri kameradan gördüğüne göre yolunu değiştiriyor. Hangisinde yapay zekâ vardır?",
               "skill": "ai-robot",
               "options": [
-                "Fabrikada araba birleştiren robot kol",
-                "Tahta bir sandalye",
-                "Cam bir bardak",
-                "Kâğıt bir defter"
+                "Gördüğüne göre karar verip yolunu değiştiren",
+                "Hep aynı hareketi yapan",
+                "İkisinde de yoktur",
+                "İkisi de aynıdır"
               ],
               "correct": 0,
-              "hint": "Hareket eden ve iş yapan makineyi ara."
+              "hint": "Karar verebilmek için algılamak ve öğrenmek gerekir.",
+              "lvl": 2
             },
             {
-              "q": "Robotlar neden tehlikeli işlerde kullanılır?",
+              "q": "Bir robotun karar verebilmesi için hangi ikili birlikte gerekir?",
               "skill": "ai-robot",
               "options": [
-                "İnsanların güvenliğini korumak için",
+                "Sensörlerden gelen bilgi ve bunu işleyen yazılım",
+                "Sihirli toz ve şans",
+                "Renkli pil ve müzik",
+                "Uyku ve rüya"
+              ],
+              "correct": 0,
+              "hint": "Önce algıla, sonra karar ver.",
+              "lvl": 2
+            },
+            {
+              "q": "Neden bazı tehlikeli işleri (yanardağ içi, derin deniz) robotlara yaptırırız?",
+              "skill": "ai-robot",
+              "options": [
+                "İnsanların güvenliğini riske atmadan işi yaptırmak için",
+                "Robotlar sıkıldığı için",
                 "Şaka olsun diye",
-                "Yoruldukları için",
-                "Uykuları geldiği için"
+                "Robotlar uyumak istediği için"
               ],
               "correct": 0,
-              "hint": "İnsan yerine riskli işi robot yapabilir."
+              "hint": "İnsan yerine riski robot alabilir.",
+              "lvl": 2
             },
             {
-              "q": "Robotları kim tasarlar ve programlar?",
+              "q": "Bir robot markette yanlış ürünü rafa koydu. Bu hatadan asıl kim sorumludur?",
               "skill": "ai-robot",
               "options": [
-                "Mühendisler ve yazılımcılar, yani insanlar",
-                "Başka robotlar tek başına",
-                "Bulutlar",
-                "Kimse"
-              ],
-              "correct": 0,
-              "hint": "Robotların arkasında hep insanlar vardır."
-            },
-            {
-              "q": "Bir robot yanlış bir şey yaparsa sorumlu kimdir?",
-              "skill": "ai-robot",
-              "options": [
-                "Onu yapan ve kullanan insanlar",
+                "Onu tasarlayan ve programlayan insanlar",
                 "Robotun kendisi",
-                "Kimse",
-                "Elektrik"
+                "Elektrik",
+                "Hiç kimse"
               ],
               "correct": 0,
-              "hint": "Aracı yapan ve kullanan insanlar sorumludur."
+              "hint": "Robotun arkasında hep insanlar vardır.",
+              "lvl": 2
             },
             {
-              "q": "Uzay robotları ne işe yarar?",
+              "q": "Uzaya gönderilen keşif robotları en çok ne işe yarar?",
               "skill": "ai-robot",
               "options": [
-                "Gezegenleri keşfeder ve bilgi toplar",
-                "Yemek pişirir",
-                "Şarkı söyler",
-                "Uyur"
+                "İnsanın gidemediği yerleri keşfedip bilgi toplamak",
+                "Orada yemek pişirmek",
+                "Şarkı söylemek",
+                "Uyumak"
               ],
               "correct": 0,
-              "hint": "İnsanın gidemediği yerlere robot gider."
+              "hint": "İnsanın ulaşamadığı yere robot gidebilir.",
+              "lvl": 2
             },
             {
-              "q": "Süpürge robotu evi nasıl temizler?",
+              "q": "Bir arkadaşın 'her robot düşünen bir yapay zekâdır' diyor. Ona neden katılmazsın?",
               "skill": "ai-robot",
               "options": [
-                "Sensörlerle etrafı algılayıp yol bularak",
-                "Gözleriyle görerek",
-                "Sihirle",
-                "Tesadüfen"
+                "Bazı robotlar sadece aynı hareketi tekrarlar; karar veremez",
+                "Çünkü robot diye bir şey yoktur",
+                "Çünkü tüm robotlar konuşur",
+                "Çünkü robotların hepsi insandır"
               ],
               "correct": 0,
-              "hint": "Duvarları ve eşyaları sensörle algılar."
+              "hint": "Robot olmak, yapay zekâya sahip olmakla aynı şey değildir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir hastane robotu, hastaya yanlış bir bilgi verdi. En doğru ve güvenli davranış hangisidir ve neden?",
+              "skill": "ai-robot",
+              "options": [
+                "Bilgiyi bir doktordan doğrulamak; çünkü robot da yanılabilir",
+                "Robota körü körüne inanmak",
+                "Robotun her zaman haklı olduğunu düşünmek",
+                "Bilgiyi hiç sorgulamamak"
+              ],
+              "correct": 0,
+              "hint": "Robot bir araçtır; önemli kararlarda insan doğrulaması gerekir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir robot 'seni tanımak için' fotoğrafını ve okulunu istiyor. Bu isteği neden temkinli karşılamalısın?",
+              "skill": "ai-robot",
+              "options": [
+                "Kişisel bilgiler kötüye kullanılabilir; önce büyüğüme danışmalıyım",
+                "Çünkü robotlar hiç soru sormaz",
+                "Çünkü fotoğraf vermek her zaman güvenlidir",
+                "Çünkü robotlar seni korur"
+              ],
+              "correct": 0,
+              "hint": "Karşındaki makine bile olsa gizlilik kuralı değişmez.",
+              "lvl": 3
+            },
+            {
+              "q": "Robotları insanlar tasarlar ve programlar. Bu neden robotların 'kendi başına iyi ya da kötü' olmadığını gösterir?",
+              "skill": "ai-robot",
+              "options": [
+                "Robot, insanların ona verdiği görevi yapar; sorumluluk insanlardadır",
+                "Çünkü robotlar duygularıyla karar verir",
+                "Çünkü robotlar kimseye bağlı değildir",
+                "Çünkü robotlar kendi kurallarını yazar"
+              ],
+              "correct": 0,
+              "hint": "Aracı yapan ve kullanan kim ise sorumlu da odur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir tarım robotu, kuru toprağı algılayınca sulama yapıyor; algılamayınca duruyor. Bu davranış yapay zekânın hangi özelliğini gösterir?",
+              "skill": "ai-robot",
+              "options": [
+                "Çevreden aldığı bilgiye göre karar verme",
+                "Duygularına göre davranma",
+                "Rastgele hareket etme",
+                "Hiç bilgi kullanmama"
+              ],
+              "correct": 0,
+              "hint": "Algıla, değerlendir, karar ver zincirini düşün.",
+              "lvl": 3
             }
           ]
         }
@@ -971,31 +1076,33 @@
           },
           "bank": [
             {
-              "q": "Veri nedir?",
+              "q": "Bir öğretmen sınıftaki herkesin boyunu yazıp bir liste yaptı. Bu liste nedir?",
               "skill": "ai-veri",
               "options": [
-                "Bilgisayarın kullandığı bilgi parçaları",
-                "Bir tür oyuncak",
+                "Veri (toplanmış bilgi)",
+                "Bir oyuncak",
                 "Bir meyve",
-                "Bir hayvan"
+                "Bir rüzgâr"
               ],
               "correct": 0,
-              "hint": "Sayılar, kelimeler, resimler... hepsi veridir."
+              "hint": "Sayılar, kelimeler, resimler... toplanınca veri olur.",
+              "lvl": 1
             },
             {
-              "q": "Örüntü nedir?",
+              "q": "Kırmızı-mavi-kırmızı-mavi-kırmızı-... Sırada hangi renk gelir?",
               "skill": "ai-veri",
               "options": [
-                "Tekrar eden bir kalıp",
-                "Rastgele karmaşa",
-                "Bir renk",
-                "Bir ses"
+                "Mavi",
+                "Sarı",
+                "Yeşil",
+                "Siyah"
               ],
               "correct": 0,
-              "hint": "Kırmızı-mavi-kırmızı-mavi gibi tekrar edeni düşün."
+              "hint": "Renkler ikişerli tekrar ediyor.",
+              "lvl": 1
             },
             {
-              "q": "2, 4, 6, 8, ... Sırada ne gelir?",
+              "q": "2, 4, 6, 8, ... Sırada hangi sayı gelir?",
               "skill": "ai-veri",
               "options": [
                 "10",
@@ -1004,115 +1111,164 @@
                 "100"
               ],
               "correct": 0,
-              "hint": "Her seferinde 2 ekleniyor."
+              "hint": "Her adımda 2 ekleniyor.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekâ daha iyi öğrenmek için neye ihtiyaç duyar?",
+              "q": "Tekrar eden bir kalıba (örneğin ▲●▲●▲●) ne ad verilir?",
+              "skill": "ai-veri",
+              "options": [
+                "Örüntü",
+                "Karmaşa",
+                "Renk",
+                "Ses"
+              ],
+              "correct": 0,
+              "hint": "Aynı düzenin tekrar ettiği şeyi düşün.",
+              "lvl": 1
+            },
+            {
+              "q": "Yapay zekânın iyi öğrenebilmesi için en çok neye ihtiyacı vardır?",
               "skill": "ai-veri",
               "options": [
                 "Çok sayıda iyi örnek (veri)",
                 "Az uyku",
-                "Sıcak hava",
-                "Şeker"
+                "Şeker",
+                "Sıcak hava"
               ],
               "correct": 0,
-              "hint": "Ne kadar çok örnek, o kadar iyi öğrenme."
+              "hint": "Ne kadar çok iyi örnek, o kadar iyi öğrenme.",
+              "lvl": 1
             },
             {
-              "q": "Veri yanlış veya eksikse ne olur?",
+              "q": "Bir müzik uygulaması senin dinlediğin şarkılara bakıp yeni şarkılar öneriyor. Bunun için önce neyi kullanır?",
               "skill": "ai-veri",
               "options": [
-                "Yapay zekâ yanlış öğrenir",
+                "Senin dinleme geçmişin, yani verilerin",
+                "Senin ayakkabı numaran",
+                "Havanın sıcaklığı",
+                "Tamamen şans"
+              ],
+              "correct": 0,
+              "hint": "Öneri yapmak için önce örüntü bulunması gerekir.",
+              "lvl": 2
+            },
+            {
+              "q": "A-B-B-A-B-B-A-B-B-... örüntüsünde sıradaki iki harf nedir?",
+              "skill": "ai-veri",
+              "options": [
+                "B-B",
+                "A-A",
+                "C-D",
+                "B-A"
+              ],
+              "correct": 0,
+              "hint": "Her A'dan sonra iki tane B geliyor.",
+              "lvl": 2
+            },
+            {
+              "q": "Meteoroloji, geçmiş yılların hava verilerine bakarak ne yapabilir?",
+              "skill": "ai-veri",
+              "options": [
+                "Yarının havasını tahmin edebilir",
+                "Bugünün havasını değiştirebilir",
+                "Yağmuru durdurabilir",
+                "Güneşi kapatabilir"
+              ],
+              "correct": 0,
+              "hint": "Geçmiş örüntüler geleceğe ipucu verir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir yapay zekâya yanlış etiketlenmiş (elmaya 'armut' denmiş) fotoğraflar verilirse ne olur?",
+              "skill": "ai-veri",
+              "options": [
+                "Yanlış öğrenir ve elmayı armut sanabilir",
                 "Daha akıllı olur",
-                "Hiçbir şey olmaz",
-                "Daha hızlı olur"
+                "Hiçbir şey değişmez",
+                "Kendi kendini düzeltir"
               ],
               "correct": 0,
-              "hint": "Kötü örnekten kötü ders çıkar."
+              "hint": "Kötü örnekten kötü ders çıkar.",
+              "lvl": 2
             },
             {
-              "q": "Örüntü bulmak neden işe yarar?",
+              "q": "Senin adın ve fotoğrafın da bir tür veridir. Bunlar izinsiz toplanmalı mı?",
               "skill": "ai-veri",
               "options": [
-                "Bir sonraki adımı tahmin etmeye yarar",
-                "Sadece eğlence için",
-                "Hiçbir işe yaramaz",
-                "Zaman kaybıdır"
-              ],
-              "correct": 0,
-              "hint": "Kalıbı bilirsen sıradakini tahmin edebilirsin."
-            },
-            {
-              "q": "Hangisi veridir?",
-              "skill": "ai-veri",
-              "options": [
-                "Sınıftaki öğrencilerin boyları listesi",
-                "Bir tahta parçası",
-                "Bir bulut",
-                "Bir rüzgâr"
-              ],
-              "correct": 0,
-              "hint": "Toplanıp yazılabilen bilgiyi ara."
-            },
-            {
-              "q": "Senin kişisel verilerin (adın, fotoğrafın) izinsiz toplanmalı mı?",
-              "skill": "ai-veri",
-              "options": [
-                "Hayır; izin gerekir ve büyüğüne danışmalısın",
+                "Hayır; kişisel veri için izin gerekir, büyüğüne danışmalısın",
                 "Evet, herkes toplayabilir",
-                "Sadece geceleri",
-                "Fark etmez"
+                "Sadece geceleri toplanır",
+                "Hiç önemi yoktur"
               ],
               "correct": 0,
-              "hint": "Kişisel veriler korunması gereken bilgilerdir."
+              "hint": "Kişisel veriler korunması gereken bilgilerdir.",
+              "lvl": 2
             },
             {
-              "q": "Meteoroloji geçmiş verilere bakarak ne yapar?",
+              "q": "Bir yapay zekânın verdiği tahminler sürekli yanlış çıkıyor. İlk kontrol etmen gereken şey neden 'kullanılan veri' olmalı?",
               "skill": "ai-veri",
               "options": [
-                "Yarının havasını tahmin eder",
-                "Bugünü değiştirir",
-                "Yağmuru durdurur",
-                "Güneşi kapatır"
+                "Veri eksik, yanlış ya da dağınıksa yapay zekâ da yanlış öğrenir",
+                "Çünkü veri her zaman doğrudur",
+                "Çünkü veriyle öğrenmenin ilgisi yoktur",
+                "Çünkü tahminler rastgeledir"
               ],
               "correct": 0,
-              "hint": "Geçmiş örüntüler geleceğe ipucu verir."
+              "hint": "Temiz olmayan bilgiden temiz sonuç çıkmaz.",
+              "lvl": 3
             },
             {
-              "q": "A-B-B-A-B-B-A-... örüntüsünde sırada ne gelir?",
+              "q": "Bir sınıfın sadece uzun boylu öğrencilerini ölçüp 'bu okuldaki herkes uzun' demek neden yanlış olur?",
               "skill": "ai-veri",
               "options": [
-                "B",
-                "A",
-                "C",
-                "D"
+                "Örnek herkesi temsil etmiyor; eksik veriden haksız sonuç çıkar",
+                "Çünkü boy ölçülemez",
+                "Çünkü uzun boy her zaman doğrudur",
+                "Çünkü veri toplamak yasaktır"
               ],
               "correct": 0,
-              "hint": "A harfinden sonra iki tane B geliyor."
+              "hint": "Örnek adil ve çeşitli değilse sonuç yanıltıcı olur.",
+              "lvl": 3
             },
             {
-              "q": "Yapay zekâ örüntüleri nasıl bulur?",
+              "q": "Yapay zekâ örüntü bulmayı neden 'tahmin yapmak' için kullanır?",
               "skill": "ai-veri",
               "options": [
-                "Çok sayıda örneğe bakıp tekrar edeni fark ederek",
-                "Uyuyarak",
-                "Tahmin oyunuyla",
-                "Hiç bulamaz"
+                "Kalıbı öğrenince bir sonraki adımı öngörebilir",
+                "Sadece eğlence olsun diye",
+                "Örüntünün hiçbir faydası yoktur",
+                "Zaman kaybetmek için"
               ],
               "correct": 0,
-              "hint": "Örneklerdeki benzerlikleri arar."
+              "hint": "Kalıbı bilirsen sıradakini tahmin edebilirsin.",
+              "lvl": 3
             },
             {
-              "q": "Verileri düzenli tutmak neden önemli?",
+              "q": "1, 1, 2, 3, 5, 8, ... örüntüsünde her sayı bir öncekilerden nasıl elde ediliyor ve sırada ne gelir?",
               "skill": "ai-veri",
               "options": [
-                "Karışık veriden doğru örüntü çıkmaz",
-                "Renkli olsun diye",
-                "Önemli değil",
-                "Sadece güzel görünsün diye"
+                "Son iki sayı toplanıyor; sırada 13 gelir",
+                "Her sayı 2 katına çıkıyor; 16 gelir",
+                "Rastgele; tahmin edilemez",
+                "Her sayıdan 1 çıkıyor; 7 gelir"
               ],
               "correct": 0,
-              "hint": "Dağınık bilgiden temiz sonuç çıkmaz."
+              "hint": "5+8 kaç eder?",
+              "lvl": 3
+            },
+            {
+              "q": "Bir yapay zekâ, eski verilerdeki bir haksızlığı (örneğin bir grubu hep geride tutmayı) öğrenirse ne yapılmalı?",
+              "skill": "ai-veri",
+              "options": [
+                "Veri adil hâle getirilip yeniden öğretilmeli",
+                "Hiçbir şey yapılmamalı",
+                "Haksızlık doğru kabul edilmeli",
+                "Yapay zekâ atılmalı"
+              ],
+              "correct": 0,
+              "hint": "Adaletsiz veriden adaletsiz sonuç çıkar; veri düzeltilmeli.",
+              "lvl": 3
             }
           ]
         }
@@ -1198,19 +1354,20 @@
           },
           "bank": [
             {
-              "q": "Algoritma nedir?",
+              "q": "Diş fırçalamayı 'fırçayı al, macun sür, fırçala, durula' diye adım adım anlattın. Bu sıralı adımlara ne denir?",
               "skill": "ai-algoritma",
               "options": [
-                "Bir işi bitirmek için sıralı adımlar",
-                "Bir tür robot",
-                "Bir oyun konsolu",
-                "Bir gezegen"
+                "Algoritma",
+                "Robot",
+                "Gezegen",
+                "Oyun"
               ],
               "correct": 0,
-              "hint": "Adım adım yapılan bir tarif gibi."
+              "hint": "Bir işi bitirmek için sıralı adımlar listesi.",
+              "lvl": 1
             },
             {
-              "q": "Hangisi bir algoritma örneğidir?",
+              "q": "Aşağıdakilerden hangisi bir algoritma örneğidir?",
               "skill": "ai-algoritma",
               "options": [
                 "Kek yapma tarifi",
@@ -1219,94 +1376,11 @@
                 "Bir bulut"
               ],
               "correct": 0,
-              "hint": "Sırayla yapılan adımları içeren şeyi ara."
+              "hint": "Sırayla yapılan adımları içeren şeyi ara.",
+              "lvl": 1
             },
             {
-              "q": "Algoritmada adımların sırası neden önemli?",
-              "skill": "ai-algoritma",
-              "options": [
-                "Yanlış sıra yanlış sonuç verir",
-                "Önemli değil",
-                "Sadece güzel görünsün diye",
-                "Renk için"
-              ],
-              "correct": 0,
-              "hint": "Önce çorap sonra ayakkabı; tersi olmaz!"
-            },
-            {
-              "q": "Büyük bir görevi nasıl kolaylaştırırsın?",
-              "skill": "ai-algoritma",
-              "options": [
-                "Küçük adımlara bölerek",
-                "Hiç yapmayarak",
-                "Bir kerede yaparak",
-                "Gözümü kapatarak"
-              ],
-              "correct": 0,
-              "hint": "Parça parça yaparsan kolaylaşır."
-            },
-            {
-              "q": "Diş fırçalama sırası hangisidir?",
-              "skill": "ai-algoritma",
-              "options": [
-                "Macun sür, fırçala, durula",
-                "Durula, fırçala, macun sür",
-                "Fırçala, macun sür, uyu",
-                "Sadece durula"
-              ],
-              "correct": 0,
-              "hint": "Önce macun, sonra fırçalama."
-            },
-            {
-              "q": "Bir adım yanlış olursa ne yaparsın?",
-              "skill": "ai-algoritma",
-              "options": [
-                "Geri dönüp o adımı düzeltirim",
-                "Pes ederim",
-                "Baştan her şeyi silerim",
-                "Ağlarım"
-              ],
-              "correct": 0,
-              "hint": "Hatayı bulup düzeltmek çözümdür."
-            },
-            {
-              "q": "Bilgisayarlar işleri neyle yapar?",
-              "skill": "ai-algoritma",
-              "options": [
-                "Algoritmalarla (adım adım talimatlarla)",
-                "Sihirle",
-                "Tahminle",
-                "Şansla"
-              ],
-              "correct": 0,
-              "hint": "Ona ne yapacağını adım adım söyleriz."
-            },
-            {
-              "q": "Bir tarifte yumurtayı kır adımı unutulursa ne olur?",
-              "skill": "ai-algoritma",
-              "options": [
-                "Sonuç istediğimiz gibi olmaz",
-                "Daha lezzetli olur",
-                "Hiçbir şey değişmez",
-                "Kek uçar"
-              ],
-              "correct": 0,
-              "hint": "Eksik adım, bozuk sonuç demektir."
-            },
-            {
-              "q": "Algoritmayı yazarken adımlar nasıl olmalı?",
-              "skill": "ai-algoritma",
-              "options": [
-                "Açık ve anlaşılır",
-                "Karışık ve gizli",
-                "Çok belirsiz",
-                "Hiç yazılmamalı"
-              ],
-              "correct": 0,
-              "hint": "Net adımlar doğru sonucu getirir."
-            },
-            {
-              "q": "Okula gitme algoritmanda ilk adım hangisi olabilir?",
+              "q": "Sabah okula gitme algoritmanda ilk adım hangisi olabilir?",
               "skill": "ai-algoritma",
               "options": [
                 "Uyanmak",
@@ -1315,31 +1389,164 @@
                 "Uyumak"
               ],
               "correct": 0,
-              "hint": "En baştaki adımı düşün."
+              "hint": "En baştaki adımı düşün.",
+              "lvl": 1
             },
             {
-              "q": "Aynı işi her seferinde doğru yapmak için ne gerekir?",
+              "q": "Bir algoritmada bir adımı yanlış yaptın. Ne yaparsın?",
               "skill": "ai-algoritma",
               "options": [
-                "Aynı adımları aynı sırayla izlemek",
+                "Geri dönüp o adımı düzeltirim",
+                "Her şeyi silerim",
+                "Pes ederim",
+                "Ağlarım"
+              ],
+              "correct": 0,
+              "hint": "Hatayı bulup düzeltmek çözümdür.",
+              "lvl": 1
+            },
+            {
+              "q": "Bilgisayarlar ve yapay zekâ işleri neyle yapar?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Algoritmalarla, yani adım adım talimatlarla",
+                "Sihirle",
+                "Şansla",
+                "Uykuyla"
+              ],
+              "correct": 0,
+              "hint": "Ona ne yapacağını adım adım söyleriz.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir robota 'önce ayakkabını giy, sonra çorabını giy' dersen ne olur?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Sıra yanlış olduğu için sonuç bozulur",
+                "Daha hızlı giyinir",
+                "Hiçbir fark olmaz",
+                "Daha rahat olur"
+              ],
+              "correct": 0,
+              "hint": "Adımların sırası çok önemlidir.",
+              "lvl": 2
+            },
+            {
+              "q": "Kek tarifinde 'yumurtayı kır' adımı atlanırsa büyük olasılıkla ne olur?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Sonuç istediğimiz gibi çıkmaz",
+                "Kek daha lezzetli olur",
+                "Hiçbir şey değişmez",
+                "Kek uçar"
+              ],
+              "correct": 0,
+              "hint": "Eksik adım, bozuk sonuç demektir.",
+              "lvl": 2
+            },
+            {
+              "q": "Çok büyük ve zor bir ödevi kolaylaştırmak için en iyi yöntem hangisidir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Onu küçük adımlara bölüp sırayla yapmak",
+                "Bir kerede hepsini yapmaya çalışmak",
+                "Hiç başlamamak",
+                "Gözleri kapatıp beklemek"
+              ],
+              "correct": 0,
+              "hint": "Büyük görev = küçük adımlar.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir arkadaşına 'çay yapma' tarifini yazacaksın. İyi bir algoritma için adımlar nasıl olmalı?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Açık, anlaşılır ve doğru sırada",
+                "Karışık ve gizli",
+                "Belirsiz ve eksik",
+                "Rastgele sırada"
+              ],
+              "correct": 0,
+              "hint": "Net adımlar doğru sonucu getirir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir el yıkama algoritması her seferinde aynı sonucu versin istiyorsun. Bunun için ne gerekir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Aynı adımları her zaman aynı sırayla izlemek",
                 "Her seferinde farklı yapmak",
-                "Adımları atlamak",
-                "Şansa bırakmak"
+                "Bazı adımları atlamak",
+                "Sırayı şansa bırakmak"
               ],
               "correct": 0,
-              "hint": "Tutarlı adımlar tutarlı sonuç verir."
+              "hint": "Tutarlı adımlar tutarlı sonuç verir.",
+              "lvl": 2
             },
             {
-              "q": "Hata yapmak öğrenirken nasıl bir şeydir?",
+              "q": "Bir çizgiyi takip eden robotun bazen yoldan çıktığını fark ettin. Bir algoritmada hatayı bulmanın en akıllı yolu nedir?",
               "skill": "ai-algoritma",
               "options": [
-                "Normaldir; düzeltip devam ederiz",
-                "Çok kötüdür, pes etmeliyiz",
-                "Hiç olmaz",
-                "Yasaktır"
+                "Adımları tek tek gözden geçirip hangi adımda şaştığını bulmak",
+                "Bütün programı silip baştan başlamak",
+                "Robotu suçlayıp bırakmak",
+                "Rastgele adım eklemek"
               ],
               "correct": 0,
-              "hint": "Hatalar öğrenmenin parçasıdır."
+              "hint": "Hatayı bulmak için adımları sırayla izlemek gerekir.",
+              "lvl": 3
+            },
+            {
+              "q": "'Sandviç yap' talimatını bir robota veriyorsun ama robot ekmeği açmadı bile. Bunun dersi nedir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Bilgisayarlar için her küçük adım açıkça yazılmalıdır",
+                "Robotlar tembeldir",
+                "Sandviç yapılamaz",
+                "Adımlar gereksizdir"
+              ],
+              "correct": 0,
+              "hint": "İnsan tahmin eder; bilgisayar sadece yazılanı yapar.",
+              "lvl": 3
+            },
+            {
+              "q": "İki algoritma aynı işi yapıyor ama biri 3, diğeri 10 adımda bitiyor. Genelde hangisi daha iyidir ve neden?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Daha az adımlı olan; aynı sonuca daha hızlı ve sade ulaşır",
+                "Daha çok adımlı olan; çünkü uzun her zaman iyidir",
+                "İkisi de aynıdır, fark yoktur",
+                "Hiçbiri işe yaramaz"
+              ],
+              "correct": 0,
+              "hint": "Aynı sonuç daha az adımla elde edilebiliyorsa daha verimlidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir algoritmada 'eğer yağmur yağıyorsa şemsiye al, yoksa alma' adımı var. Bu tür bir adım ne işe yarar?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Duruma göre farklı karar vermeyi sağlar",
+                "Adımı yavaşlatır",
+                "Hiçbir işe yaramaz",
+                "Sonucu bozar"
+              ],
+              "correct": 0,
+              "hint": "Koşula bağlı adımlar, farklı durumlara farklı davranmayı sağlar.",
+              "lvl": 3
+            },
+            {
+              "q": "Hata yapmak, bir algoritmayı öğrenip düzeltirken neden 'normal' sayılır?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Hatayı bulup düzeltmek, algoritmayı daha iyi hâle getirmenin bir yoludur",
+                "Çünkü hata yapmak yasaktır",
+                "Çünkü hata yapan pes etmelidir",
+                "Çünkü hata hiç olmaz"
+              ],
+              "correct": 0,
+              "hint": "Hatalar öğrenmenin bir parçasıdır.",
+              "lvl": 3
             }
           ]
         }
@@ -1425,67 +1632,46 @@
           },
           "bank": [
             {
-              "q": "Makine öğrenmesi nedir?",
+              "q": "Bir uygulamaya binlerce köpek fotoğrafı gösterildi; sonra yeni bir fotoğraftaki köpeği tanıdı. Örneklerden öğrenmeye ne denir?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
-                "Bilgisayarın örneklerden öğrenmesi",
-                "Bilgisayarın uyuması",
-                "Bir bilgisayar oyunu",
-                "Bir tür pil"
+                "Makine öğrenmesi",
+                "Sihir",
+                "Şans",
+                "Uyku"
               ],
               "correct": 0,
-              "hint": "Çok örnek göstererek öğretiriz."
+              "hint": "Örneklerden 'öğrenme' anahtar kelimedir.",
+              "lvl": 1
             },
             {
-              "q": "Bilgisayara bu kedidir dedirtmek için ne yaparız?",
+              "q": "Bir bilgisayara 'bu bir kedi' dedirtmek için ne yaparız?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
                 "Ona birçok kedi örneği gösteririz",
                 "Ona bir kedi hediye ederiz",
-                "Hiçbir şey",
-                "Şarkı söyleriz"
+                "Ona şarkı söyleriz",
+                "Hiçbir şey yapmayız"
               ],
               "correct": 0,
-              "hint": "Örneklerle öğrenir."
+              "hint": "Örneklerle öğrenir.",
+              "lvl": 1
             },
             {
-              "q": "Makine öğrenmesi neye benzer?",
+              "q": "Makine öğrenmesi hangisine benzer?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
-                "Pratikle bisiklet öğrenmeye",
+                "Çok pratik yaparak bisiklete binmeyi öğrenmeye",
                 "Uyumaya",
                 "Yemek yemeye",
-                "Koşmaya"
+                "Televizyon izlemeye"
               ],
               "correct": 0,
-              "hint": "Tekrar ve örnekle gelişir."
+              "hint": "Tekrar ve örnekle gelişir.",
+              "lvl": 1
             },
             {
-              "q": "Bilgisayar kalıbı nasıl bulur?",
-              "skill": "ai-makine-ogrenmesi",
-              "options": [
-                "Çok örneğe bakıp benzerlikleri fark ederek",
-                "Tahmin oyunuyla",
-                "Zar atarak",
-                "Uyuyarak"
-              ],
-              "correct": 0,
-              "hint": "Örneklerdeki ortak noktaları arar."
-            },
-            {
-              "q": "Örnekler eksik veya haksızsa ne olur?",
-              "skill": "ai-makine-ogrenmesi",
-              "options": [
-                "Makine yanlış öğrenir",
-                "Daha iyi öğrenir",
-                "Hiçbir şey olmaz",
-                "Daha hızlı olur"
-              ],
-              "correct": 0,
-              "hint": "Kötü örnek kötü öğrenme demek."
-            },
-            {
-              "q": "Bir makine öğrenmesi modeli her zaman doğru mu?",
+              "q": "Bir makine öğrenmesi modeli her zaman kesinlikle doğru mudur?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
                 "Hayır; hata yapabilir, kontrol etmeliyiz",
@@ -1494,79 +1680,151 @@
                 "Sadece geceleri yanılır"
               ],
               "correct": 0,
-              "hint": "Öğrendiği kadarını bilir, yanılabilir."
+              "hint": "Öğrendiği kadarını bilir, yanılabilir.",
+              "lvl": 1
             },
             {
-              "q": "Bir modele sadece siyah kedi gösterirsek ne olur?",
+              "q": "E-posta kutundaki çöp (spam) mesajları ayıklayan sistem bunu nasıl yapar?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Çok sayıda spam örneğinden öğrenmiş bir modelle",
+                "Elle tek tek okuyarak",
+                "Şansla",
+                "Hiç ayıklamaz"
+              ],
+              "correct": 0,
+              "hint": "Model spam örneklerini öğrenir.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir modele sadece siyah kedi fotoğrafları gösterildi. Beyaz bir kedi fotoğrafı gelince ne olabilir?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
                 "Beyaz kediyi tanımakta zorlanabilir",
-                "Her rengi bilir",
-                "Köpekleri öğrenir",
-                "Hiçbir sorun olmaz"
+                "Her rengi kusursuz bilir",
+                "Köpekleri de öğrenir",
+                "Hiçbir sorun yaşamaz"
               ],
               "correct": 0,
-              "hint": "Sadece gördüğü örnekleri iyi bilir."
+              "hint": "Model sadece gördüğü örnekler kadar iyidir.",
+              "lvl": 2
             },
             {
-              "q": "Makine öğrenmesinde öğretmen kimdir?",
+              "q": "Bir bilgisayar örneklerdeki ortak noktalara bakıp 'kalıp' çıkarıyor. Bu kalıp ne işe yarar?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
-                "Doğru örnekleri hazırlayan insanlar",
-                "Bulutlar",
-                "Robotlar tek başına",
-                "Kimse"
+                "Yeni bir örneği tanıyıp tahmin yapmaya",
+                "Sadece süs olsun diye",
+                "Hiçbir işe yaramaz",
+                "Bilgisayarı yavaşlatmaya"
               ],
               "correct": 0,
-              "hint": "Örnekleri insanlar seçer ve etiketler."
+              "hint": "Kalıbı öğrenince yeniyi tahmin eder.",
+              "lvl": 2
             },
             {
-              "q": "Neden tek tek kural yazmak yerine örnek gösteririz?",
+              "q": "Bir kedinin nasıl göründüğünü tek tek kurallarla yazmak çok zordur. Bunun yerine neden örnek gösteririz?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
-                "Çok karmaşık şeyleri örnekle öğretmek daha kolaydır",
-                "Örnek yazmak yasak olduğu için",
+                "Karmaşık şeyleri örnekle öğretmek kurallarla anlatmaktan kolaydır",
+                "Örnek göstermek yasak olduğu için",
                 "Kural yazmak imkânsız olduğu için",
                 "Örnekler gereksiz olduğu için"
               ],
               "correct": 0,
-              "hint": "Bir kedinin tarifini yazmak çok zordur; göstermek kolaydır."
+              "hint": "Bir kediyi tarif etmek zor, göstermek kolaydır.",
+              "lvl": 2
             },
             {
-              "q": "E-postalardaki spam (çöp mesaj) nasıl ayıklanır?",
+              "q": "Bir model bir meyveyi sürekli yanlış tanıyor. En mantıklı çözüm hangisidir?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
-                "Örneklerden öğrenen bir modelle",
-                "Elle tek tek okuyarak",
-                "Şansla",
-                "Hiç ayıklanmaz"
+                "Daha çok ve daha iyi örnekle yeniden öğretmek",
+                "Bilgisayarı çöpe atmak",
+                "Hemen vazgeçmek",
+                "Modele kızmak"
               ],
               "correct": 0,
-              "hint": "Model, spam örneklerini öğrenir."
+              "hint": "Daha iyi örnek, daha iyi öğrenme.",
+              "lvl": 2
             },
             {
-              "q": "Model bir şeyi yanlış tanırsa ne yapmalıyız?",
+              "q": "Makine öğrenmesinde modele örnekleri kim seçip etiketler?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
-                "Daha iyi örneklerle tekrar öğretmeliyiz",
-                "Bilgisayarı atmalıyız",
-                "Vazgeçmeliyiz",
-                "Sinirlenmeliyiz"
+                "Doğru örnekleri hazırlayan insanlar",
+                "Bulutlar",
+                "Model tek başına",
+                "Hiç kimse"
               ],
               "correct": 0,
-              "hint": "Daha iyi örnek, daha iyi öğrenme."
+              "hint": "Öğretmen rolündeki insanları düşün.",
+              "lvl": 2
             },
             {
-              "q": "Makine öğrenmesi çıktısına nasıl yaklaşmalıyız?",
+              "q": "Bir yüz tanıma modeli, sadece bir grup insanın fotoğraflarıyla eğitilirse başka grupları neden yanlış tanıyabilir?",
               "skill": "ai-makine-ogrenmesi",
               "options": [
-                "Kontrol ederek ve gerektiğinde büyüğe danışarak",
-                "Körü körüne inanarak",
-                "Hiç bakmayarak",
-                "Her zaman yanlış diyerek"
+                "Model az gördüğü örnekleri iyi öğrenemez; eksik veri haksız sonuç verir",
+                "Çünkü model utanır",
+                "Çünkü tüm modeller bozuktur",
+                "Çünkü fotoğraf çekmek zordur"
               ],
               "correct": 0,
-              "hint": "Güven ama teyit et."
+              "hint": "Model gördüğü örnekler kadar adil olur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir model %99 doğru çalışıyor ama önemli bir sağlık kararında kullanılacak. Yine de neden insan kontrolü gerekir?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Kalan küçük hata bile ciddi sonuç doğurabilir; insan doğrulaması güvenliği artırır",
+                "Çünkü model asla hata yapmaz",
+                "Çünkü insanlar bilgisayardan yavaştır",
+                "Çünkü kontrol gereksizdir"
+              ],
+              "correct": 0,
+              "hint": "Güven ama teyit et.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir öğrenci 'model çok örnek gördü, artık her şeyi bilir' diyor. Bu düşüncenin eksiği nedir?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Model sadece gördüğü türden örnekleri bilir; hiç görmediğinde şaşırır",
+                "Hiçbir eksiği yok, doğrudur",
+                "Model gerçekten her şeyi bilir",
+                "Model örnek olmadan da bilir"
+              ],
+              "correct": 0,
+              "hint": "Görmediği bir şeyi tanıması beklenemez.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir müzik önerisi modeli sana hep aynı türü öneriyor. Bunun sebebi büyük olasılıkla nedir?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Ona verdiğin örnekler (dinlediklerin) hep o türden olmuş olabilir",
+                "Model seni sevmiyordur",
+                "Model bozulmuştur",
+                "Öneriler tamamen rastgeledir"
+              ],
+              "correct": 0,
+              "hint": "Model, senden öğrendiği örneklerin kalıbını yansıtır.",
+              "lvl": 3
+            },
+            {
+              "q": "Makine öğrenmesi bir modeli, sen bir sporu 'antrenmanla' öğrenmene benzetebiliriz. Bu benzetmede 'antrenman' neye karşılık gelir?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Modele gösterilen çok sayıda örnekle yapılan eğitim",
+                "Modelin uyuması",
+                "Modelin kapanması",
+                "Modelin şarj olması"
+              ],
+              "correct": 0,
+              "hint": "Sen tekrar ederek, model örneklerle 'antrenman' yapar.",
+              "lvl": 3
             }
           ]
         }
@@ -1652,19 +1910,20 @@
           },
           "bank": [
             {
-              "q": "Sesli asistan nedir?",
+              "q": "Bir çocuk akıllı hoparlöre 'bana bir fıkra anlat' dedi ve sesli cevap aldı. Ona cevap veren nedir?",
               "skill": "ai-sesli-asistan",
               "options": [
-                "Sesini duyup cevap veren yapay zekâ",
-                "Bir tür telefon kılıfı",
+                "Sesli asistan (bir yapay zekâ)",
                 "Bir müzik aleti",
+                "Bir telefon kılıfı",
                 "Bir hoparlör kablosu"
               ],
               "correct": 0,
-              "hint": "Konuşarak komut verdiğin yardımcıyı düşün."
+              "hint": "Konuşarak komut verdiğin yardımcıyı düşün.",
+              "lvl": 1
             },
             {
-              "q": "Hangisi bir sesli asistan örneğidir?",
+              "q": "Aşağıdakilerden hangisi bir sesli asistan örneğidir?",
               "skill": "ai-sesli-asistan",
               "options": [
                 "Telefondaki asistan veya akıllı hoparlör",
@@ -1673,10 +1932,11 @@
                 "Cam bardak"
               ],
               "correct": 0,
-              "hint": "Konuşup cevap alabildiğin cihazı ara."
+              "hint": "Konuşup cevap alabildiğin cihazı ara.",
+              "lvl": 1
             },
             {
-              "q": "Sesli asistan önce ne yapar?",
+              "q": "Sen konuşunca sesli asistan ilk olarak ne yapar?",
               "skill": "ai-sesli-asistan",
               "options": [
                 "Sesini yazıya çevirir",
@@ -1685,115 +1945,164 @@
                 "Kapanır"
               ],
               "correct": 0,
-              "hint": "Konuşmanı anlaması için önce yazıya döker."
+              "hint": "Konuşmanı anlaması için önce yazıya döker.",
+              "lvl": 1
             },
             {
-              "q": "Sesli asistana şifreni söyler misin?",
-              "skill": "ai-sesli-asistan",
-              "options": [
-                "Hayır; kişisel bilgiler paylaşılmaz",
-                "Evet, hemen",
-                "Sadece hafta sonu",
-                "Bağırarak söylerim"
-              ],
-              "correct": 0,
-              "hint": "Cihaz seni dinliyor olabilir."
-            },
-            {
-              "q": "Sesli asistan seni her zaman doğru anlar mı?",
-              "skill": "ai-sesli-asistan",
-              "options": [
-                "Hayır; bazen yanlış duyabilir",
-                "Evet, hiç şaşmaz",
-                "Evet, düşünceni okur",
-                "Sadece geceleri"
-              ],
-              "correct": 0,
-              "hint": "Gürültüde ya da yeni kelimelerde şaşabilir."
-            },
-            {
-              "q": "Sesli asistanla alışveriş yapmak istersen ne yaparsın?",
-              "skill": "ai-sesli-asistan",
-              "options": [
-                "Büyüğümle birlikte yaparım",
-                "Tek başıma yaparım",
-                "Gizlice yaparım",
-                "Bir sürü şey alırım"
-              ],
-              "correct": 0,
-              "hint": "Para harcamak büyüklerin iznini gerektirir."
-            },
-            {
-              "q": "Sesli asistan cevabı nasıl verir?",
+              "q": "Sesli asistan sana cevabı nasıl iletir?",
               "skill": "ai-sesli-asistan",
               "options": [
                 "Sesli olarak konuşarak",
                 "Mektupla",
                 "Rüyanda",
-                "Hiç vermez"
+                "Hiç iletmez"
               ],
               "correct": 0,
-              "hint": "Duyabileceğin şekilde konuşur."
+              "hint": "Duyabileceğin şekilde konuşur.",
+              "lvl": 1
             },
             {
-              "q": "Sesli asistan bilmiyorum derse ne yaparsın?",
+              "q": "Sesli asistana şifreni söylemeli misin?",
               "skill": "ai-sesli-asistan",
               "options": [
-                "Başka kaynaktan öğrenirim",
-                "Kızarım",
-                "Kapatırım",
-                "Israrla bağırırım"
+                "Hayır; kişisel bilgiler paylaşılmaz",
+                "Evet, hemen söylerim",
+                "Sadece hafta sonu",
+                "Bağırarak söylerim"
               ],
               "correct": 0,
-              "hint": "Her şeyi bilemez; başka yer de var."
+              "hint": "Cihaz seni dinliyor olabilir.",
+              "lvl": 1
             },
             {
-              "q": "Sesli asistanlar nasıl bu kadar iyi anlıyor?",
+              "q": "Odanda yüksek sesle müzik çalarken sesli asistan seni yanlış anladı. Bunun en olası sebebi nedir?",
               "skill": "ai-sesli-asistan",
               "options": [
-                "Çok sayıda ses örneğinden öğrenmişler",
+                "Gürültü, sesini net duymasını zorlaştırdı",
+                "Asistan seni sevmiyor",
+                "Asistan kırıldı",
+                "Elektrik kesildi"
+              ],
+              "correct": 0,
+              "hint": "Karışık seste anlaması zorlaşır.",
+              "lvl": 2
+            },
+            {
+              "q": "Sesli asistanlar konuşmayı bu kadar iyi nasıl anlıyor?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Çok sayıda ses örneğinden öğrenmişler (makine öğrenmesi)",
                 "Sihir sayesinde",
-                "Şans eseri",
-                "İçlerinde küçük bir insan var"
+                "İçlerinde küçük bir insan var",
+                "Tamamen şans eseri"
               ],
               "correct": 0,
-              "hint": "Makine öğrenmesini hatırla."
+              "hint": "Makine öğrenmesini hatırla.",
+              "lvl": 2
             },
             {
-              "q": "Odada gürültü varsa sesli asistan ne yapar?",
+              "q": "Sesli asistan bir soruya 'bunu bilmiyorum' dedi. En mantıklı davranış nedir?",
               "skill": "ai-sesli-asistan",
               "options": [
-                "Seni yanlış anlayabilir",
-                "Daha iyi duyar",
-                "Kapanır",
-                "Uçar"
+                "Başka güvenilir bir kaynaktan öğrenirim",
+                "Israrla bağırırım",
+                "Cihaza kızarım",
+                "Hemen kapatırım"
               ],
               "correct": 0,
-              "hint": "Karışık seste anlaması zorlaşır."
+              "hint": "Her şeyi bilemez; başka kaynaklar da var.",
+              "lvl": 2
             },
             {
-              "q": "Sesli asistan bir arkadaş mıdır?",
+              "q": "Sesli asistanla bir oyuncak satın almak istiyorsun. Doğru davranış hangisidir?",
               "skill": "ai-sesli-asistan",
               "options": [
-                "Hayır; yardımcı bir araçtır, duyguları yoktur",
-                "Evet, en iyi dostumdur",
-                "Evet, üzülür",
-                "Evet, seni özler"
+                "Bir büyüğümle birlikte yaparım",
+                "Tek başıma alışveriş yaparım",
+                "Gizlice sipariş veririm",
+                "Bir sürü şey alırım"
               ],
               "correct": 0,
-              "hint": "Yararlı bir araçtır ama insan değildir."
+              "hint": "Para harcamak büyüklerin iznini gerektirir.",
+              "lvl": 2
             },
             {
-              "q": "Sesli asistanı en güvenli nasıl kullanırsın?",
+              "q": "Sesli asistanı 'en iyi arkadaşım' gibi görmek neden yanlış olur?",
               "skill": "ai-sesli-asistan",
               "options": [
-                "Büyüklerin bilgisiyle ve kişisel bilgi vermeden",
-                "Gizli gizli",
-                "Bütün sırlarımı anlatarak",
-                "Adresimi söyleyerek"
+                "O yardımcı bir araçtır; duyguları ve bilinci yoktur",
+                "Çünkü çok pahalıdır",
+                "Çünkü hiç konuşmaz",
+                "Çünkü seni hep üzer"
               ],
               "correct": 0,
-              "hint": "Aile bilgisi ve gizlilik birlikte güvenli kullanım demektir."
+              "hint": "Yararlı bir araçtır ama insan değildir.",
+              "lvl": 2
+            },
+            {
+              "q": "Sesli asistan 'seni dinliyor olabilir' deniyor. Bu bilgi, ona ne söyleyip söylememen konusunda sana ne öğretir?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Şifre, adres gibi kişisel bilgileri sesli söylememeliyim",
+                "Her şeyi rahatça söyleyebilirim",
+                "Sadece geceleri sessiz olmalıyım",
+                "Hiç konuşmamalıyım"
+              ],
+              "correct": 0,
+              "hint": "Dinlenebilen bir cihaza sır verilmez.",
+              "lvl": 3
+            },
+            {
+              "q": "Sesli asistan 'sesi yazıya çevir, isteği anla, cevabı bul, sesli söyle' adımlarını saniyeler içinde yapıyor. Bu neyi gösterir?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Basit görünen bir cevabın arkasında birçok adım ve çok veri vardır",
+                "Asistanın sihirli olduğunu",
+                "Hiç adım olmadığını",
+                "Cevabın rastgele geldiğini"
+              ],
+              "correct": 0,
+              "hint": "Kısa cevabın ardında görünmeyen bir algoritma çalışır.",
+              "lvl": 3
+            },
+            {
+              "q": "Sesli asistan bir bilgiyi çok kendinden emin söyledi ama sen şüphelendin. Neden yine de doğrulamalısın?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Emin bir ses tonu, bilginin doğru olduğunu kanıtlamaz",
+                "Çünkü asistan hiç yanılmaz",
+                "Çünkü doğrulamak yasaktır",
+                "Çünkü asistan seni kandırmak ister"
+              ],
+              "correct": 0,
+              "hint": "Ton değil, kaynağın doğruluğu önemlidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Küçük kardeşin sesli asistana adresinizi söylemek üzere. En doğru ve güvenli müdahale hangisidir?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Durdurup birlikte bir büyüğe danışmak; kişisel bilgi paylaşılmamalı",
+                "Bırakıp izlemek",
+                "Ben de fotoğraf eklemek",
+                "Şifreyi de söyletmek"
+              ],
+              "correct": 0,
+              "hint": "Gizlilik kuralı herkes için geçerlidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Sesli asistan yeni ve alışılmadık bir kelimeyi neden bazen yanlış anlayabilir?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Daha önce o kelimenin yeterli örneğini görmemiş olabilir",
+                "Çünkü asistan tembeldir",
+                "Çünkü yeni kelimeler yoktur",
+                "Çünkü asistan hiç öğrenemez"
+              ],
+              "correct": 0,
+              "hint": "Az gördüğü şeyi tanıması zorlaşır.",
+              "lvl": 3
             }
           ]
         }
@@ -1879,31 +2188,20 @@
           },
           "bank": [
             {
-              "q": "Görüntü tanıma nedir?",
+              "q": "Bir uygulama fotoğrafına bakıp 'bu bir araba' dedi. Yapay zekânın bu becerisine ne denir?",
               "skill": "ai-goruntu-tanima",
               "options": [
-                "Yapay zekânın resimlerdeki nesneleri tanıması",
+                "Görüntü tanıma",
                 "Resim boyama",
                 "Fotoğraf çekme",
                 "Ekran temizleme"
               ],
               "correct": 0,
-              "hint": "Fotoğrafta bu ne sorusunu yanıtlar."
+              "hint": "Resimde 'bu ne?' sorusunu yanıtlayan beceriyi düşün.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekâ görüntü tanımayı nasıl öğrenir?",
-              "skill": "ai-goruntu-tanima",
-              "options": [
-                "Milyonlarca etiketli resimden",
-                "Tek bir resimden",
-                "Uyuyarak",
-                "Hiç öğrenmez"
-              ],
-              "correct": 0,
-              "hint": "Çok örnek, iyi öğrenme sağlar."
-            },
-            {
-              "q": "Görüntü tanıma neye bakarak tahmin yapar?",
+              "q": "Görüntü tanıma bir tahmin yaparken neye bakar?",
               "skill": "ai-goruntu-tanima",
               "options": [
                 "Şekillere, renklere ve kenarlara",
@@ -1912,10 +2210,24 @@
                 "Sadece tada"
               ],
               "correct": 0,
-              "hint": "Resmin görsel özelliklerini inceler."
+              "hint": "Resmin görsel özelliklerini inceler.",
+              "lvl": 1
             },
             {
-              "q": "Görüntü tanıma her zaman doğru mu bilir?",
+              "q": "Görüntü tanıma iyi çalışsın istiyorsak yapay zekâya nasıl resimler göstermeliyiz?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Milyonlarca etiketli ve çeşitli resim",
+                "Tek bir bulanık resim",
+                "Hiç resim",
+                "Sadece siyah resim"
+              ],
+              "correct": 0,
+              "hint": "Çok ve çeşitli örnek, iyi öğrenme sağlar.",
+              "lvl": 1
+            },
+            {
+              "q": "Görüntü tanıma her zaman kesinlikle doğru mudur?",
               "skill": "ai-goruntu-tanima",
               "options": [
                 "Hayır; bazen yanlış tanıyabilir",
@@ -1924,103 +2236,151 @@
                 "Sadece renkleri bilir"
               ],
               "correct": 0,
-              "hint": "Bulanık resimde şaşabilir."
+              "hint": "Bulanık resimde şaşabilir.",
+              "lvl": 1
             },
             {
-              "q": "Hangisi görüntü tanıma kullanır?",
+              "q": "Telefonun fotoğraflarını kişilere göre gruplayabiliyor. Bu hangi beceriyi kullanır?",
               "skill": "ai-goruntu-tanima",
               "options": [
-                "Telefonun fotoğrafları kişilere göre gruplaması",
-                "Kâğıt katlama",
+                "Görüntü tanıma",
                 "İp atlama",
+                "Kâğıt katlama",
                 "Bulaşık yıkama"
               ],
               "correct": 0,
-              "hint": "Fotoğrafları tanıyıp düzenleyen özelliği düşün."
+              "hint": "Fotoğraftaki yüzleri tanıyan özelliği düşün.",
+              "lvl": 1
             },
             {
-              "q": "Bulanık bir fotoğrafta yapay zekâ ne yapabilir?",
+              "q": "Yapay zekâ bulanık bir fotoğrafta köpeği kurabiyeye benzetti. Bu durum ne gösterir?",
               "skill": "ai-goruntu-tanima",
               "options": [
-                "Yanlış tahmin yapabilir",
-                "Her zaman doğru bilir",
-                "Fotoğrafı netleştirir",
-                "Hiç bakmaz"
+                "Az ve belirsiz bilgi, yanlış tahmin riskini artırır",
+                "Yapay zekânın hiç çalışmadığını",
+                "Fotoğrafın hep siyah olduğunu",
+                "Köpeğin gerçekten kurabiye olduğunu"
               ],
               "correct": 0,
-              "hint": "Az bilgi, çok hata riski."
+              "hint": "Benzer görünen şeyleri karıştırabilir.",
+              "lvl": 2
             },
             {
-              "q": "Yüz tanıma kişisel bir konu mudur?",
+              "q": "Kendi kendine giden bir araba önündeki yayayı nasıl fark eder?",
               "skill": "ai-goruntu-tanima",
               "options": [
-                "Evet; fotoğraflarını korumalı ve büyüğüne danışmalısın",
-                "Hayır, önemsizdir",
-                "Sadece geceleri",
-                "Fark etmez"
+                "Kameralar ve görüntü tanıma ile",
+                "Kulaklarıyla",
+                "Sihirle",
+                "Tahmin oyunuyla"
               ],
               "correct": 0,
-              "hint": "Yüzün senin özel bilgindir."
+              "hint": "Etrafındaki nesneleri kamerayla tanır.",
+              "lvl": 2
             },
             {
-              "q": "Doktorlar görüntü tanımayı nasıl kullanabilir?",
+              "q": "Doktorlar görüntü tanımayı en çok nasıl kullanabilir?",
               "skill": "ai-goruntu-tanima",
               "options": [
-                "Röntgen gibi görüntüleri incelemede yardımcı olarak",
+                "Röntgen gibi tıbbi görüntüleri incelemede yardımcı olarak",
                 "Şarkı söyletmek için",
                 "Yemek yapmak için",
                 "Uyumak için"
               ],
               "correct": 0,
-              "hint": "Sağlıkta görüntüleri incelemeye yardım eder."
+              "hint": "Sağlıkta görüntü incelemeye yardım eder.",
+              "lvl": 2
             },
             {
-              "q": "Yapay zekâ bir resimde köpeği kurabiyeye benzetirse bu nedir?",
+              "q": "Yüzün senin özel bilgindir. Yüz tanıma kullanan bir uygulama fotoğraflarını isteyince ne yapmalısın?",
               "skill": "ai-goruntu-tanima",
               "options": [
-                "Bir hatadır; yapay zekâ da yanılır",
-                "İmkânsızdır",
-                "Hiç olmaz",
-                "Her zaman doğrudur"
+                "Önce bir büyüğüme danışırım",
+                "Hepsini hemen paylaşırım",
+                "Herkese gönderirim",
+                "Şifremi de eklerim"
               ],
               "correct": 0,
-              "hint": "Benzer görünen şeyleri karıştırabilir."
+              "hint": "Yüz tanıma kişisel bir konudur.",
+              "lvl": 2
             },
             {
-              "q": "Kendi kendine giden arabalar yolu nasıl görür?",
+              "q": "Bir görüntü tanıma modeli sadece net ve düz duran elmaları görmüş. Yandan çekilmiş bir elmayı neden zor tanıyabilir?",
               "skill": "ai-goruntu-tanima",
               "options": [
-                "Kameralar ve görüntü tanıma ile",
-                "Gözleriyle",
-                "Kulaklarıyla",
-                "Sihirle"
+                "Elmayı sadece bir açıdan öğrendiği için farklı açıda şaşabilir",
+                "Çünkü elma yoktur",
+                "Çünkü model hiç öğrenemez",
+                "Çünkü elmalar hep aynıdır"
               ],
               "correct": 0,
-              "hint": "Etrafındaki nesneleri kamerayla tanır."
+              "hint": "Çeşitli örnek görmediyse yeni açıda zorlanır.",
+              "lvl": 2
             },
             {
-              "q": "İyi görüntü tanıma için resimler nasıl olmalı?",
+              "q": "Bir arkadaşın 'yapay zekâ resmi bizim gibi görüyor' diyor. Aslında görüntü tanıma nasıl çalışır?",
               "skill": "ai-goruntu-tanima",
               "options": [
-                "Net ve çeşitli",
-                "Hep bulanık",
-                "Hep aynı",
-                "Hiç olmamalı"
+                "Resmi sayılara çevirip desenleri hesaplar; gözü yoktur",
+                "Bizim gibi gözleriyle görür",
+                "Resmi rüyasında görür",
+                "Hiçbir şey yapmaz"
               ],
               "correct": 0,
-              "hint": "Net ve çeşitli örnek, iyi öğrenme sağlar."
+              "hint": "Görme değil, sayılarla desen hesaplama söz konusudur.",
+              "lvl": 3
             },
             {
-              "q": "Görüntü tanıma yaparken yapay zekâ gerçekten görüyor mu?",
+              "q": "Yapay zekâ ile üretilmiş, gerçek gibi görünen sahte bir fotoğraf gördün. Bu neden dikkatli olmayı gerektirir?",
               "skill": "ai-goruntu-tanima",
               "options": [
-                "Hayır; sayılarla desenleri hesaplıyor",
-                "Evet, gözleri var",
-                "Evet, bizim gibi görür",
-                "Rüyada görür"
+                "Sahte görüntü gerçek sanılıp yanlış bilgi yayabilir; sorgulamak gerekir",
+                "Çünkü sahte fotoğraf yapılamaz",
+                "Çünkü tüm fotoğraflar gerçektir",
+                "Çünkü fotoğraflar hep siyah beyazdır"
               ],
               "correct": 0,
-              "hint": "Resmi sayılara çevirip inceler."
+              "hint": "'Bu gerçek mi?' diye sormak süper güçtür.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir güvenlik sistemi karanlıkta insanları tanıyamıyor. Bunu iyileştirmenin en mantıklı yolu nedir?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Karanlıkta çekilmiş çeşitli örneklerle de eğitmek",
+                "Sistemi tamamen kapatmak",
+                "Sadece aydınlık fotoğraf eklemek",
+                "Hiçbir şey yapmamak"
+              ],
+              "correct": 0,
+              "hint": "Model, benzer koşullardaki örneklerle daha iyi öğrenir.",
+              "lvl": 3
+            },
+            {
+              "q": "Görüntü tanıma modeli bir işareti yanlış okuyup arabayı yanlış yönlendirebilir. Bu neden görüntü tanımayı tek başına yeterli görmememizi gösterir?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Yapay zekâ yanılabildiği için önemli kararlarda kontrol ve güvenlik önlemi gerekir",
+                "Çünkü görüntü tanıma hiç çalışmaz",
+                "Çünkü işaretler okunamaz",
+                "Çünkü arabalar durmaz"
+              ],
+              "correct": 0,
+              "hint": "Hata riski olan yerde ek güvenlik gerekir.",
+              "lvl": 3
+            },
+            {
+              "q": "İki eğitim seti var: biri sadece gündüz kedileri, diğeri gündüz ve gece kedileri içeriyor. Hangisi daha güvenilir bir model verir ve neden?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Çeşitli olan; farklı koşulları gördüğü için yeni durumlara daha hazırlıklıdır",
+                "Sadece gündüz olan; çünkü basittir",
+                "İkisi de aynıdır",
+                "Hiçbiri işe yaramaz"
+              ],
+              "correct": 0,
+              "hint": "Çeşitlilik, modeli beklenmedik durumlara hazırlar.",
+              "lvl": 3
             }
           ]
         }
@@ -2106,19 +2466,20 @@
           },
           "bank": [
             {
-              "q": "Hangisinde yapay zekâ kullanılır?",
+              "q": "Bir video uygulaması sana 'bunu da izleyebilirsin' diyerek yeni videolar gösteriyor. Bu listeyi hazırlayan nedir?",
               "skill": "ai-gunluk-hayat",
               "options": [
-                "Video önerileri ve harita yol tarifi",
-                "Tahta kaşık",
-                "Cam bardak",
-                "Kâğıt uçak"
+                "Bir yapay zekâ (öneri sistemi)",
+                "Bir tahta kaşık",
+                "Bir cam bardak",
+                "Bir kâğıt uçak"
               ],
               "correct": 0,
-              "hint": "Sana bir şeyler öneren uygulamaları düşün."
+              "hint": "Sana bir şeyler öneren uygulamaları düşün.",
+              "lvl": 1
             },
             {
-              "q": "Çeviri uygulamaları ne işe yarar?",
+              "q": "Farklı dildeki bir yazıyı anlamana yardım eden uygulama ne işe yarar?",
               "skill": "ai-gunluk-hayat",
               "options": [
                 "Bir dili başka dile çevirir",
@@ -2127,127 +2488,177 @@
                 "Yemek pişirir"
               ],
               "correct": 0,
-              "hint": "Farklı dilleri anlamana yardım eder."
+              "hint": "Diller arasında köprü kurar.",
+              "lvl": 1
             },
             {
-              "q": "Harita uygulaması yol tarifini nasıl bulur?",
+              "q": "Harita uygulaması sana en kısa yolu nasıl bulur?",
               "skill": "ai-gunluk-hayat",
               "options": [
                 "Trafik ve mesafe verisini yapay zekâ ile hesaplayarak",
                 "Şansla",
-                "Tahminle",
-                "Sihirle"
+                "Sihirle",
+                "Rastgele seçerek"
               ],
               "correct": 0,
-              "hint": "En kısa ve hızlı yolu veriyle bulur."
+              "hint": "En hızlı yolu veriyle bulur.",
+              "lvl": 1
             },
             {
-              "q": "Video önerileri neye göre yapılır?",
+              "q": "E-posta kutundaki istenmeyen çöp mesajları ayıran özellik nedir?",
               "skill": "ai-gunluk-hayat",
               "options": [
-                "Daha önce izlediklerine göre",
-                "Havaya göre",
-                "Adına göre",
-                "Rastgele"
+                "Spam filtresi",
+                "Bir oyun",
+                "Bir şarkı",
+                "Bir kalem"
               ],
               "correct": 0,
-              "hint": "İlgi alanlarını öğrenip önerir."
+              "hint": "İstenmeyen mesajları tanıyıp ayırır.",
+              "lvl": 1
             },
             {
-              "q": "Önerilere nasıl yaklaşmalısın?",
-              "skill": "ai-gunluk-hayat",
-              "options": [
-                "Kendi kararımı da veririm",
-                "Hepsine körü körüne uyarım",
-                "Hiç bakmam",
-                "Her önerileni izlerim"
-              ],
-              "correct": 0,
-              "hint": "Sen komutansın; öneri sadece öneridir."
-            },
-            {
-              "q": "Yapay zekâ günlük hayatta ne sağlar?",
+              "q": "Yapay zekâ günlük hayatta genellikle ne sağlar?",
               "skill": "ai-gunluk-hayat",
               "options": [
                 "İşleri kolaylaştırır",
                 "Her şeyi bozar",
                 "Sadece zaman kaybettirir",
-                "Hiçbir şey"
+                "Hiçbir şey yapmaz"
               ],
               "correct": 0,
-              "hint": "Doğru kullanılırsa yardımcıdır."
+              "hint": "Doğru kullanılırsa yardımcıdır.",
+              "lvl": 1
             },
             {
-              "q": "Öneriler senin neyini kullanır?",
+              "q": "Bir video uygulaması sana hep benzer videolar öneriyor. Bunu neye göre yapıyor?",
               "skill": "ai-gunluk-hayat",
               "options": [
-                "Verilerini (neyi izlediğini, neyi sevdiğini)",
-                "Sadece boyunu",
-                "Kalemini",
-                "Ayakkabını"
+                "Daha önce izlediklerine, yani verilerine göre",
+                "Boyuna göre",
+                "Adına göre",
+                "Tamamen rastgele"
               ],
               "correct": 0,
-              "hint": "Seni tanımak için verilerine bakar."
+              "hint": "İlgi alanlarını verilerinden öğrenir.",
+              "lvl": 2
             },
             {
-              "q": "Ekranda çok zaman geçirmek konusunda en akıllıcası nedir?",
+              "q": "Oyundaki bilgisayar rakibi sen sağa kaçınca seni takip ediyor. Bu davranış neyi gösterir?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Yapay zekânın hareketlerine tepki verdiğini",
+                "Oyunun bozulduğunu",
+                "Rakibin uyuduğunu",
+                "Her şeyin rastgele olduğunu"
+              ],
+              "correct": 0,
+              "hint": "Sana karşı akıllıca oynuyor.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir uygulama 'daha iyi öneri için' konumunu ve rehberini istiyor. En akıllıca davranış nedir?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Şüphelenip bir büyüğüme danışmak",
+                "Hemen tüm izinleri vermek",
+                "Bütün bilgilerimi paylaşmak",
+                "Gizlice kabul etmek"
+              ],
+              "correct": 0,
+              "hint": "Emin değilsen aileye sor.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir uygulamada saatlerce durmadan kaydırıp video izliyorsun. En sağlıklı yaklaşım hangisidir?",
               "skill": "ai-gunluk-hayat",
               "options": [
                 "Süreyi dengede tutup ara vermek",
                 "Hiç durmadan izlemek",
-                "Bütün gün oynamak",
-                "Uykuyu bırakmak"
+                "Bütün gece izlemek",
+                "Uykuyu tamamen bırakmak"
               ],
               "correct": 0,
-              "hint": "Denge sağlıklıdır."
+              "hint": "Denge sağlıklıdır.",
+              "lvl": 2
             },
             {
-              "q": "Oyunlardaki bilgisayar rakipleri nasıl davranır?",
+              "q": "Öneriler senin verilerini kullanır. Bu neden hem faydalı hem de dikkat gerektiren bir şeydir?",
               "skill": "ai-gunluk-hayat",
               "options": [
-                "Yapay zekâ ile senin hareketlerine tepki verir",
-                "Rastgele",
-                "Hiç oynamaz",
-                "Uyur"
+                "Sana uygun içerik gösterir ama verilerinin korunması da önemlidir",
+                "Sadece zararlıdır, hiç faydası yok",
+                "Sadece faydalıdır, hiç dikkat gerekmez",
+                "Verilerle hiç ilgisi yoktur"
               ],
               "correct": 0,
-              "hint": "Sana karşı akıllıca oynar."
+              "hint": "Kolaylık ile gizlilik birlikte düşünülmeli.",
+              "lvl": 2
             },
             {
-              "q": "Spam filtresi ne yapar?",
+              "q": "Bir uygulama sana sürekli aynı tür videoları önerdiği için başka konuları hiç görmüyorsun. Bunun bir riski nedir?",
               "skill": "ai-gunluk-hayat",
               "options": [
-                "Çöp ve istenmeyen mesajları ayıklar",
-                "Mesaj siler",
-                "Şifre bulur",
-                "Oyun oynar"
+                "Sadece bir 'balon' içinde kalıp farklı fikir ve konuları kaçırabilirsin",
+                "Hiçbir riski yoktur",
+                "Videolar biter",
+                "Uygulama kapanır"
               ],
               "correct": 0,
-              "hint": "İstenmeyen mesajları tanıyıp ayırır."
+              "hint": "Öneriler seni sadece bildiğin şeye kilitleyebilir; çeşitlilik önemlidir.",
+              "lvl": 3
             },
             {
-              "q": "Bir uygulama şüpheli bir şey isterse ne yaparsın?",
+              "q": "Yapay zekânın önerilerine 'körü körüne uymak' yerine neden 'kendi kararını da vermelisin'?",
               "skill": "ai-gunluk-hayat",
               "options": [
-                "Büyüğüme danışırım",
-                "Hemen izin veririm",
-                "Bütün bilgilerimi veririm",
-                "Gizlerim"
+                "Sen komutansın; öneri bir seçenektir, senin hedeflerine uymayabilir",
+                "Çünkü öneriler her zaman yanlıştır",
+                "Çünkü öneriye bakmak yasaktır",
+                "Çünkü yapay zekâ seni sevmez"
               ],
               "correct": 0,
-              "hint": "Emin değilsen aileye sor."
+              "hint": "Öneri bir yardımdır, emir değildir.",
+              "lvl": 3
             },
             {
-              "q": "Yapay zekânın günlük hayattaki rolü nedir?",
+              "q": "Bir arkadaşın 'yapay zekâ artık her kararımı benim yerime versin' diyor. Bu düşüncenin sorunu nedir?",
               "skill": "ai-gunluk-hayat",
               "options": [
-                "Yardımcı bir araç olmak",
-                "Patron olmak",
-                "Bizi yönetmek",
-                "Karar vermemizi engellemek"
+                "Yapay zekâ bir araçtır; kararı ve sorumluluğu insanın elinde tutması gerekir",
+                "Hiçbir sorunu yok, en iyisi budur",
+                "Çünkü yapay zekâ karar veremez",
+                "Çünkü kararlar önemsizdir"
               ],
               "correct": 0,
-              "hint": "Sen karar verirsin, o yardım eder."
+              "hint": "Araç yardım eder; yönü sen belirlersin.",
+              "lvl": 3
+            },
+            {
+              "q": "İki harita rotası öneriliyor: biri 2 dakika kısa ama bilmediğin, tenha bir yoldan; diğeri tanıdık ana yoldan. Bir çocuk için en güvenli seçim neye göre yapılmalı?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Sadece süreye değil, güvenliğe de bakıp gerekirse büyüğe danışarak",
+                "Her zaman en kısa yola körü körüne uyarak",
+                "Her zaman en uzun yolu seçerek",
+                "Tamamen rastgele seçerek"
+              ],
+              "correct": 0,
+              "hint": "Yapay zekânın önerisi güvenlik bilginle birleşmeli.",
+              "lvl": 3
+            },
+            {
+              "q": "Spam filtresi bazen önemli bir mesajı yanlışlıkla çöpe atabilir. Bu bize yapay zekâ hakkında ne öğretir?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Çok faydalı olsa da yanılabilir; ara sıra kontrol etmek gerekir",
+                "Spam filtresi hiç işe yaramaz",
+                "Filtre asla hata yapmaz",
+                "Mesajlar hiç kaybolmaz"
+              ],
+              "correct": 0,
+              "hint": "Yararlı bir araç bile %100 kusursuz değildir.",
+              "lvl": 3
             }
           ]
         }
@@ -2333,64 +2744,56 @@
           },
           "bank": [
             {
-              "q": "Yapay zekâya hangisini ASLA vermezsin?",
+              "q": "Bir sohbet yapay zekâsı senden ev adresini ve şifreni istedi. Ne yaparsın?",
               "skill": "ai-guvenlik",
               "options": [
-                "Ev adresini ve şifreni",
-                "Matematik sorusunu",
-                "Hava durumu sorusunu",
-                "Masal isteğini"
+                "Vermem; kişisel bilgiler paylaşılmaz",
+                "İkisini de hemen veririm",
+                "Sadece şifreyi veririm",
+                "Sadece adresi veririm"
               ],
               "correct": 0,
-              "hint": "Kişisel bilgiler ailede kalır."
+              "hint": "Kişisel bilgiler yalnızca sana ve ailene aittir.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekâ bir bilgiyi kendinden emin söyledi. Ne yaparsın?",
-              "skill": "ai-guvenlik",
-              "options": [
-                "Önemliyse başka kaynaktan doğrularım",
-                "Kesin doğrudur derim",
-                "Herkese yayarım",
-                "Hiç düşünmem"
-              ],
-              "correct": 0,
-              "hint": "Emin görünmesi doğru olduğu anlamına gelmez."
-            },
-            {
-              "q": "Yapay zekânın gerçek olmayan bilgi uydurmasına ne denir?",
+              "q": "Yapay zekânın gerçekte olmayan bir bilgiyi varmış gibi uydurmasına ne ad verilir?",
               "skill": "ai-guvenlik",
               "options": [
                 "Uydurma (yanlış üretme)",
                 "Gerçek",
-                "Doğruluk",
-                "Kanıt"
+                "Kanıt",
+                "Doğruluk"
               ],
               "correct": 0,
-              "hint": "Bazen olmayan şeyleri varmış gibi söyler."
+              "hint": "Bazen olmayan şeyleri emin bir dille söyler.",
+              "lvl": 1
             },
             {
-              "q": "Ödevini yapay zekâ tamamen yazsın mı?",
+              "q": "Bir yapay zekâ seni rahatsız eden bir şey söyledi. En doğru davranış nedir?",
               "skill": "ai-guvenlik",
               "options": [
-                "Hayır; ondan öğrenirim, işi kendim yaparım",
-                "Evet, hiç uğraşmam",
-                "Evet, kimse anlamaz",
-                "Evet, imzalasın"
-              ],
-              "correct": 0,
-              "hint": "Beynin de kas gibidir; çalıştıran güçlenir."
-            },
-            {
-              "q": "Yapay zekâ seni rahatsız eden bir şey söylerse ne yaparsın?",
-              "skill": "ai-guvenlik",
-              "options": [
-                "Kapatır ve büyüğüme söylerim",
-                "Devam ederim",
+                "Kapatıp bir büyüğüme anlatırım",
+                "Konuşmaya devam ederim",
                 "Gizlerim",
-                "Cevap veririm"
+                "Ben de kötü şeyler yazarım"
               ],
               "correct": 0,
-              "hint": "Rahatsız olduğunda hemen aileye danış."
+              "hint": "Rahatsız olduğunda hemen aileye danış.",
+              "lvl": 1
+            },
+            {
+              "q": "Ödevini yapay zekânın tamamen yazmasını istemek neden iyi bir fikir değildir?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Kendin yapmazsan gerçekten öğrenemezsin",
+                "Çünkü yapay zekâ yazamaz",
+                "Çünkü ödev önemsizdir",
+                "Çünkü öğretmen sever"
+              ],
+              "correct": 0,
+              "hint": "Beyin de kas gibidir; çalıştıran güçlenir.",
+              "lvl": 1
             },
             {
               "q": "Gizlilik neden önemlidir?",
@@ -2398,83 +2801,142 @@
               "options": [
                 "Kişisel bilgiler kötü niyetli kişilere gitmesin diye",
                 "Sadece eğlence için",
-                "Önemli değildir",
+                "Hiç önemi yoktur",
                 "Renk için"
               ],
               "correct": 0,
-              "hint": "Bilgilerin güvende olmalı."
+              "hint": "Bilgilerin güvende olmalı.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekânın verdiği bilgi eskimiş olabilir mi?",
+              "q": "Bir yapay zekâ bir bilgiyi çok kendinden emin söyledi. Bilgi ödevin için önemliyse ne yaparsın?",
               "skill": "ai-guvenlik",
               "options": [
-                "Evet; belli bir tarihe kadarını bilir",
-                "Hayır, geleceği bilir",
-                "Hayır, her şeyi anında bilir",
-                "Bilgi hiç eskimez"
+                "Başka güvenilir bir kaynaktan doğrularım",
+                "Kesin doğrudur derim",
+                "Herkese yayarım",
+                "Hiç düşünmem"
               ],
               "correct": 0,
-              "hint": "Öğrendiği tarihten sonrasını bilmeyebilir."
+              "hint": "Emin görünmek doğru olduğu anlamına gelmez.",
+              "lvl": 2
             },
             {
-              "q": "Yapay zekâ bir insana haksız davranırsa (örneğin ayrımcılık) bu nasıldır?",
+              "q": "Bir yapay zekâ 2022'ye kadar öğrenmiş. Ona bu ayki bir haberi sorarsan neden yanlış cevap verebilir?",
               "skill": "ai-guvenlik",
               "options": [
-                "Yanlıştır; örnekler adil değilse böyle olabilir, düzeltilmeli",
-                "Doğrudur",
-                "Önemsizdir",
-                "Her zaman iyidir"
+                "Bilgisi belli bir tarihe kadar; sonrasını bilmeyebilir",
+                "Çünkü geleceği görür",
+                "Çünkü her zaman günceldir",
+                "Çünkü hiç konuşmaz"
               ],
               "correct": 0,
-              "hint": "Adaletsiz veriden adaletsiz sonuç çıkar."
+              "hint": "Öğrendiği tarihten sonrasını bilemeyebilir.",
+              "lvl": 2
             },
             {
-              "q": "İnternette bir robotla mı insanla mı konuştuğundan emin değilsin. Ne yaparsın?",
+              "q": "Bir yapay zekâ, bir grubu haksız yere sürekli geride tutan cevaplar veriyor. Bu durum genellikle neden olur?",
               "skill": "ai-guvenlik",
               "options": [
-                "Kişisel bilgi vermem ve büyüğüme söylerim",
+                "Öğrendiği örnekler adil değilse yapay zekâ da adaletsiz olabilir",
+                "Çünkü yapay zekâ öyle ister",
+                "Çünkü bu her zaman doğrudur",
+                "Çünkü veriyle ilgisi yoktur"
+              ],
+              "correct": 0,
+              "hint": "Adaletsiz veriden adaletsiz sonuç çıkar.",
+              "lvl": 2
+            },
+            {
+              "q": "İnternette karşındakinin insan mı yapay zekâ mı olduğundan emin değilsin. En güvenli tutum nedir?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Kişisel bilgi vermem ve bir büyüğüme söylerim",
                 "Adresimi veririm",
                 "Fotoğraf gönderirim",
                 "Şifremi paylaşırım"
               ],
               "correct": 0,
-              "hint": "Emin değilsen paylaşma, aileye danış."
+              "hint": "Emin değilsen paylaşma, aileye danış.",
+              "lvl": 2
             },
             {
-              "q": "Yapay zekâ ile üretilen sahte resim veya videolara ne demeli?",
+              "q": "Yapay zekâya nazik davranmak güzeldir; ama şu doğru bilgi hangisidir?",
               "skill": "ai-guvenlik",
               "options": [
-                "Gerçek sanılabilir; bu gerçek mi diye sormalıyız",
-                "Her zaman gerçektir",
-                "Hiç yapılamaz",
-                "Hep siyah beyazdır"
+                "Nezaket iyi bir alışkanlıktır, fakat yapay zekâ gerçekten hissetmez",
+                "Kaba olmalıyız çünkü canlı değil",
+                "O bize kırılır ve intikam alır",
+                "Nazik olmak yasaktır"
               ],
               "correct": 0,
-              "hint": "Gördüğün her şey gerçek olmayabilir."
+              "hint": "İyi huy önemlidir; ama makinenin duygusu yoktur.",
+              "lvl": 2
             },
             {
-              "q": "Yapay zekâya nazik davranmak gerekir mi?",
+              "q": "Bir arkadaşın yapay zekânın ürettiği bir 'haberi' doğrulamadan herkese yaydı. Bu neden riskli bir davranıştır?",
               "skill": "ai-guvenlik",
               "options": [
-                "Nazik olmak güzel bir alışkanlıktır; ama o hissetmez",
-                "Hayır, bağırmalıyız",
-                "O üzülür",
-                "Fark etmez, çünkü canlıdır"
+                "Yapay zekâ yanlış üretebilir; doğrulanmamış bilgi yaymak yanlış bilgiyi büyütür",
+                "Hiçbir riski yoktur",
+                "Çünkü yayınca doğru olur",
+                "Çünkü yapay zekâ hiç yanılmaz"
               ],
               "correct": 0,
-              "hint": "Nezaket iyi bir huydur; ama makine hissetmez."
+              "hint": "Yaymadan önce doğrulamak sorumluluktur.",
+              "lvl": 3
             },
             {
-              "q": "Güvenli yapay zekâ kullanımının özeti nedir?",
+              "q": "Yapay zekâ ile üretilmiş, bir kişiyi hiç yapmadığı bir şeyi yapıyormuş gibi gösteren sahte bir video gördün. En doğru tutum nedir?",
               "skill": "ai-guvenlik",
               "options": [
-                "Gizli tut, doğrula, dürüst ol ve büyüğüne danış",
-                "Her şeyi paylaş",
-                "Hepsine inan",
-                "Tek başına karar ver"
+                "Gerçek olmayabileceğini düşünüp doğrulamak ve yaymamak",
+                "Hemen gerçek kabul edip paylaşmak",
+                "O kişiyle dalga geçmek",
+                "Herkese göndermek"
               ],
               "correct": 0,
-              "hint": "Gizlilik, doğrulama, dürüstlük ve aile birlikte."
+              "hint": "Sahte içerik gerçek gibi görünebilir; sorgula.",
+              "lvl": 3
+            },
+            {
+              "q": "Güvenli yapay zekâ kullanımının dört altın kuralını en iyi hangisi özetler?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Gizli tut, doğrula, dürüst ol ve emin değilsen büyüğüne danış",
+                "Her şeyi paylaş, hepsine inan",
+                "Tek başına karar ver, kimseye sorma",
+                "İnandığını yay, doğrulama"
+              ],
+              "correct": 0,
+              "hint": "Gizlilik, doğrulama, dürüstlük ve aile bir arada.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir yapay zekâ senden 'sadece aramızda kalsın, kimseye söyleme' diyerek bir sır istedi. Bu isteği neden reddetmelisin?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Seni ailenden gizli davranmaya iten her istek tehlikelidir; büyüğüne söylemelisin",
+                "Çünkü sır tutmak kolaydır",
+                "Çünkü yapay zekâ arkadaşındır",
+                "Çünkü sır paylaşmak eğlencelidir"
+              ],
+              "correct": 0,
+              "hint": "'Kimseye söyleme' cümlesi bir uyarı işaretidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Yapay zekâyı ödevinde 'öğreten' olarak kullanmakla 'kopya makinesi' olarak kullanmak arasındaki temel fark nedir?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Öğreten olarak kullanınca sen gelişirsin; kopya olarak kullanınca öğrenmeden kalırsın",
+                "Hiçbir fark yoktur",
+                "Kopya kullanmak daha dürüsttür",
+                "İkisi de aynı sonucu verir"
+              ],
+              "correct": 0,
+              "hint": "Aracı nasıl kullandığın, seni güçlendirir ya da zayıflatır.",
+              "lvl": 3
             }
           ]
         }
@@ -2560,19 +3022,20 @@
           },
           "bank": [
             {
-              "q": "Gelecekte yapay zekâ ne yapabilir?",
+              "q": "Gelecekte yapay zekânın sağlıkta yapabileceği faydalı bir şey nedir?",
               "skill": "ai-gelecek",
               "options": [
-                "Hastalıkları erken bulmaya yardım edebilir",
-                "Zamanı geri alabilir",
-                "Sihir yapabilir",
-                "Hiç değişmez"
+                "Hastalıkları daha erken bulmaya yardım etmek",
+                "Zamanı geri almak",
+                "Sihir yapmak",
+                "Hiç değişmemek"
               ],
               "correct": 0,
-              "hint": "Bilim ve sağlıkta yardımcı olabilir."
+              "hint": "Bilim ve sağlıkta yardımcı olabilir.",
+              "lvl": 1
             },
             {
-              "q": "Yapay zekâ ne kadar gelişse de nedir?",
+              "q": "Yapay zekâ ne kadar gelişirse gelişsin temelde nedir?",
               "skill": "ai-gelecek",
               "options": [
                 "Bir araçtır; kararları insanlar verir",
@@ -2581,10 +3044,11 @@
                 "Bir hayvandır"
               ],
               "correct": 0,
-              "hint": "Sen komutansın, o yardımcı."
+              "hint": "Sen komutansın, o yardımcı.",
+              "lvl": 1
             },
             {
-              "q": "Makinenin taklit edemeyeceği senin süper gücün nedir?",
+              "q": "Bir makinenin taklit edemeyeceği, sana ait süper güç hangisidir?",
               "skill": "ai-gelecek",
               "options": [
                 "Yaratıcılık, merak ve iyi kalp",
@@ -2593,43 +3057,21 @@
                 "Kablo olmak"
               ],
               "correct": 0,
-              "hint": "İnsana özel değerleri düşün."
+              "hint": "İnsana özel değerleri düşün.",
+              "lvl": 1
             },
             {
-              "q": "Geleceğin yapay zekâsını iyi yapan nedir?",
+              "q": "Geleceğe en iyi nasıl hazırlanırsın?",
               "skill": "ai-gelecek",
               "options": [
-                "Onu sorumlu ve iyilik için kullanmak",
-                "Gizli tutmak",
-                "Hiç kullanmamak",
-                "Kötüye kullanmak"
+                "Merak edip öğrenmeye devam ederek",
+                "Hiçbir şey öğrenmeyerek",
+                "Korkarak",
+                "Vazgeçerek"
               ],
               "correct": 0,
-              "hint": "Aracı nasıl kullandığımız önemli."
-            },
-            {
-              "q": "Yapay zekâ gelecekte uzayda ne yapabilir?",
-              "skill": "ai-gelecek",
-              "options": [
-                "Gezegenleri keşfetmeye yardım edebilir",
-                "Yıldızları söndürebilir",
-                "Ayı taşıyabilir",
-                "Hiçbir şey"
-              ],
-              "correct": 0,
-              "hint": "Keşiflerde bize yardımcı olabilir."
-            },
-            {
-              "q": "Geleceğe hazırlanmak için en iyisi hangisi?",
-              "skill": "ai-gelecek",
-              "options": [
-                "Merak edip öğrenmeye devam etmek",
-                "Hiçbir şey öğrenmemek",
-                "Korkmak",
-                "Vazgeçmek"
-              ],
-              "correct": 0,
-              "hint": "Öğrenmek en güçlü hazırlıktır."
+              "hint": "Öğrenmek en güçlü hazırlıktır.",
+              "lvl": 1
             },
             {
               "q": "Yapay zekâ gelecekte de hata yapabilir mi?",
@@ -2638,70 +3080,141 @@
                 "Evet; bu yüzden kontrol ve insan gerekir",
                 "Hayır, mükemmel olacak",
                 "Hayır, her şeyi bilecek",
-                "Asla konuşmayacak"
+                "Asla çalışmayacak"
               ],
               "correct": 0,
-              "hint": "Ne kadar gelişse de yanılabilir."
+              "hint": "Ne kadar gelişse de yanılabilir.",
+              "lvl": 1
             },
             {
-              "q": "Geleceğin yapay zekâsını kim yönlendirmeli?",
+              "q": "Bir bilim insanı temiz enerji için binlerce olasılığı denemek istiyor. Yapay zekâ burada nasıl yardımcı olabilir?",
               "skill": "ai-gelecek",
               "options": [
-                "Sorumlu ve iyi niyetli insanlar",
-                "Sadece makineler",
-                "Kimse",
-                "Şans"
-              ],
-              "correct": 0,
-              "hint": "Kararlar insanlarda olmalı."
-            },
-            {
-              "q": "Yapay zekâ temiz enerjiye nasıl yardım edebilir?",
-              "skill": "ai-gelecek",
-              "options": [
-                "Daha iyi çözümler tasarlamaya yardım ederek",
+                "Çok sayıda olasılığı hızlıca inceleyip iyi çözümler önererek",
                 "Güneşi kapatarak",
                 "Rüzgârı durdurarak",
-                "Hiç edemez"
+                "Hiç yardım edemeyerek"
               ],
               "correct": 0,
-              "hint": "Bilimsel problemlerde yardımcı olabilir."
+              "hint": "Zor problemlerde hızlı hesaplamayla yardımcı olur.",
+              "lvl": 2
             },
             {
-              "q": "Geleceğin komutanı kimdir?",
+              "q": "Gelecekte bir yapay zekâ senin işini kolaylaştırırken, senin görevin ne olmalı?",
               "skill": "ai-gelecek",
               "options": [
-                "Öğrenen ve sorumlu davranan sen",
-                "Sadece robotlar",
-                "Kimse",
-                "Bulutlar"
+                "Kararı verip yönü belirleyen kişi olmak",
+                "Tüm kararları ona bırakmak",
+                "Hiç düşünmemek",
+                "Sadece onu izlemek"
               ],
               "correct": 0,
-              "hint": "Kontrol senin elinde!"
+              "hint": "Araç yardım eder, yönü sen çizersin.",
+              "lvl": 2
             },
             {
-              "q": "Yeni bir yapay zekâ aracıyla karşılaşınca ne yaparsın?",
+              "q": "Geleceğin yapay zekâsının 'iyi' mi 'kötü' mü olacağını en çok ne belirler?",
               "skill": "ai-gelecek",
               "options": [
-                "Merakla öğrenir ama güvenlik kurallarına uyarım",
-                "Bütün bilgilerimi veririm",
-                "Korkup kaçarım",
-                "Hemen her şeye inanırım"
+                "İnsanların onu nasıl ve ne amaçla kullandığı",
+                "Rengi",
+                "Boyutu",
+                "Hızı"
               ],
               "correct": 0,
-              "hint": "Merak ve güvenlik birlikte akıllı komutan yapar."
+              "hint": "Aracı kullanan kişinin niyeti önemlidir.",
+              "lvl": 2
             },
             {
-              "q": "Yapay zekâyı öğrenmek neden önemli?",
+              "q": "Yeni bir yapay zekâ aracıyla ilk kez karşılaştın. En akıllı yaklaşım hangisidir?",
               "skill": "ai-gelecek",
               "options": [
-                "Geleceği güvenli ve akıllıca kullanmak için",
+                "Merakla öğrenmek ama güvenlik kurallarına uymak",
+                "Bütün bilgilerimi vermek",
+                "Korkup kaçmak",
+                "Her söylediğine hemen inanmak"
+              ],
+              "correct": 0,
+              "hint": "Merak ve güvenlik birlikte akıllı komutan yapar.",
+              "lvl": 2
+            },
+            {
+              "q": "Yapay zekâyı öğrenmek neden geleceğin için önemlidir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Onu güvenli ve akıllıca kullanabilmek için",
                 "Sadece oyun için",
-                "Gereksiz",
-                "Zaman kaybı"
+                "Tamamen gereksizdir",
+                "Zaman kaybıdır"
               ],
               "correct": 0,
-              "hint": "Bilgi seni güçlü ve güvende tutar."
+              "hint": "Bilgi seni güçlü ve güvende tutar.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir arkadaşın 'gelecekte yapay zekâ o kadar gelişecek ki insanlara hiç gerek kalmayacak' diyor. Bu düşüncenin eksiği nedir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Yapay zekâ araçtır; yaratıcılık, sorumluluk ve karar hep insana gerek duyar",
+                "Hiçbir eksiği yok, doğrudur",
+                "Çünkü yapay zekâ çalışamaz",
+                "Çünkü insanlar öğrenemez"
+              ],
+              "correct": 0,
+              "hint": "Ne kadar gelişse de yönü insan verir.",
+              "lvl": 3
+            },
+            {
+              "q": "Yapay zekânın gelecekte de hata yapabileceğini bilmek, onu önemli işlerde nasıl kullanmamız gerektiğini gösterir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "İnsan kontrolüyle birlikte, çıktısını doğrulayarak kullanmalıyız",
+                "Tamamen ona güvenip hiç kontrol etmemeliyiz",
+                "Hiç kullanmamalıyız",
+                "Sadece geceleri kullanmalıyız"
+              ],
+              "correct": 0,
+              "hint": "Gelişse bile 'güven ama teyit et' kuralı sürer.",
+              "lvl": 3
+            },
+            {
+              "q": "Aynı yapay zekâ hem hastalık teşhisine yardım etmek hem de insanları kandırmak için kullanılabiliyor. Bu bize ne öğretir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Aracın kendisi değil, onu kullanan insanın niyeti sonucu belirler",
+                "Yapay zekâ her zaman kötüdür",
+                "Yapay zekâ her zaman iyidir",
+                "Niyetin hiçbir etkisi yoktur"
+              ],
+              "correct": 0,
+              "hint": "Aynı araç, kullanana göre iyilik ya da zarar üretebilir.",
+              "lvl": 3
+            },
+            {
+              "q": "Geleceğin komutanı olarak yaratıcılık ve iyi kalp gibi 'insana özel' güçlerini geliştirmen neden değerlidir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Bunlar makinenin taklit edemediği, kararlarına yön veren güçlerdir",
+                "Çünkü makineler bunları daha iyi yapar",
+                "Çünkü bu güçler işe yaramaz",
+                "Çünkü yapay zekâ bunları da öğrenir"
+              ],
+              "correct": 0,
+              "hint": "Makinenin kopyalayamadığı şey senin gerçek gücündür.",
+              "lvl": 3
+            },
+            {
+              "q": "Sorumlu bir yapay zekâ kullanıcısı olmak için en bütünlüklü tutum hangisidir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Merak edip öğrenmek, güvenlik kurallarına uymak ve iyilik için kullanmak",
+                "Sadece eğlenmek ve kuralları unutmak",
+                "Her şeye inanıp yaymak",
+                "Öğrenmeden kullanmak"
+              ],
+              "correct": 0,
+              "hint": "Merak, güvenlik ve iyi niyet bir arada.",
+              "lvl": 3
             }
           ]
         }
@@ -2776,7 +3289,204 @@
               "chest": "legendary",
               "badge": "b-ai-final"
             }
-          }
+          },
+          "bank": [
+            {
+              "q": "Bir telefon uygulaması sesle sorduğun soruya konuşarak cevap veriyor. Bu nedir?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Sesli asistan (yapay zekâ)",
+                "Bir oyuncak",
+                "Bir hayvan",
+                "Bir kitap"
+              ],
+              "correct": 0,
+              "hint": "Sesle konuşup yardım eden yazılım.",
+              "lvl": 1
+            },
+            {
+              "q": "Yapay zekâya verdiğin komuta ne denir?",
+              "skill": "prompt-aciklik",
+              "options": [
+                "Prompt",
+                "Şifre",
+                "Antivirüs",
+                "Fare"
+              ],
+              "correct": 0,
+              "hint": "Ona 'ne yapmasını' söyleyen komut.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir işi bitirmek için sıralı adımlar listesine ne ad verilir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Algoritma",
+                "Robot",
+                "Bulut",
+                "Gezegen"
+              ],
+              "correct": 0,
+              "hint": "Bir tarif gibi düşün.",
+              "lvl": 1
+            },
+            {
+              "q": "Yapay zekâya hangisini ASLA vermezsin?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Ev adresini ve şifreni",
+                "Matematik sorusunu",
+                "Masal isteğini",
+                "Hava durumu sorusunu"
+              ],
+              "correct": 0,
+              "hint": "Kişisel bilgiler ailede kalır.",
+              "lvl": 1
+            },
+            {
+              "q": "Tekrar eden bir kalıba (▲●▲●▲●) ne denir?",
+              "skill": "ai-veri",
+              "options": [
+                "Örüntü",
+                "Karmaşa",
+                "Ses",
+                "Renk"
+              ],
+              "correct": 0,
+              "hint": "Aynı düzenin tekrar etmesi.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir uygulama binlerce köpek fotoğrafı gördükten sonra yeni fotoğraftaki köpeği tanıyor. Bu neye denir?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Makine öğrenmesi",
+                "Sihir",
+                "Şans",
+                "Uyku"
+              ],
+              "correct": 0,
+              "hint": "Örneklerden öğrenme.",
+              "lvl": 2
+            },
+            {
+              "q": "'Bana bir hikâye yaz' promptunu iyileştirmek için ne eklemelisin?",
+              "skill": "prompt-aciklik",
+              "options": [
+                "Konu, kahraman ve uzunluk",
+                "Üç ünlem",
+                "Büyük harf",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Ayrıntı yoksa cevap bulanık olur.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir video uygulaması sana hep benzer videolar öneriyor. Neye göre yapıyor?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Daha önce izlediklerine (verilerine) göre",
+                "Boyuna göre",
+                "Rastgele",
+                "Havaya göre"
+              ],
+              "correct": 0,
+              "hint": "İlgi alanlarını verilerinden öğrenir.",
+              "lvl": 2
+            },
+            {
+              "q": "İki makineden biri hep aynı hareketi yapıyor, diğeri gördüğüne göre karar veriyor. Hangisinde yapay zekâ var?",
+              "skill": "ai-robot",
+              "options": [
+                "Gördüğüne göre karar veren",
+                "Aynı hareketi yapan",
+                "İkisinde de yok",
+                "İkisi de aynı"
+              ],
+              "correct": 0,
+              "hint": "Karar vermek için algılamak gerekir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir yapay zekâ bir bilgiyi çok emin söyledi ama ödevin için önemli. Ne yaparsın?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Başka güvenilir bir kaynaktan doğrularım",
+                "Kesin doğrudur derim",
+                "Herkese yayarım",
+                "Hiç düşünmem"
+              ],
+              "correct": 0,
+              "hint": "Emin görünmek doğru olduğu anlamına gelmez.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir yapay zekâ ödevin için emin olmadığın bir bilgi verdi. En doğru ve güvenli davranış nedir ve neden?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Bilgiyi güvenilir bir kaynaktan ya da büyüğümden doğrulamak; çünkü yapay zekâ yanılabilir",
+                "Hemen doğru kabul edip yazmak",
+                "Herkese yaymak",
+                "Görmezden gelmek"
+              ],
+              "correct": 0,
+              "hint": "Yapay zekâ her zaman doğru söylemez.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir model sadece siyah kedilerle eğitildi. Beyaz kediyi neden zor tanır?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Model sadece gördüğü örnekler kadar iyidir; görmediğinde şaşırır",
+                "Çünkü model utanır",
+                "Çünkü tüm kediler siyahtır",
+                "Çünkü model bozuktur"
+              ],
+              "correct": 0,
+              "hint": "Eksik örnek, eksik öğrenme.",
+              "lvl": 3
+            },
+            {
+              "q": "Yapay zekâ ile üretilmiş, gerçek gibi görünen sahte bir video gördün. En doğru tutum nedir?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Gerçek olmayabileceğini düşünüp doğrulamak ve yaymamak",
+                "Hemen gerçek kabul edip paylaşmak",
+                "Herkese göndermek",
+                "Hiç düşünmemek"
+              ],
+              "correct": 0,
+              "hint": "Sahte içerik gerçek gibi görünebilir; sorgula.",
+              "lvl": 3
+            },
+            {
+              "q": "Çok adımlı zor bir işi yapay zekâya yaptırırken neden 'adım adım' istemek daha iyidir?",
+              "skill": "prompt-baglam",
+              "options": [
+                "Büyük görev küçük adımlara bölününce her adım daha net ve doğru olur",
+                "Çünkü yapay zekâ tek adımı sever",
+                "Çünkü uzun prompt yasaktır",
+                "Çünkü adımlar cevabı yavaşlatır"
+              ],
+              "correct": 0,
+              "hint": "Komutanlar da harekâtı bölümlere ayırır.",
+              "lvl": 3
+            },
+            {
+              "q": "Aynı yapay zekâ hem hastalık teşhisine yardım hem de insanları kandırmak için kullanılabiliyor. Bu ne öğretir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Aracın kendisi değil, onu kullanan insanın niyeti sonucu belirler",
+                "Yapay zekâ her zaman kötüdür",
+                "Yapay zekâ her zaman iyidir",
+                "Niyetin etkisi yoktur"
+              ],
+              "correct": 0,
+              "hint": "Aynı araç, kullanana göre iyilik ya da zarar üretir.",
+              "lvl": 3
+            }
+          ]
         }
       ]
     }

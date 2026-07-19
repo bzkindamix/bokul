@@ -28,8 +28,8 @@
       ov.className = 'overlay consent-ov';
       ov.innerHTML =
         '<div class="consent-card">' +
-          '<h2>📋 Onay Gerekli</h2>' +
-          '<p class="consent-lead">Devam etmek için aşağıdaki metinleri okuyup onaylaman gerekir.</p>' +
+          '<h2>👪 Ebeveyn Onayı Gerekli</h2>' +
+          '<p class="consent-lead">Bu onayı <b>çocuğun ebeveyni / velisi</b> vermelidir. Lütfen bir yetişkin (18+) metinleri okuyup onaylasın — çocuklar bu onayı kendisi veremez.</p>' +
           '<div class="consent-tabs"><button class="chip ctab ctab-on" data-t="kvkk">📄 KVKK Aydınlatma</button>' +
           '<button class="chip ctab" data-t="terms">📜 Kullanıcı Sözleşmesi</button></div>' +
           '<div class="consent-body"></div>' +

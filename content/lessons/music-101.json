@@ -256,8 +256,20 @@
           },
           "bank": [
             {
-              "q": "Müzikte kaç temel nota vardır?",
-              "skill": "notalar",
+              "q": "Ayşe piyanoda Do-Re-Mi çaldı. Sırada hangi nota var?",
+              "options": [
+                "Fa",
+                "La",
+                "Si",
+                "Sol"
+              ],
+              "correct": 0,
+              "hint": "Notalar merdiven gibi sırayla çıkar.",
+              "lvl": 1,
+              "skill": "notalar"
+            },
+            {
+              "q": "Bir çocuk 'Do, Re, Mi...' diye saydı. Müzikte toplam kaç temel nota vardır?",
               "options": [
                 "7",
                 "5",
@@ -265,139 +277,178 @@
                 "3"
               ],
               "correct": 0,
-              "hint": "Do-Re-Mi-Fa-Sol-La-Si: say bakalım!"
+              "hint": "Do'dan Si'ye kadar say.",
+              "lvl": 1,
+              "skill": "notalar"
             },
             {
-              "q": "Notaların doğru sırası hangisidir?",
-              "skill": "notalar",
-              "options": [
-                "Do Re Mi Fa Sol La Si",
-                "Do Mi Re Fa La Sol Si",
-                "Si La Sol Fa Mi Re Do",
-                "Re Do Mi Fa Sol Si La"
-              ],
-              "correct": 0,
-              "hint": "Merdivenin en altı Do'dur, yukarı çıkarsın."
-            },
-            {
-              "q": "'Do' notasından sonra gelen 'yedi nota sonra' hangi notadır?",
-              "skill": "notalar",
-              "options": [
-                "Yine Do (bir oktav tiz)",
-                "Si",
-                "Fa",
-                "Sol"
-              ],
-              "correct": 0,
-              "hint": "Yedi notadan sonra tekrar başa dönülür — buna oktav denir."
-            },
-            {
-              "q": "Notaların yazıldığı beş çizgiye ne denir?",
-              "skill": "notalar",
+              "q": "Öğretmen notaları yazdığımız beş çizgiyi gösterdi. Bunun adı nedir?",
               "options": [
                 "Porte",
                 "Cetvel",
                 "Merdiven",
-                "Tablo"
+                "Kutu"
               ],
               "correct": 0,
-              "hint": "Beş çizgi + dört aralık = porte."
+              "hint": "Beş çizgi ve dört aralıktan oluşur.",
+              "lvl": 1,
+              "skill": "notalar"
             },
             {
-              "q": "Ritim müzikte neyi belirler?",
-              "skill": "ritim",
+              "q": "Ali şarkıya ayağıyla tempo tutuyor. Bu düzenli tekrara ne denir?",
               "options": [
-                "Notaların ne kadar sürdüğünü",
-                "Şarkının rengini",
-                "Şarkıcının adını",
-                "Sahnenin ışığını"
+                "Ritim",
+                "Renk",
+                "Koku",
+                "Işık"
               ],
               "correct": 0,
-              "hint": "Ritim, müziğin kalp atışıdır — uzunluk ve vuruş."
+              "hint": "Kalbin de güm-güm diye bunu yapar.",
+              "lvl": 1,
+              "skill": "ritim"
             },
             {
-              "q": "Bir notanın sesi 'ince/tiz' ise porte üzerinde nerededir?",
-              "skill": "notalar",
+              "q": "Nota merdiveninin en altındaki ilk basamak hangi notadır?",
               "options": [
-                "Daha yukarıda",
-                "Daha aşağıda",
-                "Hep ortada",
-                "Portenin dışında"
+                "Do",
+                "Si",
+                "Sol",
+                "Fa"
               ],
               "correct": 0,
-              "hint": "Yukarı çıktıkça ses incelir."
+              "hint": "Merdivenin en alt basamağı.",
+              "lvl": 1,
+              "skill": "notalar"
             },
             {
-              "q": "Sessizliğin de bir süresi vardır; buna ne denir?",
-              "skill": "ritim",
+              "q": "Zeynep 'Si' notasını çaldıktan sonra bir üst basamağa çıktı. Hangi nota gelir?",
+              "options": [
+                "Yine Do (bir oktav tiz)",
+                "La",
+                "Fa",
+                "Sol"
+              ],
+              "correct": 0,
+              "hint": "Yedi notadan sonra başa dönülür.",
+              "lvl": 2,
+              "skill": "notalar"
+            },
+            {
+              "q": "Bir şarkıda hem sesler hem de aralarda kısa susmalar var. Bu susmaların adı nedir?",
               "options": [
                 "Es (susku)",
-                "Nota",
                 "Akor",
-                "Do"
+                "Oktav",
+                "Porte"
               ],
               "correct": 0,
-              "hint": "Müzikte susmak da bir parçadır: es."
+              "hint": "Müzikte susmak da bir süredir.",
+              "lvl": 2,
+              "skill": "ritim"
             },
             {
-              "q": "Aynı anda çalınan birkaç uyumlu notaya ne denir?",
-              "skill": "notalar",
+              "q": "Mert gitarda aynı anda üç uyumlu teli çaldı. Ortaya çıkan sese ne denir?",
               "options": [
                 "Akor",
                 "Es",
-                "Porte",
-                "Oktav"
+                "Tempo",
+                "Porte"
               ],
               "correct": 0,
-              "hint": "Gitarda tek seferde birkaç tel = akor."
+              "hint": "Birden fazla nota birlikte çalınır.",
+              "lvl": 2,
+              "skill": "notalar"
             },
             {
-              "q": "Notalar kalından inceye doğru nasıl sıralanır?",
-              "skill": "notalar",
+              "q": "İki nota var: biri portenin üstünde, biri altında. Üstteki nota nasıl bir sestir?",
               "options": [
-                "Do en kalın, yukarı çıktıkça incelir",
-                "Hepsi aynı kalınlıkta",
-                "İnceden kalına hep aynı",
-                "Sırasızdır"
+                "Daha ince (tiz)",
+                "Daha kalın (pes)",
+                "Hep aynı",
+                "Sessiz"
               ],
               "correct": 0,
-              "hint": "Merdiven gibi: aşağı kalın, yukarı ince."
+              "hint": "Yukarı çıkınca ses incelir.",
+              "lvl": 2,
+              "skill": "notalar"
             },
             {
-              "q": "Bir şarkının hızına ne denir?",
-              "skill": "ritim",
+              "q": "Bir davulcu şarkıyı önce yavaş sonra hızlı çaldı. Değiştirdiği şey nedir?",
               "options": [
                 "Tempo",
-                "Akor",
+                "Nota sayısı",
                 "Porte",
-                "Nota"
+                "Akor"
               ],
               "correct": 0,
-              "hint": "Tempo = müziğin nabzı."
+              "hint": "Müziğin hızı.",
+              "lvl": 2,
+              "skill": "ritim"
             },
             {
-              "q": "Bir 'Do'dan bir üst 'Do'ya çıkışa ne denir?",
-              "skill": "notalar",
+              "q": "Bir sınıf birlikte alkışla tempo tutarken bir çocuk yanlış zamanda alkışlıyor. Sonuç ne olur ve neden?",
               "options": [
-                "Oktav",
-                "Akor",
-                "Es",
-                "Tempo"
+                "Ritim bozulur, çünkü vuruşlar aynı anda gelmez",
+                "Daha güzel olur",
+                "Ses tamamen kesilir",
+                "Hiçbir şey değişmez"
               ],
               "correct": 0,
-              "hint": "Sekiz nota sonra aynı isim tekrar gelir."
+              "hint": "Ritim herkesin aynı anda vurmasıdır.",
+              "lvl": 3,
+              "skill": "ritim"
             },
             {
-              "q": "Elle alkış tutmak müzikte neyi çalıştırır?",
-              "skill": "ritim",
+              "q": "Do'dan başlayıp yedi nota çıkıp tekrar Do'ya geldik. Bu tam bir tura ne denir ve iki Do'nun farkı nedir?",
               "options": [
-                "Vuruş ve tempo duygusunu",
-                "Nota rengini",
-                "Enstrüman fiyatını",
-                "Şarkı sözünü"
+                "Oktav; ikinci Do daha tizdir",
+                "Akor; ikisi aynıdır",
+                "Es; ikinci Do daha kalındır",
+                "Tempo; fark yoktur"
               ],
               "correct": 0,
-              "hint": "Ritmi enstrümansız, elle bile hissedebilirsin."
+              "hint": "Sekiz nota sonra aynı isim, ama daha ince.",
+              "lvl": 3,
+              "skill": "notalar"
+            },
+            {
+              "q": "Aynı şarkıyı biri ninni gibi, biri neşeli oyun havası gibi çalmak istiyor. Aralarındaki temel fark ne olmalı?",
+              "options": [
+                "Tempo farkı: ninni yavaş, oyun havası hızlı",
+                "İkisi de aynı hızda",
+                "Nota sayısı farkı",
+                "Porte çizgisi sayısı farkı"
+              ],
+              "correct": 0,
+              "hint": "Hız duyguyu değiştirir.",
+              "lvl": 3,
+              "skill": "ritim"
+            },
+            {
+              "q": "Bir besteci notaları porte üzerinde giderek yukarı yazıyor. Dinleyici ne hisseder ve neden?",
+              "options": [
+                "Sesin gitgide inceldiğini, çünkü yukarı = tiz",
+                "Sesin kalınlaştığını",
+                "Hiçbir değişiklik",
+                "Sesin durduğunu"
+              ],
+              "correct": 0,
+              "hint": "Porte üzerinde konum sesin kalınlığını gösterir.",
+              "lvl": 3,
+              "skill": "notalar"
+            },
+            {
+              "q": "Bir şarkıda hiç 'es' (susku) olmasaydı ne olurdu?",
+              "options": [
+                "Sesler hiç durmaz, nefes ve düzen kaybolurdu",
+                "Şarkı daha kısa olurdu",
+                "Notalar çoğalırdı",
+                "Hiç fark etmezdi"
+              ],
+              "correct": 0,
+              "hint": "Susmalar müziğe nefes verir.",
+              "lvl": 3,
+              "skill": "ritim"
             }
           ]
         },
@@ -477,8 +528,7 @@
           },
           "bank": [
             {
-              "q": "Gitar hangi enstrüman ailesindendir?",
-              "skill": "enstruman",
+              "q": "Deniz gitarın tellerine parmağıyla dokunup ses çıkardı. Gitar hangi ailedendir?",
               "options": [
                 "Telli",
                 "Üflemeli",
@@ -486,11 +536,12 @@
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "Telleri parmakla titreştirirsin."
+              "hint": "Tellerini titreştirdin.",
+              "lvl": 1,
+              "skill": "enstruman"
             },
             {
-              "q": "Flüt hangi aileye aittir?",
-              "skill": "enstruman",
+              "q": "Bir çocuk flütün içine üfleyerek çaldı. Flüt hangi ailedendir?",
               "options": [
                 "Üflemeli",
                 "Telli",
@@ -498,11 +549,12 @@
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "İçine ÜFLEYEREK çalınır."
+              "hint": "İçine hava üflenir.",
+              "lvl": 1,
+              "skill": "enstruman"
             },
             {
-              "q": "Davul hangi enstrüman ailesindendir?",
-              "skill": "enstruman",
+              "q": "Ece davula çubukla vurdu. Davul hangi ailedendir?",
               "options": [
                 "Vurmalı",
                 "Telli",
@@ -510,115 +562,165 @@
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "Üzerine VURARAK ses çıkarırsın."
+              "hint": "Üzerine vurarak çalınır.",
+              "lvl": 1,
+              "skill": "enstruman"
             },
             {
-              "q": "Piyanoda tuşa basınca içeride ne olur?",
-              "skill": "enstruman",
+              "q": "Bir konserde herkesi yöneten, elinde değnek olan kişi kimdir?",
               "options": [
-                "Küçük bir çekiç tele vurur",
-                "Bir zil çalar",
-                "Hava üflenir",
-                "Işık yanar"
+                "Orkestra şefi",
+                "Seyirci",
+                "Kapıcı",
+                "Bilet satıcısı"
               ],
               "correct": 0,
-              "hint": "Bu yüzden piyano hem tuşlu hem tellidir!"
+              "hint": "Herkesi aynı anda çaldırır.",
+              "lvl": 1,
+              "skill": "muzik-genel"
             },
             {
-              "q": "Keman genellikle neyle çalınır?",
-              "skill": "enstruman",
+              "q": "Keman çalarken tellerin üzerinde gezdirdiğimiz alete ne denir?",
               "options": [
                 "Yay",
                 "Çubuk",
-                "Nefes",
-                "Elektrik"
+                "Ağızlık",
+                "Tuş"
               ],
               "correct": 0,
-              "hint": "Yayı tellerin üzerinde gezdirirsin."
+              "hint": "İnce, uzun bir çubuk gibidir.",
+              "lvl": 1,
+              "skill": "enstruman"
             },
             {
-              "q": "Bir orkestrayı kim yönetir?",
-              "skill": "muzik-genel",
+              "q": "Can 'Piyano hem tuşlu hem telli' dedi. Bu nasıl olabilir?",
               "options": [
-                "Şef (orkestra şefi)",
-                "Seyirci",
-                "Kapıcı",
-                "Işıkçı"
+                "Tuşa basınca içindeki çekiç tele vurur",
+                "İçinde su vardır",
+                "Üflenerek çalınır",
+                "Pille çalışır"
               ],
               "correct": 0,
-              "hint": "Elinde bir değnekle herkesi birlikte çaldırır."
+              "hint": "Tuş çekici, çekiç teli hareket ettirir.",
+              "lvl": 2,
+              "skill": "enstruman"
             },
             {
-              "q": "Hangisi vurmalı bir çalgı DEĞİLDİR?",
-              "skill": "enstruman",
+              "q": "Bir öğrenci 'keman, davul, flüt' saydı. Hangisi telli, hangisi vurmalıdır?",
               "options": [
-                "Keman",
-                "Davul",
-                "Ziller",
-                "Marimba"
+                "Keman telli, davul vurmalıdır",
+                "Flüt vurmalıdır",
+                "Hepsi vurmalıdır",
+                "Davul tellidir"
               ],
               "correct": 0,
-              "hint": "Keman yayla/telle çalınır, vurmalı değildir."
+              "hint": "Keman yayla, davul vuruşla çalınır.",
+              "lvl": 2,
+              "skill": "enstruman"
             },
             {
-              "q": "Trompet hangi aileye aittir?",
-              "skill": "enstruman",
+              "q": "Trompet parlak bakır rengindedir ve dudakla üflenir. Hangi ailedendir?",
               "options": [
-                "Üflemeli (bakır)",
-                "Telli",
-                "Vurmalı",
-                "Tuşlu"
-              ],
-              "correct": 0,
-              "hint": "Dudakla üfleyerek çalınan parlak bir çalgı."
-            },
-            {
-              "q": "Piyano hangi aileye girer?",
-              "skill": "enstruman",
-              "options": [
-                "Tuşlu (içinde teller de vardır)",
-                "Sadece üflemeli",
-                "Sadece vurmalı",
-                "Yaylı"
-              ],
-              "correct": 0,
-              "hint": "Tuşa basınca içerideki çekiç tele vurur."
-            },
-            {
-              "q": "Bir orkestrada en kalabalık aile hangisidir?",
-              "skill": "muzik-genel",
-              "options": [
-                "Yaylılar (keman ailesi)",
-                "Sadece davul",
-                "Sadece flüt",
-                "Hiçbiri"
-              ],
-              "correct": 0,
-              "hint": "Keman, viyola, çello, kontrbas..."
-            },
-            {
-              "q": "Bateri (davul seti) hangi ailedendir?",
-              "skill": "enstruman",
-              "options": [
-                "Vurmalı",
-                "Telli",
                 "Üflemeli",
+                "Telli",
+                "Vurmalı",
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "Çubukla vurularak çalınır."
+              "hint": "Nefesle çalınır.",
+              "lvl": 2,
+              "skill": "enstruman"
             },
             {
-              "q": "İnsan sesi (şarkı söylemek) bir enstrüman sayılır mı?",
-              "skill": "muzik-genel",
+              "q": "Bir orkestrada keman, viyola, çello ve kontrbas bir arada. Hepsi hangi ailedendir?",
               "options": [
-                "Evet; en doğal enstrümandır",
-                "Hayır, asla",
-                "Sadece koroda",
-                "Sadece sabah"
+                "Telli (yaylı)",
+                "Üflemeli",
+                "Vurmalı",
+                "Tuşlu"
               ],
               "correct": 0,
-              "hint": "Ses telleri titreşerek ses üretir."
+              "hint": "Hepsi yayla çalınır.",
+              "lvl": 2,
+              "skill": "muzik-genel"
+            },
+            {
+              "q": "Şarkı söyleyen bir çocuk da 'enstrüman' sayılır mı, neden?",
+              "options": [
+                "Evet; ses telleri titreşerek ses üretir",
+                "Hayır, çalgı değildir",
+                "Sadece koroda sayılır",
+                "Sadece sabah sayılır"
+              ],
+              "correct": 0,
+              "hint": "İnsan sesi en doğal çalgıdır.",
+              "lvl": 2,
+              "skill": "muzik-genel"
+            },
+            {
+              "q": "Bir orkestrada tek tip (sadece davul) çalgı olsaydı ses nasıl olurdu ve neden?",
+              "options": [
+                "Tek renkli ve yavan, çünkü farklı aileler zenginlik katar",
+                "Daha zengin olurdu",
+                "Hiç ses çıkmazdı",
+                "Daha uyumlu olurdu"
+              ],
+              "correct": 0,
+              "hint": "Farklı aileler farklı renk verir.",
+              "lvl": 3,
+              "skill": "muzik-genel"
+            },
+            {
+              "q": "Aynı melodiyi flütle ve davulla çalmak istiyoruz. Hangi sorun çıkar?",
+              "options": [
+                "Davul çoğunlukla nota veremez, sadece ritim tutar",
+                "Flüt ses çıkaramaz",
+                "İkisi de tam aynı olur",
+                "Hiç sorun olmaz"
+              ],
+              "correct": 0,
+              "hint": "Vurmalıların çoğu belirli nota çalamaz.",
+              "lvl": 3,
+              "skill": "enstruman"
+            },
+            {
+              "q": "Bir çocuk 'Piyanoyu üflemeli sanıyordum' dedi. Onu nasıl düzeltirsin?",
+              "options": [
+                "Piyano tuşludur; tuşa basınca çekiç tele vurur, üflenmez",
+                "Haklısın, üflemelidir",
+                "Piyano yalnızca vurmalıdır",
+                "Piyano yalnızca tellidir"
+              ],
+              "correct": 0,
+              "hint": "Ses üfleyerek değil, tuş-çekiç-tel ile çıkar.",
+              "lvl": 3,
+              "skill": "enstruman"
+            },
+            {
+              "q": "Şef değneğini kaldırıp indirirken orkestra ona neden bakar?",
+              "options": [
+                "Aynı anda ve aynı tempoda çalmak için",
+                "Değnek renkli olduğu için",
+                "Değnek ses çıkarsın diye",
+                "Işık yansın diye"
+              ],
+              "correct": 0,
+              "hint": "Şef herkesi birlikte tutar.",
+              "lvl": 3,
+              "skill": "muzik-genel"
+            },
+            {
+              "q": "Bir grupta gitar, trompet ve davul birlikte çalıyor. Her biri farklı aileden olunca ne kazanılır?",
+              "options": [
+                "Zengin ve renkli bir ortak ses",
+                "Sadece gürültü",
+                "Daha az ses",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Farklı sesler birleşince tını zenginleşir.",
+              "lvl": 3,
+              "skill": "enstruman"
             }
           ]
         }
@@ -704,148 +806,199 @@
           },
           "bank": [
             {
-              "q": "Ritim ne demektir?",
-              "skill": "muz-ritim",
+              "q": "Bir çocuk yürürken adımları hep aynı aralıkta. Bu neye örnektir?",
               "options": [
-                "Seslerin düzenli tekrarı",
-                "Bir rengin adı",
-                "Bir yemek çeşidi",
-                "Bir sayı"
+                "Ritim",
+                "Renk",
+                "Koku",
+                "Sayı"
               ],
               "correct": 0,
-              "hint": "Ayağınla tempo tutarken yaptığın şey."
+              "hint": "Düzenli tekrar eden vuruş.",
+              "lvl": 1,
+              "skill": "muz-ritim"
             },
             {
-              "q": "Bir şarkının hızına ne denir?",
-              "skill": "muz-tempo",
+              "q": "Öğretmen 'bu şarkının hızı' dedi. Müzikte hıza ne denir?",
               "options": [
                 "Tempo",
                 "Renk",
-                "Boyut",
-                "Ağırlık"
+                "Ağırlık",
+                "Boyut"
               ],
               "correct": 0,
-              "hint": "Yavaş mı hızlı mı? İşte o."
+              "hint": "Yavaş mı hızlı mı?",
+              "lvl": 1,
+              "skill": "muz-tempo"
             },
             {
-              "q": "Yavaş bir tempo en çok neye benzer?",
-              "skill": "muz-tempo",
+              "q": "Uyumadan önce dinlenen sakin bir ninninin temposu nasıldır?",
               "options": [
-                "Ninni",
-                "Koşan at",
-                "Patlama",
-                "Alarm"
+                "Yavaş",
+                "Çok hızlı",
+                "Gürültülü",
+                "Keskin"
               ],
               "correct": 0,
-              "hint": "Uyumadan önce dinlenen sakin müzik."
+              "hint": "Seni uykuya götürür.",
+              "lvl": 1,
+              "skill": "muz-tempo"
             },
             {
-              "q": "Hızlı bir tempo hangi duyguyu daha çok verir?",
-              "skill": "muz-tempo",
+              "q": "Enstrüman olmadan ritim tutmak için ne yapabilirsin?",
               "options": [
-                "Heyecan ve enerji",
-                "Uyku",
-                "Sıkıntı",
-                "Sessizlik"
+                "Alkışlamak",
+                "Susmak",
+                "Gözünü kapatmak",
+                "Beklemek"
               ],
               "correct": 0,
-              "hint": "Dans etmek isteyeceğin his."
+              "hint": "İki elini birbirine vur.",
+              "lvl": 1,
+              "skill": "muz-ritim"
             },
             {
-              "q": "Ritmi enstrümansız nasıl tutabilirsin?",
-              "skill": "muz-ritim",
+              "q": "Kalbin 'güm-güm' atışı neye örnektir?",
               "options": [
-                "Alkışlayarak",
-                "Gözünü kapatarak",
-                "Hiç kımıldamadan",
-                "Susarak"
+                "Düzenli ritme",
+                "Bir renge",
+                "Bir melodiye",
+                "Bir akora"
               ],
               "correct": 0,
-              "hint": "İki elini birbirine vur!"
+              "hint": "Hep aynı aralıkla tekrar eder.",
+              "lvl": 1,
+              "skill": "muz-ritim"
             },
             {
-              "q": "Müzikte düzenli tekrar eden vuruşa ne denir?",
-              "skill": "muz-ritim",
+              "q": "İki şarkıdan biri koşarken, biri uyurken dinlenecek. Koşu şarkısının temposu nasıl olmalı?",
               "options": [
-                "Vuruş (bit)",
-                "Renk",
-                "Koku",
-                "Işık"
+                "Hızlı",
+                "Çok yavaş",
+                "Sessiz",
+                "Durgun"
               ],
               "correct": 0,
-              "hint": "Kalbinin 'güm' dediği an gibi."
+              "hint": "Koşarken enerjik müzik gerekir.",
+              "lvl": 2,
+              "skill": "muz-tempo"
             },
             {
-              "q": "Aynı şarkıyı hem yavaş hem hızlı çalabilir miyiz?",
-              "skill": "muz-tempo",
+              "q": "Bando yürürken herkesin ayağı aynı anda kalkıyor. Bunu sağlayan nedir?",
               "options": [
-                "Evet, tempoyu değiştirerek",
-                "Hayır, asla",
+                "Düzenli ritim ve tempo",
+                "Sessizlik",
+                "Parlak üniformalar",
+                "Karışık adımlar"
+              ],
+              "correct": 0,
+              "hint": "Ortak vuruş herkesi eşler.",
+              "lvl": 2,
+              "skill": "muz-ritim"
+            },
+            {
+              "q": "Bir öğretmen aynı şarkıyı bir gün yavaş, bir gün hızlı çaldı. Bu mümkün müdür?",
+              "options": [
+                "Evet; sadece tempo değişir, notalar aynı kalır",
+                "Hayır, imkânsız",
                 "Sadece kışın",
                 "Sadece koroda"
               ],
               "correct": 0,
-              "hint": "Tempo şarkının hızıdır, değiştirilebilir."
+              "hint": "Tempo değiştirilebilir bir özelliktir.",
+              "lvl": 2,
+              "skill": "muz-tempo"
             },
             {
-              "q": "Bando yürürken hangisi onlara yardım eder?",
-              "skill": "muz-ritim",
+              "q": "Bir grupta davulcu yavaşlarsa diğer çalgılara ne olur?",
               "options": [
-                "Düzenli ritim ve tempo",
-                "Sessizlik",
-                "Karışık adımlar",
-                "Parlak ışıklar"
+                "Onlar da yavaşlar, çünkü davul tempoyu tutar",
+                "Hiçbir şey olmaz",
+                "Daha da hızlanırlar",
+                "Hemen susarlar"
               ],
               "correct": 0,
-              "hint": "Herkesin ayağı aynı anda kalkar."
+              "hint": "Davul grubun kalp atışıdır.",
+              "lvl": 2,
+              "skill": "muz-ritim"
             },
             {
-              "q": "Kalbinin atışı neye örnektir?",
-              "skill": "muz-ritim",
+              "q": "Neşeli bir şarkının temposunu iyice yavaşlatırsak nasıl hissettirir?",
               "options": [
-                "Düzenli bir ritme",
-                "Bir melodiye",
-                "Bir renge",
-                "Bir akora"
+                "Daha sakin, hatta hüzünlü",
+                "Aynen aynı kalır",
+                "Daha da hızlı",
+                "Sesi tamamen kesilir"
               ],
               "correct": 0,
-              "hint": "Güm-güm; hep aynı aralıkla."
+              "hint": "Hız duyguyu değiştirir.",
+              "lvl": 2,
+              "skill": "muz-tempo"
             },
             {
-              "q": "Tempoyu yavaşlatırsak müzik nasıl olur?",
-              "skill": "muz-tempo",
+              "q": "Bir orkestrada herkes birbirini dinlemeden farklı tempoda çalarsa sonuç ne olur ve neden?",
               "options": [
-                "Daha sakin ve ağır",
-                "Daha hızlı",
-                "Daha gürültülü",
-                "Kaybolur"
+                "Uyum bozulur, karmaşa çıkar çünkü ortak vuruş kaybolur",
+                "Daha güzel olur",
+                "Daha sessiz olur",
+                "Hiç fark etmez"
               ],
               "correct": 0,
-              "hint": "Ağır çekim gibi düşün."
+              "hint": "Grup ortak bir tempoya ihtiyaç duyar.",
+              "lvl": 3,
+              "skill": "muz-ritim"
             },
             {
-              "q": "Ritim duygusunu geliştirmek için hangisi iyi bir alıştırmadır?",
-              "skill": "muz-ritim",
+              "q": "Bir dans gösterisinde müzik birden çok hızlanırsa dansçılara ne olur?",
               "options": [
-                "Bir şarkıya ayakla tempo tutmak",
-                "Gözleri kapatıp beklemek",
-                "Hiç hareket etmemek",
-                "Yüksek sesle bağırmak"
+                "Adımlarını hızlandırmak zorunda kalır, uyum zorlaşır",
+                "Hiç etkilenmezler",
+                "Daha yavaş dans ederler",
+                "Durup dinlenirler"
               ],
               "correct": 0,
-              "hint": "Vücudunla vuruşu hisset."
+              "hint": "Dans tempoyu takip eder.",
+              "lvl": 3,
+              "skill": "muz-tempo"
             },
             {
-              "q": "Bir davulcunun en önemli görevi nedir?",
-              "skill": "muz-ritim",
+              "q": "Trafikteki gürültü ile bir davulun ritmi arasındaki temel fark nedir?",
               "options": [
-                "Ritmi ve tempoyu tutmak",
-                "Şarkı sözü yazmak",
-                "Işıkları açmak",
-                "Bilet satmak"
+                "Ritim düzenli ve planlıdır, gürültü rastgeledir",
+                "İkisi de aynıdır",
+                "Ritim hep sessizdir",
+                "Gürültü daha müzikaldir"
               ],
               "correct": 0,
-              "hint": "Grubun kalp atışını o sağlar."
+              "hint": "Müzikte vuruşlar bir düzene göre gelir.",
+              "lvl": 3,
+              "skill": "muz-ritim"
+            },
+            {
+              "q": "Bir şarkının başında tempo yavaş, sonunda çok hızlı olursa dinleyicide nasıl bir etki bırakır?",
+              "options": [
+                "Gitgide artan bir heyecan",
+                "Gitgide artan bir uyku",
+                "Hiçbir değişiklik",
+                "Tam bir sessizlik"
+              ],
+              "correct": 0,
+              "hint": "Hızlanma enerjiyi yükseltir.",
+              "lvl": 3,
+              "skill": "muz-tempo"
+            },
+            {
+              "q": "İki çocuk aynı şarkıyı alkışla çalıyor ama biri sürekli erken alkışlıyor. Sorun nedir?",
+              "options": [
+                "Ritim uyumu bozulur, vuruşlar çakışmaz",
+                "Şarkı daha güzel olur",
+                "Tempo hızlanır ama sorun olmaz",
+                "Hiç fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Ritim aynı anda vurmayı gerektirir.",
+              "lvl": 3,
+              "skill": "muz-ritim"
             }
           ]
         }
@@ -931,8 +1084,7 @@
           },
           "bank": [
             {
-              "q": "Müzikte kaç temel nota vardır?",
-              "skill": "muz-notalar",
+              "q": "Bir çocuk 'Do, Re, Mi...' diye saydı. Toplam kaç temel nota var?",
               "options": [
                 "7",
                 "5",
@@ -940,23 +1092,12 @@
                 "3"
               ],
               "correct": 0,
-              "hint": "Do-Re-Mi-Fa-Sol-La-Si, say bakalım!"
+              "hint": "Do'dan Si'ye kadar say.",
+              "lvl": 1,
+              "skill": "muz-notalar"
             },
             {
-              "q": "Notaların doğru sırası hangisidir?",
-              "skill": "muz-notalar",
-              "options": [
-                "Do Re Mi Fa Sol La Si",
-                "Do Mi Re Sol Fa La Si",
-                "Si La Sol Do Re Mi Fa",
-                "Re Mi Do Fa Sol La Si"
-              ],
-              "correct": 0,
-              "hint": "Merdivenin en altı Do."
-            },
-            {
-              "q": "İlk nota hangisidir?",
-              "skill": "muz-notalar",
+              "q": "Nota merdiveninin en alt basamağı hangi notadır?",
               "options": [
                 "Do",
                 "Sol",
@@ -964,59 +1105,12 @@
                 "Fa"
               ],
               "correct": 0,
-              "hint": "Merdivenin ilk basamağı."
-            },
-            {
-              "q": "'Si' notasından sonra hangi nota gelir?",
-              "skill": "muz-notalar",
-              "options": [
-                "Yine Do (bir oktav tiz)",
-                "La",
-                "Fa",
-                "Mi"
-              ],
-              "correct": 0,
-              "hint": "Yedi notadan sonra başa dönülür."
-            },
-            {
-              "q": "Notaların yazıldığı beş çizgiye ne denir?",
-              "skill": "muz-porte",
-              "options": [
-                "Porte",
-                "Cetvel",
-                "Tablo",
-                "Kutu"
-              ],
-              "correct": 0,
-              "hint": "Beş çizgi ve dört aralık."
-            },
-            {
-              "q": "Bir 'Do'dan bir üst 'Do'ya çıkışa ne denir?",
-              "skill": "muz-notalar",
-              "options": [
-                "Oktav",
-                "Akor",
-                "Es",
-                "Tempo"
-              ],
-              "correct": 0,
-              "hint": "Sekiz nota sonra aynı isim döner."
-            },
-            {
-              "q": "Nota merdiveninde yukarı çıktıkça ses nasıl olur?",
-              "skill": "muz-notalar",
-              "options": [
-                "İncelir (tizleşir)",
-                "Kalınlaşır",
-                "Susar",
-                "Renklenir"
-              ],
-              "correct": 0,
-              "hint": "Yukarı = ince, aşağı = kalın."
+              "hint": "İlk nota.",
+              "lvl": 1,
+              "skill": "muz-notalar"
             },
             {
               "q": "Do-Re-Mi'den sonra hangi nota gelir?",
-              "skill": "muz-notalar",
               "options": [
                 "Fa",
                 "La",
@@ -1024,23 +1118,38 @@
                 "Sol"
               ],
               "correct": 0,
-              "hint": "Dördüncü basamak."
+              "hint": "Dördüncü basamak.",
+              "lvl": 1,
+              "skill": "muz-notalar"
             },
             {
-              "q": "Aynı anda çalınan birkaç uyumlu notaya ne denir?",
-              "skill": "muz-notalar",
+              "q": "Notaların yazıldığı beş çizgiye ne denir?",
               "options": [
-                "Akor",
-                "Es",
                 "Porte",
-                "Tempo"
+                "Cetvel",
+                "Tablo",
+                "Kutu"
               ],
               "correct": 0,
-              "hint": "Gitarda tek seferde birkaç tel."
+              "hint": "Beş çizgi, dört aralık.",
+              "lvl": 1,
+              "skill": "muz-porte"
             },
             {
-              "q": "'Sol' notasından bir basamak aşağıdaki nota hangisidir?",
-              "skill": "muz-notalar",
+              "q": "Nota merdiveninde yukarı çıktıkça ses nasıl olur?",
+              "options": [
+                "İncelir (tizleşir)",
+                "Kalınlaşır",
+                "Susar",
+                "Renklenir"
+              ],
+              "correct": 0,
+              "hint": "Yukarı = ince.",
+              "lvl": 1,
+              "skill": "muz-notalar"
+            },
+            {
+              "q": "Elif 'Sol' notasından bir basamak aşağı indi. Hangi notaya geldi?",
               "options": [
                 "Fa",
                 "La",
@@ -1048,11 +1157,38 @@
                 "Si"
               ],
               "correct": 0,
-              "hint": "Sıralamada Sol'den hemen önce gelen."
+              "hint": "Sıralamada Sol'den hemen önce gelen.",
+              "lvl": 2,
+              "skill": "muz-notalar"
             },
             {
-              "q": "Notalar neden porteye yazılır?",
-              "skill": "muz-porte",
+              "q": "Bir öğrenci 'Si'den sonra ne gelir?' diye sordu. Doğru cevap nedir?",
+              "options": [
+                "Yine Do (bir oktav tiz)",
+                "La",
+                "Fa",
+                "Mi"
+              ],
+              "correct": 0,
+              "hint": "Yedi notadan sonra başa dönülür.",
+              "lvl": 2,
+              "skill": "muz-notalar"
+            },
+            {
+              "q": "Bir nota portenin yukarısına, diğeri aşağısına yazıldı. Aralarındaki fark nedir?",
+              "options": [
+                "Yukarıdaki daha ince (tiz), aşağıdaki daha kalın (pes) sestir",
+                "İkisi de aynı ses",
+                "Yukarıdaki daha kalın",
+                "Hiçbir fark yoktur"
+              ],
+              "correct": 0,
+              "hint": "Konum sesin inceliğini gösterir.",
+              "lvl": 2,
+              "skill": "muz-porte"
+            },
+            {
+              "q": "Notaları neden porteye yazarız?",
               "options": [
                 "Hangi sesin çalınacağını göstermek için",
                 "Süslemek için",
@@ -1060,19 +1196,87 @@
                 "Saymak için"
               ],
               "correct": 0,
-              "hint": "Notanın yeri sesini belli eder."
+              "hint": "Notanın yeri sesini belli eder.",
+              "lvl": 2,
+              "skill": "muz-porte"
             },
             {
-              "q": "Yedi notanın tekrar başa dönmesine verilen isim nedir?",
-              "skill": "muz-notalar",
+              "q": "Bir 'Do'dan bir üst 'Do'ya çıkışa ne denir?",
               "options": [
                 "Oktav",
-                "Ritim",
-                "Tempo",
-                "Koro"
+                "Akor",
+                "Es",
+                "Tempo"
               ],
               "correct": 0,
-              "hint": "Do'dan Do'ya bir tur."
+              "hint": "Sekiz nota sonra aynı isim döner.",
+              "lvl": 2,
+              "skill": "muz-notalar"
+            },
+            {
+              "q": "Bir çocuk merdiveni 'Do en altta, Si en üstte' diye çizdi. Arkadaşı 'Si'nin üstüne bir nota daha koy' dedi. O nota ne olur ve nasıl bir sestir?",
+              "options": [
+                "Yine Do, ama daha tiz (bir oktav yukarı)",
+                "Yine Si, aynı ses",
+                "Fa, daha kalın",
+                "Hiçbir nota olamaz"
+              ],
+              "correct": 0,
+              "hint": "Yedi nota sonra isim tekrar eder, ama incelir.",
+              "lvl": 3,
+              "skill": "muz-notalar"
+            },
+            {
+              "q": "İki nota aynı isimde ('Do') ama biri portede çok yukarıda, biri çok aşağıda. Kulakta neden farklı duyulurlar?",
+              "options": [
+                "Biri tiz, biri pes; aralarında oktav farkı vardır",
+                "Aynı duyulurlar",
+                "Biri sessizdir",
+                "İsimleri farklı olmalı"
+              ],
+              "correct": 0,
+              "hint": "Aynı isim, farklı oktav.",
+              "lvl": 3,
+              "skill": "muz-notalar"
+            },
+            {
+              "q": "Bir besteci melodiyi porte üzerinde sürekli yukarı doğru yazdı. Dinleyici ne hisseder?",
+              "options": [
+                "Sesin gitgide inceldiğini ve yükseldiğini",
+                "Sesin kalınlaştığını",
+                "Hiç değişmediğini",
+                "Sesin durduğunu"
+              ],
+              "correct": 0,
+              "hint": "Yukarı doğru = tizleşme.",
+              "lvl": 3,
+              "skill": "muz-porte"
+            },
+            {
+              "q": "Notalar porteye yazılmasaydı bir müzisyen şarkıyı nasıl çalacağını nereden bilirdi?",
+              "options": [
+                "Bilemezdi; porte hangi sesin çalınacağını gösterir",
+                "Rengine bakardı",
+                "Kokusundan anlardı",
+                "Ağırlığından ölçerdi"
+              ],
+              "correct": 0,
+              "hint": "Porte bir müzik haritasıdır.",
+              "lvl": 3,
+              "skill": "muz-porte"
+            },
+            {
+              "q": "Bir çocuk Fa'dan başlayıp Sol-La-Si diye çıktı. Sırada hangi nota var ve ses nasıl değişir?",
+              "options": [
+                "Do gelir, ses biraz daha incelir",
+                "Mi gelir, ses kalınlaşır",
+                "Re gelir, ses değişmez",
+                "Hiç nota kalmaz"
+              ],
+              "correct": 0,
+              "hint": "Si'den sonra Do'ya dönülür ve yukarı çıkılır.",
+              "lvl": 3,
+              "skill": "muz-notalar"
             }
           ]
         }
@@ -1158,8 +1362,7 @@
           },
           "bank": [
             {
-              "q": "Davul hangi çalgı ailesindendir?",
-              "skill": "muz-vurmali",
+              "q": "Ela davula elle vurdu. Davul hangi ailedendir?",
               "options": [
                 "Vurmalı",
                 "Telli",
@@ -1167,23 +1370,12 @@
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "Üzerine vurarak ses çıkar."
+              "hint": "Üzerine vurarak çalınır.",
+              "lvl": 1,
+              "skill": "muz-vurmali"
             },
             {
-              "q": "Vurmalı çalgılar nasıl çalınır?",
-              "skill": "muz-vurmali",
-              "options": [
-                "Vurarak veya sallayarak",
-                "Sadece üfleyerek",
-                "Sadece yayla",
-                "Elektrikle"
-              ],
-              "correct": 0,
-              "hint": "Adı ipucu veriyor: VUR-malı."
-            },
-            {
-              "q": "Hangisi vurmalı bir çalgıdır?",
-              "skill": "muz-vurmali",
+              "q": "Aşağıdakilerden hangisi vurmalı bir çalgıdır?",
               "options": [
                 "Tef",
                 "Keman",
@@ -1191,83 +1383,25 @@
                 "Gitar"
               ],
               "correct": 0,
-              "hint": "Elle vurulan, kenarında ziller olan yuvarlak çalgı."
+              "hint": "Elle vurulan, kenarında ziller olan çalgı.",
+              "lvl": 1,
+              "skill": "muz-vurmali"
             },
             {
-              "q": "Marimba ve ksilofonun vurmalı çalgılar içinde özel yönü nedir?",
-              "skill": "muz-vurmali",
+              "q": "Vurmalı çalgılar nasıl çalınır?",
               "options": [
-                "Nota da çalabilirler",
-                "Üflenerek çalınırlar",
-                "Telleri vardır",
-                "Elektriklidir"
+                "Vurarak veya sallayarak",
+                "Sadece üfleyerek",
+                "Sadece yayla",
+                "Sadece elektrikle"
               ],
               "correct": 0,
-              "hint": "Farklı çubuklar farklı notalar verir."
+              "hint": "Adı ipucu veriyor.",
+              "lvl": 1,
+              "skill": "muz-vurmali"
             },
             {
-              "q": "Vurmalı çalgıların müzikteki ana görevi nedir?",
-              "skill": "muz-vurmali",
-              "options": [
-                "Ritmi tutmak",
-                "Şarkı sözü söylemek",
-                "Işık yakmak",
-                "Sahne kurmak"
-              ],
-              "correct": 0,
-              "hint": "Grubun kalp atışını sağlarlar."
-            },
-            {
-              "q": "Ziller (zil çifti) nasıl çalınır?",
-              "skill": "muz-vurmali",
-              "options": [
-                "Birbirine vurularak",
-                "Üflenerek",
-                "Yayla",
-                "Tuşla"
-              ],
-              "correct": 0,
-              "hint": "İki metal tabağı çarpıştırırsın."
-            },
-            {
-              "q": "Hangisi vurmalı çalgı DEĞİLDİR?",
-              "skill": "muz-vurmali",
-              "options": [
-                "Trompet",
-                "Davul",
-                "Tef",
-                "Marimba"
-              ],
-              "correct": 0,
-              "hint": "Üfleyerek çalınan parlak çalgı."
-            },
-            {
-              "q": "Bateri (davul seti) hangi ailedendir?",
-              "skill": "muz-vurmali",
-              "options": [
-                "Vurmalı",
-                "Telli",
-                "Üflemeli",
-                "Tuşlu"
-              ],
-              "correct": 0,
-              "hint": "Çubuklarla vurularak çalınır."
-            },
-            {
-              "q": "Vurmalı çalgı çalmak için en çok neye ihtiyaç vardır?",
-              "skill": "muz-vurmali",
-              "options": [
-                "İyi bir ritim duygusu",
-                "Uzun nefes",
-                "Elektrik",
-                "Yay"
-              ],
-              "correct": 0,
-              "hint": "Zamanında vurmak önemli."
-            },
-            {
-              "q": "Ellerinle alkış tutmak neye benzer?",
-              "skill": "muz-vurmali",
+              "q": "İki eli birbirine vurup çıkardığın alkış sesi neye benzer?",
               "options": [
                 "Doğal bir vurmalı çalgıya",
                 "Bir telli çalgıya",
@@ -1275,31 +1409,152 @@
                 "Bir tuşluya"
               ],
               "correct": 0,
-              "hint": "Vücudunla çıkardığın vuruş sesi."
+              "hint": "Vücudunla çıkardığın vuruş.",
+              "lvl": 1,
+              "skill": "muz-vurmali"
             },
             {
-              "q": "Davulun sesini nasıl değiştirebiliriz?",
-              "skill": "muz-vurmali",
+              "q": "Vurmalı çalgıların müzikteki ana görevi nedir?",
               "options": [
-                "Farklı yerlerine ve farklı sertlikte vurarak",
+                "Ritmi tutmak",
+                "Şarkı sözü söylemek",
+                "Işık yakmak",
+                "Bilet satmak"
+              ],
+              "correct": 0,
+              "hint": "Grubun kalp atışı.",
+              "lvl": 1,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "Bir grup dağılmasın diye herkese vuruşu hatırlatan çalgı ailesi hangisidir?",
+              "options": [
+                "Vurmalılar",
+                "Üflemeliler",
+                "Yaylılar",
+                "Tuşlular"
+              ],
+              "correct": 0,
+              "hint": "Ritmi onlar tutar.",
+              "lvl": 2,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "Marimba diğer davullardan farklı olarak ne yapabilir?",
+              "options": [
+                "Farklı çubuklarıyla nota da çalabilir",
+                "Üflenerek çalınır",
+                "Sadece susar",
+                "Yay ister"
+              ],
+              "correct": 0,
+              "hint": "Her çubuk farklı bir ses verir.",
+              "lvl": 2,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "'Trompet, davul, tef, marimba' arasından hangisi vurmalı DEĞİLDİR?",
+              "options": [
+                "Trompet",
+                "Davul",
+                "Tef",
+                "Marimba"
+              ],
+              "correct": 0,
+              "hint": "Üfleyerek çalınan parlak çalgı.",
+              "lvl": 2,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "Bir davulcu davulun ortasına sertçe, kenarına hafifçe vurdu. Ne değişir?",
+              "options": [
+                "Sesin gürlüğü ve tınısı değişir",
+                "Hiçbir şey değişmez",
+                "Davulun rengi değişir",
+                "Notaların sayısı değişir"
+              ],
+              "correct": 0,
+              "hint": "Nereye ve ne kadar sert vurduğun sesi değiştirir.",
+              "lvl": 2,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "Ziller (zil çifti) nasıl ses çıkarır?",
+              "options": [
+                "İki metal tabağı birbirine vurarak",
                 "Üfleyerek",
-                "Renk vererek",
-                "Tel takarak"
+                "Yayla",
+                "Tuşla"
               ],
               "correct": 0,
-              "hint": "Sert vurmak yüksek, hafif vurmak alçak ses verir."
+              "hint": "Çarpıştırırsın.",
+              "lvl": 2,
+              "skill": "muz-vurmali"
             },
             {
-              "q": "Trafik gürültüsü ile müzikteki vurmalı ritim arasındaki fark nedir?",
-              "skill": "muz-vurmali",
+              "q": "Bir şarkıda hiç vurmalı çalgı olmasaydı grup için en büyük zorluk ne olurdu?",
               "options": [
-                "Ritim düzenli ve planlıdır",
-                "İkisi de aynıdır",
-                "Ritim hep sessizdir",
-                "Gürültü daha müzikaldir"
+                "Ortak ritmi tutmak zorlaşırdı",
+                "Melodi tamamen kaybolurdu",
+                "Hiç ses çıkmazdı",
+                "Şarkı kendiliğinden hızlanırdı"
               ],
               "correct": 0,
-              "hint": "Müzikte vuruşlar bir düzene göre gelir."
+              "hint": "Ritmi çoğunlukla vurmalılar tutar.",
+              "lvl": 3,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "Bir çocuk 'Marimbayla melodi çalabilirim ama sıradan davulla çalamam' dedi. Neden haklı?",
+              "options": [
+                "Marimba farklı notalar verir, çoğu davul tek ses verir",
+                "Davul daha pahalıdır",
+                "Marimba üflemelidir",
+                "İkisi de melodi çalar"
+              ],
+              "correct": 0,
+              "hint": "Nota çalabilen vurmalı azdır.",
+              "lvl": 3,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "Evde davul yokken kaşıkla tencereye vurmak neden vurmalı çalgı mantığına uyar?",
+              "options": [
+                "Üzerine vurarak ritmik ses çıkarırsın",
+                "Üflediğin için",
+                "Teli olduğu için",
+                "Tuşu olduğu için"
+              ],
+              "correct": 0,
+              "hint": "Vuruşla ses = vurmalı mantığı.",
+              "lvl": 3,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "Bir bando yürüyüşünde büyük davul yüksek ve düzenli vuruyor. Bunun yürüyüşe faydası nedir?",
+              "options": [
+                "Herkes aynı anda adım atsın diye tempoyu belli eder",
+                "Sadece gürültü çıkarır",
+                "Adımları karıştırır",
+                "Hiçbir faydası yoktur"
+              ],
+              "correct": 0,
+              "hint": "Vuruş, ortak adımı sağlar.",
+              "lvl": 3,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "İki davulcudan biri hep aynı düzenli, diğeri rastgele vuruyor. Hangisi 'ritim' sayılır ve neden?",
+              "options": [
+                "Düzenli vuran; çünkü ritim düzenli tekrardır",
+                "Rastgele vuran; daha ilginç olduğu için",
+                "İkisi de ritim sayılmaz",
+                "İkisi tamamen aynıdır"
+              ],
+              "correct": 0,
+              "hint": "Ritim tesadüf değil, düzendir.",
+              "lvl": 3,
+              "skill": "muz-vurmali"
             }
           ]
         }
@@ -1385,8 +1640,7 @@
           },
           "bank": [
             {
-              "q": "Gitar hangi çalgı ailesindendir?",
-              "skill": "muz-telli",
+              "q": "Gitarın tellerine dokunarak ses çıkardık. Gitar hangi ailedendir?",
               "options": [
                 "Telli",
                 "Üflemeli",
@@ -1394,11 +1648,12 @@
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "Tellerini parmakla titreştirirsin."
+              "hint": "Tellerini titreştirirsin.",
+              "lvl": 1,
+              "skill": "muz-telli"
             },
             {
-              "q": "Flüt hangi aileye aittir?",
-              "skill": "muz-uflemeli",
+              "q": "Flütün içine üfleyerek çaldık. Flüt hangi ailedendir?",
               "options": [
                 "Üflemeli",
                 "Telli",
@@ -1406,11 +1661,12 @@
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "İçine hava üflenir."
+              "hint": "İçine hava üflenir.",
+              "lvl": 1,
+              "skill": "muz-uflemeli"
             },
             {
               "q": "Keman genellikle neyle çalınır?",
-              "skill": "muz-telli",
               "options": [
                 "Yay",
                 "Nefes",
@@ -1418,11 +1674,12 @@
                 "Elektrik"
               ],
               "correct": 0,
-              "hint": "Yayı tellerin üzerinde gezdirirsin."
+              "hint": "Tellerin üzerinde gezdirilir.",
+              "lvl": 1,
+              "skill": "muz-telli"
             },
             {
               "q": "Telli çalgılar sesi nasıl üretir?",
-              "skill": "muz-telli",
               "options": [
                 "Teller titreşerek",
                 "Hava üflenerek",
@@ -1430,11 +1687,12 @@
                 "Işıkla"
               ],
               "correct": 0,
-              "hint": "Teli çekince titrer ve ses çıkar."
+              "hint": "Teli çekince titrer.",
+              "lvl": 1,
+              "skill": "muz-telli"
             },
             {
               "q": "Üflemeli çalgılar sesi nasıl üretir?",
-              "skill": "muz-uflemeli",
               "options": [
                 "İçlerine hava üflenerek",
                 "Tel titreşerek",
@@ -1442,11 +1700,12 @@
                 "Tuşla"
               ],
               "correct": 0,
-              "hint": "Nefesin çalgının içinde titreşir."
+              "hint": "Nefesin içeride titreşir.",
+              "lvl": 1,
+              "skill": "muz-uflemeli"
             },
             {
-              "q": "Trompet hangi aileye aittir?",
-              "skill": "muz-uflemeli",
+              "q": "Trompet dudakla üflenerek çalınan parlak bir çalgıdır. Hangi ailedendir?",
               "options": [
                 "Üflemeli",
                 "Telli",
@@ -1454,11 +1713,12 @@
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "Dudakla üfleyerek çalınan parlak çalgı."
+              "hint": "Nefesle çalınır.",
+              "lvl": 2,
+              "skill": "muz-uflemeli"
             },
             {
-              "q": "Hangisi telli bir çalgıdır?",
-              "skill": "muz-telli",
+              "q": "'Keman, davul, flüt, trompet' arasından hangisi tellidir?",
               "options": [
                 "Keman",
                 "Davul",
@@ -1466,47 +1726,12 @@
                 "Trompet"
               ],
               "correct": 0,
-              "hint": "Yayla çalınan, dört telli çalgı."
+              "hint": "Yayla çalınan, dört telli çalgı.",
+              "lvl": 2,
+              "skill": "muz-telli"
             },
             {
-              "q": "Hangisi üflemeli bir çalgıdır?",
-              "skill": "muz-uflemeli",
-              "options": [
-                "Klarnet",
-                "Gitar",
-                "Davul",
-                "Keman"
-              ],
-              "correct": 0,
-              "hint": "Ağızlıktan üflenen siyah bir çalgı."
-            },
-            {
-              "q": "Gitarda daha ince (tiz) ses için ne yaparız?",
-              "skill": "muz-telli",
-              "options": [
-                "İnce tellere ya da daha kısa boya basarız",
-                "Daha çok üfleriz",
-                "Daha sert vururuz",
-                "Işık açarız"
-              ],
-              "correct": 0,
-              "hint": "İnce ve kısa teller tiz ses verir."
-            },
-            {
-              "q": "Üflemeli çalgı çalmak için en çok neye ihtiyaç vardır?",
-              "skill": "muz-uflemeli",
-              "options": [
-                "İyi bir nefes kontrolü",
-                "Uzun tırnak",
-                "Ağır çubuk",
-                "Elektrik"
-              ],
-              "correct": 0,
-              "hint": "Havayı düzenli üflemelisin."
-            },
-            {
-              "q": "Viyola, çello ve kontrbas hangi ailedendir?",
-              "skill": "muz-telli",
+              "q": "Viyola, çello ve kontrbas bir arada. Bunların hepsi hangi ailedendir?",
               "options": [
                 "Telli (yaylı)",
                 "Üflemeli",
@@ -1514,11 +1739,12 @@
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "Hepsi keman gibi yayla çalınır."
+              "hint": "Hepsi keman gibi yayla çalınır.",
+              "lvl": 2,
+              "skill": "muz-telli"
             },
             {
-              "q": "Saksafon hangi çalgı ailesindendir?",
-              "skill": "muz-uflemeli",
+              "q": "Saksafon cazda sık duyulur ve içine üflenir. Hangi ailedendir?",
               "options": [
                 "Üflemeli",
                 "Telli",
@@ -1526,7 +1752,87 @@
                 "Tuşlu"
               ],
               "correct": 0,
-              "hint": "Cazda sık duyulan, üflenerek çalınan çalgı."
+              "hint": "Nefesle çalınır.",
+              "lvl": 2,
+              "skill": "muz-uflemeli"
+            },
+            {
+              "q": "Bir üflemeli çalgı çalmak için en çok neye ihtiyaç vardır?",
+              "options": [
+                "İyi bir nefes kontrolü",
+                "Uzun tırnak",
+                "Ağır çubuk",
+                "Elektrik"
+              ],
+              "correct": 0,
+              "hint": "Havayı düzenli üflemelisin.",
+              "lvl": 2,
+              "skill": "muz-uflemeli"
+            },
+            {
+              "q": "Bir gitarcı daha ince (tiz) ses istiyor. Hangisini yapmalı ve neden?",
+              "options": [
+                "İnce tele basmalı ya da teli kısaltmalı, çünkü kısa/ince tel tiz ses verir",
+                "Daha çok üflemeli",
+                "Daha sert vurmalı",
+                "Işığı açmalı"
+              ],
+              "correct": 0,
+              "hint": "Tel ne kadar ince ve kısaysa ses o kadar ince.",
+              "lvl": 3,
+              "skill": "muz-telli"
+            },
+            {
+              "q": "Bir flütçünün nefesi biterse çalgıya ne olur, keman için aynı sorun geçerli mi?",
+              "options": [
+                "Flüt susar; keman yayla çalındığı için nefes gerektirmez",
+                "İkisi de susar",
+                "Keman da nefesle çalışır",
+                "Hiçbiri etkilenmez"
+              ],
+              "correct": 0,
+              "hint": "Üflemeli nefes ister, telli istemez.",
+              "lvl": 3,
+              "skill": "muz-uflemeli"
+            },
+            {
+              "q": "Keman ve gitar ikisi de tellidir ama farklı çalınır. Temel fark nedir?",
+              "options": [
+                "Keman genelde yayla, gitar parmakla çalınır",
+                "İkisi de üflenir",
+                "Keman aslında vurmalıdır",
+                "Gitar nefesle çalınır"
+              ],
+              "correct": 0,
+              "hint": "Biri yay, biri parmak.",
+              "lvl": 3,
+              "skill": "muz-telli"
+            },
+            {
+              "q": "Bir orkestrada yaylılar (keman ailesi) neden en kalabalık gruptur?",
+              "options": [
+                "Yumuşak sesleri çok olunca dolu ve zengin bir ton oluşturur",
+                "Ucuz oldukları için",
+                "Kolay taşındıkları için",
+                "Parladıkları için"
+              ],
+              "correct": 0,
+              "hint": "Birçok yaylı birleşince ses zenginleşir.",
+              "lvl": 3,
+              "skill": "muz-telli"
+            },
+            {
+              "q": "Aynı melodiyi flütle mi kemanla mı çalarken 'nefes molası' gerekir ve neden?",
+              "options": [
+                "Flütle; çünkü üflemeli çalgı nefesle çalışır",
+                "Kemanla; çünkü yay nefes ister",
+                "İkisiyle de asla gerekmez",
+                "İkisiyle de aynı derecede gerekir"
+              ],
+              "correct": 0,
+              "hint": "Üflemeli = nefes; yaylı = kol hareketi.",
+              "lvl": 3,
+              "skill": "muz-uflemeli"
             }
           ]
         }
@@ -1613,7 +1919,6 @@
           "bank": [
             {
               "q": "İnce ve yüksek bir sese ne denir?",
-              "skill": "muz-perde",
               "options": [
                 "Tiz",
                 "Pes",
@@ -1621,11 +1926,12 @@
                 "Yavaş"
               ],
               "correct": 0,
-              "hint": "Küçük kuşun 'ciik' sesi gibi."
+              "hint": "Küçük kuşun 'ciik' sesi.",
+              "lvl": 1,
+              "skill": "muz-perde"
             },
             {
               "q": "Kalın ve alçak bir sese ne denir?",
-              "skill": "muz-perde",
               "options": [
                 "Pes",
                 "Tiz",
@@ -1633,11 +1939,12 @@
                 "Parlak"
               ],
               "correct": 0,
-              "hint": "Büyük ayının 'hoom' sesi gibi."
+              "hint": "Büyük ayının 'hoom' sesi.",
+              "lvl": 1,
+              "skill": "muz-perde"
             },
             {
               "q": "Küçük bir kuşun sesi nasıldır?",
-              "skill": "muz-perde",
               "options": [
                 "Tiz (ince)",
                 "Pes (kalın)",
@@ -1645,95 +1952,12 @@
                 "Sessiz"
               ],
               "correct": 0,
-              "hint": "Minik canlılar ince ses çıkarır."
-            },
-            {
-              "q": "Büyük bir davul ya da kontrbas nasıl bir ses verir?",
-              "skill": "muz-perde",
-              "options": [
-                "Pes (kalın)",
-                "Tiz (ince)",
-                "Hiç ses vermez",
-                "Sadece parlak"
-              ],
-              "correct": 0,
-              "hint": "Büyük cisimler kalın ses verir."
-            },
-            {
-              "q": "'Perde' müzikte neyi anlatır?",
-              "skill": "muz-perde",
-              "options": [
-                "Sesin ince mi kalın mı olduğunu",
-                "Sesin ne kadar kuvvetli olduğunu",
-                "Şarkının hızını",
-                "Çalgının rengini"
-              ],
-              "correct": 0,
-              "hint": "Tiz mi pes mi sorusu."
-            },
-            {
-              "q": "Sesin kuvvetine (yumuşak/kuvvetli) ne denir?",
-              "skill": "muz-gurluk",
-              "options": [
-                "Gürlük (nüans)",
-                "Perde",
-                "Tempo",
-                "Nota"
-              ],
-              "correct": 0,
-              "hint": "Fısıltı mı bağırış mı? İşte o."
-            },
-            {
-              "q": "Bir çocuk fısıldarken sesi hem yumuşaktır hem de...",
-              "skill": "muz-perde",
-              "options": [
-                "Tiz olabilir (perde ayrı, gürlük ayrı)",
-                "Kesinlikle pestir",
-                "Hiç ses değildir",
-                "Hep aynıdır"
-              ],
-              "correct": 0,
-              "hint": "Yumuşak söylemek perdeyi değil gürlüğü belirler."
-            },
-            {
-              "q": "Bir çalgı büyüdükçe sesi genelde nasıl olur?",
-              "skill": "muz-perde",
-              "options": [
-                "Daha pes (kalın)",
-                "Daha tiz (ince)",
-                "Hiç değişmez",
-                "Kaybolur"
-              ],
-              "correct": 0,
-              "hint": "Kontrbas kemandan büyük ve daha kalın seslidir."
-            },
-            {
-              "q": "Piyanoda sağa doğru gidildikçe sesler nasıl olur?",
-              "skill": "muz-perde",
-              "options": [
-                "Tizleşir (incelir)",
-                "Pesleşir (kalınlaşır)",
-                "Susar",
-                "Yavaşlar"
-              ],
-              "correct": 0,
-              "hint": "Sağ taraf ince, sol taraf kalın seslidir."
-            },
-            {
-              "q": "Bir şarkıyı hem kuvvetli hem de pes perdeden söyleyebilir miyiz?",
-              "skill": "muz-perde",
-              "options": [
-                "Evet; gürlük ve perde farklı şeylerdir",
-                "Hayır, imkânsız",
-                "Sadece koroda",
-                "Sadece sabah"
-              ],
-              "correct": 0,
-              "hint": "Kalın sesle kuvvetlice söylemek mümkün."
+              "hint": "Minik canlılar ince ses çıkarır.",
+              "lvl": 1,
+              "skill": "muz-perde"
             },
             {
               "q": "Sirenin 'iiii' diye çıkan sesi nasıldır?",
-              "skill": "muz-perde",
               "options": [
                 "Tiz",
                 "Pes",
@@ -1741,19 +1965,152 @@
                 "Kalın"
               ],
               "correct": 0,
-              "hint": "İnce ve keskin bir ses."
+              "hint": "İnce ve keskin.",
+              "lvl": 1,
+              "skill": "muz-perde"
             },
             {
-              "q": "Perde ile gürlüğü karıştırmamak neden önemlidir?",
-              "skill": "muz-gurluk",
+              "q": "'Perde' müzikte neyi anlatır?",
               "options": [
-                "Biri incelik-kalınlık, diğeri kuvvet olduğu için",
-                "İkisi tamamen aynı olduğu için",
-                "Önemli değildir",
-                "Sadece sınavda gerektiği için"
+                "Sesin ince mi kalın mı olduğunu",
+                "Şarkının hızını",
+                "Çalgının rengini",
+                "Sahnenin ışığını"
               ],
               "correct": 0,
-              "hint": "Farklı iki özellik: ince/kalın vs. yumuşak/kuvvetli."
+              "hint": "Tiz mi pes mi sorusu.",
+              "lvl": 1,
+              "skill": "muz-perde"
+            },
+            {
+              "q": "Büyük bir kontrbas ile küçük bir flüt aynı anda çalıyor. Hangisi daha pes (kalın) ses verir?",
+              "options": [
+                "Kontrbas",
+                "Flüt",
+                "İkisi aynı",
+                "Hiçbiri"
+              ],
+              "correct": 0,
+              "hint": "Büyük cisimler kalın ses verir.",
+              "lvl": 2,
+              "skill": "muz-perde"
+            },
+            {
+              "q": "Piyanoda sağa doğru gidildikçe sesler nasıl olur?",
+              "options": [
+                "Tizleşir (incelir)",
+                "Pesleşir (kalınlaşır)",
+                "Susar",
+                "Yavaşlar"
+              ],
+              "correct": 0,
+              "hint": "Sağ taraf ince seslidir.",
+              "lvl": 2,
+              "skill": "muz-perde"
+            },
+            {
+              "q": "Sesin yumuşak mı kuvvetli mi olduğunu anlatan özelliğe ne denir?",
+              "options": [
+                "Gürlük",
+                "Perde",
+                "Tempo",
+                "Nota"
+              ],
+              "correct": 0,
+              "hint": "Fısıltı mı bağırış mı?",
+              "lvl": 2,
+              "skill": "muz-gurluk"
+            },
+            {
+              "q": "Bir çalgı büyüdükçe sesi genelde nasıl olur?",
+              "options": [
+                "Daha pes (kalın)",
+                "Daha tiz (ince)",
+                "Hiç değişmez",
+                "Kaybolur"
+              ],
+              "correct": 0,
+              "hint": "Kontrbas kemandan büyük ve daha kalın seslidir.",
+              "lvl": 2,
+              "skill": "muz-perde"
+            },
+            {
+              "q": "Bir çocuk fısıldayarak konuştu. Sesi mutlaka pes (kalın) mıdır?",
+              "options": [
+                "Hayır; fısıltı gürlüktür, perde ince de olabilir",
+                "Evet, fısıltı hep pestir",
+                "Evet, fısıltı hep tizdir",
+                "Fısıltı ses sayılmaz"
+              ],
+              "correct": 0,
+              "hint": "Yumuşaklık perdeyi değil gürlüğü belirler.",
+              "lvl": 2,
+              "skill": "muz-gurluk"
+            },
+            {
+              "q": "Bir çocuk 'Kuvvetli söylemek = tiz söylemek' dedi. Neden yanlış?",
+              "options": [
+                "Kuvvet gürlüktür, tizlik perdedir; ikisi farklı özelliktir",
+                "Doğrudur, aynı şeydir",
+                "Kuvvet hep pestir",
+                "Tizlik ses değildir"
+              ],
+              "correct": 0,
+              "hint": "Kuvvetli ama kalın sesle de söylenebilir.",
+              "lvl": 3,
+              "skill": "muz-gurluk"
+            },
+            {
+              "q": "Bir şarkıyı hem yüksek sesle (kuvvetli) hem de pes perdeden söylemek mümkün müdür?",
+              "options": [
+                "Evet; gürlük ve perde farklı şeyler olduğu için",
+                "Hayır, imkânsız",
+                "Sadece koroda",
+                "Sadece sabah"
+              ],
+              "correct": 0,
+              "hint": "Kalın sesle bağırmak mümkündür.",
+              "lvl": 3,
+              "skill": "muz-perde"
+            },
+            {
+              "q": "Minik bir zil ile koca bir kilise çanı çalınıyor. Perdeleri neden farklıdır?",
+              "options": [
+                "Küçük cisim tiz, büyük cisim pes ses verir",
+                "İkisi aynı ses verir",
+                "Zil daha pestir",
+                "Çan hiç ses vermez"
+              ],
+              "correct": 0,
+              "hint": "Boyut perdeyi etkiler.",
+              "lvl": 3,
+              "skill": "muz-perde"
+            },
+            {
+              "q": "Bir korku sahnesinde besteci neden tiz, keskin sesler seçer?",
+              "options": [
+                "Tiz sesler gerilim ve tedirginlik hissi verdiği için",
+                "Tiz sesler uyku getirdiği için",
+                "Tiz sesler hiç duyulmadığı için",
+                "Tamamen rastgele seçer"
+              ],
+              "correct": 0,
+              "hint": "İnce, keskin ses kulakta gerginlik yaratır.",
+              "lvl": 3,
+              "skill": "muz-perde"
+            },
+            {
+              "q": "İki müzisyenden biri 'perdeyi', diğeri 'gürlüğü' değiştirdi. Sırasıyla ne değişmiş olur?",
+              "options": [
+                "Biri sesi inceltip kalınlaştırır, diğeri sesi yumuşatıp kuvvetlendirir",
+                "İkisi de sadece hızı değiştirir",
+                "İkisi de aynı şeyi yapar",
+                "Hiçbir şey değişmez"
+              ],
+              "correct": 0,
+              "hint": "Perde = ince/kalın, gürlük = yumuşak/kuvvetli.",
+              "lvl": 3,
+              "skill": "muz-gurluk"
             }
           ]
         }
@@ -1839,20 +2196,20 @@
           },
           "bank": [
             {
-              "q": "Melodi nedir?",
-              "skill": "muz-melodi",
+              "q": "Mırıldandığın, akılda kalan o ezgi parçasına ne denir?",
               "options": [
-                "Notaların peş peşe oluşturduğu ezgi",
-                "Sadece davul sesi",
-                "Sahnenin ışığı",
-                "Bir çalgı türü"
+                "Melodi",
+                "Davul sesi",
+                "Sahne ışığı",
+                "Bir çalgı"
               ],
               "correct": 0,
-              "hint": "Mırıldandığın akılda kalan kısım."
+              "hint": "Notaların peş peşe dizilişi.",
+              "lvl": 1,
+              "skill": "muz-melodi"
             },
             {
               "q": "Bir şarkının tekrar tekrar gelen, en akılda kalan bölümüne ne denir?",
-              "skill": "muz-sarki",
               "options": [
                 "Nakarat",
                 "Porte",
@@ -1860,11 +2217,12 @@
                 "Tempo"
               ],
               "correct": 0,
-              "hint": "Herkesin birlikte söylediği kısım."
+              "hint": "Herkesin birlikte söylediği kısım.",
+              "lvl": 1,
+              "skill": "muz-sarki"
             },
             {
               "q": "Bir şarkıda melodinin yanında genelde ne bulunur?",
-              "skill": "muz-sarki",
               "options": [
                 "Sözler",
                 "Trafik levhası",
@@ -1872,71 +2230,25 @@
                 "Harita"
               ],
               "correct": 0,
-              "hint": "Şarkıcının söylediği kelimeler."
+              "hint": "Şarkıcının söylediği kelimeler.",
+              "lvl": 1,
+              "skill": "muz-sarki"
             },
             {
-              "q": "Melodi hep aynı notada mı kalır?",
-              "skill": "muz-melodi",
+              "q": "Ağzın kapalı 'mmm' diye bir ezgi söylemeye ne denir?",
               "options": [
-                "Hayır; yükselir ve alçalır",
-                "Evet, hiç değişmez",
-                "Sadece susar",
-                "Sadece hızlanır"
-              ],
-              "correct": 0,
-              "hint": "Bir yolculuk gibi inişli çıkışlı."
-            },
-            {
-              "q": "Bir melodiyi mırıldanmak ne demektir?",
-              "skill": "muz-melodi",
-              "options": [
-                "Ezgiyi sözsüz seslendirmek",
+                "Mırıldanmak",
                 "Bağırmak",
                 "Alkışlamak",
                 "Susmak"
               ],
               "correct": 0,
-              "hint": "Ağzın kapalı 'mmm' diye ezgiyi söylemek."
+              "hint": "Sözsüz ezgi söylemek.",
+              "lvl": 1,
+              "skill": "muz-melodi"
             },
             {
-              "q": "İyi bir melodinin en önemli özelliği nedir?",
-              "skill": "muz-melodi",
-              "options": [
-                "Akılda kalıcı olması",
-                "Çok gürültülü olması",
-                "Hiç bitmemesi",
-                "Renkli olması"
-              ],
-              "correct": 0,
-              "hint": "Duyunca kolayca hatırlarsın."
-            },
-            {
-              "q": "Şarkının kıtaları (dizeleri) arasında genelde ne tekrarlanır?",
-              "skill": "muz-sarki",
-              "options": [
-                "Nakarat",
-                "Yeni bir çalgı",
-                "Reklam",
-                "Sessizlik"
-              ],
-              "correct": 0,
-              "hint": "Şarkının 'ana' bölümü tekrar gelir."
-            },
-            {
-              "q": "Melodi ile ritim arasındaki fark nedir?",
-              "skill": "muz-melodi",
-              "options": [
-                "Melodi ezgidir, ritim vuruş düzenidir",
-                "İkisi aynıdır",
-                "Melodi sadece davuldur",
-                "Ritim sadece sözdür"
-              ],
-              "correct": 0,
-              "hint": "Biri notaların dizilişi, diğeri vuruşların düzeni."
-            },
-            {
-              "q": "Bir şarkıcının görevi nedir?",
-              "skill": "muz-sarki",
+              "q": "Bir şarkıcının en önemli görevi nedir?",
               "options": [
                 "Melodiyi ve sözleri sesiyle seslendirmek",
                 "Sadece dans etmek",
@@ -1944,23 +2256,51 @@
                 "Bilet satmak"
               ],
               "correct": 0,
-              "hint": "Sesiyle ezgiyi taşır."
+              "hint": "Sesiyle ezgiyi taşır.",
+              "lvl": 1,
+              "skill": "muz-sarki"
             },
             {
-              "q": "Aynı melodi farklı çalgılarla çalınabilir mi?",
-              "skill": "muz-melodi",
+              "q": "İki çocuktan biri şarkının kıtasını, diğeri hep tekrar eden bölümü söylüyor. Tekrar eden bölüm nedir?",
               "options": [
-                "Evet; melodi aynı kalır, ses rengi değişir",
-                "Hayır, asla",
-                "Sadece piyanoyla",
-                "Sadece koroda"
+                "Nakarat",
+                "Melodi dışı bir ses",
+                "Reklam",
+                "Sessizlik"
               ],
               "correct": 0,
-              "hint": "Ezgi aynı, çalan çalgı farklı olabilir."
+              "hint": "Kıtalar arasında tekrar gelen kısım.",
+              "lvl": 2,
+              "skill": "muz-sarki"
+            },
+            {
+              "q": "Melodi hep aynı notada mı kalır?",
+              "options": [
+                "Hayır; yükselir ve alçalır",
+                "Evet, hiç değişmez",
+                "Sadece susar",
+                "Sadece hızlanır"
+              ],
+              "correct": 0,
+              "hint": "İnişli çıkışlı bir yolculuk gibi.",
+              "lvl": 2,
+              "skill": "muz-melodi"
+            },
+            {
+              "q": "Melodi ile ritim arasındaki fark nedir?",
+              "options": [
+                "Melodi ezgidir, ritim vuruş düzenidir",
+                "İkisi aynıdır",
+                "Melodi sadece davuldur",
+                "Ritim sadece sözdür"
+              ],
+              "correct": 0,
+              "hint": "Biri notaların dizilişi, diğeri vuruş.",
+              "lvl": 2,
+              "skill": "muz-melodi"
             },
             {
               "q": "Bir ninninin melodisi genelde nasıldır?",
-              "skill": "muz-melodi",
               "options": [
                 "Sakin ve yumuşak",
                 "Çok hızlı ve sert",
@@ -1968,19 +2308,87 @@
                 "Karmaşık"
               ],
               "correct": 0,
-              "hint": "Uyutmak için tasarlanır."
+              "hint": "Uyutmak için tasarlanır.",
+              "lvl": 2,
+              "skill": "muz-melodi"
             },
             {
-              "q": "Melodi bir 'yolculuğa' neden benzetilir?",
-              "skill": "muz-melodi",
+              "q": "Aynı melodiyi hem piyano hem de flüt çalabilir mi?",
               "options": [
-                "Seni bir duygudan başka bir duyguya taşıdığı için",
+                "Evet; melodi aynı kalır, ses rengi değişir",
+                "Hayır, asla",
+                "Sadece piyanoyla",
+                "Sadece koroda"
+              ],
+              "correct": 0,
+              "hint": "Ezgi aynı, çalgı farklı olabilir.",
+              "lvl": 2,
+              "skill": "muz-melodi"
+            },
+            {
+              "q": "Bir şarkının nakaratı hiç tekrarlanmasaydı dinleyici için ne değişirdi?",
+              "options": [
+                "Şarkıyı akılda tutmak zorlaşırdı",
+                "Şarkı daha akılda kalıcı olurdu",
+                "Melodi tamamen kaybolurdu",
+                "Hiç fark etmezdi"
+              ],
+              "correct": 0,
+              "hint": "Tekrar, akılda kalmayı sağlar.",
+              "lvl": 3,
+              "skill": "muz-sarki"
+            },
+            {
+              "q": "Neşeli bir melodiyi çok yavaşlatıp pes seslerle çalarsak dinleyicide nasıl bir etki olur ve neden?",
+              "options": [
+                "Daha hüzünlü hisseder; tempo ve perde duyguyu değiştirir",
+                "Aynı neşeyi hisseder",
+                "Hiçbir şey hissetmez",
+                "Daha da neşelenir"
+              ],
+              "correct": 0,
+              "hint": "Ezgi aynı olsa da sunumu duyguyu değiştirir.",
+              "lvl": 3,
+              "skill": "muz-melodi"
+            },
+            {
+              "q": "Melodi neden bir 'yolculuğa' benzetilir?",
+              "options": [
+                "İnişleri, çıkışları ve varış noktası olup seni bir duygudan başka bir duyguya taşıdığı için",
                 "Hep aynı yerde durduğu için",
                 "Sadece kısa olduğu için",
                 "Renkli olduğu için"
               ],
               "correct": 0,
-              "hint": "İnişleri, çıkışları ve varış noktası vardır."
+              "hint": "Yükselir, alçalır, bir yere varır.",
+              "lvl": 3,
+              "skill": "muz-melodi"
+            },
+            {
+              "q": "Bir şarkıda çok güzel sözler var ama melodi hiç akılda kalmıyor. Hangi yön zayıf kalmıştır?",
+              "options": [
+                "Melodi (ezgi) yönü",
+                "Sözlerin yönü",
+                "Işık yönü",
+                "Bilet yönü"
+              ],
+              "correct": 0,
+              "hint": "Akılda kalıcılık melodinin işidir.",
+              "lvl": 3,
+              "skill": "muz-melodi"
+            },
+            {
+              "q": "İki arkadaş aynı sözleri farklı melodilerle söyledi. Sonuç ne olur?",
+              "options": [
+                "İki farklı şarkı gibi duyulur, çünkü melodi kimliği belirler",
+                "Tamamen aynı olur",
+                "Sözler kaybolur",
+                "Hiç ses çıkmaz"
+              ],
+              "correct": 0,
+              "hint": "Melodi şarkıya kimliğini verir.",
+              "lvl": 3,
+              "skill": "muz-melodi"
             }
           ]
         }
@@ -2067,7 +2475,6 @@
           "bank": [
             {
               "q": "Aşağıdakilerden hangisi bir müzik türüdür?",
-              "skill": "muz-turler",
               "options": [
                 "Caz",
                 "Kalem",
@@ -2075,11 +2482,12 @@
                 "Buzdolabı"
               ],
               "correct": 0,
-              "hint": "Trompet ve saksafonun sık duyulduğu tür."
+              "hint": "Trompet ve saksafonun sık duyulduğu tür.",
+              "lvl": 1,
+              "skill": "muz-turler"
             },
             {
               "q": "Orkestrayla çalınan, çok eski ve köklü türe ne denir?",
-              "skill": "muz-turler",
               "options": [
                 "Klasik müzik",
                 "Rap",
@@ -2087,11 +2495,12 @@
                 "Reggae"
               ],
               "correct": 0,
-              "hint": "Beethoven ve Mozart bu türde eser yazdı."
+              "hint": "Mozart bu türde eser yazdı.",
+              "lvl": 1,
+              "skill": "muz-turler"
             },
             {
               "q": "Rock müzikte hangi çalgı çok öne çıkar?",
-              "skill": "muz-turler",
               "options": [
                 "Elektro gitar",
                 "Arp",
@@ -2099,95 +2508,12 @@
                 "Marimba"
               ],
               "correct": 0,
-              "hint": "Kuvvetli, elektrikli telli çalgı."
-            },
-            {
-              "q": "Bir ülkenin geleneklerini ve hikâyelerini anlatan müzik türü hangisidir?",
-              "skill": "muz-turler",
-              "options": [
-                "Halk müziği",
-                "Elektronik müzik",
-                "Rap",
-                "Opera"
-              ],
-              "correct": 0,
-              "hint": "Yörelere ve türkülere ait."
-            },
-            {
-              "q": "Hangi tür 'daha doğru' müziktir?",
-              "skill": "muz-turler",
-              "options": [
-                "Hiçbiri; hepsi farklıdır",
-                "Sadece klasik",
-                "Sadece pop",
-                "Sadece rock"
-              ],
-              "correct": 0,
-              "hint": "Her tür kendi güzelliğini taşır."
-            },
-            {
-              "q": "Pop müziğin en belirgin özelliği genellikle nedir?",
-              "skill": "muz-turler",
-              "options": [
-                "Akılda kalan, sevilen melodiler",
-                "Sadece sessizlik",
-                "Hiç sözü olmaması",
-                "Sadece davul olması"
-              ],
-              "correct": 0,
-              "hint": "Radyoda sık duyulan, herkesin mırıldandığı."
-            },
-            {
-              "q": "Caz müziğinin sevilen bir özelliği nedir?",
-              "skill": "muz-turler",
-              "options": [
-                "Doğaçlama (anında uydurma) yapılabilmesi",
-                "Hiç değişmemesi",
-                "Sadece tek nota olması",
-                "Hiç çalgı olmaması"
-              ],
-              "correct": 0,
-              "hint": "Müzisyenler o an akıllarına geleni çalar."
-            },
-            {
-              "q": "Operada sanatçılar ne yapar?",
-              "skill": "muz-turler",
-              "options": [
-                "Hikâyeyi şarkı söyleyerek anlatır",
-                "Sadece dans eder",
-                "Sadece resim yapar",
-                "Sessizce oturur"
-              ],
-              "correct": 0,
-              "hint": "Sahnede güçlü sesle söylenen bir tiyatro gibi."
-            },
-            {
-              "q": "Elektronik müzik en çok neyle üretilir?",
-              "skill": "muz-turler",
-              "options": [
-                "Bilgisayar ve elektronik cihazlar",
-                "Sadece davul",
-                "Sadece keman",
-                "Sadece nefes"
-              ],
-              "correct": 0,
-              "hint": "Sentezleyici ve bilgisayar sesleri."
-            },
-            {
-              "q": "Farklı müzik türlerini dinlemek neden iyidir?",
-              "skill": "muz-turler",
-              "options": [
-                "Neyi sevdiğini keşfedersin",
-                "Hiçbir işe yaramaz",
-                "Sadece zaman kaybıdır",
-                "Kulağa zarar verir"
-              ],
-              "correct": 0,
-              "hint": "Denemeden en sevdiğini bulamazsın."
+              "hint": "Kuvvetli, elektrikli telli çalgı.",
+              "lvl": 1,
+              "skill": "muz-turler"
             },
             {
               "q": "Türkü hangi müzik türüne örnektir?",
-              "skill": "muz-turler",
               "options": [
                 "Halk müziği",
                 "Elektronik",
@@ -2195,19 +2521,152 @@
                 "Caz"
               ],
               "correct": 0,
-              "hint": "Anadolu'nun geleneksel ezgileri."
+              "hint": "Anadolu'nun geleneksel ezgileri.",
+              "lvl": 1,
+              "skill": "muz-turler"
             },
             {
-              "q": "Marş nasıl bir müziktir?",
-              "skill": "muz-turler",
+              "q": "Elektronik müzik en çok neyle üretilir?",
               "options": [
-                "Düzenli, güçlü ritimli, birlikte yürünen müzik",
-                "Uyku getiren yavaş müzik",
-                "Hiç ritmi olmayan",
-                "Sadece fısıltı"
+                "Bilgisayar ve elektronik cihazlar",
+                "Sadece davul",
+                "Sadece keman",
+                "Sadece nefes"
               ],
               "correct": 0,
-              "hint": "Bando ile adımlara uyumlu çalınır."
+              "hint": "Sentezleyici sesleri.",
+              "lvl": 1,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Bir ülkenin geleneklerini ve hikâyelerini anlatan tür hangisidir?",
+              "options": [
+                "Halk müziği",
+                "Elektronik müzik",
+                "Rap",
+                "Opera"
+              ],
+              "correct": 0,
+              "hint": "Yörelere ve türkülere ait.",
+              "lvl": 2,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Sahnede sanatçıların hikâyeyi şarkı söyleyerek anlattığı tür hangisidir?",
+              "options": [
+                "Opera",
+                "Rap",
+                "Halk müziği",
+                "Elektronik"
+              ],
+              "correct": 0,
+              "hint": "Şarkıyla anlatılan bir tiyatro gibi.",
+              "lvl": 2,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Caz müziğinin sevilen bir özelliği nedir?",
+              "options": [
+                "Doğaçlama (o an uydurma) yapılabilmesi",
+                "Hiç değişmemesi",
+                "Sadece tek nota olması",
+                "Hiç çalgı olmaması"
+              ],
+              "correct": 0,
+              "hint": "Müzisyen aklına geleni anında çalar.",
+              "lvl": 2,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Bir bando eşliğinde adımlara uyumlu, güçlü ritimli müzik türü nedir?",
+              "options": [
+                "Marş",
+                "Ninni",
+                "Caz baladı",
+                "Fısıltı şarkısı"
+              ],
+              "correct": 0,
+              "hint": "Birlikte yürünen müzik.",
+              "lvl": 2,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Radyoda sık duyulan, herkesin kolayca mırıldandığı akılda kalıcı tür hangisidir?",
+              "options": [
+                "Pop",
+                "Opera",
+                "Klasik senfoni",
+                "Marş"
+              ],
+              "correct": 0,
+              "hint": "Sevilen, akılda kalan melodiler.",
+              "lvl": 2,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Bir çocuk 'Klasik müzik rock'tan daha doğru müziktir' dedi. Bu doğru mu, neden?",
+              "options": [
+                "Hayır; hiçbir tür diğerinden daha doğru değildir, sadece farklıdır",
+                "Evet, klasik en doğrusudur",
+                "Evet, rock en doğrusudur",
+                "Hepsi yanlıştır"
+              ],
+              "correct": 0,
+              "hint": "Türler doğru-yanlış değil, farklıdır.",
+              "lvl": 3,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Sakin bir kütüphanede çalışırken hangi tür daha uygun olur ve neden?",
+              "options": [
+                "Yumuşak klasik müzik; çünkü dikkat dağıtmaz",
+                "Yüksek sesli rock; enerji verdiği için",
+                "Gürültülü marş; uyandırdığı için",
+                "Hızlı dans müziği; hareket ettirdiği için"
+              ],
+              "correct": 0,
+              "hint": "Ortam sakinse müzik de sakin olmalı.",
+              "lvl": 3,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Aynı şarkı hem caz hem de marş olarak çalınırsa aralarındaki en büyük fark ne olur?",
+              "options": [
+                "Caz esnek ve doğaçlama, marş düzenli ve güçlü ritimli olur",
+                "İkisi tamamen aynı olur",
+                "Marşta hiç ritim olmaz",
+                "Cazda hiç çalgı olmaz"
+              ],
+              "correct": 0,
+              "hint": "Her tür şarkıya kendi karakterini katar.",
+              "lvl": 3,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Farklı müzik türlerini dinlemek bir çocuğa neden iyi gelir?",
+              "options": [
+                "Neyi sevdiğini keşfeder ve kulağı zenginleşir",
+                "Hiçbir işe yaramaz",
+                "Sadece zaman kaybıdır",
+                "Kulağa zarar verir"
+              ],
+              "correct": 0,
+              "hint": "Denemeden en sevdiğini bulamazsın.",
+              "lvl": 3,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Bir düğünde herkesi coşturup dans ettirmek istiyoruz. Hangi tür daha uygun olur ve neden?",
+              "options": [
+                "Hareketli pop ya da halk oyunu havası; hızlı ritmi dansa uygundur",
+                "Yavaş ninni; uyku getirdiği için",
+                "Sessiz fısıltı; kimse duymayacağı için",
+                "Ağır klasik; oturttuğu için"
+              ],
+              "correct": 0,
+              "hint": "Dans için hızlı ve enerjik tempo gerekir.",
+              "lvl": 3,
+              "skill": "muz-turler"
             }
           ]
         }
@@ -2293,20 +2752,20 @@
           },
           "bank": [
             {
-              "q": "Orkestra nedir?",
-              "skill": "muz-orkestra",
+              "q": "Birçok çalgının bir arada çaldığı büyük topluluğa ne denir?",
               "options": [
-                "Birçok çalgının birlikte çaldığı büyük topluluk",
-                "Tek bir davulcu",
+                "Orkestra",
+                "Tek davulcu",
                 "Bir şarkı adı",
-                "Bir çalgı türü"
+                "Bir çalgı"
               ],
               "correct": 0,
-              "hint": "Yaylılar, üflemeliler, vurmalılar bir arada."
+              "hint": "Yaylılar, üflemeliler, vurmalılar bir arada.",
+              "lvl": 1,
+              "skill": "muz-orkestra"
             },
             {
               "q": "Orkestrayı kim yönetir?",
-              "skill": "muz-orkestra",
               "options": [
                 "Şef (orkestra şefi)",
                 "Seyirci",
@@ -2314,23 +2773,25 @@
                 "Işıkçı"
               ],
               "correct": 0,
-              "hint": "Elinde değnekle herkesi birlikte çaldırır."
+              "hint": "Elinde değnekle herkesi çaldırır.",
+              "lvl": 1,
+              "skill": "muz-orkestra"
             },
             {
-              "q": "Koro nedir?",
-              "skill": "muz-koro",
+              "q": "Birçok kişinin birlikte şarkı söylediği topluluğa ne denir?",
               "options": [
-                "Birçok kişinin birlikte şarkı söylediği topluluk",
-                "Tek kişilik solo",
+                "Koro",
+                "Solo",
                 "Bir çalgı",
                 "Bir dans"
               ],
               "correct": 0,
-              "hint": "Sesler bir araya gelir."
+              "hint": "Sesler bir araya gelir.",
+              "lvl": 1,
+              "skill": "muz-koro"
             },
             {
               "q": "Orkestra şefinin elindeki değneğe ne denir?",
-              "skill": "muz-orkestra",
               "options": [
                 "Baget",
                 "Yay",
@@ -2338,11 +2799,12 @@
                 "Kalem"
               ],
               "correct": 0,
-              "hint": "Şef bununla tempoyu gösterir."
+              "hint": "Şef bununla tempoyu gösterir.",
+              "lvl": 1,
+              "skill": "muz-orkestra"
             },
             {
               "q": "Bir orkestrada en kalabalık aile hangisidir?",
-              "skill": "muz-orkestra",
               "options": [
                 "Yaylılar (keman ailesi)",
                 "Sadece davul",
@@ -2350,11 +2812,12 @@
                 "Hiçbiri"
               ],
               "correct": 0,
-              "hint": "Keman, viyola, çello, kontrbas..."
+              "hint": "Keman, viyola, çello, kontrbas.",
+              "lvl": 1,
+              "skill": "muz-orkestra"
             },
             {
-              "q": "Koroda farklı sesler birleşince ne oluşur?",
-              "skill": "muz-koro",
+              "q": "Koroda ince ve kalın sesler güzelce birleşince ne oluşur?",
               "options": [
                 "Uyum (armoni)",
                 "Gürültü",
@@ -2362,11 +2825,12 @@
                 "Kavga"
               ],
               "correct": 0,
-              "hint": "İnce ve kalın sesler güzelce kaynaşır."
+              "hint": "Sesler kaynaşır.",
+              "lvl": 2,
+              "skill": "muz-koro"
             },
             {
               "q": "Şefin en önemli görevi nedir?",
-              "skill": "muz-orkestra",
               "options": [
                 "Herkesi aynı tempoda birlikte tutmak",
                 "Bilet satmak",
@@ -2374,47 +2838,12 @@
                 "Işık yakmak"
               ],
               "correct": 0,
-              "hint": "Dağılmamaları için tempoyu o verir."
-            },
-            {
-              "q": "Koroda herkes aynı notayı mı söyler?",
-              "skill": "muz-koro",
-              "options": [
-                "Bazen farklı sesler söyleyip uyum oluşturur",
-                "Evet, hep aynı tek nota",
-                "Hayır, herkes bağırır",
-                "Sadece susarlar"
-              ],
-              "correct": 0,
-              "hint": "Farklı partiler birlikte armoni kurar."
-            },
-            {
-              "q": "Orkestra ve koro birlikte çalışırken en önemli şey nedir?",
-              "skill": "muz-orkestra",
-              "options": [
-                "Takım çalışması ve dinlemek",
-                "Herkesin bağırması",
-                "Kimsenin şefe bakmaması",
-                "Farklı tempoda çalmak"
-              ],
-              "correct": 0,
-              "hint": "Birbirini dinlemek uyumu sağlar."
-            },
-            {
-              "q": "Bir orkestrada üflemeli aileden hangisi bulunur?",
-              "skill": "muz-orkestra",
-              "options": [
-                "Flüt ve trompet",
-                "Sadece davul",
-                "Sadece keman",
-                "Sadece piyano"
-              ],
-              "correct": 0,
-              "hint": "Nefesle çalınan çalgılar."
+              "hint": "Dağılmamaları için tempoyu verir.",
+              "lvl": 2,
+              "skill": "muz-orkestra"
             },
             {
               "q": "Koroda çok kalın (pes) sesli grubun partisine ne denir?",
-              "skill": "muz-koro",
               "options": [
                 "Bas",
                 "Soprano",
@@ -2422,19 +2851,100 @@
                 "Baget"
               ],
               "correct": 0,
-              "hint": "En kalın ses grubu."
+              "hint": "En kalın ses grubu.",
+              "lvl": 2,
+              "skill": "muz-koro"
+            },
+            {
+              "q": "Bir orkestrada üflemeli aileden hangileri bulunur?",
+              "options": [
+                "Flüt ve trompet",
+                "Sadece davul",
+                "Sadece keman",
+                "Sadece piyano"
+              ],
+              "correct": 0,
+              "hint": "Nefesle çalınan çalgılar.",
+              "lvl": 2,
+              "skill": "muz-orkestra"
+            },
+            {
+              "q": "Koroda herkes aynı tek notayı mı söyler?",
+              "options": [
+                "Bazen farklı sesler söyleyip uyum oluşturur",
+                "Evet, hep aynı tek nota",
+                "Hayır, herkes ayrı ayrı bağırır",
+                "Sadece susarlar"
+              ],
+              "correct": 0,
+              "hint": "Farklı partiler armoni kurar.",
+              "lvl": 2,
+              "skill": "muz-koro"
+            },
+            {
+              "q": "Bir orkestrada şef olmasaydı en olası sorun ne olurdu ve neden?",
+              "options": [
+                "Çalgılar farklı tempoda gidip uyum bozulurdu, çünkü ortak yönlendirme kalmazdı",
+                "Daha güzel çalarlardı",
+                "Hiç ses çıkmazdı",
+                "Kendiliğinden sessizleşirdi"
+              ],
+              "correct": 0,
+              "hint": "Şef herkesi eş zamanlı tutar.",
+              "lvl": 3,
+              "skill": "muz-orkestra"
             },
             {
               "q": "Neden bir orkestra tek bir çalgıdan daha zengin ses çıkarır?",
-              "skill": "muz-orkestra",
               "options": [
-                "Birçok farklı çalgı birlikte çaldığı için",
-                "Daha yüksek sesli olduğu için",
+                "Birçok farklı çalgının renkleri bir araya geldiği için",
+                "Sadece daha yüksek sesli olduğu için",
                 "Daha pahalı olduğu için",
                 "Daha büyük sahnede olduğu için"
               ],
               "correct": 0,
-              "hint": "Farklı renkler bir araya gelir."
+              "hint": "Farklı tınılar birleşir.",
+              "lvl": 3,
+              "skill": "muz-orkestra"
+            },
+            {
+              "q": "Bir koroda herkes bağıra bağıra, birbirini dinlemeden söylerse sonuç ne olur?",
+              "options": [
+                "Uyum bozulur, güzel armoni yerine gürültü çıkar",
+                "Daha güzel olur",
+                "Daha sessiz olur",
+                "Hiç fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Koro dinlemeye ve dengeye dayanır.",
+              "lvl": 3,
+              "skill": "muz-koro"
+            },
+            {
+              "q": "Bir koroda hem çok tiz (soprano) hem çok pes (bas) sesler birlikte olunca ne kazanılır?",
+              "options": [
+                "Zengin, dolu ve katmanlı bir armoni",
+                "Sadece gürültü",
+                "Tek tip yavan bir ses",
+                "Sessizlik"
+              ],
+              "correct": 0,
+              "hint": "Farklı perdeler katman oluşturur.",
+              "lvl": 3,
+              "skill": "muz-koro"
+            },
+            {
+              "q": "Orkestra ve koro aynı sahnede çalışırken başarının sırrı nedir?",
+              "options": [
+                "Birbirini dinlemek ve şefi takip etmek",
+                "Herkesin bağırması",
+                "Kimsenin şefe bakmaması",
+                "Herkesin farklı tempoda çalması"
+              ],
+              "correct": 0,
+              "hint": "Takım çalışması ve dinlemek.",
+              "lvl": 3,
+              "skill": "muz-orkestra"
             }
           ]
         }
@@ -2521,7 +3031,6 @@
           "bank": [
             {
               "q": "Yeni bir müzik yaratmaya (yapmaya) ne denir?",
-              "skill": "muz-yaraticilik",
               "options": [
                 "Beste yapmak",
                 "Sadece dinlemek",
@@ -2529,23 +3038,12 @@
                 "Sahne süpürmek"
               ],
               "correct": 0,
-              "hint": "Kafandaki ezgiyi notaya dökmek."
-            },
-            {
-              "q": "Müzik yaparken 'yanlış' var mıdır?",
-              "skill": "muz-yaraticilik",
-              "options": [
-                "Yaratıcılıkta denemek özgürdür",
-                "Evet, tek bir doğru vardır",
-                "Her şey yanlıştır",
-                "Sadece öğretmen doğru yapar"
-              ],
-              "correct": 0,
-              "hint": "Keşfetmek ve denemek serbesttir."
+              "hint": "Kafandaki ezgiyi notaya dökmek.",
+              "lvl": 1,
+              "skill": "muz-yaraticilik"
             },
             {
               "q": "Evde ritim yapmak için hangisini kullanabilirsin?",
-              "skill": "muz-yaraticilik",
               "options": [
                 "Kaşık ve tencere",
                 "Sadece gerçek davul",
@@ -2553,23 +3051,12 @@
                 "Sadece bilgisayar"
               ],
               "correct": 0,
-              "hint": "Etrafındaki eşyalar da çalgı olabilir."
-            },
-            {
-              "q": "Bir müzisyenin o an aklına geleni çalmasına ne denir?",
-              "skill": "muz-yaraticilik",
-              "options": [
-                "Doğaçlama",
-                "Es",
-                "Porte",
-                "Oktav"
-              ],
-              "correct": 0,
-              "hint": "Cazda çok sevilen, anında uydurma."
+              "hint": "Etrafındaki eşyalar da çalgı olabilir.",
+              "lvl": 1,
+              "skill": "muz-yaraticilik"
             },
             {
               "q": "Kendi şarkını yazmaya nereden başlayabilirsin?",
-              "skill": "muz-yaraticilik",
               "options": [
                 "Bir mısra mırıldanarak",
                 "Sahne kurarak",
@@ -2577,11 +3064,25 @@
                 "Işık ayarlayarak"
               ],
               "correct": 0,
-              "hint": "Küçük bir ezgi parçasıyla başla."
+              "hint": "Küçük bir ezgi parçasıyla başla.",
+              "lvl": 1,
+              "skill": "muz-yaraticilik"
+            },
+            {
+              "q": "Bir müzisyenin o an aklına geleni çalmasına ne denir?",
+              "options": [
+                "Doğaçlama",
+                "Es",
+                "Porte",
+                "Oktav"
+              ],
+              "correct": 0,
+              "hint": "Cazda çok sevilen, anında uydurma.",
+              "lvl": 1,
+              "skill": "muz-yaraticilik"
             },
             {
               "q": "Bir şarkı yazarken müziğin yanında ne de üretilebilir?",
-              "skill": "muz-yaraticilik",
               "options": [
                 "Sözler",
                 "Trafik levhası",
@@ -2589,79 +3090,139 @@
                 "Harita"
               ],
               "correct": 0,
-              "hint": "Şarkının anlattığı kelimeler."
+              "hint": "Şarkının anlattığı kelimeler.",
+              "lvl": 1,
+              "skill": "muz-yaraticilik"
+            },
+            {
+              "q": "Müzik yaparken 'tek bir doğru yol' var mıdır?",
+              "options": [
+                "Hayır; yaratıcılıkta denemek özgürdür",
+                "Evet, tek bir doğru vardır",
+                "Her şey yanlıştır",
+                "Sadece öğretmen doğru yapar"
+              ],
+              "correct": 0,
+              "hint": "Keşfetmek serbesttir.",
+              "lvl": 2,
+              "skill": "muz-yaraticilik"
+            },
+            {
+              "q": "Bir 'ritim kalıbı' uydurmak ne demektir?",
+              "options": [
+                "Tekrar eden bir vuruş dizisi oluşturmak",
+                "Şarkı sözü ezberlemek",
+                "Sadece nota saymak",
+                "Susmak"
+              ],
+              "correct": 0,
+              "hint": "Kendi 'güm-tak-güm-tak' desenini yarat.",
+              "lvl": 2,
+              "skill": "muz-yaraticilik"
+            },
+            {
+              "q": "Neşeli bir şarkıyı hüzünlü hissettirmek için önce neyi değiştirmeyi denersin?",
+              "options": [
+                "Tempoyu yavaşlatıp melodiyi peslerde gezdirmeyi",
+                "Salonun rengini",
+                "Bileti",
+                "Işıkları"
+              ],
+              "correct": 0,
+              "hint": "Hız ve perde duyguyu taşır.",
+              "lvl": 2,
+              "skill": "muz-yaraticilik"
+            },
+            {
+              "q": "İki farklı şarkının parçalarını birleştirip yeni bir şey yapmak nasıl bir yaratıcılıktır?",
+              "options": [
+                "Miks/uyarlama; yeni bir şey üretmek",
+                "Kopya çekmek",
+                "Hata yapmak",
+                "İmkânsız bir şey"
+              ],
+              "correct": 0,
+              "hint": "Parçaları harmanlayıp yeni bir şey yaratırsın.",
+              "lvl": 2,
+              "skill": "muz-yaraticilik"
             },
             {
               "q": "Yaratıcılığını geliştirmek için en iyi yol nedir?",
-              "skill": "muz-yaraticilik",
               "options": [
                 "Bol bol denemek ve dinlemek",
                 "Hiç denememek",
                 "Sadece izlemek",
-                "Korkmak"
+                "Yanlış yaparım diye korkmak"
               ],
               "correct": 0,
-              "hint": "Deneyen keşfeder."
+              "hint": "Deneyen keşfeder.",
+              "lvl": 2,
+              "skill": "muz-yaraticilik"
             },
             {
-              "q": "Bir müziği farklı hissettirmek için ne değiştirebilirsin?",
-              "skill": "muz-yaraticilik",
+              "q": "Bir çocuk beste yaparken 'yanlış nota' çaldığını düşünüp durdu. En iyi yaklaşım hangisidir ve neden?",
               "options": [
-                "Tempoyu, ritmi ya da melodiyi",
-                "Sadece salonun rengini",
-                "Sadece bileti",
-                "Hiçbir şeyi"
+                "Denemeye devam etmeli; yaratıcılıkta hata yeni fikirlerin kapısıdır",
+                "Hemen bırakmalı",
+                "Bir daha asla denememeli",
+                "Sadece hazır şarkı çalmalı"
               ],
               "correct": 0,
-              "hint": "Hızı ya da ezgiyi değiştir, duygu değişir."
+              "hint": "Denemek keşfin parçasıdır.",
+              "lvl": 3,
+              "skill": "muz-yaraticilik"
             },
             {
-              "q": "İki farklı şarkının parçalarını birleştirmek nasıl bir yaratıcılıktır?",
-              "skill": "muz-yaraticilik",
+              "q": "Aynı ritim kalıbını alıp üstüne farklı bir melodi koyarsan ne elde edersin?",
               "options": [
-                "Yeni bir şey üretmek (miks/uyarlama)",
-                "Kopya çekmek",
-                "Hata yapmak",
-                "İmkânsız"
+                "Yepyeni bir parça; aynı iskelet, farklı ezgi",
+                "Tamamen aynı şarkı",
+                "Hiçbir şey",
+                "Sadece gürültü"
               ],
               "correct": 0,
-              "hint": "Parçaları harmanlayıp yeni bir şey yaratırsın."
+              "hint": "Aynı temel, farklı üst kat.",
+              "lvl": 3,
+              "skill": "muz-yaraticilik"
             },
             {
-              "q": "Müzik yapmak neden eğlencelidir?",
-              "skill": "muz-yaraticilik",
+              "q": "Öğrendiğin ritim, nota, perde ve çalgı bilgisini birleştirince ne yapabilir hale gelirsin?",
               "options": [
-                "Duygularını ve hayal gücünü sesle anlatırsın",
+                "Kendi müziğini yaratan biri olursun",
+                "Sadece dinleyici kalırsın",
+                "Sadece bir seyirci olursun",
+                "Sadece bir ışıkçı olursun"
+              ],
+              "correct": 0,
+              "hint": "Bilgi + yaratıcılık = üretim.",
+              "lvl": 3,
+              "skill": "muz-yaraticilik"
+            },
+            {
+              "q": "Bir müziği farklı hissettirmek için aynı anda hem tempoyu hem perdeyi değiştirdin. Sonuç ne olur?",
+              "options": [
+                "Duygu iyice değişir; iki özellik birlikte etkiyi güçlendirir",
+                "Hiçbir şey değişmez",
+                "Şarkı tamamen susar",
+                "Notalar kaybolur"
+              ],
+              "correct": 0,
+              "hint": "İki özelliği birden değiştirmek etkiyi büyütür.",
+              "lvl": 3,
+              "skill": "muz-yaraticilik"
+            },
+            {
+              "q": "Müzik yapmak neden hem eğlenceli hem de kişiseldir?",
+              "options": [
+                "Duygularını ve hayal gücünü kendi sesinle anlatırsın",
                 "Hiç eğlenceli değildir",
                 "Sadece zor olduğu için",
                 "Sadece yarışma olduğu için"
               ],
               "correct": 0,
-              "hint": "İçindeki hayal dünyasını sese çevirirsin."
-            },
-            {
-              "q": "Bir 'ritim kalıbı' uydurmak ne demektir?",
-              "skill": "muz-yaraticilik",
-              "options": [
-                "Tekrar eden bir vuruş dizisi oluşturmak",
-                "Şarkı sözü ezberlemek",
-                "Nota saymak",
-                "Susmak"
-              ],
-              "correct": 0,
-              "hint": "Kendi 'güm-tak-güm-tak' desenini yarat."
-            },
-            {
-              "q": "Öğrendiğin her şeyi (ritim, nota, çalgı) birleştirince ne olursun?",
-              "skill": "muz-yaraticilik",
-              "options": [
-                "Kendi müziğini yaratan bir Ses Büyücüsü",
-                "Sadece bir dinleyici",
-                "Bir seyirci",
-                "Bir ışıkçı"
-              ],
-              "correct": 0,
-              "hint": "Bilgiyle yaratıcılık birleşince sen üretirsin!"
+              "hint": "İçindeki hayal dünyasını sese çevirirsin.",
+              "lvl": 3,
+              "skill": "muz-yaraticilik"
             }
           ]
         }
@@ -2736,7 +3297,204 @@
               "chest": "legendary",
               "badge": "b-muz-final"
             }
-          }
+          },
+          "bank": [
+            {
+              "q": "Bir çocuk Do-Re-Mi diye saydı. Müzikte kaç temel nota vardır?",
+              "options": [
+                "7",
+                "5",
+                "10",
+                "3"
+              ],
+              "correct": 0,
+              "hint": "Do'dan Si'ye kadar say.",
+              "lvl": 1,
+              "skill": "muz-notalar"
+            },
+            {
+              "q": "Gitar tellerini parmakla titreştirerek çalınır. Hangi ailedendir?",
+              "options": [
+                "Telli",
+                "Üflemeli",
+                "Vurmalı",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Adı: tel.",
+              "lvl": 1,
+              "skill": "muz-telli"
+            },
+            {
+              "q": "Ayağınla şarkıya tempo tutarken hissettiğin düzenli tekrar nedir?",
+              "options": [
+                "Ritim",
+                "Renk",
+                "Koku",
+                "Işık"
+              ],
+              "correct": 0,
+              "hint": "Kalbin de bunu yapar.",
+              "lvl": 1,
+              "skill": "muz-ritim"
+            },
+            {
+              "q": "Küçük bir kuşun ince sesine ne denir?",
+              "options": [
+                "Tiz",
+                "Pes",
+                "Sessiz",
+                "Yavaş"
+              ],
+              "correct": 0,
+              "hint": "İnce ve yüksek.",
+              "lvl": 1,
+              "skill": "muz-perde"
+            },
+            {
+              "q": "Bir orkestrayı elindeki değnekle kim yönetir?",
+              "options": [
+                "Şef",
+                "Seyirci",
+                "Kapıcı",
+                "Işıkçı"
+              ],
+              "correct": 0,
+              "hint": "Herkesi birlikte çaldırır.",
+              "lvl": 1,
+              "skill": "muz-orkestra"
+            },
+            {
+              "q": "İki şarkıdan biri koşarken, biri uyurken dinlenecek. Koşu şarkısının temposu nasıl olmalı?",
+              "options": [
+                "Hızlı",
+                "Çok yavaş",
+                "Sessiz",
+                "Durgun"
+              ],
+              "correct": 0,
+              "hint": "Koşarken enerjik müzik.",
+              "lvl": 2,
+              "skill": "muz-tempo"
+            },
+            {
+              "q": "Piyano neden hem tuşlu hem telli sayılır?",
+              "options": [
+                "Tuşa basınca içindeki çekiç tele vurur",
+                "İçinde su vardır",
+                "Üflenerek çalınır",
+                "Pille çalışır"
+              ],
+              "correct": 0,
+              "hint": "Tuş-çekiç-tel.",
+              "lvl": 2,
+              "skill": "enstruman"
+            },
+            {
+              "q": "Bir çocuk fısıldadı ama sesi inceydi. Bu neyi gösterir?",
+              "options": [
+                "Perde (ince/kalın) ile gürlük (yumuşak/kuvvetli) farklı şeydir",
+                "Fısıltı hep pestir",
+                "Fısıltı hep tizdir",
+                "Fısıltı ses değildir"
+              ],
+              "correct": 0,
+              "hint": "İki ayrı özellik.",
+              "lvl": 2,
+              "skill": "muz-gurluk"
+            },
+            {
+              "q": "Bir şarkının tekrar tekrar gelen, en akılda kalan bölümü nedir?",
+              "options": [
+                "Nakarat",
+                "Porte",
+                "Oktav",
+                "Tempo"
+              ],
+              "correct": 0,
+              "hint": "Herkes birlikte söyler.",
+              "lvl": 2,
+              "skill": "muz-sarki"
+            },
+            {
+              "q": "Bir üflemeli çalgı çalmak için en çok neye ihtiyaç vardır?",
+              "options": [
+                "İyi bir nefes kontrolü",
+                "Uzun tırnak",
+                "Ağır çubuk",
+                "Elektrik"
+              ],
+              "correct": 0,
+              "hint": "Havayı düzenli üflemelisin.",
+              "lvl": 2,
+              "skill": "muz-uflemeli"
+            },
+            {
+              "q": "Bir orkestrada herkes birbirini dinlemeden farklı tempoda çalarsa sonuç ne olur ve neden?",
+              "options": [
+                "Uyum ve ritim bozulur, karmaşa olur çünkü ortak vuruş kaybolur",
+                "Daha güzel olur",
+                "Daha sessiz olur",
+                "Hiç fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Orkestra ortak tempoya ihtiyaç duyar.",
+              "lvl": 3,
+              "skill": "muz-orkestra"
+            },
+            {
+              "q": "Neşeli bir melodiyi çok yavaşlatıp pes seslerle çalarsak dinleyicide ne olur?",
+              "options": [
+                "Daha hüzünlü hisseder; tempo ve perde duyguyu değiştirir",
+                "Aynı neşeyi hisseder",
+                "Hiçbir şey hissetmez",
+                "Daha da neşelenir"
+              ],
+              "correct": 0,
+              "hint": "Sunum duyguyu değiştirir.",
+              "lvl": 3,
+              "skill": "muz-melodi"
+            },
+            {
+              "q": "Bir grupta hiç vurmalı çalgı olmasaydı en büyük zorluk ne olurdu?",
+              "options": [
+                "Ortak ritmi tutmak zorlaşırdı",
+                "Melodi tamamen kaybolurdu",
+                "Hiç ses çıkmazdı",
+                "Şarkı kendiliğinden hızlanırdı"
+              ],
+              "correct": 0,
+              "hint": "Ritmi çoğunlukla vurmalılar tutar.",
+              "lvl": 3,
+              "skill": "muz-vurmali"
+            },
+            {
+              "q": "Bir çocuk 'Klasik müzik rock'tan daha doğrudur' dedi. Doğru mu, neden?",
+              "options": [
+                "Hayır; hiçbir tür daha doğru değildir, sadece farklıdır",
+                "Evet, klasik en doğrusudur",
+                "Evet, rock en doğrusudur",
+                "Hepsi yanlıştır"
+              ],
+              "correct": 0,
+              "hint": "Türler farklıdır, doğru-yanlış değil.",
+              "lvl": 3,
+              "skill": "muz-turler"
+            },
+            {
+              "q": "Beste yaparken yanlış nota çaldığını düşünen bir çocuk ne yapmalı ve neden?",
+              "options": [
+                "Denemeye devam etmeli; yaratıcılıkta hata yeni fikirlerin kapısıdır",
+                "Hemen bırakmalı",
+                "Bir daha asla denememeli",
+                "Sadece hazır şarkı çalmalı"
+              ],
+              "correct": 0,
+              "hint": "Denemek keşfin parçasıdır.",
+              "lvl": 3,
+              "skill": "muz-yaraticilik"
+            }
+          ]
         }
       ]
     }

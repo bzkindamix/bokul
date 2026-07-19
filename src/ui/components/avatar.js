@@ -22,7 +22,7 @@
     ['stripes', 'Çizgili'], ['vneck', 'V-Yaka'],
     ['kazak', 'Kazak'], ['tulum', 'Tulum'], ['kapmont', 'Mont'], // v0.29 yeni kıyafetler
   ];
-  const SHAPES_KIZ = [['elbise', 'Elbise'], ['bluz', 'Bluz'], ['kolsuz', 'Askılı']];
+  const SHAPES_KIZ = [['elbise', 'Elbise'], ['bluz', 'Bluz'], ['kolsuz', 'Askılı'], ['crop', 'Crop Üst']];
   const SHAPES_ERK = [['forma', 'Forma'], ['gomlek', 'Gömlek'], ['yelek', 'Yelek']];
 
   /* ---------- ALT GİYİM (pantolon/etek/şort…) — v0.65 ----------
@@ -44,6 +44,7 @@
     ['esofman',   'Eşofman',    'both'],
     ['etek',      'Etek',       'kiz'],
     ['etek_uzun', 'Uzun Etek',  'kiz'],
+    ['bolpantolon', 'Bol Pantolon', 'both'],
   ];
   const FREE_BOTTOMS = new Set(['pantolon-lacivert', 'etek-pembe', 'sort-kot']);
   function buildBottoms() {
@@ -59,13 +60,17 @@
     return out;
   }
   const BOTTOMS = buildBottoms();
+  // Kamuflaj pantolon (desenli — kendi renk seti; renk döngüsüne girmez)
+  BOTTOMS.push({ id: 'kamuflaj-alt', name: 'Kamuflaj Pantolon', shape: 'kamuflaj', c1: '#4B5320', c2: '#79865C', gender: 'both', cosmeticId: 'bot-kamuflaj', rarity: 'rare' });
   const BOTTOM_BY_ID = {};
   BOTTOMS.forEach(b => { BOTTOM_BY_ID[b.id] = b; });
   const DEFAULT_BOTTOM = 'pantolon-lacivert';
   // Alt giyimi gizleyen tek-parça üstler
   const LONG_TOP = /elbise|balo|tulum|cubbe/;
   // Kolsuz üstler (tam vücutta kollar ten rengi)
-  const SLEEVELESS = /atlet|kolsuz|balo/;
+  const SLEEVELESS = /atlet|kolsuz|balo|basketforma|crop/;
+  // Kısa üstler (göbek görünür — crop): tam vücutta kısa gövde
+  const SHORT_TOP = /crop/;
 
   // Başlangıçta yalnızca birkaç kıyafet ÜCRETSİZ; gerisi altınla alınır.
   const FREE_OUTFITS = new Set(['tee-mavi', 'elbise-pembe', 'forma-mavi']);
@@ -93,7 +98,21 @@
       { id: 'pelerin',  name: 'Kahraman Pelerini', shape: 'pelerin',  c1: '#E8443B', c2: '#FFD52E', gender: 'both',  rarity: 'legendary', cosmeticId: 'of-pelerin' },
       { id: 'balo',     name: 'Balo Elbisesi',    shape: 'balo',     c1: '#FF7FC4', c2: '#FFD52E', gender: 'kiz',   rarity: 'epic',      cosmeticId: 'of-balo' },
       { id: 'takim',    name: 'Şık Takım',        shape: 'takim',    c1: '#231A48', c2: '#3DF2D2', gender: 'erkek', rarity: 'rare',      cosmeticId: 'of-takim' },
-      { id: 'ninja',    name: 'Ninja Kıyafeti',   shape: 'ninja',    c1: '#2A2740', c2: '#FF4FD8', gender: 'both',  rarity: 'epic',      cosmeticId: 'of-ninja' }
+      { id: 'ninja',    name: 'Ninja Kıyafeti',   shape: 'ninja',    c1: '#2A2740', c2: '#FF4FD8', gender: 'both',  rarity: 'epic',      cosmeticId: 'of-ninja' },
+      // Futbol formaları — Süper Lig takım RENKLERİ (takım adı/logo YOK, telif güvenli)
+      { id: 'forma-sk', name: 'Sarı-Kırmızı Forma',    shape: 'futbolforma', c1: '#E30A17', c2: '#FDB913', gender: 'both', rarity: 'common', cosmeticId: 'of-forma-sk' },
+      { id: 'forma-sl', name: 'Sarı-Lacivert Forma',   shape: 'futbolforma', c1: '#1B2F5E', c2: '#FFED00', gender: 'both', rarity: 'common', cosmeticId: 'of-forma-sl' },
+      { id: 'forma-sb', name: 'Siyah-Beyaz Forma',     shape: 'futbolforma', c1: '#151515', c2: '#FFFFFF', gender: 'both', rarity: 'common', cosmeticId: 'of-forma-sb' },
+      { id: 'forma-bm', name: 'Bordo-Mavi Forma',      shape: 'futbolforma', c1: '#6D1F2E', c2: '#2A6CC9', gender: 'both', rarity: 'common', cosmeticId: 'of-forma-bm' },
+      { id: 'forma-tl', name: 'Turuncu-Lacivert Forma', shape: 'futbolforma', c1: '#F47920', c2: '#1B2F5E', gender: 'both', rarity: 'common', cosmeticId: 'of-forma-tl' },
+      { id: 'forma-km', name: 'Kırmızı-Beyaz Forma',   shape: 'futbolforma', c1: '#D2122E', c2: '#FFFFFF', gender: 'both', rarity: 'common', cosmeticId: 'of-forma-km' },
+      // Basketbol formaları (kolsuz)
+      { id: 'basket-sk', name: 'Sarı-Kırmızı Basket',  shape: 'basketforma', c1: '#E30A17', c2: '#FDB913', gender: 'both', rarity: 'common', cosmeticId: 'of-basket-sk' },
+      { id: 'basket-sl', name: 'Sarı-Lacivert Basket', shape: 'basketforma', c1: '#1B2F5E', c2: '#FFED00', gender: 'both', rarity: 'common', cosmeticId: 'of-basket-sl' },
+      { id: 'basket-sb', name: 'Siyah-Beyaz Basket',   shape: 'basketforma', c1: '#151515', c2: '#FFFFFF', gender: 'both', rarity: 'common', cosmeticId: 'of-basket-sb' },
+      { id: 'basket-bm', name: 'Bordo-Mavi Basket',    shape: 'basketforma', c1: '#6D1F2E', c2: '#2A6CC9', gender: 'both', rarity: 'common', cosmeticId: 'of-basket-bm' },
+      // Kamuflaj üst
+      { id: 'kamuflaj-ust', name: 'Kamuflaj Tişört', shape: 'kamuflaj', c1: '#4B5320', c2: '#79865C', gender: 'both', rarity: 'rare', cosmeticId: 'of-kamuflaj-ust' }
     );
     return out;
   }
@@ -233,6 +252,16 @@
       case 'tee':      return collar(c2);
       case 'atlet':    return '<path d="M48 96 L52 116 M72 96 L68 116" stroke="' + c2 + '" stroke-width="4.5" stroke-linecap="round"/>' + // ince askılar
                               '<path d="M50 97 Q60 107 70 97" fill="none" stroke="' + c2 + '" stroke-width="3" stroke-linecap="round"/>'; // yaka oyuğu
+      case 'futbolforma': return collar(c2) + '<path d="M46 98 V120 M55 97 V120 M64 97 V120 M73 98 V120" stroke="' + c2 + '" stroke-width="4" opacity=".85"/>' + // dikey çizgiler (forma)
+                              '<text x="60" y="117" text-anchor="middle" font-size="11" font-weight="bold" fill="' + c2 + '" font-family="monospace">10</text>';
+      case 'basketforma': return '<path d="M49 96 L53 115 M71 96 L67 115" stroke="' + c2 + '" stroke-width="4" stroke-linecap="round"/>' + // kolsuz askı
+                              '<path d="M51 97 Q60 106 69 97" fill="none" stroke="' + c2 + '" stroke-width="3"/>' +
+                              '<text x="60" y="116" text-anchor="middle" font-size="12" font-weight="bold" fill="' + c2 + '" font-family="monospace">23</text>';
+      case 'crop':     return '<path d="M50 96 Q60 102 70 96" fill="none" stroke="' + c2 + '" stroke-width="3" stroke-linecap="round"/>' + // yaka
+                              '<path d="M40 110 Q60 114 80 110" stroke="' + c2 + '" stroke-width="3.5" fill="none"/>'; // kısa etek (crop hem)
+      case 'kamuflaj': return '<ellipse cx="42" cy="104" rx="9" ry="6" fill="' + c2 + '"/><ellipse cx="67" cy="110" rx="10" ry="7" fill="' + c2 + '"/>' +
+                              '<ellipse cx="78" cy="101" rx="7" ry="5" fill="#3a4718"/><ellipse cx="51" cy="114" rx="6" ry="4" fill="#3a4718"/>' +
+                              '<ellipse cx="60" cy="102" rx="6" ry="4.5" fill="#9caf88"/>' + collar('#2f3813');
       case 'stripes':  return collar(c2) + '<path d="M20 106 H100 M18 112 H102" stroke="' + c2 + '" stroke-width="4"/>';
       case 'vneck':    return '<path d="M50 97 L60 108 L70 97" fill="none" stroke="' + c2 + '" stroke-width="3.5" stroke-linecap="round"/>';
       case 'hoodie':   return '<path d="M44 97 Q60 90 76 97 L74 104 Q60 99 46 104 Z" fill="' + c2 + '"/>' +
@@ -484,12 +513,26 @@
       : '<rect x="48" y="150" width="9.5" height="50" rx="4.75" fill="' + skin + '"/>' +
         '<rect x="62.5" y="150" width="9.5" height="50" rx="4.75" fill="' + skin + '"/>' +
         bottomFull(a.bottom);
-    // Üst gövde
-    const torso = longTop
-      ? '<path d="M40 94 Q60 86 80 94 L92 200 Q60 210 28 200 Z" fill="' + shirt + '"/>' +
-        '<path d="M40 94 Q60 88 80 94 L82 118 Q60 124 38 118 Z" fill="' + accent + '" opacity=".55"/>'
-      : '<path d="M40 94 Q60 86 80 94 L83 150 Q60 156 37 150 Z" fill="' + shirt + '"/>' +
-        '<path d="M49 95 Q60 92 71 95 L70 100 Q60 103 50 100 Z" fill="' + accent + '"/>'; // yaka
+    // Üst gövde (biçime göre)
+    const shp = o.shape || '';
+    let torso;
+    if (longTop) {
+      torso = '<path d="M40 94 Q60 86 80 94 L92 200 Q60 210 28 200 Z" fill="' + shirt + '"/>' +
+              '<path d="M40 94 Q60 88 80 94 L82 118 Q60 124 38 118 Z" fill="' + accent + '" opacity=".55"/>';
+    } else if (SHORT_TOP.test(shp)) { // crop — göbek görünür
+      torso = '<path d="M44 113 L76 113 L74 152 Q60 156 46 152 Z" fill="' + skin + '"/>' + // göbek (ten)
+              '<path d="M40 94 Q60 86 80 94 L83 121 Q60 127 37 121 Z" fill="' + shirt + '"/>' +
+              '<path d="M49 95 Q60 92 71 95 L70 100 Q60 103 50 100 Z" fill="' + accent + '"/>';
+    } else {
+      torso = '<path d="M40 94 Q60 86 80 94 L83 150 Q60 156 37 150 Z" fill="' + shirt + '"/>';
+      if (shp === 'futbolforma') torso += '<path d="M49 96 V150 M59 95 V152 M69 95 V150" stroke="' + accent + '" stroke-width="4" opacity=".82"/>' +
+        '<text x="60" y="142" text-anchor="middle" font-size="15" font-weight="bold" fill="' + accent + '" font-family="monospace">10</text>';
+      else if (shp === 'basketforma') torso += '<path d="M46 100 Q60 108 74 100" fill="none" stroke="' + accent + '" stroke-width="3"/>' +
+        '<text x="60" y="140" text-anchor="middle" font-size="18" font-weight="bold" fill="' + accent + '" font-family="monospace">23</text>';
+      else if (shp === 'kamuflaj') { const bl = (x, y, r, col) => '<ellipse cx="' + x + '" cy="' + y + '" rx="' + r + '" ry="' + (r * 0.7).toFixed(1) + '" fill="' + col + '"/>';
+        torso += bl(49, 108, 7, accent) + bl(70, 119, 8, accent) + bl(54, 133, 6, '#9caf88') + bl(72, 103, 5, '#9caf88') + bl(66, 141, 7, '#3a4718') + bl(50, 124, 5, '#3a4718'); }
+      else torso += '<path d="M49 95 Q60 92 71 95 L70 100 Q60 103 50 100 Z" fill="' + accent + '"/>'; // normal yaka
+    }
     const armC = sleeveless ? skin : shirt; // kolsuz üstlerde kollar ten rengi
     return '<svg viewBox="0 0 120 214" xmlns="http://www.w3.org/2000/svg">' + defs +
       '<rect x="0" y="0" width="120" height="214" rx="16" fill="url(#fb' + id + ')"/>' +
@@ -526,6 +569,15 @@
                                '<path d="M44 149 Q60 145 76 149 L74 157 Q60 161 46 157 Z" fill="' + c2 + '" opacity=".5"/>';
       case 'etek_uzun': return '<path d="M44 149 Q60 145 76 149 L90 199 Q60 207 30 199 Z" fill="' + c + '"/>' +
                                '<path d="M44 149 Q60 145 76 149 L74 157 Q60 161 46 157 Z" fill="' + c2 + '" opacity=".5"/>';
+      case 'bolpantolon': // bol/geniş paça
+        return waist + '<path d="M46 150 H74 L78 200 H62 L60 168 L58 200 H42 Z" fill="' + c + '"/>' +
+               '<path d="M60 155 V196" stroke="' + c2 + '" stroke-width="1.5" opacity=".4"/>';
+      case 'kamuflaj': { // desenli pantolon
+        const base = waist.replace(c2, '#2f3813') + legs(50);
+        const blob = (x, y, r, col) => '<ellipse cx="' + x + '" cy="' + y + '" rx="' + r + '" ry="' + (r * 0.7).toFixed(1) + '" fill="' + col + '"/>';
+        return base + blob(52, 162, 5, c2) + blob(68, 172, 6, c2) + blob(50, 185, 4, '#9caf88') +
+               blob(70, 158, 4, '#9caf88') + blob(66, 190, 5, '#3a4718') + blob(53, 175, 3.5, '#3a4718');
+      }
       default:          return waist + legs(50); // pantolon
     }
   }

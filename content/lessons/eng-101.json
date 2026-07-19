@@ -247,196 +247,199 @@
           },
           "bank": [
             {
-              "q": "'Hello' ne demek?",
-              "skill": "eng-selam",
+              "q": "Ayşe sabah okulda öğretmenini görünce ne der?",
               "options": [
-                "Merhaba",
-                "Hoşça kal",
-                "Teşekkürler",
-                "Evet"
+                "Hello!",
+                "Goodbye!",
+                "Thank you!",
+                "No!"
               ],
               "correct": 0,
-              "hint": "Birine ilk gördüğünde söylersin."
+              "hint": "Biriyle karşılaşınca söylenen selam.",
+              "lvl": 1,
+              "skill": "eng-selam"
             },
             {
-              "q": "'Thank you' ne demek?",
-              "skill": "eng-selam",
+              "q": "Deniz oyuncağını ödünç veren arkadaşına 'Thank you' dedi. Ne yapmış oldu?",
               "options": [
-                "Teşekkürler",
-                "Lütfen",
-                "Özür dilerim",
-                "Merhaba"
+                "Teşekkür etti",
+                "Vedalaştı",
+                "Kızdı",
+                "Soru sordu"
               ],
               "correct": 0,
-              "hint": "Biri sana yardım edince söylersin."
+              "hint": "'Thank you' minnet bildirir.",
+              "lvl": 1,
+              "skill": "eng-selam"
             },
             {
-              "q": "'Goodbye' ne demek?",
-              "skill": "eng-selam",
+              "q": "Annen 'Do you want an apple?' diye sordu, sen de istiyorsun. Hangi kelimeyle cevap verirsin?",
               "options": [
-                "Hoşça kal",
-                "Merhaba",
-                "Günaydın",
-                "Evet"
+                "Yes",
+                "No",
+                "Bye",
+                "Stop"
               ],
               "correct": 0,
-              "hint": "Ayrılırken söylenir."
+              "hint": "Kabul etmek = evet.",
+              "lvl": 1,
+              "skill": "eng-kelime"
             },
             {
-              "q": "'Cat' hangi hayvan?",
-              "skill": "eng-kelime",
+              "q": "Can parktan ayrılırken arkadaşına el salladı. Hangi kelime bu ana uygun?",
+              "options": [
+                "Goodbye",
+                "Hello",
+                "Please",
+                "Yes"
+              ],
+              "correct": 0,
+              "hint": "Ayrılırken söylenir.",
+              "lvl": 1,
+              "skill": "eng-selam"
+            },
+            {
+              "q": "Bir çocuk 'A cat says miyav' dedi. 'Cat' hangi hayvan?",
               "options": [
                 "Kedi",
                 "Köpek",
                 "Kuş",
-                "Balık"
+                "At"
               ],
               "correct": 0,
-              "hint": "Miyav!"
+              "hint": "Miyavlayan ev hayvanı.",
+              "lvl": 1,
+              "skill": "eng-kelime"
             },
             {
-              "q": "'Dog' hangi hayvan?",
-              "skill": "eng-kelime",
-              "options": [
-                "Köpek",
-                "Kedi",
-                "At",
-                "Fare"
-              ],
-              "correct": 0,
-              "hint": "Hav hav!"
-            },
-            {
-              "q": "'Red' hangi renk?",
-              "skill": "eng-kelime",
-              "options": [
-                "Kırmızı",
-                "Mavi",
-                "Yeşil",
-                "Sarı"
-              ],
-              "correct": 0,
-              "hint": "Elmanın ve domatesin rengi."
-            },
-            {
-              "q": "'Blue' hangi renk?",
-              "skill": "eng-kelime",
-              "options": [
-                "Mavi",
-                "Kırmızı",
-                "Siyah",
-                "Beyaz"
-              ],
-              "correct": 0,
-              "hint": "Gökyüzünün ve denizin rengi."
-            },
-            {
-              "q": "'One' hangi sayı?",
-              "skill": "eng-sayi",
-              "options": [
-                "1",
-                "2",
-                "3",
-                "10"
-              ],
-              "correct": 0,
-              "hint": "En küçük sayma sayısı."
-            },
-            {
-              "q": "'Three' hangi sayı?",
-              "skill": "eng-sayi",
-              "options": [
-                "3",
-                "2",
-                "5",
-                "8"
-              ],
-              "correct": 0,
-              "hint": "İki'den bir fazla."
-            },
-            {
-              "q": "'Please' ne demek?",
-              "skill": "eng-selam",
-              "options": [
-                "Lütfen",
-                "Teşekkürler",
-                "Hayır",
-                "Dur"
-              ],
-              "correct": 0,
-              "hint": "Kibarca bir şey isterken eklersin."
-            },
-            {
-              "q": "'Yes' ne demek?",
-              "skill": "eng-kelime",
-              "options": [
-                "Evet",
-                "Hayır",
-                "Belki",
-                "Dur"
-              ],
-              "correct": 0,
-              "hint": "Kabul ederken."
-            },
-            {
-              "q": "'Water' ne demek?",
-              "skill": "eng-kelime",
+              "q": "Elif markette bir şey isterken 'Water, please' dedi. Ne istiyor?",
               "options": [
                 "Su",
                 "Ekmek",
-                "Süt",
-                "Çay"
+                "Şeker",
+                "Süt"
               ],
               "correct": 0,
-              "hint": "Susayınca içtiğin şey."
+              "hint": "'water' susayınca içilir.",
+              "lvl": 2,
+              "skill": "eng-kelime"
             },
             {
-              "q": "'Two' hangi sayı?",
-              "skill": "eng-sayi",
-              "options": [
-                "2",
-                "5",
-                "8",
-                "10"
-              ],
-              "correct": 0,
-              "hint": "'One, two, three...'"
-            },
-            {
-              "q": "'Green' hangi renk?",
-              "skill": "eng-kelime",
-              "options": [
-                "Yeşil",
-                "Sarı",
-                "Mor",
-                "Siyah"
-              ],
-              "correct": 0,
-              "hint": "Yaprakların rengi."
-            },
-            {
-              "q": "'Sun' ne demek?",
-              "skill": "eng-kelime",
-              "options": [
-                "Güneş",
-                "Ay",
-                "Bulut",
-                "Yıldız"
-              ],
-              "correct": 0,
-              "hint": "Gökyüzünü aydınlatır."
-            },
-            {
-              "q": "'Good morning' ne zaman söylenir?",
-              "skill": "eng-selam",
+              "q": "Öğretmen sınıfa girince 'Good morning!' dedi. Bu selam günün hangi vaktine uygun?",
               "options": [
                 "Sabah",
-                "Gece",
-                "Öğlen",
-                "Akşam"
+                "Gece yarısı",
+                "Akşam yemeği",
+                "Gece"
               ],
               "correct": 0,
-              "hint": "'morning' = sabah."
+              "hint": "'morning' = sabah.",
+              "lvl": 2,
+              "skill": "eng-selam"
+            },
+            {
+              "q": "Bir arkadaşın sana çikolata ikram etti ama canın istemiyor. Kibarca hangisini dersin?",
+              "options": [
+                "No, thank you",
+                "Yes, please",
+                "Hello",
+                "Goodbye"
+              ],
+              "correct": 0,
+              "hint": "Reddederken de kibar olunur.",
+              "lvl": 2,
+              "skill": "eng-selam"
+            },
+            {
+              "q": "Resimde deniz ve gökyüzü mavi. Bu rengin İngilizcesi 'blue'. Aşağıdakilerden hangisi de genelde 'blue'?",
+              "options": [
+                "Deniz",
+                "Çimen",
+                "Kar",
+                "Kömür"
+              ],
+              "correct": 0,
+              "hint": "'blue' = mavi.",
+              "lvl": 2,
+              "skill": "eng-kelime"
+            },
+            {
+              "q": "Ali birinden yardım isterken cümlesinin sonuna 'please' ekledi. Bunu neden yaptı?",
+              "options": [
+                "Kibar olmak için",
+                "Kızmak için",
+                "Şaka yapmak için",
+                "Vedalaşmak için"
+              ],
+              "correct": 0,
+              "hint": "'please' = lütfen.",
+              "lvl": 2,
+              "skill": "eng-selam"
+            },
+            {
+              "q": "Yeni bir arkadaşın 'Hello, I am Sam' dedi ve elini uzattı. Sam ne yapıyor?",
+              "options": [
+                "Selam verip kendini tanıtıyor",
+                "Vedalaşıyor",
+                "Teşekkür ediyor",
+                "Yardım istiyor"
+              ],
+              "correct": 0,
+              "hint": "'Hello' + 'I am ...' bir tanışma cümlesi.",
+              "lvl": 3,
+              "skill": "eng-selam"
+            },
+            {
+              "q": "Bir turist sana 'Thank you very much' dedi. Sence az önce ne olmuş olabilir?",
+              "options": [
+                "Ona yardım etmişsindir",
+                "Ona kızmışsındır",
+                "Onu görmemişsindir",
+                "Ondan kaçmışsındır"
+              ],
+              "correct": 0,
+              "hint": "Çok teşekkür, büyük bir minnet gösterir.",
+              "lvl": 3,
+              "skill": "eng-selam"
+            },
+            {
+              "q": "Karşılaşınca 'Hello', ayrılırken 'Goodbye' denir. Buna göre okuldan eve giderken arkadaşına hangisini dersin?",
+              "options": [
+                "Goodbye",
+                "Hello",
+                "Yes",
+                "Please"
+              ],
+              "correct": 0,
+              "hint": "Bu bir ayrılık anı.",
+              "lvl": 3,
+              "skill": "eng-selam"
+            },
+            {
+              "q": "'Yes' evet, 'No' hayır demek. Annen 'Are you tired?' (Yorgun musun?) diye sordu, hiç yorgun değilsin. Ne dersin?",
+              "options": [
+                "No",
+                "Yes",
+                "Please",
+                "Hello"
+              ],
+              "correct": 0,
+              "hint": "Yorgun değilsen olumsuz cevap verilir.",
+              "lvl": 3,
+              "skill": "eng-kelime"
+            },
+            {
+              "q": "Bir çocuk 'red' rengine örnek arıyor. Hangisi en uygun?",
+              "options": [
+                "Olgun domates",
+                "Yeşil yaprak",
+                "Mavi gökyüzü",
+                "Sarı limon"
+              ],
+              "correct": 0,
+              "hint": "'red' = kırmızı.",
+              "lvl": 3,
+              "skill": "eng-kelime"
             }
           ]
         },
@@ -516,196 +519,199 @@
           },
           "bank": [
             {
-              "q": "'I am happy' ne demek?",
-              "skill": "eng-cumle",
+              "q": "Bir çocuk aynaya bakıp gülümseyerek 'I am happy' dedi. Nasıl hissediyor?",
               "options": [
-                "Ben mutluyum",
-                "Ben üzgünüm",
-                "Sen mutlusun",
-                "O mutlu"
+                "Mutlu",
+                "Üzgün",
+                "Kızgın",
+                "Yorgun"
               ],
               "correct": 0,
-              "hint": "'I am' = Ben ...-ım, 'happy' = mutlu."
+              "hint": "'happy' = mutlu.",
+              "lvl": 1,
+              "skill": "eng-cumle"
             },
             {
-              "q": "'This is a book' ne demek?",
-              "skill": "eng-cumle",
+              "q": "Öğretmen bir kitabı gösterip 'This is a book' dedi. Neyi gösteriyor?",
               "options": [
-                "Bu bir kitap",
-                "Bu bir kalem",
-                "Şu bir masa",
-                "O bir defter"
+                "Kitap",
+                "Kalem",
+                "Masa",
+                "Çanta"
               ],
               "correct": 0,
-              "hint": "'book' = kitap."
+              "hint": "'book' = kitap.",
+              "lvl": 1,
+              "skill": "eng-cumle"
             },
             {
-              "q": "'Good morning' ne demek?",
-              "skill": "eng-selam",
+              "q": "Sabah kalkınca ailene 'Good morning' dedin. Ne yaptın?",
               "options": [
-                "Günaydın",
+                "Günaydın dedin",
+                "İyi geceler dedin",
+                "Vedalaştın",
+                "Teşekkür ettin"
+              ],
+              "correct": 0,
+              "hint": "'morning' = sabah.",
+              "lvl": 1,
+              "skill": "eng-selam"
+            },
+            {
+              "q": "Karnı acıkan bir çocuk 'I am hungry' dedi. Ne yapmak ister?",
+              "options": [
+                "Yemek yemek",
+                "Uyumak",
+                "Koşmak",
+                "Yıkanmak"
+              ],
+              "correct": 0,
+              "hint": "'hungry' = aç.",
+              "lvl": 1,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Yatmadan önce annen sana 'Good night' dedi. Ne demek istedi?",
+              "options": [
                 "İyi geceler",
-                "İyi akşamlar",
-                "Hoşça kal"
-              ],
-              "correct": 0,
-              "hint": "Sabah söylenir. 'morning' = sabah."
-            },
-            {
-              "q": "'Mother' ne demek?",
-              "skill": "eng-kelime",
-              "options": [
-                "Anne",
-                "Baba",
-                "Kardeş",
-                "Dede"
-              ],
-              "correct": 0,
-              "hint": "Aileden, seni doğuran."
-            },
-            {
-              "q": "'Father' ne demek?",
-              "skill": "eng-kelime",
-              "options": [
-                "Baba",
-                "Anne",
-                "Abla",
-                "Amca"
-              ],
-              "correct": 0,
-              "hint": "Bu oyunun kahramanı: Baba Komutan!"
-            },
-            {
-              "q": "'Apple' ne demek?",
-              "skill": "eng-kelime",
-              "options": [
-                "Elma",
-                "Armut",
-                "Muz",
-                "Üzüm"
-              ],
-              "correct": 0,
-              "hint": "Kırmızı veya yeşil, ağaçta yetişen meyve."
-            },
-            {
-              "q": "'I like you' ne demek?",
-              "skill": "eng-cumle",
-              "options": [
-                "Senden hoşlanıyorum",
-                "Seni görüyorum",
-                "Sana gidiyorum",
-                "Sen büyüksün"
-              ],
-              "correct": 0,
-              "hint": "'like' = sevmek/hoşlanmak."
-            },
-            {
-              "q": "'How are you?' ne sorar?",
-              "skill": "eng-cumle",
-              "options": [
-                "Nasılsın?",
-                "Kaç yaşındasın?",
-                "Adın ne?",
-                "Nerelisin?"
-              ],
-              "correct": 0,
-              "hint": "Hal hatır sorma."
-            },
-            {
-              "q": "'My name is Ali' ne demek?",
-              "skill": "eng-cumle",
-              "options": [
-                "Benim adım Ali",
-                "Senin adın Ali",
-                "Ali geldi",
-                "Ali nerede"
-              ],
-              "correct": 0,
-              "hint": "'My name is ...' = Benim adım ..."
-            },
-            {
-              "q": "'Big' ne demek?",
-              "skill": "eng-kelime",
-              "options": [
-                "Büyük",
-                "Küçük",
-                "Uzun",
-                "Kısa"
-              ],
-              "correct": 0,
-              "hint": "Fil ... bir hayvandır."
-            },
-            {
-              "q": "'Small' ne demek?",
-              "skill": "eng-kelime",
-              "options": [
-                "Küçük",
-                "Büyük",
-                "Hızlı",
-                "Yavaş"
-              ],
-              "correct": 0,
-              "hint": "Karınca ... bir böcektir."
-            },
-            {
-              "q": "'Good night' ne zaman söylenir?",
-              "skill": "eng-selam",
-              "options": [
-                "Yatarken",
-                "Kahvaltıda",
-                "Okula giderken",
-                "Öğlen"
-              ],
-              "correct": 0,
-              "hint": "'night' = gece."
-            },
-            {
-              "q": "'I am hungry' ne demek?",
-              "skill": "eng-cumle",
-              "options": [
-                "Açım",
-                "Susadım",
-                "Yorgunum",
-                "Mutluyum"
-              ],
-              "correct": 0,
-              "hint": "'hungry' = aç."
-            },
-            {
-              "q": "'Friend' ne demek?",
-              "skill": "eng-kelime",
-              "options": [
-                "Arkadaş",
-                "Öğretmen",
-                "Anne",
-                "Komşu"
-              ],
-              "correct": 0,
-              "hint": "Birlikte oynadığın kişi."
-            },
-            {
-              "q": "'Thank you very much' ne anlatır?",
-              "skill": "eng-cumle",
-              "options": [
-                "Çok teşekkür ederim",
-                "Özür dilerim",
+                "Günaydın",
                 "Merhaba",
-                "Hoşça kal"
+                "Afiyet olsun"
               ],
               "correct": 0,
-              "hint": "'thank' = teşekkür."
+              "hint": "'night' = gece.",
+              "lvl": 1,
+              "skill": "eng-selam"
             },
             {
-              "q": "'School' ne demek?",
-              "skill": "eng-kelime",
+              "q": "Yeni bir arkadaşın 'My name is Lena' dedi. Sana ne söyledi?",
               "options": [
-                "Okul",
-                "Ev",
-                "Park",
-                "Market"
+                "Adını",
+                "Yaşını",
+                "Nereli olduğunu",
+                "En sevdiği rengi"
               ],
               "correct": 0,
-              "hint": "Ders gördüğün yer."
+              "hint": "'name' = isim.",
+              "lvl": 2,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Biri sana 'How are you?' diye sordu. Senden ne öğrenmek istiyor?",
+              "options": [
+                "Nasıl olduğunu",
+                "Adını",
+                "Kaç yaşında olduğunu",
+                "Nerede oturduğunu"
+              ],
+              "correct": 0,
+              "hint": "Hal hatır sorma.",
+              "lvl": 2,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Arkadaşın 'I like you' dedi ve gülümsedi. Sana ne anlatıyor?",
+              "options": [
+                "Senden hoşlanıyor",
+                "Sana kızgın",
+                "Seni tanımıyor",
+                "Senden korkuyor"
+              ],
+              "correct": 0,
+              "hint": "'like' = sevmek/hoşlanmak.",
+              "lvl": 2,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Susayan bir çocuk 'I am thirsty' dedi. Ona ne vermelisin?",
+              "options": [
+                "Su",
+                "Battaniye",
+                "Kitap",
+                "Top"
+              ],
+              "correct": 0,
+              "hint": "'thirsty' = susamış.",
+              "lvl": 2,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Biri sana yardım etti, sen de 'Thank you very much' dedin. Bu ifade neyi gösterir?",
+              "options": [
+                "Büyük bir teşekkür",
+                "Bir soru",
+                "Bir özür",
+                "Bir veda"
+              ],
+              "correct": 0,
+              "hint": "'very much' = çok.",
+              "lvl": 2,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Biri kapıda 'How are you?' dedi. En uygun cevap hangisi?",
+              "options": [
+                "I am fine",
+                "My name is Ali",
+                "Goodbye",
+                "This is a book"
+              ],
+              "correct": 0,
+              "hint": "Hal hatıra 'iyiyim' denir.",
+              "lvl": 3,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Bir çocuk 'I am tired' deyip esnedi ve yatağa uzandı. Sence ne yapmak üzere?",
+              "options": [
+                "Uyumak",
+                "Yemek yemek",
+                "Oynamak",
+                "Koşmak"
+              ],
+              "correct": 0,
+              "hint": "'tired' = yorgun.",
+              "lvl": 3,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Sınıfa yeni gelen biri kendini tanıtacak. Hangi cümle en uygun?",
+              "options": [
+                "My name is Deniz",
+                "Good night",
+                "I am hungry",
+                "See you"
+              ],
+              "correct": 0,
+              "hint": "Tanışırken isim söylenir.",
+              "lvl": 3,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Arkadaşın 'I am sad' dedi ve başını öne eğdi. Ona nasıl davranmalısın?",
+              "options": [
+                "Onu neşelendirmeye çalışmalısın",
+                "Ona gülmelisin",
+                "Onu görmezden gelmelisin",
+                "Ondan kaçmalısın"
+              ],
+              "correct": 0,
+              "hint": "'sad' = üzgün.",
+              "lvl": 3,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Okuldan ayrılırken arkadaşın 'See you tomorrow' dedi. Ne demek istedi?",
+              "options": [
+                "Yarın görüşürüz",
+                "Dün görüştük",
+                "Şimdi gel",
+                "Teşekkürler"
+              ],
+              "correct": 0,
+              "hint": "'tomorrow' = yarın.",
+              "lvl": 3,
+              "skill": "eng-cumle"
             }
           ]
         }
@@ -791,140 +797,189 @@
           },
           "bank": [
             {
-              "q": "'Four' hangi sayı?",
-              "skill": "eng-sayi",
+              "q": "Bir çocuk elindeki tek kalemi gösterip 'one' dedi. Kaç kalemi var?",
               "options": [
+                "1",
+                "2",
                 "3",
-                "4",
-                "5",
-                "6"
-              ],
-              "correct": 1,
-              "hint": "Üç'ten bir fazla."
-            },
-            {
-              "q": "'Five' hangi sayı?",
-              "skill": "eng-sayi",
-              "options": [
-                "5",
-                "4",
-                "6",
-                "9"
+                "5"
               ],
               "correct": 0,
-              "hint": "Bir elde beş parmak var."
+              "hint": "'one' en küçük sayma sayısı.",
+              "lvl": 1,
+              "skill": "eng-sayi"
             },
             {
-              "q": "'Ten' hangi sayı?",
-              "skill": "eng-sayi",
+              "q": "Masada 'two' elma var. Kaç elma demek?",
               "options": [
-                "9",
-                "10",
-                "8",
-                "100"
+                "2",
+                "1",
+                "4",
+                "6"
               ],
-              "correct": 1,
-              "hint": "İki eldeki toplam parmak sayısı."
+              "correct": 0,
+              "hint": "'one, two...'",
+              "lvl": 1,
+              "skill": "eng-sayi"
             },
             {
-              "q": "'Seven' hangi sayı?",
-              "skill": "eng-sayi",
+              "q": "Ali olgun bir domatesi tutup 'red' dedi. Hangi renk?",
               "options": [
-                "7",
+                "Kırmızı",
+                "Mavi",
+                "Sarı",
+                "Yeşil"
+              ],
+              "correct": 0,
+              "hint": "Domatesin rengi.",
+              "lvl": 1,
+              "skill": "eng-renk"
+            },
+            {
+              "q": "Gökyüzüne bakan bir çocuk 'blue' dedi. Hangi renkten söz ediyor?",
+              "options": [
+                "Mavi",
+                "Kırmızı",
+                "Siyah",
+                "Kahverengi"
+              ],
+              "correct": 0,
+              "hint": "Gökyüzünün rengi.",
+              "lvl": 1,
+              "skill": "eng-renk"
+            },
+            {
+              "q": "Bir muzu gösteren çocuk 'yellow' dedi. Bu hangi renk?",
+              "options": [
+                "Sarı",
+                "Yeşil",
+                "Mor",
+                "Pembe"
+              ],
+              "correct": 0,
+              "hint": "Muzun ve limonun rengi.",
+              "lvl": 1,
+              "skill": "eng-renk"
+            },
+            {
+              "q": "Öğretmen 'Show me five fingers' dedi. Kaç parmak göstermelisin?",
+              "options": [
+                "5",
+                "3",
+                "2",
+                "10"
+              ],
+              "correct": 0,
+              "hint": "Bir elde beş parmak var.",
+              "lvl": 2,
+              "skill": "eng-sayi"
+            },
+            {
+              "q": "Bir çocuk iki elinin bütün parmaklarını açıp 'ten' dedi. Kaç eder?",
+              "options": [
+                "10",
+                "5",
+                "8",
+                "12"
+              ],
+              "correct": 0,
+              "hint": "İki el = 10 parmak.",
+              "lvl": 2,
+              "skill": "eng-sayi"
+            },
+            {
+              "q": "Resimde çimenler ve yapraklar var. Bunların ortak İngilizce rengi hangisi?",
+              "options": [
+                "Green",
+                "Blue",
+                "Red",
+                "Black"
+              ],
+              "correct": 0,
+              "hint": "Doğanın rengi.",
+              "lvl": 2,
+              "skill": "eng-renk"
+            },
+            {
+              "q": "Gece karanlığını anlatmak için hangi renk en uygun?",
+              "options": [
+                "Black",
+                "White",
+                "Yellow",
+                "Pink"
+              ],
+              "correct": 0,
+              "hint": "Gecenin ve kömürün rengi.",
+              "lvl": 2,
+              "skill": "eng-renk"
+            },
+            {
+              "q": "Bir çocuk 'three' deyip üç parmağını kaldırdı. 'Three'den bir fazlası hangi sayıdır?",
+              "options": [
+                "Four",
+                "Two",
+                "Six",
+                "Ten"
+              ],
+              "correct": 0,
+              "hint": "3'ten sonra gelen sayı.",
+              "lvl": 2,
+              "skill": "eng-sayi"
+            },
+            {
+              "q": "Bir kutuda 'seven' bilye var, biri düşüp kayboldu. Şimdi kaç bilye kaldı?",
+              "options": [
                 "6",
+                "7",
                 "8",
                 "5"
               ],
               "correct": 0,
-              "hint": "Bir haftada bu kadar gün var."
+              "hint": "'seven' = 7; bir eksil.",
+              "lvl": 3,
+              "skill": "eng-sayi"
             },
             {
-              "q": "'Six' hangi sayı?",
-              "skill": "eng-sayi",
+              "q": "Öğretmen 'Point to something white' dedi. Hangisini gösterirsin?",
               "options": [
-                "5",
-                "6",
-                "7",
-                "4"
-              ],
-              "correct": 1,
-              "hint": "Beş'ten bir fazla."
-            },
-            {
-              "q": "'Eight' hangi sayı?",
-              "skill": "eng-sayi",
-              "options": [
-                "8",
-                "6",
-                "9",
-                "3"
+                "Kar",
+                "Çimen",
+                "Gökyüzü",
+                "Kömür"
               ],
               "correct": 0,
-              "hint": "Bir örümceğin bacak sayısı."
+              "hint": "'white' = beyaz.",
+              "lvl": 3,
+              "skill": "eng-renk"
             },
             {
-              "q": "'Nine' hangi sayı?",
-              "skill": "eng-sayi",
+              "q": "Bir portakalın rengi ile adı İngilizcede aynıdır. Bu renk hangisi?",
               "options": [
-                "8",
-                "9",
-                "10",
-                "6"
-              ],
-              "correct": 1,
-              "hint": "On'dan bir eksik."
-            },
-            {
-              "q": "'Yellow' hangi renk?",
-              "skill": "eng-renk",
-              "options": [
-                "Sarı",
-                "Mavi",
-                "Kırmızı",
-                "Yeşil"
+                "Orange",
+                "Purple",
+                "Grey",
+                "Pink"
               ],
               "correct": 0,
-              "hint": "Limonun ve muzun rengi."
+              "hint": "Meyvenin adı da bir renktir.",
+              "lvl": 3,
+              "skill": "eng-renk"
             },
             {
-              "q": "'Black' hangi renk?",
-              "skill": "eng-renk",
+              "q": "Bir çocuk 'I have eight crayons' dedi. 'Eight' kaç eder ve bir örümceğin bacak sayısıyla aynı mıdır?",
               "options": [
-                "Beyaz",
-                "Siyah",
-                "Gri",
-                "Mor"
-              ],
-              "correct": 1,
-              "hint": "Gecenin ve kömürün rengi."
-            },
-            {
-              "q": "'White' hangi renk?",
-              "skill": "eng-renk",
-              "options": [
-                "Beyaz",
-                "Siyah",
-                "Mavi",
-                "Yeşil"
+                "8, evet aynı",
+                "6, hayır",
+                "10, evet",
+                "4, hayır"
               ],
               "correct": 0,
-              "hint": "Karın ve sütün rengi."
+              "hint": "Örümceğin 8 bacağı var.",
+              "lvl": 3,
+              "skill": "eng-sayi"
             },
             {
-              "q": "'Orange' hangi renk?",
-              "skill": "eng-renk",
-              "options": [
-                "Pembe",
-                "Mor",
-                "Turuncu",
-                "Gri"
-              ],
-              "correct": 2,
-              "hint": "Portakalın rengi ve adı aynı."
-            },
-            {
-              "q": "'Pink' hangi renk?",
-              "skill": "eng-renk",
+              "q": "Bir ressam açık kırmızıya biraz beyaz katıp 'pink' elde etti. 'Pink' hangi renktir?",
               "options": [
                 "Pembe",
                 "Mor",
@@ -932,7 +987,9 @@
                 "Gri"
               ],
               "correct": 0,
-              "hint": "Açık kırmızıya yakın, tatlı bir renk."
+              "hint": "Tatlı, açık bir renk.",
+              "lvl": 3,
+              "skill": "eng-renk"
             }
           ]
         }
@@ -1018,148 +1075,199 @@
           },
           "bank": [
             {
-              "q": "'Sister' ne demek?",
-              "skill": "eng-aile",
+              "q": "Bir çocuk annesine sarılıp 'mother' dedi. Kimi kastediyor?",
               "options": [
-                "Kız kardeş / Abla",
+                "Anne",
+                "Baba",
+                "Kardeş",
+                "Komşu"
+              ],
+              "correct": 0,
+              "hint": "Seni doğuran kişi.",
+              "lvl": 1,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Bir çocuk babasını gösterip 'father' dedi. Kimden söz ediyor?",
+              "options": [
+                "Baba",
+                "Anne",
+                "Dede",
+                "Amca"
+              ],
+              "correct": 0,
+              "hint": "Bu oyunun kahramanı: Baba Komutan!",
+              "lvl": 1,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Beşikteki küçüğü gösteren çocuk 'baby' dedi. Kim bu?",
+              "options": [
+                "Bebek",
+                "Yetişkin",
+                "Öğretmen",
+                "Dede"
+              ],
+              "correct": 0,
+              "hint": "Ailenin en küçüğü, henüz yürüyemez.",
+              "lvl": 1,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Erkek kardeşini tanıtan çocuk 'brother' dedi. Kim?",
+              "options": [
                 "Erkek kardeş",
+                "Kız kardeş",
                 "Anne",
                 "Teyze"
               ],
               "correct": 0,
-              "hint": "Kız olan kardeşin."
+              "hint": "Erkek olan kardeşin.",
+              "lvl": 1,
+              "skill": "eng-aile"
             },
             {
-              "q": "'Brother' ne demek?",
-              "skill": "eng-aile",
+              "q": "Kız kardeşini gösteren çocuk 'sister' dedi. Kim?",
               "options": [
-                "Erkek kardeş",
                 "Kız kardeş",
+                "Erkek kardeş",
                 "Baba",
                 "Dede"
               ],
               "correct": 0,
-              "hint": "Erkek olan kardeşin."
+              "hint": "Kız olan kardeşin.",
+              "lvl": 1,
+              "skill": "eng-aile"
             },
             {
-              "q": "'Baby' ne demek?",
-              "skill": "eng-aile",
+              "q": "Bir çocuk 'This is my grandmother' deyip yaşlı bir kadını gösterdi. Kimi tanıttı?",
               "options": [
-                "Bebek",
-                "Çocuk",
-                "Yetişkin",
-                "Yaşlı"
+                "Anneannesini/Babaannesini",
+                "Kız kardeşini",
+                "Öğretmenini",
+                "Komşusunu"
               ],
               "correct": 0,
-              "hint": "Ailenin en küçüğü, henüz yürüyemez."
+              "hint": "Annenin ya da babanın annesi.",
+              "lvl": 2,
+              "skill": "eng-aile"
             },
             {
-              "q": "'Grandmother' ne demek?",
-              "skill": "eng-aile",
+              "q": "Aile fotoğrafında anne, baba ve çocuklar var. Bu topluluğa İngilizce ne denir?",
               "options": [
-                "Anne",
-                "Anneanne / Babaanne",
-                "Teyze",
-                "Abla"
+                "Family",
+                "Class",
+                "Team",
+                "Party"
               ],
-              "correct": 1,
-              "hint": "Annenin ya da babanın annesi."
+              "correct": 0,
+              "hint": "Birlikte yaşayan yakınlar.",
+              "lvl": 2,
+              "skill": "eng-aile"
             },
             {
-              "q": "'Grandfather' ne demek?",
-              "skill": "eng-aile",
+              "q": "Parkta koşan küçük bir erkek çocuğu için hangi kelime doğru?",
+              "options": [
+                "Boy",
+                "Girl",
+                "Man",
+                "Woman"
+              ],
+              "correct": 0,
+              "hint": "Küçük erkek.",
+              "lvl": 2,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Bir çocuk 'My father has a son' dedi. Buna göre baba kimden söz ediyor?",
+              "options": [
+                "Oğlundan",
+                "Kızından",
+                "Annesinden",
+                "Dedesinden"
+              ],
+              "correct": 0,
+              "hint": "'son' = oğul.",
+              "lvl": 2,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Yetişkin bir kadını tanıtırken hangi kelime doğru?",
+              "options": [
+                "Woman",
+                "Girl",
+                "Boy",
+                "Baby"
+              ],
+              "correct": 0,
+              "hint": "Büyümüş kadın.",
+              "lvl": 2,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Lena 'My grandfather is my father's father' dedi. 'Grandfather' kimdir?",
               "options": [
                 "Dede",
-                "Baba",
                 "Amca",
-                "Kardeş"
-              ],
-              "correct": 0,
-              "hint": "Annenin ya da babanın babası."
-            },
-            {
-              "q": "'Family' ne demek?",
-              "skill": "eng-aile",
-              "options": [
-                "Arkadaş",
-                "Komşu",
-                "Aile",
-                "Sınıf"
-              ],
-              "correct": 2,
-              "hint": "Anne, baba ve çocuklar birlikte."
-            },
-            {
-              "q": "'Boy' ne demek?",
-              "skill": "eng-aile",
-              "options": [
-                "Erkek çocuk",
-                "Kız çocuk",
-                "Kadın",
-                "Adam"
-              ],
-              "correct": 0,
-              "hint": "Küçük erkek."
-            },
-            {
-              "q": "'Girl' ne demek?",
-              "skill": "eng-aile",
-              "options": [
-                "Kız çocuk",
-                "Erkek çocuk",
-                "Anne",
-                "Nine"
-              ],
-              "correct": 0,
-              "hint": "Küçük kız."
-            },
-            {
-              "q": "'Man' ne demek?",
-              "skill": "eng-aile",
-              "options": [
-                "Kadın",
-                "Adam",
-                "Çocuk",
-                "Bebek"
-              ],
-              "correct": 1,
-              "hint": "Yetişkin erkek."
-            },
-            {
-              "q": "'Woman' ne demek?",
-              "skill": "eng-aile",
-              "options": [
-                "Kadın",
-                "Adam",
-                "Kız",
-                "Oğlan"
-              ],
-              "correct": 0,
-              "hint": "Yetişkin kadın."
-            },
-            {
-              "q": "'Son' ne demek?",
-              "skill": "eng-aile",
-              "options": [
-                "Oğul",
-                "Kız evlat",
-                "Anne",
-                "Amca"
-              ],
-              "correct": 0,
-              "hint": "Ailenin erkek çocuğu."
-            },
-            {
-              "q": "'Daughter' ne demek?",
-              "skill": "eng-aile",
-              "options": [
-                "Kız evlat",
-                "Oğul",
                 "Abla",
-                "Hala"
+                "Kuzen"
               ],
               "correct": 0,
-              "hint": "Ailenin kız çocuğu."
+              "hint": "Babanın babası.",
+              "lvl": 3,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Bir çocuk 'I have one brother and one sister' dedi. Kaç kardeşi var ve cinsiyetleri nedir?",
+              "options": [
+                "Biri erkek biri kız, iki kardeş",
+                "İki erkek kardeş",
+                "İki kız kardeş",
+                "Hiç kardeşi yok"
+              ],
+              "correct": 0,
+              "hint": "'brother' erkek, 'sister' kız.",
+              "lvl": 3,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Sam 'She is my daughter' deyip küçük bir kızı gösterdi. Sam bu çocuğun nesi olur?",
+              "options": [
+                "Annesi ya da babası",
+                "Kardeşi",
+                "Arkadaşı",
+                "Öğretmeni"
+              ],
+              "correct": 0,
+              "hint": "'daughter' = kız evlat.",
+              "lvl": 3,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Bir aile ağacında en üstte 'grandmother' ve 'grandfather' var. Bu ikili çocuklara göre kimlerdir?",
+              "options": [
+                "Büyükanne ve büyükbaba",
+                "Anne ve baba",
+                "Abla ve ağabey",
+                "Komşular"
+              ],
+              "correct": 0,
+              "hint": "'grand-' büyük demektir.",
+              "lvl": 3,
+              "skill": "eng-aile"
+            },
+            {
+              "q": "Yetişkin erkek için 'man', yetişkin kadın için 'woman' denir. Buna göre baban için hangisi daha uygun bir kelime?",
+              "options": [
+                "Man",
+                "Woman",
+                "Girl",
+                "Baby"
+              ],
+              "correct": 0,
+              "hint": "Baba yetişkin bir erkektir.",
+              "lvl": 3,
+              "skill": "eng-aile"
             }
           ]
         }
@@ -1245,68 +1353,46 @@
           },
           "bank": [
             {
-              "q": "'Bird' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "Gökte kanat çırpan bir hayvanı gören çocuk 'bird' dedi. Hangi hayvan?",
               "options": [
                 "Kuş",
                 "Balık",
                 "Kedi",
-                "Fare"
+                "At"
               ],
               "correct": 0,
-              "hint": "Kanatları var, gökte uçar."
+              "hint": "Uçar, kanatları var.",
+              "lvl": 1,
+              "skill": "eng-hayvan"
             },
             {
-              "q": "'Fish' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "Akvaryumda yüzen 'fish' hangi hayvan?",
               "options": [
                 "Balık",
                 "Kuş",
                 "Köpek",
-                "At"
+                "Koyun"
               ],
               "correct": 0,
-              "hint": "Suda yüzer, solungaçları var."
+              "hint": "Suda yaşar.",
+              "lvl": 1,
+              "skill": "eng-hayvan"
             },
             {
-              "q": "'Horse' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "Çiftlikte 'möö' diyen 'cow' hangi hayvan?",
               "options": [
-                "At",
                 "İnek",
-                "Koyun",
-                "Eşek"
-              ],
-              "correct": 0,
-              "hint": "Üstüne binilir, hızlı koşar."
-            },
-            {
-              "q": "'Cow' ne demek?",
-              "skill": "eng-hayvan",
-              "options": [
                 "At",
-                "İnek",
                 "Keçi",
                 "Domuz"
               ],
-              "correct": 1,
-              "hint": "Süt verir, 'möö' der."
-            },
-            {
-              "q": "'Sheep' ne demek?",
-              "skill": "eng-hayvan",
-              "options": [
-                "Koyun",
-                "Keçi",
-                "İnek",
-                "Tavuk"
-              ],
               "correct": 0,
-              "hint": "Yününden kazak yapılır, 'mee' der."
+              "hint": "Süt verir.",
+              "lvl": 1,
+              "skill": "eng-hayvan"
             },
             {
-              "q": "'Lion' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "Kükreyen ve ormanların kralı denen 'lion' hangi hayvan?",
               "options": [
                 "Aslan",
                 "Kaplan",
@@ -1314,23 +1400,51 @@
                 "Kurt"
               ],
               "correct": 0,
-              "hint": "Ormanların kralı, kükrer."
+              "hint": "Kükrer.",
+              "lvl": 1,
+              "skill": "eng-hayvan"
             },
             {
-              "q": "'Elephant' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "Uzun kulaklı, havuç seven, zıplayan 'rabbit' hangi hayvan?",
               "options": [
+                "Tavşan",
+                "Fare",
+                "Sincap",
+                "Kedi"
+              ],
+              "correct": 0,
+              "hint": "Zıplar, havuç sever.",
+              "lvl": 1,
+              "skill": "eng-hayvan"
+            },
+            {
+              "q": "Bir çocuk 'A horse can run fast' dedi. 'Horse' hangi hayvandır?",
+              "options": [
+                "At",
+                "İnek",
+                "Koyun",
+                "Ördek"
+              ],
+              "correct": 0,
+              "hint": "Üstüne binilir, hızlı koşar.",
+              "lvl": 2,
+              "skill": "eng-hayvan"
+            },
+            {
+              "q": "Hayvanat bahçesinde uzun hortumlu, kocaman kulaklı 'elephant' hangisidir?",
+              "options": [
+                "Fil",
                 "Zürafa",
                 "Gergedan",
-                "Fil",
                 "Su aygırı"
               ],
-              "correct": 2,
-              "hint": "Uzun hortumu ve büyük kulakları var."
+              "correct": 0,
+              "hint": "Hortumu var.",
+              "lvl": 2,
+              "skill": "eng-hayvan"
             },
             {
-              "q": "'Monkey' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "Ağaca tırmanıp muz yiyen 'monkey' hangi hayvandır?",
               "options": [
                 "Maymun",
                 "Ayı",
@@ -1338,55 +1452,100 @@
                 "Sincap"
               ],
               "correct": 0,
-              "hint": "Ağaçlara tırmanır, muz sever."
+              "hint": "Muz sever.",
+              "lvl": 2,
+              "skill": "eng-hayvan"
             },
             {
-              "q": "'Rabbit' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "Yününden kazak yapılan, 'mee' diye ses çıkaran 'sheep' hangisidir?",
               "options": [
-                "Tavşan",
-                "Fare",
-                "Kirpi",
-                "Sincap"
+                "Koyun",
+                "İnek",
+                "Keçi",
+                "Tavuk"
               ],
               "correct": 0,
-              "hint": "Uzun kulaklı, havuç sever, zıplar."
+              "hint": "Yünlü çiftlik hayvanı.",
+              "lvl": 2,
+              "skill": "eng-hayvan"
             },
             {
-              "q": "'Bear' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "Suda yüzüp 'vak vak' diyen 'duck' hangisidir?",
+              "options": [
+                "Ördek",
+                "Tavuk",
+                "Horoz",
+                "Kaz"
+              ],
+              "correct": 0,
+              "hint": "Vak vak.",
+              "lvl": 2,
+              "skill": "eng-hayvan"
+            },
+            {
+              "q": "Bir kitapta 'The bear sleeps all winter and loves honey' yazıyor. 'Bear' hangi hayvandır?",
               "options": [
                 "Ayı",
                 "Kurt",
-                "Aslan",
-                "Tilki"
+                "Tilki",
+                "Aslan"
               ],
               "correct": 0,
-              "hint": "Bal sever, kışın uyur."
+              "hint": "Bal sever, kışın uyur.",
+              "lvl": 3,
+              "skill": "eng-hayvan"
             },
             {
-              "q": "'Duck' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "Bir çiftçi 'My chicken gives eggs every day' dedi. 'Chicken' hangi hayvandır?",
               "options": [
-                "Ördek",
                 "Tavuk",
-                "Kaz",
-                "Horoz"
+                "Ördek",
+                "Hindi",
+                "Kuş"
               ],
               "correct": 0,
-              "hint": "Suda yüzer, 'vak vak' der."
+              "hint": "Yumurta yapar.",
+              "lvl": 3,
+              "skill": "eng-hayvan"
             },
             {
-              "q": "'Chicken' ne demek?",
-              "skill": "eng-hayvan",
+              "q": "'Cat' kedi, 'dog' köpek demek. Bir çocuk 'My dog says hav hav' dedi. Hangi hayvandan söz ediyor?",
               "options": [
-                "Ördek",
-                "Tavuk",
+                "Köpek",
+                "Kedi",
                 "Kuş",
-                "Hindi"
+                "Balık"
               ],
-              "correct": 1,
-              "hint": "Yumurta yapar, çiftlikte yaşar."
+              "correct": 0,
+              "hint": "Hav hav diyen.",
+              "lvl": 3,
+              "skill": "eng-hayvan"
+            },
+            {
+              "q": "Safari rehberi 'Look! A lion and an elephant!' dedi. Bu iki hayvan hangileridir?",
+              "options": [
+                "Aslan ve fil",
+                "Kaplan ve zürafa",
+                "Ayı ve maymun",
+                "Kurt ve tilki"
+              ],
+              "correct": 0,
+              "hint": "'lion' kükrer, 'elephant' hortumlu.",
+              "lvl": 3,
+              "skill": "eng-hayvan"
+            },
+            {
+              "q": "Bir bilmecede 'It swims in water and is not a fish, it says vak vak' deniyor. Bu hangi hayvandır?",
+              "options": [
+                "Duck",
+                "Cow",
+                "Horse",
+                "Lion"
+              ],
+              "correct": 0,
+              "hint": "Suda yüzen ama balık olmayan.",
+              "lvl": 3,
+              "skill": "eng-hayvan"
             }
           ]
         }
@@ -1472,80 +1631,46 @@
           },
           "bank": [
             {
-              "q": "'Bread' ne demek?",
-              "skill": "eng-yiyecek",
+              "q": "Kahvaltıda fırından gelen 'bread' hangi yiyecek?",
               "options": [
                 "Ekmek",
                 "Peynir",
-                "Süt",
-                "Et"
+                "Et",
+                "Elma"
               ],
               "correct": 0,
-              "hint": "Fırında pişer, her kahvaltıda vardır."
+              "hint": "Her kahvaltıda vardır.",
+              "lvl": 1,
+              "skill": "eng-yiyecek"
             },
             {
-              "q": "'Milk' ne demek?",
-              "skill": "eng-yiyecek",
+              "q": "İnekten gelen beyaz içecek 'milk' nedir?",
               "options": [
                 "Süt",
                 "Su",
                 "Çay",
+                "Kola"
+              ],
+              "correct": 0,
+              "hint": "Beyaz içecek.",
+              "lvl": 1,
+              "skill": "eng-yiyecek"
+            },
+            {
+              "q": "Susayınca içilen 'water' nedir?",
+              "options": [
+                "Su",
+                "Süt",
+                "Çay",
                 "Meyve suyu"
               ],
               "correct": 0,
-              "hint": "İnekten gelir, beyaz içecek."
+              "hint": "Renksiz, susayınca içilir.",
+              "lvl": 1,
+              "skill": "eng-yiyecek"
             },
             {
-              "q": "'Egg' ne demek?",
-              "skill": "eng-yiyecek",
-              "options": [
-                "Peynir",
-                "Yumurta",
-                "Ekmek",
-                "Zeytin"
-              ],
-              "correct": 1,
-              "hint": "Tavuktan gelir, kabuğu vardır."
-            },
-            {
-              "q": "'Cheese' ne demek?",
-              "skill": "eng-yiyecek",
-              "options": [
-                "Peynir",
-                "Tereyağı",
-                "Yoğurt",
-                "Bal"
-              ],
-              "correct": 0,
-              "hint": "Sütten yapılır, ekmekle yenir."
-            },
-            {
-              "q": "'Rice' ne demek?",
-              "skill": "eng-yiyecek",
-              "options": [
-                "Pirinç",
-                "Makarna",
-                "Bulgur",
-                "Un"
-              ],
-              "correct": 0,
-              "hint": "Pilav bundan yapılır."
-            },
-            {
-              "q": "'Meat' ne demek?",
-              "skill": "eng-yiyecek",
-              "options": [
-                "Balık",
-                "Sebze",
-                "Et",
-                "Tavuk"
-              ],
-              "correct": 2,
-              "hint": "Köfte bundan yapılır."
-            },
-            {
-              "q": "'Banana' ne demek?",
-              "skill": "eng-yiyecek",
+              "q": "Sarı, uzun, maymunların çok sevdiği 'banana' hangi meyve?",
               "options": [
                 "Muz",
                 "Elma",
@@ -1553,67 +1678,152 @@
                 "Çilek"
               ],
               "correct": 0,
-              "hint": "Sarı, uzun; maymunlar çok sever."
+              "hint": "Maymun sever.",
+              "lvl": 1,
+              "skill": "eng-yiyecek"
             },
             {
-              "q": "'Orange' (meyve) ne demek?",
-              "skill": "eng-yiyecek",
+              "q": "Kahverengi, tatlı, herkesin sevdiği 'chocolate' nedir?",
+              "options": [
+                "Çikolata",
+                "Peynir",
+                "Ekmek",
+                "Çorba"
+              ],
+              "correct": 0,
+              "hint": "Tatlı ve kahverengi.",
+              "lvl": 1,
+              "skill": "eng-yiyecek"
+            },
+            {
+              "q": "Bir çocuk 'I want an egg for breakfast' dedi. Kahvaltıda ne istiyor?",
+              "options": [
+                "Yumurta",
+                "Çorba",
+                "Dondurma",
+                "Salata"
+              ],
+              "correct": 0,
+              "hint": "Tavuktan gelir, kabuğu vardır.",
+              "lvl": 2,
+              "skill": "eng-yiyecek"
+            },
+            {
+              "q": "Annen pilav yapacak, 'rice' lazım dedi. 'Rice' nedir?",
+              "options": [
+                "Pirinç",
+                "Makarna",
+                "Un",
+                "Bulgur"
+              ],
+              "correct": 0,
+              "hint": "Pilav bundan olur.",
+              "lvl": 2,
+              "skill": "eng-yiyecek"
+            },
+            {
+              "q": "Sıcak bir günde çocuk 'ice cream' istedi. Ne istiyor?",
+              "options": [
+                "Dondurma",
+                "Çorba",
+                "Çay",
+                "Ekmek"
+              ],
+              "correct": 0,
+              "hint": "Soğuk ve tatlı.",
+              "lvl": 2,
+              "skill": "eng-yiyecek"
+            },
+            {
+              "q": "Hasta olan bir çocuğa annesi sıcak 'soup' verdi. Ne verdi?",
+              "options": [
+                "Çorba",
+                "Dondurma",
+                "Kola",
+                "Cips"
+              ],
+              "correct": 0,
+              "hint": "Kaşıkla içilen sıcak yemek.",
+              "lvl": 2,
+              "skill": "eng-yiyecek"
+            },
+            {
+              "q": "Sütten yapılan, ekmekle yenen 'cheese' nedir?",
+              "options": [
+                "Peynir",
+                "Bal",
+                "Reçel",
+                "Tereyağı"
+              ],
+              "correct": 0,
+              "hint": "Sütten yapılır.",
+              "lvl": 2,
+              "skill": "eng-yiyecek"
+            },
+            {
+              "q": "Bir menüde 'meat' yazıyor ve köfte bundan yapılıyor. 'Meat' nedir?",
+              "options": [
+                "Et",
+                "Sebze",
+                "Balık",
+                "Meyve"
+              ],
+              "correct": 0,
+              "hint": "Köftenin ana malzemesi.",
+              "lvl": 3,
+              "skill": "eng-yiyecek"
+            },
+            {
+              "q": "Kışın hasta olmamak için C vitaminli 'orange' önerildi. Bu hangi meyve?",
               "options": [
                 "Portakal",
-                "Elma",
+                "Muz",
                 "Karpuz",
                 "Kiraz"
               ],
               "correct": 0,
-              "hint": "Turuncu, C vitamini dolu meyve."
+              "hint": "Turuncu, C vitamini dolu meyve.",
+              "lvl": 3,
+              "skill": "eng-yiyecek"
             },
             {
-              "q": "'Tea' ne demek?",
-              "skill": "eng-yiyecek",
+              "q": "Bir çocuk 'I drink milk, not tea' dedi. Ne içiyor, ne içmiyor?",
               "options": [
-                "Çay",
-                "Kahve",
-                "Süt",
-                "Su"
+                "Süt içiyor, çay içmiyor",
+                "Çay içiyor, süt içmiyor",
+                "Su içiyor",
+                "İkisini de içiyor"
               ],
               "correct": 0,
-              "hint": "Sıcak içilir, genelde ince belli bardakta."
+              "hint": "'milk' süt, 'tea' çay.",
+              "lvl": 3,
+              "skill": "eng-yiyecek"
             },
             {
-              "q": "'Chocolate' ne demek?",
-              "skill": "eng-yiyecek",
+              "q": "Kahvaltı sofrasında 'bread', 'cheese' ve 'egg' var. Bunlar sırasıyla nedir?",
               "options": [
-                "Çikolata",
-                "Şeker",
-                "Dondurma",
-                "Kek"
+                "Ekmek, peynir, yumurta",
+                "Süt, et, elma",
+                "Çorba, pilav, muz",
+                "Çay, bal, un"
               ],
               "correct": 0,
-              "hint": "Kahverengi, tatlı; herkesin favorisi."
+              "hint": "Kahvaltının klasik üçlüsü.",
+              "lvl": 3,
+              "skill": "eng-yiyecek"
             },
             {
-              "q": "'Soup' ne demek?",
-              "skill": "eng-yiyecek",
+              "q": "Çok sıcak bir günde en serinletici seçenek hangisidir?",
               "options": [
-                "Salata",
-                "Çorba",
-                "Makarna",
-                "Pilav"
-              ],
-              "correct": 1,
-              "hint": "Sıcak içilir, kaşıkla yenir."
-            },
-            {
-              "q": "'Ice cream' ne demek?",
-              "skill": "eng-yiyecek",
-              "options": [
-                "Dondurma",
-                "Buz",
-                "Pasta",
-                "Kurabiye"
+                "Ice cream",
+                "Soup",
+                "Hot tea",
+                "Bread"
               ],
               "correct": 0,
-              "hint": "Soğuk ve tatlı, yazın en sevileni."
+              "hint": "Soğuk olanı seç.",
+              "lvl": 3,
+              "skill": "eng-yiyecek"
             }
           ]
         }
@@ -1699,44 +1909,7 @@
           },
           "bank": [
             {
-              "q": "'Head' ne demek?",
-              "skill": "eng-vucut",
-              "options": [
-                "Baş / Kafa",
-                "El",
-                "Ayak",
-                "Kol"
-              ],
-              "correct": 0,
-              "hint": "En üstte, beynin olduğu yer."
-            },
-            {
-              "q": "'Hand' ne demek?",
-              "skill": "eng-vucut",
-              "options": [
-                "El",
-                "Ayak",
-                "Göz",
-                "Kulak"
-              ],
-              "correct": 0,
-              "hint": "Parmakların olduğu yer."
-            },
-            {
-              "q": "'Foot' ne demek?",
-              "skill": "eng-vucut",
-              "options": [
-                "El",
-                "Ayak",
-                "Diz",
-                "Omuz"
-              ],
-              "correct": 1,
-              "hint": "Üstünde yürürsün."
-            },
-            {
-              "q": "'Eye' ne demek?",
-              "skill": "eng-vucut",
+              "q": "Bir çocuk gözlerini kapatıp 'eye' dedi. Neresinden söz ediyor?",
               "options": [
                 "Göz",
                 "Kulak",
@@ -1744,47 +1917,103 @@
                 "Ağız"
               ],
               "correct": 0,
-              "hint": "Onunla görürsün."
+              "hint": "Onunla görürsün.",
+              "lvl": 1,
+              "skill": "eng-vucut"
             },
             {
-              "q": "'Ear' ne demek?",
-              "skill": "eng-vucut",
+              "q": "Elini kaldıran çocuk 'hand' dedi. Neresi?",
+              "options": [
+                "El",
+                "Ayak",
+                "Baş",
+                "Diz"
+              ],
+              "correct": 0,
+              "hint": "Parmakların olduğu yer.",
+              "lvl": 1,
+              "skill": "eng-vucut"
+            },
+            {
+              "q": "Yürürken kullandığın 'foot' neresidir?",
+              "options": [
+                "Ayak",
+                "El",
+                "Göz",
+                "Kulak"
+              ],
+              "correct": 0,
+              "hint": "Üstünde yürürsün.",
+              "lvl": 1,
+              "skill": "eng-vucut"
+            },
+            {
+              "q": "Ayağa giyilen 'shoes' nedir?",
+              "options": [
+                "Ayakkabı",
+                "Şapka",
+                "Gömlek",
+                "Eldiven"
+              ],
+              "correct": 0,
+              "hint": "Dışarı çıkarken giyilir.",
+              "lvl": 1,
+              "skill": "eng-kiyafet"
+            },
+            {
+              "q": "Başa takılan, güneşten koruyan 'hat' nedir?",
+              "options": [
+                "Şapka",
+                "Çorap",
+                "Ceket",
+                "Kemer"
+              ],
+              "correct": 0,
+              "hint": "Başa takılır.",
+              "lvl": 1,
+              "skill": "eng-kiyafet"
+            },
+            {
+              "q": "Bir çocuk 'I can hear with my ears' dedi. 'Ear' hangi organdır?",
               "options": [
                 "Kulak",
                 "Göz",
                 "Burun",
-                "Diş"
+                "Ağız"
               ],
               "correct": 0,
-              "hint": "Onunla duyarsın."
+              "hint": "Onunla duyarsın.",
+              "lvl": 2,
+              "skill": "eng-vucut"
             },
             {
-              "q": "'Nose' ne demek?",
-              "skill": "eng-vucut",
+              "q": "Çiçeği koklayan çocuk 'nose' dedi. Neresini kullandı?",
               "options": [
-                "Ağız",
                 "Burun",
+                "Kulak",
                 "Göz",
                 "El"
               ],
-              "correct": 1,
-              "hint": "Onunla koku alırsın."
+              "correct": 0,
+              "hint": "Koku alma organı.",
+              "lvl": 2,
+              "skill": "eng-vucut"
             },
             {
-              "q": "'Mouth' ne demek?",
-              "skill": "eng-vucut",
+              "q": "Üşüyen bir çocuk ayakkabıdan önce ayağına 'socks' giydi. Ne giydi?",
               "options": [
-                "Ağız",
-                "Burun",
-                "Kulak",
-                "Saç"
+                "Çorap",
+                "Şapka",
+                "Eldiven",
+                "Atkı"
               ],
               "correct": 0,
-              "hint": "Onunla konuşur ve yemek yersin."
+              "hint": "Ayakkabının altına giyilir.",
+              "lvl": 2,
+              "skill": "eng-kiyafet"
             },
             {
-              "q": "'Hair' ne demek?",
-              "skill": "eng-vucut",
+              "q": "Bir çocuk 'I brush my hair every morning' dedi. 'Hair' neresidir?",
               "options": [
                 "Saç",
                 "Diş",
@@ -1792,11 +2021,12 @@
                 "Kol"
               ],
               "correct": 0,
-              "hint": "Başının üstünde, taranır."
+              "hint": "Başının üstünde, taranır.",
+              "lvl": 2,
+              "skill": "eng-vucut"
             },
             {
-              "q": "'Shirt' ne demek?",
-              "skill": "eng-kiyafet",
+              "q": "Düğmeli, üst bedene giyilen 'shirt' nedir?",
               "options": [
                 "Gömlek",
                 "Pantolon",
@@ -1804,43 +2034,74 @@
                 "Şapka"
               ],
               "correct": 0,
-              "hint": "Üst bedene giyilir, düğmeli olabilir."
+              "hint": "Üste giyilir.",
+              "lvl": 2,
+              "skill": "eng-kiyafet"
             },
             {
-              "q": "'Shoes' ne demek?",
-              "skill": "eng-kiyafet",
+              "q": "Doktor 'Open your mouth, please' dedi. Neyini açman isteniyor?",
               "options": [
-                "Çorap",
-                "Ayakkabı",
-                "Şapka",
-                "Ceket"
-              ],
-              "correct": 1,
-              "hint": "Ayağa giyilir, dışarı çıkarken."
-            },
-            {
-              "q": "'Hat' ne demek?",
-              "skill": "eng-kiyafet",
-              "options": [
-                "Şapka",
-                "Eldiven",
-                "Atkı",
-                "Kemer"
+                "Ağzını",
+                "Gözünü",
+                "Kulağını",
+                "Elini"
               ],
               "correct": 0,
-              "hint": "Başa takılır, güneşten korur."
+              "hint": "Konuşup yemek yediğin yer.",
+              "lvl": 3,
+              "skill": "eng-vucut"
             },
             {
-              "q": "'Socks' ne demek?",
-              "skill": "eng-kiyafet",
+              "q": "Dışarısı yağmurlu ve soğuk. Hangi ikiliyi giymek en mantıklı?",
               "options": [
-                "Ayakkabı",
-                "Çorap",
-                "Eldiven",
-                "Şapka"
+                "Shoes ve hat",
+                "Sadece socks",
+                "Sadece shirt",
+                "Hiçbiri"
               ],
-              "correct": 1,
-              "hint": "Ayakkabıdan önce ayağa giyilir."
+              "correct": 0,
+              "hint": "Ayak ve baş korunmalı.",
+              "lvl": 3,
+              "skill": "eng-kiyafet"
+            },
+            {
+              "q": "Bir çocuk 'I see with my eyes and I walk with my feet' dedi. 'Eyes' ve 'feet' sırasıyla nedir?",
+              "options": [
+                "Gözler ve ayaklar",
+                "Kulaklar ve eller",
+                "Eller ve gözler",
+                "Ayaklar ve kulaklar"
+              ],
+              "correct": 0,
+              "hint": "Görmek göz, yürümek ayak.",
+              "lvl": 3,
+              "skill": "eng-vucut"
+            },
+            {
+              "q": "'Head' baş demek. Bir çocuk şapkasını nereye takar?",
+              "options": [
+                "Head",
+                "Foot",
+                "Hand",
+                "Ear"
+              ],
+              "correct": 0,
+              "hint": "Şapka en üste, başa takılır.",
+              "lvl": 3,
+              "skill": "eng-vucut"
+            },
+            {
+              "q": "Sabah okula giderken sırayla ne giyilir? En mantıklı sıra hangisi?",
+              "options": [
+                "Önce socks, sonra shoes",
+                "Önce shoes, sonra socks",
+                "Önce hat, sonra socks",
+                "Sadece hat"
+              ],
+              "correct": 0,
+              "hint": "Çorap ayakkabıdan önce giyilir.",
+              "lvl": 3,
+              "skill": "eng-kiyafet"
             }
           ]
         }
@@ -1926,20 +2187,20 @@
           },
           "bank": [
             {
-              "q": "'House' ne demek?",
-              "skill": "eng-ev",
+              "q": "İçinde ailenle yaşadığın 'house' nedir?",
               "options": [
                 "Ev",
                 "Okul",
-                "Bahçe",
-                "Sokak"
+                "Park",
+                "Market"
               ],
               "correct": 0,
-              "hint": "İçinde ailenle yaşadığın yer."
+              "hint": "Yaşadığın yer.",
+              "lvl": 1,
+              "skill": "eng-ev"
             },
             {
-              "q": "'Door' ne demek?",
-              "skill": "eng-ev",
+              "q": "Açıp içeri girdiğin 'door' nedir?",
               "options": [
                 "Kapı",
                 "Pencere",
@@ -1947,11 +2208,38 @@
                 "Çatı"
               ],
               "correct": 0,
-              "hint": "Açıp içeri girersin."
+              "hint": "İçeri girmek için açarsın.",
+              "lvl": 1,
+              "skill": "eng-ev"
             },
             {
-              "q": "'Window' ne demek?",
-              "skill": "eng-ev",
+              "q": "Üstünde uyuduğun 'bed' nedir?",
+              "options": [
+                "Yatak",
+                "Masa",
+                "Sandalye",
+                "Dolap"
+              ],
+              "correct": 0,
+              "hint": "Gece üstünde uyursun.",
+              "lvl": 1,
+              "skill": "eng-ev"
+            },
+            {
+              "q": "Üstüne oturduğun 'chair' nedir?",
+              "options": [
+                "Sandalye",
+                "Masa",
+                "Yatak",
+                "Halı"
+              ],
+              "correct": 0,
+              "hint": "Oturmak için kullanılır.",
+              "lvl": 1,
+              "skill": "eng-ev"
+            },
+            {
+              "q": "Camından dışarı baktığın 'window' nedir?",
               "options": [
                 "Pencere",
                 "Kapı",
@@ -1959,115 +2247,139 @@
                 "Merdiven"
               ],
               "correct": 0,
-              "hint": "Camından dışarı bakarsın."
+              "hint": "Dışarı bakılır.",
+              "lvl": 1,
+              "skill": "eng-ev"
             },
             {
-              "q": "'Table' ne demek?",
-              "skill": "eng-ev",
+              "q": "Annen yemek pişirmek için 'kitchen'a gitti. Nereye gitti?",
               "options": [
-                "Sandalye",
-                "Masa",
-                "Yatak",
-                "Dolap"
-              ],
-              "correct": 1,
-              "hint": "Üstünde yemek yer, ödev yaparsın."
-            },
-            {
-              "q": "'Chair' ne demek?",
-              "skill": "eng-ev",
-              "options": [
-                "Sandalye",
-                "Masa",
-                "Koltuk",
-                "Yatak"
+                "Mutfak",
+                "Banyo",
+                "Yatak odası",
+                "Bahçe"
               ],
               "correct": 0,
-              "hint": "Üstüne oturursun."
+              "hint": "Yemeğin piştiği oda.",
+              "lvl": 2,
+              "skill": "eng-ev"
             },
             {
-              "q": "'Bed' ne demek?",
-              "skill": "eng-ev",
+              "q": "Ödevini yapmak için 'table' başına oturdun. 'Table' nedir?",
               "options": [
-                "Yatak",
                 "Masa",
+                "Yatak",
                 "Kapı",
                 "Halı"
               ],
               "correct": 0,
-              "hint": "Üstünde uyursun."
+              "hint": "Üstünde yazı yazarsın.",
+              "lvl": 2,
+              "skill": "eng-ev"
             },
             {
-              "q": "'Kitchen' ne demek?",
-              "skill": "eng-ev",
+              "q": "Karanlık odada 'lamp' açıldı ve etraf aydınlandı. 'Lamp' nedir?",
               "options": [
-                "Banyo",
-                "Mutfak",
-                "Salon",
-                "Bahçe"
-              ],
-              "correct": 1,
-              "hint": "Yemeğin pişirildiği oda."
-            },
-            {
-              "q": "'Room' ne demek?",
-              "skill": "eng-ev",
-              "options": [
-                "Oda",
-                "Çatı",
-                "Bahçe",
-                "Sokak"
+                "Lamba",
+                "Saat",
+                "Perde",
+                "Halı"
               ],
               "correct": 0,
-              "hint": "Evin içindeki bir bölüm."
+              "hint": "Işık verir.",
+              "lvl": 2,
+              "skill": "eng-ev"
             },
             {
-              "q": "'Clock' ne demek?",
-              "skill": "eng-ev",
+              "q": "Duvarda asılı, zamanı gösteren 'clock' nedir?",
               "options": [
                 "Saat",
-                "Lamba",
                 "Ayna",
-                "Vazo"
+                "Vazo",
+                "Lamba"
               ],
               "correct": 0,
-              "hint": "Duvarda asılı, zamanı gösterir."
+              "hint": "Zamanı gösterir.",
+              "lvl": 2,
+              "skill": "eng-ev"
             },
             {
-              "q": "'Lamp' ne demek?",
-              "skill": "eng-ev",
-              "options": [
-                "Lamba",
-                "Saat",
-                "Halı",
-                "Perde"
-              ],
-              "correct": 0,
-              "hint": "Karanlıkta ışık verir."
-            },
-            {
-              "q": "'Key' ne demek?",
-              "skill": "eng-ev",
+              "q": "Kapıyı açmak için gereken 'key' nedir?",
               "options": [
                 "Anahtar",
                 "Kilit",
                 "Çanta",
-                "Kapı"
+                "Zil"
               ],
               "correct": 0,
-              "hint": "Kapıyı açmak için kullanılır."
+              "hint": "Kilidi açar.",
+              "lvl": 2,
+              "skill": "eng-ev"
             },
             {
-              "q": "'Phone' ne demek?",
-              "skill": "eng-ev",
+              "q": "Eve girmek istiyorsun ama kapı kilitli. Sana en çok ne lazım?",
               "options": [
-                "Telefon",
-                "Televizyon",
-                "Bilgisayar",
-                "Radyo"
+                "Key",
+                "Clock",
+                "Lamp",
+                "Bed"
               ],
               "correct": 0,
-              "hint": "Onunla konuşur, arama yaparsın."
+              "hint": "Kilidi açan şey.",
+              "lvl": 3,
+              "skill": "eng-ev"
+            },
+            {
+              "q": "Bir çocuk 'I sleep in my bed and eat at the table' dedi. 'Bed' ve 'table' sırasıyla nedir?",
+              "options": [
+                "Yatak ve masa",
+                "Masa ve yatak",
+                "Kapı ve pencere",
+                "Sandalye ve dolap"
+              ],
+              "correct": 0,
+              "hint": "Uyuma yeri ve yemek yeri.",
+              "lvl": 3,
+              "skill": "eng-ev"
+            },
+            {
+              "q": "Hava karardı, odada göremiyorsun. Hangisini kullanırsın?",
+              "options": [
+                "Lamp",
+                "Clock",
+                "Key",
+                "Chair"
+              ],
+              "correct": 0,
+              "hint": "Işık kaynağı.",
+              "lvl": 3,
+              "skill": "eng-ev"
+            },
+            {
+              "q": "Birini aramak isteyen çocuk 'phone' aldı. 'Phone' ne işe yarar?",
+              "options": [
+                "Konuşup arama yapmaya",
+                "Uyumaya",
+                "Yemek yemeye",
+                "Işık vermeye"
+              ],
+              "correct": 0,
+              "hint": "Onunla konuşursun.",
+              "lvl": 3,
+              "skill": "eng-ev"
+            },
+            {
+              "q": "Bir odada 'window', 'door' ve 'clock' var. Açılınca temiz hava en çok hangisinden girer?",
+              "options": [
+                "Window",
+                "Clock",
+                "Bed",
+                "Key"
+              ],
+              "correct": 0,
+              "hint": "Camlı olan, açılınca hava girer.",
+              "lvl": 3,
+              "skill": "eng-ev"
             }
           ]
         }
@@ -2153,148 +2465,199 @@
           },
           "bank": [
             {
-              "q": "'Go' ne demek?",
-              "skill": "eng-fiil",
+              "q": "Öğretmen 'Sit down' dedi. Ne yapmalısın?",
               "options": [
-                "Gitmek",
-                "Gelmek",
-                "Durmak",
-                "Koşmak"
+                "Oturmalısın",
+                "Kalkmalısın",
+                "Koşmalısın",
+                "Zıplamalısın"
               ],
               "correct": 0,
-              "hint": "'Go to school' = okula gitmek."
+              "hint": "'sit' = oturmak.",
+              "lvl": 1,
+              "skill": "eng-fiil"
             },
             {
-              "q": "'Come' ne demek?",
-              "skill": "eng-fiil",
+              "q": "Aç bir çocuk 'eat' fiilini yapıyor. Ne yapıyor?",
               "options": [
-                "Gelmek",
-                "Gitmek",
-                "Oturmak",
-                "Uyumak"
+                "Yemek yiyor",
+                "Uyuyor",
+                "Koşuyor",
+                "Okuyor"
               ],
               "correct": 0,
-              "hint": "'Come here' = buraya gel."
+              "hint": "'eat' = yemek yemek.",
+              "lvl": 1,
+              "skill": "eng-fiil"
             },
             {
-              "q": "'Eat' ne demek?",
-              "skill": "eng-fiil",
+              "q": "Susayan biri 'drink' yapıyor. Ne yapıyor?",
               "options": [
-                "Yemek yemek",
-                "İçmek",
-                "Uyumak",
-                "Koşmak"
+                "İçiyor",
+                "Yiyor",
+                "Yürüyor",
+                "Bakıyor"
               ],
               "correct": 0,
-              "hint": "Aç olunca yaparsın."
+              "hint": "'drink' = içmek.",
+              "lvl": 1,
+              "skill": "eng-fiil"
             },
             {
-              "q": "'Drink' ne demek?",
-              "skill": "eng-fiil",
+              "q": "Gece yorulan çocuk 'sleep' yapacak. Ne yapacak?",
               "options": [
-                "Yemek",
-                "İçmek",
-                "Yürümek",
-                "Bakmak"
-              ],
-              "correct": 1,
-              "hint": "Su içme eylemi."
-            },
-            {
-              "q": "'Run' ne demek?",
-              "skill": "eng-fiil",
-              "options": [
-                "Koşmak",
-                "Yürümek",
-                "Durmak",
-                "Oturmak"
+                "Uyuyacak",
+                "Koşacak",
+                "Gülecek",
+                "Yiyecek"
               ],
               "correct": 0,
-              "hint": "Hızlı hareket etmek."
+              "hint": "'sleep' = uyumak.",
+              "lvl": 1,
+              "skill": "eng-fiil"
             },
             {
-              "q": "'Sleep' ne demek?",
-              "skill": "eng-fiil",
+              "q": "Bahçede top oynayan çocuklar 'play' yapıyor. Ne yapıyorlar?",
               "options": [
-                "Uyumak",
-                "Uyanmak",
-                "Koşmak",
-                "Gülmek"
+                "Oynuyorlar",
+                "Çalışıyorlar",
+                "Uyuyorlar",
+                "Yiyorlar"
               ],
               "correct": 0,
-              "hint": "Gece yatakta yaparsın."
+              "hint": "'play' = oynamak.",
+              "lvl": 1,
+              "skill": "eng-fiil"
             },
             {
-              "q": "'Read' ne demek?",
-              "skill": "eng-fiil",
+              "q": "Öğretmen 'Open the door, please' dedi. Ne yapmalısın?",
               "options": [
-                "Okumak",
-                "Yazmak",
-                "Çizmek",
-                "Söylemek"
+                "Kapıyı açmalısın",
+                "Kapıyı kapatmalısın",
+                "Oturmalısın",
+                "Koşmalısın"
               ],
               "correct": 0,
-              "hint": "Kitabı okuma eylemi."
+              "hint": "'open' = açmak.",
+              "lvl": 2,
+              "skill": "eng-fiil"
             },
             {
-              "q": "'Write' ne demek?",
-              "skill": "eng-fiil",
+              "q": "Bir çocuk kitabı eline aldı ve 'read' yapmaya başladı. Ne yapıyor?",
               "options": [
-                "Okumak",
-                "Yazmak",
-                "Silmek",
-                "Koşmak"
-              ],
-              "correct": 1,
-              "hint": "Kalemle yapılan eylem."
-            },
-            {
-              "q": "'Play' ne demek?",
-              "skill": "eng-fiil",
-              "options": [
-                "Oynamak",
-                "Çalışmak",
-                "Uyumak",
-                "Yemek"
+                "Okuyor",
+                "Yazıyor",
+                "Çiziyor",
+                "Yırtıyor"
               ],
               "correct": 0,
-              "hint": "Oyun oynama eylemi."
+              "hint": "'read' = okumak.",
+              "lvl": 2,
+              "skill": "eng-fiil"
             },
             {
-              "q": "'Look' ne demek?",
-              "skill": "eng-fiil",
+              "q": "Kalemi eline alan çocuk 'write' yapıyor. Ne yapıyor?",
               "options": [
-                "Bakmak",
-                "Duymak",
-                "Konuşmak",
-                "Koklamak"
+                "Yazıyor",
+                "Okuyor",
+                "Siliyor",
+                "Koşuyor"
               ],
               "correct": 0,
-              "hint": "Gözlerinle yaparsın."
+              "hint": "'write' = yazmak.",
+              "lvl": 2,
+              "skill": "eng-fiil"
             },
             {
-              "q": "'Open' ne demek?",
-              "skill": "eng-fiil",
+              "q": "Annen 'Come here' dedi. Senden ne istiyor?",
               "options": [
-                "Kapamak",
-                "Açmak",
-                "İtmek",
-                "Çekmek"
-              ],
-              "correct": 1,
-              "hint": "'Open the door' = kapıyı aç."
-            },
-            {
-              "q": "'Sit' ne demek?",
-              "skill": "eng-fiil",
-              "options": [
-                "Oturmak",
-                "Kalkmak",
-                "Zıplamak",
-                "Yürümek"
+                "Yanına gelmeni",
+                "Uzaklaşmanı",
+                "Oturmanı",
+                "Uyumanı"
               ],
               "correct": 0,
-              "hint": "'Sit down' = otur."
+              "hint": "'come' = gelmek.",
+              "lvl": 2,
+              "skill": "eng-fiil"
+            },
+            {
+              "q": "Otobüsü kaçırmamak için çocuk hızlıca 'run' yaptı. Ne yaptı?",
+              "options": [
+                "Koştu",
+                "Yürüdü",
+                "Durdu",
+                "Oturdu"
+              ],
+              "correct": 0,
+              "hint": "'run' = koşmak.",
+              "lvl": 2,
+              "skill": "eng-fiil"
+            },
+            {
+              "q": "'Go' gitmek, 'come' gelmek demek. Annen kapıdan 'Come here!' diye seslendi. Ne yapmalısın?",
+              "options": [
+                "Ona doğru gitmelisin",
+                "Ondan uzaklaşmalısın",
+                "Oturmalısın",
+                "Uyumalısın"
+              ],
+              "correct": 0,
+              "hint": "'come here' = buraya gel.",
+              "lvl": 3,
+              "skill": "eng-fiil"
+            },
+            {
+              "q": "Bir çocuk 'I eat breakfast and then go to school' dedi. Önce ne, sonra ne yapıyor?",
+              "options": [
+                "Önce yemek yiyor, sonra okula gidiyor",
+                "Önce okula gidiyor, sonra yiyor",
+                "Sadece uyuyor",
+                "Sadece oynuyor"
+              ],
+              "correct": 0,
+              "hint": "'eat' yemek, 'go' gitmek.",
+              "lvl": 3,
+              "skill": "eng-fiil"
+            },
+            {
+              "q": "Öğretmen 'Look at the board' dedi. Ne yapmalısın?",
+              "options": [
+                "Tahtaya bakmalısın",
+                "Tahtaya vurmalısın",
+                "Dışarı çıkmalısın",
+                "Uyumalısın"
+              ],
+              "correct": 0,
+              "hint": "'look' = bakmak.",
+              "lvl": 3,
+              "skill": "eng-fiil"
+            },
+            {
+              "q": "Çok yorgun bir çocuk için hangi fiil en uygun olur?",
+              "options": [
+                "Sleep",
+                "Run",
+                "Play",
+                "Jump"
+              ],
+              "correct": 0,
+              "hint": "Yorgunken dinlenilir, uyunur.",
+              "lvl": 3,
+              "skill": "eng-fiil"
+            },
+            {
+              "q": "Kütüphanede sessizce oturup bir çocuk ne yapıyor olabilir?",
+              "options": [
+                "Read",
+                "Run",
+                "Shout",
+                "Jump"
+              ],
+              "correct": 0,
+              "hint": "Kitapla yapılan sessiz eylem.",
+              "lvl": 3,
+              "skill": "eng-fiil"
             }
           ]
         }
@@ -2380,8 +2743,7 @@
           },
           "bank": [
             {
-              "q": "'Monday' hangi gün?",
-              "skill": "eng-zaman",
+              "q": "Haftanın ilk günü, okulun başladığı 'Monday' hangi gün?",
               "options": [
                 "Pazartesi",
                 "Salı",
@@ -2389,131 +2751,103 @@
                 "Cuma"
               ],
               "correct": 0,
-              "hint": "Haftanın ilk günü, okul başlar."
+              "hint": "Haftanın ilk günü.",
+              "lvl": 1,
+              "skill": "eng-zaman"
             },
             {
-              "q": "'Sunday' hangi gün?",
-              "skill": "eng-zaman",
+              "q": "Tatil günü olan 'Sunday' hangi gün?",
               "options": [
-                "Cumartesi",
                 "Pazar",
                 "Pazartesi",
-                "Perşembe"
+                "Cuma",
+                "Salı"
               ],
-              "correct": 1,
-              "hint": "Haftanın tatil günü."
+              "correct": 0,
+              "hint": "Okul yok, tatil günü.",
+              "lvl": 1,
+              "skill": "eng-zaman"
             },
             {
-              "q": "'Today' ne demek?",
-              "skill": "eng-zaman",
+              "q": "İçinde bulunduğumuz günü anlatan 'today' ne demek?",
               "options": [
                 "Bugün",
                 "Yarın",
                 "Dün",
-                "Az önce"
+                "Gece"
               ],
               "correct": 0,
-              "hint": "İçinde bulunduğun gün."
+              "hint": "Şu anki gün.",
+              "lvl": 1,
+              "skill": "eng-zaman"
             },
             {
-              "q": "'Tomorrow' ne demek?",
-              "skill": "eng-zaman",
+              "q": "Gökten su damlayınca çocuk 'rain' dedi. Hava nasıl?",
               "options": [
-                "Yarın",
-                "Dün",
-                "Bugün",
-                "Az önce"
+                "Yağmurlu",
+                "Karlı",
+                "Güneşli",
+                "Rüzgarlı"
               ],
               "correct": 0,
-              "hint": "Bugünden sonraki gün."
+              "hint": "Şemsiye gerekir.",
+              "lvl": 1,
+              "skill": "eng-zaman"
             },
             {
-              "q": "'Rain' ne demek?",
-              "skill": "eng-zaman",
-              "options": [
-                "Yağmur",
-                "Kar",
-                "Güneş",
-                "Rüzgar"
-              ],
-              "correct": 0,
-              "hint": "Gökten su damlar, şemsiye açarsın."
-            },
-            {
-              "q": "'Snow' ne demek?",
-              "skill": "eng-zaman",
+              "q": "Kışın beyaz yağan, kardan adam yapılan 'snow' nedir?",
               "options": [
                 "Kar",
                 "Yağmur",
                 "Bulut",
-                "Rüzgar"
+                "Güneş"
               ],
               "correct": 0,
-              "hint": "Kışın beyaz yağar, kardan adam yaparsın."
+              "hint": "Beyaz ve soğuk.",
+              "lvl": 1,
+              "skill": "eng-zaman"
             },
             {
-              "q": "'Hot' ne demek?",
-              "skill": "eng-zaman",
+              "q": "Bir çocuk 'It is hot today' dedi ve tişörtle çıktı. Hava nasıl?",
               "options": [
-                "Soğuk",
                 "Sıcak",
-                "Islak",
-                "Kuru"
-              ],
-              "correct": 1,
-              "hint": "Yazın hava böyledir."
-            },
-            {
-              "q": "'Cold' ne demek?",
-              "skill": "eng-zaman",
-              "options": [
                 "Soğuk",
-                "Sıcak",
-                "Ilık",
-                "Kuru"
+                "Karlı",
+                "Buzlu"
               ],
               "correct": 0,
-              "hint": "Kışın hava böyledir, üşürsün."
+              "hint": "'hot' = sıcak.",
+              "lvl": 2,
+              "skill": "eng-zaman"
             },
             {
-              "q": "'Day' ne demek?",
-              "skill": "eng-zaman",
+              "q": "'It is cold' diyen bir çocuk ne yapmalı?",
               "options": [
-                "Gün",
-                "Ay",
-                "Yıl",
-                "Saat"
+                "Mont giymeli",
+                "Şort giymeli",
+                "Dondurma yemeli",
+                "Denize girmeli"
               ],
               "correct": 0,
-              "hint": "24 saatlik zaman dilimi."
+              "hint": "'cold' = soğuk.",
+              "lvl": 2,
+              "skill": "eng-zaman"
             },
             {
-              "q": "'Night' ne demek?",
-              "skill": "eng-zaman",
+              "q": "Bugün Pazartesi ise, 'tomorrow' (yarın) hangi gündür?",
               "options": [
-                "Sabah",
-                "Gece",
-                "Öğlen",
-                "Gün"
-              ],
-              "correct": 1,
-              "hint": "Güneş batınca olur, yıldızlar çıkar."
-            },
-            {
-              "q": "'Year' ne demek?",
-              "skill": "eng-zaman",
-              "options": [
-                "Yıl",
-                "Ay",
-                "Hafta",
-                "Gün"
+                "Salı",
+                "Pazar",
+                "Cuma",
+                "Perşembe"
               ],
               "correct": 0,
-              "hint": "12 aydan oluşan zaman."
+              "hint": "Pazartesiden sonraki gün.",
+              "lvl": 2,
+              "skill": "eng-zaman"
             },
             {
-              "q": "'Wind' ne demek?",
-              "skill": "eng-zaman",
+              "q": "Uçurtma uçurmak için çocuğa 'wind' lazım. 'Wind' nedir?",
               "options": [
                 "Rüzgar",
                 "Yağmur",
@@ -2521,7 +2855,87 @@
                 "Güneş"
               ],
               "correct": 0,
-              "hint": "Ağaçları sallar, uçurtmayı uçurur."
+              "hint": "Uçurtmayı uçurur.",
+              "lvl": 2,
+              "skill": "eng-zaman"
+            },
+            {
+              "q": "Yıldızların çıktığı, güneşin battığı 'night' ne demek?",
+              "options": [
+                "Gece",
+                "Sabah",
+                "Öğlen",
+                "Gün"
+              ],
+              "correct": 0,
+              "hint": "Karanlık vakit.",
+              "lvl": 2,
+              "skill": "eng-zaman"
+            },
+            {
+              "q": "Dışarıda 'rain' var. Çocuk ne almadan çıkmamalı?",
+              "options": [
+                "Şemsiye",
+                "Güneş gözlüğü",
+                "Mayo",
+                "Yelpaze"
+              ],
+              "correct": 0,
+              "hint": "Yağmurdan korunmak için.",
+              "lvl": 3,
+              "skill": "eng-zaman"
+            },
+            {
+              "q": "'Today' bugün, 'tomorrow' yarın demek. Ödevini bugün bitirmedin ama 'I will finish it tomorrow' dedin. Ne zaman bitireceksin?",
+              "options": [
+                "Yarın",
+                "Bugün",
+                "Dün",
+                "Hiç"
+              ],
+              "correct": 0,
+              "hint": "'tomorrow' = yarın.",
+              "lvl": 3,
+              "skill": "eng-zaman"
+            },
+            {
+              "q": "Hava 'snow' ve 'cold' ise çocuk ne yapabilir?",
+              "options": [
+                "Kardan adam yapıp mont giyebilir",
+                "Denize girebilir",
+                "Dondurma satabilir",
+                "Şort giyebilir"
+              ],
+              "correct": 0,
+              "hint": "Kar ve soğuk bir arada.",
+              "lvl": 3,
+              "skill": "eng-zaman"
+            },
+            {
+              "q": "Bir yıl 'year' 12 aydan oluşur. Buna göre 'year' Türkçede ne demektir?",
+              "options": [
+                "Yıl",
+                "Ay",
+                "Hafta",
+                "Gün"
+              ],
+              "correct": 0,
+              "hint": "12 ay = 1 ...",
+              "lvl": 3,
+              "skill": "eng-zaman"
+            },
+            {
+              "q": "'It is sunny and hot' diyen bir çocuk için en uygun kıyafet hangisi?",
+              "options": [
+                "Tişört ve şapka",
+                "Kalın mont",
+                "Kar botu",
+                "Eldiven"
+              ],
+              "correct": 0,
+              "hint": "Güneşli ve sıcak havaya göre giyin.",
+              "lvl": 3,
+              "skill": "eng-zaman"
             }
           ]
         }
@@ -2607,148 +3021,199 @@
           },
           "bank": [
             {
-              "q": "'What is your name?' ne sorar?",
-              "skill": "eng-soru",
+              "q": "Biri sana 'What is your name?' dedi. Ne öğrenmek istiyor?",
               "options": [
-                "Adın ne?",
-                "Kaç yaşındasın?",
-                "Nasılsın?",
-                "Nerelisin?"
+                "Adını",
+                "Yaşını",
+                "Rengini",
+                "Boyunu"
               ],
               "correct": 0,
-              "hint": "'name' = isim."
+              "hint": "'name' = isim.",
+              "lvl": 1,
+              "skill": "eng-soru"
             },
             {
-              "q": "'How old are you?' ne sorar?",
-              "skill": "eng-soru",
-              "options": [
-                "Kaç yaşındasın?",
-                "Adın ne?",
-                "Nasılsın?",
-                "Neredesin?"
-              ],
-              "correct": 0,
-              "hint": "'old' = yaş; yaş sorulur."
-            },
-            {
-              "q": "'Where are you?' ne sorar?",
-              "skill": "eng-soru",
-              "options": [
-                "Neredesin?",
-                "Kimsin?",
-                "Nesin?",
-                "Nasılsın?"
-              ],
-              "correct": 0,
-              "hint": "'where' = nerede."
-            },
-            {
-              "q": "'I am fine' ne demek?",
-              "skill": "eng-cumle",
+              "q": "'I am fine' cümlesi ne anlatır?",
               "options": [
                 "İyiyim",
-                "Kötüyüm",
                 "Açım",
-                "Yorgunum"
+                "Yorgunum",
+                "Üzgünüm"
               ],
               "correct": 0,
-              "hint": "'How are you?' sorusuna cevap; 'fine' = iyi."
+              "hint": "'fine' = iyi.",
+              "lvl": 1,
+              "skill": "eng-cumle"
             },
             {
-              "q": "'This is my book' ne demek?",
-              "skill": "eng-cumle",
-              "options": [
-                "Bu benim kitabım",
-                "Bu senin kitabın",
-                "Şu bir kalem",
-                "O bir defter"
-              ],
-              "correct": 0,
-              "hint": "'my' = benim."
-            },
-            {
-              "q": "'I have a dog' ne demek?",
-              "skill": "eng-cumle",
-              "options": [
-                "Bir köpeğim var",
-                "Bir kedim var",
-                "Köpeği görüyorum",
-                "Köpek büyük"
-              ],
-              "correct": 0,
-              "hint": "'have' = sahip olmak."
-            },
-            {
-              "q": "'She is my sister' ne demek?",
-              "skill": "eng-cumle",
-              "options": [
-                "O benim kız kardeşim",
-                "O benim erkek kardeşim",
-                "Bu annem",
-                "Şu babam"
-              ],
-              "correct": 0,
-              "hint": "'she' = o (kız), 'sister' = kız kardeş."
-            },
-            {
-              "q": "'I can swim' ne demek?",
-              "skill": "eng-cumle",
-              "options": [
-                "Yüzebilirim",
-                "Koşabilirim",
-                "Uçabilirim",
-                "Yürüyebilirim"
-              ],
-              "correct": 0,
-              "hint": "'can' = -ebilmek, 'swim' = yüzmek."
-            },
-            {
-              "q": "'Let's go' ne demek?",
-              "skill": "eng-cumle",
-              "options": [
-                "Hadi gidelim",
-                "Dur",
-                "Otur",
-                "Gel"
-              ],
-              "correct": 0,
-              "hint": "Birlikte gitmeye çağırır."
-            },
-            {
-              "q": "'I love my family' ne demek?",
-              "skill": "eng-cumle",
-              "options": [
-                "Ailemi seviyorum",
-                "Ailemi görüyorum",
-                "Ailem büyük",
-                "Aileme gidiyorum"
-              ],
-              "correct": 0,
-              "hint": "'love' = sevmek, 'family' = aile."
-            },
-            {
-              "q": "'Good luck!' ne anlatır?",
-              "skill": "eng-soru",
-              "options": [
-                "İyi şanslar!",
-                "Hoşça kal!",
-                "Teşekkürler!",
-                "Günaydın!"
-              ],
-              "correct": 0,
-              "hint": "Birine başarı dilerken söylenir."
-            },
-            {
-              "q": "'See you tomorrow' ne demek?",
-              "skill": "eng-cumle",
+              "q": "Ayrılırken arkadaşın 'See you tomorrow' dedi. Ne demek?",
               "options": [
                 "Yarın görüşürüz",
-                "Dün gördüm",
-                "Şimdi gel",
-                "Hoşça kal"
+                "Merhaba",
+                "Teşekkürler",
+                "Otur"
               ],
               "correct": 0,
-              "hint": "'tomorrow' = yarın; ayrılırken söylenir."
+              "hint": "'tomorrow' = yarın.",
+              "lvl": 1,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Bir yarışa girecek arkadaşına 'Good luck!' dedin. Ne diledin?",
+              "options": [
+                "İyi şanslar",
+                "İyi geceler",
+                "Güle güle",
+                "Afiyet olsun"
+              ],
+              "correct": 0,
+              "hint": "Başarı dileği.",
+              "lvl": 1,
+              "skill": "eng-soru"
+            },
+            {
+              "q": "'Let's go' diyen bir çocuk ne yapmak istiyor?",
+              "options": [
+                "Birlikte gitmek",
+                "Oturmak",
+                "Uyumak",
+                "Yemek"
+              ],
+              "correct": 0,
+              "hint": "Birlikte gitmeye çağırır.",
+              "lvl": 1,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Biri 'How old are you?' diye sordu. Nasıl cevap verirsin?",
+              "options": [
+                "I am nine",
+                "My name is Ali",
+                "I am fine",
+                "Goodbye"
+              ],
+              "correct": 0,
+              "hint": "'old' = yaş; sayıyla cevap verilir.",
+              "lvl": 2,
+              "skill": "eng-soru"
+            },
+            {
+              "q": "Bir çocuk 'I have a dog' dedi. Neyi var?",
+              "options": [
+                "Bir köpeği",
+                "Bir kedisi",
+                "Bir kuşu",
+                "Bir balığı"
+              ],
+              "correct": 0,
+              "hint": "'dog' = köpek.",
+              "lvl": 2,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "'She is my sister' diyen çocuk kimi tanıtıyor?",
+              "options": [
+                "Kız kardeşini",
+                "Erkek kardeşini",
+                "Annesini",
+                "Babasını"
+              ],
+              "correct": 0,
+              "hint": "'sister' = kız kardeş.",
+              "lvl": 2,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Havuz kenarında bir çocuk 'I can swim' dedi. Ne yapabiliyor?",
+              "options": [
+                "Yüzebiliyor",
+                "Uçabiliyor",
+                "Koşamıyor",
+                "Yürüyemiyor"
+              ],
+              "correct": 0,
+              "hint": "'swim' = yüzmek.",
+              "lvl": 2,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Biri 'Where are you?' diye sordu. Ne öğrenmek istiyor?",
+              "options": [
+                "Nerede olduğunu",
+                "Kim olduğunu",
+                "Kaç yaşında olduğunu",
+                "Ne yediğini"
+              ],
+              "correct": 0,
+              "hint": "'where' = nerede.",
+              "lvl": 2,
+              "skill": "eng-soru"
+            },
+            {
+              "q": "Biri 'How are you?' diye sordu, sen de kendini iyi hissediyorsun. En uygun cevap hangisi?",
+              "options": [
+                "I am fine, thank you",
+                "My name is Sam",
+                "I am nine",
+                "Goodbye"
+              ],
+              "correct": 0,
+              "hint": "Hal hatıra iyi cevabı.",
+              "lvl": 3,
+              "skill": "eng-soru"
+            },
+            {
+              "q": "Bir çocuk 'I love my family and I have two brothers' dedi. Bu cümleden ne anlıyoruz?",
+              "options": [
+                "Ailesini seviyor ve iki erkek kardeşi var",
+                "Ailesini sevmiyor",
+                "Hiç kardeşi yok",
+                "İki kız kardeşi var"
+              ],
+              "correct": 0,
+              "hint": "'love' sevmek, 'brothers' erkek kardeşler.",
+              "lvl": 3,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Yeni tanıştığın biri 'What is your name?' diye sordu. En uygun cevap kalıbı hangisi?",
+              "options": [
+                "My name is ...",
+                "I am fine",
+                "See you",
+                "Good luck"
+              ],
+              "correct": 0,
+              "hint": "İsim sorusuna isimle cevap verilir.",
+              "lvl": 3,
+              "skill": "eng-soru"
+            },
+            {
+              "q": "Bir çocuk 'This is my book, not your book' dedi. Kitap kimin?",
+              "options": [
+                "Onun",
+                "Senin",
+                "Öğretmenin",
+                "Kimsenin"
+              ],
+              "correct": 0,
+              "hint": "'my' benim, 'your' senin.",
+              "lvl": 3,
+              "skill": "eng-cumle"
+            },
+            {
+              "q": "Sınav öncesi arkadaşın gergin. Ona hangi cümleyi söylemek en uygun?",
+              "options": [
+                "Good luck!",
+                "Goodbye!",
+                "I am hungry",
+                "Sit down"
+              ],
+              "correct": 0,
+              "hint": "Başarı dileği söylenir.",
+              "lvl": 3,
+              "skill": "eng-soru"
             }
           ]
         }

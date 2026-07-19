@@ -44,14 +44,15 @@
     resolveGenerator(sectionId, gen) {
       if (!gen) return gen;
       // Final boss / ders-geneli sınav: dersin TÜM bölümlerinin bankalarını birleştir (en zor).
+      const ageFilter = (B.Curriculum && B.Curriculum.ageFilter) ? B.Curriculum.ageFilter : (b => b);
       if (gen.poolAll) {
         const all = [];
         B.Lesson.sections().forEach(x => (x.section.bank || []).forEach(b => all.push(b)));
-        return { pool: all };
+        return { pool: ageFilter(all) };
       }
       if (typeof gen.pool !== 'string') return gen;
       const ref = B.Lesson.findSection(gen.pool) || B.Lesson.findSection(sectionId);
-      return { pool: (ref && ref.section.bank) || [] };
+      return { pool: ageFilter((ref && ref.section.bank) || []) };
     },
 
     /* ---- Kilit kuralları ---- */

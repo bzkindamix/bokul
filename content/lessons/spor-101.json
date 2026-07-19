@@ -250,148 +250,199 @@
           },
           "bank": [
             {
-              "q": "Spora başlamadan önce ilk ne yapılır?",
-              "skill": "kurallar",
+              "q": "Ali maça çıkmadan önce kasları hâlâ soğuk. Sakatlanmamak için ilk ne yapmalı?",
               "options": [
-                "Isınma (esneme + hafif koşu)",
-                "Hemen tam hızla koşmak",
+                "Isınma ve esneme hareketleri",
+                "Hemen tam hızda koşmak",
                 "Bol bol yemek yemek",
-                "Uyumak"
+                "Kenarda uyumak"
               ],
               "correct": 0,
-              "hint": "Soğuk kas kolay incinir; önce ısın."
+              "hint": "Soğuk kas kolay incinir.",
+              "lvl": 1,
+              "skill": "spr-isinma"
             },
             {
-              "q": "'Fair play' ne demektir?",
-              "skill": "kurallar",
+              "q": "Antrenör 'bugün fair play oynayın' dedi. Bu ne demek?",
               "options": [
                 "Dürüst ve saygılı oynamak",
-                "Ne olursa olsun kazanmak",
-                "Rakibe bağırmak",
-                "Hakemi kandırmak"
+                "Ne pahasına olursa olsun kazanmak",
+                "Rakibe çelme takmak",
+                "Hakeme bağırmak"
               ],
               "correct": 0,
-              "hint": "Hilesiz, rakibe saygılı oyun."
+              "hint": "Hilesiz, saygılı oyun.",
+              "lvl": 1,
+              "skill": "spr-fairplay"
             },
             {
-              "q": "Maçı kaybedince gerçek bir sporcu ne yapar?",
-              "skill": "kurallar",
+              "q": "Zeynep koşu antrenmanında çok terledi. Vücudu için en doğrusu ne?",
               "options": [
-                "Rakibini tebrik eder",
-                "Küser ve gider",
-                "Kavga çıkarır",
-                "Ağlayıp bırakır"
+                "Su içmek",
+                "Hiçbir şey yapmamak",
+                "Daha kalın giyinmek",
+                "Ayakta hiç durmadan koşmak"
               ],
               "correct": 0,
-              "hint": "Yenilgiyi de centilmence karşılamak kahramanlıktır."
+              "hint": "Terleyince su kaybedersin.",
+              "lvl": 1,
+              "skill": "spr-saglik"
             },
             {
-              "q": "Spor yaparken neden su içmeliyiz?",
-              "skill": "saglik",
+              "q": "Futbolda Can, kaleci olmadığı halde topu eliyle tuttu. Hakem ne verir?",
               "options": [
-                "Terleyince kaybettiğimiz suyu yerine koymak için",
-                "Karnımız acıkmasın diye",
-                "Daha hızlı olmak için sadece",
-                "Gerek yoktur"
-              ],
-              "correct": 0,
-              "hint": "Terle su kaybedersin."
-            },
-            {
-              "q": "Futbolda topa elle dokunmak (kaleci hariç) nedir?",
-              "skill": "kurallar",
-              "options": [
-                "Faul (el)",
+                "El (faul)",
                 "Gol",
-                "Serbest hareket",
-                "Penaltı kazanmak"
+                "Serbest oyun",
+                "Alkış"
               ],
               "correct": 0,
-              "hint": "Sadece kaleci ceza sahasında elle oynar."
+              "hint": "Sadece kaleci ceza sahasında elle oynar.",
+              "lvl": 1,
+              "skill": "spr-kurallar"
             },
             {
-              "q": "Hakemin görevi nedir?",
-              "skill": "kurallar",
+              "q": "Deniz'in takımı maçı kaybetti. Gerçek bir sporcu olarak ne yapmalı?",
               "options": [
-                "Kuralların uygulanmasını sağlamak",
-                "En iyi golü atmak",
-                "Takımı desteklemek",
-                "Seyirciyi eğlendirmek"
+                "Rakibini tebrik etmek",
+                "Küsüp gitmek",
+                "Kavga çıkarmak",
+                "Topu tekmelemek"
               ],
               "correct": 0,
-              "hint": "Tarafsız kural bekçisi."
+              "hint": "Yenilgiyi centilmence karşılamak kahramanlıktır.",
+              "lvl": 1,
+              "skill": "spr-fairplay"
             },
             {
-              "q": "Spordan sonra kaslar için ne iyidir?",
-              "skill": "saglik",
+              "q": "Maçta rakip oyuncu düştü ve canı yandı. Fair play'e en uygun davranış hangisi?",
               "options": [
-                "Soğuma ve esneme hareketleri",
-                "Hemen dondurma yemek",
-                "Hiç hareket etmemek",
-                "Bol bol bağırmak"
+                "Oyunu durdurup yardım çağırmak",
+                "Fırsattan yararlanıp gol atmak",
+                "Gülüp devam etmek",
+                "Onunla dalga geçmek"
               ],
               "correct": 0,
-              "hint": "Isınmanın tersi: yavaşça soğu."
+              "hint": "İnsanlık kazanmaktan önce gelir.",
+              "lvl": 2,
+              "skill": "spr-fairplay"
             },
             {
-              "q": "Takım sporunda başarı için en önemlisi hangisidir?",
-              "skill": "spor-genel",
+              "q": "Hakem senin lehine yanlış karar verdi; top aslında senden dışarı çıkmıştı. En dürüst davranış ne?",
               "options": [
-                "İş birliği ve pas vermek",
-                "Herkesin tek başına oynaması",
-                "Sadece bir kişinin oynaması",
-                "Kurallara uymamak"
+                "Doğruyu söyleyip topu rakibe vermek",
+                "Sesini çıkarmayıp avantajı kullanmak",
+                "Sevinip gol atmak",
+                "Hakemle alay etmek"
               ],
               "correct": 0,
-              "hint": "Birlikten kuvvet doğar."
+              "hint": "Dürüstlük skordan değerlidir.",
+              "lvl": 2,
+              "skill": "spr-fairplay"
             },
             {
-              "q": "Spor ayakkabısı neden önemlidir?",
-              "skill": "saglik",
+              "q": "Bir oyuncu sürekli sert faul yapıyor. Hakemin ona sarı kart göstermesinin amacı nedir?",
               "options": [
-                "Ayağı korur, kaymayı önler",
-                "Sadece güzel görünsün diye",
-                "Hızlı yesin diye",
-                "Önemli değildir"
+                "Uyarıp daha dikkatli olmasını sağlamak",
+                "Onu ödüllendirmek",
+                "Gol saymak",
+                "Maçı bitirmek"
               ],
               "correct": 0,
-              "hint": "Doğru ayakkabı sakatlanmayı azaltır."
+              "hint": "Sarı = uyarı; ikincisi kırmızı olur.",
+              "lvl": 2,
+              "skill": "spr-kurallar"
             },
             {
-              "q": "Sarı kart futbolda neyi gösterir?",
-              "skill": "kurallar",
+              "q": "Mert ısınmayı atlayıp hemen sprint attı ve bacağı çekildi. Bundan çıkarılacak ders nedir?",
               "options": [
-                "Uyarı (dikkatli ol!)",
-                "Gol",
-                "Maç bitti",
-                "Oyuncu değişikliği"
+                "Isınma sakatlanmayı önler, atlanmamalı",
+                "Isınma zaman kaybıdır",
+                "Sprint her zaman güvenlidir",
+                "Ağrıya aldırmamak gerekir"
               ],
               "correct": 0,
-              "hint": "İkinci sarı = kırmızı olur."
+              "hint": "Soğuk kas zorlanınca incinir.",
+              "lvl": 2,
+              "skill": "spr-isinma"
             },
             {
-              "q": "Düzenli spor yapmak neyi güçlendirir?",
-              "skill": "saglik",
+              "q": "Takım arkadaşın önemli bir fırsatı kaçırdı ve çok üzgün. En iyi takım davranışı hangisi?",
               "options": [
-                "Kalbi ve kasları",
-                "Sadece saçları",
-                "Sadece tırnakları",
-                "Hiçbir şeyi"
+                "Onu yüreklendirip motive etmek",
+                "Ona kızıp bağırmak",
+                "Onu oyundan atmak",
+                "Suçu ona yüklemek"
               ],
               "correct": 0,
-              "hint": "Kalp de bir kastır, çalışınca güçlenir."
+              "hint": "Destek takımı güçlü tutar.",
+              "lvl": 2,
+              "skill": "spr-takim"
             },
             {
-              "q": "Bir takım arkadaşın düşünce ne yaparsın?",
-              "skill": "spor-genel",
+              "q": "Takımın 1-0 önde ve maçın bitmesine az kaldı. Hem kurallara hem fair play'e uygun en akıllı davranış hangisi?",
               "options": [
-                "Kalkmasına yardım ederim",
-                "Gülerim",
-                "Görmezden gelirim",
-                "İterim"
+                "Topu kontrollü tutmak ama oyunu dürüstçe sürdürmek",
+                "Rakibe kasıtlı faul yapıp durdurmak",
+                "Yerde yatıp sakatmış gibi numara yapmak",
+                "Topu tribüne atıp vakit öldürmek"
               ],
               "correct": 0,
-              "hint": "Fair play sadece rakibe değil, takımına da saygı."
+              "hint": "Akıllı ama dürüst oynamak.",
+              "lvl": 3,
+              "skill": "spr-strateji"
+            },
+            {
+              "q": "Sana rakibin sakat bölgesine bilerek sert oynaman söyleniyor. Bu neden yanlış ve ne yapmalısın?",
+              "options": [
+                "Sağlığı riske atmak fair play'e aykırıdır; dürüst oynamalıyım",
+                "Kazanmak için her yol denenir",
+                "Rakibi sakatlamak akıllıcadır",
+                "Söyleneni yapıp zarar vermeliyim"
+              ],
+              "correct": 0,
+              "hint": "Rakibin sağlığı zaferden önemlidir.",
+              "lvl": 3,
+              "skill": "spr-fairplay"
+            },
+            {
+              "q": "Takımda herkes tek başına gol atmaya çalışıyor ve kaybediyorsunuz. Kaptan olarak en iyi strateji ne olur ve neden?",
+              "options": [
+                "Pas oyununu düzenlemek, çünkü iş birliği daha çok fırsat üretir",
+                "Herkesin daha çok bireysel oynaması",
+                "Savunmayı tamamen bırakmak",
+                "Hakeme şikayet etmek"
+              ],
+              "correct": 0,
+              "hint": "Birlikten kuvvet doğar.",
+              "lvl": 3,
+              "skill": "spr-strateji"
+            },
+            {
+              "q": "Sıcak bir günde uzun bir maç var. Performansını korumak için en doğru plan hangisidir?",
+              "options": [
+                "Aralarda su içmek, iyi ısınmak ve tempoyu dengelemek",
+                "Hiç su içmeden sonuna kadar koşmak",
+                "Maçtan hemen önce çok ağır yemek",
+                "Isınmayı atlayıp gücü saklamak"
+              ],
+              "correct": 0,
+              "hint": "Su kaybı ve yorgunluğu birlikte yönetmek.",
+              "lvl": 3,
+              "skill": "spr-saglik"
+            },
+            {
+              "q": "Rakip takım sürekli faul yapıyor ve sinirleniyorsun. Hem takımına yardım eden hem centilmen kalan en iyi tepki nedir?",
+              "options": [
+                "Sakin kalıp oyununa odaklanmak, kararı hakeme bırakmak",
+                "Misilleme yapıp sen de faul yapmak",
+                "Sahayı terk etmek",
+                "Rakiple kavga etmek"
+              ],
+              "correct": 0,
+              "hint": "Öfke değil, sakinlik kazandırır.",
+              "lvl": 3,
+              "skill": "spr-fairplay"
             }
           ]
         },
@@ -471,148 +522,199 @@
           },
           "bank": [
             {
-              "q": "Hangisi bir TAKIM sporudur?",
-              "skill": "branslar",
+              "q": "Okulda 'takım sporu' oynanacak dendi. Aşağıdakilerden hangisi takım sporudur?",
               "options": [
                 "Basketbol",
+                "Tekli tenis",
                 "Yüzme",
-                "Koşu",
-                "Tenis (tekli)"
+                "Uzun atlama"
               ],
               "correct": 0,
-              "hint": "Birden çok kişiyle birlikte oynanır."
+              "hint": "Birden çok kişiyle oynanır.",
+              "lvl": 1,
+              "skill": "spr-branslar"
             },
             {
-              "q": "Hangisi genellikle BİREYSEL bir spordur?",
-              "skill": "branslar",
+              "q": "Elif kendi gücüyle, tek başına yarışmak istiyor. Hangi spor buna uygun?",
               "options": [
                 "Yüzme",
-                "Futbol",
                 "Voleybol",
+                "Futbol",
                 "Basketbol"
               ],
               "correct": 0,
-              "hint": "Kendi başına, kendi gücünle."
+              "hint": "Bireysel sporda kendinle yarışırsın.",
+              "lvl": 1,
+              "skill": "spr-branslar"
             },
             {
-              "q": "Basketbolda amaç nedir?",
-              "skill": "branslar",
+              "q": "Kaan basketbol izlerken oyunun amacını sordu. Doğru cevap nedir?",
               "options": [
-                "Topu potaya atmak",
+                "Topu potaya (çembere) atmak",
                 "Kaleye gol atmak",
                 "Fileden aşırmak",
                 "En hızlı yüzmek"
               ],
               "correct": 0,
-              "hint": "Yukarıdaki çembere sayı."
+              "hint": "Yukarıdaki çembere sayı.",
+              "lvl": 1,
+              "skill": "spr-branslar"
             },
             {
-              "q": "Voleybolda top nereden karşıya geçer?",
-              "skill": "branslar",
+              "q": "Sağlıklı bir sporcunun günlük düzeni için en doğrusu hangisi?",
               "options": [
-                "Filenin üstünden",
-                "Potadan",
-                "Kaleden",
-                "Yerden"
+                "Dengeli beslenmek, su içmek, yeterli uyumak",
+                "Hiç uyumamak",
+                "Sadece cips yemek",
+                "Hiç su içmemek"
               ],
               "correct": 0,
-              "hint": "Ortadaki file iki takımı ayırır."
+              "hint": "Spor + beslenme + uyku üçlüsü.",
+              "lvl": 1,
+              "skill": "spr-saglik"
             },
             {
-              "q": "Sağlıklı bir sporcu için hangisi en doğrudur?",
-              "skill": "saglik",
+              "q": "Olimpiyat bayrağındaki sembol kaç halkadan oluşur?",
               "options": [
-                "Dengeli beslenir, su içer, uyur",
-                "Hiç uyumaz",
-                "Sadece cips yer",
-                "Hiç su içmez"
+                "5",
+                "3",
+                "7",
+                "10"
               ],
               "correct": 0,
-              "hint": "Spor + beslenme + uyku üçlüsü."
+              "hint": "Beş kıtayı temsil eder.",
+              "lvl": 1,
+              "skill": "spr-olimpiyat"
             },
             {
-              "q": "Yüzme hangi açıdan çok faydalıdır?",
-              "skill": "saglik",
+              "q": "Yağmurlu bir günde dışarıda spor yapılamıyor. Evde sağlığını korumak için en iyi seçenek hangisi?",
               "options": [
-                "Neredeyse tüm vücudu çalıştırır",
-                "Sadece parmakları",
-                "Sadece göz kaslarını",
-                "Hiçbir kası"
+                "Evde esneme ve hafif hareket egzersizleri yapmak",
+                "Bütün gün hareketsiz oturmak",
+                "Ekstra abur cubur yemek",
+                "Öğün atlamak"
               ],
               "correct": 0,
-              "hint": "Suda kolların, bacakların, sırtın hep çalışır."
+              "hint": "Hareket her yerde yapılabilir.",
+              "lvl": 2,
+              "skill": "spr-saglik"
             },
             {
-              "q": "Jimnastikte hangisi ön plandadır?",
-              "skill": "branslar",
+              "q": "Bir maçtan 1 saat önce çok ağır ve yağlı yemek yiyen sporcu neden zorlanır?",
               "options": [
-                "Esneklik ve denge",
-                "Topu kaleye atmak",
-                "Araba sürmek",
-                "Şarkı söylemek"
+                "Ağır yemek sindirimi yorar, oyunu güçleştirir",
+                "Ağır yemek hızı artırır",
+                "Hiç etkisi olmaz",
+                "Daha çok enerji verip hiç yormaz"
               ],
               "correct": 0,
-              "hint": "Takla, denge, esneme."
+              "hint": "Maç öncesi hafif ve dengeli beslenmek daha iyi.",
+              "lvl": 2,
+              "skill": "spr-beslenme"
             },
             {
-              "q": "Uzun bir maçtan önce ne yemek daha iyidir?",
-              "skill": "saglik",
+              "q": "Yüzme, koşuya göre eklemler için neden daha yumuşak bir spordur?",
               "options": [
-                "Enerji veren dengeli bir öğün",
-                "Sadece çikolata",
-                "Hiçbir şey",
-                "Çok ağır, yağlı yemek"
+                "Su vücudu taşır, eklemlere binen yük azalır",
+                "Suda hiç kas çalışmaz",
+                "Yüzerken hiç yorulmazsın",
+                "Su kemikleri sertleştirir"
               ],
               "correct": 0,
-              "hint": "Enerji lazım ama mideyi de yormamalı."
+              "hint": "Suyun kaldırma kuvveti vardır.",
+              "lvl": 2,
+              "skill": "spr-saglik"
             },
             {
-              "q": "Koşuda dayanıklılık ne demektir?",
-              "skill": "spor-genel",
+              "q": "Her gün saatlerce hareketsiz oturan biri zamanla ne yaşar?",
               "options": [
-                "Uzun süre yorulmadan devam edebilmek",
-                "Bir kez zıplamak",
-                "Çok bağırmak",
-                "Hızlı yemek"
+                "Kaslar zayıflar, enerji düşer",
+                "Kaslar güçlenir",
+                "Boyu hızla uzar",
+                "Hiçbir değişiklik olmaz"
               ],
               "correct": 0,
-              "hint": "Kalp ve nefes güçlenince uzun koşarsın."
+              "hint": "Kullanılmayan kas zayıflar.",
+              "lvl": 2,
+              "skill": "spr-saglik"
             },
             {
-              "q": "Tenis nasıl bir sporudur?",
-              "skill": "branslar",
+              "q": "Bir çocuk hem eğlenmek hem arkadaşlarıyla iş birliği öğrenmek istiyor. Hangi tür spor bu amaca daha uygun?",
               "options": [
-                "Raketle top vurulan bir spor",
-                "Ayakla top sürülen spor",
-                "Suda yapılan spor",
-                "Kar sporu"
+                "Takım sporu (futbol, voleybol)",
+                "Tek başına satranç",
+                "Tek başına koşu",
+                "Hiç spor yapmamak"
               ],
               "correct": 0,
-              "hint": "File üzerinden raketle."
+              "hint": "Takım sporu iş birliği öğretir.",
+              "lvl": 2,
+              "skill": "spr-branslar"
             },
             {
-              "q": "Her gün hareketsiz oturmak vücuda ne yapar?",
-              "skill": "saglik",
+              "q": "Yeni spora başlayan biri hangi branşı seçeceğini bilmiyor. En akıllı yaklaşım nedir ve neden?",
               "options": [
-                "Kasları güçsüzleştirir, enerjini düşürür",
-                "Daha da güçlendirir",
-                "Hiçbir etkisi yoktur",
-                "Boyu uzatır"
+                "Farklı sporları deneyip sevdiğini ve bedenine uygun olanı seçmek",
+                "İlk gün en zor branşta yarışa girmek",
+                "Hiç denemeden vazgeçmek",
+                "Sadece en pahalı sporu seçmek"
               ],
               "correct": 0,
-              "hint": "Hareket etmeyen kas zayıflar."
+              "hint": "Denemek doğru seçimi kolaylaştırır.",
+              "lvl": 3,
+              "skill": "spr-strateji"
             },
             {
-              "q": "Olimpiyat oyunlarının sembolü kaç halkadır?",
-              "skill": "spor-genel",
+              "q": "Bir sporcu sadece kol gücüne çalışıp bacaklarını ihmal ediyor. Bu neden iyi bir plan değildir?",
               "options": [
-                "5 halka",
-                "3 halka",
-                "7 halka",
-                "10 halka"
+                "Vücut dengeli gelişmeli; tüm kaslar çalıştırılmalı",
+                "Sadece kollar önemlidir",
+                "Bacaklar hiç kullanılmaz",
+                "Dengesiz çalışmak daha hızlı sonuç verir"
               ],
               "correct": 0,
-              "hint": "Beş kıtayı temsil eden iç içe halkalar."
+              "hint": "Dengeli gelişim sakatlığı azaltır.",
+              "lvl": 3,
+              "skill": "spr-saglik"
+            },
+            {
+              "q": "Sınav haftasında hem çalışıp hem sağlıklı kalmak isteyen öğrenci için en iyi denge hangisi?",
+              "options": [
+                "Kısa hareket molaları verip düzenli uyumak",
+                "Hiç uyumadan sabaha kadar çalışmak",
+                "Hiç ara vermeden oturmak",
+                "Sürekli abur cubur yiyip oturmak"
+              ],
+              "correct": 0,
+              "hint": "Hareket ve uyku beyni de güçlendirir.",
+              "lvl": 3,
+              "skill": "spr-saglik"
+            },
+            {
+              "q": "Bir çocuk sürekli enerjisiz ve halsiz. Beslenme ve yaşam düzeninde en mantıklı iyileştirme nedir?",
+              "options": [
+                "Dengeli beslenip düzenli spor ve uyku eklemek",
+                "Daha çok şekerli içecek tüketmek",
+                "Hiç dışarı çıkmamak",
+                "Öğünleri tamamen atlamak"
+              ],
+              "correct": 0,
+              "hint": "Enerji; beslenme, uyku ve hareketle gelir.",
+              "lvl": 3,
+              "skill": "spr-saglik"
+            },
+            {
+              "q": "Olimpiyatlarda bir sporcu altın kazandı ama rakibine kaba davrandı. Olimpiyat ruhu açısından bu neyi gösterir?",
+              "options": [
+                "Madalya kazanmak yetmez; saygı ve dostluk da önemlidir",
+                "Kazanan her şeyi yapabilir",
+                "Saygı önemsizdir",
+                "Kabalık normaldir"
+              ],
+              "correct": 0,
+              "hint": "Olimpiyat ruhu dostluk ve saygıdır.",
+              "lvl": 3,
+              "skill": "spr-olimpiyat"
             }
           ]
         }
@@ -698,136 +800,199 @@
           },
           "bank": [
             {
-              "q": "Spora başlamadan önce kasları hazırlamak için ne yaparız?",
-              "skill": "isinma-guvenlik",
+              "q": "Antrenmana çıkan Ege'nin kasları soğuk. İlk yapması gereken nedir?",
               "options": [
-                "Isınma hareketleri yaparız",
-                "Hemen en yüksek hızda koşarız",
-                "Uzun uzun uyuruz",
-                "Dondurma yeriz"
+                "Isınma hareketleri",
+                "En yüksek hızda koşmak",
+                "Ağır halter kaldırmak",
+                "Uzun atlama denemek"
               ],
               "correct": 0,
-              "hint": "Soğuk kas kolay incinir."
-            },
-            {
-              "q": "Neden ısınma yapmak önemlidir?",
-              "skill": "isinma-guvenlik",
-              "options": [
-                "Sakatlanma riskini azaltır",
-                "Bizi yorar ve zayıflatır",
-                "Hiçbir işe yaramaz",
-                "Boyumuzu uzatır"
-              ],
-              "correct": 0,
-              "hint": "Hazır kas daha güvenlidir."
+              "hint": "Soğuk kas kolay incinir.",
+              "lvl": 1,
+              "skill": "spr-isinma"
             },
             {
               "q": "Isınma genellikle hangisiyle başlar?",
-              "skill": "isinma-guvenlik",
               "options": [
                 "Hafif koşu ve yürüyüş",
-                "Ağır halter kaldırma",
-                "Yarış koşusu",
-                "Uzun atlama"
+                "Yarış temposunda sprint",
+                "Ağır ağırlık kaldırma",
+                "Yüksek atlama"
               ],
               "correct": 0,
-              "hint": "Önce nabzı yavaşça yükseltiriz."
+              "hint": "Önce nabzı yavaşça yükseltiriz.",
+              "lvl": 1,
+              "skill": "spr-isinma"
             },
             {
-              "q": "Spor yaparken ayağını en iyi ne korur?",
-              "skill": "isinma-guvenlik",
+              "q": "Sahada güvenli koşmak için ayağını en iyi ne korur?",
               "options": [
                 "Uygun spor ayakkabısı",
                 "Terlik",
                 "Çıplak ayak",
-                "Kışlık bot"
+                "Kayak botu"
               ],
               "correct": 0,
-              "hint": "Kaymayı ve burkulmayı önler."
+              "hint": "Kaymayı ve burkulmayı önler.",
+              "lvl": 1,
+              "skill": "spr-guvenlik"
             },
             {
-              "q": "Esneme hareketleri neyi artırır?",
-              "skill": "isinma-guvenlik",
+              "q": "Bisiklete binerken başını korumak için ne takarsın?",
               "options": [
-                "Kasların esnekliğini",
-                "Susuzluğu",
-                "Uykuyu",
-                "Açlığı"
+                "Kask",
+                "Hiçbir şey",
+                "Gözlük yerine mendil",
+                "Palet"
               ],
               "correct": 0,
-              "hint": "Esnek kas daha az zorlanır."
-            },
-            {
-              "q": "Spor sırasında keskin bir ağrı hissedersen ne yapmalısın?",
-              "skill": "isinma-guvenlik",
-              "options": [
-                "Durup dinlenmeli, gerekirse büyüğüne söylemeli",
-                "Ağrıya rağmen zorlamalı",
-                "Daha hızlı yapmalı",
-                "Görmezden gelip koşmalı"
-              ],
-              "correct": 0,
-              "hint": "Vücudun sana sinyal veriyordur."
-            },
-            {
-              "q": "Sıcak bir günde açık havada spor yaparken en önemlisi nedir?",
-              "skill": "isinma-guvenlik",
-              "options": [
-                "Bol su içmek ve gölgede dinlenmek",
-                "Hiç su içmemek",
-                "Kalın mont giymek",
-                "Öğle güneşinde hiç durmadan koşmak"
-              ],
-              "correct": 0,
-              "hint": "Terleyince su kaybedersin."
+              "hint": "Baş güvenliği önce gelir.",
+              "lvl": 1,
+              "skill": "spr-guvenlik"
             },
             {
               "q": "Spordan sonra yapılan yavaşlama ve esnemeye ne denir?",
-              "skill": "isinma-guvenlik",
               "options": [
                 "Soğuma",
                 "Isınma",
                 "Faul",
-                "Gol"
+                "Servis"
               ],
               "correct": 0,
-              "hint": "Isınmanın tersi, görev sonu."
+              "hint": "Isınmanın tersi.",
+              "lvl": 1,
+              "skill": "spr-isinma"
             },
             {
-              "q": "Bisiklete binerken güvenlik için ne takarız?",
-              "skill": "isinma-guvenlik",
+              "q": "Antrenmanda dizinde keskin bir ağrı hisseden çocuğun en doğru davranışı nedir?",
               "options": [
-                "Kask",
-                "Şapka yerine hiçbir şey",
-                "Gözlük yerine el feneri",
-                "Palet"
+                "Durup dinlenmek ve büyüğüne haber vermek",
+                "Ağrıya rağmen daha hızlı devam etmek",
+                "Ağrıyan yere sertçe vurmak",
+                "Görmezden gelip zıplamak"
               ],
               "correct": 0,
-              "hint": "Başını korur."
+              "hint": "Ağrı vücudun uyarısıdır.",
+              "lvl": 2,
+              "skill": "spr-guvenlik"
             },
             {
-              "q": "Isınmadan ağır spora başlarsak ne olabilir?",
-              "skill": "isinma-guvenlik",
+              "q": "Çok sıcak bir öğle vakti dışarıda uzun süre koşan biri neden tehlikede olabilir?",
               "options": [
-                "Kaslar incinebilir",
-                "Daha güçlü oluruz",
-                "Hiçbir şey olmaz",
-                "Daha uzun boylu oluruz"
+                "Aşırı ısınma ve su kaybı yaşayabilir",
+                "Fazla güçlenir",
+                "Hiçbir risk yoktur",
+                "Üşütür"
               ],
               "correct": 0,
-              "hint": "Hazırlıksız kas risklidir."
+              "hint": "Sıcakta su kaybı hızlanır.",
+              "lvl": 2,
+              "skill": "spr-guvenlik"
             },
             {
-              "q": "Güvenli bir antrenman alanı nasıl olmalı?",
-              "skill": "isinma-guvenlik",
+              "q": "Isınmadan sonra neden hemen en zor harekete geçmek yerine kademeli ilerlemeliyiz?",
               "options": [
-                "Düz, temiz ve engelsiz",
-                "Cam kırıklarıyla dolu",
-                "Islak ve kaygan",
-                "Karanlık ve dağınık"
+                "Vücut yavaşça hazır olunca sakatlık riski azalır",
+                "Kademeli ilerlemek zaman kaybıdır",
+                "Zor hareket her zaman güvenlidir",
+                "Isınma zaten gereksizdir"
               ],
               "correct": 0,
-              "hint": "Takılıp düşmeyi önler."
+              "hint": "Kaslar adım adım hazırlanır.",
+              "lvl": 2,
+              "skill": "spr-isinma"
+            },
+            {
+              "q": "Kaygan ve ıslak bir zeminde spor yapmak neden risklidir?",
+              "options": [
+                "Kayıp düşme ve sakatlanma olasılığı artar",
+                "Daha hızlı koşulur",
+                "Hiç fark etmez",
+                "Kaslar güçlenir"
+              ],
+              "correct": 0,
+              "hint": "Güvenli alan düz ve kuru olmalı.",
+              "lvl": 2,
+              "skill": "spr-guvenlik"
+            },
+            {
+              "q": "Soğuk bir günde dışarıda spora çıkan biri neden ısınmaya daha çok özen göstermeli?",
+              "options": [
+                "Soğukta kaslar daha katıdır, incinme riski artar",
+                "Soğukta kas incinmez",
+                "Isınma soğukta gereksizdir",
+                "Soğukta kaslar kendiliğinden esner"
+              ],
+              "correct": 0,
+              "hint": "Soğuk = daha sert kas.",
+              "lvl": 2,
+              "skill": "spr-isinma"
+            },
+            {
+              "q": "Bir çocuk 'ısınmak enerjimi tüketir, maça saklayayım' diyor. Bu düşünce neden yanlıştır?",
+              "options": [
+                "Isınma kası hazırlar, sakatlığı önler ve performansı artırır",
+                "Isınma gerçekten enerji tüketir ve zararlıdır",
+                "Isınma sadece profesyoneller içindir",
+                "Isınma kasları zayıflatır"
+              ],
+              "correct": 0,
+              "hint": "Isınma seni yormaz, korur.",
+              "lvl": 3,
+              "skill": "spr-isinma"
+            },
+            {
+              "q": "Uzun bir antrenman planlıyorsun. Sakatlanmadan en verimli sıralama hangisidir?",
+              "options": [
+                "Isınma → asıl antrenman → soğuma ve esneme",
+                "Soğuma → isınma → antrenman",
+                "Doğrudan sprint → isınma",
+                "Sadece asıl antrenman, gerisi gereksiz"
+              ],
+              "correct": 0,
+              "hint": "Doğru sıra vücudu korur.",
+              "lvl": 3,
+              "skill": "spr-isinma"
+            },
+            {
+              "q": "Parkta futbol oynayacaksınız ama sahada cam kırıkları ve taşlar var. En doğru davranış nedir ve neden?",
+              "options": [
+                "Önce alanı temizlemek ya da güvenli yer bulmak, çünkü güvenlik önce gelir",
+                "Aldırmadan oynamaya başlamak",
+                "Yalınayak oynamak",
+                "En hızlı koşana ödül vermek"
+              ],
+              "correct": 0,
+              "hint": "Güvenli alan yaralanmayı önler.",
+              "lvl": 3,
+              "skill": "spr-guvenlik"
+            },
+            {
+              "q": "Isınmayı atlayıp bir kez sakatlanan sporcu, iyileştikten sonra spora dönerken ne yapmalı?",
+              "options": [
+                "Hafif başlayıp ısınmaya özen göstererek kademeli ilerlemek",
+                "Hemen eski ağır temposuna dönmek",
+                "Bir daha hiç spor yapmamak",
+                "Ağrı olsa da zorlamak"
+              ],
+              "correct": 0,
+              "hint": "Sabırlı ve kademeli dönüş güvenlidir.",
+              "lvl": 3,
+              "skill": "spr-guvenlik"
+            },
+            {
+              "q": "Arkadaşın 'kask sıcak yapıyor, çıkarayım' diyor. Onu ikna etmek için en doğru mantık nedir?",
+              "options": [
+                "Kask düşünce başını korur; küçük rahatsızlık büyük tehlikeyi önler",
+                "Haklısın, kask gereksiz",
+                "Kask sadece yarışlarda gerekir",
+                "Kaskı çıkarmak daha güvenli"
+              ],
+              "correct": 0,
+              "hint": "Küçük konfor, büyük güvenlikten önemsizdir.",
+              "lvl": 3,
+              "skill": "spr-guvenlik"
             }
           ]
         }
@@ -913,8 +1078,7 @@
           },
           "bank": [
             {
-              "q": "Futbolda bir takımda sahada kaç oyuncu bulunur?",
-              "skill": "futbol",
+              "q": "Futbol maçında bir takımda sahada kaç oyuncu bulunur?",
               "options": [
                 "11",
                 "5",
@@ -922,35 +1086,25 @@
                 "15"
               ],
               "correct": 0,
-              "hint": "Kaleci dahil sayıyoruz."
+              "hint": "Kaleci dahil sayıyoruz.",
+              "lvl": 1,
+              "skill": "spr-futbol"
             },
             {
-              "q": "Futbolda topa elle dokunabilen tek oyuncu kimdir?",
-              "skill": "futbol",
+              "q": "Topa kendi ceza sahasında elle dokunabilen tek oyuncu kimdir?",
               "options": [
-                "Kaleci (kendi ceza sahasında)",
+                "Kaleci",
                 "Forvet",
                 "Orta saha",
                 "Defans"
               ],
               "correct": 0,
-              "hint": "Kaleyi koruyan oyuncu."
+              "hint": "Kaleyi koruyan oyuncu.",
+              "lvl": 1,
+              "skill": "spr-futbol"
             },
             {
-              "q": "Futbolda gol nasıl olur?",
-              "skill": "futbol",
-              "options": [
-                "Top kale çizgisini tamamen geçince",
-                "Top direğe çarpınca",
-                "Top taca çıkınca",
-                "Hakem düdük çalınca"
-              ],
-              "correct": 0,
-              "hint": "Topun tamamı çizgiyi geçmeli."
-            },
-            {
-              "q": "Futbolda topu ayakla arkadaşına göndermeye ne denir?",
-              "skill": "futbol",
+              "q": "Topu ayakla arkadaşına göndermeye ne denir?",
               "options": [
                 "Pas",
                 "Faul",
@@ -958,91 +1112,165 @@
                 "Aut"
               ],
               "correct": 0,
-              "hint": "Takım oyununun temeli."
-            },
-            {
-              "q": "Sarı kart neyi ifade eder?",
-              "skill": "futbol",
-              "options": [
-                "Uyarı",
-                "Gol",
-                "Maçın bitişi",
-                "Oyuncu değişikliği"
-              ],
-              "correct": 0,
-              "hint": "İkincisi kırmızıya döner."
-            },
-            {
-              "q": "Kırmızı kart gören oyuncu ne yapar?",
-              "skill": "futbol",
-              "options": [
-                "Oyundan çıkar",
-                "Gol atar",
-                "Kaleye geçer",
-                "Penaltı kullanır"
-              ],
-              "correct": 0,
-              "hint": "Ciddi hata sonucu sahayı terk eder."
+              "hint": "Takım oyununun temeli.",
+              "lvl": 1,
+              "skill": "spr-futbol"
             },
             {
               "q": "Bir futbol maçı normalde kaç dakikadır?",
-              "skill": "futbol",
               "options": [
                 "90 dakika (2 devre)",
                 "30 dakika",
                 "120 dakika",
-                "45 dakika tek devre"
+                "20 dakika"
               ],
               "correct": 0,
-              "hint": "İki devre, her biri 45 dakika."
+              "hint": "Her devre 45 dakika.",
+              "lvl": 1,
+              "skill": "spr-futbol"
             },
             {
-              "q": "Kaleyi koruyan oyuncuya ne denir?",
-              "skill": "futbol",
+              "q": "Gol ne zaman geçerli olur?",
               "options": [
-                "Kaleci",
-                "Forvet",
-                "Hakem",
-                "Antrenör"
+                "Topun tamamı kale çizgisini geçince",
+                "Top direğe çarpınca",
+                "Top taca çıkınca",
+                "Hakem düdük çalınca"
               ],
               "correct": 0,
-              "hint": "Elleriyle topu tutabilir."
+              "hint": "Topun tamamı çizgiyi geçmeli.",
+              "lvl": 1,
+              "skill": "spr-futbol"
             },
             {
-              "q": "Top yan çizgiden dışarı çıkarsa oyun nasıl devam eder?",
-              "skill": "futbol",
+              "q": "Forvet, kalecinin öne çıktığını gördü. Gol için en akıllı seçim hangisi olabilir?",
               "options": [
-                "Taç atışıyla",
-                "Penaltıyla",
-                "Golle",
-                "Kornerle"
+                "Boşalan kaleye kontrollü bir vuruş yapmak",
+                "Topu kendi kalesine götürmek",
+                "Topu tribüne atmak",
+                "Yere oturmak"
               ],
               "correct": 0,
-              "hint": "El ile içeri atılır."
+              "hint": "Boş alanı iyi değerlendir.",
+              "lvl": 2,
+              "skill": "spr-futbol-strateji"
             },
             {
-              "q": "Futbolda en önemli takım becerisi hangisidir?",
-              "skill": "futbol",
+              "q": "Rakip sana doğru geliyor ve yanında boştaki arkadaşın var. En iyi takım kararı nedir?",
               "options": [
-                "Pas vererek birlikte oynamak",
-                "Herkesin topu kendine saklaması",
-                "Rakibe bağırmak",
-                "Kurallara uymamak"
+                "Boştaki arkadaşına pas vermek",
+                "Topu kaptırana kadar sürmek",
+                "Topu dışarı atmak",
+                "Durup beklemek"
               ],
               "correct": 0,
-              "hint": "Birlikten kuvvet doğar."
+              "hint": "Boştaki oyuncu fırsattır.",
+              "lvl": 2,
+              "skill": "spr-futbol-strateji"
             },
             {
-              "q": "Ceza sahasında yapılan büyük faulün cezası genelde nedir?",
-              "skill": "futbol",
+              "q": "Bir oyuncu ikinci sarı kartını gördü. Bunun anlamı nedir?",
               "options": [
-                "Penaltı",
-                "Taç",
-                "Korner",
-                "Sarı kart yerine gol"
+                "Kırmızı karta döner ve oyundan çıkar",
+                "Gol sayılır",
+                "Penaltı kazanır",
+                "Kaptan olur"
               ],
               "correct": 0,
-              "hint": "Kaleyle birebir atış hakkı."
+              "hint": "İki sarı = kırmızı.",
+              "lvl": 2,
+              "skill": "spr-futbol"
+            },
+            {
+              "q": "Rakip forvet senin arkana kaçmaya çalışıyor. İyi bir defans oyuncusu ne yapar?",
+              "options": [
+                "Onunla arasını kapatıp pas yolunu kesmek",
+                "Kaleye kendi gol atmak",
+                "Sahayı terk etmek",
+                "Topa hiç bakmamak"
+              ],
+              "correct": 0,
+              "hint": "Savunma alanı ve pası kapatmaktır.",
+              "lvl": 2,
+              "skill": "spr-futbol-strateji"
+            },
+            {
+              "q": "Rakip hücuma geçiyor ve topa yaklaşıyor. Kalecinin en önemli görevi nedir?",
+              "options": [
+                "Yerini iyi tutup kaleyi korumaya odaklanmak",
+                "Orta sahaya çıkıp gol aramak",
+                "Seyirciyle konuşmak",
+                "Topu görmezden gelmek"
+              ],
+              "correct": 0,
+              "hint": "Kaleci kaleyi korur.",
+              "lvl": 2,
+              "skill": "spr-futbol"
+            },
+            {
+              "q": "Takımın 0-1 geride ve son 10 dakika. Beraberlik için en mantıklı strateji hangisidir ve neden?",
+              "options": [
+                "Baskıyı artırıp dengeli şekilde hücuma yüklenmek, çünkü gol gerekiyor",
+                "Tüm oyuncuları kaleye dizip beklemek",
+                "Topu hep kalecide tutmak",
+                "Oyunu yavaşlatıp vakit geçirmek"
+              ],
+              "correct": 0,
+              "hint": "Geri durumda gol aramak gerekir.",
+              "lvl": 3,
+              "skill": "spr-futbol-strateji"
+            },
+            {
+              "q": "Kaleye yakınsın ama yanındaki arkadaşın tamamen boşta ve daha kolay gol atabilir. Fair ve akıllı seçim nedir?",
+              "options": [
+                "Bencillik etmeyip pas verip takımın golünü kolaylaştırmak",
+                "Zor açıdan kendim şutu zorlamak",
+                "Topu dışarı atmak",
+                "Hakeme itiraz etmek"
+              ],
+              "correct": 0,
+              "hint": "Takımın golü senin golünden değerlidir.",
+              "lvl": 3,
+              "skill": "spr-futbol-strateji"
+            },
+            {
+              "q": "Takımın çok gol yiyor. Antrenör olarak dengeyi kurmak için en akıllı düzenleme nedir?",
+              "options": [
+                "Savunmayı güçlendirip pas düzenini kurmak",
+                "Herkesi hücuma gönderip kaleyi boş bırakmak",
+                "Kaleciyi de forvet yapmak",
+                "Savunmayı tamamen kaldırmak"
+              ],
+              "correct": 0,
+              "hint": "Denge: hem savunma hem hücum.",
+              "lvl": 3,
+              "skill": "spr-futbol-strateji"
+            },
+            {
+              "q": "Maçta çok sinirlenen arkadaşın rakibe vurmak üzere. Onu durdurmak için en doğru mantık nedir?",
+              "options": [
+                "Sakinleşmesini sağlamak; kırmızı kart takıma zarar verir ve fair play'e aykırıdır",
+                "Ona destek olup birlikte kavga etmek",
+                "Görmezden gelmek",
+                "Rakibe önce sen vurmak"
+              ],
+              "correct": 0,
+              "hint": "Öfke hem takıma hem centilmenliğe zarar verir.",
+              "lvl": 3,
+              "skill": "spr-fairplay"
+            },
+            {
+              "q": "Penaltı kazandınız ama en iyi penaltıcınız çok heyecanlı ve tedirgin. Takım için en mantıklı karar hangisi olabilir?",
+              "options": [
+                "Kurallara uygun şekilde daha soğukkanlı ve hazır oyuncunun kullanması",
+                "Heyecanlı olsa da illa ona attırmak",
+                "Penaltıyı hiç kullanmamak",
+                "Hakeme itiraz edip iptal ettirmek"
+              ],
+              "correct": 0,
+              "hint": "Baskı anında soğukkanlılık önemlidir.",
+              "lvl": 3,
+              "skill": "spr-futbol-strateji"
             }
           ]
         }
@@ -1128,8 +1356,7 @@
           },
           "bank": [
             {
-              "q": "Basketbolda amaç nedir?",
-              "skill": "basketbol",
+              "q": "Basketbolun amacı nedir?",
               "options": [
                 "Topu potaya (çembere) atmak",
                 "Kaleye gol atmak",
@@ -1137,11 +1364,12 @@
                 "En hızlı yüzmek"
               ],
               "correct": 0,
-              "hint": "Yukarıdaki çembere sayı."
+              "hint": "Yukarıdaki çembere sayı.",
+              "lvl": 1,
+              "skill": "spr-basketbol"
             },
             {
               "q": "Basketbolda bir takımda sahada kaç oyuncu bulunur?",
-              "skill": "basketbol",
               "options": [
                 "5",
                 "11",
@@ -1149,115 +1377,178 @@
                 "6"
               ],
               "correct": 0,
-              "hint": "Futboldan az, voleyboldan da az."
+              "hint": "Futboldan az.",
+              "lvl": 1,
+              "skill": "spr-basketbol"
             },
             {
               "q": "Topu yere sektirerek ilerlemeye ne denir?",
-              "skill": "basketbol",
               "options": [
                 "Top sürme (dribbling)",
                 "Smaç",
-                "Faul",
-                "Servis"
+                "Servis",
+                "Faul"
               ],
               "correct": 0,
-              "hint": "Topu elde tutup koşamazsın."
+              "hint": "Topu elde tutup koşamazsın.",
+              "lvl": 1,
+              "skill": "spr-basketbol"
             },
             {
               "q": "Çizgi gerisinden atılan uzak bir basket kaç sayıdır?",
-              "skill": "basketbol",
               "options": [
-                "3 sayı",
-                "1 sayı",
-                "5 sayı",
-                "10 sayı"
+                "3",
+                "1",
+                "5",
+                "10"
               ],
               "correct": 0,
-              "hint": "En değerli normal atış."
+              "hint": "En değerli normal atış.",
+              "lvl": 1,
+              "skill": "spr-basketbol"
             },
             {
               "q": "Serbest atış (faul atışı) kaç sayı değerindedir?",
-              "skill": "basketbol",
               "options": [
-                "1 sayı",
-                "2 sayı",
-                "3 sayı",
-                "0 sayı"
+                "1",
+                "2",
+                "3",
+                "0"
               ],
               "correct": 0,
-              "hint": "Ceza atışının değeri en düşüktür."
+              "hint": "Ceza atışının değeri en düşüktür.",
+              "lvl": 1,
+              "skill": "spr-basketbol"
             },
             {
-              "q": "Topu arkadaşına atıp yönlendirmeye ne denir?",
-              "skill": "basketbol",
+              "q": "Takımın 2 sayı geride ve son saniyeler. Üç sayı çizgisinin gerisinde boştasın. En mantıklı seçim ne olabilir?",
               "options": [
-                "Pas",
-                "Ribaunt",
-                "Faul",
-                "Aut"
+                "Üçlük atıp öne geçmeyi denemek",
+                "İki sayılık atış deneyip yine geride kalmak",
+                "Topu tutup vakit doldurmak",
+                "Kendi potana atmak"
               ],
               "correct": 0,
-              "hint": "Takım oyununun temeli."
+              "hint": "Fark 2'yken 3'lük öne geçirir.",
+              "lvl": 2,
+              "skill": "spr-basketbol-strateji"
             },
             {
-              "q": "Rakibin kaçırdığı topu havada kapmaya ne denir?",
-              "skill": "basketbol",
+              "q": "Rakip sana çok yakın savunma yapıyor ve arkadaşın boşta. En iyi karar nedir?",
               "options": [
-                "Ribaunt",
-                "Servis",
-                "Penaltı",
-                "Korner"
+                "Boştaki arkadaşına pas vermek",
+                "Zorlanarak üstünden atmak",
+                "Topu yere bırakmak",
+                "Sahadan çıkmak"
               ],
               "correct": 0,
-              "hint": "Potadan seken topu almak."
+              "hint": "Boştaki oyuncu daha kolay sayı yapar.",
+              "lvl": 2,
+              "skill": "spr-basketbol-strateji"
             },
             {
-              "q": "Basketbolda topu potaya çok yakından güçlü şekilde sokmaya ne denir?",
-              "skill": "basketbol",
+              "q": "Rakip atış yaptı ve top potadan sekti. Sıçrayıp topu kapmaya ne denir ve neden önemlidir?",
               "options": [
-                "Smaç",
-                "Taç",
-                "Faul",
-                "Pas"
+                "Ribaunt; topu kazanıp yeni hücum başlatır",
+                "Faul; ceza alırsın",
+                "Servis; oyunu bitirir",
+                "Aut; top dışarı çıkar"
               ],
               "correct": 0,
-              "hint": "Zıplayıp yukarıdan basmak."
+              "hint": "Seken topu almak yeni şans verir.",
+              "lvl": 2,
+              "skill": "spr-basketbol"
             },
             {
-              "q": "Basketbol topunu elle mi ayakla mı oynarız?",
-              "skill": "basketbol",
+              "q": "İyi bir savunmacı, hızlı rakibi durdurmak için önce ne yapmalı?",
               "options": [
-                "Elle",
-                "Ayakla",
-                "Kafayla",
-                "Raketle"
+                "Doğru pozisyon alıp önünü kesmek",
+                "Sadece izlemek",
+                "Topa hiç bakmamak",
+                "Kendi potasına koşmak"
               ],
               "correct": 0,
-              "hint": "Futbolun tersi."
+              "hint": "Savunma pozisyonla başlar.",
+              "lvl": 2,
+              "skill": "spr-basketbol-strateji"
             },
             {
-              "q": "İyi bir savunmacı ne yapar?",
-              "skill": "basketbol",
+              "q": "Top sana geldi, iki adım atıp topu elinde tuttun ve tekrar sürmeye başladın. Bu neden hatadır?",
               "options": [
-                "Rakibin sayı atmasını engellemeye çalışır",
-                "Sadece izler",
-                "Kendi potasına atar",
-                "Topu saklar"
+                "Sürmeyi bir kez kesince tekrar süremezsin (hata olur)",
+                "Hiç hata değildir",
+                "Sayı kazandırır",
+                "Serbest atış verir"
               ],
               "correct": 0,
-              "hint": "Kendi potanı korumak."
+              "hint": "Durunca yeniden süremezsin.",
+              "lvl": 2,
+              "skill": "spr-basketbol"
             },
             {
-              "q": "Basketbolda başarı için en önemlisi hangisidir?",
-              "skill": "basketbol",
+              "q": "Takımın hızlı ama uzun rakip karşısında zayıf. En akıllı oyun planı hangisi olabilir ve neden?",
               "options": [
-                "Takımca pas ve iş birliği",
-                "Herkesin tek başına oynaması",
-                "Rakibe bağırmak",
-                "Topu hiç paslaşmamak"
+                "Hızlı hücumlar ve pas trafiği kurmak, çünkü hız avantajını kullanır",
+                "Sürekli pota altında yavaş oynamak",
+                "Hiç pas vermemek",
+                "Savunmayı bırakmak"
               ],
               "correct": 0,
-              "hint": "Beş kişi bir bütündür."
+              "hint": "Güçlü yanını (hız) kullan.",
+              "lvl": 3,
+              "skill": "spr-basketbol-strateji"
+            },
+            {
+              "q": "Yıldız oyuncunuz sürekli çift savunmayla kapatılıyor. Takım için en mantıklı çözüm nedir?",
+              "options": [
+                "Açığa çıkan diğer oyunculara pas dağıtmak",
+                "Sürekli aynı oyuncuya sıkışık top vermek",
+                "Topu hiç oynatmamak",
+                "Rakibe kızmak"
+              ],
+              "correct": 0,
+              "hint": "İki kişi birini tutarsa başkası boşta kalır.",
+              "lvl": 3,
+              "skill": "spr-basketbol-strateji"
+            },
+            {
+              "q": "Maçın sonunda 1 sayı öndesiniz ve top sizde. En akıllıca ve kurallara uygun davranış nedir?",
+              "options": [
+                "Topu güvenli tutup iyi bir atış beklemek",
+                "Aceleyle uzaktan riskli atış yapmak",
+                "Topu rakibe vermek",
+                "Kendi potana yaklaşıp atmak"
+              ],
+              "correct": 0,
+              "hint": "Öndeyken topu kaybetmemek önemli.",
+              "lvl": 3,
+              "skill": "spr-basketbol-strateji"
+            },
+            {
+              "q": "Bir arkadaşın sürekli tek başına atış deniyor ve kaçırıyor. Kaptan olarak en yapıcı yaklaşım nedir?",
+              "options": [
+                "Pas oyununun daha çok fırsat yaratacağını nazikçe anlatmak",
+                "Onunla alay etmek",
+                "Onu oyundan atmak",
+                "Sen de tek başına oynamak"
+              ],
+              "correct": 0,
+              "hint": "İş birliği ve saygılı iletişim.",
+              "lvl": 3,
+              "skill": "spr-basketbol-strateji"
+            },
+            {
+              "q": "Rakip faul yaptı ve hakem görmedi; sen de karşılık faulü yapmak istiyorsun. Doğru davranış nedir ve neden?",
+              "options": [
+                "Oyununa odaklanmak; misilleme fair play'e aykırıdır",
+                "Aynen karşılık vermek",
+                "Sahayı terk etmek",
+                "Rakibe bağırmak"
+              ],
+              "correct": 0,
+              "hint": "Yanlışa yanlışla cevap verilmez.",
+              "lvl": 3,
+              "skill": "spr-fairplay"
             }
           ]
         }
@@ -1344,7 +1635,6 @@
           "bank": [
             {
               "q": "Voleybolda top nereden karşıya geçer?",
-              "skill": "voleybol",
               "options": [
                 "Filenin üstünden",
                 "Potadan",
@@ -1352,11 +1642,12 @@
                 "Yerin altından"
               ],
               "correct": 0,
-              "hint": "Ortadaki file iki takımı ayırır."
+              "hint": "Ortadaki file iki takımı ayırır.",
+              "lvl": 1,
+              "skill": "spr-voleybol"
             },
             {
               "q": "Voleybolda bir takımda sahada kaç oyuncu bulunur?",
-              "skill": "voleybol",
               "options": [
                 "6",
                 "5",
@@ -1364,23 +1655,25 @@
                 "3"
               ],
               "correct": 0,
-              "hint": "Basketboldan bir fazla."
+              "hint": "Basketboldan bir fazla.",
+              "lvl": 1,
+              "skill": "spr-voleybol"
             },
             {
               "q": "Bir takım topa en fazla kaç kez dokunabilir?",
-              "skill": "voleybol",
               "options": [
-                "3 kez",
-                "1 kez",
-                "6 kez",
+                "3",
+                "1",
+                "6",
                 "Sınırsız"
               ],
               "correct": 0,
-              "hint": "Karşılama, pas, smaç."
+              "hint": "Karşılama, pas, smaç.",
+              "lvl": 1,
+              "skill": "spr-voleybol"
             },
             {
               "q": "Oyunu başlatan, filenin üstünden atılan ilk vuruşa ne denir?",
-              "skill": "voleybol",
               "options": [
                 "Servis",
                 "Smaç",
@@ -1388,11 +1681,12 @@
                 "Pas"
               ],
               "correct": 0,
-              "hint": "Arka çizgiden atılır."
+              "hint": "Arka çizgiden atılır.",
+              "lvl": 1,
+              "skill": "spr-voleybol"
             },
             {
-              "q": "Topu güçlü bir şekilde karşı sahaya indirmeye ne denir?",
-              "skill": "voleybol",
+              "q": "Topu güçlü şekilde karşı sahaya indirmeye ne denir?",
               "options": [
                 "Smaç",
                 "Servis",
@@ -1400,79 +1694,139 @@
                 "Korner"
               ],
               "correct": 0,
-              "hint": "Zıplayıp yukarıdan sertçe vurmak."
+              "hint": "Zıplayıp yukarıdan sertçe vurmak.",
+              "lvl": 1,
+              "skill": "spr-voleybol"
             },
             {
-              "q": "Rakibin smacını filede durdurmaya ne denir?",
-              "skill": "voleybol",
+              "q": "Takımın topa iki kez dokundu ve sıra üçüncü dokunuşta. En akıllı seçenek genelde nedir?",
               "options": [
-                "Blok",
-                "Pas",
-                "Servis",
-                "Aut"
+                "İyi bir smaç ya da kontrollü vuruşla karşıya göndermek",
+                "Dördüncü kez dokunmak",
+                "Topu elde tutmak",
+                "Filenin altından geçirmek"
               ],
               "correct": 0,
-              "hint": "Filenin üstünde eller kalkar."
+              "hint": "Üçüncü dokunuşta top karşıya gitmeli.",
+              "lvl": 2,
+              "skill": "spr-voleybol-strateji"
             },
             {
-              "q": "Voleybolda sayı ne zaman kazanılır?",
-              "skill": "voleybol",
+              "q": "Rakip güçlü bir smaç yapıyor. Filede buna karşı en iyi savunma nedir?",
               "options": [
-                "Top rakip sahada yere düşünce",
-                "Top file olunca",
-                "Servis atılınca",
-                "Oyuncu değişince"
+                "Zıplayıp elleri kaldırarak blok yapmak",
+                "Kaçmak",
+                "Topu elde tutmak",
+                "Servise geçmek"
               ],
               "correct": 0,
-              "hint": "Karşı takım topu düşürünce."
+              "hint": "Blok smacı durdurur.",
+              "lvl": 2,
+              "skill": "spr-voleybol-strateji"
             },
             {
-              "q": "Voleybol topunu elle mi ayakla mı oynamak esastır?",
-              "skill": "voleybol",
+              "q": "Top sana sert geliyor. İyi bir karşılamadan (manşet) sonra en iyi devam nedir?",
               "options": [
-                "Elle/kolla vurarak",
-                "Sadece ayakla",
-                "Sadece kafayla",
-                "Raketle"
+                "Topu pasörün rahat vurabileceği yükseğe kaldırmak",
+                "Topu yere bırakmak",
+                "Topu tutmak",
+                "Filenin altına atmak"
               ],
               "correct": 0,
-              "hint": "Kollarla karşılarız."
+              "hint": "İyi karşılama iyi hücum başlatır.",
+              "lvl": 2,
+              "skill": "spr-voleybol-strateji"
             },
             {
-              "q": "Top elde tutulup taşınırsa ne olur?",
-              "skill": "voleybol",
+              "q": "Bir oyuncu topu bir an elinde tutup fırlattı. Hakem neden hata verir?",
               "options": [
-                "Faul (hata) sayılır",
-                "Sayı kazanılır",
-                "Servis olur",
-                "Gol olur"
+                "Voleybolda top tutulmaz, temiz vurulmalıdır",
+                "Top çok hızlıydı",
+                "Oyuncu çok uzundu",
+                "Servis sırasıydı"
               ],
               "correct": 0,
-              "hint": "Top tutulmaz, vurulur."
+              "hint": "Top vurulur, taşınmaz.",
+              "lvl": 2,
+              "skill": "spr-voleybol"
             },
             {
-              "q": "Voleybolda başarı için en önemlisi nedir?",
-              "skill": "voleybol",
+              "q": "Servisi rakibin en zayıf karşılayan oyuncusuna atmak neden akıllıca olabilir?",
               "options": [
-                "Takımca uyum ve iyi pas",
-                "Herkesin tek başına vurması",
-                "Rakibe bağırmak",
-                "Topu hiç paslaşmamak"
+                "Zor karşılayacağı için takımına avantaj sağlar",
+                "Kurallara aykırıdır",
+                "Hiç fark etmez",
+                "Kendi takımına zarar verir"
               ],
               "correct": 0,
-              "hint": "Üç dokunuş takım işidir."
+              "hint": "Rakibin zayıf noktasını hedeflemek strateji.",
+              "lvl": 2,
+              "skill": "spr-voleybol-strateji"
             },
             {
-              "q": "İyi bir arka savunmacı (libero) ne yapar?",
-              "skill": "voleybol",
+              "q": "Takımın servis karşılamada zorlanıyor ve sürekli sayı veriyor. Antrenör olarak en mantıklı çözüm nedir?",
               "options": [
-                "Gelen sert topları karşılar",
-                "Sadece smaç yapar",
-                "Kaleyi korur",
-                "Pota altında bekler"
+                "Karşılama (manşet) çalışmasına ağırlık verip dizilişi düzenlemek",
+                "Servisi tamamen bırakmak",
+                "Sadece smaç çalışmak",
+                "Filenin altından oynamak"
               ],
               "correct": 0,
-              "hint": "Savunmada topu havada tutar."
+              "hint": "Zayıf halkayı çalıştırmak gerekir.",
+              "lvl": 3,
+              "skill": "spr-voleybol-strateji"
+            },
+            {
+              "q": "Üç dokunuş kuralını en iyi kullanan takım genellikle neden kazanır?",
+              "options": [
+                "Karşılama-pas-smaç düzeniyle daha planlı ve güçlü hücum yapar",
+                "Kuralı çiğnediği için",
+                "Topu daha çok tuttuğu için",
+                "Sadece şans eseri"
+              ],
+              "correct": 0,
+              "hint": "Planlı üç dokunuş etkili hücum kurar.",
+              "lvl": 3,
+              "skill": "spr-voleybol-strateji"
+            },
+            {
+              "q": "Rakibin uzun ve güçlü bir smaçörü var. Blok ve savunmayı en akıllı nasıl düzenlersin?",
+              "options": [
+                "Smaçöre karşı çift blok kurup arkaya libero yerleştirmek",
+                "Herkesi filenin dibine toplamak",
+                "Savunmayı boş bırakmak",
+                "Sadece servise güvenmek"
+              ],
+              "correct": 0,
+              "hint": "Güçlü rakibe iki katmanlı savunma.",
+              "lvl": 3,
+              "skill": "spr-voleybol-strateji"
+            },
+            {
+              "q": "Maç çok gergin ve takım arkadaşların birbirini suçlamaya başladı. Takım ruhunu korumak için en iyi davranış nedir?",
+              "options": [
+                "Sakinleştirip herkesi tekrar ortak plana odaklamak",
+                "Sen de suçlamaya katılmak",
+                "Oyunu bırakmak",
+                "Rakibe kızmak"
+              ],
+              "correct": 0,
+              "hint": "Takım dağılırsa oyun da dağılır.",
+              "lvl": 3,
+              "skill": "spr-fairplay"
+            },
+            {
+              "q": "Servis sırası sende ve fark çok az. Riskli sert servis mi güvenli servis mi mantıklı, neden?",
+              "options": [
+                "Hata riski yüksekse önce sahaya koyan güvenli servis daha akıllıdır",
+                "Her zaman en sert servisi atmak",
+                "Servisi hiç atmamak",
+                "Topu filenin altından göndermek"
+              ],
+              "correct": 0,
+              "hint": "Kritik anda hata yapmamak önemli.",
+              "lvl": 3,
+              "skill": "spr-voleybol-strateji"
             }
           ]
         }
@@ -1559,7 +1913,6 @@
           "bank": [
             {
               "q": "Atletizm hangi hareketleri kapsar?",
-              "skill": "atletizm",
               "options": [
                 "Koşu, atlama ve atma",
                 "Sadece yüzme",
@@ -1567,83 +1920,38 @@
                 "Sadece satranç"
               ],
               "correct": 0,
-              "hint": "Pistin ve sahanın sporları."
+              "hint": "Pistin ve sahanın sporları.",
+              "lvl": 1,
+              "skill": "spr-atletizm"
             },
             {
-              "q": "Kısa mesafe koşusunda (sürat) en önemlisi nedir?",
-              "skill": "atletizm",
+              "q": "Kısa mesafe (sürat) koşusunda en önemlisi nedir?",
               "options": [
                 "Yüksek hız",
                 "Uzun süre yavaş gitmek",
-                "Durmadan dinlenmek",
+                "Sık sık durmak",
                 "Yürümek"
               ],
               "correct": 0,
-              "hint": "En hızlı olan kazanır."
+              "hint": "En hızlı olan kazanır.",
+              "lvl": 1,
+              "skill": "spr-atletizm"
             },
             {
               "q": "Uzun mesafe koşusunda en önemlisi nedir?",
-              "skill": "atletizm",
               "options": [
                 "Dayanıklılık",
-                "Sadece tek adım",
+                "Tek bir sıçrayış",
                 "Bağırmak",
-                "Zıplamak"
+                "Elle top sürmek"
               ],
               "correct": 0,
-              "hint": "Yorulmadan uzun süre devam etmek."
-            },
-            {
-              "q": "Dayanıklılık ne demektir?",
-              "skill": "atletizm",
-              "options": [
-                "Uzun süre yorulmadan devam edebilmek",
-                "Bir kez zıplamak",
-                "Çok bağırmak",
-                "Hızlı yemek"
-              ],
-              "correct": 0,
-              "hint": "Kalp ve nefes güçlenince artar."
-            },
-            {
-              "q": "Koşu yarışı nasıl başlar?",
-              "skill": "atletizm",
-              "options": [
-                "Başlangıç işareti (start) ile",
-                "Golle",
-                "Servisle",
-                "Smaçla"
-              ],
-              "correct": 0,
-              "hint": "Herkes aynı anda çıkar."
-            },
-            {
-              "q": "Uzun atlamada sporcu ne yapar?",
-              "skill": "atletizm",
-              "options": [
-                "Koşup mümkün olduğunca uzağa atlar",
-                "Topu potaya atar",
-                "Suda yüzer",
-                "Raketle vurur"
-              ],
-              "correct": 0,
-              "hint": "Hız alıp ileriye sıçramak."
-            },
-            {
-              "q": "Yüksek atlamada amaç nedir?",
-              "skill": "atletizm",
-              "options": [
-                "Çıtanın üstünden atlamak",
-                "En uzağa koşmak",
-                "Topu tutmak",
-                "Suya dalmak"
-              ],
-              "correct": 0,
-              "hint": "Yukarı doğru sıçramak."
+              "hint": "Yorulmadan uzun süre devam etmek.",
+              "lvl": 1,
+              "skill": "spr-atletizm"
             },
             {
               "q": "Bayrak yarışında sporcular birbirine ne verir?",
-              "skill": "atletizm",
               "options": [
                 "Bayrak (baton) çubuğunu",
                 "Topu",
@@ -1651,43 +1959,152 @@
                 "Su şişesini"
               ],
               "correct": 0,
-              "hint": "Takım koşusunda el değiştirir."
+              "hint": "Takım koşusunda el değiştirir.",
+              "lvl": 1,
+              "skill": "spr-atletizm"
             },
             {
-              "q": "Maraton nasıl bir koşudur?",
-              "skill": "atletizm",
+              "q": "Uzun atlamada sporcu ne yapar?",
               "options": [
-                "Çok uzun mesafeli bir koşu",
-                "Çok kısa bir koşu",
-                "Suda yapılan koşu",
-                "Tek adımlık koşu"
+                "Koşup mümkün olduğunca uzağa atlar",
+                "Topu potaya atar",
+                "Suda yüzer",
+                "Raketle vurur"
               ],
               "correct": 0,
-              "hint": "Dayanıklılık ister, saatlerce sürebilir."
+              "hint": "Hız alıp ileriye sıçramak.",
+              "lvl": 1,
+              "skill": "spr-atletizm"
             },
             {
-              "q": "Koşarken nefesini nasıl kullanmalısın?",
-              "skill": "atletizm",
+              "q": "Bir koşucu yarıştan hemen önce hiç ısınmadan bekliyor. Bu neden sakıncalı?",
               "options": [
-                "Düzenli ve dengeli nefes almalı",
-                "Hiç nefes almamalı",
-                "Sadece bir kez nefes almalı",
-                "Nefesini tutmalı"
+                "Soğuk kaslar başlangıçta incinebilir",
+                "Isınmadan daha hızlı koşulur",
+                "Isınma yarışta yasaktır",
+                "Hiçbir etkisi olmaz"
               ],
               "correct": 0,
-              "hint": "Düzenli nefes dayanıklılığı artırır."
+              "hint": "Sprint ani ve serttir.",
+              "lvl": 2,
+              "skill": "spr-atletizm"
             },
             {
-              "q": "Atletizm çoğunlukla nasıl bir spordur?",
-              "skill": "atletizm",
+              "q": "Uzun mesafe koşusunda düzenli nefes almak neden önemlidir?",
               "options": [
-                "Bireysel (kendi gücünle)",
-                "Sadece takım sporu",
-                "Sadece su sporu",
-                "Masa başı oyunu"
+                "Kaslara sürekli oksijen gider, daha uzun dayanırsın",
+                "Nefes almak yorar",
+                "Nefesi tutmak daha iyidir",
+                "Hiç fark etmez"
               ],
               "correct": 0,
-              "hint": "Kendi rekorunla yarışırsın."
+              "hint": "Oksijen dayanıklılığı besler.",
+              "lvl": 2,
+              "skill": "spr-dayaniklilik"
+            },
+            {
+              "q": "Yüksek atlamada başarı için hız kadar önemli olan nedir?",
+              "options": [
+                "Doğru sıçrama zamanlaması ve teknik",
+                "Sadece bağırmak",
+                "Sadece uzun boylu olmak",
+                "Şans"
+              ],
+              "correct": 0,
+              "hint": "Teknik ve zamanlama fark yaratır.",
+              "lvl": 2,
+              "skill": "spr-atletizm"
+            },
+            {
+              "q": "Bayrak yarışında takımın en zayıf halkası batonu düşürüyor. Sorunu çözmek için en mantıklı çalışma nedir?",
+              "options": [
+                "Baton değişimini (aktarmayı) birlikte tekrar tekrar çalışmak",
+                "Sadece hızlı koşuya çalışmak",
+                "Batonu hiç kullanmamak",
+                "O oyuncuyu suçlamak"
+              ],
+              "correct": 0,
+              "hint": "Aktarma anı en kritik yerdir.",
+              "lvl": 2,
+              "skill": "spr-atletizm"
+            },
+            {
+              "q": "Maraton gibi çok uzun koşuya hazırlanan biri antrenmanını nasıl planlamalı?",
+              "options": [
+                "Mesafeyi zamanla kademeli artırarak dayanıklılık kazanmak",
+                "İlk gün tüm mesafeyi koşmak",
+                "Hiç antrenman yapmamak",
+                "Sadece kısa sprintler atmak"
+              ],
+              "correct": 0,
+              "hint": "Dayanıklılık adım adım gelişir.",
+              "lvl": 2,
+              "skill": "spr-dayaniklilik"
+            },
+            {
+              "q": "Bir koşucu 800 metrede ilk 100 metreyi tam hızda koşup sonda tükendi. Daha iyi strateji ne olurdu ve neden?",
+              "options": [
+                "Enerjiyi yarış boyunca dengeli dağıtmak, çünkü tempo dayanıklılığı korur",
+                "Baştan sona en yüksek hızda gitmek",
+                "Ortada durup dinlenmek",
+                "Hiç koşmamak"
+              ],
+              "correct": 0,
+              "hint": "Tempo yönetimi.",
+              "lvl": 3,
+              "skill": "spr-strateji"
+            },
+            {
+              "q": "Bir sporcu hem sprint hem maratonda birinci olmak istiyor. Bu plan neden gerçekçi değil?",
+              "options": [
+                "Sürat ve dayanıklılık farklı çalışmalar ister; birine odaklanmak daha mantıklı",
+                "İkisi tamamen aynıdır",
+                "Antrenman gereksizdir",
+                "Sadece şansla olur"
+              ],
+              "correct": 0,
+              "hint": "Farklı mesafe, farklı hazırlık.",
+              "lvl": 3,
+              "skill": "spr-strateji"
+            },
+            {
+              "q": "Rakibin son turda hızlanıyor. Uzun mesafede onu geçmek için en akıllı taktik nedir?",
+              "options": [
+                "Enerjini sona saklayıp son turda hızlanmak (final atağı)",
+                "Baştan tükenene kadar koşmak",
+                "Hemen durup beklemek",
+                "Rakibe çelme takmak"
+              ],
+              "correct": 0,
+              "hint": "Bitişe enerji bırakmak.",
+              "lvl": 3,
+              "skill": "spr-strateji"
+            },
+            {
+              "q": "Çok sıcak bir günde uzun koşu var. Hem sağlığını hem performansını korumak için en iyi plan nedir?",
+              "options": [
+                "Öncesinde ve arada su içip tempoyu biraz düşürmek",
+                "Hiç su içmeden en hızlı koşmak",
+                "Kalın giyinip koşmak",
+                "Isınmayı atlamak"
+              ],
+              "correct": 0,
+              "hint": "Sıcakta su ve tempo yönetimi.",
+              "lvl": 3,
+              "skill": "spr-strateji"
+            },
+            {
+              "q": "Bayrak takımında dört koşucu var. En hızlı koşucuyu genelde nereye koymak avantaj sağlar ve neden?",
+              "options": [
+                "Genelde son etaba, çünkü bitişi güçlü kapatır",
+                "Hiç koşturmamak",
+                "Ortada oturtmak",
+                "Yarışa hiç sokmamak"
+              ],
+              "correct": 0,
+              "hint": "Güçlü bitiriş fark yaratır.",
+              "lvl": 3,
+              "skill": "spr-strateji"
             }
           ]
         }
@@ -1773,20 +2190,20 @@
           },
           "bank": [
             {
-              "q": "Yüzme hangi açıdan çok faydalıdır?",
-              "skill": "yuzme",
+              "q": "Yüzme vücut için neden çok faydalıdır?",
               "options": [
-                "Neredeyse tüm vücudu çalıştırır",
-                "Sadece parmakları",
-                "Sadece göz kaslarını",
-                "Hiçbir kası"
+                "Neredeyse tüm vücut kaslarını çalıştırır",
+                "Sadece parmakları çalıştırır",
+                "Sadece gözü çalıştırır",
+                "Hiçbir kası çalıştırmaz"
               ],
               "correct": 0,
-              "hint": "Suda kollar, bacaklar, sırt hep çalışır."
+              "hint": "Kollar, bacaklar, sırt hep çalışır.",
+              "lvl": 1,
+              "skill": "spr-yuzme"
             },
             {
               "q": "Aşağıdakilerden hangisi bir yüzme stilidir?",
-              "skill": "yuzme",
               "options": [
                 "Kurbağalama",
                 "Smaç",
@@ -1794,59 +2211,25 @@
                 "Ribaunt"
               ],
               "correct": 0,
-              "hint": "Kollar iki yana açılır, bacaklar itler."
-            },
-            {
-              "q": "Havuzda güvenlik için en önemli kural nedir?",
-              "skill": "yuzme",
-              "options": [
-                "Gözetimsiz ve yalnız suya girmemek",
-                "Koşarak havuza atlamak",
-                "Derin suya tek başına dalmak",
-                "Su içinde itişmek"
-              ],
-              "correct": 0,
-              "hint": "Yanında bir büyük olmalı."
-            },
-            {
-              "q": "Yüzerken hangisi önemlidir?",
-              "skill": "yuzme",
-              "options": [
-                "Doğru nefes alıp verme",
-                "Hiç nefes almamak",
-                "Gözleri hep kapalı tutmak",
-                "Suda bağırmak"
-              ],
-              "correct": 0,
-              "hint": "Başını çevirip nefes alırsın."
+              "hint": "Kollar iki yana açılır.",
+              "lvl": 1,
+              "skill": "spr-yuzme"
             },
             {
               "q": "Sırtüstü yüzmede yüzücü nasıl durur?",
-              "skill": "yuzme",
               "options": [
-                "Sırtı suya bakacak şekilde ters durur",
-                "Yüzükoyun durur",
-                "Ayakta durur",
-                "Oturur"
+                "Yüzü havaya bakacak şekilde sırtüstü",
+                "Yüzükoyun",
+                "Ayakta",
+                "Oturarak"
               ],
               "correct": 0,
-              "hint": "Yüzü havaya bakar."
+              "hint": "Yüzü yukarı bakar.",
+              "lvl": 1,
+              "skill": "spr-yuzme"
             },
             {
-              "q": "Havuza girmeden önce yapılması iyi olan nedir?",
-              "skill": "yuzme",
-              "options": [
-                "Isınma ve duş almak",
-                "Tıka basa yemek yemek",
-                "Koşarak atlamak",
-                "Hiç ısınmamak"
-              ],
-              "correct": 0,
-              "hint": "Kaslar hazır olmalı."
-            },
-            {
-              "q": "Yeni başlayanlar için yüzme öğrenirken ne kullanılabilir?",
-              "skill": "yuzme",
+              "q": "Yeni yüzme öğrenen biri suda destek için ne kullanabilir?",
               "options": [
                 "Kolluk veya yüzme tahtası",
                 "Futbol topu",
@@ -1854,55 +2237,152 @@
                 "Raket"
               ],
               "correct": 0,
-              "hint": "Suda destek verir."
+              "hint": "Suda tutunmayı kolaylaştırır.",
+              "lvl": 1,
+              "skill": "spr-yuzme"
             },
             {
-              "q": "Yüzme çoğunlukla nasıl bir spordur?",
-              "skill": "yuzme",
+              "q": "Havuz güvenliği için en önemli kural hangisidir?",
               "options": [
-                "Bireysel bir spor",
-                "Sadece takım sporu",
-                "Kar sporu",
-                "Masa oyunu"
+                "Yalnız ve gözetimsiz suya girmemek",
+                "Koşarak atlamak",
+                "Derin suya tek dalmak",
+                "Suda itişmek"
               ],
               "correct": 0,
-              "hint": "Kendi gücünle yüzersin."
+              "hint": "Yanında bir büyük olmalı.",
+              "lvl": 1,
+              "skill": "spr-guvenlik"
             },
             {
-              "q": "En hızlı yüzme stili genellikle hangisidir?",
-              "skill": "yuzme",
+              "q": "Bir çocuk yemekten hemen sonra derin suya girmek istiyor. En doğru öneri nedir?",
               "options": [
-                "Serbest stil",
-                "Kurbağalama",
-                "Sırtüstü",
-                "Hiçbiri hareket etmez"
+                "Biraz beklemek ve sığ suda dikkatli olmak",
+                "Hemen derine dalmak",
+                "Koşarak atlamak",
+                "Tek başına açığa yüzmek"
               ],
               "correct": 0,
-              "hint": "Yarışlarda çokça tercih edilir."
+              "hint": "Aceleci ve gözetimsiz girmek risklidir.",
+              "lvl": 2,
+              "skill": "spr-guvenlik"
             },
             {
-              "q": "Suda kramp (kas ağrısı) girerse ne yapılmalı?",
-              "skill": "yuzme",
+              "q": "Yüzerken doğru nefes almak neden önemlidir?",
               "options": [
-                "Sakin kalıp yardım istemek",
+                "Kaslara oksijen gider, batmadan uzun yüzebilirsin",
+                "Nefes almak yorar",
+                "Nefesi tutmak daha güvenlidir",
+                "Hiç fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Başını çevirip ritimle nefes al.",
+              "lvl": 2,
+              "skill": "spr-yuzme"
+            },
+            {
+              "q": "Suda birinin zorlandığını gören ama yüzmesi zayıf bir çocuğun en doğru davranışı nedir?",
+              "options": [
+                "Hemen bir büyüğe veya cankurtarana haber vermek",
+                "Tek başına derine atlamak",
+                "Görmezden gelmek",
+                "Onunla dalga geçmek"
+              ],
+              "correct": 0,
+              "hint": "Kendini de riske atmadan yardım çağır.",
+              "lvl": 2,
+              "skill": "spr-guvenlik"
+            },
+            {
+              "q": "Havuza girmeden önce ısınmak ve duş almak neden iyidir?",
+              "options": [
+                "Kaslar hazırlanır ve ani kramp riski azalır",
+                "Zaman kaybıdır",
+                "Yüzmeyi yavaşlatır",
+                "Hiç gerek yoktur"
+              ],
+              "correct": 0,
+              "hint": "Soğuk suya hazırlıksız girmek kramp yapabilir.",
+              "lvl": 2,
+              "skill": "spr-yuzme"
+            },
+            {
+              "q": "Serbest stil neden yarışlarda çok tercih edilir?",
+              "options": [
+                "Genellikle en hızlı yüzme stilidir",
+                "En yavaş stildir",
+                "Kurallarda zorunludur",
+                "Sadece çocuklar için uygundur"
+              ],
+              "correct": 0,
+              "hint": "Hız avantajı sağlar.",
+              "lvl": 2,
+              "skill": "spr-yuzme"
+            },
+            {
+              "q": "Yüzerken bacağına kramp giren biri ne yapmalı ve neden?",
+              "options": [
+                "Sakin kalıp sırtüstü dönerek yardım istemek, çünkü panik batma riskini artırır",
                 "Panikleyip çırpınmak",
                 "Daha derine dalmak",
                 "Bağırıp su yutmak"
               ],
               "correct": 0,
-              "hint": "Sakinlik ve destek istemek güvenlidir."
+              "hint": "Sakinlik yüzeyde kalmayı sağlar.",
+              "lvl": 3,
+              "skill": "spr-guvenlik"
             },
             {
-              "q": "Yüzmenin kalbe faydası nedir?",
-              "skill": "yuzme",
+              "q": "Yeni başlayan biri ilk günden derin havuzda kelebek stili denemek istiyor. Daha akıllı plan nedir ve neden?",
               "options": [
-                "Kalbi güçlendirir",
-                "Kalbi zayıflatır",
-                "Hiç etkilemez",
-                "Kalbi durdurur"
+                "Önce sığ suda temel stilleri öğrenip kademeli ilerlemek",
+                "Hemen en zor stili denemek",
+                "Hiç ders almadan atlamak",
+                "Tek başına derine girmek"
               ],
               "correct": 0,
-              "hint": "Düzenli spor kalbi çalıştırır."
+              "hint": "Güvenli öğrenme aşamalıdır.",
+              "lvl": 3,
+              "skill": "spr-guvenlik"
+            },
+            {
+              "q": "Uzun mesafe yüzecek biri için en akıllı tempo stratejisi nedir?",
+              "options": [
+                "Nefesi düzenli tutup enerjiyi dengeli dağıtmak",
+                "Baştan tüm gücüyle yüzüp erken tükenmek",
+                "Nefesini sürekli tutmak",
+                "Ortada durup dinlenmek"
+              ],
+              "correct": 0,
+              "hint": "Nefes ritmi ve tempo dayanıklılığı korur.",
+              "lvl": 3,
+              "skill": "spr-yuzme"
+            },
+            {
+              "q": "Deniz kenarında dalgalar biraz sert. Yüzme kararı için en güvenli yaklaşım nedir?",
+              "options": [
+                "Cankurtaran bayrağına ve büyüklere uyup güvenli bölgede kalmak",
+                "Dalgalara aldırmadan açığa yüzmek",
+                "Tek başına derine gitmek",
+                "Uyarıları görmezden gelmek"
+              ],
+              "correct": 0,
+              "hint": "Doğada güvenlik kuralları hayat kurtarır.",
+              "lvl": 3,
+              "skill": "spr-guvenlik"
+            },
+            {
+              "q": "Bir arkadaşın 'yüzme sadece kol işidir, bacak çalıştırmaya gerek yok' diyor. Onu nasıl düzeltirsin?",
+              "options": [
+                "Yüzmede bacak vuruşları da itiş ve denge sağlar, ikisi birlikte çalışır",
+                "Haklısın, bacak gereksiz",
+                "Sadece bacak yeter, kol gereksiz",
+                "Yüzmede hiç kas çalışmaz"
+              ],
+              "correct": 0,
+              "hint": "Yüzme tüm vücut işidir.",
+              "lvl": 3,
+              "skill": "spr-yuzme"
             }
           ]
         }
@@ -1989,7 +2469,6 @@
           "bank": [
             {
               "q": "Jimnastikte hangisi ön plandadır?",
-              "skill": "jimnastik",
               "options": [
                 "Esneklik ve denge",
                 "Topu kaleye atmak",
@@ -1997,11 +2476,12 @@
                 "Şarkı söylemek"
               ],
               "correct": 0,
-              "hint": "Takla, denge, esneme."
+              "hint": "Takla, denge, esneme.",
+              "lvl": 1,
+              "skill": "spr-jimnastik"
             },
             {
-              "q": "Jimnastikte öne doğru yuvarlanma hareketine ne denir?",
-              "skill": "jimnastik",
+              "q": "Öne doğru yuvarlanma hareketine ne denir?",
               "options": [
                 "Takla (öne perende)",
                 "Smaç",
@@ -2009,35 +2489,12 @@
                 "Penaltı"
               ],
               "correct": 0,
-              "hint": "Minderde yuvarlanmak."
-            },
-            {
-              "q": "Jimnastik hareketleri en güvenli nerede öğrenilir?",
-              "skill": "jimnastik",
-              "options": [
-                "Yumuşak minderde ve gözetimde",
-                "Sert betonda tek başına",
-                "Merdivende",
-                "Havuz kenarında koşarak"
-              ],
-              "correct": 0,
-              "hint": "Düşme riskini azaltır."
-            },
-            {
-              "q": "Denge tahtasında (denge aleti) sporcu ne yapar?",
-              "skill": "jimnastik",
-              "options": [
-                "Düşmeden dengede yürür ve hareket eder",
-                "Yüzer",
-                "Top sürer",
-                "Raketle vurur"
-              ],
-              "correct": 0,
-              "hint": "İnce bir çubuk üzerinde denge."
+              "hint": "Minderde yuvarlanmak.",
+              "lvl": 1,
+              "skill": "spr-jimnastik"
             },
             {
               "q": "İki elin üzerinde ters durmaya ne denir?",
-              "skill": "jimnastik",
               "options": [
                 "Amuda kalkmak",
                 "Servis atmak",
@@ -2045,79 +2502,165 @@
                 "Faul yapmak"
               ],
               "correct": 0,
-              "hint": "Baş aşağı, eller yerde."
+              "hint": "Baş aşağı, eller yerde.",
+              "lvl": 1,
+              "skill": "spr-jimnastik"
             },
             {
-              "q": "Jimnastikte esnekliği artırmak için ne yapılır?",
-              "skill": "jimnastik",
+              "q": "Jimnastik hareketleri en güvenli nerede öğrenilir?",
               "options": [
-                "Düzenli esneme çalışması",
-                "Hiç hareket etmemek",
-                "Sadece uyumak",
-                "Sürekli oturmak"
+                "Yumuşak minderde ve gözetimde",
+                "Sert betonda tek başına",
+                "Merdivende",
+                "Havuz kenarında koşarak"
               ],
               "correct": 0,
-              "hint": "Kaslar zamanla esner."
+              "hint": "Düşme riskini azaltır.",
+              "lvl": 1,
+              "skill": "spr-guvenlik"
             },
             {
-              "q": "Jimnastikte denge neden önemlidir?",
-              "skill": "jimnastik",
+              "q": "Denge aletinde (denge tahtası) sporcu ne yapar?",
               "options": [
-                "Düşmeden hareket yapabilmek için",
-                "Daha hızlı yemek için",
-                "Bağırmak için",
-                "Hiç önemli değil"
+                "Düşmeden dengede yürür ve hareket eder",
+                "Yüzer",
+                "Top sürer",
+                "Raketle vurur"
               ],
               "correct": 0,
-              "hint": "Kontrollü duruş gerekir."
+              "hint": "İnce çubuk üzerinde denge.",
+              "lvl": 1,
+              "skill": "spr-denge"
             },
             {
-              "q": "Yeni bir jimnastik hareketini nasıl öğrenmeliyiz?",
-              "skill": "jimnastik",
+              "q": "Zor bir harekette korkan bir çocuğun en doğru davranışı nedir?",
               "options": [
-                "Yavaş yavaş ve sabırla",
-                "Hemen en zorunu deneyerek",
-                "Gözü kapalı acele ederek",
-                "Hiç çalışmadan"
-              ],
-              "correct": 0,
-              "hint": "Aşama aşama ilerlemek güvenlidir."
-            },
-            {
-              "q": "Jimnastik hangi kasları geliştirir?",
-              "skill": "jimnastik",
-              "options": [
-                "Neredeyse tüm vücut kaslarını",
-                "Sadece dil kasını",
-                "Sadece kulakları",
-                "Hiçbir kası"
-              ],
-              "correct": 0,
-              "hint": "Kol, bacak, karın hepsi çalışır."
-            },
-            {
-              "q": "Jimnastik çoğunlukla nasıl bir spordur?",
-              "skill": "jimnastik",
-              "options": [
-                "Bireysel bir spor",
-                "Kaleli bir top sporu",
-                "Su sporu",
-                "Kar sporu"
-              ],
-              "correct": 0,
-              "hint": "Kendi vücudunla çalışırsın."
-            },
-            {
-              "q": "Zor bir harekette korkarsan ne yapmalısın?",
-              "skill": "jimnastik",
-              "options": [
-                "Antrenörden yardım istemek",
+                "Antrenörden yardım ve koruma isteyip yavaşça denemek",
                 "Zorla tek başına denemek",
                 "Vazgeçip küsmek",
                 "Başkasını itmek"
               ],
               "correct": 0,
-              "hint": "Güvenli ilerleme için destek al."
+              "hint": "Güvenli ilerleme için destek al.",
+              "lvl": 2,
+              "skill": "spr-guvenlik"
+            },
+            {
+              "q": "Amuda kalkmayı öğrenen biri neden önce duvar desteği kullanır?",
+              "options": [
+                "Dengeyi güvenle bulup düşmeyi önlemek için",
+                "Duvar hareketi zorlaştırdığı için",
+                "Kurallarda zorunlu olduğu için",
+                "Hiçbir sebep yok"
+              ],
+              "correct": 0,
+              "hint": "Destek, güvenli öğrenme sağlar.",
+              "lvl": 2,
+              "skill": "spr-denge"
+            },
+            {
+              "q": "Jimnastikte esnekliği artırmak neden zaman ve sabır ister?",
+              "options": [
+                "Kaslar ancak düzenli çalışmayla yavaşça esner",
+                "Esneklik bir günde gelir",
+                "Esneme zararlıdır",
+                "Esneklik hiç değişmez"
+              ],
+              "correct": 0,
+              "hint": "Düzenli esneme kademeli sonuç verir.",
+              "lvl": 2,
+              "skill": "spr-jimnastik"
+            },
+            {
+              "q": "Denge neden jimnastiğin temelidir?",
+              "options": [
+                "Kontrollü ve düşmeden hareket yapmayı sağlar",
+                "Sadece görüntü içindir",
+                "Hızlı koşmak içindir",
+                "Gereksizdir"
+              ],
+              "correct": 0,
+              "hint": "Kontrollü duruş şarttır.",
+              "lvl": 2,
+              "skill": "spr-denge"
+            },
+            {
+              "q": "Yeni ve zor bir hareketi öğrenmenin en güvenli yolu nedir?",
+              "options": [
+                "Basitten zora, adım adım ilerlemek",
+                "Hemen en zorunu denemek",
+                "Isınmadan başlamak",
+                "Gözü kapalı acele etmek"
+              ],
+              "correct": 0,
+              "hint": "Aşama aşama ilerlemek güvenlidir.",
+              "lvl": 2,
+              "skill": "spr-jimnastik"
+            },
+            {
+              "q": "Bir çocuk perende (öne takla) atarken sürekli yana düşüyor. En mantıklı çözüm sırası nedir?",
+              "options": [
+                "Önce yavaş tekrar ve doğru teknik, sonra gözetimde hızlandırmak",
+                "Hemen daha hızlı ve sert denemek",
+                "Vazgeçmek",
+                "Sert zeminde denemek"
+              ],
+              "correct": 0,
+              "hint": "Teknik önce, hız sonra.",
+              "lvl": 3,
+              "skill": "spr-jimnastik"
+            },
+            {
+              "q": "Jimnastikçi esnekliğini artırmak için her gün acıyana kadar zorluyor. Bu neden yanlış ve ne yapmalı?",
+              "options": [
+                "Aşırı zorlama sakatlar; düzenli ve ölçülü esnemek daha doğru",
+                "Ne kadar acırsa o kadar iyidir",
+                "Esnemeyi tamamen bırakmalı",
+                "Hiç ısınmadan zorlamalı"
+              ],
+              "correct": 0,
+              "hint": "Acı sınırını zorlamak sakatlar.",
+              "lvl": 3,
+              "skill": "spr-guvenlik"
+            },
+            {
+              "q": "Denge aletinde ilerleyen sporcu için en akıllı gelişim planı nedir?",
+              "options": [
+                "Önce yerde çizgi üzerinde, sonra alçak, en son yüksek alette çalışmak",
+                "İlk gün en yüksek alette denemek",
+                "Hiç çalışmadan yarışmak",
+                "Gözü kapalı acele etmek"
+              ],
+              "correct": 0,
+              "hint": "Zorluğu kademeli artırmak güvenli.",
+              "lvl": 3,
+              "skill": "spr-denge"
+            },
+            {
+              "q": "Bir arkadaşın 'jimnastikte ısınma gereksiz, zaten esneğim' diyor. Onu nasıl uyarırsın?",
+              "options": [
+                "Isınmayan esnek kas bile ani harekette incinebilir, ısınma korur",
+                "Haklısın, ısınma gereksiz",
+                "Sadece yarışta ısınılır",
+                "Esnek olan hiç sakatlanmaz"
+              ],
+              "correct": 0,
+              "hint": "Esneklik ısınmanın yerini tutmaz.",
+              "lvl": 3,
+              "skill": "spr-guvenlik"
+            },
+            {
+              "q": "Gösteri sırasında heyecandan eli titreyen bir jimnastikçi için en yararlı yaklaşım nedir?",
+              "options": [
+                "Derin nefes alıp bildiği kolay hareketle güven kazanmak",
+                "En zor hareketle başlamak",
+                "Gösteriyi bırakmak",
+                "Aceleyle apar topar bitirmek"
+              ],
+              "correct": 0,
+              "hint": "Güven, kontrolle gelir.",
+              "lvl": 3,
+              "skill": "spr-jimnastik"
             }
           ]
         }
@@ -2204,7 +2747,6 @@
           "bank": [
             {
               "q": "'Fair play' ne demektir?",
-              "skill": "takim-ruhu",
               "options": [
                 "Dürüst ve saygılı oynamak",
                 "Ne olursa olsun kazanmak",
@@ -2212,107 +2754,25 @@
                 "Hakemi kandırmak"
               ],
               "correct": 0,
-              "hint": "Hilesiz, rakibe saygılı oyun."
+              "hint": "Hilesiz, saygılı oyun.",
+              "lvl": 1,
+              "skill": "spr-fairplay"
             },
             {
-              "q": "Maçı kaybedince gerçek bir sporcu ne yapar?",
-              "skill": "takim-ruhu",
+              "q": "Takım ruhu ne demektir?",
               "options": [
-                "Rakibini tebrik eder",
-                "Küser ve gider",
-                "Kavga çıkarır",
-                "Ağlayıp bırakır"
-              ],
-              "correct": 0,
-              "hint": "Yenilgiyi de centilmence karşılamak."
-            },
-            {
-              "q": "Bir takım arkadaşın düşünce ne yaparsın?",
-              "skill": "takim-ruhu",
-              "options": [
-                "Kalkmasına yardım ederim",
-                "Gülerim",
-                "Görmezden gelirim",
-                "İterim"
-              ],
-              "correct": 0,
-              "hint": "Takımına da saygı fair play sayılır."
-            },
-            {
-              "q": "Takım sporunda başarı için en önemlisi hangisidir?",
-              "skill": "takim-ruhu",
-              "options": [
-                "İş birliği ve pas vermek",
+                "Herkesin ortak amaç için birlikte çalışması",
                 "Herkesin tek başına oynaması",
-                "Sadece bir kişinin oynaması",
-                "Kurallara uymamak"
+                "Sadece kazananın önemli olması",
+                "Kimseyle konuşmamak"
               ],
               "correct": 0,
-              "hint": "Birlikten kuvvet doğar."
-            },
-            {
-              "q": "Hakemin kararına sporcu nasıl davranmalı?",
-              "skill": "takim-ruhu",
-              "options": [
-                "Saygı göstermeli",
-                "Üstüne yürümeli",
-                "Bağırmalı",
-                "Oyunu bırakmalı"
-              ],
-              "correct": 0,
-              "hint": "Hakem tarafsız kural bekçisidir."
-            },
-            {
-              "q": "Kazanınca iyi bir sporcu nasıl davranır?",
-              "skill": "takim-ruhu",
-              "options": [
-                "Alçakgönüllü olur, rakibe saygı gösterir",
-                "Rakibiyle alay eder",
-                "Böbürlenir",
-                "Rakibe güler"
-              ],
-              "correct": 0,
-              "hint": "Zafer büyüklük gösterme sebebi değildir."
-            },
-            {
-              "q": "Takım arkadaşın hata yapıp gol yerse ne dersin?",
-              "skill": "takim-ruhu",
-              "options": [
-                "Boş ver, devam et diye yüreklendiririm",
-                "Onu suçlarım",
-                "Takımdan atarım",
-                "Bağırırım"
-              ],
-              "correct": 0,
-              "hint": "Destek takımı güçlü tutar."
-            },
-            {
-              "q": "Hile yaparak kazanmak nasıl bir davranıştır?",
-              "skill": "takim-ruhu",
-              "options": [
-                "Yanlış, fair playe aykırı",
-                "Çok akıllıca",
-                "Kahramanlık",
-                "Gerekli"
-              ],
-              "correct": 0,
-              "hint": "Dürüstlük her zaman kazanır."
-            },
-            {
-              "q": "Takım kaptanının görevi nedir?",
-              "skill": "takim-ruhu",
-              "options": [
-                "Takımı yönlendirmek ve örnek olmak",
-                "Sadece kendi golünü atmak",
-                "Arkadaşlarına bağırmak",
-                "Oyunu terk etmek"
-              ],
-              "correct": 0,
-              "hint": "Liderlik sorumluluktur."
+              "hint": "Bir bütün gibi hareket etmek.",
+              "lvl": 1,
+              "skill": "spr-takim"
             },
             {
               "q": "Maç sonunda iki takım genellikle ne yapar?",
-              "skill": "takim-ruhu",
               "options": [
                 "Birbirini tebrik edip el sıkışır",
                 "Kavga eder",
@@ -2320,19 +2780,165 @@
                 "Kaçar"
               ],
               "correct": 0,
-              "hint": "Centilmenlik göstergesi."
+              "hint": "Centilmenlik göstergesi.",
+              "lvl": 1,
+              "skill": "spr-fairplay"
             },
             {
-              "q": "Takım ruhu ne demektir?",
-              "skill": "takim-ruhu",
+              "q": "Takım kaptanının görevi nedir?",
               "options": [
-                "Herkesin ortak amaç için birlikte çalışması",
-                "Herkesin kendi başına oynaması",
-                "Sadece kazananın önemli olması",
-                "Kimseyle konuşmamak"
+                "Takımı yönlendirmek ve örnek olmak",
+                "Sadece kendi golünü atmak",
+                "Arkadaşlarına bağırmak",
+                "Oyunu terk etmek"
               ],
               "correct": 0,
-              "hint": "Bir bütün gibi hareket etmek."
+              "hint": "Liderlik sorumluluktur.",
+              "lvl": 1,
+              "skill": "spr-liderlik"
+            },
+            {
+              "q": "Takım arkadaşın düşünce ne yaparsın?",
+              "options": [
+                "Kalkmasına yardım ederim",
+                "Gülerim",
+                "Görmezden gelirim",
+                "İterim"
+              ],
+              "correct": 0,
+              "hint": "Takımına saygı da fair play sayılır.",
+              "lvl": 1,
+              "skill": "spr-takim"
+            },
+            {
+              "q": "Hakem senin lehine yanlış karar verdi. Fair play'e en uygun davranış nedir?",
+              "options": [
+                "Doğruyu söyleyip haksız avantajı kullanmamak",
+                "Sesini çıkarmayıp yararlanmak",
+                "Sevinip devam etmek",
+                "Rakiple alay etmek"
+              ],
+              "correct": 0,
+              "hint": "Dürüstlük skordan değerlidir.",
+              "lvl": 2,
+              "skill": "spr-fairplay"
+            },
+            {
+              "q": "Takımında bir oyuncu sürekli tek başına oynuyor. Bunun takıma en olası zararı nedir?",
+              "options": [
+                "İş birliği bozulur, takım daha az fırsat üretir",
+                "Takım daha güçlü olur",
+                "Hiçbir etkisi olmaz",
+                "Herkes daha çok gol atar"
+              ],
+              "correct": 0,
+              "hint": "Bencil oyun takımı zayıflatır.",
+              "lvl": 2,
+              "skill": "spr-takim"
+            },
+            {
+              "q": "Rakip oyuncu düşüp canı yandı. En doğru davranış nedir?",
+              "options": [
+                "Oyunu durdurup yardım etmek",
+                "Fırsattan yararlanıp gol atmak",
+                "Gülmek",
+                "Görmezden gelmek"
+              ],
+              "correct": 0,
+              "hint": "İnsanlık kazanmaktan önce gelir.",
+              "lvl": 2,
+              "skill": "spr-fairplay"
+            },
+            {
+              "q": "Kazandığında rakibinle nasıl davranmak doğrudur?",
+              "options": [
+                "Alçakgönüllü olup emeğine saygı göstermek",
+                "Onunla alay etmek",
+                "Böbürlenmek",
+                "Yüzüne gülmek"
+              ],
+              "correct": 0,
+              "hint": "Zafer üstünlük taslama sebebi değildir.",
+              "lvl": 2,
+              "skill": "spr-fairplay"
+            },
+            {
+              "q": "Takım arkadaşın önemli bir hata yaptı ve çok üzgün. En yapıcı tepki nedir?",
+              "options": [
+                "Onu yüreklendirip 'devam et' demek",
+                "Onu suçlayıp bağırmak",
+                "Takımdan atmak",
+                "Ona küsmek"
+              ],
+              "correct": 0,
+              "hint": "Destek takımı ayakta tutar.",
+              "lvl": 2,
+              "skill": "spr-takim"
+            },
+            {
+              "q": "Kazanmak için hile yapman öneriliyor ama kimse görmeyecek. Doğru karar nedir ve neden?",
+              "options": [
+                "Hile yapmamak; dürüstlük görülmese de doğru olandır",
+                "Görülmeyeceği için hile yapmak",
+                "Herkes yapıyorsa yapmak",
+                "Sadece final maçında hile yapmak"
+              ],
+              "correct": 0,
+              "hint": "Dürüstlük seyirciye değil sana bağlıdır.",
+              "lvl": 3,
+              "skill": "spr-fairplay"
+            },
+            {
+              "q": "Takımında iki oyuncu tartışıp küstü ve oyun bozuluyor. Kaptan olarak en iyi çözümün nedir?",
+              "options": [
+                "İkisini sakinleştirip ortak hedefe odaklamak",
+                "Birinin tarafını tutup diğerini dışlamak",
+                "İkisini de takımdan atmak",
+                "Tartışmaya sen de katılmak"
+              ],
+              "correct": 0,
+              "hint": "Lider birleştirir, ayırmaz.",
+              "lvl": 3,
+              "skill": "spr-liderlik"
+            },
+            {
+              "q": "Takımın çok yetenekli ama herkes yıldız olmak istiyor ve kaybediyorsunuz. En mantıklı çözüm nedir?",
+              "options": [
+                "Görev paylaşımı yapıp pas ve iş birliğini ön plana almak",
+                "Herkesin daha bencil oynaması",
+                "En iyi oyuncu dışında kimsenin oynamaması",
+                "Antrenörü değiştirmek"
+              ],
+              "correct": 0,
+              "hint": "Yetenek ancak birlikte kazandırır.",
+              "lvl": 3,
+              "skill": "spr-takim"
+            },
+            {
+              "q": "Rakip takım sürekli seni kışkırtıyor. Hem takımına yararlı hem centilmen kalan en iyi tepki nedir?",
+              "options": [
+                "Sakin kalıp oyununa odaklanmak ve kararı hakeme bırakmak",
+                "Karşılık verip kavgaya girmek",
+                "Sahayı terk etmek",
+                "Rakibe hakaret etmek"
+              ],
+              "correct": 0,
+              "hint": "Öfke kaybettirir, sakinlik kazandırır.",
+              "lvl": 3,
+              "skill": "spr-fairplay"
+            },
+            {
+              "q": "Kazanmak üzeresiniz ama en zayıf arkadaşın hiç oynamadı ve çok istiyor. Adil ve takım ruhuna uygun karar nedir?",
+              "options": [
+                "Uygun bir anda ona da süre verip takımın parçası hissettirmek",
+                "Kazanmak için onu hiç oynatmamak",
+                "Onunla alay etmek",
+                "Onu takımdan çıkarmak"
+              ],
+              "correct": 0,
+              "hint": "Takım herkesindir.",
+              "lvl": 3,
+              "skill": "spr-liderlik"
             }
           ]
         }
@@ -2418,20 +3024,20 @@
           },
           "bank": [
             {
-              "q": "Olimpiyat oyunlarının sembolü kaç halkadır?",
-              "skill": "olimpiyat-saglik",
+              "q": "Olimpiyat sembolü kaç halkadan oluşur?",
               "options": [
-                "5 halka",
-                "3 halka",
-                "7 halka",
-                "10 halka"
+                "5",
+                "3",
+                "7",
+                "10"
               ],
               "correct": 0,
-              "hint": "Beş kıtayı temsil eden iç içe halkalar."
+              "hint": "Beş kıtayı temsil eder.",
+              "lvl": 1,
+              "skill": "spr-olimpiyat"
             },
             {
               "q": "Olimpiyat Oyunları kaç yılda bir düzenlenir?",
-              "skill": "olimpiyat-saglik",
               "options": [
                 "4 yılda bir",
                 "Her yıl",
@@ -2439,11 +3045,12 @@
                 "Her ay"
               ],
               "correct": 0,
-              "hint": "Uzun bir bekleyiş vardır."
+              "hint": "Uzun bir bekleyiş vardır.",
+              "lvl": 1,
+              "skill": "spr-olimpiyat"
             },
             {
               "q": "Birinci olan sporcuya hangi madalya verilir?",
-              "skill": "olimpiyat-saglik",
               "options": [
                 "Altın",
                 "Bronz",
@@ -2451,47 +3058,25 @@
                 "Tahta"
               ],
               "correct": 0,
-              "hint": "En değerli renk."
+              "hint": "En değerli renk.",
+              "lvl": 1,
+              "skill": "spr-olimpiyat"
             },
             {
-              "q": "İkinci olan sporcu hangi madalyayı alır?",
-              "skill": "olimpiyat-saglik",
+              "q": "Sağlıklı bir sporcu için en doğrusu hangisi?",
               "options": [
-                "Gümüş",
-                "Altın",
-                "Bronz",
-                "Hiçbiri"
-              ],
-              "correct": 0,
-              "hint": "Altından bir sonraki."
-            },
-            {
-              "q": "Sağlıklı bir sporcu için hangisi en doğrudur?",
-              "skill": "olimpiyat-saglik",
-              "options": [
-                "Dengeli beslenir, su içer, uyur",
-                "Hiç uyumaz",
-                "Sadece cips yer",
-                "Hiç su içmez"
-              ],
-              "correct": 0,
-              "hint": "Spor + beslenme + uyku üçlüsü."
-            },
-            {
-              "q": "Sağlıklı yaşam için günde ne kadar uyku önerilir (çocuklar)?",
-              "skill": "olimpiyat-saglik",
-              "options": [
-                "Yeterli ve düzenli (yaklaşık 9-11 saat)",
+                "Dengeli beslenmek, su içmek, uyumak",
                 "Hiç uyumamak",
-                "1 saat",
-                "Sadece gündüz"
+                "Sadece cips yemek",
+                "Hiç su içmemek"
               ],
               "correct": 0,
-              "hint": "Vücut uykuda dinlenir ve büyür."
+              "hint": "Spor + beslenme + uyku.",
+              "lvl": 1,
+              "skill": "spr-saglik"
             },
             {
               "q": "Hangi beslenme daha sağlıklıdır?",
-              "skill": "olimpiyat-saglik",
               "options": [
                 "Meyve, sebze ve dengeli öğünler",
                 "Sadece şeker ve cips",
@@ -2499,55 +3084,139 @@
                 "Hiç yememek"
               ],
               "correct": 0,
-              "hint": "Renkli ve dengeli tabak."
+              "hint": "Renkli ve dengeli tabak.",
+              "lvl": 1,
+              "skill": "spr-beslenme"
             },
             {
-              "q": "Her gün hareketsiz oturmak vücuda ne yapar?",
-              "skill": "olimpiyat-saglik",
+              "q": "Bir çocuk her gün ekran başında saatlerce oturuyor. Sağlığı için en iyi öneri nedir?",
               "options": [
-                "Kasları güçsüzleştirir, enerjini düşürür",
-                "Daha da güçlendirir",
-                "Hiçbir etkisi yoktur",
-                "Boyu uzatır"
+                "Ekran süresini sınırlayıp aralarda hareket etmek",
+                "Bütün gün oturmaya devam etmek",
+                "Hiç dışarı çıkmamak",
+                "Uykuyu azaltmak"
               ],
               "correct": 0,
-              "hint": "Hareket etmeyen kas zayıflar."
+              "hint": "Ara ver, kalk, hareket et.",
+              "lvl": 2,
+              "skill": "spr-saglik"
             },
             {
-              "q": "Düzenli spor yapmak neyi güçlendirir?",
-              "skill": "olimpiyat-saglik",
+              "q": "Sürekli şekerli içecek içen bir sporcu neden zorlanır?",
               "options": [
-                "Kalbi ve kasları",
-                "Sadece saçları",
-                "Sadece tırnakları",
-                "Hiçbir şeyi"
+                "Fazla şeker enerjiyi dengesizleştirir ve sağlığa zarar verir",
+                "Şeker performansı hep artırır",
+                "Hiç etkisi yoktur",
+                "Şeker kasları güçlendirir"
               ],
               "correct": 0,
-              "hint": "Kalp de bir kastır."
+              "hint": "Su ve dengeli beslenme daha iyi.",
+              "lvl": 2,
+              "skill": "spr-beslenme"
             },
             {
-              "q": "Olimpiyat ruhunun asıl amacı nedir?",
-              "skill": "olimpiyat-saglik",
+              "q": "Yeterli uyumayan bir çocuk ertesi gün sporda neden zorlanır?",
               "options": [
-                "Dostluk ve dürüst rekabet",
-                "Ne olursa olsun kazanmak",
-                "Rakiple kavga etmek",
-                "Hile yapmak"
+                "Vücut dinlenemez, enerji ve dikkat düşer",
+                "Uykusuzluk gücü artırır",
+                "Hiç fark etmez",
+                "Daha hızlı olur"
               ],
               "correct": 0,
-              "hint": "Barış ve fair play önemlidir."
+              "hint": "Uyku vücudu onarır.",
+              "lvl": 2,
+              "skill": "spr-saglik"
             },
             {
-              "q": "Sağlıklı yaşam için ekranlar (telefon/TV) karşısında ne yapmalıyız?",
-              "skill": "olimpiyat-saglik",
+              "q": "Olimpiyatlarda bir sporcu kazandı ama rakibiyle alay etti. Olimpiyat ruhuna göre bu neyi gösterir?",
               "options": [
-                "Süreyi sınırlayıp hareket etmeli",
-                "Bütün gün oturmalı",
-                "Hiç dışarı çıkmamalı",
-                "Hiç uyumamalı"
+                "Sadece kazanmak yetmez; saygı ve dostluk da gerekir",
+                "Kazanan her şeyi yapabilir",
+                "Saygı önemsizdir",
+                "Alay etmek normaldir"
               ],
               "correct": 0,
-              "hint": "Ara ver, kalk, hareket et."
+              "hint": "Olimpiyat ruhu dostluktur.",
+              "lvl": 2,
+              "skill": "spr-olimpiyat"
+            },
+            {
+              "q": "Bir çocuk 'spor sadece kilo vermek içindir' diyor. En doğru düzeltme nedir?",
+              "options": [
+                "Spor kalbi, kasları, morali ve uykuyu da güçlendirir",
+                "Haklı, tek faydası budur",
+                "Sporun hiç faydası yoktur",
+                "Spor sadece yarış içindir"
+              ],
+              "correct": 0,
+              "hint": "Sporun çok yönlü faydası var.",
+              "lvl": 2,
+              "skill": "spr-saglik"
+            },
+            {
+              "q": "Sınav haftasında hem başarılı olmak hem sağlıklı kalmak isteyen öğrenci için en dengeli plan nedir?",
+              "options": [
+                "Düzenli uyku, kısa hareket molaları ve dengeli beslenmeyi birlikte sürdürmek",
+                "Hiç uyumadan sabaha kadar çalışmak",
+                "Sadece abur cubur yiyip oturmak",
+                "Hiç ara vermeden çalışmak"
+              ],
+              "correct": 0,
+              "hint": "Beden ve zihin birlikte çalışır.",
+              "lvl": 3,
+              "skill": "spr-saglik"
+            },
+            {
+              "q": "Bir sporcu 'kazanmak için kural çiğnenebilir' diyor. Olimpiyat ruhu açısından bu neden yanlış?",
+              "options": [
+                "Dürüst rekabet ve saygı, madalyadan daha değerlidir",
+                "Kazanmak için her şey yapılır",
+                "Kurallar önemsizdir",
+                "Hile akıllıcadır"
+              ],
+              "correct": 0,
+              "hint": "Olimpiyat ruhu dürüstlüktür.",
+              "lvl": 3,
+              "skill": "spr-olimpiyat"
+            },
+            {
+              "q": "Sürekli enerjisiz ve halsiz bir çocuk için yaşam düzeninde en mantıklı iyileştirme hangisidir?",
+              "options": [
+                "Dengeli beslenme, düzenli uyku ve hareketi birlikte artırmak",
+                "Sadece daha çok şeker yemek",
+                "Hiç dışarı çıkmamak",
+                "Öğün atlamak"
+              ],
+              "correct": 0,
+              "hint": "Enerji üçlüsü: beslenme, uyku, hareket.",
+              "lvl": 3,
+              "skill": "spr-saglik"
+            },
+            {
+              "q": "Büyük bir yarıştan önceki gece heyecandan uyuyamayan sporcu için en akıllı davranış nedir ve neden?",
+              "options": [
+                "Erken yatıp dinlenmeye çalışmak, çünkü uyku performansı doğrudan etkiler",
+                "Sabaha kadar antrenman yapmak",
+                "Çok şekerli şeyler yiyip ayakta kalmak",
+                "Hiç dinlenmemek"
+              ],
+              "correct": 0,
+              "hint": "İyi uyku iyi performans demektir.",
+              "lvl": 3,
+              "skill": "spr-saglik"
+            },
+            {
+              "q": "Bir okul yeni bir spor kulübü kuruyor. Hem sağlığı hem takım ruhunu geliştiren en iyi yaklaşım hangisi olabilir?",
+              "options": [
+                "Herkesi düzenli, güvenli ve fair play ilkeleriyle spora katmak",
+                "Sadece en yetenekliyi seçip diğerlerini dışlamak",
+                "Kuralları önemsememek",
+                "Sadece kazanmaya odaklanıp sağlığı yok saymak"
+              ],
+              "correct": 0,
+              "hint": "Herkes için sağlıklı ve adil spor.",
+              "lvl": 3,
+              "skill": "spr-olimpiyat"
             }
           ]
         }

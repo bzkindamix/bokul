@@ -29,10 +29,26 @@
     return 3;
   }
 
+  /* Soru bankasını çocuğun yaş bandına göre süz (yeni nesil, kademeli zorluk).
+   * Her soru q.lvl (1=küçük/kolay · 2=orta · 3=büyük/zor) taşır; etiketsiz = 1.
+   * Kural: önce TAM bandın soruları; yeterli değilse (bankada az) o banda KADAR
+   * (daha kolaylar) genişler; yine azsa tüm banka. Böylece büyük yaş daha zor,
+   * küçük yaş daha kolay soru görür — ama hiçbir bölüm boş kalmaz. */
+  function ageFilter(bank) {
+    if (!Array.isArray(bank) || bank.length < 5) return bank || [];
+    const band = ageBand();
+    const lvl = q => q.lvl || 1;
+    let sel = bank.filter(q => lvl(q) === band);
+    if (sel.length < 4) sel = bank.filter(q => lvl(q) <= band); // bu seviye ve daha kolaylar
+    if (sel.length < 4) sel = bank; // son çare: hepsi
+    return sel;
+  }
+
   B.Curriculum = {
     mathCaps,
     currentGrade,
     ageBand,
+    ageFilter,
 
     /* Bölüm çocuğun sınıfına uygun mu? (section.minGrade) */
     gradeOk(section) {

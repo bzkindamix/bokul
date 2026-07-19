@@ -169,6 +169,8 @@
         over = true;
         if (timerCtl) { timerCtl.stop(); timerCtl = null; }
         if (view) { view.destroy(); view = null; }
+        // Sandık YALNIZCA ilk yenişte gelir (tekrar oynayınca değil) → grind ile bedava sandık yok
+        const firstKill = !B.State.sectionProgress(lesson.id, params.sectionId).bossDefeated;
         B.Lesson.defeatBoss(params.sectionId);
         // Rozet (nişan) kazan — bölüm/ünite tamamlama madalyası
         if (B.Badges && boss.rewards && boss.rewards.badge) {
@@ -178,12 +180,12 @@
         const isFinal = boss.tier === 'final';
         const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
         const coins = B.Reward.addCoins(isFinal ? 250 : isUnit ? 100 : 50, 'boss');
-        // Sandıklar ESKALASYON: adım 1 · konu boss'u 2 · ünite boss'u 3 · FINAL (ders bitti) 4 en iyi
+        // Sandıklar SADECE İLK yenişte + az adet (denge): konu boss'u 1 · ünite boss'u 2 · FINAL 3
         let chestCount = 0;
-        if (B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
-          const drop = isFinal ? ['nadir', 'nadir', 'kiyafet', 'esya']
-                     : isUnit  ? ['nadir', 'kiyafet', 'altin']
-                               : ['nadir', 'altin'];
+        if (firstKill && B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
+          const drop = isFinal ? ['nadir', 'kiyafet', 'esya']
+                     : isUnit  ? ['nadir', 'kiyafet']
+                               : ['nadir'];
           drop.forEach(t => B.Chest.earn(t));
           chestCount = drop.length;
         }
