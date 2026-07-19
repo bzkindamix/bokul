@@ -1723,6 +1723,11 @@ h1, h2, h3, h4,
 .ref-plus, .ref-eq { color: var(--ink-dim); font-weight: 800; }
 .ref-out { margin-left: auto; font-weight: 700; }
 
+/* === v0.80 — Günlük stok + depo satış === */
+.store-card.store-nostock { opacity: .5; }
+.store-nostock-tag { color: #FF6B6B; font-weight: 800; }
+.store-stock { color: var(--ink-dim); font-weight: 700; font-size: 11px; }
+
 </style>
 </head>
 <body>
@@ -1732,7 +1737,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.79 — Sürükle-bırak üretim atölyesi: malzemeleri tezgaha sürükle/dokun → grup → ÜRET; Craft.match ile tarif eşleştirme; tarif referansı</div>
+      <div class="splash-note">v0.80 — Depodan eşya satış (%60 ucuz, popup) + mağaza günlük stok limiti (gün bitince yenilenir)</div>
     </div>
   </div>
 
@@ -35292,6 +35297,26 @@ h1, h2, h3, h4,
         .filter(x => x.item);
     },
 
+    /* ---- Günlük stok (her eşyanın günlük satın alma limiti; gün bitince yenilenir) ---- */
+    stockMax(id) { const it = B.Items.get(id); if (!it) return 0; return { common: 8, rare: 5, epic: 3, legendary: 2 }[it.rarity || 'common'] || 5; },
+    dailyBox() {
+      const d = B.State.data, today = new Date().toISOString().slice(0, 10);
+      if (!d.shopDaily || d.shopDaily.date !== today) d.shopDaily = { date: today, bought: {} };
+      return d.shopDaily;
+    },
+    stockLeft(id) { return Math.max(0, B.Items.stockMax(id) - (B.Items.dailyBox().bought[id] || 0)); },
+
+    /* Satış: eşyayı %60 ucuza sat (alış fiyatının %40'ı geri döner) */
+    sell(id) {
+      const it = B.Items.get(id);
+      if (!it || B.Items.count(id) <= 0) return { ok: false, err: 'Bu eşya sende yok.' };
+      const price = Math.max(1, Math.round((it.price || 0) * 0.4));
+      B.Items.remove(id, 1);
+      if (B.Reward && B.Reward.addCoins) B.Reward.addCoins(price, 'sell');
+      B.Save.saveSoon();
+      return { ok: true, item: it, coins: price };
+    },
+
     /* Craft ve ödül sistemleri için düşük seviye ekle/çıkar */
     add(id, n) { const m = inv(); m[id] = (m[id] || 0) + (n || 1); B.Save.saveSoon(); },
     remove(id, n) {
@@ -35304,9 +35329,11 @@ h1, h2, h3, h4,
       const it = B.Items.get(id);
       if (!it) return { ok: false, err: 'Eşya bulunamadı.' };
       if (it.unique && B.Items.count(id) > 0) return { ok: false, err: 'Bu eşya zaten sende var.' };
+      if (!it.unique && B.Items.stockLeft(id) <= 0) return { ok: false, err: 'Bugünkü stok bitti! Yarın tazelenir.' };
       if (!B.Items.fits(id)) return { ok: false, err: 'Depon dolu! Seviye atlayınca depo büyür ya da eşya üretip kullan.' };
       if (!B.Reward.spendCoins(it.price)) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
       B.Items.add(id, 1);
+      if (!it.unique) { const b = B.Items.dailyBox(); b.bought[id] = (b.bought[id] || 0) + 1; }
       B.Bus.emit(B.Events.ITEM_BOUGHT || 'item-bought', { itemId: id });
       return { ok: true, item: it };
     },
@@ -40128,14 +40155,18 @@ h1, h2, h3, h4,
           const owned = B.Items.count(it.id);
           const isOwnedUnique = it.unique && owned > 0;
           const afford = coins() >= it.price;
-          return '<button class="store-card rar-' + (it.rarity || 'common') + (isOwnedUnique ? ' store-owned' : '') + (afford || isOwnedUnique ? '' : ' store-poor') + '" data-id="' + it.id + '"' + (isOwnedUnique ? ' disabled' : '') + '>' +
+          const stockLeft = it.unique ? (owned ? 0 : 1) : B.Items.stockLeft(it.id);
+          const outOfStock = !isOwnedUnique && stockLeft <= 0;
+          const disabled = isOwnedUnique || outOfStock;
+          return '<button class="store-card rar-' + (it.rarity || 'common') + (isOwnedUnique ? ' store-owned' : '') + (outOfStock ? ' store-nostock' : '') + (afford || disabled ? '' : ' store-poor') + '" data-id="' + it.id + '"' + (disabled ? ' disabled' : '') + '>' +
             '<span class="rar-dot"></span>' +
             '<span class="store-ic">' + it.icon + '</span>' +
             '<span class="store-nm">' + it.name + '</span>' +
             '<span class="store-desc">' + (it.desc || '') + '</span>' +
             (owned && !it.unique ? '<span class="store-have">Depoda: ' + owned + '</span>' : '') +
             (isOwnedUnique ? '<span class="store-tag">✓ Sende var</span>'
-                           : '<span class="store-price">💰 ' + it.price + '</span>') +
+                           : (outOfStock ? '<span class="store-tag store-nostock-tag">⛔ Bugün tükendi</span>'
+                                         : '<span class="store-price">💰 ' + it.price + ' <small class="store-stock">📦' + stockLeft + '</small></span>')) +
             '</button>';
         }).join('');
         body.innerHTML = filterRow + '<div class="store-grid">' + cards + '</div>';
@@ -40260,10 +40291,18 @@ h1, h2, h3, h4,
         body.querySelectorAll('.inv-cell.filled').forEach(c => c.onclick = () => {
           const it = B.Items.get(c.dataset.id); if (!it) return;
           B.Audio.play('tick');
+          const sellPrice = Math.max(1, Math.round((it.price || 0) * 0.4)); // %60 daha ucuz
           B.UI.overlay('<div class="ov-big">' + it.icon + '</div><h2>' + esc(it.name) + '</h2>' +
             '<p class="ov-quote">' + esc(it.desc || '') + '</p>' +
             '<p class="ov-xp">Depoda: ' + B.Items.count(it.id) + ' adet · ' + ({ common: '🟢 Yaygın', rare: '🔵 Nadir', epic: '🟣 Epik', legendary: '🟡 Efsanevi' }[it.rarity || 'common']) + '</p>',
-            [{ label: 'Tamam', onClick: null }]);
+            [
+              { label: '💰 Sat (' + sellPrice + ')', onClick: () => {
+                const r = B.Items.sell(it.id);
+                if (r.ok) { B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın'); }
+                shell(); // altın + depo tazelensin (depo sekmesinde kal)
+              } },
+              { label: 'Kapat', onClick: null },
+            ]);
         });
       }
 
@@ -42446,7 +42485,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.79'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.80'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

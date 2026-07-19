@@ -40,6 +40,26 @@
         .filter(x => x.item);
     },
 
+    /* ---- Günlük stok (her eşyanın günlük satın alma limiti; gün bitince yenilenir) ---- */
+    stockMax(id) { const it = B.Items.get(id); if (!it) return 0; return { common: 8, rare: 5, epic: 3, legendary: 2 }[it.rarity || 'common'] || 5; },
+    dailyBox() {
+      const d = B.State.data, today = new Date().toISOString().slice(0, 10);
+      if (!d.shopDaily || d.shopDaily.date !== today) d.shopDaily = { date: today, bought: {} };
+      return d.shopDaily;
+    },
+    stockLeft(id) { return Math.max(0, B.Items.stockMax(id) - (B.Items.dailyBox().bought[id] || 0)); },
+
+    /* Satış: eşyayı %60 ucuza sat (alış fiyatının %40'ı geri döner) */
+    sell(id) {
+      const it = B.Items.get(id);
+      if (!it || B.Items.count(id) <= 0) return { ok: false, err: 'Bu eşya sende yok.' };
+      const price = Math.max(1, Math.round((it.price || 0) * 0.4));
+      B.Items.remove(id, 1);
+      if (B.Reward && B.Reward.addCoins) B.Reward.addCoins(price, 'sell');
+      B.Save.saveSoon();
+      return { ok: true, item: it, coins: price };
+    },
+
     /* Craft ve ödül sistemleri için düşük seviye ekle/çıkar */
     add(id, n) { const m = inv(); m[id] = (m[id] || 0) + (n || 1); B.Save.saveSoon(); },
     remove(id, n) {
@@ -52,9 +72,11 @@
       const it = B.Items.get(id);
       if (!it) return { ok: false, err: 'Eşya bulunamadı.' };
       if (it.unique && B.Items.count(id) > 0) return { ok: false, err: 'Bu eşya zaten sende var.' };
+      if (!it.unique && B.Items.stockLeft(id) <= 0) return { ok: false, err: 'Bugünkü stok bitti! Yarın tazelenir.' };
       if (!B.Items.fits(id)) return { ok: false, err: 'Depon dolu! Seviye atlayınca depo büyür ya da eşya üretip kullan.' };
       if (!B.Reward.spendCoins(it.price)) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
       B.Items.add(id, 1);
+      if (!it.unique) { const b = B.Items.dailyBox(); b.bought[id] = (b.bought[id] || 0) + 1; }
       B.Bus.emit(B.Events.ITEM_BOUGHT || 'item-bought', { itemId: id });
       return { ok: true, item: it };
     },

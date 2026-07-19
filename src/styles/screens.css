@@ -1338,3 +1338,8 @@
 .ref-need { opacity: .7; } .ref-need.rn-ok { opacity: 1; color: var(--success, #52E88C); font-weight: 700; }
 .ref-plus, .ref-eq { color: var(--ink-dim); font-weight: 800; }
 .ref-out { margin-left: auto; font-weight: 700; }
+
+/* === v0.80 — Günlük stok + depo satış === */
+.store-card.store-nostock { opacity: .5; }
+.store-nostock-tag { color: #FF6B6B; font-weight: 800; }
+.store-stock { color: var(--ink-dim); font-weight: 700; font-size: 11px; }

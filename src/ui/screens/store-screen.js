@@ -70,14 +70,18 @@
           const owned = B.Items.count(it.id);
           const isOwnedUnique = it.unique && owned > 0;
           const afford = coins() >= it.price;
-          return '<button class="store-card rar-' + (it.rarity || 'common') + (isOwnedUnique ? ' store-owned' : '') + (afford || isOwnedUnique ? '' : ' store-poor') + '" data-id="' + it.id + '"' + (isOwnedUnique ? ' disabled' : '') + '>' +
+          const stockLeft = it.unique ? (owned ? 0 : 1) : B.Items.stockLeft(it.id);
+          const outOfStock = !isOwnedUnique && stockLeft <= 0;
+          const disabled = isOwnedUnique || outOfStock;
+          return '<button class="store-card rar-' + (it.rarity || 'common') + (isOwnedUnique ? ' store-owned' : '') + (outOfStock ? ' store-nostock' : '') + (afford || disabled ? '' : ' store-poor') + '" data-id="' + it.id + '"' + (disabled ? ' disabled' : '') + '>' +
             '<span class="rar-dot"></span>' +
             '<span class="store-ic">' + it.icon + '</span>' +
             '<span class="store-nm">' + it.name + '</span>' +
             '<span class="store-desc">' + (it.desc || '') + '</span>' +
             (owned && !it.unique ? '<span class="store-have">Depoda: ' + owned + '</span>' : '') +
             (isOwnedUnique ? '<span class="store-tag">✓ Sende var</span>'
-                           : '<span class="store-price">💰 ' + it.price + '</span>') +
+                           : (outOfStock ? '<span class="store-tag store-nostock-tag">⛔ Bugün tükendi</span>'
+                                         : '<span class="store-price">💰 ' + it.price + ' <small class="store-stock">📦' + stockLeft + '</small></span>')) +
             '</button>';
         }).join('');
         body.innerHTML = filterRow + '<div class="store-grid">' + cards + '</div>';
@@ -202,10 +206,18 @@
         body.querySelectorAll('.inv-cell.filled').forEach(c => c.onclick = () => {
           const it = B.Items.get(c.dataset.id); if (!it) return;
           B.Audio.play('tick');
+          const sellPrice = Math.max(1, Math.round((it.price || 0) * 0.4)); // %60 daha ucuz
           B.UI.overlay('<div class="ov-big">' + it.icon + '</div><h2>' + esc(it.name) + '</h2>' +
             '<p class="ov-quote">' + esc(it.desc || '') + '</p>' +
             '<p class="ov-xp">Depoda: ' + B.Items.count(it.id) + ' adet · ' + ({ common: '🟢 Yaygın', rare: '🔵 Nadir', epic: '🟣 Epik', legendary: '🟡 Efsanevi' }[it.rarity || 'common']) + '</p>',
-            [{ label: 'Tamam', onClick: null }]);
+            [
+              { label: '💰 Sat (' + sellPrice + ')', onClick: () => {
+                const r = B.Items.sell(it.id);
+                if (r.ok) { B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın'); }
+                shell(); // altın + depo tazelensin (depo sekmesinde kal)
+              } },
+              { label: 'Kapat', onClick: null },
+            ]);
         });
       }
 
