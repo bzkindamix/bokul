@@ -196,9 +196,9 @@
   function openFamilyCode() {
     const cur = B.Cloud.getCode();
     const ov = B.UI.overlay(
-      '<div class="ov-big">🎟️</div><h2>Davet Kodu</h2>' +
-      '<p class="ov-quote">Ebeveyninin verdiği davet kodunu gir. İlerlemen buluta bu aileye kaydolur.</p>' +
-      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Davet kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
+      '<div class="ov-big">🎟️</div><h2>Aile Kodu</h2>' +
+      '<p class="ov-quote">Ebeveyninin verdiği Aile Kodu\'nu gir. İlerlemen buluta bu aileye kaydolur.</p>' +
+      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Aile kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
       '<div class="login-err" id="fam-msg">' + (cur ? '✓ Bağlı: ' + cur : '') + '</div>',
       [{ label: 'KAYDET', onClick: null }, { label: 'Bağlantıyı kaldır', cls: 'btn-quiet', onClick: () => { B.Cloud.setCode(''); B.UI.toast('Bağlantı kaldırıldı'); } }]);
     const btn = ov.querySelector('.overlay-btns .btn');
@@ -209,39 +209,42 @@
     };
   }
 
-  /* İlk açılış: Ebeveyn mi Oyuncu mu? */
+  /* İlk açılış: ÖNCE OYNA. Hesap/kod ZORUNLU değil — çocuk hemen başlar.
+   * Aile bağlama ve ebeveyn kurulumu isteğe bağlı, altta küçük bağlantılar. */
   function renderWelcome(root) {
     root.innerHTML =
       '<div class="login-box"><div class="login-hero">' + hero() + '</div>' +
       '<h2 class="login-title">BOKUL Eğitim Üssü</h2>' +
-      '<p class="login-sub">Kim kuruyor?</p>' +
-      '<div class="welcome-choices">' +
-        '<button class="btn welcome-card wc-parent">👨‍👧<br>EBEVEYNİM<small>E-posta ile hesap aç, çocuklarımı davet et</small></button>' +
-        '<button class="btn welcome-card wc-kid">🎮<br>OYUNCUYUM<small>Davet kodum var / hemen oyna</small></button>' +
+      '<p class="login-sub">Öğrenme macerasına hazır mısın?</p>' +
+      '<button class="btn btn-action login-play-big">🎮 Hemen Oyna</button>' +
+      '<p class="login-hint">Hesap ya da kod gerekmez — dokun ve başla.</p>' +
+      '<div class="welcome-links">' +
+        '<button class="btn btn-quiet wc-code">🎟️ Aile kodum var</button>' +
+        '<button class="btn btn-quiet wc-parent">👨‍👧 Ebeveyn kurulumu</button>' +
       '</div></div>';
+    root.querySelector('.login-play-big').onclick = () => { B.Audio.play('tick'); renderRegister(root, true); };
+    root.querySelector('.wc-code').onclick = () => { B.Audio.play('tick'); renderInvite(root); };
     root.querySelector('.wc-parent').onclick = () => { B.Audio.play('tick'); parentEmailFlow(); };
-    root.querySelector('.wc-kid').onclick = () => { B.Audio.play('tick'); renderInvite(root); };
   }
 
-  /* Oyuncu: davet kodu (varsa) → profil oluştur */
+  /* Oyuncu: AİLE KODU (varsa) → profil oluştur. Kodu ebeveyn "Ebeveyn kurulumu"ndan alır. */
   function renderInvite(root) {
     root.innerHTML =
       '<div class="login-box"><div class="login-logo">🎟️</div>' +
-      '<h2 class="login-title">Davet Kodu</h2>' +
-      '<p class="login-sub">Ebeveyninin verdiği davet kodunu gir (ilerlemen ailene kaydolsun). Kodun yoksa "Kodsuz oyna".</p>' +
-      '<input id="inv-code" class="name-input" maxlength="14" placeholder="Davet kodu" style="text-transform:uppercase">' +
+      '<h2 class="login-title">Aile Kodu</h2>' +
+      '<p class="login-sub">Ebeveyninin verdiği <b>Aile Kodu</b>\'nu gir; ilerlemen ailene kaydolsun.</p>' +
+      '<input id="inv-code" class="name-input" maxlength="14" placeholder="Aile kodu" style="text-transform:uppercase">' +
       '<div class="login-err" id="inv-err"></div>' +
       '<button class="btn btn-action" id="inv-go">KATIL ▶</button>' +
-      '<button class="btn btn-quiet" id="inv-skip">Kodsuz oyna</button>' +
-      '<button class="btn btn-quiet" id="inv-back">◀ Geri</button></div>';
+      '<button class="btn btn-quiet" id="inv-back">◀ Geri</button>' +
+      '<p class="login-hint">Kodun yoksa geri dön, <b>🎮 Hemen Oyna</b> ile kodsuz da başlayabilirsin.</p></div>';
     setTimeout(() => root.querySelector('#inv-code').focus(), 100);
     root.querySelector('#inv-go').onclick = () => {
       const v = (root.querySelector('#inv-code').value || '').trim().toUpperCase();
-      if (v.length < 6) { root.querySelector('#inv-err').textContent = '⚠️ Kod en az 6 karakter (ya da "Kodsuz oyna").'; return; }
+      if (v.length < 6) { root.querySelector('#inv-err').textContent = '⚠️ Aile kodu en az 6 karakter.'; return; }
       B.Cloud.setCode(v); B.UI.toast('🎟️ Aileye bağlandın: ' + v);
       renderRegister(root, false);
     };
-    root.querySelector('#inv-skip').onclick = () => renderRegister(root, false);
     root.querySelector('#inv-back').onclick = () => renderWelcome(root);
   }
 
@@ -312,7 +315,7 @@
       '<input id="reg-name" class="name-input" maxlength="14" placeholder="Adın">' +
       '<div class="login-err" id="reg-err"></div>' +
       '<button class="btn btn-action" id="reg-go">🎖️ BAŞLA</button>' +
-      (firstEver ? '' : '<button class="btn btn-quiet" id="reg-back">◀ Geri</button>') + '</div>';
+      '<button class="btn btn-quiet" id="reg-back">◀ Geri</button></div>';
     const nameEl = root.querySelector('#reg-name');
     setTimeout(() => nameEl.focus(), 100);
     root.querySelector('#reg-go').onclick = () => {
@@ -325,8 +328,7 @@
         B.Engine.enterAs();
       });
     };
-    const back = root.querySelector('#reg-back');
-    if (back) back.onclick = () => renderSelect(root);
+    root.querySelector('#reg-back').onclick = () => (B.Auth.hasAny() ? renderSelect(root) : renderWelcome(root));
   }
 
   B.UI.registerScreen('login', {
@@ -339,7 +341,7 @@
       foot.className = 'login-foot';
       foot.innerHTML =
         '<button class="chip login-parent">👨‍👧 Ebeveyn</button>' +
-        (B.Cloud.configured() ? '<button class="chip login-fam">🎟️ Davet Kodu' + (B.Cloud.getCode() ? ' ✓' : '') + '</button>' : '');
+        (B.Cloud.configured() ? '<button class="chip login-fam">🎟️ Aile Kodu' + (B.Cloud.getCode() ? ' ✓' : '') + '</button>' : '');
       root.appendChild(foot);
       foot.querySelector('.login-parent').onclick = openParent;
       const fam = foot.querySelector('.login-fam');

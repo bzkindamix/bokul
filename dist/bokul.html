@@ -865,6 +865,11 @@ h1, h2, h3, h4,
 .adm-stats2 span { color: var(--xp); }
 
 /* ---------- v0.21: Ebeveyn-önce karşılama + davet kodu ---------- */
+/* Önce-oyna karşılama: büyük CTA + küçük ikincil bağlantılar */
+.login-play-big { width: min(340px, 88%); margin: 6px auto 4px; font-size: 22px; padding: 18px 20px; }
+.login-hint { color: var(--ink-dim); font-size: 12.5px; margin: 2px 0 10px; }
+.welcome-links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+.welcome-links .btn-quiet { font-size: 13px; padding: 9px 14px; }
 .welcome-choices { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
 .welcome-card {
   width: min(230px, 44vw); padding: 22px 14px; font-size: 19px; line-height: 1.4;
@@ -1839,7 +1844,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.92 — Altin ekonomi tutarliligi: depo altin maliyeti = ham madde degeri (arbitraj acigi kapandi, topla=bedava)</div>
+      <div class="splash-note">v0.93 — Giris akisi sadelestirildi: 'Hemen Oyna' (hesapsiz/kodsuz) + tek terim 'Aile Kodu' + az adim</div>
     </div>
   </div>
 
@@ -42904,9 +42909,9 @@ h1, h2, h3, h4,
   function openFamilyCode() {
     const cur = B.Cloud.getCode();
     const ov = B.UI.overlay(
-      '<div class="ov-big">🎟️</div><h2>Davet Kodu</h2>' +
-      '<p class="ov-quote">Ebeveyninin verdiği davet kodunu gir. İlerlemen buluta bu aileye kaydolur.</p>' +
-      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Davet kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
+      '<div class="ov-big">🎟️</div><h2>Aile Kodu</h2>' +
+      '<p class="ov-quote">Ebeveyninin verdiği Aile Kodu\'nu gir. İlerlemen buluta bu aileye kaydolur.</p>' +
+      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Aile kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
       '<div class="login-err" id="fam-msg">' + (cur ? '✓ Bağlı: ' + cur : '') + '</div>',
       [{ label: 'KAYDET', onClick: null }, { label: 'Bağlantıyı kaldır', cls: 'btn-quiet', onClick: () => { B.Cloud.setCode(''); B.UI.toast('Bağlantı kaldırıldı'); } }]);
     const btn = ov.querySelector('.overlay-btns .btn');
@@ -42917,39 +42922,42 @@ h1, h2, h3, h4,
     };
   }
 
-  /* İlk açılış: Ebeveyn mi Oyuncu mu? */
+  /* İlk açılış: ÖNCE OYNA. Hesap/kod ZORUNLU değil — çocuk hemen başlar.
+   * Aile bağlama ve ebeveyn kurulumu isteğe bağlı, altta küçük bağlantılar. */
   function renderWelcome(root) {
     root.innerHTML =
       '<div class="login-box"><div class="login-hero">' + hero() + '</div>' +
       '<h2 class="login-title">BOKUL Eğitim Üssü</h2>' +
-      '<p class="login-sub">Kim kuruyor?</p>' +
-      '<div class="welcome-choices">' +
-        '<button class="btn welcome-card wc-parent">👨‍👧<br>EBEVEYNİM<small>E-posta ile hesap aç, çocuklarımı davet et</small></button>' +
-        '<button class="btn welcome-card wc-kid">🎮<br>OYUNCUYUM<small>Davet kodum var / hemen oyna</small></button>' +
+      '<p class="login-sub">Öğrenme macerasına hazır mısın?</p>' +
+      '<button class="btn btn-action login-play-big">🎮 Hemen Oyna</button>' +
+      '<p class="login-hint">Hesap ya da kod gerekmez — dokun ve başla.</p>' +
+      '<div class="welcome-links">' +
+        '<button class="btn btn-quiet wc-code">🎟️ Aile kodum var</button>' +
+        '<button class="btn btn-quiet wc-parent">👨‍👧 Ebeveyn kurulumu</button>' +
       '</div></div>';
+    root.querySelector('.login-play-big').onclick = () => { B.Audio.play('tick'); renderRegister(root, true); };
+    root.querySelector('.wc-code').onclick = () => { B.Audio.play('tick'); renderInvite(root); };
     root.querySelector('.wc-parent').onclick = () => { B.Audio.play('tick'); parentEmailFlow(); };
-    root.querySelector('.wc-kid').onclick = () => { B.Audio.play('tick'); renderInvite(root); };
   }
 
-  /* Oyuncu: davet kodu (varsa) → profil oluştur */
+  /* Oyuncu: AİLE KODU (varsa) → profil oluştur. Kodu ebeveyn "Ebeveyn kurulumu"ndan alır. */
   function renderInvite(root) {
     root.innerHTML =
       '<div class="login-box"><div class="login-logo">🎟️</div>' +
-      '<h2 class="login-title">Davet Kodu</h2>' +
-      '<p class="login-sub">Ebeveyninin verdiği davet kodunu gir (ilerlemen ailene kaydolsun). Kodun yoksa "Kodsuz oyna".</p>' +
-      '<input id="inv-code" class="name-input" maxlength="14" placeholder="Davet kodu" style="text-transform:uppercase">' +
+      '<h2 class="login-title">Aile Kodu</h2>' +
+      '<p class="login-sub">Ebeveyninin verdiği <b>Aile Kodu</b>\'nu gir; ilerlemen ailene kaydolsun.</p>' +
+      '<input id="inv-code" class="name-input" maxlength="14" placeholder="Aile kodu" style="text-transform:uppercase">' +
       '<div class="login-err" id="inv-err"></div>' +
       '<button class="btn btn-action" id="inv-go">KATIL ▶</button>' +
-      '<button class="btn btn-quiet" id="inv-skip">Kodsuz oyna</button>' +
-      '<button class="btn btn-quiet" id="inv-back">◀ Geri</button></div>';
+      '<button class="btn btn-quiet" id="inv-back">◀ Geri</button>' +
+      '<p class="login-hint">Kodun yoksa geri dön, <b>🎮 Hemen Oyna</b> ile kodsuz da başlayabilirsin.</p></div>';
     setTimeout(() => root.querySelector('#inv-code').focus(), 100);
     root.querySelector('#inv-go').onclick = () => {
       const v = (root.querySelector('#inv-code').value || '').trim().toUpperCase();
-      if (v.length < 6) { root.querySelector('#inv-err').textContent = '⚠️ Kod en az 6 karakter (ya da "Kodsuz oyna").'; return; }
+      if (v.length < 6) { root.querySelector('#inv-err').textContent = '⚠️ Aile kodu en az 6 karakter.'; return; }
       B.Cloud.setCode(v); B.UI.toast('🎟️ Aileye bağlandın: ' + v);
       renderRegister(root, false);
     };
-    root.querySelector('#inv-skip').onclick = () => renderRegister(root, false);
     root.querySelector('#inv-back').onclick = () => renderWelcome(root);
   }
 
@@ -43020,7 +43028,7 @@ h1, h2, h3, h4,
       '<input id="reg-name" class="name-input" maxlength="14" placeholder="Adın">' +
       '<div class="login-err" id="reg-err"></div>' +
       '<button class="btn btn-action" id="reg-go">🎖️ BAŞLA</button>' +
-      (firstEver ? '' : '<button class="btn btn-quiet" id="reg-back">◀ Geri</button>') + '</div>';
+      '<button class="btn btn-quiet" id="reg-back">◀ Geri</button></div>';
     const nameEl = root.querySelector('#reg-name');
     setTimeout(() => nameEl.focus(), 100);
     root.querySelector('#reg-go').onclick = () => {
@@ -43033,8 +43041,7 @@ h1, h2, h3, h4,
         B.Engine.enterAs();
       });
     };
-    const back = root.querySelector('#reg-back');
-    if (back) back.onclick = () => renderSelect(root);
+    root.querySelector('#reg-back').onclick = () => (B.Auth.hasAny() ? renderSelect(root) : renderWelcome(root));
   }
 
   B.UI.registerScreen('login', {
@@ -43047,7 +43054,7 @@ h1, h2, h3, h4,
       foot.className = 'login-foot';
       foot.innerHTML =
         '<button class="chip login-parent">👨‍👧 Ebeveyn</button>' +
-        (B.Cloud.configured() ? '<button class="chip login-fam">🎟️ Davet Kodu' + (B.Cloud.getCode() ? ' ✓' : '') + '</button>' : '');
+        (B.Cloud.configured() ? '<button class="chip login-fam">🎟️ Aile Kodu' + (B.Cloud.getCode() ? ' ✓' : '') + '</button>' : '');
       root.appendChild(foot);
       foot.querySelector('.login-parent').onclick = openParent;
       const fam = foot.querySelector('.login-fam');
@@ -43201,7 +43208,7 @@ h1, h2, h3, h4,
   B.UI.registerScreen('admin', {
     enter(root) {
       let tab = 'players';
-      // Ebeveyn (Google/e-posta) giriş yaptıysa bulutu varsayıla — davet kodu
+      // Ebeveyn (Google/e-posta) giriş yaptıysa bulutu varsayıla — aile kodu
       // shell()'de set edildiğinden, kaynağı baştan 'cloud' seçmek güvenli.
       let source = (B.Cloud.enabled() || (B.AuthCloud && B.AuthCloud.current())) ? 'cloud' : 'local';
       let players = [];
@@ -43253,9 +43260,9 @@ h1, h2, h3, h4,
         const famRow = B.Cloud.configured()
           ? '<div class="adm-fam">' +
               (code
-                ? '<div>🎟️ Davet Kodun: <b class="adm-code">' + code + '</b> <button class="chip adm-copy">Kopyala</button> <button class="chip adm-send">📤 Çocuğa Gönder</button>' +
-                  '<div class="adm-fam-hint">Bu kodu çocuklarının cihazında giriş ekranı → "🎮 Oyuncuyum" / "🎟️ Davet Kodu" bölümüne gir. Sonra "☁️ Bulut (aile)" sekmesinden hepsini görürsün.</div></div>'
-                : '<button class="chip adm-gencode">🎟️ Davet kodu oluştur</button>' +
+                ? '<div>🎟️ Aile Kodun: <b class="adm-code">' + code + '</b> <button class="chip adm-copy">Kopyala</button> <button class="chip adm-send">📤 Çocuğa Gönder</button>' +
+                  '<div class="adm-fam-hint">3 adım: (1) Bu kodu kopyala → (2) Çocuğun cihazında giriş ekranında <b>"🎟️ Aile kodum var"</b>a gir → (3) "☁️ Bulut (aile)" sekmesinden hepsini gör.</div></div>'
+                : '<button class="chip adm-gencode">🎟️ Aile kodu oluştur</button>' +
                   '<span class="adm-fam-hint"> — çocukların cihazlarını bağlamak için (veya e-posta ile giriş yap, kod otomatik gelsin)</span>') +
             '</div>'
           : '';
@@ -43615,7 +43622,7 @@ h1, h2, h3, h4,
         const items = [];
         if (hasEmail) items.push({ ic: '👤', tt: 'Hesap Bilgileri', sub: email, fn: accountInfo });
         items.push({ ic: '👨‍👧', tt: 'Çocuk Profilleri', sub: B.Auth.users().length + ' profil · ekle, adlandır, sil', fn: manageProfiles });
-        if (B.Cloud.configured()) items.push({ ic: '🎟️', tt: 'Aile & Davet Kodu', sub: 'Kodu paylaş, bağlantıyı yönet', fn: familyMenu });
+        if (B.Cloud.configured()) items.push({ ic: '🎟️', tt: 'Aile & Aile Kodu', sub: 'Kodu paylaş, bağlantıyı yönet', fn: familyMenu });
         items.push({ ic: '🔒', tt: 'Gizlilik & KVKK', sub: 'Metinleri gör, rızayı yönet', fn: privacyMenu });
         items.push({ ic: '🔑', tt: 'Çevrimdışı PIN', sub: B.Auth.adminExists() ? 'PIN değiştir' : 'PIN belirle', fn: changePin });
         items.push({ ic: '🔊', tt: 'Uygulama', sub: 'Ses ayarı', fn: appPrefs });
@@ -43693,22 +43700,22 @@ h1, h2, h3, h4,
         });
       }
 
-      /* Davet kodunu + oyun giriş linkini çocuğun cihazına gönder (iMessage/SMS, WhatsApp, yerel paylaşım) */
+      /* Aile kodunu + oyun giriş linkini çocuğun cihazına gönder (iMessage/SMS, WhatsApp, yerel paylaşım) */
       function shareInvite(code) {
         code = code || ((B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode());
-        if (!code) { B.UI.toast('Önce davet kodu oluştur.'); return; }
+        if (!code) { B.UI.toast('Önce aile kodu oluştur.'); return; }
         // Oyun linki: yayındaki genel URL (localhost/dev ise sabit üsse yönlendir)
         const here = location.origin + location.pathname;
         const link = /localhost|127\.0\.0\.1|^file:/.test(location.href) ? 'https://bzkindamix.github.io/bokul/dist/bokul.html' : here;
         const msg = '🎮 BOKUL Eğitim Üssü\'ne davetlisin!\n\n' +
           '1) Oyunu aç:\n' + link + '\n\n' +
-          '2) "🎮 Oyuncuyum" → "🎟️ Davet Kodu" bölümüne şu kodu gir:\n👉 ' + code + '\n\n' +
+          '2) "🎟️ Aile kodum var"a girip şu kodu gir:\n👉 ' + code + '\n\n' +
           'Hadi göreve başla, asker! 🚀';
         const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
         const ov = B.UI.overlay(
           '<div class="ov-big">📤</div><h2>Çocuğuna Gönder</h2>' +
-          '<p class="ov-quote">Davet kodunu ve oyun bağlantısını çocuğunun cihazına ilet. O, linke dokunup kodu girecek — ailene bağlanacak.</p>' +
+          '<p class="ov-quote">Aile kodunu ve oyun bağlantısını çocuğunun cihazına ilet. O, linke dokunup kodu girecek — ailene bağlanacak.</p>' +
           '<div class="share-preview">' + esc(msg) + '</div>' +
           '<div class="share-btns">' +
             '<button class="btn share-main" id="sh-native">📤 Paylaş (Mesaj · WhatsApp · AirDrop…)</button>' +
@@ -43728,8 +43735,8 @@ h1, h2, h3, h4,
 
       function familyMenu() {
         const code = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode();
-        const ov = B.UI.overlay('<div class="ov-big">🎟️</div><h2>Aile & Davet Kodu</h2>' +
-          (code ? '<div class="acc-info"><b>Davet Kodun:</b> <span class="adm-code">' + code + '</span></div>' : '<p class="ov-quote">Henüz kod yok. E-posta ile giriş yaparsan otomatik gelir.</p>') +
+        const ov = B.UI.overlay('<div class="ov-big">🎟️</div><h2>Aile & Aile Kodu</h2>' +
+          (code ? '<div class="acc-info"><b>Aile Kodun:</b> <span class="adm-code">' + code + '</span></div>' : '<p class="ov-quote">Henüz kod yok. E-posta ile giriş yaparsan otomatik gelir.</p>') +
           '<div class="acc-actions">' +
             (code ? '<button class="btn btn-quiet" id="fm-copy">📋 Kopyala</button><button class="btn btn-quiet" id="fm-share">📤 Paylaş</button>' : '') +
             (B.Cloud.getCode() ? '<button class="btn btn-quiet" id="fm-unlink">🔌 Bağlantıyı kaldır</button>' : '') +
@@ -43787,8 +43794,8 @@ h1, h2, h3, h4,
         B.Tour.run([
           { icon: '🧑‍✈️', title: selam, text: 'Ben Baba Komutan. Bu panel senin' + (pName ? ', Binbaşı ' + pName : '') + ' — çocuklarının nasıl öğrendiğini buradan takip edersin. Kısaca nasıl işlediğini anlatayım.' },
           { icon: '🔑', title: '1) Kaydoldun', text: 'Google ya da e-postanla giriş yaptın. Bu tek seferlik — bir daha sormaz, seni hep hatırlar.' },
-          { icon: '🎟️', title: '2) Davet Kodun', text: 'Yukarıda "Davet Kodun" yazıyor' + (code ? ': <b>' + code + '</b>' : '') + '. Bu ailene özel koddur. "Kopyala" ile al.' },
-          { icon: '📲', title: '3) Çocuğuna İlet', text: 'Çocuğunun cihazında oyunu aç → "🎮 Oyuncuyum → 🎟️ Davet Kodu" → bu kodu gir. Böylece çocuk ailene bağlanır ve tam sürüm açılır.' },
+          { icon: '🎟️', title: '2) Aile Kodun', text: 'Yukarıda "Aile Kodun" yazıyor' + (code ? ': <b>' + code + '</b>' : '') + '. Bu ailene özel koddur. "Kopyala" ile al.' },
+          { icon: '📲', title: '3) Çocuğuna İlet', text: 'Çocuğunun cihazında oyunu aç → "🎟️ Aile kodum var" → bu kodu gir. Böylece çocuk ailene bağlanır ve tam sürüm açılır.' },
           { icon: '☁️', title: '4) Takip Et', text: '"☁️ Bulut (aile)" sekmesinden çocuklarının ilerlemesini görürsün. "🎁 İstekler" ile hedef ver, "🔒 İzinler" ile dersleri/bölümleri aç-kapa. Hadi başlayalım!' },
         ]);
       }
@@ -44024,7 +44031,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.92'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.93'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

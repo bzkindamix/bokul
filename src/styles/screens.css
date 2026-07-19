@@ -481,6 +481,11 @@
 .adm-stats2 span { color: var(--xp); }
 
 /* ---------- v0.21: Ebeveyn-önce karşılama + davet kodu ---------- */
+/* Önce-oyna karşılama: büyük CTA + küçük ikincil bağlantılar */
+.login-play-big { width: min(340px, 88%); margin: 6px auto 4px; font-size: 22px; padding: 18px 20px; }
+.login-hint { color: var(--ink-dim); font-size: 12.5px; margin: 2px 0 10px; }
+.welcome-links { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
+.welcome-links .btn-quiet { font-size: 13px; padding: 9px 14px; }
 .welcome-choices { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
 .welcome-card {
   width: min(230px, 44vw); padding: 22px 14px; font-size: 19px; line-height: 1.4;
