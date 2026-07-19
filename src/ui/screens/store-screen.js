@@ -3,6 +3,7 @@
  * 📦 Depom : sahip olduğun eşyalar (adetli), Evim'de saklanır.
  * Eşyalar ileride evcil hayvan craft'ında ön koşul olur. */
 (function (B) {
+  function esc(s) { return String(s == null ? '' : s).replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
   B.UI.registerScreen('store', {
     enter(root, params) {
       const hud = B.UI.buildHud(root, { backTo: 'evim' });
@@ -173,27 +174,39 @@
         });
       }
 
-      /* ---- 📦 Depom ---- */
+      /* ---- 📦 Depom (kare-ızgara envanter, kapasite limitli, level ile büyür) ---- */
       function renderDepo(body) {
         const owned = B.Items.ownedList();
-        if (!owned.length) {
-          body.innerHTML = '<div class="store-empty">📦 Depon boş. Mağazadan eşya al, burada saklansın!<br><small>Bazı eşyalar ileride evcil hayvan sahibi olmak için gerekli olacak.</small></div>';
-          return;
-        }
-        // Kategoriye göre grupla
-        const byCat = {};
-        owned.forEach(o => { (byCat[o.item.cat] = byCat[o.item.cat] || []).push(o); });
-        body.innerHTML = Object.keys(byCat).map(c =>
-          '<div class="depo-cat">' + B.Items.catName(c) + '</div>' +
-          '<div class="store-grid">' + byCat[c].map(o =>
-            '<div class="store-card depo-card rar-' + (o.item.rarity || 'common') + '">' +
-              '<span class="rar-dot"></span>' +
-              '<span class="store-ic">' + o.item.icon + '</span>' +
-              '<span class="store-nm">' + o.item.name + '</span>' +
-              (o.count > 1 ? '<span class="depo-count">×' + o.count + '</span>' : '') +
-            '</div>').join('') +
-          '</div>'
-        ).join('');
+        const cap = B.Items.capacity();
+        const used = owned.length;
+        const overfull = used > cap;
+        // Dolu hücreler (kategoriye göre sıralı) + boş hücreler kapasiteye kadar
+        owned.sort((a, b) => (a.item.cat + a.item.name).localeCompare(b.item.cat + b.item.name, 'tr'));
+        const cells = owned.map(o =>
+          '<button class="inv-cell filled rar-' + (o.item.rarity || 'common') + '" data-id="' + o.item.id + '" title="' + esc(o.item.name) + '">' +
+            '<span class="inv-ic">' + o.item.icon + '</span>' +
+            (o.count > 1 ? '<span class="inv-count">' + o.count + '</span>' : '') +
+          '</button>').join('');
+        const emptyN = Math.max(0, cap - used);
+        const empties = Array.from({ length: emptyN }, () => '<div class="inv-cell empty"></div>').join('');
+        body.innerHTML =
+          '<div class="inv-head">' +
+            '<span class="inv-title">📦 Depo</span>' +
+            '<span class="inv-cap' + (overfull ? ' inv-over' : (used >= cap ? ' inv-warn' : '')) + '">' + used + ' / ' + cap + ' dolu</span>' +
+            '<span class="inv-lvl">🎖️ Sv.' + ((B.State.data.player.level) || 1) + ' — seviye atlayınca depo büyür</span>' +
+          '</div>' +
+          (used ? '' : '<div class="store-empty">Depon boş. Mağazadan eşya al, burada saklansın!</div>') +
+          '<div class="inv-grid">' + cells + empties + '</div>' +
+          (overfull ? '<div class="adm-warn">⚠️ Depo kapasiten aşıldı — seviye atla ya da eşyaları üretimde/bakımunda kullan.</div>' : '');
+        // Hücreye dokun → eşya bilgisi
+        body.querySelectorAll('.inv-cell.filled').forEach(c => c.onclick = () => {
+          const it = B.Items.get(c.dataset.id); if (!it) return;
+          B.Audio.play('tick');
+          B.UI.overlay('<div class="ov-big">' + it.icon + '</div><h2>' + esc(it.name) + '</h2>' +
+            '<p class="ov-quote">' + esc(it.desc || '') + '</p>' +
+            '<p class="ov-xp">Depoda: ' + B.Items.count(it.id) + ' adet · ' + ({ common: '🟢 Yaygın', rare: '🔵 Nadir', epic: '🟣 Epik', legendary: '🟡 Efsanevi' }[it.rarity || 'common']) + '</p>',
+            [{ label: 'Tamam', onClick: null }]);
+        });
       }
 
       shell();

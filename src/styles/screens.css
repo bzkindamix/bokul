@@ -1293,3 +1293,18 @@
 .rar-legendary .store-ic, .rar-legendary .cos-prev, .rar-epic .store-ic { filter: drop-shadow(0 0 5px var(--rar)); }
 /* Envanter grid hücresi de enderlikle çerçevelensin */
 .inv-cell[class*="rar-"] { border-color: var(--rar); box-shadow: inset 0 0 0 1.5px var(--rar), 0 0 8px -3px var(--rar); }
+
+/* === v0.78 — Kare-ızgara depo (Arc Raiders tarzı, kapasite limitli) === */
+.inv-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 12px; }
+.inv-title { font-family: var(--display); font-weight: 800; font-size: 17px; }
+.inv-cap { font-weight: 800; font-size: 14px; color: var(--success); background: var(--bg-raised); padding: 4px 12px; border-radius: 99px; font-variant-numeric: tabular-nums; }
+.inv-cap.inv-warn { color: var(--warn); } .inv-cap.inv-over { color: #FF6B6B; }
+.inv-lvl { font-size: 11.5px; color: var(--ink-dim); flex-basis: 100%; }
+.inv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 8px; }
+.inv-cell { position: relative; aspect-ratio: 1; border-radius: 12px; border: 1.5px solid var(--line); background: var(--bg-raised); display: flex; align-items: center; justify-content: center; padding: 0; }
+.inv-cell.empty { background: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(255,255,255,.035) 6px, rgba(255,255,255,.035) 12px); border-style: dashed; opacity: .45; }
+.inv-cell.filled { cursor: pointer; transition: transform .1s ease; }
+.inv-cell.filled:active { transform: scale(.94); }
+.inv-ic { font-size: 30px; line-height: 1; filter: drop-shadow(0 2px 3px rgba(0,0,0,.35)); }
+.inv-count { position: absolute; bottom: 3px; right: 5px; font-size: 12px; font-weight: 800; color: #fff; background: rgba(0,0,0,.6); padding: 0 5px; border-radius: 7px; font-variant-numeric: tabular-nums; }
+@media (hover: hover) { .inv-cell.filled:hover { transform: translateY(-2px); } }

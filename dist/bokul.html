@@ -1678,6 +1678,21 @@ h1, h2, h3, h4,
 /* Envanter grid hücresi de enderlikle çerçevelensin */
 .inv-cell[class*="rar-"] { border-color: var(--rar); box-shadow: inset 0 0 0 1.5px var(--rar), 0 0 8px -3px var(--rar); }
 
+/* === v0.78 — Kare-ızgara depo (Arc Raiders tarzı, kapasite limitli) === */
+.inv-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-bottom: 12px; }
+.inv-title { font-family: var(--display); font-weight: 800; font-size: 17px; }
+.inv-cap { font-weight: 800; font-size: 14px; color: var(--success); background: var(--bg-raised); padding: 4px 12px; border-radius: 99px; font-variant-numeric: tabular-nums; }
+.inv-cap.inv-warn { color: var(--warn); } .inv-cap.inv-over { color: #FF6B6B; }
+.inv-lvl { font-size: 11.5px; color: var(--ink-dim); flex-basis: 100%; }
+.inv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 8px; }
+.inv-cell { position: relative; aspect-ratio: 1; border-radius: 12px; border: 1.5px solid var(--line); background: var(--bg-raised); display: flex; align-items: center; justify-content: center; padding: 0; }
+.inv-cell.empty { background: repeating-linear-gradient(45deg, transparent, transparent 6px, rgba(255,255,255,.035) 6px, rgba(255,255,255,.035) 12px); border-style: dashed; opacity: .45; }
+.inv-cell.filled { cursor: pointer; transition: transform .1s ease; }
+.inv-cell.filled:active { transform: scale(.94); }
+.inv-ic { font-size: 30px; line-height: 1; filter: drop-shadow(0 2px 3px rgba(0,0,0,.35)); }
+.inv-count { position: absolute; bottom: 3px; right: 5px; font-size: 12px; font-weight: 800; color: #fff; background: rgba(0,0,0,.6); padding: 0 5px; border-radius: 7px; font-variant-numeric: tabular-nums; }
+@media (hover: hover) { .inv-cell.filled:hover { transform: translateY(-2px); } }
+
 </style>
 </head>
 <body>
@@ -1687,7 +1702,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.77 — Doğru-cevap serisi kademeli sandıkları (25/50/75/100) + item enderlik renkleri (yeşil/mavi/mor/sarı) + craft→üretim (tüm site)</div>
+      <div class="splash-note">v0.78 — Kare-ızgara depo envanteri (Arc Raiders tarzı): hücreli görünüm + kapasite limiti (level atladıkça büyür) + dolu depoya alım engeli</div>
     </div>
   </div>
 
@@ -35228,6 +35243,18 @@ h1, h2, h3, h4,
     count(id) { return inv()[id] || 0; },
     have(id, n) { return (inv()[id] || 0) >= (n || 1); },
     total() { return Object.values(inv()).reduce((t, n) => t + n, 0); },
+
+    /* ---- Depo kapasitesi (level atladıkça artar) ----
+     * Her farklı eşya = 1 slot (aynı eşya adetlenir, yeni slot açmaz).
+     * Kapasite oyuncu seviyesiyle büyür: 16 + (seviye-1)*2. */
+    capacity() {
+      const lvl = (B.State.data.player && B.State.data.player.level) || 1;
+      return 16 + (lvl - 1) * 2;
+    },
+    slotsUsed() { const m = inv(); return Object.keys(m).filter(k => m[k] > 0).length; },
+    isFull() { return B.Items.slotsUsed() >= B.Items.capacity(); },
+    /* Bu eşya depoya SIĞAR mı? (var olan eşya adetlenir → hep sığar; yeni eşya slot ister) */
+    fits(id) { return B.Items.count(id) > 0 || !B.Items.isFull(); },
     ownedList() {
       const m = inv();
       return Object.keys(m).filter(k => m[k] > 0)
@@ -35247,6 +35274,7 @@ h1, h2, h3, h4,
       const it = B.Items.get(id);
       if (!it) return { ok: false, err: 'Eşya bulunamadı.' };
       if (it.unique && B.Items.count(id) > 0) return { ok: false, err: 'Bu eşya zaten sende var.' };
+      if (!B.Items.fits(id)) return { ok: false, err: 'Depon dolu! Seviye atlayınca depo büyür ya da eşya üretip kullan.' };
       if (!B.Reward.spendCoins(it.price)) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
       B.Items.add(id, 1);
       B.Bus.emit(B.Events.ITEM_BOUGHT || 'item-bought', { itemId: id });
@@ -39991,6 +40019,7 @@ h1, h2, h3, h4,
  * 📦 Depom : sahip olduğun eşyalar (adetli), Evim'de saklanır.
  * Eşyalar ileride evcil hayvan craft'ında ön koşul olur. */
 (function (B) {
+  function esc(s) { return String(s == null ? '' : s).replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])); }
   B.UI.registerScreen('store', {
     enter(root, params) {
       const hud = B.UI.buildHud(root, { backTo: 'evim' });
@@ -40161,27 +40190,39 @@ h1, h2, h3, h4,
         });
       }
 
-      /* ---- 📦 Depom ---- */
+      /* ---- 📦 Depom (kare-ızgara envanter, kapasite limitli, level ile büyür) ---- */
       function renderDepo(body) {
         const owned = B.Items.ownedList();
-        if (!owned.length) {
-          body.innerHTML = '<div class="store-empty">📦 Depon boş. Mağazadan eşya al, burada saklansın!<br><small>Bazı eşyalar ileride evcil hayvan sahibi olmak için gerekli olacak.</small></div>';
-          return;
-        }
-        // Kategoriye göre grupla
-        const byCat = {};
-        owned.forEach(o => { (byCat[o.item.cat] = byCat[o.item.cat] || []).push(o); });
-        body.innerHTML = Object.keys(byCat).map(c =>
-          '<div class="depo-cat">' + B.Items.catName(c) + '</div>' +
-          '<div class="store-grid">' + byCat[c].map(o =>
-            '<div class="store-card depo-card rar-' + (o.item.rarity || 'common') + '">' +
-              '<span class="rar-dot"></span>' +
-              '<span class="store-ic">' + o.item.icon + '</span>' +
-              '<span class="store-nm">' + o.item.name + '</span>' +
-              (o.count > 1 ? '<span class="depo-count">×' + o.count + '</span>' : '') +
-            '</div>').join('') +
-          '</div>'
-        ).join('');
+        const cap = B.Items.capacity();
+        const used = owned.length;
+        const overfull = used > cap;
+        // Dolu hücreler (kategoriye göre sıralı) + boş hücreler kapasiteye kadar
+        owned.sort((a, b) => (a.item.cat + a.item.name).localeCompare(b.item.cat + b.item.name, 'tr'));
+        const cells = owned.map(o =>
+          '<button class="inv-cell filled rar-' + (o.item.rarity || 'common') + '" data-id="' + o.item.id + '" title="' + esc(o.item.name) + '">' +
+            '<span class="inv-ic">' + o.item.icon + '</span>' +
+            (o.count > 1 ? '<span class="inv-count">' + o.count + '</span>' : '') +
+          '</button>').join('');
+        const emptyN = Math.max(0, cap - used);
+        const empties = Array.from({ length: emptyN }, () => '<div class="inv-cell empty"></div>').join('');
+        body.innerHTML =
+          '<div class="inv-head">' +
+            '<span class="inv-title">📦 Depo</span>' +
+            '<span class="inv-cap' + (overfull ? ' inv-over' : (used >= cap ? ' inv-warn' : '')) + '">' + used + ' / ' + cap + ' dolu</span>' +
+            '<span class="inv-lvl">🎖️ Sv.' + ((B.State.data.player.level) || 1) + ' — seviye atlayınca depo büyür</span>' +
+          '</div>' +
+          (used ? '' : '<div class="store-empty">Depon boş. Mağazadan eşya al, burada saklansın!</div>') +
+          '<div class="inv-grid">' + cells + empties + '</div>' +
+          (overfull ? '<div class="adm-warn">⚠️ Depo kapasiten aşıldı — seviye atla ya da eşyaları üretimde/bakımunda kullan.</div>' : '');
+        // Hücreye dokun → eşya bilgisi
+        body.querySelectorAll('.inv-cell.filled').forEach(c => c.onclick = () => {
+          const it = B.Items.get(c.dataset.id); if (!it) return;
+          B.Audio.play('tick');
+          B.UI.overlay('<div class="ov-big">' + it.icon + '</div><h2>' + esc(it.name) + '</h2>' +
+            '<p class="ov-quote">' + esc(it.desc || '') + '</p>' +
+            '<p class="ov-xp">Depoda: ' + B.Items.count(it.id) + ' adet · ' + ({ common: '🟢 Yaygın', rare: '🔵 Nadir', epic: '🟣 Epik', legendary: '🟡 Efsanevi' }[it.rarity || 'common']) + '</p>',
+            [{ label: 'Tamam', onClick: null }]);
+        });
       }
 
       shell();
@@ -42291,7 +42332,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.77'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.78'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.
