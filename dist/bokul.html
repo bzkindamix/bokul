@@ -1664,6 +1664,20 @@ h1, h2, h3, h4,
 .rv-strong { color: #52E88C; } .rv-weak { color: #FF6B6B; }
 .rep-empty2 { color: var(--ink-dim); font-weight: 600; }
 
+/* === v0.77 — Item enderlik renkleri (Arc Raiders: yeşil/mavi/mor/sarı) === */
+.rar-common     { --rar: #52E88C; } /* yeşil */
+.rar-rare       { --rar: #3E9BFF; } /* mavi */
+.rar-epic       { --rar: #9D6BFF; } /* mor */
+.rar-legendary  { --rar: #FFD52E; } /* sarı/altın */
+.store-card[class*="rar-"], .depo-card[class*="rar-"], .cos-card[class*="rar-"], .part-card[class*="rar-"], .loot-item[class*="rar-"] {
+  border: 1.5px solid var(--rar);
+  box-shadow: 0 0 9px -2px var(--rar), 0 3px 10px rgba(0,0,0,.32);
+}
+.rar-dot { position: absolute; top: 6px; left: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--rar); box-shadow: 0 0 7px var(--rar); z-index: 2; }
+.rar-legendary .store-ic, .rar-legendary .cos-prev, .rar-epic .store-ic { filter: drop-shadow(0 0 5px var(--rar)); }
+/* Envanter grid hücresi de enderlikle çerçevelensin */
+.inv-cell[class*="rar-"] { border-color: var(--rar); box-shadow: inset 0 0 0 1.5px var(--rar), 0 0 8px -3px var(--rar); }
+
 </style>
 </head>
 <body>
@@ -1673,7 +1687,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.76 — Yeni nesil kademeli sorular (yaşa göre zorluk, 1560 soru) + matematik problem odaklı + ödül dengesi + forma/crop/kamuflaj kıyafet + KVKK scroll/ebeveyn + ebeveyn karnesi</div>
+      <div class="splash-note">v0.77 — Doğru-cevap serisi kademeli sandıkları (25/50/75/100) + item enderlik renkleri (yeşil/mavi/mor/sarı) + craft→üretim (tüm site)</div>
     </div>
   </div>
 
@@ -2372,7 +2386,8 @@ h1, h2, h3, h4,
       "icon": "🪵",
       "price": 20,
       "cat": "malzeme",
-      "desc": "Craft için temel malzeme."
+      "desc": "Üretim için temel malzeme.",
+      "rarity": "common"
     },
     {
       "id": "metal",
@@ -2380,7 +2395,8 @@ h1, h2, h3, h4,
       "icon": "⛓️",
       "price": 30,
       "cat": "malzeme",
-      "desc": "Sağlam craft malzemesi."
+      "desc": "Sağlam üretim malzemesi.",
+      "rarity": "rare"
     },
     {
       "id": "cam",
@@ -2388,7 +2404,8 @@ h1, h2, h3, h4,
       "icon": "🪟",
       "price": 35,
       "cat": "malzeme",
-      "desc": "Panel ve akvaryum için."
+      "desc": "Panel ve akvaryum için.",
+      "rarity": "rare"
     },
     {
       "id": "vida",
@@ -2396,7 +2413,8 @@ h1, h2, h3, h4,
       "icon": "🔩",
       "price": 10,
       "cat": "malzeme",
-      "desc": "Parçaları birleştirir."
+      "desc": "Parçaları birleştirir.",
+      "rarity": "common"
     },
     {
       "id": "ip",
@@ -2404,7 +2422,8 @@ h1, h2, h3, h4,
       "icon": "🧵",
       "price": 12,
       "cat": "malzeme",
-      "desc": "Örgü ve kumaş için."
+      "desc": "Örgü ve kumaş için.",
+      "rarity": "common"
     },
     {
       "id": "boya",
@@ -2412,7 +2431,8 @@ h1, h2, h3, h4,
       "icon": "🎨",
       "price": 25,
       "cat": "malzeme",
-      "desc": "Renk ve süsleme için."
+      "desc": "Renk ve süsleme için.",
+      "rarity": "rare"
     },
     {
       "id": "konsol",
@@ -2421,7 +2441,8 @@ h1, h2, h3, h4,
       "price": 900,
       "cat": "tech",
       "unique": true,
-      "desc": "Son model oyun konsolu. Odanın yıldızı!"
+      "desc": "Son model oyun konsolu. Odanın yıldızı!",
+      "rarity": "legendary"
     },
     {
       "id": "tablet",
@@ -2430,7 +2451,8 @@ h1, h2, h3, h4,
       "price": 750,
       "cat": "tech",
       "unique": true,
-      "desc": "İnce, hızlı, kocaman ekran."
+      "desc": "İnce, hızlı, kocaman ekran.",
+      "rarity": "legendary"
     },
     {
       "id": "telefon",
@@ -2439,7 +2461,8 @@ h1, h2, h3, h4,
       "price": 650,
       "cat": "tech",
       "unique": true,
-      "desc": "Cepte taşınan mini bilgisayar."
+      "desc": "Cepte taşınan mini bilgisayar.",
+      "rarity": "legendary"
     },
     {
       "id": "kulaklik",
@@ -2448,7 +2471,8 @@ h1, h2, h3, h4,
       "price": 300,
       "cat": "tech",
       "unique": true,
-      "desc": "Kablosuz, gürültü engelli."
+      "desc": "Kablosuz, gürültü engelli.",
+      "rarity": "legendary"
     },
     {
       "id": "vr",
@@ -2457,7 +2481,8 @@ h1, h2, h3, h4,
       "price": 1100,
       "cat": "tech",
       "unique": true,
-      "desc": "Sanal gerçeklik dünyasına giriş."
+      "desc": "Sanal gerçeklik dünyasına giriş.",
+      "rarity": "legendary"
     },
     {
       "id": "dizustu",
@@ -2466,7 +2491,8 @@ h1, h2, h3, h4,
       "price": 1300,
       "cat": "tech",
       "unique": true,
-      "desc": "Kodlama ve oyun için güçlü makine."
+      "desc": "Kodlama ve oyun için güçlü makine.",
+      "rarity": "legendary"
     },
     {
       "id": "drone",
@@ -2475,7 +2501,8 @@ h1, h2, h3, h4,
       "price": 950,
       "cat": "tech",
       "unique": true,
-      "desc": "Gökyüzünden çekim yapan uçan robot."
+      "desc": "Gökyüzünden çekim yapan uçan robot.",
+      "rarity": "legendary"
     },
     {
       "id": "robot",
@@ -2484,7 +2511,8 @@ h1, h2, h3, h4,
       "price": 1500,
       "cat": "tech",
       "unique": true,
-      "desc": "Konuşan, hareket eden robot dostun."
+      "desc": "Konuşan, hareket eden robot dostun.",
+      "rarity": "legendary"
     },
     {
       "id": "koltuk",
@@ -2493,7 +2521,8 @@ h1, h2, h3, h4,
       "price": 400,
       "cat": "oda",
       "unique": true,
-      "desc": "Oyun molası için süper rahat."
+      "desc": "Oyun molası için süper rahat.",
+      "rarity": "legendary"
     },
     {
       "id": "masa",
@@ -2502,7 +2531,8 @@ h1, h2, h3, h4,
       "price": 350,
       "cat": "oda",
       "unique": true,
-      "desc": "Ders ve proje masası."
+      "desc": "Ders ve proje masası.",
+      "rarity": "legendary"
     },
     {
       "id": "kitaplik",
@@ -2511,7 +2541,8 @@ h1, h2, h3, h4,
       "price": 300,
       "cat": "oda",
       "unique": true,
-      "desc": "Kitapların yeni evi."
+      "desc": "Kitapların yeni evi.",
+      "rarity": "legendary"
     },
     {
       "id": "poster",
@@ -2520,7 +2551,8 @@ h1, h2, h3, h4,
       "price": 120,
       "cat": "oda",
       "unique": true,
-      "desc": "Duvarını süsleyen galaksi posteri."
+      "desc": "Duvarını süsleyen galaksi posteri.",
+      "rarity": "epic"
     },
     {
       "id": "hali",
@@ -2529,7 +2561,8 @@ h1, h2, h3, h4,
       "price": 200,
       "cat": "oda",
       "unique": true,
-      "desc": "Sıcacık, yumuşacık."
+      "desc": "Sıcacık, yumuşacık.",
+      "rarity": "legendary"
     },
     {
       "id": "lego",
@@ -2538,7 +2571,8 @@ h1, h2, h3, h4,
       "price": 500,
       "cat": "oda",
       "unique": true,
-      "desc": "Binlerce parça, sonsuz macera."
+      "desc": "Binlerce parça, sonsuz macera.",
+      "rarity": "legendary"
     },
     {
       "id": "lamba",
@@ -2547,7 +2581,8 @@ h1, h2, h3, h4,
       "price": 180,
       "cat": "oda",
       "unique": true,
-      "desc": "Tavana yıldızlar yansıtır."
+      "desc": "Tavana yıldızlar yansıtır.",
+      "rarity": "legendary"
     },
     {
       "id": "saksi",
@@ -2556,7 +2591,8 @@ h1, h2, h3, h4,
       "price": 90,
       "cat": "oda",
       "unique": true,
-      "desc": "Odana biraz yeşillik."
+      "desc": "Odana biraz yeşillik.",
+      "rarity": "epic"
     },
     {
       "id": "sehpa",
@@ -2565,7 +2601,8 @@ h1, h2, h3, h4,
       "price": 160,
       "cat": "oda",
       "unique": true,
-      "desc": "Küçük yan sehpa."
+      "desc": "Küçük yan sehpa.",
+      "rarity": "legendary"
     },
     {
       "id": "tv",
@@ -2574,7 +2611,8 @@ h1, h2, h3, h4,
       "price": 700,
       "cat": "oda",
       "unique": true,
-      "desc": "Büyük ekran televizyon."
+      "desc": "Büyük ekran televizyon.",
+      "rarity": "legendary"
     },
     {
       "id": "poster_uzay",
@@ -2583,7 +2621,8 @@ h1, h2, h3, h4,
       "price": 130,
       "cat": "oda",
       "unique": true,
-      "desc": "Duvarına galaksi manzarası."
+      "desc": "Duvarına galaksi manzarası.",
+      "rarity": "epic"
     },
     {
       "id": "eski_sandalye",
@@ -2594,7 +2633,8 @@ h1, h2, h3, h4,
       "junk": true,
       "scrap": 15,
       "craftOnly": true,
-      "desc": "Sallanan eski sandalye. Hurdaya satabilirsin."
+      "desc": "Sallanan eski sandalye. Hurdaya satabilirsin.",
+      "rarity": "common"
     },
     {
       "id": "yirtik_hali",
@@ -2605,7 +2645,8 @@ h1, h2, h3, h4,
       "junk": true,
       "scrap": 12,
       "craftOnly": true,
-      "desc": "Kenarı yırtık eski halı. Hurda değeri var."
+      "desc": "Kenarı yırtık eski halı. Hurda değeri var.",
+      "rarity": "common"
     },
     {
       "id": "bos_kutu",
@@ -2616,7 +2657,8 @@ h1, h2, h3, h4,
       "junk": true,
       "scrap": 8,
       "craftOnly": true,
-      "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al."
+      "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al.",
+      "rarity": "common"
     },
     {
       "id": "akvaryum_cam",
@@ -2624,7 +2666,8 @@ h1, h2, h3, h4,
       "icon": "🔲",
       "price": 120,
       "cat": "pet",
-      "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)"
+      "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)",
+      "rarity": "epic"
     },
     {
       "id": "filtre",
@@ -2632,7 +2675,8 @@ h1, h2, h3, h4,
       "icon": "🌀",
       "price": 150,
       "cat": "pet",
-      "desc": "Suyu temiz tutan filtre."
+      "desc": "Suyu temiz tutan filtre.",
+      "rarity": "legendary"
     },
     {
       "id": "temiz_su",
@@ -2640,7 +2684,8 @@ h1, h2, h3, h4,
       "icon": "💧",
       "price": 30,
       "cat": "pet",
-      "desc": "Akvaryumu doldurmak için."
+      "desc": "Akvaryumu doldurmak için.",
+      "rarity": "rare"
     },
     {
       "id": "cakil",
@@ -2648,7 +2693,8 @@ h1, h2, h3, h4,
       "icon": "🪨",
       "price": 40,
       "cat": "pet",
-      "desc": "Akvaryum tabanı için renkli çakıl."
+      "desc": "Akvaryum tabanı için renkli çakıl.",
+      "rarity": "rare"
     },
     {
       "id": "balik_yemi",
@@ -2656,7 +2702,8 @@ h1, h2, h3, h4,
       "icon": "🍥",
       "price": 25,
       "cat": "pet",
-      "desc": "Balığını beslemek için."
+      "desc": "Balığını beslemek için.",
+      "rarity": "rare"
     },
     {
       "id": "tasma",
@@ -2664,7 +2711,8 @@ h1, h2, h3, h4,
       "icon": "🦮",
       "price": 90,
       "cat": "pet",
-      "desc": "Köpeğini gezdirmek için."
+      "desc": "Köpeğini gezdirmek için.",
+      "rarity": "epic"
     },
     {
       "id": "mama_kabi",
@@ -2672,7 +2720,8 @@ h1, h2, h3, h4,
       "icon": "🥣",
       "price": 50,
       "cat": "pet",
-      "desc": "Beslenme kabı."
+      "desc": "Beslenme kabı.",
+      "rarity": "rare"
     },
     {
       "id": "kopek_mamasi",
@@ -2680,7 +2729,8 @@ h1, h2, h3, h4,
       "icon": "🦴",
       "price": 60,
       "cat": "pet",
-      "desc": "Enerji dolu mama."
+      "desc": "Enerji dolu mama.",
+      "rarity": "epic"
     },
     {
       "id": "oyuncak_kemik",
@@ -2688,7 +2738,8 @@ h1, h2, h3, h4,
       "icon": "🦴",
       "price": 45,
       "cat": "pet",
-      "desc": "Köpeğinle oynamak için."
+      "desc": "Köpeğinle oynamak için.",
+      "rarity": "rare"
     },
     {
       "id": "kedi_kumu",
@@ -2696,7 +2747,8 @@ h1, h2, h3, h4,
       "icon": "🏖️",
       "price": 55,
       "cat": "pet",
-      "desc": "Kum kabı için."
+      "desc": "Kum kabı için.",
+      "rarity": "rare"
     },
     {
       "id": "kedi_mamasi",
@@ -2704,7 +2756,8 @@ h1, h2, h3, h4,
       "icon": "🥫",
       "price": 60,
       "cat": "pet",
-      "desc": "Kedinin favorisi."
+      "desc": "Kedinin favorisi.",
+      "rarity": "epic"
     },
     {
       "id": "tirmalama",
@@ -2712,7 +2765,8 @@ h1, h2, h3, h4,
       "icon": "🪵",
       "price": 110,
       "cat": "pet",
-      "desc": "Kedinin tırmalama alanı."
+      "desc": "Kedinin tırmalama alanı.",
+      "rarity": "epic"
     },
     {
       "id": "kafes",
@@ -2720,7 +2774,8 @@ h1, h2, h3, h4,
       "icon": "🪺",
       "price": 130,
       "cat": "pet",
-      "desc": "Kuşun evi."
+      "desc": "Kuşun evi.",
+      "rarity": "epic"
     },
     {
       "id": "kus_yemi",
@@ -2728,7 +2783,8 @@ h1, h2, h3, h4,
       "icon": "🌾",
       "price": 25,
       "cat": "pet",
-      "desc": "Kuşunu beslemek için."
+      "desc": "Kuşunu beslemek için.",
+      "rarity": "rare"
     },
     {
       "id": "cam_panel",
@@ -2736,7 +2792,8 @@ h1, h2, h3, h4,
       "icon": "🔲",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Camlardan üretilmiş panel. Akvaryum yapımında kullanılır."
+      "desc": "Camlardan üretilmiş panel. Akvaryum yapımında kullanılır.",
+      "rarity": "common"
     },
     {
       "id": "metal_cerceve",
@@ -2744,7 +2801,8 @@ h1, h2, h3, h4,
       "icon": "🖼️",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Sağlam iskelet. Raf ve mobilya için."
+      "desc": "Sağlam iskelet. Raf ve mobilya için.",
+      "rarity": "common"
     },
     {
       "id": "kumas",
@@ -2752,7 +2810,8 @@ h1, h2, h3, h4,
       "icon": "🧶",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "İpten örülmüş kumaş. Yumuşak eşyalar için."
+      "desc": "İpten örülmüş kumaş. Yumuşak eşyalar için.",
+      "rarity": "common"
     },
     {
       "id": "akvaryum",
@@ -2760,7 +2819,8 @@ h1, h2, h3, h4,
       "icon": "🐠",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Filtreli, sulu, çakıllı — balık için hazır! (Evcil hayvan ön koşulu)"
+      "desc": "Filtreli, sulu, çakıllı — balık için hazır! (Evcil hayvan ön koşulu)",
+      "rarity": "common"
     },
     {
       "id": "kopek_kulubesi",
@@ -2768,7 +2828,8 @@ h1, h2, h3, h4,
       "icon": "🏠",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Sıcacık köpek evi."
+      "desc": "Sıcacık köpek evi.",
+      "rarity": "common"
     },
     {
       "id": "kus_yuvasi",
@@ -2776,7 +2837,8 @@ h1, h2, h3, h4,
       "icon": "🐣",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Örgü kuş yuvası."
+      "desc": "Örgü kuş yuvası.",
+      "rarity": "common"
     },
     {
       "id": "kupa",
@@ -2785,7 +2847,8 @@ h1, h2, h3, h4,
       "price": 700,
       "cat": "koleksiyon",
       "unique": true,
-      "desc": "Başarının simgesi."
+      "desc": "Başarının simgesi.",
+      "rarity": "legendary"
     },
     {
       "id": "madalya",
@@ -2794,7 +2857,8 @@ h1, h2, h3, h4,
       "price": 500,
       "cat": "koleksiyon",
       "unique": true,
-      "desc": "Nadir bir onur nişanı."
+      "desc": "Nadir bir onur nişanı.",
+      "rarity": "legendary"
     },
     {
       "id": "model_araba",
@@ -2803,7 +2867,8 @@ h1, h2, h3, h4,
       "price": 600,
       "cat": "koleksiyon",
       "unique": true,
-      "desc": "Detaylı koleksiyon arabası."
+      "desc": "Detaylı koleksiyon arabası.",
+      "rarity": "legendary"
     },
     {
       "id": "nadir_kart",
@@ -2812,7 +2877,8 @@ h1, h2, h3, h4,
       "price": 800,
       "cat": "koleksiyon",
       "unique": true,
-      "desc": "Efsanevi, parlayan kart."
+      "desc": "Efsanevi, parlayan kart.",
+      "rarity": "legendary"
     },
     {
       "id": "pencere",
@@ -2820,7 +2886,8 @@ h1, h2, h3, h4,
       "icon": "🪟",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "Camdan pencere. Duvarına asılır, oda ferahlar."
+      "desc": "Camdan pencere. Duvarına asılır, oda ferahlar.",
+      "rarity": "common"
     },
     {
       "id": "tablo",
@@ -2828,7 +2895,8 @@ h1, h2, h3, h4,
       "icon": "🖼️",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "El yapımı çerçeveli tablo. Duvarını süsler."
+      "desc": "El yapımı çerçeveli tablo. Duvarını süsler.",
+      "rarity": "common"
     },
     {
       "id": "ahsap_raf",
@@ -2836,7 +2904,8 @@ h1, h2, h3, h4,
       "icon": "🗄️",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "Tahtadan raf. Odana koy, eşyalarını diz."
+      "desc": "Tahtadan raf. Odana koy, eşyalarını diz.",
+      "rarity": "common"
     },
     {
       "id": "yatak",
@@ -2844,7 +2913,8 @@ h1, h2, h3, h4,
       "icon": "🛏️",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "Tahta + kumaştan yatak. Odanın olmazsa olmazı."
+      "desc": "Tahta + kumaştan yatak. Odanın olmazsa olmazı.",
+      "rarity": "common"
     },
     {
       "id": "vitrin",
@@ -2852,7 +2922,8 @@ h1, h2, h3, h4,
       "icon": "🏆",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "Kazandığın rozetleri sergilediğin dolap. Odana koy, tüm başarılarını göster!"
+      "desc": "Kazandığın rozetleri sergilediğin dolap. Odana koy, tüm başarılarını göster!",
+      "rarity": "common"
     }
   ]
 }
@@ -2881,7 +2952,7 @@ h1, h2, h3, h4,
     {
       "id": "t4",
       "name": "④ Oda Dekoru",
-      "hint": "Odanı craft eşyalarıyla süsle"
+      "hint": "Odanı üretim eşyalarııyla süsle"
     }
   ],
   "recipes": [
@@ -2948,7 +3019,7 @@ h1, h2, h3, h4,
         "temiz_su": 2,
         "cakil": 1
       },
-      "teach": "İşte gerçek craft! İki cam PANEL (bunları sen ürettin), bir filtre, iki temiz su ve bir çakıl → ÇALIŞIR bir akvaryum. Gördün mü? Ürettiğin parçalarla daha büyük şeyler üretiyorsun. Bu akvaryumla ileride BALIK sahibi olacaksın!"
+      "teach": "İşte gerçek üretim! İki cam PANEL (bunları sen ürettin), bir filtre, iki temiz su ve bir çakıl → ÇALIŞIR bir akvaryum. Gördün mü? Ürettiğin parçalarla daha büyük şeyler üretiyorsun. Bu akvaryumla ileride BALIK sahibi olacaksın!"
     },
     {
       "id": "r_kopek_kulubesi",
@@ -3061,7 +3132,7 @@ h1, h2, h3, h4,
         "tahta": 2,
         "metal_cerceve": 1
       },
-      "teach": "İki tahta + bir metal çerçeve ile sağlam bir raf! (Çerçeveyi de sen craftladın — parça üstüne parça!)"
+      "teach": "İki tahta + bir metal çerçeve ile sağlam bir raf! (Çerçeveyi de sen ürettin — parça üstüne parça!)"
     },
     {
       "id": "r_yatak",
@@ -3103,7 +3174,7 @@ h1, h2, h3, h4,
 {
   "schema": 1,
   "version": 1,
-  "intro": "Evcil hayvan sahibi olmak sorumluluktur Komutan! Önce onun evini/eşyalarını hazırlaman gerekir — bazıları Atölye'de craftlanır, bazıları Mağaza'dan alınır. Ön koşulları tamamlayınca hayvanını sahiplenirsin. Sonra onu düzenli beslemeli, mutlu etmelisin: acıkır ve zamanla üzülür. Her hayvanın kendine has bakımı vardır!",
+  "intro": "Evcil hayvan sahibi olmak sorumluluktur Komutan! Önce onun evini/eşyalarını hazırlaman gerekir — bazıları Atölye'de üretilir, bazıları Mağaza'dan alınır. Ön koşulları tamamlayınca hayvanını sahiplenirsin. Sonra onu düzenli beslemeli, mutlu etmelisin: acıkır ve zamanla üzülür. Her hayvanın kendine has bakımı vardır!",
   "decayPerHour": { "tokluk": 6, "mutluluk": 4 },
   "villain": "Bulanık",
   "capture": { "afterHours": 24, "freeAt": 50 },
@@ -3140,7 +3211,7 @@ h1, h2, h3, h4,
     {
       "id": "balik", "name": "Balık", "icon": "🐠",
       "prereq": [ { "item": "akvaryum", "n": 1 } ],
-      "teach": "Craftladığın akvaryum işe yaradı — balığın yüzüyor! Balıklar sessizdir ama bakım ister: yemini ver, suyunu tazele. Temiz su = mutlu balık.",
+      "teach": "Ürettiğin akvaryum işe yaradı — balığın yüzüyor! Balıklar sessizdir ama bakım ister: yemini ver, suyunu tazele. Temiz su = mutlu balık.",
       "care": [
         { "id": "besle", "label": "Yem ver", "icon": "🍥", "consume": { "balik_yemi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
         { "id": "temizle", "label": "Suyu tazele", "icon": "💧", "consume": { "temiz_su": 1 }, "restore": { "mutluluk": 35 }, "xp": 5, "coin": 2 }
@@ -35811,6 +35882,15 @@ h1, h2, h3, h4,
       if (flawless) {
         st.current++;
         if (st.current > st.best) st.best = st.current;
+        // Doğru-cevap serisi ödülü: her 25/50/75/100'de KADEMELİ artan sandık (100'lük döngü tekrar eder)
+        if (st.current % 25 === 0 && B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
+          const pos = st.current % 100; // 25 · 50 · 75 · 0(=100)
+          const type = { 25: 'esya', 50: 'altin', 75: 'kiyafet', 0: 'nadir' }[pos];
+          B.Chest.earn(type);
+          const ic = (B.Chest.meta ? B.Chest.meta(type).icon : '🎁');
+          if (B.UI && B.UI.toast) B.UI.toast('🔥 ' + st.current + ' DOĞRU SERİ! ' + ic + ' ' + (pos === 0 ? 'Efsanevi' : pos === 75 ? 'Büyük' : pos === 50 ? 'Altın' : '') + ' sandık kazandın!');
+          if (B.Anim && B.Anim.confetti) B.Anim.confetti(pos === 0 ? 120 : 70);
+        }
       } else st.current = 0;
       B.Bus.emit(B.Events.STREAK_CHANGED, { count: st.current, multiplier: B.Reward.streakMultiplier() });
     },
@@ -38694,11 +38774,11 @@ h1, h2, h3, h4,
       // Baba her 10 sn'de bir yeni bir şey söyler: bekleyen iş · craft bilgisi (şaka yok — Onur kaldırdı)
       const craftTips = [
         'Atölye sırrı: 2 cam + 1 vida = cam panel. Küçük parçalar büyük eşyalara dönüşür! 🔨',
-        'Balık ister misin? Önce akvaryum craftla: cam panel + filtre + temiz su + çakıl! 🐠',
+        'Balık ister misin? Önce akvaryum üret: cam panel + filtre + temiz su + çakıl! 🐠',
         'İpi 3 kez birleştirince kumaş olur; kumaşla evini geliştirebilirsin! 🧵',
         'Ürettiğin eşyalarla hem evini hem dep\'onu büyüt — daha çok eşya saklarsın! 🏠',
-        'Bir eşya craftlamak için birden çok parça gerekebilir; önce malzeme topla! 🧰',
-        'Craft zinciri: küçük craftladığınla yenisini craftlarsın — Arc Raiders gibi! ⚙️',
+        'Bir eşya üretmek için birden çok parça gerekebilir; önce malzeme topla! 🧰',
+        'Üretim zinciri: küçük ürettiğinle yenisini üretirsin — parça üstüne parça! ⚙️',
       ];
       function babaPending() {
         const b = [];
@@ -38914,7 +38994,7 @@ h1, h2, h3, h4,
           { icon: '🧑‍✈️', title: 'Hoş geldin asker!', text: 'Ben Baba Komutan. Burası senin ÜSSÜN! Etrafı hızlıca tanıtayım.' },
           { icon: '⚔️', title: 'HAREKÂT', text: 'Buradan derslere girersin. Soruları çözüp yıldız, altın ve XP kazanırsın. Her cephe bir ders!' },
           { icon: '🧍', title: 'BEN', text: 'Görünüşünü ayarla (kıyafet, saç), başarılarını gör, odanı süsle, evcil hayvanına bak.' },
-          { icon: '🏪', title: 'MAĞAZA', text: 'Kazandığın altınla eşya al; Atölye\'de parçaları birleştirip yeni şeyler ÜRET (craft).' },
+          { icon: '🏪', title: 'MAĞAZA', text: 'Kazandığın altınla eşya al; Atölye\'de parçaları birleştirip yeni şeyler ÜRET.' },
           { icon: '🐾', title: 'Evcil Hayvan', text: 'Bir dost sahiplen — ama sakın ihmal etme! Beslemez, oynamazsan Bulanık onu kaçırır. Düzenli bak!' },
           { icon: '🎁', title: 'Her Gün Gel', text: 'Her gün girince günlük ödül kazanır, serin büyür. Hadi göreve başla, Komutan!' },
         ]); }, 450);
@@ -39630,8 +39710,9 @@ h1, h2, h3, h4,
       function partCard(part, apply, isEquipped, previewFn, fullPrev) {
         const a = av(); a.usePhoto = false; apply(a, part); if (previewFn) previewFn(a);
         const card = document.createElement('button');
-        card.className = 'part-card' + (fullPrev ? ' part-tall' : '') + (isEquipped ? ' part-on' : '');
+        card.className = 'part-card rar-' + (part.rarity || 'common') + (fullPrev ? ' part-tall' : '') + (isEquipped ? ' part-on' : '');
         card.innerHTML =
+          '<span class="rar-dot"></span>' +
           '<span class="part-prev">' + (fullPrev ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
           '<span class="part-name">' + (part.name || '') + '</span>';
         card.onclick = () => {
@@ -39976,7 +40057,8 @@ h1, h2, h3, h4,
           const owned = B.Items.count(it.id);
           const isOwnedUnique = it.unique && owned > 0;
           const afford = coins() >= it.price;
-          return '<button class="store-card' + (isOwnedUnique ? ' store-owned' : '') + (afford || isOwnedUnique ? '' : ' store-poor') + '" data-id="' + it.id + '"' + (isOwnedUnique ? ' disabled' : '') + '>' +
+          return '<button class="store-card rar-' + (it.rarity || 'common') + (isOwnedUnique ? ' store-owned' : '') + (afford || isOwnedUnique ? '' : ' store-poor') + '" data-id="' + it.id + '"' + (isOwnedUnique ? ' disabled' : '') + '>' +
+            '<span class="rar-dot"></span>' +
             '<span class="store-ic">' + it.icon + '</span>' +
             '<span class="store-nm">' + it.name + '</span>' +
             '<span class="store-desc">' + (it.desc || '') + '</span>' +
@@ -40042,7 +40124,8 @@ h1, h2, h3, h4,
           const a = B.Avatar.normalize(B.State.data.player.avatar); a.usePhoto = false; a[c.type] = c.part.id;
           const full = c.type === 'outfit' || c.type === 'bottom';
           const afford = coins() >= priceOf(c.part);
-          return '<button class="store-card cos-card' + (full ? ' cos-tall' : '') + (afford ? '' : ' store-poor') + '" data-type="' + c.type + '" data-id="' + c.id + '">' +
+          return '<button class="store-card cos-card rar-' + (c.rarity || 'common') + (full ? ' cos-tall' : '') + (afford ? '' : ' store-poor') + '" data-type="' + c.type + '" data-id="' + c.id + '">' +
+            '<span class="rar-dot"></span>' +
             '<span class="cos-prev' + (full ? ' cos-prev-tall' : '') + '">' + (full ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
             '<span class="store-nm">' + c.name + '</span>' +
             '<span class="store-sub">' + c.typeLabel + '</span>' +
@@ -40091,7 +40174,8 @@ h1, h2, h3, h4,
         body.innerHTML = Object.keys(byCat).map(c =>
           '<div class="depo-cat">' + B.Items.catName(c) + '</div>' +
           '<div class="store-grid">' + byCat[c].map(o =>
-            '<div class="store-card depo-card">' +
+            '<div class="store-card depo-card rar-' + (o.item.rarity || 'common') + '">' +
+              '<span class="rar-dot"></span>' +
               '<span class="store-ic">' + o.item.icon + '</span>' +
               '<span class="store-nm">' + o.item.name + '</span>' +
               (o.count > 1 ? '<span class="depo-count">×' + o.count + '</span>' : '') +
@@ -42207,7 +42291,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.76'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.77'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

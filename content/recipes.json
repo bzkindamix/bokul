@@ -21,7 +21,7 @@
     {
       "id": "t4",
       "name": "④ Oda Dekoru",
-      "hint": "Odanı craft eşyalarıyla süsle"
+      "hint": "Odanı üretim eşyalarııyla süsle"
     }
   ],
   "recipes": [
@@ -88,7 +88,7 @@
         "temiz_su": 2,
         "cakil": 1
       },
-      "teach": "İşte gerçek craft! İki cam PANEL (bunları sen ürettin), bir filtre, iki temiz su ve bir çakıl → ÇALIŞIR bir akvaryum. Gördün mü? Ürettiğin parçalarla daha büyük şeyler üretiyorsun. Bu akvaryumla ileride BALIK sahibi olacaksın!"
+      "teach": "İşte gerçek üretim! İki cam PANEL (bunları sen ürettin), bir filtre, iki temiz su ve bir çakıl → ÇALIŞIR bir akvaryum. Gördün mü? Ürettiğin parçalarla daha büyük şeyler üretiyorsun. Bu akvaryumla ileride BALIK sahibi olacaksın!"
     },
     {
       "id": "r_kopek_kulubesi",
@@ -201,7 +201,7 @@
         "tahta": 2,
         "metal_cerceve": 1
       },
-      "teach": "İki tahta + bir metal çerçeve ile sağlam bir raf! (Çerçeveyi de sen craftladın — parça üstüne parça!)"
+      "teach": "İki tahta + bir metal çerçeve ile sağlam bir raf! (Çerçeveyi de sen ürettin — parça üstüne parça!)"
     },
     {
       "id": "r_yatak",

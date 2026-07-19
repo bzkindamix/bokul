@@ -22,11 +22,11 @@
       // Baba her 10 sn'de bir yeni bir şey söyler: bekleyen iş · craft bilgisi (şaka yok — Onur kaldırdı)
       const craftTips = [
         'Atölye sırrı: 2 cam + 1 vida = cam panel. Küçük parçalar büyük eşyalara dönüşür! 🔨',
-        'Balık ister misin? Önce akvaryum craftla: cam panel + filtre + temiz su + çakıl! 🐠',
+        'Balık ister misin? Önce akvaryum üret: cam panel + filtre + temiz su + çakıl! 🐠',
         'İpi 3 kez birleştirince kumaş olur; kumaşla evini geliştirebilirsin! 🧵',
         'Ürettiğin eşyalarla hem evini hem dep\'onu büyüt — daha çok eşya saklarsın! 🏠',
-        'Bir eşya craftlamak için birden çok parça gerekebilir; önce malzeme topla! 🧰',
-        'Craft zinciri: küçük craftladığınla yenisini craftlarsın — Arc Raiders gibi! ⚙️',
+        'Bir eşya üretmek için birden çok parça gerekebilir; önce malzeme topla! 🧰',
+        'Üretim zinciri: küçük ürettiğinle yenisini üretirsin — parça üstüne parça! ⚙️',
       ];
       function babaPending() {
         const b = [];
@@ -242,7 +242,7 @@
           { icon: '🧑‍✈️', title: 'Hoş geldin asker!', text: 'Ben Baba Komutan. Burası senin ÜSSÜN! Etrafı hızlıca tanıtayım.' },
           { icon: '⚔️', title: 'HAREKÂT', text: 'Buradan derslere girersin. Soruları çözüp yıldız, altın ve XP kazanırsın. Her cephe bir ders!' },
           { icon: '🧍', title: 'BEN', text: 'Görünüşünü ayarla (kıyafet, saç), başarılarını gör, odanı süsle, evcil hayvanına bak.' },
-          { icon: '🏪', title: 'MAĞAZA', text: 'Kazandığın altınla eşya al; Atölye\'de parçaları birleştirip yeni şeyler ÜRET (craft).' },
+          { icon: '🏪', title: 'MAĞAZA', text: 'Kazandığın altınla eşya al; Atölye\'de parçaları birleştirip yeni şeyler ÜRET.' },
           { icon: '🐾', title: 'Evcil Hayvan', text: 'Bir dost sahiplen — ama sakın ihmal etme! Beslemez, oynamazsan Bulanık onu kaçırır. Düzenli bak!' },
           { icon: '🎁', title: 'Her Gün Gel', text: 'Her gün girince günlük ödül kazanır, serin büyür. Hadi göreve başla, Komutan!' },
         ]); }, 450);

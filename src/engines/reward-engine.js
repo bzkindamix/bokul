@@ -53,6 +53,15 @@
       if (flawless) {
         st.current++;
         if (st.current > st.best) st.best = st.current;
+        // Doğru-cevap serisi ödülü: her 25/50/75/100'de KADEMELİ artan sandık (100'lük döngü tekrar eder)
+        if (st.current % 25 === 0 && B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
+          const pos = st.current % 100; // 25 · 50 · 75 · 0(=100)
+          const type = { 25: 'esya', 50: 'altin', 75: 'kiyafet', 0: 'nadir' }[pos];
+          B.Chest.earn(type);
+          const ic = (B.Chest.meta ? B.Chest.meta(type).icon : '🎁');
+          if (B.UI && B.UI.toast) B.UI.toast('🔥 ' + st.current + ' DOĞRU SERİ! ' + ic + ' ' + (pos === 0 ? 'Efsanevi' : pos === 75 ? 'Büyük' : pos === 50 ? 'Altın' : '') + ' sandık kazandın!');
+          if (B.Anim && B.Anim.confetti) B.Anim.confetti(pos === 0 ? 120 : 70);
+        }
       } else st.current = 0;
       B.Bus.emit(B.Events.STREAK_CHANGED, { count: st.current, multiplier: B.Reward.streakMultiplier() });
     },

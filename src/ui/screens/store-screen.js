@@ -69,7 +69,8 @@
           const owned = B.Items.count(it.id);
           const isOwnedUnique = it.unique && owned > 0;
           const afford = coins() >= it.price;
-          return '<button class="store-card' + (isOwnedUnique ? ' store-owned' : '') + (afford || isOwnedUnique ? '' : ' store-poor') + '" data-id="' + it.id + '"' + (isOwnedUnique ? ' disabled' : '') + '>' +
+          return '<button class="store-card rar-' + (it.rarity || 'common') + (isOwnedUnique ? ' store-owned' : '') + (afford || isOwnedUnique ? '' : ' store-poor') + '" data-id="' + it.id + '"' + (isOwnedUnique ? ' disabled' : '') + '>' +
+            '<span class="rar-dot"></span>' +
             '<span class="store-ic">' + it.icon + '</span>' +
             '<span class="store-nm">' + it.name + '</span>' +
             '<span class="store-desc">' + (it.desc || '') + '</span>' +
@@ -135,7 +136,8 @@
           const a = B.Avatar.normalize(B.State.data.player.avatar); a.usePhoto = false; a[c.type] = c.part.id;
           const full = c.type === 'outfit' || c.type === 'bottom';
           const afford = coins() >= priceOf(c.part);
-          return '<button class="store-card cos-card' + (full ? ' cos-tall' : '') + (afford ? '' : ' store-poor') + '" data-type="' + c.type + '" data-id="' + c.id + '">' +
+          return '<button class="store-card cos-card rar-' + (c.rarity || 'common') + (full ? ' cos-tall' : '') + (afford ? '' : ' store-poor') + '" data-type="' + c.type + '" data-id="' + c.id + '">' +
+            '<span class="rar-dot"></span>' +
             '<span class="cos-prev' + (full ? ' cos-prev-tall' : '') + '">' + (full ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
             '<span class="store-nm">' + c.name + '</span>' +
             '<span class="store-sub">' + c.typeLabel + '</span>' +
@@ -184,7 +186,8 @@
         body.innerHTML = Object.keys(byCat).map(c =>
           '<div class="depo-cat">' + B.Items.catName(c) + '</div>' +
           '<div class="store-grid">' + byCat[c].map(o =>
-            '<div class="store-card depo-card">' +
+            '<div class="store-card depo-card rar-' + (o.item.rarity || 'common') + '">' +
+              '<span class="rar-dot"></span>' +
               '<span class="store-ic">' + o.item.icon + '</span>' +
               '<span class="store-nm">' + o.item.name + '</span>' +
               (o.count > 1 ? '<span class="depo-count">×' + o.count + '</span>' : '') +

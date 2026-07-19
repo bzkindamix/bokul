@@ -40,7 +40,8 @@
       "icon": "🪵",
       "price": 20,
       "cat": "malzeme",
-      "desc": "Craft için temel malzeme."
+      "desc": "Üretim için temel malzeme.",
+      "rarity": "common"
     },
     {
       "id": "metal",
@@ -48,7 +49,8 @@
       "icon": "⛓️",
       "price": 30,
       "cat": "malzeme",
-      "desc": "Sağlam craft malzemesi."
+      "desc": "Sağlam üretim malzemesi.",
+      "rarity": "rare"
     },
     {
       "id": "cam",
@@ -56,7 +58,8 @@
       "icon": "🪟",
       "price": 35,
       "cat": "malzeme",
-      "desc": "Panel ve akvaryum için."
+      "desc": "Panel ve akvaryum için.",
+      "rarity": "rare"
     },
     {
       "id": "vida",
@@ -64,7 +67,8 @@
       "icon": "🔩",
       "price": 10,
       "cat": "malzeme",
-      "desc": "Parçaları birleştirir."
+      "desc": "Parçaları birleştirir.",
+      "rarity": "common"
     },
     {
       "id": "ip",
@@ -72,7 +76,8 @@
       "icon": "🧵",
       "price": 12,
       "cat": "malzeme",
-      "desc": "Örgü ve kumaş için."
+      "desc": "Örgü ve kumaş için.",
+      "rarity": "common"
     },
     {
       "id": "boya",
@@ -80,7 +85,8 @@
       "icon": "🎨",
       "price": 25,
       "cat": "malzeme",
-      "desc": "Renk ve süsleme için."
+      "desc": "Renk ve süsleme için.",
+      "rarity": "rare"
     },
     {
       "id": "konsol",
@@ -89,7 +95,8 @@
       "price": 900,
       "cat": "tech",
       "unique": true,
-      "desc": "Son model oyun konsolu. Odanın yıldızı!"
+      "desc": "Son model oyun konsolu. Odanın yıldızı!",
+      "rarity": "legendary"
     },
     {
       "id": "tablet",
@@ -98,7 +105,8 @@
       "price": 750,
       "cat": "tech",
       "unique": true,
-      "desc": "İnce, hızlı, kocaman ekran."
+      "desc": "İnce, hızlı, kocaman ekran.",
+      "rarity": "legendary"
     },
     {
       "id": "telefon",
@@ -107,7 +115,8 @@
       "price": 650,
       "cat": "tech",
       "unique": true,
-      "desc": "Cepte taşınan mini bilgisayar."
+      "desc": "Cepte taşınan mini bilgisayar.",
+      "rarity": "legendary"
     },
     {
       "id": "kulaklik",
@@ -116,7 +125,8 @@
       "price": 300,
       "cat": "tech",
       "unique": true,
-      "desc": "Kablosuz, gürültü engelli."
+      "desc": "Kablosuz, gürültü engelli.",
+      "rarity": "legendary"
     },
     {
       "id": "vr",
@@ -125,7 +135,8 @@
       "price": 1100,
       "cat": "tech",
       "unique": true,
-      "desc": "Sanal gerçeklik dünyasına giriş."
+      "desc": "Sanal gerçeklik dünyasına giriş.",
+      "rarity": "legendary"
     },
     {
       "id": "dizustu",
@@ -134,7 +145,8 @@
       "price": 1300,
       "cat": "tech",
       "unique": true,
-      "desc": "Kodlama ve oyun için güçlü makine."
+      "desc": "Kodlama ve oyun için güçlü makine.",
+      "rarity": "legendary"
     },
     {
       "id": "drone",
@@ -143,7 +155,8 @@
       "price": 950,
       "cat": "tech",
       "unique": true,
-      "desc": "Gökyüzünden çekim yapan uçan robot."
+      "desc": "Gökyüzünden çekim yapan uçan robot.",
+      "rarity": "legendary"
     },
     {
       "id": "robot",
@@ -152,7 +165,8 @@
       "price": 1500,
       "cat": "tech",
       "unique": true,
-      "desc": "Konuşan, hareket eden robot dostun."
+      "desc": "Konuşan, hareket eden robot dostun.",
+      "rarity": "legendary"
     },
     {
       "id": "koltuk",
@@ -161,7 +175,8 @@
       "price": 400,
       "cat": "oda",
       "unique": true,
-      "desc": "Oyun molası için süper rahat."
+      "desc": "Oyun molası için süper rahat.",
+      "rarity": "legendary"
     },
     {
       "id": "masa",
@@ -170,7 +185,8 @@
       "price": 350,
       "cat": "oda",
       "unique": true,
-      "desc": "Ders ve proje masası."
+      "desc": "Ders ve proje masası.",
+      "rarity": "legendary"
     },
     {
       "id": "kitaplik",
@@ -179,7 +195,8 @@
       "price": 300,
       "cat": "oda",
       "unique": true,
-      "desc": "Kitapların yeni evi."
+      "desc": "Kitapların yeni evi.",
+      "rarity": "legendary"
     },
     {
       "id": "poster",
@@ -188,7 +205,8 @@
       "price": 120,
       "cat": "oda",
       "unique": true,
-      "desc": "Duvarını süsleyen galaksi posteri."
+      "desc": "Duvarını süsleyen galaksi posteri.",
+      "rarity": "epic"
     },
     {
       "id": "hali",
@@ -197,7 +215,8 @@
       "price": 200,
       "cat": "oda",
       "unique": true,
-      "desc": "Sıcacık, yumuşacık."
+      "desc": "Sıcacık, yumuşacık.",
+      "rarity": "legendary"
     },
     {
       "id": "lego",
@@ -206,7 +225,8 @@
       "price": 500,
       "cat": "oda",
       "unique": true,
-      "desc": "Binlerce parça, sonsuz macera."
+      "desc": "Binlerce parça, sonsuz macera.",
+      "rarity": "legendary"
     },
     {
       "id": "lamba",
@@ -215,7 +235,8 @@
       "price": 180,
       "cat": "oda",
       "unique": true,
-      "desc": "Tavana yıldızlar yansıtır."
+      "desc": "Tavana yıldızlar yansıtır.",
+      "rarity": "legendary"
     },
     {
       "id": "saksi",
@@ -224,7 +245,8 @@
       "price": 90,
       "cat": "oda",
       "unique": true,
-      "desc": "Odana biraz yeşillik."
+      "desc": "Odana biraz yeşillik.",
+      "rarity": "epic"
     },
     {
       "id": "sehpa",
@@ -233,7 +255,8 @@
       "price": 160,
       "cat": "oda",
       "unique": true,
-      "desc": "Küçük yan sehpa."
+      "desc": "Küçük yan sehpa.",
+      "rarity": "legendary"
     },
     {
       "id": "tv",
@@ -242,7 +265,8 @@
       "price": 700,
       "cat": "oda",
       "unique": true,
-      "desc": "Büyük ekran televizyon."
+      "desc": "Büyük ekran televizyon.",
+      "rarity": "legendary"
     },
     {
       "id": "poster_uzay",
@@ -251,7 +275,8 @@
       "price": 130,
       "cat": "oda",
       "unique": true,
-      "desc": "Duvarına galaksi manzarası."
+      "desc": "Duvarına galaksi manzarası.",
+      "rarity": "epic"
     },
     {
       "id": "eski_sandalye",
@@ -262,7 +287,8 @@
       "junk": true,
       "scrap": 15,
       "craftOnly": true,
-      "desc": "Sallanan eski sandalye. Hurdaya satabilirsin."
+      "desc": "Sallanan eski sandalye. Hurdaya satabilirsin.",
+      "rarity": "common"
     },
     {
       "id": "yirtik_hali",
@@ -273,7 +299,8 @@
       "junk": true,
       "scrap": 12,
       "craftOnly": true,
-      "desc": "Kenarı yırtık eski halı. Hurda değeri var."
+      "desc": "Kenarı yırtık eski halı. Hurda değeri var.",
+      "rarity": "common"
     },
     {
       "id": "bos_kutu",
@@ -284,7 +311,8 @@
       "junk": true,
       "scrap": 8,
       "craftOnly": true,
-      "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al."
+      "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al.",
+      "rarity": "common"
     },
     {
       "id": "akvaryum_cam",
@@ -292,7 +320,8 @@
       "icon": "🔲",
       "price": 120,
       "cat": "pet",
-      "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)"
+      "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)",
+      "rarity": "epic"
     },
     {
       "id": "filtre",
@@ -300,7 +329,8 @@
       "icon": "🌀",
       "price": 150,
       "cat": "pet",
-      "desc": "Suyu temiz tutan filtre."
+      "desc": "Suyu temiz tutan filtre.",
+      "rarity": "legendary"
     },
     {
       "id": "temiz_su",
@@ -308,7 +338,8 @@
       "icon": "💧",
       "price": 30,
       "cat": "pet",
-      "desc": "Akvaryumu doldurmak için."
+      "desc": "Akvaryumu doldurmak için.",
+      "rarity": "rare"
     },
     {
       "id": "cakil",
@@ -316,7 +347,8 @@
       "icon": "🪨",
       "price": 40,
       "cat": "pet",
-      "desc": "Akvaryum tabanı için renkli çakıl."
+      "desc": "Akvaryum tabanı için renkli çakıl.",
+      "rarity": "rare"
     },
     {
       "id": "balik_yemi",
@@ -324,7 +356,8 @@
       "icon": "🍥",
       "price": 25,
       "cat": "pet",
-      "desc": "Balığını beslemek için."
+      "desc": "Balığını beslemek için.",
+      "rarity": "rare"
     },
     {
       "id": "tasma",
@@ -332,7 +365,8 @@
       "icon": "🦮",
       "price": 90,
       "cat": "pet",
-      "desc": "Köpeğini gezdirmek için."
+      "desc": "Köpeğini gezdirmek için.",
+      "rarity": "epic"
     },
     {
       "id": "mama_kabi",
@@ -340,7 +374,8 @@
       "icon": "🥣",
       "price": 50,
       "cat": "pet",
-      "desc": "Beslenme kabı."
+      "desc": "Beslenme kabı.",
+      "rarity": "rare"
     },
     {
       "id": "kopek_mamasi",
@@ -348,7 +383,8 @@
       "icon": "🦴",
       "price": 60,
       "cat": "pet",
-      "desc": "Enerji dolu mama."
+      "desc": "Enerji dolu mama.",
+      "rarity": "epic"
     },
     {
       "id": "oyuncak_kemik",
@@ -356,7 +392,8 @@
       "icon": "🦴",
       "price": 45,
       "cat": "pet",
-      "desc": "Köpeğinle oynamak için."
+      "desc": "Köpeğinle oynamak için.",
+      "rarity": "rare"
     },
     {
       "id": "kedi_kumu",
@@ -364,7 +401,8 @@
       "icon": "🏖️",
       "price": 55,
       "cat": "pet",
-      "desc": "Kum kabı için."
+      "desc": "Kum kabı için.",
+      "rarity": "rare"
     },
     {
       "id": "kedi_mamasi",
@@ -372,7 +410,8 @@
       "icon": "🥫",
       "price": 60,
       "cat": "pet",
-      "desc": "Kedinin favorisi."
+      "desc": "Kedinin favorisi.",
+      "rarity": "epic"
     },
     {
       "id": "tirmalama",
@@ -380,7 +419,8 @@
       "icon": "🪵",
       "price": 110,
       "cat": "pet",
-      "desc": "Kedinin tırmalama alanı."
+      "desc": "Kedinin tırmalama alanı.",
+      "rarity": "epic"
     },
     {
       "id": "kafes",
@@ -388,7 +428,8 @@
       "icon": "🪺",
       "price": 130,
       "cat": "pet",
-      "desc": "Kuşun evi."
+      "desc": "Kuşun evi.",
+      "rarity": "epic"
     },
     {
       "id": "kus_yemi",
@@ -396,7 +437,8 @@
       "icon": "🌾",
       "price": 25,
       "cat": "pet",
-      "desc": "Kuşunu beslemek için."
+      "desc": "Kuşunu beslemek için.",
+      "rarity": "rare"
     },
     {
       "id": "cam_panel",
@@ -404,7 +446,8 @@
       "icon": "🔲",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Camlardan üretilmiş panel. Akvaryum yapımında kullanılır."
+      "desc": "Camlardan üretilmiş panel. Akvaryum yapımında kullanılır.",
+      "rarity": "common"
     },
     {
       "id": "metal_cerceve",
@@ -412,7 +455,8 @@
       "icon": "🖼️",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Sağlam iskelet. Raf ve mobilya için."
+      "desc": "Sağlam iskelet. Raf ve mobilya için.",
+      "rarity": "common"
     },
     {
       "id": "kumas",
@@ -420,7 +464,8 @@
       "icon": "🧶",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "İpten örülmüş kumaş. Yumuşak eşyalar için."
+      "desc": "İpten örülmüş kumaş. Yumuşak eşyalar için.",
+      "rarity": "common"
     },
     {
       "id": "akvaryum",
@@ -428,7 +473,8 @@
       "icon": "🐠",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Filtreli, sulu, çakıllı — balık için hazır! (Evcil hayvan ön koşulu)"
+      "desc": "Filtreli, sulu, çakıllı — balık için hazır! (Evcil hayvan ön koşulu)",
+      "rarity": "common"
     },
     {
       "id": "kopek_kulubesi",
@@ -436,7 +482,8 @@
       "icon": "🏠",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Sıcacık köpek evi."
+      "desc": "Sıcacık köpek evi.",
+      "rarity": "common"
     },
     {
       "id": "kus_yuvasi",
@@ -444,7 +491,8 @@
       "icon": "🐣",
       "cat": "craft",
       "craftOnly": true,
-      "desc": "Örgü kuş yuvası."
+      "desc": "Örgü kuş yuvası.",
+      "rarity": "common"
     },
     {
       "id": "kupa",
@@ -453,7 +501,8 @@
       "price": 700,
       "cat": "koleksiyon",
       "unique": true,
-      "desc": "Başarının simgesi."
+      "desc": "Başarının simgesi.",
+      "rarity": "legendary"
     },
     {
       "id": "madalya",
@@ -462,7 +511,8 @@
       "price": 500,
       "cat": "koleksiyon",
       "unique": true,
-      "desc": "Nadir bir onur nişanı."
+      "desc": "Nadir bir onur nişanı.",
+      "rarity": "legendary"
     },
     {
       "id": "model_araba",
@@ -471,7 +521,8 @@
       "price": 600,
       "cat": "koleksiyon",
       "unique": true,
-      "desc": "Detaylı koleksiyon arabası."
+      "desc": "Detaylı koleksiyon arabası.",
+      "rarity": "legendary"
     },
     {
       "id": "nadir_kart",
@@ -480,7 +531,8 @@
       "price": 800,
       "cat": "koleksiyon",
       "unique": true,
-      "desc": "Efsanevi, parlayan kart."
+      "desc": "Efsanevi, parlayan kart.",
+      "rarity": "legendary"
     },
     {
       "id": "pencere",
@@ -488,7 +540,8 @@
       "icon": "🪟",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "Camdan pencere. Duvarına asılır, oda ferahlar."
+      "desc": "Camdan pencere. Duvarına asılır, oda ferahlar.",
+      "rarity": "common"
     },
     {
       "id": "tablo",
@@ -496,7 +549,8 @@
       "icon": "🖼️",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "El yapımı çerçeveli tablo. Duvarını süsler."
+      "desc": "El yapımı çerçeveli tablo. Duvarını süsler.",
+      "rarity": "common"
     },
     {
       "id": "ahsap_raf",
@@ -504,7 +558,8 @@
       "icon": "🗄️",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "Tahtadan raf. Odana koy, eşyalarını diz."
+      "desc": "Tahtadan raf. Odana koy, eşyalarını diz.",
+      "rarity": "common"
     },
     {
       "id": "yatak",
@@ -512,7 +567,8 @@
       "icon": "🛏️",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "Tahta + kumaştan yatak. Odanın olmazsa olmazı."
+      "desc": "Tahta + kumaştan yatak. Odanın olmazsa olmazı.",
+      "rarity": "common"
     },
     {
       "id": "vitrin",
@@ -520,7 +576,8 @@
       "icon": "🏆",
       "cat": "oda",
       "craftOnly": true,
-      "desc": "Kazandığın rozetleri sergilediğin dolap. Odana koy, tüm başarılarını göster!"
+      "desc": "Kazandığın rozetleri sergilediğin dolap. Odana koy, tüm başarılarını göster!",
+      "rarity": "common"
     }
   ]
 }

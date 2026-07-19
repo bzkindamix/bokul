@@ -76,8 +76,9 @@
       function partCard(part, apply, isEquipped, previewFn, fullPrev) {
         const a = av(); a.usePhoto = false; apply(a, part); if (previewFn) previewFn(a);
         const card = document.createElement('button');
-        card.className = 'part-card' + (fullPrev ? ' part-tall' : '') + (isEquipped ? ' part-on' : '');
+        card.className = 'part-card rar-' + (part.rarity || 'common') + (fullPrev ? ' part-tall' : '') + (isEquipped ? ' part-on' : '');
         card.innerHTML =
+          '<span class="rar-dot"></span>' +
           '<span class="part-prev">' + (fullPrev ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
           '<span class="part-name">' + (part.name || '') + '</span>';
         card.onclick = () => {

@@ -1279,3 +1279,17 @@
 .rep-verdict { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 12.5px; font-weight: 800; }
 .rv-strong { color: #52E88C; } .rv-weak { color: #FF6B6B; }
 .rep-empty2 { color: var(--ink-dim); font-weight: 600; }
+
+/* === v0.77 — Item enderlik renkleri (Arc Raiders: yeşil/mavi/mor/sarı) === */
+.rar-common     { --rar: #52E88C; } /* yeşil */
+.rar-rare       { --rar: #3E9BFF; } /* mavi */
+.rar-epic       { --rar: #9D6BFF; } /* mor */
+.rar-legendary  { --rar: #FFD52E; } /* sarı/altın */
+.store-card[class*="rar-"], .depo-card[class*="rar-"], .cos-card[class*="rar-"], .part-card[class*="rar-"], .loot-item[class*="rar-"] {
+  border: 1.5px solid var(--rar);
+  box-shadow: 0 0 9px -2px var(--rar), 0 3px 10px rgba(0,0,0,.32);
+}
+.rar-dot { position: absolute; top: 6px; left: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--rar); box-shadow: 0 0 7px var(--rar); z-index: 2; }
+.rar-legendary .store-ic, .rar-legendary .cos-prev, .rar-epic .store-ic { filter: drop-shadow(0 0 5px var(--rar)); }
+/* Envanter grid hücresi de enderlikle çerçevelensin */
+.inv-cell[class*="rar-"] { border-color: var(--rar); box-shadow: inset 0 0 0 1.5px var(--rar), 0 0 8px -3px var(--rar); }
