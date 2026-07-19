@@ -1,0 +1,47 @@
+{
+  "schema": "blueprints@1",
+  "version": 1,
+  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. Blueprint'i ya ilgili Hobi Kursu'nu bitirerek kazanırsın ya da Çarşı'daki Tarifhane'den yüksek bedelle satın alırsın. Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
+  "blueprints": [
+    {
+      "id": "bp_akvaryum",
+      "name": "Akvaryumculuk",
+      "icon": "🐠",
+      "price": 320,
+      "hobby": "hobi-akvaryum",
+      "skill": "Akvaryumculuk",
+      "grants": ["r_cam_panel", "r_akvaryum"],
+      "desc": "Cam panel ve akvaryum üretmeyi öğrenirsin — balıkların için pırıl pırıl bir cam ev!"
+    },
+    {
+      "id": "bp_barinak",
+      "name": "Barınak Ustalığı",
+      "icon": "🏗️",
+      "price": 320,
+      "hobby": "hobi-barinak",
+      "skill": "Barınak Ustalığı",
+      "grants": ["r_metal_cerceve", "r_kopek_kulubesi", "r_kus_yuvasi"],
+      "desc": "Metal çerçeve, köpek kulübesi ve kuş yuvası üretmeyi öğrenirsin — dostlarına sıcak yuvalar."
+    },
+    {
+      "id": "bp_dekor",
+      "name": "İç Mimarlık",
+      "icon": "🛋️",
+      "price": 420,
+      "hobby": "hobi-dekor",
+      "skill": "İç Mimarlık",
+      "grants": ["r_kumas", "r_pencere", "r_tablo", "r_ahsap_raf", "r_yatak", "r_vitrin"],
+      "desc": "Kumaş, pencere, tablo, raf, yatak ve vitrin üretmeyi öğrenirsin — odanı baştan yarat."
+    },
+    {
+      "id": "bp_us",
+      "name": "Üs Mühendisliği",
+      "icon": "🏰",
+      "price": 520,
+      "hobby": "hobi-us",
+      "skill": "Üs Mühendisliği",
+      "grants": ["r_depo_raf", "r_ev_dekor"],
+      "desc": "Depo rafı ve ev geliştirmeleriyle üssünü büyütmeyi öğrenirsin."
+    }
+  ]
+}

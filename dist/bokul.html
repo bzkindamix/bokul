@@ -989,6 +989,19 @@ h1, h2, h3, h4,
 .shop-name { font-weight: 800; font-size: 15px; color: var(--vc, var(--ink)); }
 .shop-tag { font-size: 11.5px; color: var(--ink-dim); line-height: 1.3; }
 .shop-barinak { border-style: dashed; }
+.shop-tarifhane { border-style: dashed; }
+
+/* ---- Tarifhane / Blueprint kartları ---- */
+.bp-intro { font-size: 12px; color: var(--ink-dim); margin-bottom: 10px; }
+.bp-card { position: relative; }
+.bp-ic { font-size: 34px; line-height: 1; filter: drop-shadow(0 2px 3px rgba(0,0,0,.35)); }
+.bp-skill { font-size: 12px; font-weight: 800; color: var(--xp); }
+.bp-badge { background: color-mix(in srgb, #52E88C 30%, transparent); color: #052; }
+.bp-card.bp-learned { border-color: #52E88C; }
+.bp-card.bp-learned .bp-ic { filter: none; }
+/* Atölye tarif kilidi */
+.ref-lock { display: inline-block; margin-left: 6px; font-size: 10.5px; font-weight: 800; color: #F2B705; }
+.ref-row.ref-locked { opacity: .72; }
 .store-tabs { display: flex; gap: 8px; margin-bottom: 10px; }
 .stab.tab-on { background: var(--accent); color: #3a0a2e; }
 .store-cats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
@@ -1789,7 +1802,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.85 — Magaza yeniden yapilanmasi: Carsi (dukkan kartlari, sekmesiz) + ayri Depom ekrani + Pet Shop/Barinak ayrimi</div>
+      <div class="splash-note">v0.86 — Blueprint sistemi: craft blueprint gerektirir + Carsi Tarifhane (Ogren) + Atolye kilit gostergesi</div>
     </div>
   </div>
 
@@ -3388,6 +3401,56 @@ h1, h2, h3, h4,
     }
   ]
 }
+</script>
+<script type="application/json" id="bokul-content-blueprints">
+{
+  "schema": "blueprints@1",
+  "version": 1,
+  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. Blueprint'i ya ilgili Hobi Kursu'nu bitirerek kazanırsın ya da Çarşı'daki Tarifhane'den yüksek bedelle satın alırsın. Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
+  "blueprints": [
+    {
+      "id": "bp_akvaryum",
+      "name": "Akvaryumculuk",
+      "icon": "🐠",
+      "price": 320,
+      "hobby": "hobi-akvaryum",
+      "skill": "Akvaryumculuk",
+      "grants": ["r_cam_panel", "r_akvaryum"],
+      "desc": "Cam panel ve akvaryum üretmeyi öğrenirsin — balıkların için pırıl pırıl bir cam ev!"
+    },
+    {
+      "id": "bp_barinak",
+      "name": "Barınak Ustalığı",
+      "icon": "🏗️",
+      "price": 320,
+      "hobby": "hobi-barinak",
+      "skill": "Barınak Ustalığı",
+      "grants": ["r_metal_cerceve", "r_kopek_kulubesi", "r_kus_yuvasi"],
+      "desc": "Metal çerçeve, köpek kulübesi ve kuş yuvası üretmeyi öğrenirsin — dostlarına sıcak yuvalar."
+    },
+    {
+      "id": "bp_dekor",
+      "name": "İç Mimarlık",
+      "icon": "🛋️",
+      "price": 420,
+      "hobby": "hobi-dekor",
+      "skill": "İç Mimarlık",
+      "grants": ["r_kumas", "r_pencere", "r_tablo", "r_ahsap_raf", "r_yatak", "r_vitrin"],
+      "desc": "Kumaş, pencere, tablo, raf, yatak ve vitrin üretmeyi öğrenirsin — odanı baştan yarat."
+    },
+    {
+      "id": "bp_us",
+      "name": "Üs Mühendisliği",
+      "icon": "🏰",
+      "price": 520,
+      "hobby": "hobi-us",
+      "skill": "Üs Mühendisliği",
+      "grants": ["r_depo_raf", "r_ev_dekor"],
+      "desc": "Depo rafı ve ev geliştirmeleriyle üssünü büyütmeyi öğrenirsin."
+    }
+  ]
+}
+
 </script>
 <script type="application/json" id="bokul-content-pets">
 {
@@ -35178,6 +35241,7 @@ h1, h2, h3, h4,
     // Eşya / craft / evcil hayvan
     ITEM_BOUGHT: 'item:bought',   // { itemId }
     ITEM_CRAFTED: 'item:crafted', // { recipeId }
+    BLUEPRINT_LEARNED: 'blueprint:learned', // { id, free }
     PET_ADOPTED: 'pet:adopted',   // { petId }
     PET_CARED:   'pet:cared',     // { petId, action }
     PET_CAPTURED: 'pet:captured', // { petId } — ihmal → Bulanık kaçırdı
@@ -36375,9 +36439,20 @@ h1, h2, h3, h4,
     },
 
     /* Üret: malzemeleri harca, ürünü ekle (eşya) veya seviyeyi yükselt (upgrade) */
+    /* Bu tarif için blueprint öğrenilmiş mi? (yoksa blueprint = serbest) */
+    unlocked(r) { return !B.Blueprints || B.Blueprints.recipeUnlocked(r.id); },
+    /* Tarifi açan blueprint (öğrenilmemişse kilit göstermek için) */
+    lockedBy(r) {
+      if (!B.Blueprints) return null;
+      const bp = B.Blueprints.forRecipe(r.id);
+      return (bp && !B.Blueprints.isLearned(bp.id)) ? bp : null;
+    },
+
     craft(id) {
       const r = B.Craft.get(id);
       if (!r) return { ok: false, err: 'Tarif bulunamadı.' };
+      const bp = B.Craft.lockedBy(r);
+      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" blueprint\'ini öğren (Çarşı → Tarifhane ya da Hobi Kursu).', locked: true, bp };
       if (!B.Craft.canCraft(r)) return { ok: false, err: 'Malzemen eksik.' };
       Object.keys(r.needs).forEach(k => B.Items.remove(k, r.needs[k]));
       const p = r.produces || {};
@@ -36389,6 +36464,60 @@ h1, h2, h3, h4,
       B.Bus.emit(B.Events.ITEM_CRAFTED, { recipeId: id });
       B.Save.saveSoon();
       return { ok: true, recipe: r };
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/blueprints.js === */
+/* BOKUL — Blueprint'ler (Üretim Tarifleri / Yetenekler)
+ * Bir tarifi (recipe) craft edebilmek için onu açan blueprint'i ÖĞRENMİŞ olmak
+ * gerekir. Blueprint iki yolla öğrenilir: (1) ilgili Hobi Kursu'nu bitirmek
+ * (ücretsiz, kalıcı yetenek), (2) Çarşı → Tarifhane'den yüksek bedelle satın almak.
+ * Öğrenilenler: B.State.data.blueprints = [blueprintId, ...]
+ * İçerik: content/blueprints.json */
+(function (B) {
+  function data() { return B.Content.get('blueprints') || { blueprints: [] }; }
+  function learnedArr() { const s = B.State.data; if (!s.blueprints) s.blueprints = []; return s.blueprints; }
+
+  B.Blueprints = {
+    all() { return data().blueprints || []; },
+    get(id) { return (data().blueprints || []).find(b => b.id === id) || null; },
+    intro() { return data().intro || ''; },
+
+    learned() { return learnedArr().slice(); },
+    isLearned(id) { return learnedArr().indexOf(id) >= 0; },
+
+    /* Bu tarifi açan blueprint (yoksa null = zaten serbest) */
+    forRecipe(recipeId) { return (data().blueprints || []).find(b => (b.grants || []).indexOf(recipeId) >= 0) || null; },
+    /* Tarif craft edilebilir mi? (blueprint yok → serbest; varsa öğrenilmiş olmalı) */
+    recipeUnlocked(recipeId) {
+      const b = B.Blueprints.forRecipe(recipeId);
+      return !b || B.Blueprints.isLearned(b.id);
+    },
+
+    /* Öğren: opts.free ise bedelsiz (kurs ödülü), değilse altınla satın al */
+    learn(id, opts) {
+      const b = B.Blueprints.get(id);
+      if (!b) return { ok: false, err: 'Blueprint bulunamadı.' };
+      if (B.Blueprints.isLearned(id)) return { ok: false, err: 'Bu blueprint\'i zaten öğrendin.' };
+      const free = !!(opts && opts.free);
+      if (!free) {
+        if ((B.State.data.player.coins || 0) < b.price) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
+        if (!B.Reward.spendCoins(b.price)) return { ok: false, err: 'Altının yetmiyor!' };
+      }
+      learnedArr().push(id);
+      if (B.Bus && B.Events) B.Bus.emit(B.Events.BLUEPRINT_LEARNED || 'blueprint:learned', { id, free });
+      B.Save.saveSoon();
+      return { ok: true, bp: b, free };
+    },
+
+    /* Bir hobi kursu (lesson id) bitince ilgili blueprint'i ücretsiz öğret.
+     * Zaten öğrenilmişse sessizce geçer. Döner: öğrenilen blueprint ya da null. */
+    grantForHobby(hobbyLessonId) {
+      const b = (data().blueprints || []).find(x => x.hobby === hobbyLessonId);
+      if (!b || B.Blueprints.isLearned(b.id)) return null;
+      const r = B.Blueprints.learn(b.id, { free: true });
+      return r.ok ? b : null;
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -41138,6 +41267,7 @@ h1, h2, h3, h4,
         const body = wrap.querySelector('.store-body');
         if (view === 'carsi') renderCarsi(body);
         else if (view === 'terzi') renderKiyafet(body);
+        else if (view === 'tarifhane') renderBlueprints(body);
         else renderVendor(body, view);
       }
 
@@ -41169,6 +41299,15 @@ h1, h2, h3, h4,
             '<span class="shop-name">' + esc(v.name) + '</span>' +
             '<span class="shop-tag">' + esc(v.tagline || '') + '</span>' +
           '</button>').join('');
+        // Tarifhane (blueprint dükkanı) — özel kart
+        const learned = B.Blueprints ? B.Blueprints.learned().length : 0;
+        const totalBp = B.Blueprints ? B.Blueprints.all().length : 0;
+        const tarifhane =
+          '<button class="shop-card shop-tarifhane" data-go="tarifhane" style="--vc:#F2B705">' +
+            '<span class="shop-face">📐</span>' +
+            '<span class="shop-name">Tarifhane</span>' +
+            '<span class="shop-tag">Blueprint öğren · ' + learned + '/' + totalBp + '</span>' +
+          '</button>';
         // Barınak (sahiplenme) — satıcı değil, özel kart
         const barinak =
           '<button class="shop-card shop-barinak" data-go="pets" style="--vc:#8E7CC3">' +
@@ -41176,10 +41315,12 @@ h1, h2, h3, h4,
             '<span class="shop-name">Barınak</span>' +
             '<span class="shop-tag">Dostunu ÜCRETSİZ sahiplen</span>' +
           '</button>';
-        body.innerHTML = '<div class="shop-grid">' + cards + barinak + '</div>';
+        body.innerHTML = '<div class="shop-grid">' + cards + tarifhane + barinak + '</div>';
         body.querySelectorAll('.shop-card[data-v]').forEach(c => c.onclick = () => {
           B.Audio.play('tick'); view = c.dataset.v; shell();
         });
+        const tf = body.querySelector('.shop-card[data-go="tarifhane"]');
+        if (tf) tf.onclick = () => { B.Audio.play('tick'); view = 'tarifhane'; shell(); };
         const bar = body.querySelector('.shop-card[data-go="pets"]');
         if (bar) bar.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };
       }
@@ -41230,6 +41371,49 @@ h1, h2, h3, h4,
               },
             });
           };
+        });
+      }
+
+      /* ---- 📐 Tarifhane: blueprint (tarif) öğren ---- */
+      function unlocksText(bp, sep) {
+        return (bp.grants || []).map(rid => { const r = B.Craft.get(rid); return r ? r.name : rid; }).join(sep);
+      }
+      function openBlueprint(bp) {
+        const learned = B.Blueprints.isLearned(bp.id);
+        const actions = [];
+        if (!learned) actions.push({ label: '📖 Öğren (💰' + bp.price + ')', onClick: () => {
+          const r = B.Blueprints.learn(bp.id);
+          if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('💰 ' + r.err); return; }
+          B.Audio.play('chest'); B.UI.toast('🎓 ' + bp.name + ' öğrenildi! Artık Atölye\'de üretebilirsin.');
+          shell();
+        } });
+        actions.push({ label: 'Kapat', onClick: null });
+        B.UI.overlay('<div class="ov-big">' + bp.icon + '</div><h2>' + esc(bp.name) + '</h2>' +
+          '<p class="ov-quote">' + esc(bp.desc || '') + '</p>' +
+          '<p class="ov-xp">🎓 Yetenek: ' + esc(bp.skill) + '<br>Açtığı üretimler: ' + esc(unlocksText(bp, ', ')) + '</p>' +
+          (learned ? '<p class="ov-xp">✓ Bu blueprint öğrenildi.</p>'
+                   : '<p class="ov-xp">🎁 İlgili Hobi Kursu\'nu bitirirsen BEDAVA kazanırsın.</p>'),
+          actions);
+      }
+      function renderBlueprints(body) {
+        babaSays('tarifhane', '📐', 'Tarifhane\'desin! Bir şeyi üretebilmek için önce onun blueprint\'ini (tarifini) öğrenmelisin. İstersen buradan altınla satın al, istersen ilgili Hobi Kursu\'nu bitirip BEDAVA kazan. Öğrendiğin her blueprint yeni bir üretim yeteneği verir!');
+        const bps = B.Blueprints.all();
+        const cards = bps.map(bp => {
+          const learned = B.Blueprints.isLearned(bp.id);
+          const afford = coins() >= bp.price;
+          return '<button class="store-card bp-card' + (learned ? ' bp-learned' : '') + (afford || learned ? '' : ' store-poor') + '" data-bp="' + bp.id + '">' +
+            '<span class="bp-ic">' + bp.icon + '</span>' +
+            '<span class="store-nm">' + esc(bp.name) + '</span>' +
+            '<span class="bp-skill">🎓 ' + esc(bp.skill) + '</span>' +
+            '<span class="store-desc">Açar: ' + esc(unlocksText(bp, ', ')) + '</span>' +
+            (learned ? '<span class="store-tag bp-badge">✓ Öğrenildi</span>'
+                     : '<span class="store-price">📖 Öğren · 💰 ' + bp.price + '</span>') +
+            '</button>';
+        }).join('');
+        body.innerHTML = '<div class="bp-intro">🎁 Blueprint\'leri Hobi Kursu bitirince BEDAVA da kazanabilirsin.</div>' +
+          '<div class="store-grid">' + cards + '</div>';
+        body.querySelectorAll('.bp-card[data-bp]').forEach(el => el.onclick = () => {
+          const bp = B.Blueprints.get(el.dataset.bp); if (bp) { B.Audio.play('tick'); openBlueprint(bp); }
         });
       }
 
@@ -42216,8 +42400,11 @@ h1, h2, h3, h4,
               return '<button class="bench-slot rar-' + (it.rarity || 'common') + '" data-id="' + id + '" title="Çıkarmak için dokun">' +
                 '<span class="bs-ic">' + it.icon + '</span><span class="bs-ct">×' + bench[id] + '</span></button>'; }).join('')
           : '<div class="bench-hint">Malzemeleri buraya sürükle ya da dokun →</div>';
+        const lockedBp = match && B.Craft.lockedBy ? B.Craft.lockedBy(match) : null;
         let out = '';
-        if (match) {
+        if (match && lockedBp) {
+          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» blueprint\'ini öğren (Çarşı → 📐 Tarifhane ya da Hobi Kursu).</div>';
+        } else if (match) {
           const p = match.produces || {};
           const pic = p.type === 'upgrade' ? '⬆️' : ((B.Items.get(p.id) || {}).icon || match.icon);
           out = '<div class="bench-out ok">🔧 <b>' + match.name + '</b> üretilebilir! → ' + pic + '</div>';
@@ -42227,8 +42414,9 @@ h1, h2, h3, h4,
         host.innerHTML = slots;
         wrap.querySelector('.bench-out-wrap').innerHTML = out;
         const doBtn = wrap.querySelector('.craft-do-btn');
-        doBtn.disabled = !match;
-        doBtn.className = 'btn craft-do-btn ' + (match ? 'btn-action' : 'btn-quiet');
+        const ready = match && !lockedBp;
+        doBtn.disabled = !ready;
+        doBtn.className = 'btn craft-do-btn ' + (ready ? 'btn-action' : 'btn-quiet');
         host.querySelectorAll('.bench-slot').forEach(s => s.onclick = () => removeFromBench(s.dataset.id));
       }
 
@@ -42244,8 +42432,10 @@ h1, h2, h3, h4,
                 const needs = Object.keys(r.needs).map(k => { const it = B.Items.get(k) || { icon: '❔' };
                   return '<span class="ref-need' + (B.Items.count(k) >= r.needs[k] ? ' rn-ok' : '') + '">' + it.icon + '×' + r.needs[k] + '</span>'; }).join('<span class="ref-plus">+</span>');
                 const pit = r.produces && r.produces.type === 'item' ? (B.Items.get(r.produces.id) || {}).icon : '⬆️';
-                return '<div class="ref-row"><span class="ref-in">' + needs + '</span><span class="ref-eq">=</span>' +
-                  '<span class="ref-out">' + (pit || r.icon) + ' ' + r.name + '</span></div>';
+                const bp = B.Craft.lockedBy ? B.Craft.lockedBy(r) : null;
+                const lock = bp ? '<span class="ref-lock">🔒 ' + bp.name + '</span>' : '';
+                return '<div class="ref-row' + (bp ? ' ref-locked' : '') + '"><span class="ref-in">' + needs + '</span><span class="ref-eq">=</span>' +
+                  '<span class="ref-out">' + (pit || r.icon) + ' ' + r.name + lock + '</span></div>';
               }).join('');
           }).join('') + '</div>';
       }
@@ -43507,7 +43697,7 @@ h1, h2, h3, h4,
         'lessons/sanat-101',
         'lessons/bilim-101',
       ];
-      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'pets', 'vendors', ...LESSONS]);
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'blueprints', 'pets', 'vendors', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-core'));
 
@@ -43602,7 +43792,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.85'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.86'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

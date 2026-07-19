@@ -91,8 +91,11 @@
               return '<button class="bench-slot rar-' + (it.rarity || 'common') + '" data-id="' + id + '" title="Çıkarmak için dokun">' +
                 '<span class="bs-ic">' + it.icon + '</span><span class="bs-ct">×' + bench[id] + '</span></button>'; }).join('')
           : '<div class="bench-hint">Malzemeleri buraya sürükle ya da dokun →</div>';
+        const lockedBp = match && B.Craft.lockedBy ? B.Craft.lockedBy(match) : null;
         let out = '';
-        if (match) {
+        if (match && lockedBp) {
+          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» blueprint\'ini öğren (Çarşı → 📐 Tarifhane ya da Hobi Kursu).</div>';
+        } else if (match) {
           const p = match.produces || {};
           const pic = p.type === 'upgrade' ? '⬆️' : ((B.Items.get(p.id) || {}).icon || match.icon);
           out = '<div class="bench-out ok">🔧 <b>' + match.name + '</b> üretilebilir! → ' + pic + '</div>';
@@ -102,8 +105,9 @@
         host.innerHTML = slots;
         wrap.querySelector('.bench-out-wrap').innerHTML = out;
         const doBtn = wrap.querySelector('.craft-do-btn');
-        doBtn.disabled = !match;
-        doBtn.className = 'btn craft-do-btn ' + (match ? 'btn-action' : 'btn-quiet');
+        const ready = match && !lockedBp;
+        doBtn.disabled = !ready;
+        doBtn.className = 'btn craft-do-btn ' + (ready ? 'btn-action' : 'btn-quiet');
         host.querySelectorAll('.bench-slot').forEach(s => s.onclick = () => removeFromBench(s.dataset.id));
       }
 
@@ -119,8 +123,10 @@
                 const needs = Object.keys(r.needs).map(k => { const it = B.Items.get(k) || { icon: '❔' };
                   return '<span class="ref-need' + (B.Items.count(k) >= r.needs[k] ? ' rn-ok' : '') + '">' + it.icon + '×' + r.needs[k] + '</span>'; }).join('<span class="ref-plus">+</span>');
                 const pit = r.produces && r.produces.type === 'item' ? (B.Items.get(r.produces.id) || {}).icon : '⬆️';
-                return '<div class="ref-row"><span class="ref-in">' + needs + '</span><span class="ref-eq">=</span>' +
-                  '<span class="ref-out">' + (pit || r.icon) + ' ' + r.name + '</span></div>';
+                const bp = B.Craft.lockedBy ? B.Craft.lockedBy(r) : null;
+                const lock = bp ? '<span class="ref-lock">🔒 ' + bp.name + '</span>' : '';
+                return '<div class="ref-row' + (bp ? ' ref-locked' : '') + '"><span class="ref-in">' + needs + '</span><span class="ref-eq">=</span>' +
+                  '<span class="ref-out">' + (pit || r.icon) + ' ' + r.name + lock + '</span></div>';
               }).join('');
           }).join('') + '</div>';
       }

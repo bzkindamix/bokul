@@ -22,6 +22,7 @@
     // Eşya / craft / evcil hayvan
     ITEM_BOUGHT: 'item:bought',   // { itemId }
     ITEM_CRAFTED: 'item:crafted', // { recipeId }
+    BLUEPRINT_LEARNED: 'blueprint:learned', // { id, free }
     PET_ADOPTED: 'pet:adopted',   // { petId }
     PET_CARED:   'pet:cared',     // { petId, action }
     PET_CAPTURED: 'pet:captured', // { petId } — ihmal → Bulanık kaçırdı

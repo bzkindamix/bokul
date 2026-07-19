@@ -39,9 +39,20 @@
     },
 
     /* Üret: malzemeleri harca, ürünü ekle (eşya) veya seviyeyi yükselt (upgrade) */
+    /* Bu tarif için blueprint öğrenilmiş mi? (yoksa blueprint = serbest) */
+    unlocked(r) { return !B.Blueprints || B.Blueprints.recipeUnlocked(r.id); },
+    /* Tarifi açan blueprint (öğrenilmemişse kilit göstermek için) */
+    lockedBy(r) {
+      if (!B.Blueprints) return null;
+      const bp = B.Blueprints.forRecipe(r.id);
+      return (bp && !B.Blueprints.isLearned(bp.id)) ? bp : null;
+    },
+
     craft(id) {
       const r = B.Craft.get(id);
       if (!r) return { ok: false, err: 'Tarif bulunamadı.' };
+      const bp = B.Craft.lockedBy(r);
+      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" blueprint\'ini öğren (Çarşı → Tarifhane ya da Hobi Kursu).', locked: true, bp };
       if (!B.Craft.canCraft(r)) return { ok: false, err: 'Malzemen eksik.' };
       Object.keys(r.needs).forEach(k => B.Items.remove(k, r.needs[k]));
       const p = r.produces || {};
