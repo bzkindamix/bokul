@@ -92,6 +92,9 @@ const CONTENT = [
   'lessons/care-101',
   'lessons/philo-101',
   'lessons/music-101',
+  'lessons/spor-101',
+  'lessons/sanat-101',
+  'lessons/bilim-101',
 ];
 
 let html = read('index.html');

@@ -1,0 +1,133 @@
+{
+  "id": "sanat-101",
+  "schema": 1,
+  "title": "Sanat Cephesi",
+  "subtitle": "Renkler, Çizim ve Hayal Gücü",
+  "icon": "🎨",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+  "interestKey": "sanat",
+
+  "outcomes": [
+    { "id": "o1", "code": "SAN.1", "text": "Ana/ara renkleri ve renk karışımını tanır." },
+    { "id": "o2", "code": "SAN.2", "text": "Sanat araçlarını ve türlerini ayırt eder." }
+  ],
+
+  "skills": ["renkler", "cizim", "araclar", "sanat-genel"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "renk-brief": [
+      { "say": "Gizli cephe açıldı Komutan — çünkü sen SANATI seçtin! Üç ANA renk vardır: KIRMIZI, SARI, MAVİ. Bunlar başka renklerin karışımından ELDE EDİLEMEZ; onlar başlangıçtır." },
+      { "say": "Ana renkleri karıştırınca ARA renkler doğar: Sarı + Mavi = YEŞİL, Kırmızı + Sarı = TURUNCU, Mavi + Kırmızı = MOR. Sihir gibi, değil mi?" },
+      { "say": "Bir de sıcak renkler (kırmızı, turuncu, sarı — güneş gibi) ve soğuk renkler (mavi, yeşil, mor — deniz gibi) vardır. Renkler duygu anlatır! Şimdi fırçayı kap, asker!" }
+    ],
+    "arac-brief": [
+      { "say": "İkinci brifing: sanat ARAÇLARI. Kalem ve karakalemle çizersin; sulu boya, guaj ve pastel boyayla renklendirirsin. Her araç farklı bir doku verir." },
+      { "say": "Çizimin temeli ŞEKİLLERdir: daire, kare, üçgen. Bir kediyi bile daire ve üçgenlerle çizebilirsin! Büyükten küçüğe, kabadan detaya doğru çalışırsın." },
+      { "say": "Sanat sadece resim değildir: heykel, origami, seramik de sanattır. En önemli malzeme HAYAL GÜCÜ — o bedava ve sınırsız! Hadi eserini yarat!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — RENK VE ÇİZİM",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Renkler",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Renkler",
+              "segments": [ { "model": "abstract", "script": "renk-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Renk Devriyesi", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Palet Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Gökkuşağı Operasyonu", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Atölye Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-sanat1", "tier": "topic", "name": "Renksiz Gölge", "icon": "⚫", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-sanat1" }
+          },
+          "bank": [
+            { "q": "Üç ANA renk hangileridir?", "skill": "renkler",
+              "options": ["Kırmızı, Sarı, Mavi", "Yeşil, Turuncu, Mor", "Siyah, Beyaz, Gri", "Pembe, Kahve, Lacivert"], "correct": 0, "hint": "Karışımdan elde edilemeyen üç renk." },
+            { "q": "Sarı + Mavi karışınca hangi renk olur?", "skill": "renkler",
+              "options": ["Yeşil", "Turuncu", "Mor", "Pembe"], "correct": 0, "hint": "Çimen ve yaprak rengi." },
+            { "q": "Kırmızı + Sarı karışınca hangi renk olur?", "skill": "renkler",
+              "options": ["Turuncu", "Yeşil", "Mor", "Mavi"], "correct": 0, "hint": "Portakal ve havuç rengi." },
+            { "q": "Mavi + Kırmızı karışınca hangi renk olur?", "skill": "renkler",
+              "options": ["Mor", "Yeşil", "Sarı", "Turuncu"], "correct": 0, "hint": "Patlıcan ve menekşe rengi." },
+            { "q": "Hangisi bir ARA (ikincil) renktir?", "skill": "renkler",
+              "options": ["Yeşil", "Kırmızı", "Sarı", "Mavi"], "correct": 0, "hint": "İki ana rengin karışımı." },
+            { "q": "Kırmızı, turuncu, sarı hangi grup renklerdir?", "skill": "renkler",
+              "options": ["Sıcak renkler", "Soğuk renkler", "Renksizler", "Ara renkler"], "correct": 0, "hint": "Güneş ve ateşi düşün." },
+            { "q": "Mavi, yeşil, mor hangi grup renklerdir?", "skill": "renkler",
+              "options": ["Soğuk renkler", "Sıcak renkler", "Ana renkler", "Metalik renkler"], "correct": 0, "hint": "Deniz ve buzu düşün." },
+            { "q": "Bir renge BEYAZ eklersek ne olur?", "skill": "renkler",
+              "options": ["Rengi açılır (pastelleşir)", "Rengi kararır", "Renk kaybolur", "Hiçbir şey olmaz"], "correct": 0, "hint": "Kırmızı + beyaz = pembe." },
+            { "q": "Bir renge SİYAH eklersek ne olur?", "skill": "renkler",
+              "options": ["Rengi koyulaşır", "Rengi açılır", "Beyaz olur", "Parlar"], "correct": 0, "hint": "Ton koyulaşır, gölge olur." },
+            { "q": "Gökkuşağında yaklaşık kaç ana renk sayılır?", "skill": "renkler",
+              "options": ["7", "3", "2", "12"], "correct": 0, "hint": "Kırmızıdan mora yedi kuşak." },
+            { "q": "Ressamın renkleri karıştırdığı düz yüzeye ne denir?", "skill": "araclar",
+              "options": ["Palet", "Şövale", "Fırça", "Tuval"], "correct": 0, "hint": "Elde tutulan, renklerin karıldığı tabla." },
+            { "q": "Kağıt üzerinde bir rengi daha AÇIK göstermek istersen?", "skill": "renkler",
+              "options": ["Daha az boya/su ile inceltirsin", "Üstüne siyah sürersin", "Daha çok bastırırsın", "Yakarsın"], "correct": 0, "hint": "Sulu boyada su renkleri açar." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Araçlar ve Sanat Türleri",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Sanat Araçları",
+              "segments": [ { "model": "abstract", "script": "arac-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Araç Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Atölye Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Başyapıt Operasyonu", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Atölye Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-sanat2", "tier": "topic", "name": "Karalama Ejderi", "icon": "🖍️", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-sanat2" }
+          },
+          "bank": [
+            { "q": "Karakalem çizim için hangi araç kullanılır?", "skill": "araclar",
+              "options": ["Kurşun kalem", "Sulu boya", "Makas", "Çekiç"], "correct": 0, "hint": "Gri tonlarla gölgelenir." },
+            { "q": "Çizimin temel yapı taşı olan şekiller hangileridir?", "skill": "cizim",
+              "options": ["Daire, kare, üçgen", "Sadece nokta", "Sadece çizgi", "Hiçbiri"], "correct": 0, "hint": "Karmaşık şeyler basit şekillerden kurulur." },
+            { "q": "Bir resme çizerken genelde nereden başlanır?", "skill": "cizim",
+              "options": ["Kaba/büyük şekillerden, sonra detaydan", "En küçük detaydan", "En sondan", "Rastgele"], "correct": 0, "hint": "Önce iskelet, sonra süsleme." },
+            { "q": "Kağıttan şekiller katlayarak yapılan sanat nedir?", "skill": "sanat-genel",
+              "options": ["Origami", "Heykel", "Fotoğraf", "Bale"], "correct": 0, "hint": "Japon kağıt katlama sanatı." },
+            { "q": "Kilden veya taştan üç boyutlu eser yapmaya ne denir?", "skill": "sanat-genel",
+              "options": ["Heykel", "Resim", "Şarkı", "Şiir"], "correct": 0, "hint": "Elle şekil verilen 3 boyutlu sanat." },
+            { "q": "Ressamların üzerine resim yaptığı gergin beze ne denir?", "skill": "araclar",
+              "options": ["Tuval", "Palet", "Halı", "Perde"], "correct": 0, "hint": "Şövaleye konan bez yüzey." },
+            { "q": "Pastel boya nasıl bir dokur verir?", "skill": "araclar",
+              "options": ["Yumuşak, kadifemsi", "Sert ve parlak metal", "Islak ve akışkan", "Hiç renk vermez"], "correct": 0, "hint": "Parmakla dağıtılabilen yumuşak boya." },
+            { "q": "Sanatta en önemli 'bedava malzeme' hangisidir?", "skill": "sanat-genel",
+              "options": ["Hayal gücü", "Altın", "Pahalı fırça", "Büyük tuval"], "correct": 0, "hint": "Sınırsız ve herkeste var." },
+            { "q": "Bir eseri yaparken hata yaparsan ne yapmak iyidir?", "skill": "sanat-genel",
+              "options": ["Onu yeni bir fikre çevirmeye çalışmak", "Hemen yırtıp atmak", "Ağlamak", "Bir daha çizmemek"], "correct": 0, "hint": "Sanatta 'hata' çoğu zaman yeni bir yol açar." },
+            { "q": "Sulu boyayı incelten (açan) nedir?", "skill": "araclar",
+              "options": ["Su", "Tuz", "Yağ", "Kum"], "correct": 0, "hint": "Adı üstünde: SULU boya." },
+            { "q": "Gölgelendirme (gölge çizmek) resme ne katar?", "skill": "cizim",
+              "options": ["Derinlik ve gerçeklik hissi", "Sadece kirlilik", "Hiçbir şey", "Renk kokusu"], "correct": 0, "hint": "Işık ve gölge, düz resmi canlandırır." },
+            { "q": "Fotoğraf çekmek de bir sanat türü müdür?", "skill": "sanat-genel",
+              "options": ["Evet, ışık ve kompozisyon sanatıdır", "Hayır, asla", "Sadece telefonla değil", "Sadece gece"], "correct": 0, "hint": "Çerçeveleme ve ışık seçimi sanattır." }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "id": "bilim-101",
+  "schema": 1,
+  "title": "Bilim Cephesi",
+  "subtitle": "Uzay, Doğa ve Deneyler",
+  "icon": "🔬",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+  "interestKey": "bilim",
+
+  "outcomes": [
+    { "id": "o1", "code": "BIL.1", "text": "Güneş sistemi ve doğa hakkında temel bilgileri tanır." },
+    { "id": "o2", "code": "BIL.2", "text": "Maddenin hallerini ve basit bilimsel gerçekleri ayırt eder." }
+  ],
+
+  "skills": ["uzay", "doga", "madde", "bilim-genel"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "uzay-brief": [
+      { "say": "Gizli cephe açıldı Komutan — çünkü sen BİLİMİ seçtin! Yaşadığımız yer DÜNYA, bir gezegen. Güneş'in etrafında dönen 8 gezegen var: Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün." },
+      { "say": "GÜNEŞ bir yıldızdır — dev bir ateş topu! Bize ışık ve ısı verir. AY ise Dünya'nın uydusudur, kendi ışığı yoktur; Güneş'in ışığını yansıtır." },
+      { "say": "Gece-gündüz, Dünya kendi ekseninde döndüğü için olur. Güneş'e bakan taraf gündüz, arkada kalan gece! Sen de bir galaksi kâşifisin — hadi keşfet!" }
+    ],
+    "madde-brief": [
+      { "say": "İkinci brifing: MADDENİN HALLERİ. Her şey üç halde olabilir: KATI (buz, taş), SIVI (su, süt), GAZ (hava, buhar). Isı bunları birbirine çevirir!" },
+      { "say": "Buzu ısıtırsan SU olur (erir), suyu daha da ısıtırsan BUHAR olur (buharlaşır). Soğutursan tersine döner. Su, tabiatın sihirbazı!" },
+      { "say": "Bilim GÖZLEM ve DENEY ile ilerler: merak et, tahmin et, dene, gör. Bir bilim insanı gibi soru sor: 'Acaba neden?' İşte gerçek keşif budur!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — EVREN VE MADDE",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Uzay ve Doğa",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Uzay",
+              "segments": [ { "model": "abstract", "script": "uzay-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Yıldız Devriyesi", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Keşif Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Galaksi Operasyonu", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Laboratuvar Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-bilim1", "tier": "topic", "name": "Cehalet Kara Deliği", "icon": "🕳️", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-bilim1" }
+          },
+          "bank": [
+            { "q": "Üzerinde yaşadığımız gezegenin adı nedir?", "skill": "uzay",
+              "options": ["Dünya", "Mars", "Güneş", "Ay"], "correct": 0, "hint": "Mavi gezegen." },
+            { "q": "Güneş aslında nedir?", "skill": "uzay",
+              "options": ["Bir yıldız", "Bir gezegen", "Bir uydu", "Bir bulut"], "correct": 0, "hint": "Kendi ışığını üreten dev ateş topu." },
+            { "q": "Ay'ın ışığı nereden gelir?", "skill": "uzay",
+              "options": ["Güneş'in ışığını yansıtır", "Kendi yanar", "Yıldızlardan", "Dünya'dan"], "correct": 0, "hint": "Ay kendi ışığını üretmez." },
+            { "q": "Gece ve gündüz neden olur?", "skill": "uzay",
+              "options": ["Dünya kendi ekseninde döndüğü için", "Güneş söndüğü için", "Ay engellediği için", "Bulutlar yüzünden"], "correct": 0, "hint": "Güneş'e bakan yüz gündüz olur." },
+            { "q": "Güneş sisteminde kaç gezegen vardır?", "skill": "uzay",
+              "options": ["8", "5", "12", "3"], "correct": 0, "hint": "Merkür'den Neptün'e kadar say." },
+            { "q": "'Kızıl gezegen' diye bilinen gezegen hangisidir?", "skill": "uzay",
+              "options": ["Mars", "Venüs", "Jüpiter", "Dünya"], "correct": 0, "hint": "Toprağı kırmızımsıdır." },
+            { "q": "Dünya'nın tek doğal uydusu nedir?", "skill": "uzay",
+              "options": ["Ay", "Güneş", "Mars", "Yıldız"], "correct": 0, "hint": "Geceleri gökyüzünde parlar." },
+            { "q": "Bitkiler büyümek için en çok neye ihtiyaç duyar?", "skill": "doga",
+              "options": ["Su, ışık ve toprak", "Sadece karanlık", "Sadece taş", "Hiçbir şey"], "correct": 0, "hint": "Güneş ışığı + su = fotosentez." },
+            { "q": "Hava durumunda 'yağmur' nasıl oluşur?", "skill": "doga",
+              "options": ["Bulutlardaki su damlaları ağırlaşıp düşünce", "Güneş eridiği için", "Rüzgâr estiği için sadece", "Yıldızlar düştüğü için"], "correct": 0, "hint": "Bulut = küçük su damlacıkları." },
+            { "q": "Canlılar nefes almak için havadan neyi kullanır?", "skill": "doga",
+              "options": ["Oksijen", "Kum", "Işık", "Ses"], "correct": 0, "hint": "Ciğerlerimize çektiğimiz hayat gazı." },
+            { "q": "Ağaçlar bizim için havaya neyi verir?", "skill": "doga",
+              "options": ["Oksijen", "Duman", "Toz", "Karbondioksit yerine hiçbir şey"], "correct": 0, "hint": "Bu yüzden orman = temiz hava." },
+            { "q": "En yakın yıldızımız hangisidir?", "skill": "uzay",
+              "options": ["Güneş", "Ay", "Kutup Yıldızı", "Mars"], "correct": 0, "hint": "Her sabah doğar." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Madde ve Deneyler",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Maddenin Halleri",
+              "segments": [ { "model": "abstract", "script": "madde-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Deney Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Laboratuvar Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Büyük Deney Operasyonu", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Laboratuvar Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-bilim2", "tier": "topic", "name": "Şüphe Golemi", "icon": "🧪", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-bilim2" }
+          },
+          "bank": [
+            { "q": "Maddenin üç temel hali hangileridir?", "skill": "madde",
+              "options": ["Katı, sıvı, gaz", "Sıcak, soğuk, ılık", "Büyük, orta, küçük", "Kırmızı, mavi, sarı"], "correct": 0, "hint": "Buz, su, buhar." },
+            { "q": "Buz hangi haldedir?", "skill": "madde",
+              "options": ["Katı", "Sıvı", "Gaz", "Işık"], "correct": 0, "hint": "Sert ve şekli belli." },
+            { "q": "Buzu ısıtırsak ne olur?", "skill": "madde",
+              "options": ["Erir, su (sıvı) olur", "Taş olur", "Kaybolur", "Gaz olur hemen"], "correct": 0, "hint": "Katıdan sıvıya geçiş = erime." },
+            { "q": "Suyu çok ısıtırsak (kaynatırsak) ne olur?", "skill": "madde",
+              "options": ["Buhara (gaza) dönüşür", "Buz olur", "Katılaşır", "Renk değiştirir sadece"], "correct": 0, "hint": "Tencerenin üstündeki buhar." },
+            { "q": "Hava hangi haldedir?", "skill": "madde",
+              "options": ["Gaz", "Katı", "Sıvı", "Işık"], "correct": 0, "hint": "Gözle görünmez ama vardır." },
+            { "q": "Bir bilim insanı yeni bir şeyi anlamak için önce ne yapar?", "skill": "bilim-genel",
+              "options": ["Gözlemler ve soru sorar", "Hemen pes eder", "Tahmin etmeden bilir", "Uyur"], "correct": 0, "hint": "Merak → gözlem → deney." },
+            { "q": "Bir deneyde 'tahmin' (hipotez) ne işe yarar?", "skill": "bilim-genel",
+              "options": ["Ne olacağını önceden düşünmek", "Deneyi bitirmek", "Sonucu gizlemek", "Hiçbir işe yaramaz"], "correct": 0, "hint": "Denemeden önce 'sanırım şöyle olur' demek." },
+            { "q": "Mıknatıs hangisini kendine çeker?", "skill": "madde",
+              "options": ["Demir/metal cisimleri", "Kağıdı", "Suyu", "Ahşabı"], "correct": 0, "hint": "Buzdolabı mıknatısını düşün." },
+            { "q": "Suda tuz karıştırıp beklersek tuz ne olur?", "skill": "madde",
+              "options": ["Suda çözünür (görünmez olur)", "Buz olur", "Renk verir sadece", "Patlar"], "correct": 0, "hint": "Görünmez ama tadı kalır: çözünme." },
+            { "q": "Bir cismin suda batması ya da yüzmesi neye bağlıdır?", "skill": "madde",
+              "options": ["Ağırlığına ve şekline (yoğunluk)", "Rengine", "Kokusuna", "Sesine"], "correct": 0, "hint": "Tahta yüzer, taş batar." },
+            { "q": "Gölge nasıl oluşur?", "skill": "bilim-genel",
+              "options": ["Işık bir cisme çarpıp arkasına geçemeyince", "Karanlık aktığı için", "Renk yüzünden", "Rüzgârdan"], "correct": 0, "hint": "Işığı engelleyen cismin arkası karanlık kalır." },
+            { "q": "Bir bilim deneyini yaparken en önemli kural nedir?", "skill": "bilim-genel",
+              "options": ["Dikkatli ve güvenli olmak (gerekirse büyükten yardım)", "Hızlı olmak için kural tanımamak", "Gözleri kapatmak", "Tek başına ateşle oynamak"], "correct": 0, "hint": "Güvenlik her zaman önce gelir." }
+          ]
+        }
+      ]
+    }
+  ]
+}

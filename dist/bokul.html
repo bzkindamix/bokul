@@ -1172,7 +1172,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.42 — Stil kılavuzu uygulaması: marka fontları (Fredoka + Nunito gömülü)</div>
+      <div class="splash-note">v0.43 — 3 yeni ilgi-dersi: Spor, Sanat, Bilim cepheleri (ilgi-alanı kapılı)</div>
     </div>
   </div>
 
@@ -2756,6 +2756,414 @@ h1, h2, h3, h4,
               "options": ["Vurmalı", "Telli", "Üflemeli", "Tuşlu"], "correct": 0, "hint": "Çubukla vurularak çalınır." },
             { "q": "İnsan sesi (şarkı söylemek) bir enstrüman sayılır mı?", "skill": "muzik-genel",
               "options": ["Evet; en doğal enstrümandır", "Hayır, asla", "Sadece koroda", "Sadece sabah"], "correct": 0, "hint": "Ses telleri titreşerek ses üretir." }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-lessons-spor-101">
+{
+  "id": "spor-101",
+  "schema": 1,
+  "title": "Spor Cephesi",
+  "subtitle": "Sağlıklı Beden, Güçlü Komutan",
+  "icon": "⚽",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+  "interestKey": "sporlar",
+
+  "outcomes": [
+    { "id": "o1", "code": "SPR.1", "text": "Sporun temel kurallarını ve fair play'i tanır." },
+    { "id": "o2", "code": "SPR.2", "text": "Spor branşlarını ve sağlıklı yaşamı ayırt eder." }
+  ],
+
+  "skills": ["kurallar", "saglik", "branslar", "spor-genel"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "temel-brief": [
+      { "say": "Gizli cephe açıldı Komutan — çünkü sen SPORU seçtin! Sporun ilk kuralı: ısınmadan başlama. Kaslar soğukken zorlanırsa incinir. Önce hafif koşu, esneme; sonra oyun!" },
+      { "say": "İkinci kural: FAIR PLAY (dürüst oyun). Kazanmak güzeldir ama HİLE yapmadan, rakibe saygıyla oynamak asıl kahramanlıktır. Yenilince de tebrik edersin — gerçek komutan böyle olur." },
+      { "say": "Ve unutma: su iç! Spor yaparken terlersin, su kaybedersin. Susuz komutan yorulur. Şimdi sahaya, asker!" }
+    ],
+    "brans-brief": [
+      { "say": "İkinci brifing: spor BRANŞLARI. Bazıları TAKIM sporudur — futbol, basketbol, voleybol. Arkadaşlarınla birlikte, pas vererek oynarsın." },
+      { "say": "Bazıları BİREYSEL sporudur — yüzme, koşu, jimnastik, tenis. Kendi gücünle yarışırsın. İkisi de seni güçlendirir!" },
+      { "say": "Spor sadece kas değildir: düzenli spor kalbini güçlendirir, uykunu düzeltir, moralini yükseltir. Sağlıklı beslenme + spor + uyku = süper komutan üçlüsü. Hadi göster kendini!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — SPORUN RUHU",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Kurallar ve Fair Play",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Sporun Temelleri",
+              "segments": [ { "model": "abstract", "script": "temel-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Isınma Turu", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Şampiyonluk Maçı", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Antrenman Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-spor1", "tier": "topic", "name": "Faul Canavarı", "icon": "🟥", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-spor1" }
+          },
+          "bank": [
+            { "q": "Spora başlamadan önce ilk ne yapılır?", "skill": "kurallar",
+              "options": ["Isınma (esneme + hafif koşu)", "Hemen tam hızla koşmak", "Bol bol yemek yemek", "Uyumak"], "correct": 0, "hint": "Soğuk kas kolay incinir; önce ısın." },
+            { "q": "'Fair play' ne demektir?", "skill": "kurallar",
+              "options": ["Dürüst ve saygılı oynamak", "Ne olursa olsun kazanmak", "Rakibe bağırmak", "Hakemi kandırmak"], "correct": 0, "hint": "Hilesiz, rakibe saygılı oyun." },
+            { "q": "Maçı kaybedince gerçek bir sporcu ne yapar?", "skill": "kurallar",
+              "options": ["Rakibini tebrik eder", "Küser ve gider", "Kavga çıkarır", "Ağlayıp bırakır"], "correct": 0, "hint": "Yenilgiyi de centilmence karşılamak kahramanlıktır." },
+            { "q": "Spor yaparken neden su içmeliyiz?", "skill": "saglik",
+              "options": ["Terleyince kaybettiğimiz suyu yerine koymak için", "Karnımız acıkmasın diye", "Daha hızlı olmak için sadece", "Gerek yoktur"], "correct": 0, "hint": "Terle su kaybedersin." },
+            { "q": "Futbolda topa elle dokunmak (kaleci hariç) nedir?", "skill": "kurallar",
+              "options": ["Faul (el)", "Gol", "Serbest hareket", "Penaltı kazanmak"], "correct": 0, "hint": "Sadece kaleci ceza sahasında elle oynar." },
+            { "q": "Hakemin görevi nedir?", "skill": "kurallar",
+              "options": ["Kuralların uygulanmasını sağlamak", "En iyi golü atmak", "Takımı desteklemek", "Seyirciyi eğlendirmek"], "correct": 0, "hint": "Tarafsız kural bekçisi." },
+            { "q": "Spordan sonra kaslar için ne iyidir?", "skill": "saglik",
+              "options": ["Soğuma ve esneme hareketleri", "Hemen dondurma yemek", "Hiç hareket etmemek", "Bol bol bağırmak"], "correct": 0, "hint": "Isınmanın tersi: yavaşça soğu." },
+            { "q": "Takım sporunda başarı için en önemlisi hangisidir?", "skill": "spor-genel",
+              "options": ["İş birliği ve pas vermek", "Herkesin tek başına oynaması", "Sadece bir kişinin oynaması", "Kurallara uymamak"], "correct": 0, "hint": "Birlikten kuvvet doğar." },
+            { "q": "Spor ayakkabısı neden önemlidir?", "skill": "saglik",
+              "options": ["Ayağı korur, kaymayı önler", "Sadece güzel görünsün diye", "Hızlı yesin diye", "Önemli değildir"], "correct": 0, "hint": "Doğru ayakkabı sakatlanmayı azaltır." },
+            { "q": "Sarı kart futbolda neyi gösterir?", "skill": "kurallar",
+              "options": ["Uyarı (dikkatli ol!)", "Gol", "Maç bitti", "Oyuncu değişikliği"], "correct": 0, "hint": "İkinci sarı = kırmızı olur." },
+            { "q": "Düzenli spor yapmak neyi güçlendirir?", "skill": "saglik",
+              "options": ["Kalbi ve kasları", "Sadece saçları", "Sadece tırnakları", "Hiçbir şeyi"], "correct": 0, "hint": "Kalp de bir kastır, çalışınca güçlenir." },
+            { "q": "Bir takım arkadaşın düşünce ne yaparsın?", "skill": "spor-genel",
+              "options": ["Kalkmasına yardım ederim", "Gülerim", "Görmezden gelirim", "İterim"], "correct": 0, "hint": "Fair play sadece rakibe değil, takımına da saygı." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Branşlar ve Sağlık",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Spor Branşları",
+              "segments": [ { "model": "abstract", "script": "brans-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Branş Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Olimpiyat Operasyonu", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Antrenman Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-spor2", "tier": "topic", "name": "Tembellik Devi", "icon": "🛋️", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-spor2" }
+          },
+          "bank": [
+            { "q": "Hangisi bir TAKIM sporudur?", "skill": "branslar",
+              "options": ["Basketbol", "Yüzme", "Koşu", "Tenis (tekli)"], "correct": 0, "hint": "Birden çok kişiyle birlikte oynanır." },
+            { "q": "Hangisi genellikle BİREYSEL bir spordur?", "skill": "branslar",
+              "options": ["Yüzme", "Futbol", "Voleybol", "Basketbol"], "correct": 0, "hint": "Kendi başına, kendi gücünle." },
+            { "q": "Basketbolda amaç nedir?", "skill": "branslar",
+              "options": ["Topu potaya atmak", "Kaleye gol atmak", "Fileden aşırmak", "En hızlı yüzmek"], "correct": 0, "hint": "Yukarıdaki çembere sayı." },
+            { "q": "Voleybolda top nereden karşıya geçer?", "skill": "branslar",
+              "options": ["Filenin üstünden", "Potadan", "Kaleden", "Yerden"], "correct": 0, "hint": "Ortadaki file iki takımı ayırır." },
+            { "q": "Sağlıklı bir sporcu için hangisi en doğrudur?", "skill": "saglik",
+              "options": ["Dengeli beslenir, su içer, uyur", "Hiç uyumaz", "Sadece cips yer", "Hiç su içmez"], "correct": 0, "hint": "Spor + beslenme + uyku üçlüsü." },
+            { "q": "Yüzme hangi açıdan çok faydalıdır?", "skill": "saglik",
+              "options": ["Neredeyse tüm vücudu çalıştırır", "Sadece parmakları", "Sadece göz kaslarını", "Hiçbir kası"], "correct": 0, "hint": "Suda kolların, bacakların, sırtın hep çalışır." },
+            { "q": "Jimnastikte hangisi ön plandadır?", "skill": "branslar",
+              "options": ["Esneklik ve denge", "Topu kaleye atmak", "Araba sürmek", "Şarkı söylemek"], "correct": 0, "hint": "Takla, denge, esneme." },
+            { "q": "Uzun bir maçtan önce ne yemek daha iyidir?", "skill": "saglik",
+              "options": ["Enerji veren dengeli bir öğün", "Sadece çikolata", "Hiçbir şey", "Çok ağır, yağlı yemek"], "correct": 0, "hint": "Enerji lazım ama mideyi de yormamalı." },
+            { "q": "Koşuda dayanıklılık ne demektir?", "skill": "spor-genel",
+              "options": ["Uzun süre yorulmadan devam edebilmek", "Bir kez zıplamak", "Çok bağırmak", "Hızlı yemek"], "correct": 0, "hint": "Kalp ve nefes güçlenince uzun koşarsın." },
+            { "q": "Tenis nasıl bir sporudur?", "skill": "branslar",
+              "options": ["Raketle top vurulan bir spor", "Ayakla top sürülen spor", "Suda yapılan spor", "Kar sporu"], "correct": 0, "hint": "File üzerinden raketle." },
+            { "q": "Her gün hareketsiz oturmak vücuda ne yapar?", "skill": "saglik",
+              "options": ["Kasları güçsüzleştirir, enerjini düşürür", "Daha da güçlendirir", "Hiçbir etkisi yoktur", "Boyu uzatır"], "correct": 0, "hint": "Hareket etmeyen kas zayıflar." },
+            { "q": "Olimpiyat oyunlarının sembolü kaç halkadır?", "skill": "spor-genel",
+              "options": ["5 halka", "3 halka", "7 halka", "10 halka"], "correct": 0, "hint": "Beş kıtayı temsil eden iç içe halkalar." }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-lessons-sanat-101">
+{
+  "id": "sanat-101",
+  "schema": 1,
+  "title": "Sanat Cephesi",
+  "subtitle": "Renkler, Çizim ve Hayal Gücü",
+  "icon": "🎨",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+  "interestKey": "sanat",
+
+  "outcomes": [
+    { "id": "o1", "code": "SAN.1", "text": "Ana/ara renkleri ve renk karışımını tanır." },
+    { "id": "o2", "code": "SAN.2", "text": "Sanat araçlarını ve türlerini ayırt eder." }
+  ],
+
+  "skills": ["renkler", "cizim", "araclar", "sanat-genel"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "renk-brief": [
+      { "say": "Gizli cephe açıldı Komutan — çünkü sen SANATI seçtin! Üç ANA renk vardır: KIRMIZI, SARI, MAVİ. Bunlar başka renklerin karışımından ELDE EDİLEMEZ; onlar başlangıçtır." },
+      { "say": "Ana renkleri karıştırınca ARA renkler doğar: Sarı + Mavi = YEŞİL, Kırmızı + Sarı = TURUNCU, Mavi + Kırmızı = MOR. Sihir gibi, değil mi?" },
+      { "say": "Bir de sıcak renkler (kırmızı, turuncu, sarı — güneş gibi) ve soğuk renkler (mavi, yeşil, mor — deniz gibi) vardır. Renkler duygu anlatır! Şimdi fırçayı kap, asker!" }
+    ],
+    "arac-brief": [
+      { "say": "İkinci brifing: sanat ARAÇLARI. Kalem ve karakalemle çizersin; sulu boya, guaj ve pastel boyayla renklendirirsin. Her araç farklı bir doku verir." },
+      { "say": "Çizimin temeli ŞEKİLLERdir: daire, kare, üçgen. Bir kediyi bile daire ve üçgenlerle çizebilirsin! Büyükten küçüğe, kabadan detaya doğru çalışırsın." },
+      { "say": "Sanat sadece resim değildir: heykel, origami, seramik de sanattır. En önemli malzeme HAYAL GÜCÜ — o bedava ve sınırsız! Hadi eserini yarat!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — RENK VE ÇİZİM",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Renkler",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Renkler",
+              "segments": [ { "model": "abstract", "script": "renk-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Renk Devriyesi", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Palet Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Gökkuşağı Operasyonu", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Atölye Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-sanat1", "tier": "topic", "name": "Renksiz Gölge", "icon": "⚫", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-sanat1" }
+          },
+          "bank": [
+            { "q": "Üç ANA renk hangileridir?", "skill": "renkler",
+              "options": ["Kırmızı, Sarı, Mavi", "Yeşil, Turuncu, Mor", "Siyah, Beyaz, Gri", "Pembe, Kahve, Lacivert"], "correct": 0, "hint": "Karışımdan elde edilemeyen üç renk." },
+            { "q": "Sarı + Mavi karışınca hangi renk olur?", "skill": "renkler",
+              "options": ["Yeşil", "Turuncu", "Mor", "Pembe"], "correct": 0, "hint": "Çimen ve yaprak rengi." },
+            { "q": "Kırmızı + Sarı karışınca hangi renk olur?", "skill": "renkler",
+              "options": ["Turuncu", "Yeşil", "Mor", "Mavi"], "correct": 0, "hint": "Portakal ve havuç rengi." },
+            { "q": "Mavi + Kırmızı karışınca hangi renk olur?", "skill": "renkler",
+              "options": ["Mor", "Yeşil", "Sarı", "Turuncu"], "correct": 0, "hint": "Patlıcan ve menekşe rengi." },
+            { "q": "Hangisi bir ARA (ikincil) renktir?", "skill": "renkler",
+              "options": ["Yeşil", "Kırmızı", "Sarı", "Mavi"], "correct": 0, "hint": "İki ana rengin karışımı." },
+            { "q": "Kırmızı, turuncu, sarı hangi grup renklerdir?", "skill": "renkler",
+              "options": ["Sıcak renkler", "Soğuk renkler", "Renksizler", "Ara renkler"], "correct": 0, "hint": "Güneş ve ateşi düşün." },
+            { "q": "Mavi, yeşil, mor hangi grup renklerdir?", "skill": "renkler",
+              "options": ["Soğuk renkler", "Sıcak renkler", "Ana renkler", "Metalik renkler"], "correct": 0, "hint": "Deniz ve buzu düşün." },
+            { "q": "Bir renge BEYAZ eklersek ne olur?", "skill": "renkler",
+              "options": ["Rengi açılır (pastelleşir)", "Rengi kararır", "Renk kaybolur", "Hiçbir şey olmaz"], "correct": 0, "hint": "Kırmızı + beyaz = pembe." },
+            { "q": "Bir renge SİYAH eklersek ne olur?", "skill": "renkler",
+              "options": ["Rengi koyulaşır", "Rengi açılır", "Beyaz olur", "Parlar"], "correct": 0, "hint": "Ton koyulaşır, gölge olur." },
+            { "q": "Gökkuşağında yaklaşık kaç ana renk sayılır?", "skill": "renkler",
+              "options": ["7", "3", "2", "12"], "correct": 0, "hint": "Kırmızıdan mora yedi kuşak." },
+            { "q": "Ressamın renkleri karıştırdığı düz yüzeye ne denir?", "skill": "araclar",
+              "options": ["Palet", "Şövale", "Fırça", "Tuval"], "correct": 0, "hint": "Elde tutulan, renklerin karıldığı tabla." },
+            { "q": "Kağıt üzerinde bir rengi daha AÇIK göstermek istersen?", "skill": "renkler",
+              "options": ["Daha az boya/su ile inceltirsin", "Üstüne siyah sürersin", "Daha çok bastırırsın", "Yakarsın"], "correct": 0, "hint": "Sulu boyada su renkleri açar." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Araçlar ve Sanat Türleri",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Sanat Araçları",
+              "segments": [ { "model": "abstract", "script": "arac-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Araç Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Atölye Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Başyapıt Operasyonu", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Atölye Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-sanat2", "tier": "topic", "name": "Karalama Ejderi", "icon": "🖍️", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-sanat2" }
+          },
+          "bank": [
+            { "q": "Karakalem çizim için hangi araç kullanılır?", "skill": "araclar",
+              "options": ["Kurşun kalem", "Sulu boya", "Makas", "Çekiç"], "correct": 0, "hint": "Gri tonlarla gölgelenir." },
+            { "q": "Çizimin temel yapı taşı olan şekiller hangileridir?", "skill": "cizim",
+              "options": ["Daire, kare, üçgen", "Sadece nokta", "Sadece çizgi", "Hiçbiri"], "correct": 0, "hint": "Karmaşık şeyler basit şekillerden kurulur." },
+            { "q": "Bir resme çizerken genelde nereden başlanır?", "skill": "cizim",
+              "options": ["Kaba/büyük şekillerden, sonra detaydan", "En küçük detaydan", "En sondan", "Rastgele"], "correct": 0, "hint": "Önce iskelet, sonra süsleme." },
+            { "q": "Kağıttan şekiller katlayarak yapılan sanat nedir?", "skill": "sanat-genel",
+              "options": ["Origami", "Heykel", "Fotoğraf", "Bale"], "correct": 0, "hint": "Japon kağıt katlama sanatı." },
+            { "q": "Kilden veya taştan üç boyutlu eser yapmaya ne denir?", "skill": "sanat-genel",
+              "options": ["Heykel", "Resim", "Şarkı", "Şiir"], "correct": 0, "hint": "Elle şekil verilen 3 boyutlu sanat." },
+            { "q": "Ressamların üzerine resim yaptığı gergin beze ne denir?", "skill": "araclar",
+              "options": ["Tuval", "Palet", "Halı", "Perde"], "correct": 0, "hint": "Şövaleye konan bez yüzey." },
+            { "q": "Pastel boya nasıl bir dokur verir?", "skill": "araclar",
+              "options": ["Yumuşak, kadifemsi", "Sert ve parlak metal", "Islak ve akışkan", "Hiç renk vermez"], "correct": 0, "hint": "Parmakla dağıtılabilen yumuşak boya." },
+            { "q": "Sanatta en önemli 'bedava malzeme' hangisidir?", "skill": "sanat-genel",
+              "options": ["Hayal gücü", "Altın", "Pahalı fırça", "Büyük tuval"], "correct": 0, "hint": "Sınırsız ve herkeste var." },
+            { "q": "Bir eseri yaparken hata yaparsan ne yapmak iyidir?", "skill": "sanat-genel",
+              "options": ["Onu yeni bir fikre çevirmeye çalışmak", "Hemen yırtıp atmak", "Ağlamak", "Bir daha çizmemek"], "correct": 0, "hint": "Sanatta 'hata' çoğu zaman yeni bir yol açar." },
+            { "q": "Sulu boyayı incelten (açan) nedir?", "skill": "araclar",
+              "options": ["Su", "Tuz", "Yağ", "Kum"], "correct": 0, "hint": "Adı üstünde: SULU boya." },
+            { "q": "Gölgelendirme (gölge çizmek) resme ne katar?", "skill": "cizim",
+              "options": ["Derinlik ve gerçeklik hissi", "Sadece kirlilik", "Hiçbir şey", "Renk kokusu"], "correct": 0, "hint": "Işık ve gölge, düz resmi canlandırır." },
+            { "q": "Fotoğraf çekmek de bir sanat türü müdür?", "skill": "sanat-genel",
+              "options": ["Evet, ışık ve kompozisyon sanatıdır", "Hayır, asla", "Sadece telefonla değil", "Sadece gece"], "correct": 0, "hint": "Çerçeveleme ve ışık seçimi sanattır." }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-lessons-bilim-101">
+{
+  "id": "bilim-101",
+  "schema": 1,
+  "title": "Bilim Cephesi",
+  "subtitle": "Uzay, Doğa ve Deneyler",
+  "icon": "🔬",
+  "theme": "galaxy-base",
+  "interactionType": "multiple-choice",
+  "interestKey": "bilim",
+
+  "outcomes": [
+    { "id": "o1", "code": "BIL.1", "text": "Güneş sistemi ve doğa hakkında temel bilgileri tanır." },
+    { "id": "o2", "code": "BIL.2", "text": "Maddenin hallerini ve basit bilimsel gerçekleri ayırt eder." }
+  ],
+
+  "skills": ["uzay", "doga", "madde", "bilim-genel"],
+
+  "hints": {},
+
+  "teachScripts": {
+    "uzay-brief": [
+      { "say": "Gizli cephe açıldı Komutan — çünkü sen BİLİMİ seçtin! Yaşadığımız yer DÜNYA, bir gezegen. Güneş'in etrafında dönen 8 gezegen var: Merkür, Venüs, Dünya, Mars, Jüpiter, Satürn, Uranüs, Neptün." },
+      { "say": "GÜNEŞ bir yıldızdır — dev bir ateş topu! Bize ışık ve ısı verir. AY ise Dünya'nın uydusudur, kendi ışığı yoktur; Güneş'in ışığını yansıtır." },
+      { "say": "Gece-gündüz, Dünya kendi ekseninde döndüğü için olur. Güneş'e bakan taraf gündüz, arkada kalan gece! Sen de bir galaksi kâşifisin — hadi keşfet!" }
+    ],
+    "madde-brief": [
+      { "say": "İkinci brifing: MADDENİN HALLERİ. Her şey üç halde olabilir: KATI (buz, taş), SIVI (su, süt), GAZ (hava, buhar). Isı bunları birbirine çevirir!" },
+      { "say": "Buzu ısıtırsan SU olur (erir), suyu daha da ısıtırsan BUHAR olur (buharlaşır). Soğutursan tersine döner. Su, tabiatın sihirbazı!" },
+      { "say": "Bilim GÖZLEM ve DENEY ile ilerler: merak et, tahmin et, dene, gör. Bir bilim insanı gibi soru sor: 'Acaba neden?' İşte gerçek keşif budur!" }
+    ]
+  },
+
+  "units": [
+    {
+      "id": "u1",
+      "title": "ÜNİTE 1 — EVREN VE MADDE",
+      "sections": [
+        {
+          "id": "s1",
+          "title": "Uzay ve Doğa",
+          "outcomeIds": ["o1"],
+          "unlock": { "starsRequired": 0 },
+          "missions": [
+            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Uzay",
+              "segments": [ { "model": "abstract", "script": "uzay-brief" } ] },
+            { "id": "s1m2", "type": "practice", "title": "Yıldız Devriyesi", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m3", "type": "practice", "title": "Keşif Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
+            { "id": "s1m4", "type": "challenge", "title": "Galaksi Operasyonu", "targetCount": 3, "generator": { "pool": "s1" } },
+            { "id": "s1m5", "type": "review", "title": "Laboratuvar Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-bilim1", "tier": "topic", "name": "Cehalet Kara Deliği", "icon": "🕳️", "hp": 30,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s1" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-bilim1" }
+          },
+          "bank": [
+            { "q": "Üzerinde yaşadığımız gezegenin adı nedir?", "skill": "uzay",
+              "options": ["Dünya", "Mars", "Güneş", "Ay"], "correct": 0, "hint": "Mavi gezegen." },
+            { "q": "Güneş aslında nedir?", "skill": "uzay",
+              "options": ["Bir yıldız", "Bir gezegen", "Bir uydu", "Bir bulut"], "correct": 0, "hint": "Kendi ışığını üreten dev ateş topu." },
+            { "q": "Ay'ın ışığı nereden gelir?", "skill": "uzay",
+              "options": ["Güneş'in ışığını yansıtır", "Kendi yanar", "Yıldızlardan", "Dünya'dan"], "correct": 0, "hint": "Ay kendi ışığını üretmez." },
+            { "q": "Gece ve gündüz neden olur?", "skill": "uzay",
+              "options": ["Dünya kendi ekseninde döndüğü için", "Güneş söndüğü için", "Ay engellediği için", "Bulutlar yüzünden"], "correct": 0, "hint": "Güneş'e bakan yüz gündüz olur." },
+            { "q": "Güneş sisteminde kaç gezegen vardır?", "skill": "uzay",
+              "options": ["8", "5", "12", "3"], "correct": 0, "hint": "Merkür'den Neptün'e kadar say." },
+            { "q": "'Kızıl gezegen' diye bilinen gezegen hangisidir?", "skill": "uzay",
+              "options": ["Mars", "Venüs", "Jüpiter", "Dünya"], "correct": 0, "hint": "Toprağı kırmızımsıdır." },
+            { "q": "Dünya'nın tek doğal uydusu nedir?", "skill": "uzay",
+              "options": ["Ay", "Güneş", "Mars", "Yıldız"], "correct": 0, "hint": "Geceleri gökyüzünde parlar." },
+            { "q": "Bitkiler büyümek için en çok neye ihtiyaç duyar?", "skill": "doga",
+              "options": ["Su, ışık ve toprak", "Sadece karanlık", "Sadece taş", "Hiçbir şey"], "correct": 0, "hint": "Güneş ışığı + su = fotosentez." },
+            { "q": "Hava durumunda 'yağmur' nasıl oluşur?", "skill": "doga",
+              "options": ["Bulutlardaki su damlaları ağırlaşıp düşünce", "Güneş eridiği için", "Rüzgâr estiği için sadece", "Yıldızlar düştüğü için"], "correct": 0, "hint": "Bulut = küçük su damlacıkları." },
+            { "q": "Canlılar nefes almak için havadan neyi kullanır?", "skill": "doga",
+              "options": ["Oksijen", "Kum", "Işık", "Ses"], "correct": 0, "hint": "Ciğerlerimize çektiğimiz hayat gazı." },
+            { "q": "Ağaçlar bizim için havaya neyi verir?", "skill": "doga",
+              "options": ["Oksijen", "Duman", "Toz", "Karbondioksit yerine hiçbir şey"], "correct": 0, "hint": "Bu yüzden orman = temiz hava." },
+            { "q": "En yakın yıldızımız hangisidir?", "skill": "uzay",
+              "options": ["Güneş", "Ay", "Kutup Yıldızı", "Mars"], "correct": 0, "hint": "Her sabah doğar." }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Madde ve Deneyler",
+          "outcomeIds": ["o2"],
+          "unlock": { "starsRequired": 10 },
+          "missions": [
+            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Maddenin Halleri",
+              "segments": [ { "model": "abstract", "script": "madde-brief" } ] },
+            { "id": "s2m2", "type": "practice", "title": "Deney Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m3", "type": "practice", "title": "Laboratuvar Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
+            { "id": "s2m4", "type": "challenge", "title": "Büyük Deney Operasyonu", "targetCount": 3, "generator": { "pool": "s2" } },
+            { "id": "s2m5", "type": "review", "title": "Laboratuvar Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+          ],
+          "boss": {
+            "id": "boss-bilim2", "tier": "topic", "name": "Şüphe Golemi", "icon": "🧪", "hp": 33,
+            "unlock": { "masteryRequired": 0.7 },
+            "generator": { "pool": "s2" },
+            "rewards": { "xp": 100, "chest": "epic", "badge": "b-bilim2" }
+          },
+          "bank": [
+            { "q": "Maddenin üç temel hali hangileridir?", "skill": "madde",
+              "options": ["Katı, sıvı, gaz", "Sıcak, soğuk, ılık", "Büyük, orta, küçük", "Kırmızı, mavi, sarı"], "correct": 0, "hint": "Buz, su, buhar." },
+            { "q": "Buz hangi haldedir?", "skill": "madde",
+              "options": ["Katı", "Sıvı", "Gaz", "Işık"], "correct": 0, "hint": "Sert ve şekli belli." },
+            { "q": "Buzu ısıtırsak ne olur?", "skill": "madde",
+              "options": ["Erir, su (sıvı) olur", "Taş olur", "Kaybolur", "Gaz olur hemen"], "correct": 0, "hint": "Katıdan sıvıya geçiş = erime." },
+            { "q": "Suyu çok ısıtırsak (kaynatırsak) ne olur?", "skill": "madde",
+              "options": ["Buhara (gaza) dönüşür", "Buz olur", "Katılaşır", "Renk değiştirir sadece"], "correct": 0, "hint": "Tencerenin üstündeki buhar." },
+            { "q": "Hava hangi haldedir?", "skill": "madde",
+              "options": ["Gaz", "Katı", "Sıvı", "Işık"], "correct": 0, "hint": "Gözle görünmez ama vardır." },
+            { "q": "Bir bilim insanı yeni bir şeyi anlamak için önce ne yapar?", "skill": "bilim-genel",
+              "options": ["Gözlemler ve soru sorar", "Hemen pes eder", "Tahmin etmeden bilir", "Uyur"], "correct": 0, "hint": "Merak → gözlem → deney." },
+            { "q": "Bir deneyde 'tahmin' (hipotez) ne işe yarar?", "skill": "bilim-genel",
+              "options": ["Ne olacağını önceden düşünmek", "Deneyi bitirmek", "Sonucu gizlemek", "Hiçbir işe yaramaz"], "correct": 0, "hint": "Denemeden önce 'sanırım şöyle olur' demek." },
+            { "q": "Mıknatıs hangisini kendine çeker?", "skill": "madde",
+              "options": ["Demir/metal cisimleri", "Kağıdı", "Suyu", "Ahşabı"], "correct": 0, "hint": "Buzdolabı mıknatısını düşün." },
+            { "q": "Suda tuz karıştırıp beklersek tuz ne olur?", "skill": "madde",
+              "options": ["Suda çözünür (görünmez olur)", "Buz olur", "Renk verir sadece", "Patlar"], "correct": 0, "hint": "Görünmez ama tadı kalır: çözünme." },
+            { "q": "Bir cismin suda batması ya da yüzmesi neye bağlıdır?", "skill": "madde",
+              "options": ["Ağırlığına ve şekline (yoğunluk)", "Rengine", "Kokusuna", "Sesine"], "correct": 0, "hint": "Tahta yüzer, taş batar." },
+            { "q": "Gölge nasıl oluşur?", "skill": "bilim-genel",
+              "options": ["Işık bir cisme çarpıp arkasına geçemeyince", "Karanlık aktığı için", "Renk yüzünden", "Rüzgârdan"], "correct": 0, "hint": "Işığı engelleyen cismin arkası karanlık kalır." },
+            { "q": "Bir bilim deneyini yaparken en önemli kural nedir?", "skill": "bilim-genel",
+              "options": ["Dikkatli ve güvenli olmak (gerekirse büyükten yardım)", "Hızlı olmak için kural tanımamak", "Gözleri kapatmak", "Tek başına ateşle oynamak"], "correct": 0, "hint": "Güvenlik her zaman önce gelir." }
           ]
         }
       ]
@@ -9226,6 +9634,8 @@ h1, h2, h3, h4,
     { id: 'aburcubur',  icon: '🍫', label: 'Sevdiğim abur cuburlar',      opts: ['Çikolata', 'Cips', 'Dondurma', 'Şeker', 'Bisküvi', 'Kek', 'Kraker'] },
     { id: 'saglikli',   icon: '🥗', label: 'Sevdiğim sağlıklı yiyecekler', opts: ['Meyve', 'Sebze', 'Yoğurt', 'Yumurta', 'Balık', 'Kuruyemiş', 'Salata'] },
     { id: 'sporlar',    icon: '⚽', label: 'Sevdiğim sporlar',            opts: ['Futbol', 'Basketbol', 'Voleybol', 'Yüzme', 'Jimnastik', 'Tenis', 'Koşu', 'Bisiklet'] },
+    { id: 'sanat',      icon: '🎨', label: 'Sanat ve yaratıcılık',        opts: ['Resim', 'Boyama', 'Çizgi film çizme', 'Origami', 'Heykel/kil', 'El işi', 'Fotoğraf', 'Tasarım'] },
+    { id: 'bilim',      icon: '🔬', label: 'Bilim ve keşif',              opts: ['Uzay', 'Hayvanlar', 'Deneyler', 'Robotlar', 'Dinozorlar', 'Doğa', 'Gezegenler', 'İcatlar'] },
     { id: 'icecekler',  icon: '🥤', label: 'Sevdiğim içecekler',          opts: ['Su', 'Süt', 'Meyve suyu', 'Ayran', 'Limonata', 'Smoothie'] },
   ];
 
@@ -9325,6 +9735,9 @@ h1, h2, h3, h4,
         'lessons/care-101',
         'lessons/philo-101',
         'lessons/music-101',
+        'lessons/spor-101',
+        'lessons/sanat-101',
+        'lessons/bilim-101',
       ];
       await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'pets', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
@@ -9414,7 +9827,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.42'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.43'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

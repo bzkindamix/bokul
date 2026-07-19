@@ -12,6 +12,8 @@
     { id: 'aburcubur',  icon: '🍫', label: 'Sevdiğim abur cuburlar',      opts: ['Çikolata', 'Cips', 'Dondurma', 'Şeker', 'Bisküvi', 'Kek', 'Kraker'] },
     { id: 'saglikli',   icon: '🥗', label: 'Sevdiğim sağlıklı yiyecekler', opts: ['Meyve', 'Sebze', 'Yoğurt', 'Yumurta', 'Balık', 'Kuruyemiş', 'Salata'] },
     { id: 'sporlar',    icon: '⚽', label: 'Sevdiğim sporlar',            opts: ['Futbol', 'Basketbol', 'Voleybol', 'Yüzme', 'Jimnastik', 'Tenis', 'Koşu', 'Bisiklet'] },
+    { id: 'sanat',      icon: '🎨', label: 'Sanat ve yaratıcılık',        opts: ['Resim', 'Boyama', 'Çizgi film çizme', 'Origami', 'Heykel/kil', 'El işi', 'Fotoğraf', 'Tasarım'] },
+    { id: 'bilim',      icon: '🔬', label: 'Bilim ve keşif',              opts: ['Uzay', 'Hayvanlar', 'Deneyler', 'Robotlar', 'Dinozorlar', 'Doğa', 'Gezegenler', 'İcatlar'] },
     { id: 'icecekler',  icon: '🥤', label: 'Sevdiğim içecekler',          opts: ['Su', 'Süt', 'Meyve suyu', 'Ayran', 'Limonata', 'Smoothie'] },
   ];
 

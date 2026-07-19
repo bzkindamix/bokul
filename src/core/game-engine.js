@@ -11,6 +11,9 @@
         'lessons/care-101',
         'lessons/philo-101',
         'lessons/music-101',
+        'lessons/spor-101',
+        'lessons/sanat-101',
+        'lessons/bilim-101',
       ];
       await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'pets', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
