@@ -54,7 +54,7 @@
     { "id": "oyuncak_kemik", "name": "Oyuncak Kemik", "icon": "🦴", "price": 45, "cat": "pet", "desc": "Köpeğinle oynamak için." },
 
     { "id": "kedi_kumu", "name": "Kedi Kumu", "icon": "🏖️", "price": 55, "cat": "pet", "desc": "Kum kabı için." },
-    { "id": "kedi_mamasi", "name": "Kedi Maması", "icon": "🐟", "price": 60, "cat": "pet", "desc": "Kedinin favorisi." },
+    { "id": "kedi_mamasi", "name": "Kedi Maması", "icon": "🥫", "price": 60, "cat": "pet", "desc": "Kedinin favorisi." },
     { "id": "tirmalama", "name": "Tırmalama Tahtası", "icon": "🪵", "price": 110, "cat": "pet", "desc": "Kedinin tırmalama alanı." },
 
     { "id": "kafes", "name": "Kuş Kafesi", "icon": "🪺", "price": 130, "cat": "pet", "desc": "Kuşun evi." },

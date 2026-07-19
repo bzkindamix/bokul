@@ -1451,7 +1451,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.59 — Oda eşyaları orantılı boyut + mantıklı zemin: mobilya tabanından zemine oturur, poster/lamba duvara asılır, taban gölgesi</div>
+      <div class="splash-note">v0.60 — Kedi maması balık ikonu yerine konserve mama ikonu (hayvansever hassasiyeti)</div>
     </div>
   </div>
 
@@ -2223,7 +2223,7 @@ h1, h2, h3, h4,
     { "id": "oyuncak_kemik", "name": "Oyuncak Kemik", "icon": "🦴", "price": 45, "cat": "pet", "desc": "Köpeğinle oynamak için." },
 
     { "id": "kedi_kumu", "name": "Kedi Kumu", "icon": "🏖️", "price": 55, "cat": "pet", "desc": "Kum kabı için." },
-    { "id": "kedi_mamasi", "name": "Kedi Maması", "icon": "🐟", "price": 60, "cat": "pet", "desc": "Kedinin favorisi." },
+    { "id": "kedi_mamasi", "name": "Kedi Maması", "icon": "🥫", "price": 60, "cat": "pet", "desc": "Kedinin favorisi." },
     { "id": "tirmalama", "name": "Tırmalama Tahtası", "icon": "🪵", "price": 110, "cat": "pet", "desc": "Kedinin tırmalama alanı." },
 
     { "id": "kafes", "name": "Kuş Kafesi", "icon": "🪺", "price": 130, "cat": "pet", "desc": "Kuşun evi." },
@@ -2330,7 +2330,7 @@ h1, h2, h3, h4,
       "prereq": [ { "item": "kedi_kumu", "n": 1 }, { "item": "mama_kabi", "n": 1 }, { "item": "tirmalama", "n": 1 } ],
       "teach": "Kedin geldi! Bağımsızdır ama sevgi ister. Mamasını ver, tırmalama tahtasıyla oynat, ara sıra tımar et. Mutlu kedi mırlar!",
       "care": [
-        { "id": "besle", "label": "Mama ver", "icon": "🐟", "consume": { "kedi_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "besle", "label": "Mama ver", "icon": "🥫", "consume": { "kedi_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
         { "id": "oyna", "label": "Oynat", "icon": "🧶", "cooldownH": 2, "restore": { "mutluluk": 35 }, "xp": 5, "coin": 2 },
         { "id": "timar", "label": "Tımar et", "icon": "🪮", "cooldownH": 4, "restore": { "mutluluk": 25 }, "xp": 4, "coin": 1 }
       ]
@@ -15499,7 +15499,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.59'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.60'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

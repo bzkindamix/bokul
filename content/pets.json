@@ -20,7 +20,7 @@
       "prereq": [ { "item": "kedi_kumu", "n": 1 }, { "item": "mama_kabi", "n": 1 }, { "item": "tirmalama", "n": 1 } ],
       "teach": "Kedin geldi! Bağımsızdır ama sevgi ister. Mamasını ver, tırmalama tahtasıyla oynat, ara sıra tımar et. Mutlu kedi mırlar!",
       "care": [
-        { "id": "besle", "label": "Mama ver", "icon": "🐟", "consume": { "kedi_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
+        { "id": "besle", "label": "Mama ver", "icon": "🥫", "consume": { "kedi_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
         { "id": "oyna", "label": "Oynat", "icon": "🧶", "cooldownH": 2, "restore": { "mutluluk": 35 }, "xp": 5, "coin": 2 },
         { "id": "timar", "label": "Tımar et", "icon": "🪮", "cooldownH": 4, "restore": { "mutluluk": 25 }, "xp": 4, "coin": 1 }
       ]
