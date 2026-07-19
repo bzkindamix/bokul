@@ -191,7 +191,7 @@
       function render() {
         const p = B.State.data.player;
         left.innerHTML =
-          '<div class="locker-preview">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
+          '<div class="locker-preview">' + B.Avatar.elFull(p.avatar, 'avatar-big') + '</div>' +
           '<div class="turn-hint">👆 Çevirmek için sürükle</div>' +
           '<div class="locker-name">' + (p.name || 'İsimsiz Asker') + '</div>' +
           '<div class="chip">💰 ' + (p.coins || 0) + ' Altın</div>' +

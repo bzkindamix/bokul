@@ -29,7 +29,7 @@
       wrap.className = 'evim-wrap';
       wrap.innerHTML =
         '<div class="evim-hero">' +
-          '<div class="evim-avatar">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
+          '<div class="evim-avatar">' + B.Avatar.elFull(p.avatar, 'avatar-big') + '</div>' +
           '<div class="evim-name">🧍 ' + (p.name || 'Asker') + '</div>' +
           '<div class="evim-levels">' +
             '<span class="chip">💰 ' + (p.coins || 0) + '</span>' +

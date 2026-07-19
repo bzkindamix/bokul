@@ -1085,3 +1085,10 @@
 .vit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .22em; width: 100%; }
 .vit-b { font-size: 1.5em; text-align: center; filter: drop-shadow(0 1px 1px rgba(0,0,0,.5)); }
 .vit-empty { font-size: .72em; color: var(--ink-dim); grid-column: 1 / -1; text-align: center; line-height: 1.2; }
+
+/* === v0.64 — Tam vücut avatar önizleme (portre kutular) === */
+.avatar-full svg { width: 100%; height: 100%; display: block; }
+.locker-preview { width: 158px !important; height: 236px !important; }
+.evim-avatar { width: 118px !important; height: 200px !important; }
+.char-av { width: 100px !important; height: 172px !important; }
+.char-av .avatar-holder, .char-av svg { width: 100% !important; height: 100% !important; }

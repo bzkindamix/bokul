@@ -382,6 +382,62 @@
     return '<span class="avatar-holder ' + (cls || '') + '">' + svg(a) + '</span>';
   }
 
+  /* ---------- TAM VÜCUT (ayakta figür) — büyük önizlemeler için ---------- */
+  function fullBody(a) {
+    a = normalize(a);
+    const skin = CATALOG.skins[a.skin].color;
+    const hairC = (CATALOG.hairColors[a.hairColor] || CATALOG.hairColors[0]).color;
+    const eyeC = (CATALOG.eyeColors[a.eyeColor] || CATALOG.eyeColors[0]).color;
+    const o = OUTFIT_BY_ID[a.outfit] || OUTFIT_BY_ID[DEFAULT_OUTFIT];
+    const shirt = o.c1, accent = o.c2;
+    const dress = /elbise|bluz|kolsuz/.test(o.shape || '');
+    const pants = shade(skin, -60); // koyu pantolon tonu (nötr)
+    const shoe = '#20182f';
+    const id = 'bkf' + (uid++);
+    const defs = '<defs>' +
+      '<radialGradient id="fb' + id + '" cx="40%" cy="26%" r="85%"><stop offset="0%" stop-color="#3d2d74"/><stop offset="100%" stop-color="#1b1330"/></radialGradient>' +
+      '</defs>';
+    // Kafa grubu: mevcut yüz çizimleri (native 0-120 koordinat), ölçekle+üste taşı
+    const head =
+      '<g transform="translate(10.8,2) scale(0.82)">' +
+        earSvg(a.ear, skin) +
+        '<ellipse cx="60" cy="64" rx="30" ry="32" fill="' + skin + '"/>' +
+        hairSvg(a.hair, hairC) +
+        eyesSvg(a.eyes, eyeC, a.gender === 'kiz') +
+        noseSvg(a.nose, skin) +
+        mouthSvg(a.mouth) +
+        accSvg(a.acc) +
+      '</g>';
+    // Gövde
+    const legs = dress
+      ? '' // elbise: bacaklar etek altında (sadece ayaklar görünür)
+      : '<rect x="48" y="150" width="9.5" height="50" rx="4.75" fill="' + pants + '"/>' +
+        '<rect x="62.5" y="150" width="9.5" height="50" rx="4.75" fill="' + pants + '"/>';
+    const torso = dress
+      ? '<path d="M40 94 Q60 86 80 94 L92 200 Q60 210 28 200 Z" fill="' + shirt + '"/>' +
+        '<path d="M40 94 Q60 88 80 94 L82 118 Q60 124 38 118 Z" fill="' + accent + '" opacity=".55"/>'
+      : '<path d="M40 94 Q60 86 80 94 L83 150 Q60 156 37 150 Z" fill="' + shirt + '"/>' +
+        '<path d="M49 95 Q60 92 71 95 L70 100 Q60 103 50 100 Z" fill="' + accent + '"/>'; // yaka
+    return '<svg viewBox="0 0 120 214" xmlns="http://www.w3.org/2000/svg">' + defs +
+      '<rect x="0" y="0" width="120" height="214" rx="16" fill="url(#fb' + id + ')"/>' +
+      '<ellipse cx="60" cy="207" rx="30" ry="6" fill="rgba(0,0,0,.32)"/>' + // yer gölgesi
+      legs +
+      '<ellipse cx="52" cy="200" rx="9" ry="5" fill="' + shoe + '"/>' + // ayakkabılar
+      '<ellipse cx="68" cy="200" rx="9" ry="5" fill="' + shoe + '"/>' +
+      torso +
+      '<rect x="29" y="96" width="9" height="46" rx="4.5" fill="' + shirt + '"/>' + // sol kol
+      '<rect x="82" y="96" width="9" height="46" rx="4.5" fill="' + shirt + '"/>' + // sağ kol
+      '<circle cx="33.5" cy="145" r="5" fill="' + skin + '"/>' + // eller
+      '<circle cx="86.5" cy="145" r="5" fill="' + skin + '"/>' +
+      '<rect x="54" y="80" width="12" height="16" fill="' + skin + '"/>' + // boyun
+      head +
+      '</svg>';
+  }
+  function elFull(a, cls) {
+    a = normalize(a);
+    return '<span class="avatar-holder avatar-full ' + (cls || '') + '">' + fullBody(a) + '</span>';
+  }
+
   function preset(gender) {
     const base = { gender, skin: 2, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none' };
     return gender === 'kiz'
@@ -467,6 +523,6 @@
     return { dispose() { cancelAnimationFrame(raf); up(); } };
   }
 
-  B.Avatar = { CATALOG, normalize, svg, el, isUnlocked, preset, partIdFor, unequipCosmetic,
+  B.Avatar = { CATALOG, normalize, svg, el, fullBody, elFull, isUnlocked, preset, partIdFor, unequipCosmetic,
                genderOk, hairsFor, outfitsFor, unlockKey, isGated, findByUnlock, turntable };
 })(window.BOKUL = window.BOKUL || {});

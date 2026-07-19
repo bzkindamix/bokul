@@ -35,7 +35,7 @@
       wrap.className = 'char-wrap';
       wrap.innerHTML =
         '<div class="char-card">' +
-          '<div class="char-av">' + B.Avatar.el(p.avatar, 'avatar-big') + '</div>' +
+          '<div class="char-av">' + B.Avatar.elFull(p.avatar, 'avatar-big') + '</div>' +
           '<div class="char-info">' +
             '<div class="char-name">' + (p.name || 'Asker') + '</div>' +
             '<div class="char-rank">' + rank.icon + ' ' + rank.title + '</div>' +
