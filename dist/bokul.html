@@ -1115,7 +1115,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.36 — Girişte sürüm kontrolü (herkes güncel sürümde)</div>
+      <div class="splash-note">v0.37 — Ebeveyn oturumu kalıcı: bir kez girince tekrar sormaz</div>
     </div>
   </div>
 
@@ -8270,6 +8270,10 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 
   /* Ebeveyn erişimi: e-posta mı PIN mi? */
   function openParent() {
+    // Zaten giriş yapılmışsa (Google/e-posta oturumu localStorage'da duruyor)
+    // tekrar giriş isteme — doğrudan panele al. (Çıkış, panel içindeki Hesap
+    // bölümünden yapılır.)
+    if (B.AuthCloud && B.AuthCloud.current()) { B.UI.show('admin'); return; }
     const emailOpt = B.AuthCloud && B.AuthCloud.available();
     const ov = B.UI.overlay(
       '<div class="ov-big">👨‍👧</div><h2>Ebeveyn Konsolu</h2>' +
@@ -9133,7 +9137,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.36'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.37'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

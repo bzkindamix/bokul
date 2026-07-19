@@ -93,6 +93,10 @@
 
   /* Ebeveyn erişimi: e-posta mı PIN mi? */
   function openParent() {
+    // Zaten giriş yapılmışsa (Google/e-posta oturumu localStorage'da duruyor)
+    // tekrar giriş isteme — doğrudan panele al. (Çıkış, panel içindeki Hesap
+    // bölümünden yapılır.)
+    if (B.AuthCloud && B.AuthCloud.current()) { B.UI.show('admin'); return; }
     const emailOpt = B.AuthCloud && B.AuthCloud.available();
     const ov = B.UI.overlay(
       '<div class="ov-big">👨‍👧</div><h2>Ebeveyn Konsolu</h2>' +
