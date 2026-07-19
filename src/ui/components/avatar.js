@@ -18,12 +18,54 @@
   ];
   /* Kıyafet biçimleri: id, ad, cinsiyet */
   const SHAPES_UNI = [
-    ['tee', 'Tişört'], ['hoodie', 'Kapüşonlu'], ['jacket', 'Ceket'],
+    ['tee', 'Tişört'], ['atlet', 'Atlet'], ['hoodie', 'Kapüşonlu'], ['jacket', 'Ceket'],
     ['stripes', 'Çizgili'], ['vneck', 'V-Yaka'],
     ['kazak', 'Kazak'], ['tulum', 'Tulum'], ['kapmont', 'Mont'], // v0.29 yeni kıyafetler
   ];
   const SHAPES_KIZ = [['elbise', 'Elbise'], ['bluz', 'Bluz'], ['kolsuz', 'Askılı']];
   const SHAPES_ERK = [['forma', 'Forma'], ['gomlek', 'Gömlek'], ['yelek', 'Yelek']];
+
+  /* ---------- ALT GİYİM (pantolon/etek/şort…) — v0.65 ----------
+   * Ayrı slot: üst (outfit) ile bağımsız seçilir. Tam vücutta çizilir.
+   * Tek-parça üstler (elbise/balo/tulum/cübbe) alt giyimi gizler. */
+  const BOT_COL = [
+    { id: 'lacivert', n: 'Lacivert',  c1: '#2B3A67', c2: '#1D2748' },
+    { id: 'siyah',    n: 'Siyah',     c1: '#2A2740', c2: '#191728' },
+    { id: 'gri',      n: 'Gri',       c1: '#6B6B7D', c2: '#4D4D5C' },
+    { id: 'kot',      n: 'Kot',       c1: '#3E6B9E', c2: '#2C4D73' },
+    { id: 'bej',      n: 'Bej',       c1: '#C9A96A', c2: '#A88A4E' },
+    { id: 'pembe',    n: 'Pembe',     c1: '#FF7FC4', c2: '#D95A9F' },
+    { id: 'mor',      n: 'Mor',       c1: '#9D6BFF', c2: '#6F45C9' },
+  ];
+  const BOT_SHAPES = [
+    ['pantolon',  'Pantolon',   'both'],
+    ['sort',      'Şort',       'both'],
+    ['kapri',     'Kapri',      'both'],
+    ['esofman',   'Eşofman',    'both'],
+    ['etek',      'Etek',       'kiz'],
+    ['etek_uzun', 'Uzun Etek',  'kiz'],
+  ];
+  const FREE_BOTTOMS = new Set(['pantolon-lacivert', 'etek-pembe', 'sort-kot']);
+  function buildBottoms() {
+    const out = [];
+    BOT_SHAPES.forEach(([shape, label, gender]) =>
+      BOT_COL.forEach(col => {
+        const id = shape + '-' + col.id;
+        const b = { id, name: col.n + ' ' + label, shape, c1: col.c1, c2: col.c2, gender };
+        if (FREE_BOTTOMS.has(id)) b.free = true;
+        else { b.cosmeticId = id; b.rarity = 'common'; }
+        out.push(b);
+      }));
+    return out;
+  }
+  const BOTTOMS = buildBottoms();
+  const BOTTOM_BY_ID = {};
+  BOTTOMS.forEach(b => { BOTTOM_BY_ID[b.id] = b; });
+  const DEFAULT_BOTTOM = 'pantolon-lacivert';
+  // Alt giyimi gizleyen tek-parça üstler
+  const LONG_TOP = /elbise|balo|tulum|cubbe/;
+  // Kolsuz üstler (tam vücutta kollar ten rengi)
+  const SLEEVELESS = /atlet|kolsuz|balo/;
 
   // Başlangıçta yalnızca birkaç kıyafet ÜCRETSİZ; gerisi altınla alınır.
   const FREE_OUTFITS = new Set(['tee-mavi', 'elbise-pembe', 'forma-mavi']);
@@ -117,6 +159,7 @@
       { id: 2, name: 'Sırıtış', cosmeticId: 'mouth-grin', rarity: 'common' }, { id: 3, name: 'Islık' },
     ],
     outfits: OUTFITS,
+    bottoms: BOTTOMS,
     accs: [
       { id: 'none', name: 'Yok' },
       { id: 'beret', name: 'Komutan Beresi', cosmeticId: 'av-beret', rarity: 'common' },
@@ -138,6 +181,7 @@
       skin: a.skin ?? 2, hair: a.hair ?? 0, hairColor: a.hairColor ?? 0, eyeColor: a.eyeColor ?? 0,
       eyes: a.eyes ?? 0, mouth: a.mouth ?? 0, nose: a.nose ?? 0, ear: a.ear ?? 0,
       outfit: OUTFIT_BY_ID[a.outfit] ? a.outfit : DEFAULT_OUTFIT,
+      bottom: BOTTOM_BY_ID[a.bottom] ? a.bottom : DEFAULT_BOTTOM,
       acc: a.acc || 'none', ring: a.ring || 'none',
       // Fotoğraf özelliği KVKK gereği kaldırıldı — avatar her zaman çizimdir.
       photo: null, usePhoto: false,
@@ -156,6 +200,7 @@
   }
   function hairsFor(gender) { return CATALOG.hairs.filter(h => genderOk(h, gender)); }
   function outfitsFor(gender) { return CATALOG.outfits.filter(o => genderOk(o, gender)); }
+  function bottomsFor(gender) { return CATALOG.bottoms.filter(b => genderOk(b, gender)); }
 
   /* ---------- KIYAFET / GÖVDE ---------- */
   function outfitSvg(id, skin) {
@@ -176,6 +221,8 @@
   function detail(shape, c1, c2, skin) {
     switch (shape) {
       case 'tee':      return collar(c2);
+      case 'atlet':    return '<path d="M48 96 L52 116 M72 96 L68 116" stroke="' + c2 + '" stroke-width="4.5" stroke-linecap="round"/>' + // ince askılar
+                              '<path d="M50 97 Q60 107 70 97" fill="none" stroke="' + c2 + '" stroke-width="3" stroke-linecap="round"/>'; // yaka oyuğu
       case 'stripes':  return collar(c2) + '<path d="M20 106 H100 M18 112 H102" stroke="' + c2 + '" stroke-width="4"/>';
       case 'vneck':    return '<path d="M50 97 L60 108 L70 97" fill="none" stroke="' + c2 + '" stroke-width="3.5" stroke-linecap="round"/>';
       case 'hoodie':   return '<path d="M44 97 Q60 90 76 97 L74 104 Q60 99 46 104 Z" fill="' + c2 + '"/>' +
@@ -390,8 +437,8 @@
     const eyeC = (CATALOG.eyeColors[a.eyeColor] || CATALOG.eyeColors[0]).color;
     const o = OUTFIT_BY_ID[a.outfit] || OUTFIT_BY_ID[DEFAULT_OUTFIT];
     const shirt = o.c1, accent = o.c2;
-    const dress = /elbise|bluz|kolsuz/.test(o.shape || '');
-    const pants = shade(skin, -60); // koyu pantolon tonu (nötr)
+    const longTop = LONG_TOP.test(o.shape || '');   // elbise/tulum/cübbe → alt gizli
+    const sleeveless = SLEEVELESS.test(o.shape || ''); // kollar ten rengi
     const shoe = '#20182f';
     const id = 'bkf' + (uid++);
     const defs = '<defs>' +
@@ -408,30 +455,57 @@
         mouthSvg(a.mouth) +
         accSvg(a.acc) +
       '</g>';
-    // Gövde
-    const legs = dress
-      ? '' // elbise: bacaklar etek altında (sadece ayaklar görünür)
-      : '<rect x="48" y="150" width="9.5" height="50" rx="4.75" fill="' + pants + '"/>' +
-        '<rect x="62.5" y="150" width="9.5" height="50" rx="4.75" fill="' + pants + '"/>';
-    const torso = dress
+    // Alt gövde: uzun üst → çıplak baldır+ayak; değilse ten bacak + alt giyim garment
+    const lower = longTop
+      ? '<rect x="49" y="182" width="8" height="18" rx="4" fill="' + skin + '"/>' +
+        '<rect x="63" y="182" width="8" height="18" rx="4" fill="' + skin + '"/>'
+      : '<rect x="48" y="150" width="9.5" height="50" rx="4.75" fill="' + skin + '"/>' +
+        '<rect x="62.5" y="150" width="9.5" height="50" rx="4.75" fill="' + skin + '"/>' +
+        bottomFull(a.bottom);
+    // Üst gövde
+    const torso = longTop
       ? '<path d="M40 94 Q60 86 80 94 L92 200 Q60 210 28 200 Z" fill="' + shirt + '"/>' +
         '<path d="M40 94 Q60 88 80 94 L82 118 Q60 124 38 118 Z" fill="' + accent + '" opacity=".55"/>'
       : '<path d="M40 94 Q60 86 80 94 L83 150 Q60 156 37 150 Z" fill="' + shirt + '"/>' +
         '<path d="M49 95 Q60 92 71 95 L70 100 Q60 103 50 100 Z" fill="' + accent + '"/>'; // yaka
+    const armC = sleeveless ? skin : shirt; // kolsuz üstlerde kollar ten rengi
     return '<svg viewBox="0 0 120 214" xmlns="http://www.w3.org/2000/svg">' + defs +
       '<rect x="0" y="0" width="120" height="214" rx="16" fill="url(#fb' + id + ')"/>' +
       '<ellipse cx="60" cy="207" rx="30" ry="6" fill="rgba(0,0,0,.32)"/>' + // yer gölgesi
-      legs +
+      lower +
       '<ellipse cx="52" cy="200" rx="9" ry="5" fill="' + shoe + '"/>' + // ayakkabılar
       '<ellipse cx="68" cy="200" rx="9" ry="5" fill="' + shoe + '"/>' +
       torso +
-      '<rect x="29" y="96" width="9" height="46" rx="4.5" fill="' + shirt + '"/>' + // sol kol
-      '<rect x="82" y="96" width="9" height="46" rx="4.5" fill="' + shirt + '"/>' + // sağ kol
+      '<rect x="29" y="96" width="9" height="46" rx="4.5" fill="' + armC + '"/>' + // sol kol
+      '<rect x="82" y="96" width="9" height="46" rx="4.5" fill="' + armC + '"/>' + // sağ kol
       '<circle cx="33.5" cy="145" r="5" fill="' + skin + '"/>' + // eller
       '<circle cx="86.5" cy="145" r="5" fill="' + skin + '"/>' +
       '<rect x="54" y="80" width="12" height="16" fill="' + skin + '"/>' + // boyun
       head +
       '</svg>';
+  }
+
+  /* Alt giyim garment'i (tam vücut koordinatları; ten bacaklar zaten çizili) */
+  function bottomFull(bid) {
+    const b = BOTTOM_BY_ID[bid] || BOTTOM_BY_ID[DEFAULT_BOTTOM];
+    const c = b.c1, c2 = b.c2, s = b.shape;
+    const waist = '<rect x="45" y="147" width="30" height="8" rx="4" fill="' + c2 + '"/>';
+    const legs = (h) => '<rect x="47" y="150" width="11.5" height="' + h + '" rx="5.5" fill="' + c + '"/>' +
+                        '<rect x="61.5" y="150" width="11.5" height="' + h + '" rx="5.5" fill="' + c + '"/>';
+    switch (s) {
+      case 'sort':      return waist + legs(24);
+      case 'kapri':     return waist + legs(40);
+      case 'esofman':   return waist + legs(50) +
+                               '<rect x="47.5" y="150" width="2" height="50" fill="' + c2 + '" opacity=".6"/>' + // yan şerit
+                               '<rect x="70.5" y="150" width="2" height="50" fill="' + c2 + '" opacity=".6"/>' +
+                               '<rect x="47" y="194" width="11.5" height="4" fill="' + c2 + '"/>' + // paça lastiği
+                               '<rect x="61.5" y="194" width="11.5" height="4" fill="' + c2 + '"/>';
+      case 'etek':      return '<path d="M44 149 Q60 145 76 149 L86 181 Q60 190 34 181 Z" fill="' + c + '"/>' +
+                               '<path d="M44 149 Q60 145 76 149 L74 157 Q60 161 46 157 Z" fill="' + c2 + '" opacity=".5"/>';
+      case 'etek_uzun': return '<path d="M44 149 Q60 145 76 149 L90 199 Q60 207 30 199 Z" fill="' + c + '"/>' +
+                               '<path d="M44 149 Q60 145 76 149 L74 157 Q60 161 46 157 Z" fill="' + c2 + '" opacity=".5"/>';
+      default:          return waist + legs(50); // pantolon
+    }
   }
   function elFull(a, cls) {
     a = normalize(a);
@@ -448,7 +522,7 @@
   /* Kozmetik id → avatar slotundaki parça id'si */
   function partIdFor(item) {
     const maps = { hair: CATALOG.hairs, hairColor: CATALOG.hairColors, eyes: CATALOG.eyes,
-                   mouth: CATALOG.mouths, outfit: CATALOG.outfits, acc: CATALOG.accs, ring: CATALOG.rings };
+                   mouth: CATALOG.mouths, outfit: CATALOG.outfits, bottom: CATALOG.bottoms, acc: CATALOG.accs, ring: CATALOG.rings };
     const p = (maps[item.type] || []).find(x => x.cosmeticId === item.id);
     return p ? p.id : null;
   }
@@ -457,7 +531,7 @@
     const a = normalize(avatar);
     const pid = partIdFor(item);
     if (pid == null) return a;
-    const def = { hair: 0, hairColor: 0, eyes: 0, mouth: 0, outfit: DEFAULT_OUTFIT, acc: 'none', ring: 'none' };
+    const def = { hair: 0, hairColor: 0, eyes: 0, mouth: 0, outfit: DEFAULT_OUTFIT, bottom: DEFAULT_BOTTOM, acc: 'none', ring: 'none' };
     if (a[item.type] === pid) a[item.type] = def[item.type];
     return a;
   }
@@ -469,7 +543,7 @@
   /* Envanterdeki bir id'ye karşılık gelen katalog parçasını bul (satış için) */
   function findByUnlock(key) {
     const groups = [['hair', CATALOG.hairs], ['hairColor', CATALOG.hairColors], ['eyes', CATALOG.eyes],
-                    ['mouth', CATALOG.mouths], ['outfit', CATALOG.outfits], ['acc', CATALOG.accs], ['ring', CATALOG.rings]];
+                    ['mouth', CATALOG.mouths], ['outfit', CATALOG.outfits], ['bottom', CATALOG.bottoms], ['acc', CATALOG.accs], ['ring', CATALOG.rings]];
     for (const [type, list] of groups) {
       const p = list.find(x => isGated(x) && unlockKey(x) === key);
       if (p) return { type, part: p, name: p.name, rarity: p.rarity || 'common' };
@@ -524,5 +598,5 @@
   }
 
   B.Avatar = { CATALOG, normalize, svg, el, fullBody, elFull, isUnlocked, preset, partIdFor, unequipCosmetic,
-               genderOk, hairsFor, outfitsFor, unlockKey, isGated, findByUnlock, turntable };
+               genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, turntable };
 })(window.BOKUL = window.BOKUL || {});

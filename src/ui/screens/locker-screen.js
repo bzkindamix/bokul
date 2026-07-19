@@ -12,7 +12,8 @@
       { id: 'color', name: '🎨 Renk' },
     ],
     dolap: [
-      { id: 'outfit', name: '👕 Kıyafet' },
+      { id: 'outfit', name: '👕 Üst' },
+      { id: 'bottom', name: '👖 Alt' },
       { id: 'acc',    name: '🕶️ Aksesuar' },
       { id: 'ring',   name: '⭕ Çerçeve' },
       { id: 'sell',   name: '💰 Sat' },
@@ -79,14 +80,15 @@
 
       const label = txt => { const d = document.createElement('div'); d.className = 'part-label'; d.textContent = txt; return d; };
 
-      /* Parça kartı: önizleme = o parça takılı mini avatar (previewFn ile önizleme özelleştirilir) */
-      function partCard(part, apply, isEquipped, previewFn) {
+      /* Parça kartı: önizleme = o parça takılı mini avatar (previewFn ile önizleme özelleştirilir)
+       * fullPrev=true → dairesel yüz yerine tam vücut önizleme (kıyafet/alt giyim için) */
+      function partCard(part, apply, isEquipped, previewFn, fullPrev) {
         const a = av(); a.usePhoto = false; apply(a, part); if (previewFn) previewFn(a);
         const unlocked = B.Avatar.isUnlocked(part);
         const card = document.createElement('button');
-        card.className = 'part-card' + (isEquipped ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
+        card.className = 'part-card' + (fullPrev ? ' part-tall' : '') + (isEquipped ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
         card.innerHTML =
-          '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
+          '<span class="part-prev">' + (fullPrev ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
           '<span class="part-name">' + (part.name || '') + '</span>' +
           (!unlocked ? '<span class="part-price">💰 ' + priceOf(part) + '</span>' : '');
         card.onclick = () => {
@@ -111,9 +113,9 @@
         return card;
       }
 
-      function grid(parts, apply, equippedCheck, previewFn) {
-        const g = document.createElement('div'); g.className = 'part-grid';
-        parts.forEach(p => g.appendChild(partCard(p, apply, equippedCheck(p), previewFn)));
+      function grid(parts, apply, equippedCheck, previewFn, fullPrev) {
+        const g = document.createElement('div'); g.className = 'part-grid' + (fullPrev ? ' grid-tall' : '');
+        parts.forEach(p => g.appendChild(partCard(p, apply, equippedCheck(p), previewFn, fullPrev)));
         return g;
       }
 
@@ -129,8 +131,11 @@
           host.appendChild(label('🎨 SAÇ RENGİ'));
           host.appendChild(grid(C.hairColors, (x, p) => { x.hairColor = p.id; }, p => p.id === a.hairColor));
         } else if (tab === 'outfit') {
-          // Kıyafetler cinsiyete göre süzülür
-          host.appendChild(grid(B.Avatar.outfitsFor(a.gender), (x, p) => { x.outfit = p.id; }, p => p.id === a.outfit));
+          // Üst kıyafetler cinsiyete göre süzülür — tam vücut önizleme
+          host.appendChild(grid(B.Avatar.outfitsFor(a.gender), (x, p) => { x.outfit = p.id; }, p => p.id === a.outfit, null, true));
+        } else if (tab === 'bottom') {
+          // Alt giyim (pantolon/etek/şort…) cinsiyete göre — tam vücut önizleme
+          host.appendChild(grid(B.Avatar.bottomsFor(a.gender), (x, p) => { x.bottom = p.id; }, p => p.id === a.bottom, null, true));
         } else if (tab === 'face') {
           host.appendChild(label('👁️ GÖZ ŞEKLİ'));
           host.appendChild(grid(C.eyes, (x, p) => { x.eyes = p.id; }, p => p.id === a.eyes));
@@ -171,10 +176,11 @@
           const pid = found.part.id;
           if (pid != null) a[found.type] = pid;
           const price = Math.round((prices[found.rarity] || 50) * sellRatio);
+          const fullPrev = found.type === 'outfit' || found.type === 'bottom';
           const card = document.createElement('button');
-          card.className = 'part-card part-sell';
+          card.className = 'part-card part-sell' + (fullPrev ? ' part-tall' : '');
           card.innerHTML =
-            '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
+            '<span class="part-prev">' + (fullPrev ? B.Avatar.fullBody(a) : B.Avatar.svg(a)) + '</span>' +
             '<span class="part-name">' + found.name + '</span>' +
             '<span class="part-price">Sat: 💰 ' + price + '</span>';
           card.onclick = () => B.UI.confirm({
