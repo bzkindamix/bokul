@@ -10,6 +10,20 @@
   ];
   const FLOORS = ['#4A3690', '#6B4423', '#3E3060', '#8C5A32', '#2E4E5E', '#5A4A2E', '#7A2E5E'];
 
+  // Eşya görsel boyutu (px) — gerçek dünyadaki orana yakın (mobilya büyük, küçük eşya küçük)
+  const ITEM_SIZE = {
+    koltuk: 60, masa: 54, kitaplik: 56, tv: 58, sehpa: 38, lego: 42, saksi: 40, robot: 48,
+    konsol: 34, tablet: 30, telefon: 26, kulaklik: 30, vr: 34, dizustu: 38, drone: 38, hali: 66,
+    eski_sandalye: 48, kirik_dolap: 56, yirtik_hali: 62, bos_kutu: 42,
+    poster: 54, poster_uzay: 54, lamba: 44,
+  };
+  // Duvara asılanlar (poster, tavan lambası/disko) — gerisi yere oturur
+  const WALL_ITEMS = ['poster', 'poster_uzay', 'lamba'];
+  const sizeOf = id => ITEM_SIZE[id] || 46;
+  const isWall = id => WALL_ITEMS.indexOf(id) >= 0;
+  // Yerleşim bölgeleri (%): yer eşyaları tabanı zeminde, duvar eşyaları duvarda
+  const clampY = (id, y) => isWall(id) ? Math.max(6, Math.min(58, y)) : Math.max(68, Math.min(95, y));
+
   B.UI.registerScreen('room', {
     enter(root) {
       const hud = B.UI.buildHud(root, { backTo: 'evim' });
@@ -17,6 +31,8 @@
       const p = B.State.data.player;
       const room = p.room = p.room || { wall: 0, floor: 0, placed: [] };
       if (!Array.isArray(room.placed)) room.placed = [];
+      // Eski yerleşimleri mantıklı bölgeye oturt (yer eşyası zeminde, duvar eşyası duvarda)
+      room.placed.forEach(pp => { pp.y = clampY(pp.id, pp.y); });
       let tab = 'items';
 
       const save = () => B.Save.saveSoon();
@@ -45,9 +61,13 @@
       }
 
       function renderPlaced() {
-        itemsEl.innerHTML = room.placed.map((pp, i) =>
-          '<button class="room-obj" data-i="' + i + '" style="left:' + pp.x + '%;top:' + pp.y + '%">' + itemDef(pp.id).icon + '</button>'
-        ).join('');
+        itemsEl.innerHTML = room.placed.map((pp, i) => {
+          const wall = isWall(pp.id);
+          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + '" data-i="' + i + '" ' +
+            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + sizeOf(pp.id) + 'px">' +
+            (wall ? '' : '<span class="obj-shadow"></span>') +
+            '<span class="obj-em">' + itemDef(pp.id).icon + '</span></button>';
+        }).join('');
         itemsEl.querySelectorAll('.room-obj').forEach(attachDrag);
       }
 
@@ -58,11 +78,12 @@
           let moved = false;
           el.setPointerCapture(e.pointerId); el.classList.add('dragging');
           const rect = view.getBoundingClientRect();
+          const id = room.placed[i].id;
           const move = ev => {
             moved = true;
             let x = (ev.clientX - rect.left) / rect.width * 100;
             let y = (ev.clientY - rect.top) / rect.height * 100;
-            x = Math.max(5, Math.min(95, x)); y = Math.max(8, Math.min(92, y));
+            x = Math.max(6, Math.min(94, x)); y = clampY(id, y); // yer/duvar bölgesine sınırla
             room.placed[i].x = Math.round(x); room.placed[i].y = Math.round(y);
             el.style.left = x + '%'; el.style.top = y + '%';
           };
@@ -88,7 +109,7 @@
 
       function placeInRoom(id) {
         if (isPlaced(id)) return;
-        room.placed.push({ id: id, x: 50, y: 62 });
+        room.placed.push({ id: id, x: 50, y: isWall(id) ? 26 : 86 }); // duvar eşyası duvarda, yer eşyası zeminde
         B.Audio.play('tick'); save(); renderPlaced(); renderPanel();
       }
 

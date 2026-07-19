@@ -1350,9 +1350,18 @@ h1, h2, h3, h4,
 .room-floor { position: absolute; inset: 66% 0 0 0; background: #4A3690; transition: background .2s;
   box-shadow: inset 0 3px 8px rgba(0,0,0,.25); border-top: 2px solid rgba(0,0,0,.2); }
 .room-items { position: absolute; inset: 0; }
-.room-obj { position: absolute; transform: translate(-50%, -50%); font-size: 38px; line-height: 1; cursor: grab;
-  background: none; padding: 4px; filter: drop-shadow(0 4px 4px rgba(0,0,0,.4)); touch-action: none; transition: transform .05s; }
-.room-obj.dragging { cursor: grabbing; transform: translate(-50%, -50%) scale(1.2); filter: drop-shadow(0 8px 8px rgba(0,0,0,.5)); z-index: 5; }
+/* Oda eşyası: yer eşyası tabanından zemine oturur, duvar eşyası ortadan asılır (v0.59) */
+.room-obj { position: absolute; line-height: 1; cursor: grab; background: none; padding: 0;
+  touch-action: none; transition: transform .06s; }
+.room-obj .obj-em { display: block; filter: drop-shadow(0 3px 3px rgba(0,0,0,.45)); }
+.obj-floor { transform: translate(-50%, -100%); }  /* taban y noktasında oturur */
+.obj-wall  { transform: translate(-50%, -50%); }    /* duvarda ortalı asılı */
+.obj-shadow { position: absolute; left: 50%; bottom: -0.06em; transform: translateX(-50%);
+  width: 0.78em; height: 0.2em; border-radius: 50%; background: radial-gradient(ellipse, rgba(0,0,0,.45), transparent 72%); }
+.room-obj.dragging { z-index: 6; }
+.obj-floor.dragging { transform: translate(-50%, -100%) scale(1.12); }
+.obj-wall.dragging { transform: translate(-50%, -50%) scale(1.12); }
+.room-obj.dragging .obj-em { filter: drop-shadow(0 8px 8px rgba(0,0,0,.55)); }
 .room-hint2 { position: absolute; left: 8px; bottom: 6px; font-size: 11px; color: rgba(255,255,255,.55);
   background: rgba(0,0,0,.25); border-radius: 8px; padding: 2px 8px; pointer-events: none; }
 
@@ -1442,7 +1451,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.58 — Oyun fikri artık geliştiriciye gidiyor (merkezi Firestore) — ebeveyn panelinden kaldırıldı</div>
+      <div class="splash-note">v0.59 — Oda eşyaları orantılı boyut + mantıklı zemin: mobilya tabanından zemine oturur, poster/lamba duvara asılır, taban gölgesi</div>
     </div>
   </div>
 
@@ -14104,6 +14113,20 @@ h1, h2, h3, h4,
   ];
   const FLOORS = ['#4A3690', '#6B4423', '#3E3060', '#8C5A32', '#2E4E5E', '#5A4A2E', '#7A2E5E'];
 
+  // Eşya görsel boyutu (px) — gerçek dünyadaki orana yakın (mobilya büyük, küçük eşya küçük)
+  const ITEM_SIZE = {
+    koltuk: 60, masa: 54, kitaplik: 56, tv: 58, sehpa: 38, lego: 42, saksi: 40, robot: 48,
+    konsol: 34, tablet: 30, telefon: 26, kulaklik: 30, vr: 34, dizustu: 38, drone: 38, hali: 66,
+    eski_sandalye: 48, kirik_dolap: 56, yirtik_hali: 62, bos_kutu: 42,
+    poster: 54, poster_uzay: 54, lamba: 44,
+  };
+  // Duvara asılanlar (poster, tavan lambası/disko) — gerisi yere oturur
+  const WALL_ITEMS = ['poster', 'poster_uzay', 'lamba'];
+  const sizeOf = id => ITEM_SIZE[id] || 46;
+  const isWall = id => WALL_ITEMS.indexOf(id) >= 0;
+  // Yerleşim bölgeleri (%): yer eşyaları tabanı zeminde, duvar eşyaları duvarda
+  const clampY = (id, y) => isWall(id) ? Math.max(6, Math.min(58, y)) : Math.max(68, Math.min(95, y));
+
   B.UI.registerScreen('room', {
     enter(root) {
       const hud = B.UI.buildHud(root, { backTo: 'evim' });
@@ -14111,6 +14134,8 @@ h1, h2, h3, h4,
       const p = B.State.data.player;
       const room = p.room = p.room || { wall: 0, floor: 0, placed: [] };
       if (!Array.isArray(room.placed)) room.placed = [];
+      // Eski yerleşimleri mantıklı bölgeye oturt (yer eşyası zeminde, duvar eşyası duvarda)
+      room.placed.forEach(pp => { pp.y = clampY(pp.id, pp.y); });
       let tab = 'items';
 
       const save = () => B.Save.saveSoon();
@@ -14139,9 +14164,13 @@ h1, h2, h3, h4,
       }
 
       function renderPlaced() {
-        itemsEl.innerHTML = room.placed.map((pp, i) =>
-          '<button class="room-obj" data-i="' + i + '" style="left:' + pp.x + '%;top:' + pp.y + '%">' + itemDef(pp.id).icon + '</button>'
-        ).join('');
+        itemsEl.innerHTML = room.placed.map((pp, i) => {
+          const wall = isWall(pp.id);
+          return '<button class="room-obj ' + (wall ? 'obj-wall' : 'obj-floor') + '" data-i="' + i + '" ' +
+            'style="left:' + pp.x + '%;top:' + pp.y + '%;font-size:' + sizeOf(pp.id) + 'px">' +
+            (wall ? '' : '<span class="obj-shadow"></span>') +
+            '<span class="obj-em">' + itemDef(pp.id).icon + '</span></button>';
+        }).join('');
         itemsEl.querySelectorAll('.room-obj').forEach(attachDrag);
       }
 
@@ -14152,11 +14181,12 @@ h1, h2, h3, h4,
           let moved = false;
           el.setPointerCapture(e.pointerId); el.classList.add('dragging');
           const rect = view.getBoundingClientRect();
+          const id = room.placed[i].id;
           const move = ev => {
             moved = true;
             let x = (ev.clientX - rect.left) / rect.width * 100;
             let y = (ev.clientY - rect.top) / rect.height * 100;
-            x = Math.max(5, Math.min(95, x)); y = Math.max(8, Math.min(92, y));
+            x = Math.max(6, Math.min(94, x)); y = clampY(id, y); // yer/duvar bölgesine sınırla
             room.placed[i].x = Math.round(x); room.placed[i].y = Math.round(y);
             el.style.left = x + '%'; el.style.top = y + '%';
           };
@@ -14182,7 +14212,7 @@ h1, h2, h3, h4,
 
       function placeInRoom(id) {
         if (isPlaced(id)) return;
-        room.placed.push({ id: id, x: 50, y: 62 });
+        room.placed.push({ id: id, x: 50, y: isWall(id) ? 26 : 86 }); // duvar eşyası duvarda, yer eşyası zeminde
         B.Audio.play('tick'); save(); renderPlaced(); renderPanel();
       }
 
@@ -15469,7 +15499,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.58'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.59'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.
