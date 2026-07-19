@@ -756,3 +756,8 @@
 .pet-captured .pet-face { filter: grayscale(.6) brightness(.65); }
 .pet-capmsg { font-size: 12.5px; color: #FF8A9A; background: rgba(255,90,110,.12); border: 1px solid rgba(255,90,110,.4); border-radius: 10px; padding: 7px 10px; margin: 6px 0; line-height: 1.45; }
 .pet-capmsg b { color: #FF5A6E; }
+
+/* ---------- v0.40: Onboarding turu + admin oyuncu silme ---------- */
+.tour-step { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 4px 0 2px; }
+.adm-p-id { flex: 1; min-width: 0; }
+.adm-del { flex: none; padding: 5px 9px; }

@@ -134,6 +134,7 @@
       root.appendChild(wish);
 
       const demoMode = B.Demo && B.Demo.isDemo();
+      const tourPending = !(B.State.data.meta && B.State.data.meta.homeTourSeen); // ilk oyun: ekran turu
 
       // Günlük ödül (retention) — demo'da kapalı (ödül vermiyor)
       if (!demoMode) {
@@ -175,8 +176,21 @@
       out.onclick = () => B.Engine.logout();
       root.appendChild(out);
 
-      // Günlük ödül hazırsa otomatik aç (günde bir; demo değilse)
-      if (!demoMode && B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
+      // Günlük ödül hazırsa otomatik aç (günde bir; demo/tur değilse)
+      if (!demoMode && !tourPending && B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
+
+      // İlk oyun: Baba Komutan çocuğa ekranını tanıtır (profil başına bir kez)
+      if (tourPending && B.Tour) {
+        B.State.data.meta.homeTourSeen = true; B.Save.saveNow();
+        setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Tour.run([
+          { icon: '🧑‍✈️', title: 'Hoş geldin asker!', text: 'Ben Baba Komutan. Burası senin ÜSSÜN! Etrafı hızlıca tanıtayım.' },
+          { icon: '⚔️', title: 'HAREKÂT', text: 'Buradan derslere girersin. Soruları çözüp yıldız, altın ve XP kazanırsın. Her cephe bir ders!' },
+          { icon: '🏠', title: 'EVİM', text: 'Karakterini süsle (kıyafet, saç), eşyalarını Depom\'da sakla, evcil hayvanına bak.' },
+          { icon: '🏪', title: 'MAĞAZA', text: 'Kazandığın altınla eşya al; Atölye\'de parçaları birleştirip yeni şeyler ÜRET (craft).' },
+          { icon: '🐾', title: 'Evcil Hayvan', text: 'Bir dost sahiplen — ama sakın ihmal etme! Beslemez, oynamazsan Bulanık onu kaçırır. Düzenli bak!' },
+          { icon: '🎁', title: 'Her Gün Gel', text: 'Her gün girince günlük ödül kazanır, serin büyür. Hadi göreve başla, Komutan!' },
+        ]); }, 450);
+      }
 
       this._hud = hud;
     },

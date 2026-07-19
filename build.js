@@ -31,6 +31,7 @@ const JS = [
   'src/core/pets.js',
   'src/core/daily.js',
   'src/core/demo.js',
+  'src/core/tour.js',
   'src/core/content-registry.js',
   'src/engines/audio-manager.js',
   'src/engines/dialogue-manager.js',

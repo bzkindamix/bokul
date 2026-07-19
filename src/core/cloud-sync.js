@@ -121,6 +121,15 @@
       } catch (e) { return []; }
     },
 
+    /* Ebeveyn: bir oyuncunun bulut kaydını sil (eski/silinmiş oyuncuları temizle) */
+    async deletePlayer(playerKey) {
+      if (!enabled()) return false;
+      try {
+        const res = await fetch(playerDoc(getCode(), playerKey) + '?key=' + CFG.apiKey, { method: 'DELETE' });
+        return res.ok;
+      } catch (e) { return false; }
+    },
+
     /* Ebeveyn: bir oyuncuya directives yaz (save'e DOKUNMAZ) */
     async writeDirectives(playerKey, directives) {
       if (!enabled()) return false;

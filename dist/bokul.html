@@ -1116,6 +1116,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .pet-capmsg { font-size: 12.5px; color: #FF8A9A; background: rgba(255,90,110,.12); border: 1px solid rgba(255,90,110,.4); border-radius: 10px; padding: 7px 10px; margin: 6px 0; line-height: 1.45; }
 .pet-capmsg b { color: #FF5A6E; }
 
+/* ---------- v0.40: Onboarding turu + admin oyuncu silme ---------- */
+.tour-step { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 4px 0 2px; }
+.adm-p-id { flex: 1; min-width: 0; }
+.adm-del { flex: none; padding: 5px 9px; }
+
 </style>
 </head>
 <body>
@@ -1125,7 +1130,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.39 — İhmal edilen evcil hayvanı Bulanık kaçırır; bakımla kurtarılır</div>
+      <div class="splash-note">v0.40 — İlk giriş onboarding (Baba anlatır) + admin oyuncu silme (yerel+bulut)</div>
     </div>
   </div>
 
@@ -3280,6 +3285,15 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       } catch (e) { return []; }
     },
 
+    /* Ebeveyn: bir oyuncunun bulut kaydını sil (eski/silinmiş oyuncuları temizle) */
+    async deletePlayer(playerKey) {
+      if (!enabled()) return false;
+      try {
+        const res = await fetch(playerDoc(getCode(), playerKey) + '?key=' + CFG.apiKey, { method: 'DELETE' });
+        return res.ok;
+      } catch (e) { return false; }
+    },
+
     /* Ebeveyn: bir oyuncuya directives yaz (save'e DOKUNMAZ) */
     async writeDirectives(playerKey, directives) {
       if (!enabled()) return false;
@@ -3927,6 +3941,34 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     isDemo() { return !(B.Cloud && B.Cloud.getCode()); },
     sectionLimit: 1,          // ders başına açık bölüm sayısı
     featureLocked(f) { return B.Demo.isDemo() && LOCKED.indexOf(f) >= 0; },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/tour.js === */
+/* BOKUL — Onboarding Turu (Baba Komutan anlatır)
+ * Çok adımlı tanıtım overlay'i: her adımda Baba + başlık + metin + İleri.
+ * İlk girişte mekanikleri tanıtmak için (ebeveyn akışı, çocuk ekran turu). */
+(function (B) {
+  B.Tour = {
+    /* steps: [{ icon, title, text }] */
+    run(steps, onDone) {
+      if (!steps || !steps.length) { if (onDone) onDone(); return; }
+      let i = 0;
+      function show() {
+        const s = steps[i];
+        const last = i === steps.length - 1;
+        const ov = B.UI.overlay(
+          '<div class="ov-baba">' + (s.icon || '🧑‍✈️') + '</div>' +
+          '<div class="tour-step">Baba Komutan · ' + (i + 1) + '/' + steps.length + '</div>' +
+          '<h2>' + s.title + '</h2><p class="ov-quote">' + s.text + '</p>',
+          [{ label: last ? 'Anladım! ✓' : 'İleri ▶', onClick: null }].concat(
+            last ? [] : [{ label: 'Geç', cls: 'btn-quiet', onClick: null }]));
+        const btns = ov.querySelectorAll('.overlay-btns .btn');
+        btns[0].onclick = () => { ov.remove(); i++; if (i < steps.length) show(); else if (onDone) onDone(); };
+        if (btns[1]) btns[1].onclick = () => { ov.remove(); if (onDone) onDone(); }; // tümünü geç
+      }
+      show();
+    },
   };
 })(window.BOKUL = window.BOKUL || {});
 
@@ -6767,6 +6809,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       root.appendChild(wish);
 
       const demoMode = B.Demo && B.Demo.isDemo();
+      const tourPending = !(B.State.data.meta && B.State.data.meta.homeTourSeen); // ilk oyun: ekran turu
 
       // Günlük ödül (retention) — demo'da kapalı (ödül vermiyor)
       if (!demoMode) {
@@ -6808,8 +6851,21 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       out.onclick = () => B.Engine.logout();
       root.appendChild(out);
 
-      // Günlük ödül hazırsa otomatik aç (günde bir; demo değilse)
-      if (!demoMode && B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
+      // Günlük ödül hazırsa otomatik aç (günde bir; demo/tur değilse)
+      if (!demoMode && !tourPending && B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
+
+      // İlk oyun: Baba Komutan çocuğa ekranını tanıtır (profil başına bir kez)
+      if (tourPending && B.Tour) {
+        B.State.data.meta.homeTourSeen = true; B.Save.saveNow();
+        setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Tour.run([
+          { icon: '🧑‍✈️', title: 'Hoş geldin asker!', text: 'Ben Baba Komutan. Burası senin ÜSSÜN! Etrafı hızlıca tanıtayım.' },
+          { icon: '⚔️', title: 'HAREKÂT', text: 'Buradan derslere girersin. Soruları çözüp yıldız, altın ve XP kazanırsın. Her cephe bir ders!' },
+          { icon: '🏠', title: 'EVİM', text: 'Karakterini süsle (kıyafet, saç), eşyalarını Depom\'da sakla, evcil hayvanına bak.' },
+          { icon: '🏪', title: 'MAĞAZA', text: 'Kazandığın altınla eşya al; Atölye\'de parçaları birleştirip yeni şeyler ÜRET (craft).' },
+          { icon: '🐾', title: 'Evcil Hayvan', text: 'Bir dost sahiplen — ama sakın ihmal etme! Beslemez, oynamazsan Bulanık onu kaçırır. Düzenli bak!' },
+          { icon: '🎁', title: 'Her Gün Gel', text: 'Her gün girince günlük ödül kazanır, serin büyür. Hadi göreve başla, Komutan!' },
+        ]); }, 450);
+      }
 
       this._hud = hud;
     },
@@ -8710,6 +8766,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           '<div class="admin-head">' +
             '<button class="chip admin-back">◀ Çıkış</button>' +
             '<b>👨‍👧 Ebeveyn Konsolu</b>' +
+            '<button class="chip admin-help" title="Nasıl çalışır?">❓</button>' +
             '<button class="chip admin-pin">🔑 PIN</button>' +
           '</div>' +
           famRow +
@@ -8728,6 +8785,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         root.querySelector('.admin-back').onclick = () => B.UI.show('login');
         root.querySelector('.admin-pin').onclick = changePin;
         root.querySelector('.adm-refresh').onclick = load;
+        const helpBtn = root.querySelector('.admin-help');
+        if (helpBtn) helpBtn.onclick = parentTour;
+        // İlk ziyarette otomatik anlat
+        const seen = B.Save.settings.get();
+        if (!seen.tour_parent) { B.Save.settings.set({ tour_parent: true }); setTimeout(parentTour, 400); }
         root.querySelectorAll('.atab').forEach(b => b.onclick = () => {
           tab = b.dataset.t;
           root.querySelectorAll('.atab').forEach(x => x.classList.toggle('tab-on', x === b));
@@ -8788,8 +8850,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           const last = s.meta && s.meta.lastPlayedAt ? new Date(s.meta.lastPlayedAt).toLocaleDateString('tr-TR') : '—';
           return '<div class="adm-card">' +
             '<div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(pl.avatar) + '</span>' +
-              '<div><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level +
-                (pl.age ? ' · 🎂 ' + pl.age : '') + (pl.grade != null ? ' · 🎓 ' + (pl.grade === 0 ? 'okul öncesi' : pl.grade + '. sınıf') : '') + '</div></div></div>' +
+              '<div class="adm-p-id"><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level +
+                (pl.age ? ' · 🎂 ' + pl.age : '') + (pl.grade != null ? ' · 🎓 ' + (pl.grade === 0 ? 'okul öncesi' : pl.grade + '. sınıf') : '') + '</div></div>' +
+              '<button class="chip adm-del" data-key="' + p.key + '" title="Bu oyuncuyu sil">🗑️</button></div>' +
             '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
             '<div class="adm-stats"><span>💰 ' + (pl.coins || 0) + '</span><span>✅ ' + (st.correct || 0) + '</span><span>❌ ' + (st.wrong || 0) +
               '</span><span>🎯 %' + acc + '</span><span>🔥 en iyi ' + ((s.streaks && s.streaks.best) || 0) + '</span><span>📅 ' + last + '</span></div>' +
@@ -8798,6 +8861,23 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             '<div class="adm-lessons">' + lessonRows + '</div>' +
             profileHtml(pl.profile) + '</div>';
         }).join('');
+
+        // Oyuncu silme (eski/silinmiş kayıtları temizle) — hem yerel hem bulut
+        body.querySelectorAll('.adm-del').forEach(btn => btn.onclick = () => {
+          const key = btn.dataset.key;
+          const pp = findPlayer(key);
+          const nm = pp && pp.save && pp.save.player ? pp.save.player.name : key;
+          B.UI.confirm({
+            icon: '🗑️', title: nm + ' silinsin mi?',
+            body: (source === 'cloud' ? 'Buluttaki kaydı' : 'Bu cihazdaki kaydı') + ' kalıcı silinecek.',
+            yes: 'Sil', no: 'Vazgeç',
+            onYes: async () => {
+              if (source === 'cloud') { await B.Cloud.deletePlayer(key); }
+              else { B.Auth.deleteUser(key); if (B.Cloud.enabled()) await B.Cloud.deletePlayer(key); }
+              B.UI.toast('Silindi 🗑️'); load();
+            },
+          });
+        });
       }
 
       /* ---- 🎁 İstekler ---- */
@@ -8972,9 +9052,11 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           row.querySelector('.acc-del').onclick = () => {
             const d = B.UI.overlay('<div class="ov-big">⚠️</div><h2>Profili Sil</h2><p class="ov-quote">"' + esc(B.Auth.displayName(k)) + '" profili ve tüm ilerlemesi bu cihazdan silinecek. Emin misin?</p>',
               [{ label: 'Evet, sil', cls: 'btn-danger', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: () => d.remove() }]);
-            d.querySelectorAll('.overlay-btns .btn')[0].onclick = () => {
-              B.Auth.deleteUser(k); d.remove(); ov.remove(); B.UI.toast('Profil silindi 🗑️');
-              if (source === 'local') load();
+            d.querySelectorAll('.overlay-btns .btn')[0].onclick = async () => {
+              B.Auth.deleteUser(k);
+              if (B.Cloud.enabled()) await B.Cloud.deletePlayer(k); // bulut kaydını da temizle
+              d.remove(); ov.remove(); B.UI.toast('Profil silindi 🗑️');
+              load();
               manageProfiles();
             };
           };
@@ -9035,6 +9117,18 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
           if (B.Audio && B.Audio.setEnabled) B.Audio.setEnabled(v);
           B.UI.toast(v ? 'Ses açık 🔊' : 'Ses kapalı 🔇');
         };
+      }
+
+      function parentTour() {
+        if (!B.Tour) return;
+        const code = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode();
+        B.Tour.run([
+          { icon: '🧑‍✈️', title: 'Hoş geldin Komutan Baba!', text: 'Ben Baba Komutan. Bu panel senin — çocuklarının nasıl öğrendiğini buradan takip edersin. Kısaca nasıl işlediğini anlatayım.' },
+          { icon: '🔑', title: '1) Kaydoldun', text: 'Google ya da e-postanla giriş yaptın. Bu tek seferlik — bir daha sormaz, seni hep hatırlar.' },
+          { icon: '🎟️', title: '2) Davet Kodun', text: 'Yukarıda "Davet Kodun" yazıyor' + (code ? ': <b>' + code + '</b>' : '') + '. Bu ailene özel koddur. "Kopyala" ile al.' },
+          { icon: '📲', title: '3) Çocuğuna İlet', text: 'Çocuğunun cihazında oyunu aç → "🎮 Oyuncuyum → 🎟️ Davet Kodu" → bu kodu gir. Böylece çocuk ailene bağlanır ve tam sürüm açılır.' },
+          { icon: '☁️', title: '4) Takip Et', text: '"☁️ Bulut (aile)" sekmesinden çocuklarının ilerlemesini görürsün. "🎁 İstekler" ile hedef ver, "🔒 İzinler" ile dersleri/bölümleri aç-kapa. Hadi başlayalım!' },
+        ]);
       }
 
       function changePin() {
@@ -9256,7 +9350,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.39'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.40'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

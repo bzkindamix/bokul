@@ -83,6 +83,7 @@
           '<div class="admin-head">' +
             '<button class="chip admin-back">◀ Çıkış</button>' +
             '<b>👨‍👧 Ebeveyn Konsolu</b>' +
+            '<button class="chip admin-help" title="Nasıl çalışır?">❓</button>' +
             '<button class="chip admin-pin">🔑 PIN</button>' +
           '</div>' +
           famRow +
@@ -101,6 +102,11 @@
         root.querySelector('.admin-back').onclick = () => B.UI.show('login');
         root.querySelector('.admin-pin').onclick = changePin;
         root.querySelector('.adm-refresh').onclick = load;
+        const helpBtn = root.querySelector('.admin-help');
+        if (helpBtn) helpBtn.onclick = parentTour;
+        // İlk ziyarette otomatik anlat
+        const seen = B.Save.settings.get();
+        if (!seen.tour_parent) { B.Save.settings.set({ tour_parent: true }); setTimeout(parentTour, 400); }
         root.querySelectorAll('.atab').forEach(b => b.onclick = () => {
           tab = b.dataset.t;
           root.querySelectorAll('.atab').forEach(x => x.classList.toggle('tab-on', x === b));
@@ -161,8 +167,9 @@
           const last = s.meta && s.meta.lastPlayedAt ? new Date(s.meta.lastPlayedAt).toLocaleDateString('tr-TR') : '—';
           return '<div class="adm-card">' +
             '<div class="adm-p-head"><span class="adm-av">' + B.Avatar.el(pl.avatar) + '</span>' +
-              '<div><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level +
-                (pl.age ? ' · 🎂 ' + pl.age : '') + (pl.grade != null ? ' · 🎓 ' + (pl.grade === 0 ? 'okul öncesi' : pl.grade + '. sınıf') : '') + '</div></div></div>' +
+              '<div class="adm-p-id"><b>' + esc(pl.name) + '</b><div class="adm-rank">' + rank.icon + ' ' + rank.title + ' · Sv.' + pl.level +
+                (pl.age ? ' · 🎂 ' + pl.age : '') + (pl.grade != null ? ' · 🎓 ' + (pl.grade === 0 ? 'okul öncesi' : pl.grade + '. sınıf') : '') + '</div></div>' +
+              '<button class="chip adm-del" data-key="' + p.key + '" title="Bu oyuncuyu sil">🗑️</button></div>' +
             '<div class="hud-xpbar adm-xp"><i style="width:' + xpPct + '%"></i></div>' +
             '<div class="adm-stats"><span>💰 ' + (pl.coins || 0) + '</span><span>✅ ' + (st.correct || 0) + '</span><span>❌ ' + (st.wrong || 0) +
               '</span><span>🎯 %' + acc + '</span><span>🔥 en iyi ' + ((s.streaks && s.streaks.best) || 0) + '</span><span>📅 ' + last + '</span></div>' +
@@ -171,6 +178,23 @@
             '<div class="adm-lessons">' + lessonRows + '</div>' +
             profileHtml(pl.profile) + '</div>';
         }).join('');
+
+        // Oyuncu silme (eski/silinmiş kayıtları temizle) — hem yerel hem bulut
+        body.querySelectorAll('.adm-del').forEach(btn => btn.onclick = () => {
+          const key = btn.dataset.key;
+          const pp = findPlayer(key);
+          const nm = pp && pp.save && pp.save.player ? pp.save.player.name : key;
+          B.UI.confirm({
+            icon: '🗑️', title: nm + ' silinsin mi?',
+            body: (source === 'cloud' ? 'Buluttaki kaydı' : 'Bu cihazdaki kaydı') + ' kalıcı silinecek.',
+            yes: 'Sil', no: 'Vazgeç',
+            onYes: async () => {
+              if (source === 'cloud') { await B.Cloud.deletePlayer(key); }
+              else { B.Auth.deleteUser(key); if (B.Cloud.enabled()) await B.Cloud.deletePlayer(key); }
+              B.UI.toast('Silindi 🗑️'); load();
+            },
+          });
+        });
       }
 
       /* ---- 🎁 İstekler ---- */
@@ -345,9 +369,11 @@
           row.querySelector('.acc-del').onclick = () => {
             const d = B.UI.overlay('<div class="ov-big">⚠️</div><h2>Profili Sil</h2><p class="ov-quote">"' + esc(B.Auth.displayName(k)) + '" profili ve tüm ilerlemesi bu cihazdan silinecek. Emin misin?</p>',
               [{ label: 'Evet, sil', cls: 'btn-danger', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: () => d.remove() }]);
-            d.querySelectorAll('.overlay-btns .btn')[0].onclick = () => {
-              B.Auth.deleteUser(k); d.remove(); ov.remove(); B.UI.toast('Profil silindi 🗑️');
-              if (source === 'local') load();
+            d.querySelectorAll('.overlay-btns .btn')[0].onclick = async () => {
+              B.Auth.deleteUser(k);
+              if (B.Cloud.enabled()) await B.Cloud.deletePlayer(k); // bulut kaydını da temizle
+              d.remove(); ov.remove(); B.UI.toast('Profil silindi 🗑️');
+              load();
               manageProfiles();
             };
           };
@@ -408,6 +434,18 @@
           if (B.Audio && B.Audio.setEnabled) B.Audio.setEnabled(v);
           B.UI.toast(v ? 'Ses açık 🔊' : 'Ses kapalı 🔇');
         };
+      }
+
+      function parentTour() {
+        if (!B.Tour) return;
+        const code = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode();
+        B.Tour.run([
+          { icon: '🧑‍✈️', title: 'Hoş geldin Komutan Baba!', text: 'Ben Baba Komutan. Bu panel senin — çocuklarının nasıl öğrendiğini buradan takip edersin. Kısaca nasıl işlediğini anlatayım.' },
+          { icon: '🔑', title: '1) Kaydoldun', text: 'Google ya da e-postanla giriş yaptın. Bu tek seferlik — bir daha sormaz, seni hep hatırlar.' },
+          { icon: '🎟️', title: '2) Davet Kodun', text: 'Yukarıda "Davet Kodun" yazıyor' + (code ? ': <b>' + code + '</b>' : '') + '. Bu ailene özel koddur. "Kopyala" ile al.' },
+          { icon: '📲', title: '3) Çocuğuna İlet', text: 'Çocuğunun cihazında oyunu aç → "🎮 Oyuncuyum → 🎟️ Davet Kodu" → bu kodu gir. Böylece çocuk ailene bağlanır ve tam sürüm açılır.' },
+          { icon: '☁️', title: '4) Takip Et', text: '"☁️ Bulut (aile)" sekmesinden çocuklarının ilerlemesini görürsün. "🎁 İstekler" ile hedef ver, "🔒 İzinler" ile dersleri/bölümleri aç-kapa. Hadi başlayalım!' },
+        ]);
       }
 
       function changePin() {
