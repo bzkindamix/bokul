@@ -22,7 +22,17 @@
     "eng-kelime",
     "eng-selam",
     "eng-cumle",
-    "eng-sayi"
+    "eng-sayi",
+    "eng-renk",
+    "eng-aile",
+    "eng-hayvan",
+    "eng-yiyecek",
+    "eng-vucut",
+    "eng-kiyafet",
+    "eng-ev",
+    "eng-fiil",
+    "eng-zaman",
+    "eng-soru"
   ],
   "hints": {},
   "teachScripts": {
@@ -43,6 +53,116 @@
       },
       {
         "say": "Renkler, sayılar, aile... hepsi cephanemiz. Ne kadar çok kelime, o kadar güçlü asker. Bulanık'ın sisini İngilizceyle dağıtacağız!"
+      }
+    ],
+    "eng-numbers": [
+      {
+        "say": "Yeni cephe Komutan: SAYILAR ve RENKLER! Bir asker cephanesini sayabilmeli, üniformasının rengini bilmeli. Bunlar en temel silahların."
+      },
+      {
+        "say": "One, two, three... four, five! Bir elindeki parmaklarla başla. Sonra renkler: 'red' kırmızı, 'blue' mavi, 'yellow' sarı. Etrafına bak, her şeyin bir rengi var!"
+      },
+      {
+        "say": "Bulanık sayıları karıştırmayı sever. Sen sağlam say, renkleri şaşırma; sisini dağıtırsın. Hücum!"
+      }
+    ],
+    "eng-family": [
+      {
+        "say": "Yeni görev Komutan: AİLE! Her askerin arkasında bir ailesi vardır. Şimdi onları İngilizce tanıyacağız."
+      },
+      {
+        "say": "'Mother' anne, 'father' baba, 'brother' erkek kardeş, 'sister' kız kardeş. Ben de bir 'father'ım, Baba Komutan!"
+      },
+      {
+        "say": "Aileni İngilizce anlatabilirsen, dünyanın öbür ucundaki bir çocuğa kendini tanıtabilirsin. Güçlü ol, ileri!"
+      }
+    ],
+    "eng-animals": [
+      {
+        "say": "Yeni keşif Komutan: HAYVANLAR! Ormanda, çiftlikte, denizde... her yerdeler. Şimdi hepsini İngilizce kod adlarıyla öğreneceğiz."
+      },
+      {
+        "say": "'Cat' kedi, 'dog' köpek, 'lion' aslan, 'fish' balık. Her hayvanın bir sesi var; ama İngilizce adını bilen gerçek kâşiftir."
+      },
+      {
+        "say": "Bir hayvanın İngilizce adını söyleyebiliyorsan, dünyanın her yerinde onu tarif edebilirsin. Devriyeye çık!"
+      }
+    ],
+    "eng-food": [
+      {
+        "say": "Karnın acıktı mı Komutan? Bu ünitede YİYECEK ve İÇECEK öğreniyoruz. Bir asker enerjisini yemekten alır!"
+      },
+      {
+        "say": "'Water' su, 'bread' ekmek, 'milk' süt, 'apple' elma. Mutfağa gir, gördüğün her şeyin İngilizcesini söylemeye çalış."
+      },
+      {
+        "say": "Bir gün bir restoranda İngilizce yemek isteyebilirsin. O yüzden bu kelimeler çok işine yarayacak. Afiyet olsun, hücum!"
+      }
+    ],
+    "eng-body": [
+      {
+        "say": "Aynaya bak Komutan! Bu ünite VÜCUT ve KIYAFET hakkında. Kendi bedenini İngilizce tanımak bir süper güçtür."
+      },
+      {
+        "say": "'Head' baş, 'hand' el, 'eye' göz, 'foot' ayak. Sonra giyiniyoruz: 'shirt' gömlek, 'shoes' ayakkabı, 'hat' şapka."
+      },
+      {
+        "say": "Doktora gittiğinde neren ağrıyor İngilizce söyleyebilirsin. Küçük kelimeler, büyük işler görür. İleri!"
+      }
+    ],
+    "eng-home": [
+      {
+        "say": "Üssümüze hoş geldin Komutan! Bu ünitede EV ve EŞYALARI İngilizce öğreniyoruz. Her askerin bir karargâhı olmalı."
+      },
+      {
+        "say": "'House' ev, 'door' kapı, 'window' pencere, 'table' masa, 'bed' yatak. Odanda tur at, gördüğün her eşyayı İngilizce söyle."
+      },
+      {
+        "say": "Evini İngilizce anlatabilirsen, bir misafiri gezdirebilirsin. Karargâhını tanı, ileri marş!"
+      }
+    ],
+    "eng-verbs": [
+      {
+        "say": "Şimdi işler ciddileşiyor Komutan: FİİLLER! Fiiller cümlenin motorudur. Onlar olmadan bir asker hareket edemez."
+      },
+      {
+        "say": "'Go' git, 'come' gel, 'eat' ye, 'run' koş, 'sleep' uyu. Her fiil bir emirdir; sen de bu emirleri İngilizce verebilirsin."
+      },
+      {
+        "say": "Bir fiili öğrendiğinde koca bir cümlenin anahtarını almış olursun. Harekete geç, hücum!"
+      }
+    ],
+    "eng-time": [
+      {
+        "say": "Zaman bir askerin en değerli hazinesidir Komutan. Bu ünitede GÜNLER, ZAMAN ve HAVA DURUMUNU İngilizce öğreniyoruz."
+      },
+      {
+        "say": "'Monday' pazartesi, 'today' bugün, 'tomorrow' yarın. Sonra gökyüzüne bak: 'rain' yağmur, 'snow' kar, 'sun' güneş."
+      },
+      {
+        "say": "Havanın nasıl olduğunu İngilizce söyleyebilirsen, ne giyeceğini bilirsin. Zamanı iyi kullan, ileri!"
+      }
+    ],
+    "eng-sentences": [
+      {
+        "say": "Son cephe Komutan: CÜMLELER ve SORULAR! Artık tek tek kelimeleri birleştirip gerçek konuşmalar kuracağız."
+      },
+      {
+        "say": "'What is your name?' adın ne? 'How are you?' nasılsın? 'I am fine' iyiyim. Soru sor, cevap ver; işte gerçek İngilizce bu!"
+      },
+      {
+        "say": "Bir soruyu anlayıp cevap verebiliyorsan, artık İngilizce konuşuyorsun demektir. Bulanık son sisini de dağıttın. Tebrikler asker!"
+      }
+    ],
+    "eng-final": [
+      {
+        "say": "Bu AN geldi Komutan! Kelime Kâşifi cephesinin EN BÜYÜK sınavı: tüm öğrendiklerin bir arada, en zoru."
+      },
+      {
+        "say": "🐉 Kelime Ejderi karşında! Onu yenersen bu dersin USTASI olursun. Efsanevi ödül seni bekliyor."
+      },
+      {
+        "say": "Sakin ol, öğrendiklerine güven. Her soru bir darbe. Hazırsan… HÜCUM!"
       }
     ]
   },
@@ -588,6 +708,2122 @@
               "hint": "Ders gördüğün yer."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — Sayılar & Renkler",
+      "sections": [
+        {
+          "id": "s-eng-numbers",
+          "title": "Sayılar ve Renkler",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-numbers-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Sayılar & Renkler",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-numbers"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-numbers-m2",
+              "type": "practice",
+              "title": "Kelime Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-numbers"
+              }
+            },
+            {
+              "id": "s-eng-numbers-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-eng-numbers"
+              }
+            },
+            {
+              "id": "s-eng-numbers-m4",
+              "type": "challenge",
+              "title": "Zorlu Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-numbers"
+              }
+            },
+            {
+              "id": "s-eng-numbers-m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-numbers",
+            "tier": "topic",
+            "name": "Sayı Yutan Gölge",
+            "icon": "🔢",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-eng-numbers"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-eng-numbers"
+            }
+          },
+          "bank": [
+            {
+              "q": "'Four' hangi sayı?",
+              "skill": "eng-sayi",
+              "options": [
+                "3",
+                "4",
+                "5",
+                "6"
+              ],
+              "correct": 1,
+              "hint": "Üç'ten bir fazla."
+            },
+            {
+              "q": "'Five' hangi sayı?",
+              "skill": "eng-sayi",
+              "options": [
+                "5",
+                "4",
+                "6",
+                "9"
+              ],
+              "correct": 0,
+              "hint": "Bir elde beş parmak var."
+            },
+            {
+              "q": "'Ten' hangi sayı?",
+              "skill": "eng-sayi",
+              "options": [
+                "9",
+                "10",
+                "8",
+                "100"
+              ],
+              "correct": 1,
+              "hint": "İki eldeki toplam parmak sayısı."
+            },
+            {
+              "q": "'Seven' hangi sayı?",
+              "skill": "eng-sayi",
+              "options": [
+                "7",
+                "6",
+                "8",
+                "5"
+              ],
+              "correct": 0,
+              "hint": "Bir haftada bu kadar gün var."
+            },
+            {
+              "q": "'Six' hangi sayı?",
+              "skill": "eng-sayi",
+              "options": [
+                "5",
+                "6",
+                "7",
+                "4"
+              ],
+              "correct": 1,
+              "hint": "Beş'ten bir fazla."
+            },
+            {
+              "q": "'Eight' hangi sayı?",
+              "skill": "eng-sayi",
+              "options": [
+                "8",
+                "6",
+                "9",
+                "3"
+              ],
+              "correct": 0,
+              "hint": "Bir örümceğin bacak sayısı."
+            },
+            {
+              "q": "'Nine' hangi sayı?",
+              "skill": "eng-sayi",
+              "options": [
+                "8",
+                "9",
+                "10",
+                "6"
+              ],
+              "correct": 1,
+              "hint": "On'dan bir eksik."
+            },
+            {
+              "q": "'Yellow' hangi renk?",
+              "skill": "eng-renk",
+              "options": [
+                "Sarı",
+                "Mavi",
+                "Kırmızı",
+                "Yeşil"
+              ],
+              "correct": 0,
+              "hint": "Limonun ve muzun rengi."
+            },
+            {
+              "q": "'Black' hangi renk?",
+              "skill": "eng-renk",
+              "options": [
+                "Beyaz",
+                "Siyah",
+                "Gri",
+                "Mor"
+              ],
+              "correct": 1,
+              "hint": "Gecenin ve kömürün rengi."
+            },
+            {
+              "q": "'White' hangi renk?",
+              "skill": "eng-renk",
+              "options": [
+                "Beyaz",
+                "Siyah",
+                "Mavi",
+                "Yeşil"
+              ],
+              "correct": 0,
+              "hint": "Karın ve sütün rengi."
+            },
+            {
+              "q": "'Orange' hangi renk?",
+              "skill": "eng-renk",
+              "options": [
+                "Pembe",
+                "Mor",
+                "Turuncu",
+                "Gri"
+              ],
+              "correct": 2,
+              "hint": "Portakalın rengi ve adı aynı."
+            },
+            {
+              "q": "'Pink' hangi renk?",
+              "skill": "eng-renk",
+              "options": [
+                "Pembe",
+                "Mor",
+                "Turuncu",
+                "Gri"
+              ],
+              "correct": 0,
+              "hint": "Açık kırmızıya yakın, tatlı bir renk."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — Aile & İnsanlar",
+      "sections": [
+        {
+          "id": "s-eng-family",
+          "title": "Ailem ve İnsanlar",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-family-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Aile",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-family"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-family-m2",
+              "type": "practice",
+              "title": "Kelime Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-family"
+              }
+            },
+            {
+              "id": "s-eng-family-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-eng-family"
+              }
+            },
+            {
+              "id": "s-eng-family-m4",
+              "type": "challenge",
+              "title": "Zorlu Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-family"
+              }
+            },
+            {
+              "id": "s-eng-family-m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-family",
+            "tier": "topic",
+            "name": "Kayıp Kelime Devi",
+            "icon": "👨‍👩‍👧",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-eng-family"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-eng-family"
+            }
+          },
+          "bank": [
+            {
+              "q": "'Sister' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Kız kardeş / Abla",
+                "Erkek kardeş",
+                "Anne",
+                "Teyze"
+              ],
+              "correct": 0,
+              "hint": "Kız olan kardeşin."
+            },
+            {
+              "q": "'Brother' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Erkek kardeş",
+                "Kız kardeş",
+                "Baba",
+                "Dede"
+              ],
+              "correct": 0,
+              "hint": "Erkek olan kardeşin."
+            },
+            {
+              "q": "'Baby' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Bebek",
+                "Çocuk",
+                "Yetişkin",
+                "Yaşlı"
+              ],
+              "correct": 0,
+              "hint": "Ailenin en küçüğü, henüz yürüyemez."
+            },
+            {
+              "q": "'Grandmother' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Anne",
+                "Anneanne / Babaanne",
+                "Teyze",
+                "Abla"
+              ],
+              "correct": 1,
+              "hint": "Annenin ya da babanın annesi."
+            },
+            {
+              "q": "'Grandfather' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Dede",
+                "Baba",
+                "Amca",
+                "Kardeş"
+              ],
+              "correct": 0,
+              "hint": "Annenin ya da babanın babası."
+            },
+            {
+              "q": "'Family' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Arkadaş",
+                "Komşu",
+                "Aile",
+                "Sınıf"
+              ],
+              "correct": 2,
+              "hint": "Anne, baba ve çocuklar birlikte."
+            },
+            {
+              "q": "'Boy' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Erkek çocuk",
+                "Kız çocuk",
+                "Kadın",
+                "Adam"
+              ],
+              "correct": 0,
+              "hint": "Küçük erkek."
+            },
+            {
+              "q": "'Girl' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Kız çocuk",
+                "Erkek çocuk",
+                "Anne",
+                "Nine"
+              ],
+              "correct": 0,
+              "hint": "Küçük kız."
+            },
+            {
+              "q": "'Man' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Kadın",
+                "Adam",
+                "Çocuk",
+                "Bebek"
+              ],
+              "correct": 1,
+              "hint": "Yetişkin erkek."
+            },
+            {
+              "q": "'Woman' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Kadın",
+                "Adam",
+                "Kız",
+                "Oğlan"
+              ],
+              "correct": 0,
+              "hint": "Yetişkin kadın."
+            },
+            {
+              "q": "'Son' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Oğul",
+                "Kız evlat",
+                "Anne",
+                "Amca"
+              ],
+              "correct": 0,
+              "hint": "Ailenin erkek çocuğu."
+            },
+            {
+              "q": "'Daughter' ne demek?",
+              "skill": "eng-aile",
+              "options": [
+                "Kız evlat",
+                "Oğul",
+                "Abla",
+                "Hala"
+              ],
+              "correct": 0,
+              "hint": "Ailenin kız çocuğu."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — Hayvanlar",
+      "sections": [
+        {
+          "id": "s-eng-animals",
+          "title": "Hayvanlar",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-animals-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Hayvanlar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-animals"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-animals-m2",
+              "type": "practice",
+              "title": "Kelime Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-animals"
+              }
+            },
+            {
+              "id": "s-eng-animals-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-eng-animals"
+              }
+            },
+            {
+              "id": "s-eng-animals-m4",
+              "type": "challenge",
+              "title": "Zorlu Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-animals"
+              }
+            },
+            {
+              "id": "s-eng-animals-m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-animals",
+            "tier": "topic",
+            "name": "Sesi Kaçmış Safari Canavarı",
+            "icon": "🦁",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-eng-animals"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-eng-animals"
+            }
+          },
+          "bank": [
+            {
+              "q": "'Bird' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Kuş",
+                "Balık",
+                "Kedi",
+                "Fare"
+              ],
+              "correct": 0,
+              "hint": "Kanatları var, gökte uçar."
+            },
+            {
+              "q": "'Fish' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Balık",
+                "Kuş",
+                "Köpek",
+                "At"
+              ],
+              "correct": 0,
+              "hint": "Suda yüzer, solungaçları var."
+            },
+            {
+              "q": "'Horse' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "At",
+                "İnek",
+                "Koyun",
+                "Eşek"
+              ],
+              "correct": 0,
+              "hint": "Üstüne binilir, hızlı koşar."
+            },
+            {
+              "q": "'Cow' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "At",
+                "İnek",
+                "Keçi",
+                "Domuz"
+              ],
+              "correct": 1,
+              "hint": "Süt verir, 'möö' der."
+            },
+            {
+              "q": "'Sheep' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Koyun",
+                "Keçi",
+                "İnek",
+                "Tavuk"
+              ],
+              "correct": 0,
+              "hint": "Yününden kazak yapılır, 'mee' der."
+            },
+            {
+              "q": "'Lion' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Aslan",
+                "Kaplan",
+                "Ayı",
+                "Kurt"
+              ],
+              "correct": 0,
+              "hint": "Ormanların kralı, kükrer."
+            },
+            {
+              "q": "'Elephant' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Zürafa",
+                "Gergedan",
+                "Fil",
+                "Su aygırı"
+              ],
+              "correct": 2,
+              "hint": "Uzun hortumu ve büyük kulakları var."
+            },
+            {
+              "q": "'Monkey' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Maymun",
+                "Ayı",
+                "Tilki",
+                "Sincap"
+              ],
+              "correct": 0,
+              "hint": "Ağaçlara tırmanır, muz sever."
+            },
+            {
+              "q": "'Rabbit' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Tavşan",
+                "Fare",
+                "Kirpi",
+                "Sincap"
+              ],
+              "correct": 0,
+              "hint": "Uzun kulaklı, havuç sever, zıplar."
+            },
+            {
+              "q": "'Bear' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Ayı",
+                "Kurt",
+                "Aslan",
+                "Tilki"
+              ],
+              "correct": 0,
+              "hint": "Bal sever, kışın uyur."
+            },
+            {
+              "q": "'Duck' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Ördek",
+                "Tavuk",
+                "Kaz",
+                "Horoz"
+              ],
+              "correct": 0,
+              "hint": "Suda yüzer, 'vak vak' der."
+            },
+            {
+              "q": "'Chicken' ne demek?",
+              "skill": "eng-hayvan",
+              "options": [
+                "Ördek",
+                "Tavuk",
+                "Kuş",
+                "Hindi"
+              ],
+              "correct": 1,
+              "hint": "Yumurta yapar, çiftlikte yaşar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "ÜNİTE 5 — Yiyecek & İçecek",
+      "sections": [
+        {
+          "id": "s-eng-food",
+          "title": "Yiyecek ve İçecek",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-food-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Yiyecek",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-food"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-food-m2",
+              "type": "practice",
+              "title": "Kelime Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-food"
+              }
+            },
+            {
+              "id": "s-eng-food-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-eng-food"
+              }
+            },
+            {
+              "id": "s-eng-food-m4",
+              "type": "challenge",
+              "title": "Zorlu Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-food"
+              }
+            },
+            {
+              "id": "s-eng-food-m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-food",
+            "tier": "topic",
+            "name": "Boş Tabak Goblini",
+            "icon": "🍎",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-eng-food"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-eng-food"
+            }
+          },
+          "bank": [
+            {
+              "q": "'Bread' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Ekmek",
+                "Peynir",
+                "Süt",
+                "Et"
+              ],
+              "correct": 0,
+              "hint": "Fırında pişer, her kahvaltıda vardır."
+            },
+            {
+              "q": "'Milk' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Süt",
+                "Su",
+                "Çay",
+                "Meyve suyu"
+              ],
+              "correct": 0,
+              "hint": "İnekten gelir, beyaz içecek."
+            },
+            {
+              "q": "'Egg' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Peynir",
+                "Yumurta",
+                "Ekmek",
+                "Zeytin"
+              ],
+              "correct": 1,
+              "hint": "Tavuktan gelir, kabuğu vardır."
+            },
+            {
+              "q": "'Cheese' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Peynir",
+                "Tereyağı",
+                "Yoğurt",
+                "Bal"
+              ],
+              "correct": 0,
+              "hint": "Sütten yapılır, ekmekle yenir."
+            },
+            {
+              "q": "'Rice' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Pirinç",
+                "Makarna",
+                "Bulgur",
+                "Un"
+              ],
+              "correct": 0,
+              "hint": "Pilav bundan yapılır."
+            },
+            {
+              "q": "'Meat' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Balık",
+                "Sebze",
+                "Et",
+                "Tavuk"
+              ],
+              "correct": 2,
+              "hint": "Köfte bundan yapılır."
+            },
+            {
+              "q": "'Banana' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Muz",
+                "Elma",
+                "Portakal",
+                "Çilek"
+              ],
+              "correct": 0,
+              "hint": "Sarı, uzun; maymunlar çok sever."
+            },
+            {
+              "q": "'Orange' (meyve) ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Portakal",
+                "Elma",
+                "Karpuz",
+                "Kiraz"
+              ],
+              "correct": 0,
+              "hint": "Turuncu, C vitamini dolu meyve."
+            },
+            {
+              "q": "'Tea' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Çay",
+                "Kahve",
+                "Süt",
+                "Su"
+              ],
+              "correct": 0,
+              "hint": "Sıcak içilir, genelde ince belli bardakta."
+            },
+            {
+              "q": "'Chocolate' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Çikolata",
+                "Şeker",
+                "Dondurma",
+                "Kek"
+              ],
+              "correct": 0,
+              "hint": "Kahverengi, tatlı; herkesin favorisi."
+            },
+            {
+              "q": "'Soup' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Salata",
+                "Çorba",
+                "Makarna",
+                "Pilav"
+              ],
+              "correct": 1,
+              "hint": "Sıcak içilir, kaşıkla yenir."
+            },
+            {
+              "q": "'Ice cream' ne demek?",
+              "skill": "eng-yiyecek",
+              "options": [
+                "Dondurma",
+                "Buz",
+                "Pasta",
+                "Kurabiye"
+              ],
+              "correct": 0,
+              "hint": "Soğuk ve tatlı, yazın en sevileni."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "ÜNİTE 6 — Vücut & Kıyafet",
+      "sections": [
+        {
+          "id": "s-eng-body",
+          "title": "Vücut ve Kıyafet",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-body-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Vücut & Kıyafet",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-body"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-body-m2",
+              "type": "practice",
+              "title": "Kelime Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-body"
+              }
+            },
+            {
+              "id": "s-eng-body-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-eng-body"
+              }
+            },
+            {
+              "id": "s-eng-body-m4",
+              "type": "challenge",
+              "title": "Zorlu Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-body"
+              }
+            },
+            {
+              "id": "s-eng-body-m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-body",
+            "tier": "topic",
+            "name": "Tek Ayakkabılı Hayalet",
+            "icon": "🧥",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-eng-body"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-eng-body"
+            }
+          },
+          "bank": [
+            {
+              "q": "'Head' ne demek?",
+              "skill": "eng-vucut",
+              "options": [
+                "Baş / Kafa",
+                "El",
+                "Ayak",
+                "Kol"
+              ],
+              "correct": 0,
+              "hint": "En üstte, beynin olduğu yer."
+            },
+            {
+              "q": "'Hand' ne demek?",
+              "skill": "eng-vucut",
+              "options": [
+                "El",
+                "Ayak",
+                "Göz",
+                "Kulak"
+              ],
+              "correct": 0,
+              "hint": "Parmakların olduğu yer."
+            },
+            {
+              "q": "'Foot' ne demek?",
+              "skill": "eng-vucut",
+              "options": [
+                "El",
+                "Ayak",
+                "Diz",
+                "Omuz"
+              ],
+              "correct": 1,
+              "hint": "Üstünde yürürsün."
+            },
+            {
+              "q": "'Eye' ne demek?",
+              "skill": "eng-vucut",
+              "options": [
+                "Göz",
+                "Kulak",
+                "Burun",
+                "Ağız"
+              ],
+              "correct": 0,
+              "hint": "Onunla görürsün."
+            },
+            {
+              "q": "'Ear' ne demek?",
+              "skill": "eng-vucut",
+              "options": [
+                "Kulak",
+                "Göz",
+                "Burun",
+                "Diş"
+              ],
+              "correct": 0,
+              "hint": "Onunla duyarsın."
+            },
+            {
+              "q": "'Nose' ne demek?",
+              "skill": "eng-vucut",
+              "options": [
+                "Ağız",
+                "Burun",
+                "Göz",
+                "El"
+              ],
+              "correct": 1,
+              "hint": "Onunla koku alırsın."
+            },
+            {
+              "q": "'Mouth' ne demek?",
+              "skill": "eng-vucut",
+              "options": [
+                "Ağız",
+                "Burun",
+                "Kulak",
+                "Saç"
+              ],
+              "correct": 0,
+              "hint": "Onunla konuşur ve yemek yersin."
+            },
+            {
+              "q": "'Hair' ne demek?",
+              "skill": "eng-vucut",
+              "options": [
+                "Saç",
+                "Diş",
+                "Göz",
+                "Kol"
+              ],
+              "correct": 0,
+              "hint": "Başının üstünde, taranır."
+            },
+            {
+              "q": "'Shirt' ne demek?",
+              "skill": "eng-kiyafet",
+              "options": [
+                "Gömlek",
+                "Pantolon",
+                "Ayakkabı",
+                "Şapka"
+              ],
+              "correct": 0,
+              "hint": "Üst bedene giyilir, düğmeli olabilir."
+            },
+            {
+              "q": "'Shoes' ne demek?",
+              "skill": "eng-kiyafet",
+              "options": [
+                "Çorap",
+                "Ayakkabı",
+                "Şapka",
+                "Ceket"
+              ],
+              "correct": 1,
+              "hint": "Ayağa giyilir, dışarı çıkarken."
+            },
+            {
+              "q": "'Hat' ne demek?",
+              "skill": "eng-kiyafet",
+              "options": [
+                "Şapka",
+                "Eldiven",
+                "Atkı",
+                "Kemer"
+              ],
+              "correct": 0,
+              "hint": "Başa takılır, güneşten korur."
+            },
+            {
+              "q": "'Socks' ne demek?",
+              "skill": "eng-kiyafet",
+              "options": [
+                "Ayakkabı",
+                "Çorap",
+                "Eldiven",
+                "Şapka"
+              ],
+              "correct": 1,
+              "hint": "Ayakkabıdan önce ayağa giyilir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "title": "ÜNİTE 7 — Ev & Eşyalar",
+      "sections": [
+        {
+          "id": "s-eng-home",
+          "title": "Ev ve Eşyalar",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-home-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Ev & Eşyalar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-home"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-home-m2",
+              "type": "practice",
+              "title": "Kelime Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-home"
+              }
+            },
+            {
+              "id": "s-eng-home-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-eng-home"
+              }
+            },
+            {
+              "id": "s-eng-home-m4",
+              "type": "challenge",
+              "title": "Zorlu Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-home"
+              }
+            },
+            {
+              "id": "s-eng-home-m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-home",
+            "tier": "topic",
+            "name": "Anahtarı Yutan Kapı Golemi",
+            "icon": "🏠",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-eng-home"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-eng-home"
+            }
+          },
+          "bank": [
+            {
+              "q": "'House' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Ev",
+                "Okul",
+                "Bahçe",
+                "Sokak"
+              ],
+              "correct": 0,
+              "hint": "İçinde ailenle yaşadığın yer."
+            },
+            {
+              "q": "'Door' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Kapı",
+                "Pencere",
+                "Duvar",
+                "Çatı"
+              ],
+              "correct": 0,
+              "hint": "Açıp içeri girersin."
+            },
+            {
+              "q": "'Window' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Pencere",
+                "Kapı",
+                "Duvar",
+                "Merdiven"
+              ],
+              "correct": 0,
+              "hint": "Camından dışarı bakarsın."
+            },
+            {
+              "q": "'Table' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Sandalye",
+                "Masa",
+                "Yatak",
+                "Dolap"
+              ],
+              "correct": 1,
+              "hint": "Üstünde yemek yer, ödev yaparsın."
+            },
+            {
+              "q": "'Chair' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Sandalye",
+                "Masa",
+                "Koltuk",
+                "Yatak"
+              ],
+              "correct": 0,
+              "hint": "Üstüne oturursun."
+            },
+            {
+              "q": "'Bed' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Yatak",
+                "Masa",
+                "Kapı",
+                "Halı"
+              ],
+              "correct": 0,
+              "hint": "Üstünde uyursun."
+            },
+            {
+              "q": "'Kitchen' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Banyo",
+                "Mutfak",
+                "Salon",
+                "Bahçe"
+              ],
+              "correct": 1,
+              "hint": "Yemeğin pişirildiği oda."
+            },
+            {
+              "q": "'Room' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Oda",
+                "Çatı",
+                "Bahçe",
+                "Sokak"
+              ],
+              "correct": 0,
+              "hint": "Evin içindeki bir bölüm."
+            },
+            {
+              "q": "'Clock' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Saat",
+                "Lamba",
+                "Ayna",
+                "Vazo"
+              ],
+              "correct": 0,
+              "hint": "Duvarda asılı, zamanı gösterir."
+            },
+            {
+              "q": "'Lamp' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Lamba",
+                "Saat",
+                "Halı",
+                "Perde"
+              ],
+              "correct": 0,
+              "hint": "Karanlıkta ışık verir."
+            },
+            {
+              "q": "'Key' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Anahtar",
+                "Kilit",
+                "Çanta",
+                "Kapı"
+              ],
+              "correct": 0,
+              "hint": "Kapıyı açmak için kullanılır."
+            },
+            {
+              "q": "'Phone' ne demek?",
+              "skill": "eng-ev",
+              "options": [
+                "Telefon",
+                "Televizyon",
+                "Bilgisayar",
+                "Radyo"
+              ],
+              "correct": 0,
+              "hint": "Onunla konuşur, arama yaparsın."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "title": "ÜNİTE 8 — Fiiller & Günlük Eylemler",
+      "sections": [
+        {
+          "id": "s-eng-verbs",
+          "title": "Fiiller ve Eylemler",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-verbs-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Fiiller",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-verbs"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-verbs-m2",
+              "type": "practice",
+              "title": "Kelime Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-verbs"
+              }
+            },
+            {
+              "id": "s-eng-verbs-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-eng-verbs"
+              }
+            },
+            {
+              "id": "s-eng-verbs-m4",
+              "type": "challenge",
+              "title": "Zorlu Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-verbs"
+              }
+            },
+            {
+              "id": "s-eng-verbs-m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-verbs",
+            "tier": "topic",
+            "name": "Hareketsiz Bırakan Tembel Trol",
+            "icon": "🏃",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-eng-verbs"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-eng-verbs"
+            }
+          },
+          "bank": [
+            {
+              "q": "'Go' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Gitmek",
+                "Gelmek",
+                "Durmak",
+                "Koşmak"
+              ],
+              "correct": 0,
+              "hint": "'Go to school' = okula gitmek."
+            },
+            {
+              "q": "'Come' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Gelmek",
+                "Gitmek",
+                "Oturmak",
+                "Uyumak"
+              ],
+              "correct": 0,
+              "hint": "'Come here' = buraya gel."
+            },
+            {
+              "q": "'Eat' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Yemek yemek",
+                "İçmek",
+                "Uyumak",
+                "Koşmak"
+              ],
+              "correct": 0,
+              "hint": "Aç olunca yaparsın."
+            },
+            {
+              "q": "'Drink' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Yemek",
+                "İçmek",
+                "Yürümek",
+                "Bakmak"
+              ],
+              "correct": 1,
+              "hint": "Su içme eylemi."
+            },
+            {
+              "q": "'Run' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Koşmak",
+                "Yürümek",
+                "Durmak",
+                "Oturmak"
+              ],
+              "correct": 0,
+              "hint": "Hızlı hareket etmek."
+            },
+            {
+              "q": "'Sleep' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Uyumak",
+                "Uyanmak",
+                "Koşmak",
+                "Gülmek"
+              ],
+              "correct": 0,
+              "hint": "Gece yatakta yaparsın."
+            },
+            {
+              "q": "'Read' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Okumak",
+                "Yazmak",
+                "Çizmek",
+                "Söylemek"
+              ],
+              "correct": 0,
+              "hint": "Kitabı okuma eylemi."
+            },
+            {
+              "q": "'Write' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Okumak",
+                "Yazmak",
+                "Silmek",
+                "Koşmak"
+              ],
+              "correct": 1,
+              "hint": "Kalemle yapılan eylem."
+            },
+            {
+              "q": "'Play' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Oynamak",
+                "Çalışmak",
+                "Uyumak",
+                "Yemek"
+              ],
+              "correct": 0,
+              "hint": "Oyun oynama eylemi."
+            },
+            {
+              "q": "'Look' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Bakmak",
+                "Duymak",
+                "Konuşmak",
+                "Koklamak"
+              ],
+              "correct": 0,
+              "hint": "Gözlerinle yaparsın."
+            },
+            {
+              "q": "'Open' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Kapamak",
+                "Açmak",
+                "İtmek",
+                "Çekmek"
+              ],
+              "correct": 1,
+              "hint": "'Open the door' = kapıyı aç."
+            },
+            {
+              "q": "'Sit' ne demek?",
+              "skill": "eng-fiil",
+              "options": [
+                "Oturmak",
+                "Kalkmak",
+                "Zıplamak",
+                "Yürümek"
+              ],
+              "correct": 0,
+              "hint": "'Sit down' = otur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u9",
+      "title": "ÜNİTE 9 — Gün, Ay, Hava & Zaman",
+      "sections": [
+        {
+          "id": "s-eng-time",
+          "title": "Zaman ve Hava",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-time-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Zaman & Hava",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-time"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-time-m2",
+              "type": "practice",
+              "title": "Kelime Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-time"
+              }
+            },
+            {
+              "id": "s-eng-time-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-eng-time"
+              }
+            },
+            {
+              "id": "s-eng-time-m4",
+              "type": "challenge",
+              "title": "Zorlu Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-time"
+              }
+            },
+            {
+              "id": "s-eng-time-m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-time",
+            "tier": "topic",
+            "name": "Takvimi Karıştıran Sisli Saat",
+            "icon": "⏰",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-eng-time"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-eng-time"
+            }
+          },
+          "bank": [
+            {
+              "q": "'Monday' hangi gün?",
+              "skill": "eng-zaman",
+              "options": [
+                "Pazartesi",
+                "Salı",
+                "Pazar",
+                "Cuma"
+              ],
+              "correct": 0,
+              "hint": "Haftanın ilk günü, okul başlar."
+            },
+            {
+              "q": "'Sunday' hangi gün?",
+              "skill": "eng-zaman",
+              "options": [
+                "Cumartesi",
+                "Pazar",
+                "Pazartesi",
+                "Perşembe"
+              ],
+              "correct": 1,
+              "hint": "Haftanın tatil günü."
+            },
+            {
+              "q": "'Today' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Bugün",
+                "Yarın",
+                "Dün",
+                "Az önce"
+              ],
+              "correct": 0,
+              "hint": "İçinde bulunduğun gün."
+            },
+            {
+              "q": "'Tomorrow' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Yarın",
+                "Dün",
+                "Bugün",
+                "Az önce"
+              ],
+              "correct": 0,
+              "hint": "Bugünden sonraki gün."
+            },
+            {
+              "q": "'Rain' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Yağmur",
+                "Kar",
+                "Güneş",
+                "Rüzgar"
+              ],
+              "correct": 0,
+              "hint": "Gökten su damlar, şemsiye açarsın."
+            },
+            {
+              "q": "'Snow' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Kar",
+                "Yağmur",
+                "Bulut",
+                "Rüzgar"
+              ],
+              "correct": 0,
+              "hint": "Kışın beyaz yağar, kardan adam yaparsın."
+            },
+            {
+              "q": "'Hot' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Soğuk",
+                "Sıcak",
+                "Islak",
+                "Kuru"
+              ],
+              "correct": 1,
+              "hint": "Yazın hava böyledir."
+            },
+            {
+              "q": "'Cold' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Soğuk",
+                "Sıcak",
+                "Ilık",
+                "Kuru"
+              ],
+              "correct": 0,
+              "hint": "Kışın hava böyledir, üşürsün."
+            },
+            {
+              "q": "'Day' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Gün",
+                "Ay",
+                "Yıl",
+                "Saat"
+              ],
+              "correct": 0,
+              "hint": "24 saatlik zaman dilimi."
+            },
+            {
+              "q": "'Night' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Sabah",
+                "Gece",
+                "Öğlen",
+                "Gün"
+              ],
+              "correct": 1,
+              "hint": "Güneş batınca olur, yıldızlar çıkar."
+            },
+            {
+              "q": "'Year' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Yıl",
+                "Ay",
+                "Hafta",
+                "Gün"
+              ],
+              "correct": 0,
+              "hint": "12 aydan oluşan zaman."
+            },
+            {
+              "q": "'Wind' ne demek?",
+              "skill": "eng-zaman",
+              "options": [
+                "Rüzgar",
+                "Yağmur",
+                "Kar",
+                "Güneş"
+              ],
+              "correct": 0,
+              "hint": "Ağaçları sallar, uçurtmayı uçurur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u10",
+      "title": "ÜNİTE 10 — Basit Cümleler & Sorular",
+      "sections": [
+        {
+          "id": "s-eng-sentences",
+          "title": "Cümleler ve Sorular",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-sentences-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Cümleler & Sorular",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-sentences"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-sentences-m2",
+              "type": "practice",
+              "title": "Kelime Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-sentences"
+              }
+            },
+            {
+              "id": "s-eng-sentences-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-eng-sentences"
+              }
+            },
+            {
+              "id": "s-eng-sentences-m4",
+              "type": "challenge",
+              "title": "Zorlu Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-eng-sentences"
+              }
+            },
+            {
+              "id": "s-eng-sentences-m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-sentences",
+            "tier": "topic",
+            "name": "Cümleleri Dağıtan Soru Kâbusu",
+            "icon": "💬",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-eng-sentences"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-eng-sentences"
+            }
+          },
+          "bank": [
+            {
+              "q": "'What is your name?' ne sorar?",
+              "skill": "eng-soru",
+              "options": [
+                "Adın ne?",
+                "Kaç yaşındasın?",
+                "Nasılsın?",
+                "Nerelisin?"
+              ],
+              "correct": 0,
+              "hint": "'name' = isim."
+            },
+            {
+              "q": "'How old are you?' ne sorar?",
+              "skill": "eng-soru",
+              "options": [
+                "Kaç yaşındasın?",
+                "Adın ne?",
+                "Nasılsın?",
+                "Neredesin?"
+              ],
+              "correct": 0,
+              "hint": "'old' = yaş; yaş sorulur."
+            },
+            {
+              "q": "'Where are you?' ne sorar?",
+              "skill": "eng-soru",
+              "options": [
+                "Neredesin?",
+                "Kimsin?",
+                "Nesin?",
+                "Nasılsın?"
+              ],
+              "correct": 0,
+              "hint": "'where' = nerede."
+            },
+            {
+              "q": "'I am fine' ne demek?",
+              "skill": "eng-cumle",
+              "options": [
+                "İyiyim",
+                "Kötüyüm",
+                "Açım",
+                "Yorgunum"
+              ],
+              "correct": 0,
+              "hint": "'How are you?' sorusuna cevap; 'fine' = iyi."
+            },
+            {
+              "q": "'This is my book' ne demek?",
+              "skill": "eng-cumle",
+              "options": [
+                "Bu benim kitabım",
+                "Bu senin kitabın",
+                "Şu bir kalem",
+                "O bir defter"
+              ],
+              "correct": 0,
+              "hint": "'my' = benim."
+            },
+            {
+              "q": "'I have a dog' ne demek?",
+              "skill": "eng-cumle",
+              "options": [
+                "Bir köpeğim var",
+                "Bir kedim var",
+                "Köpeği görüyorum",
+                "Köpek büyük"
+              ],
+              "correct": 0,
+              "hint": "'have' = sahip olmak."
+            },
+            {
+              "q": "'She is my sister' ne demek?",
+              "skill": "eng-cumle",
+              "options": [
+                "O benim kız kardeşim",
+                "O benim erkek kardeşim",
+                "Bu annem",
+                "Şu babam"
+              ],
+              "correct": 0,
+              "hint": "'she' = o (kız), 'sister' = kız kardeş."
+            },
+            {
+              "q": "'I can swim' ne demek?",
+              "skill": "eng-cumle",
+              "options": [
+                "Yüzebilirim",
+                "Koşabilirim",
+                "Uçabilirim",
+                "Yürüyebilirim"
+              ],
+              "correct": 0,
+              "hint": "'can' = -ebilmek, 'swim' = yüzmek."
+            },
+            {
+              "q": "'Let's go' ne demek?",
+              "skill": "eng-cumle",
+              "options": [
+                "Hadi gidelim",
+                "Dur",
+                "Otur",
+                "Gel"
+              ],
+              "correct": 0,
+              "hint": "Birlikte gitmeye çağırır."
+            },
+            {
+              "q": "'I love my family' ne demek?",
+              "skill": "eng-cumle",
+              "options": [
+                "Ailemi seviyorum",
+                "Ailemi görüyorum",
+                "Ailem büyük",
+                "Aileme gidiyorum"
+              ],
+              "correct": 0,
+              "hint": "'love' = sevmek, 'family' = aile."
+            },
+            {
+              "q": "'Good luck!' ne anlatır?",
+              "skill": "eng-soru",
+              "options": [
+                "İyi şanslar!",
+                "Hoşça kal!",
+                "Teşekkürler!",
+                "Günaydın!"
+              ],
+              "correct": 0,
+              "hint": "Birine başarı dilerken söylenir."
+            },
+            {
+              "q": "'See you tomorrow' ne demek?",
+              "skill": "eng-cumle",
+              "options": [
+                "Yarın görüşürüz",
+                "Dün gördüm",
+                "Şimdi gel",
+                "Hoşça kal"
+              ],
+              "correct": 0,
+              "hint": "'tomorrow' = yarın; ayrılırken söylenir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u-final",
+      "title": "FİNAL — Kelime Kâşifi Ustalığı",
+      "sections": [
+        {
+          "id": "s-eng-final",
+          "title": "Büyük Sınav",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-eng-final-t",
+              "type": "teach",
+              "title": "Final Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "eng-final"
+                }
+              ]
+            },
+            {
+              "id": "s-eng-final-1",
+              "type": "practice",
+              "title": "Genel Tekrar",
+              "targetCount": 4,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-eng-final-2",
+              "type": "challenge",
+              "title": "Ustalık Sınavı",
+              "targetCount": 5,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-eng-final-3",
+              "type": "review",
+              "title": "Son Hazırlık",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-eng-final",
+            "tier": "final",
+            "name": "Kelime Ejderi",
+            "icon": "🐉",
+            "hp": 60,
+            "unlock": {
+              "masteryRequired": 0.6
+            },
+            "generator": {
+              "poolAll": true
+            },
+            "rewards": {
+              "xp": 400,
+              "chest": "legendary",
+              "badge": "b-eng-final"
+            }
+          }
         }
       ]
     }

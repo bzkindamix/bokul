@@ -43,6 +43,21 @@
       "id": "o-meas",
       "code": "M.3-4.7",
       "text": "Zaman, para ve temel ölçü birimlerini tanır."
+    },
+    {
+      "id": "o-pattern",
+      "code": "MAT.PAT",
+      "text": "Sayı ve şekil örüntülerini tanır, devam ettirir."
+    },
+    {
+      "id": "o-data",
+      "code": "MAT.DATA",
+      "text": "Basit tablo ve grafiklerdeki veriyi okur, karşılaştırır."
+    },
+    {
+      "id": "o-money",
+      "code": "MAT.MONEY",
+      "text": "Parayı tanır, basit alışveriş ve bütçe hesabı yapar."
     }
   ],
   "skills": [
@@ -239,6 +254,50 @@
       },
       {
         "say": "PARA: 1 Türk Lirası = 100 kuruş. UZUNLUK metreyle ölçülür: 1 metre = 100 santimetre, 1 kilometre = 1000 metre. Ağırlık ise kilogramla: 1 kilogram = 1000 gram. Doğru birim, doğru ölçüm demektir!"
+      }
+    ],
+    "pat-brief": [
+      {
+        "say": "Brifing Komutan! ÖRÜNTÜ, tekrar eden bir düzendir. Doğa örüntü dolu: gece-gündüz, mevsimler!"
+      },
+      {
+        "say": "Sırrı bul: '2, 4, 6...' burada her adımda 2 ekleniyor. Kuralı yakalarsan sıradakini tahmin edersin."
+      },
+      {
+        "say": "Bulanık düzenden korkar, karmaşa sever. Örüntüyü çözersen onu bozarsın. Hücum!"
+      }
+    ],
+    "data-brief": [
+      {
+        "say": "Yeni görev Komutan: VERİ okumak! Grafik ve tablolar çoklukları göz ile karşılaştırmamızı sağlar."
+      },
+      {
+        "say": "En uzun sütun = en çok. Sembolleri say, karşılaştır, farkı bul. Dedektif gibi!"
+      },
+      {
+        "say": "Veriyi doğru okuyan akıllı kararlar verir. Bulanık dağınıklık sever; sen düzene sok!"
+      }
+    ],
+    "money-brief": [
+      {
+        "say": "Brifing Komutan: PARA! 1 lira = 100 kuruş. Alışverişte toplama ve çıkarma işine yarar."
+      },
+      {
+        "say": "Bütçe = harcama planı. 'İhtiyacım mı, isteğim mi?' diye sor. Biriktirmek süper güçtür!"
+      },
+      {
+        "say": "Savurgan Gulyabani parayı boşa harcatır. Sen akıllı cüzdanla onu alt et. Hücum!"
+      }
+    ],
+    "math-final": [
+      {
+        "say": "Bu AN geldi Komutan! Sayı Savaşı cephesinin EN BÜYÜK sınavı: tüm öğrendiklerin bir arada, en zoru."
+      },
+      {
+        "say": "🐉 Sayı Ejderi karşında! Onu yenersen bu dersin USTASI olursun. Efsanevi ödül seni bekliyor."
+      },
+      {
+        "say": "Sakin ol, öğrendiklerine güven. Her soru bir darbe. Hazırsan… HÜCUM!"
       }
     ]
   },
@@ -1468,6 +1527,766 @@
               "hint": "3 + 1 saat."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "title": "ÜNİTE 8 — ÖRÜNTÜLER & SAYI ÖRGÜSÜ",
+      "sections": [
+        {
+          "id": "s-pattern",
+          "title": "Örüntü Avcısı",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o-pattern"
+          ],
+          "minGrade": 1,
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-pattern-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Örüntü Avcısı",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "pat-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-pattern-1",
+              "type": "practice",
+              "title": "Devriye",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-pattern"
+              }
+            },
+            {
+              "id": "s-pattern-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-pattern"
+              }
+            },
+            {
+              "id": "s-pattern-3",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-pattern"
+              }
+            },
+            {
+              "id": "s-pattern-4",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-pattern",
+            "tier": "topic",
+            "name": "Karmaşa Cini",
+            "icon": "🔷",
+            "hp": 32,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-pattern"
+            },
+            "rewards": {
+              "xp": 110,
+              "chest": "epic",
+              "badge": "b-pattern"
+            }
+          },
+          "bank": [
+            {
+              "q": "2, 4, 6, 8, ... Sıradaki sayı kaç?",
+              "skill": "pattern",
+              "options": [
+                "10",
+                "9",
+                "12",
+                "7"
+              ],
+              "correct": 0,
+              "hint": "Her adımda 2 artıyor."
+            },
+            {
+              "q": "5, 10, 15, 20, ... Sıradaki sayı kaç?",
+              "skill": "pattern",
+              "options": [
+                "25",
+                "30",
+                "21",
+                "24"
+              ],
+              "correct": 0,
+              "hint": "Beşer beşer sayıyoruz."
+            },
+            {
+              "q": "1, 3, 5, 7, ... Sıradaki sayı kaç?",
+              "skill": "pattern",
+              "options": [
+                "9",
+                "8",
+                "10",
+                "11"
+              ],
+              "correct": 0,
+              "hint": "Tek sayılar; ikişer artıyor."
+            },
+            {
+              "q": "🔺🔵🔺🔵🔺... Sıradaki şekil ne?",
+              "skill": "pattern",
+              "options": [
+                "🔵",
+                "🔺",
+                "🟢",
+                "⭐"
+              ],
+              "correct": 0,
+              "hint": "Üçgen-daire tekrar ediyor."
+            },
+            {
+              "q": "10, 20, 30, ... Sıradaki sayı kaç?",
+              "skill": "pattern",
+              "options": [
+                "40",
+                "35",
+                "50",
+                "31"
+              ],
+              "correct": 0,
+              "hint": "Onar onar sayıyoruz."
+            },
+            {
+              "q": "20, 18, 16, ... Sıradaki sayı kaç?",
+              "skill": "pattern",
+              "options": [
+                "14",
+                "15",
+                "12",
+                "17"
+              ],
+              "correct": 0,
+              "hint": "Bu kez ikişer AZALIYOR."
+            },
+            {
+              "q": "3, 6, 9, 12, ... Sıradaki sayı kaç?",
+              "skill": "pattern",
+              "options": [
+                "15",
+                "14",
+                "18",
+                "13"
+              ],
+              "correct": 0,
+              "hint": "Üçer üçer; 3'ün katları."
+            },
+            {
+              "q": "🍎🍎🍌🍎🍎🍌... Kaç elmadan sonra bir muz gelir?",
+              "skill": "pattern",
+              "options": [
+                "2",
+                "1",
+                "3",
+                "4"
+              ],
+              "correct": 0,
+              "hint": "İki elma sonra bir muz tekrar ediyor."
+            },
+            {
+              "q": "1, 2, 4, 8, ... Sıradaki sayı kaç?",
+              "skill": "pattern",
+              "options": [
+                "16",
+                "10",
+                "12",
+                "9"
+              ],
+              "correct": 0,
+              "hint": "Her sayı bir öncekinin 2 katı."
+            },
+            {
+              "q": "100, 90, 80, ... Sıradaki sayı kaç?",
+              "skill": "pattern",
+              "options": [
+                "70",
+                "75",
+                "60",
+                "85"
+              ],
+              "correct": 0,
+              "hint": "Onar onar azalıyor."
+            },
+            {
+              "q": "Örüntü: ▲ ▲▲ ▲▲▲ ... Sıradaki grupta kaç üçgen olur?",
+              "skill": "pattern",
+              "options": [
+                "4",
+                "3",
+                "5",
+                "2"
+              ],
+              "correct": 0,
+              "hint": "Her adımda bir tane artıyor."
+            },
+            {
+              "q": "2, 5, 8, 11, ... Sıradaki sayı kaç?",
+              "skill": "pattern",
+              "options": [
+                "14",
+                "13",
+                "15",
+                "12"
+              ],
+              "correct": 0,
+              "hint": "Her adımda 3 ekliyoruz."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u9",
+      "title": "ÜNİTE 9 — VERİ & GRAFİK OKUMA",
+      "sections": [
+        {
+          "id": "s-data",
+          "title": "Veri Dedektifi",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o-data"
+          ],
+          "minGrade": 2,
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-data-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Veri Dedektifi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "data-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-data-1",
+              "type": "practice",
+              "title": "Devriye",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-data"
+              }
+            },
+            {
+              "id": "s-data-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-data"
+              }
+            },
+            {
+              "id": "s-data-3",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-data"
+              }
+            },
+            {
+              "id": "s-data-4",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-data",
+            "tier": "topic",
+            "name": "Dağınık Tablo Golemi",
+            "icon": "📊",
+            "hp": 34,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-data"
+            },
+            "rewards": {
+              "xp": 115,
+              "chest": "epic",
+              "badge": "b-data"
+            }
+          },
+          "bank": [
+            {
+              "q": "Grafikte 🍎🍎🍎 elma, 🍌🍌 muz var. Hangisi daha çok?",
+              "skill": "data",
+              "options": [
+                "Elma",
+                "Muz",
+                "Eşit",
+                "Hiçbiri"
+              ],
+              "correct": 0,
+              "hint": "Say: 3 elma, 2 muz."
+            },
+            {
+              "q": "Sınıfta 4 kırmızı, 6 mavi kalem var. Toplam kaç kalem?",
+              "skill": "data",
+              "options": [
+                "10",
+                "8",
+                "12",
+                "9"
+              ],
+              "correct": 0,
+              "hint": "4 + 6 topla."
+            },
+            {
+              "q": "Tabloda Pazartesi 3, Salı 5 yıldız var. Salı kaç fazla?",
+              "skill": "data",
+              "options": [
+                "2",
+                "1",
+                "3",
+                "5"
+              ],
+              "correct": 0,
+              "hint": "5 - 3 çıkar."
+            },
+            {
+              "q": "Çilek 8, çikolata 5 satıldı. Aradaki fark kaç?",
+              "skill": "data",
+              "options": [
+                "3",
+                "2",
+                "4",
+                "5"
+              ],
+              "correct": 0,
+              "hint": "8 - 5."
+            },
+            {
+              "q": "Grafikte en YÜKSEK sütun neyi gösterir?",
+              "skill": "data",
+              "options": [
+                "En çok olanı",
+                "En az olanı",
+                "Hiçbir şeyi",
+                "Ortalamayı"
+              ],
+              "correct": 0,
+              "hint": "Sütun ne kadar uzunsa o kadar çoktur."
+            },
+            {
+              "q": "5 kırmızı, 5 sarı, 2 yeşil top. En az olan renk?",
+              "skill": "data",
+              "options": [
+                "Yeşil",
+                "Kırmızı",
+                "Sarı",
+                "Mavi"
+              ],
+              "correct": 0,
+              "hint": "En küçük sayıya bak: 2."
+            },
+            {
+              "q": "Bir haftada 2 + 3 + 1 kaç kitap okundu?",
+              "skill": "data",
+              "options": [
+                "6",
+                "5",
+                "7",
+                "4"
+              ],
+              "correct": 0,
+              "hint": "Üç günü topla."
+            },
+            {
+              "q": "Tabloda 3 kedi, 3 köpek var. Hangisi daha çok?",
+              "skill": "data",
+              "options": [
+                "Eşit",
+                "Kedi",
+                "Köpek",
+                "Kuş"
+              ],
+              "correct": 0,
+              "hint": "İkisi de 3; eşit."
+            },
+            {
+              "q": "Pazartesi 10, salı 10, çarşamba 4 adım. Hangi gün az yürünmüş?",
+              "skill": "data",
+              "options": [
+                "Çarşamba",
+                "Pazartesi",
+                "Salı",
+                "Hiçbiri"
+              ],
+              "correct": 0,
+              "hint": "En küçük sayı hangi gün?"
+            },
+            {
+              "q": "6 elma 2 tabağa eşit paylaşılırsa her tabakta kaç olur?",
+              "skill": "data",
+              "options": [
+                "3",
+                "2",
+                "4",
+                "6"
+              ],
+              "correct": 0,
+              "hint": "6'yı 2'ye böl."
+            },
+            {
+              "q": "Anket: 7 çocuk yaz, 3 çocuk kış sevdi. Kaç çocuk katıldı?",
+              "skill": "data",
+              "options": [
+                "10",
+                "7",
+                "4",
+                "13"
+              ],
+              "correct": 0,
+              "hint": "7 + 3 topla."
+            },
+            {
+              "q": "Grafik en çok neyi kolaylaştırır?",
+              "skill": "data",
+              "options": [
+                "Sayıları karşılaştırmayı",
+                "Yemek yemeyi",
+                "Uyumayı",
+                "Koşmayı"
+              ],
+              "correct": 0,
+              "hint": "Grafik, çoklukları göz ile karşılaştırmamızı sağlar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u10",
+      "title": "ÜNİTE 10 — PARA & BÜTÇE",
+      "sections": [
+        {
+          "id": "s-money",
+          "title": "Akıllı Cüzdan",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o-money"
+          ],
+          "minGrade": 2,
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-money-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Akıllı Cüzdan",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "money-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-money-1",
+              "type": "practice",
+              "title": "Devriye",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-money"
+              }
+            },
+            {
+              "id": "s-money-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-money"
+              }
+            },
+            {
+              "id": "s-money-3",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-money"
+              }
+            },
+            {
+              "id": "s-money-4",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-money",
+            "tier": "topic",
+            "name": "Savurgan Gulyabani",
+            "icon": "💰",
+            "hp": 35,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-money"
+            },
+            "rewards": {
+              "xp": 120,
+              "chest": "epic",
+              "badge": "b-money"
+            }
+          },
+          "bank": [
+            {
+              "q": "1 TL kaç kuruştur?",
+              "skill": "money",
+              "options": [
+                "100",
+                "10",
+                "1000",
+                "50"
+              ],
+              "correct": 0,
+              "hint": "Bir lira yüz kuruştur."
+            },
+            {
+              "q": "5 TL'lik defter aldın, 10 TL verdin. Para üstü kaç?",
+              "skill": "money",
+              "options": [
+                "5 TL",
+                "2 TL",
+                "10 TL",
+                "15 TL"
+              ],
+              "correct": 0,
+              "hint": "10 - 5."
+            },
+            {
+              "q": "3 TL + 2 TL kaç eder?",
+              "skill": "money",
+              "options": [
+                "5 TL",
+                "6 TL",
+                "4 TL",
+                "3 TL"
+              ],
+              "correct": 0,
+              "hint": "Paraları topla."
+            },
+            {
+              "q": "Kalem 4 TL, silgi 3 TL. İkisi birden kaç TL?",
+              "skill": "money",
+              "options": [
+                "7 TL",
+                "1 TL",
+                "6 TL",
+                "8 TL"
+              ],
+              "correct": 0,
+              "hint": "4 + 3."
+            },
+            {
+              "q": "20 TL'n var. 8 TL harcadın. Kaç TL kaldı?",
+              "skill": "money",
+              "options": [
+                "12 TL",
+                "10 TL",
+                "28 TL",
+                "14 TL"
+              ],
+              "correct": 0,
+              "hint": "20 - 8."
+            },
+            {
+              "q": "2 TL'lik 3 balon kaç TL eder?",
+              "skill": "money",
+              "options": [
+                "6 TL",
+                "5 TL",
+                "4 TL",
+                "8 TL"
+              ],
+              "correct": 0,
+              "hint": "2 x 3."
+            },
+            {
+              "q": "Bütçe ne demektir?",
+              "skill": "money",
+              "options": [
+                "Paranı nasıl harcayacağının planı",
+                "Bir oyuncak",
+                "Bir yemek",
+                "Bir hayvan"
+              ],
+              "correct": 0,
+              "hint": "Ne kadar paran var ve nereye harcayacaksın — planlama."
+            },
+            {
+              "q": "Harcamayıp para saklamaya ne denir?",
+              "skill": "money",
+              "options": [
+                "Biriktirmek",
+                "Kaybetmek",
+                "Harcamak",
+                "Vermek"
+              ],
+              "correct": 0,
+              "hint": "İleride kullanmak için para saklamak."
+            },
+            {
+              "q": "10 TL ile 6 TL'lik oyuncak alabilir misin?",
+              "skill": "money",
+              "options": [
+                "Evet, 4 TL de kalır",
+                "Hayır",
+                "Sadece yarısını",
+                "Bilinmez"
+              ],
+              "correct": 0,
+              "hint": "10, 6'dan büyük olduğu için yeter."
+            },
+            {
+              "q": "İki tane 5 TL kaç TL eder?",
+              "skill": "money",
+              "options": [
+                "10 TL",
+                "5 TL",
+                "15 TL",
+                "2 TL"
+              ],
+              "correct": 0,
+              "hint": "5 + 5."
+            },
+            {
+              "q": "Bir şeyi almadan önce en akıllıca soru hangisi?",
+              "skill": "money",
+              "options": [
+                "Buna gerçekten ihtiyacım var mı?",
+                "Rengi ne?",
+                "Kaç harf?",
+                "Kim yaptı?"
+              ],
+              "correct": 0,
+              "hint": "İhtiyaç mı istek mi diye düşünmek bütçeyi korur."
+            },
+            {
+              "q": "50 kuruş + 50 kuruş kaç TL eder?",
+              "skill": "money",
+              "options": [
+                "1 TL",
+                "2 TL",
+                "50 kuruş",
+                "5 TL"
+              ],
+              "correct": 0,
+              "hint": "İki yarım bir bütün eder."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u-final",
+      "title": "FİNAL — Sayı Savaşı Ustalığı",
+      "sections": [
+        {
+          "id": "s-math-final",
+          "title": "Büyük Sınav",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o-add"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-math-final-t",
+              "type": "teach",
+              "title": "Final Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "math-final"
+                }
+              ]
+            },
+            {
+              "id": "s-math-final-1",
+              "type": "practice",
+              "title": "Genel Tekrar",
+              "targetCount": 4,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-math-final-2",
+              "type": "challenge",
+              "title": "Ustalık Sınavı",
+              "targetCount": 5,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-math-final-3",
+              "type": "review",
+              "title": "Son Hazırlık",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-math-final",
+            "tier": "final",
+            "name": "Sayı Ejderi",
+            "icon": "🐉",
+            "hp": 60,
+            "unlock": {
+              "masteryRequired": 0.6
+            },
+            "generator": {
+              "poolAll": true
+            },
+            "rewards": {
+              "xp": 400,
+              "chest": "legendary",
+              "badge": "b-math-final"
+            }
+          }
         }
       ]
     }

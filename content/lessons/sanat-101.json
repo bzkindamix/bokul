@@ -23,7 +23,23 @@
     "renkler",
     "cizim",
     "araclar",
-    "sanat-genel"
+    "sanat-genel",
+    "san-cizgi",
+    "san-sekil",
+    "san-ton",
+    "san-doku",
+    "san-desen",
+    "san-sanatci",
+    "san-eser",
+    "san-akim",
+    "san-heykel",
+    "san-3d",
+    "san-perspektif",
+    "san-kompozisyon",
+    "san-sicak-soguk",
+    "san-elsanati",
+    "san-kolaj",
+    "san-tarz"
   ],
   "hints": {},
   "teachScripts": {
@@ -47,6 +63,116 @@
       },
       {
         "say": "Sanat sadece resim değildir: heykel, origami, seramik de sanattır. En önemli malzeme HAYAL GÜCÜ — o bedava ve sınırsız! Hadi eserini yarat!"
+      }
+    ],
+    "san-cizgi": [
+      {
+        "say": "Atölye brifingi Komutan! Her çizimin başlangıcı bir ÇİZGİdir. Düz çizgi, kıvrımlı çizgi, zikzak çizgi... Kalemini kağıttan kaldırmadan çizdiğin her iz bir çizgidir!"
+      },
+      {
+        "say": "Çizgiler birleşince ŞEKİLLER doğar. Üç çizgi bir ÜÇGEN, dört çizgi bir KARE, tek kıvrımlı çizgi bir DAİRE yapar. Şekiller çiziminin tuğlalarıdır."
+      },
+      {
+        "say": "Çizgiler duygu da anlatır: düz çizgi sakin, zikzak çizgi hareketli, dalgalı çizgi yumuşak durur. Şimdi kalemi kap ve çizgilere komuta et!"
+      }
+    ],
+    "san-tonlar": [
+      {
+        "say": "Renk laboratuvarına hoş geldin! Bir renge BEYAZ eklersen açılır ve buna 'ton' deriz. Kırmızı + beyaz = PEMBE. Beyaz ne kadar çoksa renk o kadar açık olur."
+      },
+      {
+        "say": "Bir renge SİYAH eklersen koyulaşır, buna 'gölge' deriz. Maviye biraz siyah kat, gece mavisi olur! Böylece tek renkten birçok ton yaparsın."
+      },
+      {
+        "say": "Açıktan koyuya sıralanan renk ailesine 'ton skalası' denir. İyi bir sanatçı tek renkle bile onlarca ton çıkarabilir. Hadi paleti karıştır Komutan!"
+      }
+    ],
+    "san-doku": [
+      {
+        "say": "Bugün DESEN ve DOKU peşindeyiz! Tekrar eden şekillere DESEN denir: nokta nokta, çizgi çizgi, kareli... Aynı motifin sürekli tekrarı bir desen oluşturur."
+      },
+      {
+        "say": "DOKU ise bir yüzeyin nasıl hissettirdiğidir: pürüzlü mü, yumuşak mı, tüylü mü? Sanatçı ağaç kabuğunu, kürkü, taşı çizerek dokuyu gösterir."
+      },
+      {
+        "say": "Bir yaprağın altına kağıt koyup üstünü kalemle boyarsan dokusu çıkar; buna 'frotaj' denir. Şimdi desen avına çık Komutan!"
+      }
+    ],
+    "san-sanatcilar": [
+      {
+        "say": "Zaman makinesini çalıştırdım Komutan! Vincent VAN GOGH sarı ve maviyi çok severdi; 'Yıldızlı Gece' tablosunda gökyüzünü kıvrım kıvrım boyadı."
+      },
+      {
+        "say": "Pablo PICASSO şekilleri parçalayıp yeniden kurdu; yüzleri hem önden hem yandan gösterdi. Buna 'kübizm' denir. Leonardo da Vinci ise gülümseyen 'Mona Lisa'yı çizdi."
+      },
+      {
+        "say": "Sanatçılar dünyaya kendi gözünden bakar. Sen de kendi tarzını bulabilirsin! Hadi büyük ustalarla tanış."
+      }
+    ],
+    "san-heykel": [
+      {
+        "say": "Şimdi resimden çıkıp ÜÇ BOYUTA geçiyoruz! Heykel; eni, boyu ve DERİNLİĞİ olan, her yönden bakılabilen sanattır. Etrafında dönebilirsin!"
+      },
+      {
+        "say": "Heykel yaparken kimi zaman kilden ekleyerek biçim verirsin, kimi zaman taştan yontarak fazlalığı çıkarırsın. Michelangelo mermeri yontarak 'Davut' heykelini yaptı."
+      },
+      {
+        "say": "Kil, çamur, tel, hatta kağıt bile heykel malzemesi olabilir. İki boyut düzdür; üç boyut ise avucuna alınır! Hadi ellerini hamura sok Komutan."
+      }
+    ],
+    "san-perspektif": [
+      {
+        "say": "İleri seviye brifing Komutan! PERSPEKTİF, uzaktaki şeyleri KÜÇÜK, yakındakileri BÜYÜK çizerek derinlik hissi vermektir. Yol uzaklaştıkça incelir, değil mi?"
+      },
+      {
+        "say": "KOMPOZİSYON ise resimdeki her şeyi güzelce yerleştirmektir. Önemli nesneyi ortaya ya da dengeli bir noktaya koyarsın; boşlukları da düşünürsün."
+      },
+      {
+        "say": "Ufuk çizgisi, gökle yerin buluştuğu yerdir. İyi bir yerleşim ve derinlikle düz kağıt bir pencereye dönüşür! Hadi sahneyi kur."
+      }
+    ],
+    "san-sicak-soguk": [
+      {
+        "say": "Renklerin bir de sıcaklığı var Komutan! SICAK renkler kırmızı, turuncu ve sarıdır; güneşi, ateşi, mutluluğu hatırlatır ve öne çıkar."
+      },
+      {
+        "say": "SOĞUK renkler mavi, yeşil ve mordur; denizi, buzu, sakinliği hatırlatır ve geride durur gibi görünür. Aynı resimde ikisini dengeleyebilirsin."
+      },
+      {
+        "say": "Sanatçılar duyguyu renk sıcaklığıyla anlatır: sıcak bir tablo neşeli, soğuk bir tablo dingin durur. Hadi paletini sıcak-soğuk diye böl!"
+      }
+    ],
+    "san-kolaj": [
+      {
+        "say": "Makas ve yapıştırıcı zamanı Komutan! KOLAJ; kağıt, kumaş, fotoğraf gibi parçaları kesip yapıştırarak yeni bir resim yaratmaktır. Çöp bile sanata dönüşür!"
+      },
+      {
+        "say": "EL SANATLARI el becerisiyle yapılan işlerdir: örgü, kağıt katlama (origami), boncuk, keçe, ip işleri... Ellerin en güçlü aletindir."
+      },
+      {
+        "say": "Kolajda farklı dokuları ve renkleri bir araya getirir, kendi kompozisyonunu kurarsın. Hadi eski dergileri kes, yeni bir dünya yapıştır!"
+      }
+    ],
+    "san-tarz": [
+      {
+        "say": "Son brifing Komutan, gururluyum! Her sanatçının kendine özgü bir TARZI vardır: renk seçimi, çizgi biçimi, sevdiği konular... Tarz, senin sanat imzandır."
+      },
+      {
+        "say": "Tarzını bulmak için bolca dene: farklı malzemeler, farklı konular. Hata yapmaktan korkma; her deneme seni sana yaklaştırır. Kopyalamak değil, ilham almak esastır."
+      },
+      {
+        "say": "En önemlisi: sanatta 'yanlış' yoktur, sadece SENİN yolun vardır. Şimdi kendi tarzının komutanı ol ve dünyaya kendi gözünden bak!"
+      }
+    ],
+    "san-final": [
+      {
+        "say": "Bu AN geldi Komutan! Renk Diyarı cephesinin EN BÜYÜK sınavı: tüm öğrendiklerin bir arada, en zoru."
+      },
+      {
+        "say": "🎨 Renk Ejderi karşında! Onu yenersen bu dersin USTASI olursun. Efsanevi ödül seni bekliyor."
+      },
+      {
+        "say": "Sakin ol, öğrendiklerine güven. Her soru bir darbe. Hazırsan… HÜCUM!"
       }
     ]
   },
@@ -496,6 +622,2014 @@
               "hint": "Çerçeveleme ve ışık seçimi sanattır."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — Çizgi & Şekil",
+      "sections": [
+        {
+          "id": "s-san-cizgi",
+          "title": "Çizginin Dili",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-cizgi-m1",
+              "type": "teach",
+              "title": "Atölye Brifingi: Çizgi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-cizgi"
+                }
+              ]
+            },
+            {
+              "id": "s-san-cizgi-m2",
+              "type": "practice",
+              "title": "Fırça Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-cizgi"
+              }
+            },
+            {
+              "id": "s-san-cizgi-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-san-cizgi"
+              }
+            },
+            {
+              "id": "s-san-cizgi-m4",
+              "type": "challenge",
+              "title": "Zorlu Eskiz",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-cizgi"
+              }
+            },
+            {
+              "id": "s-san-cizgi-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-cizgi",
+            "tier": "topic",
+            "name": "Boş Tuval Hayaleti",
+            "icon": "🖌️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-san-cizgi"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-san-cizgi"
+            }
+          },
+          "bank": [
+            {
+              "q": "Kalemi kağıttan kaldırmadan çizdiğin ize ne denir?",
+              "skill": "san-cizgi",
+              "options": [
+                "Çizgi",
+                "Renk",
+                "Gölge",
+                "Doku"
+              ],
+              "correct": 0,
+              "hint": "Çizimin en temel izi."
+            },
+            {
+              "q": "Üç düz çizgiyle hangi şekli çizersin?",
+              "skill": "san-sekil",
+              "options": [
+                "Üçgen",
+                "Daire",
+                "Kare",
+                "Beşgen"
+              ],
+              "correct": 0,
+              "hint": "Üç köşesi vardır."
+            },
+            {
+              "q": "Dört eşit kenardan oluşan şekil hangisidir?",
+              "skill": "san-sekil",
+              "options": [
+                "Kare",
+                "Üçgen",
+                "Daire",
+                "Yıldız"
+              ],
+              "correct": 0,
+              "hint": "Bütün kenarları eşit ve dört tane."
+            },
+            {
+              "q": "Hiç köşesi olmayan, yuvarlak şekil hangisidir?",
+              "skill": "san-sekil",
+              "options": [
+                "Daire",
+                "Kare",
+                "Üçgen",
+                "Dikdörtgen"
+              ],
+              "correct": 0,
+              "hint": "Top gibi yuvarlak."
+            },
+            {
+              "q": "Yukarı aşağı sık sık kırılan çizgiye ne denir?",
+              "skill": "san-cizgi",
+              "options": [
+                "Zikzak çizgi",
+                "Düz çizgi",
+                "Nokta",
+                "Daire"
+              ],
+              "correct": 0,
+              "hint": "Şimşek gibi kırık kırık."
+            },
+            {
+              "q": "Yumuşacık, deniz dalgası gibi çizgiye ne denir?",
+              "skill": "san-cizgi",
+              "options": [
+                "Dalgalı çizgi",
+                "Düz çizgi",
+                "Zikzak çizgi",
+                "Kesik çizgi"
+              ],
+              "correct": 0,
+              "hint": "Dalga gibi iniş çıkışlı ama yumuşak."
+            },
+            {
+              "q": "Bir kediyi çizmeye başlarken en kolay yol nedir?",
+              "skill": "san-cizgi",
+              "options": [
+                "Basit şekillerle taslak kurmak",
+                "En ince bıyıktan başlamak",
+                "Önce imza atmak",
+                "Hiç plan yapmamak"
+              ],
+              "correct": 0,
+              "hint": "Önce kaba şekiller, sonra detay."
+            },
+            {
+              "q": "Dikdörtgen ile karenin farkı nedir?",
+              "skill": "san-sekil",
+              "options": [
+                "Dikdörtgenin kenarları eşit değildir",
+                "Dikdörtgen yuvarlaktır",
+                "Kare üç köşelidir",
+                "Fark yoktur"
+              ],
+              "correct": 0,
+              "hint": "Birinin uzun-kısa kenarları var."
+            },
+            {
+              "q": "Çizgiyi kalınlaştırmak için ne yaparsın?",
+              "skill": "san-cizgi",
+              "options": [
+                "Kaleme daha çok bastırırsın",
+                "Kağıdı yırtarsın",
+                "Silersin",
+                "Gözünü kaparsın"
+              ],
+              "correct": 0,
+              "hint": "Baskı arttıkça çizgi kalınlaşır."
+            },
+            {
+              "q": "Bir şeklin içini çizgilerle doldurmaya ne denir?",
+              "skill": "san-cizgi",
+              "options": [
+                "Tarama (gölgelendirme)",
+                "Boşluk",
+                "Silme",
+                "Katlama"
+              ],
+              "correct": 0,
+              "hint": "Sık çizgilerle koyuluk verirsin."
+            },
+            {
+              "q": "Beş köşeli, gökyüzünü süsleyen şekil hangisidir?",
+              "skill": "san-sekil",
+              "options": [
+                "Yıldız",
+                "Kare",
+                "Daire",
+                "Üçgen"
+              ],
+              "correct": 0,
+              "hint": "Geceleri parlar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — Renk Karışımı & Tonlar",
+      "sections": [
+        {
+          "id": "s-san-tonlar",
+          "title": "Ton Laboratuvarı",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-tonlar-m1",
+              "type": "teach",
+              "title": "Atölye Brifingi: Tonlar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-tonlar"
+                }
+              ]
+            },
+            {
+              "id": "s-san-tonlar-m2",
+              "type": "practice",
+              "title": "Fırça Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-tonlar"
+              }
+            },
+            {
+              "id": "s-san-tonlar-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-san-tonlar"
+              }
+            },
+            {
+              "id": "s-san-tonlar-m4",
+              "type": "challenge",
+              "title": "Zorlu Eskiz",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-tonlar"
+              }
+            },
+            {
+              "id": "s-san-tonlar-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-tonlar",
+            "tier": "topic",
+            "name": "Solgun Palet Cini",
+            "icon": "🎨",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-san-tonlar"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-san-tonlar"
+            }
+          },
+          "bank": [
+            {
+              "q": "Kırmızıya beyaz eklersen hangi renk olur?",
+              "skill": "san-ton",
+              "options": [
+                "Pembe",
+                "Mor",
+                "Kahverengi",
+                "Yeşil"
+              ],
+              "correct": 0,
+              "hint": "Açık kırmızının adı."
+            },
+            {
+              "q": "Bir renge beyaz eklemek ne yapar?",
+              "skill": "san-ton",
+              "options": [
+                "Rengi açar (tonu açılır)",
+                "Rengi koyulaştırır",
+                "Rengi yok eder",
+                "Rengi ısıtır"
+              ],
+              "correct": 0,
+              "hint": "Pastel, açık tonlar elde edersin."
+            },
+            {
+              "q": "Bir renge siyah eklemek ne yapar?",
+              "skill": "san-ton",
+              "options": [
+                "Rengi koyulaştırır (gölge)",
+                "Rengi açar",
+                "Beyaza çevirir",
+                "Parlatır"
+              ],
+              "correct": 0,
+              "hint": "Gece mavisi böyle olur."
+            },
+            {
+              "q": "Maviye biraz siyah eklersen ne elde edersin?",
+              "skill": "san-ton",
+              "options": [
+                "Koyu (gece) mavi",
+                "Açık pembe",
+                "Sarı",
+                "Beyaz"
+              ],
+              "correct": 0,
+              "hint": "Daha koyu bir mavi tonu."
+            },
+            {
+              "q": "Açıktan koyuya sıralanan renk ailesine ne denir?",
+              "skill": "san-ton",
+              "options": [
+                "Ton skalası",
+                "Fırça",
+                "Palet bıçağı",
+                "Çerçeve"
+              ],
+              "correct": 0,
+              "hint": "Bir rengin açık-koyu merdiveni."
+            },
+            {
+              "q": "Kırmızı ve sarıyı karıştırırsan ama sarı ağır basarsa?",
+              "skill": "san-ton",
+              "options": [
+                "Açık turuncu olur",
+                "Mor olur",
+                "Yeşil olur",
+                "Siyah olur"
+              ],
+              "correct": 0,
+              "hint": "Hangi renk çoksa ona yakın olur."
+            },
+            {
+              "q": "Pastel renk ne demektir?",
+              "skill": "san-ton",
+              "options": [
+                "Açık, yumuşak ton",
+                "Çok koyu renk",
+                "Parlak metal",
+                "Siyah beyaz"
+              ],
+              "correct": 0,
+              "hint": "İçine bolca beyaz katılmış gibi."
+            },
+            {
+              "q": "Sarıya birazcık mavi katarsan ne olur?",
+              "skill": "san-ton",
+              "options": [
+                "Yeşile döner",
+                "Kırmızı olur",
+                "Beyaz olur",
+                "Değişmez"
+              ],
+              "correct": 0,
+              "hint": "Sarı + mavi = yeşil."
+            },
+            {
+              "q": "Aynı renkten hem açık hem koyu kullanmak resme ne katar?",
+              "skill": "san-ton",
+              "options": [
+                "Derinlik ve hacim",
+                "Kötü koku",
+                "Ağırlık",
+                "Ses"
+              ],
+              "correct": 0,
+              "hint": "Işık-gölge hissi verir."
+            },
+            {
+              "q": "Gri rengi en kolay nasıl elde edersin?",
+              "skill": "san-ton",
+              "options": [
+                "Siyah + beyaz karıştırarak",
+                "Sarı + mavi",
+                "Kırmızı + sarı",
+                "Sadece su ile"
+              ],
+              "correct": 0,
+              "hint": "En koyu ile en açığı birleştir."
+            },
+            {
+              "q": "Kahverengiyi kabaca nasıl elde edebilirsin?",
+              "skill": "san-ton",
+              "options": [
+                "Üç ana rengi karıştırarak",
+                "Sadece beyazla",
+                "Sadece suyla",
+                "Hiç karıştırmadan"
+              ],
+              "correct": 0,
+              "hint": "Renkler çokça karışınca toprak rengi çıkar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — Desen & Doku",
+      "sections": [
+        {
+          "id": "s-san-doku",
+          "title": "Desen ve Doku Avı",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-doku-m1",
+              "type": "teach",
+              "title": "Atölye Brifingi: Desen & Doku",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-doku"
+                }
+              ]
+            },
+            {
+              "id": "s-san-doku-m2",
+              "type": "practice",
+              "title": "Fırça Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-doku"
+              }
+            },
+            {
+              "id": "s-san-doku-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-san-doku"
+              }
+            },
+            {
+              "id": "s-san-doku-m4",
+              "type": "challenge",
+              "title": "Zorlu Eskiz",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-doku"
+              }
+            },
+            {
+              "id": "s-san-doku-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-doku",
+            "tier": "topic",
+            "name": "Düz Yüzey Golemi",
+            "icon": "🧱",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-san-doku"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-san-doku"
+            }
+          },
+          "bank": [
+            {
+              "q": "Tekrar eden şekil ya da motiflere ne denir?",
+              "skill": "san-desen",
+              "options": [
+                "Desen",
+                "Gölge",
+                "Ton",
+                "Perspektif"
+              ],
+              "correct": 0,
+              "hint": "Kareli defter gibi tekrar eder."
+            },
+            {
+              "q": "Bir yüzeyin pürüzlü mü yumuşak mı olduğunu anlatan şeye ne denir?",
+              "skill": "san-doku",
+              "options": [
+                "Doku",
+                "Renk",
+                "Çizgi",
+                "Nokta"
+              ],
+              "correct": 0,
+              "hint": "Dokunduğunda nasıl hissettirir?"
+            },
+            {
+              "q": "Ağaç kabuğu nasıl bir dokuya sahiptir?",
+              "skill": "san-doku",
+              "options": [
+                "Pürüzlü ve sert",
+                "Yumuşacık ve tüylü",
+                "Islak ve kaygan",
+                "Cam gibi düz"
+              ],
+              "correct": 0,
+              "hint": "Elini sürtsen çizik çizik gelir."
+            },
+            {
+              "q": "Kedinin kürkü nasıl bir dokudur?",
+              "skill": "san-doku",
+              "options": [
+                "Yumuşak ve tüylü",
+                "Sert ve pürüzlü",
+                "Metalik",
+                "Camsı"
+              ],
+              "correct": 0,
+              "hint": "Okşamak istersin."
+            },
+            {
+              "q": "Yaprağın üstüne kağıt koyup kalemle sürterek dokusunu çıkarmaya ne denir?",
+              "skill": "san-doku",
+              "options": [
+                "Frotaj",
+                "Origami",
+                "Kolaj",
+                "Heykel"
+              ],
+              "correct": 0,
+              "hint": "Sürtme yöntemi."
+            },
+            {
+              "q": "Kareli bir kumaş deseni hangisine örnektir?",
+              "skill": "san-desen",
+              "options": [
+                "Tekrar eden desen",
+                "Doku yokluğu",
+                "Gölgeleme",
+                "Perspektif"
+              ],
+              "correct": 0,
+              "hint": "Aynı kareler tekrar tekrar."
+            },
+            {
+              "q": "Puantiye (benekli) desen neyle yapılır?",
+              "skill": "san-desen",
+              "options": [
+                "Tekrar eden noktalarla",
+                "Tek büyük daireyle",
+                "Sadece çizgiyle",
+                "Boşlukla"
+              ],
+              "correct": 0,
+              "hint": "Küçük noktalar sıra sıra."
+            },
+            {
+              "q": "Bir resimde 'doku' göstermek neden güzeldir?",
+              "skill": "san-doku",
+              "options": [
+                "Resmi daha gerçekçi ve canlı yapar",
+                "Resmi bozar",
+                "Rengi siler",
+                "Kağıdı yırtar"
+              ],
+              "correct": 0,
+              "hint": "Gözle dokunmuş gibi hissedersin."
+            },
+            {
+              "q": "Cam ya da ayna nasıl bir yüzeydir?",
+              "skill": "san-doku",
+              "options": [
+                "Düz ve parlak",
+                "Tüylü",
+                "Pürüzlü",
+                "Kabarık"
+              ],
+              "correct": 0,
+              "hint": "Işığı yansıtır, pürüzsüz."
+            },
+            {
+              "q": "Desen ile dokunun farkı nedir?",
+              "skill": "san-doku",
+              "options": [
+                "Desen tekrar eden şekil, doku yüzeyin hissidir",
+                "İkisi de aynıdır",
+                "Desen renktir doku çizgidir",
+                "Fark yoktur"
+              ],
+              "correct": 0,
+              "hint": "Biri göze, biri parmak ucuna hitap eder."
+            },
+            {
+              "q": "Zebra deseni neye örnektir?",
+              "skill": "san-desen",
+              "options": [
+                "Tekrar eden çizgi deseni",
+                "Puantiye",
+                "Kareli desen",
+                "Dokusuzluk"
+              ],
+              "correct": 0,
+              "hint": "Siyah beyaz şeritler."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "ÜNİTE 5 — Ünlü Sanatçılar & Eserler",
+      "sections": [
+        {
+          "id": "s-san-sanatcilar",
+          "title": "Büyük Ustalar",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-sanatcilar-m1",
+              "type": "teach",
+              "title": "Atölye Brifingi: Ünlü Sanatçılar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-sanatcilar"
+                }
+              ]
+            },
+            {
+              "id": "s-san-sanatcilar-m2",
+              "type": "practice",
+              "title": "Fırça Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-sanatcilar"
+              }
+            },
+            {
+              "id": "s-san-sanatcilar-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-san-sanatcilar"
+              }
+            },
+            {
+              "id": "s-san-sanatcilar-m4",
+              "type": "challenge",
+              "title": "Zorlu Eskiz",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-sanatcilar"
+              }
+            },
+            {
+              "id": "s-san-sanatcilar-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-sanatcilar",
+            "tier": "topic",
+            "name": "Kayıp Tablo Hırsızı",
+            "icon": "🖼️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-san-sanatcilar"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-san-sanatcilar"
+            }
+          },
+          "bank": [
+            {
+              "q": "'Yıldızlı Gece' tablosunu kim yaptı?",
+              "skill": "san-sanatci",
+              "options": [
+                "Vincent van Gogh",
+                "Pablo Picasso",
+                "Leonardo da Vinci",
+                "Frida Kahlo"
+              ],
+              "correct": 0,
+              "hint": "Kıvrımlı sarı-mavi gökyüzüyle ünlü."
+            },
+            {
+              "q": "Gülümsemesiyle ünlü 'Mona Lisa'yı kim çizdi?",
+              "skill": "san-sanatci",
+              "options": [
+                "Leonardo da Vinci",
+                "Van Gogh",
+                "Picasso",
+                "Michelangelo"
+              ],
+              "correct": 0,
+              "hint": "Aynı zamanda mucit olan İtalyan usta."
+            },
+            {
+              "q": "Şekilleri parçalayıp yeniden kuran, kübizmin ustası kimdir?",
+              "skill": "san-sanatci",
+              "options": [
+                "Pablo Picasso",
+                "Van Gogh",
+                "Da Vinci",
+                "Monet"
+              ],
+              "correct": 0,
+              "hint": "İspanyol ressam, yüzleri farklı açılardan çizdi."
+            },
+            {
+              "q": "Van Gogh en çok hangi renkleri severdi?",
+              "skill": "san-sanatci",
+              "options": [
+                "Sarı ve mavi",
+                "Sadece siyah",
+                "Sadece gri",
+                "Kahverengi ve beyaz"
+              ],
+              "correct": 0,
+              "hint": "Ayçiçeği ve yıldızlı geceyi düşün."
+            },
+            {
+              "q": "Yüzleri hem önden hem yandan aynı anda göstermeye çalışan akım hangisidir?",
+              "skill": "san-akim",
+              "options": [
+                "Kübizm",
+                "Origami",
+                "Frotaj",
+                "Heykelcilik"
+              ],
+              "correct": 0,
+              "hint": "Picasso'nun ünlü tarzı, küp gibi parçalar."
+            },
+            {
+              "q": "Kendi yüzünü çizen ressamlarla ünlü Meksikalı sanatçı kimdir?",
+              "skill": "san-sanatci",
+              "options": [
+                "Frida Kahlo",
+                "Da Vinci",
+                "Van Gogh",
+                "Picasso"
+              ],
+              "correct": 0,
+              "hint": "Otoportreleri ve çiçekli taçlarıyla tanınır."
+            },
+            {
+              "q": "Bir ressamın kendi yüzünü çizdiği resme ne denir?",
+              "skill": "san-eser",
+              "options": [
+                "Otoportre (öz portre)",
+                "Manzara",
+                "Natürmort",
+                "Desen"
+              ],
+              "correct": 0,
+              "hint": "'Öz' yani kendi yüzü."
+            },
+            {
+              "q": "Meyve, vazo gibi cansız nesnelerin resmine ne denir?",
+              "skill": "san-eser",
+              "options": [
+                "Natürmort",
+                "Portre",
+                "Manzara",
+                "Heykel"
+              ],
+              "correct": 0,
+              "hint": "Masadaki elma-vazo resmi."
+            },
+            {
+              "q": "Dağ, deniz, orman gibi doğa resimlerine ne denir?",
+              "skill": "san-eser",
+              "options": [
+                "Manzara (peyzaj)",
+                "Portre",
+                "Natürmort",
+                "Otoportre"
+              ],
+              "correct": 0,
+              "hint": "Açık havayı, doğayı gösterir."
+            },
+            {
+              "q": "Bir insanın yüzünü konu alan resme ne denir?",
+              "skill": "san-eser",
+              "options": [
+                "Portre",
+                "Manzara",
+                "Natürmort",
+                "Desen"
+              ],
+              "correct": 0,
+              "hint": "Mona Lisa bir örnektir."
+            },
+            {
+              "q": "Sanatçıların dünyaya bakışıyla ilgili en doğru söz hangisidir?",
+              "skill": "san-sanatci",
+              "options": [
+                "Her sanatçı kendi tarzını yaratabilir",
+                "Herkes aynı çizmek zorundadır",
+                "Sadece bir doğru çizim vardır",
+                "Renk kullanmak yasaktır"
+              ],
+              "correct": 0,
+              "hint": "Farklılık sanatın en güzel yanıdır."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "ÜNİTE 6 — Heykel & Üç Boyut",
+      "sections": [
+        {
+          "id": "s-san-heykel",
+          "title": "Üç Boyut Atölyesi",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-heykel-m1",
+              "type": "teach",
+              "title": "Atölye Brifingi: Heykel",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-heykel"
+                }
+              ]
+            },
+            {
+              "id": "s-san-heykel-m2",
+              "type": "practice",
+              "title": "Fırça Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-heykel"
+              }
+            },
+            {
+              "id": "s-san-heykel-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-san-heykel"
+              }
+            },
+            {
+              "id": "s-san-heykel-m4",
+              "type": "challenge",
+              "title": "Zorlu Eskiz",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-heykel"
+              }
+            },
+            {
+              "id": "s-san-heykel-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-heykel",
+            "tier": "topic",
+            "name": "Çamur Devi",
+            "icon": "🗿",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-san-heykel"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-san-heykel"
+            }
+          },
+          "bank": [
+            {
+              "q": "Her yönden bakılabilen, eni-boyu-derinliği olan sanata ne denir?",
+              "skill": "san-heykel",
+              "options": [
+                "Heykel",
+                "Resim",
+                "Fotoğraf",
+                "Desen"
+              ],
+              "correct": 0,
+              "hint": "Etrafında dönebilirsin."
+            },
+            {
+              "q": "'Üç boyutlu' ne demektir?",
+              "skill": "san-3d",
+              "options": [
+                "En, boy ve derinliği olan",
+                "Sadece düz ve ince",
+                "Sadece renkli",
+                "Sadece siyah beyaz"
+              ],
+              "correct": 0,
+              "hint": "Bir kutunun üç ölçüsü gibi."
+            },
+            {
+              "q": "Kağıt üzerindeki bir resim kaç boyutludur?",
+              "skill": "san-3d",
+              "options": [
+                "İki boyutlu (düz)",
+                "Üç boyutlu",
+                "Sıfır boyutlu",
+                "On boyutlu"
+              ],
+              "correct": 0,
+              "hint": "Eni ve boyu var ama derinliği yoktur."
+            },
+            {
+              "q": "Yumuşakken şekil verip sonra sertleşen, heykelde çok kullanılan malzeme?",
+              "skill": "san-heykel",
+              "options": [
+                "Kil (çamur)",
+                "Cam",
+                "Su",
+                "Kağıt mendil"
+              ],
+              "correct": 0,
+              "hint": "Elinle yoğurup biçimlendirirsin."
+            },
+            {
+              "q": "Mermeri yontarak 'Davut' heykelini yapan usta kimdir?",
+              "skill": "san-sanatci",
+              "options": [
+                "Michelangelo",
+                "Van Gogh",
+                "Picasso",
+                "Monet"
+              ],
+              "correct": 0,
+              "hint": "İtalyan heykeltıraş ve ressam."
+            },
+            {
+              "q": "Taştan heykel yapmanın bir yolu nedir?",
+              "skill": "san-heykel",
+              "options": [
+                "Fazlalıkları yontarak çıkarmak",
+                "Üstüne taş eklemek",
+                "Suyla eritmek",
+                "Boyayla kaplamak"
+              ],
+              "correct": 0,
+              "hint": "İçindeki şekli ortaya çıkarırsın."
+            },
+            {
+              "q": "Kilden heykel yaparken biçimi nasıl büyütürsün?",
+              "skill": "san-heykel",
+              "options": [
+                "Üstüne kil ekleyerek",
+                "Kili yakarak",
+                "Kili silerek",
+                "Suya atarak"
+              ],
+              "correct": 0,
+              "hint": "Ekleme yöntemi."
+            },
+            {
+              "q": "Aşağıdakilerden hangisi bir heykel malzemesi OLAMAZ?",
+              "skill": "san-heykel",
+              "options": [
+                "Işık ışını",
+                "Kil",
+                "Tahta",
+                "Tel"
+              ],
+              "correct": 0,
+              "hint": "Elle tutulup şekil verilebilmeli."
+            },
+            {
+              "q": "Heykelin resimden en büyük farkı nedir?",
+              "skill": "san-3d",
+              "options": [
+                "Etrafında dönüp her açıdan bakabilmen",
+                "Renksiz olması",
+                "Küçük olması",
+                "Sadece müzede olması"
+              ],
+              "correct": 0,
+              "hint": "Derinliği vardır, düz değildir."
+            },
+            {
+              "q": "Bir vazoyu çömlekçi çarkında yapan sanat dalına ne denir?",
+              "skill": "san-heykel",
+              "options": [
+                "Seramik (çömlekçilik)",
+                "Origami",
+                "Fotoğraf",
+                "Karakalem"
+              ],
+              "correct": 0,
+              "hint": "Kilden kap kacak yapma sanatı."
+            },
+            {
+              "q": "Kağıdı katlayıp bükerek üç boyutlu şekiller yapmak neye örnektir?",
+              "skill": "san-3d",
+              "options": [
+                "Üç boyutlu sanata",
+                "Sadece resme",
+                "Sadece renge",
+                "Gölgelemeye"
+              ],
+              "correct": 0,
+              "hint": "Katlanmış kuş artık düz değildir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "title": "ÜNİTE 7 — Perspektif & Kompozisyon",
+      "sections": [
+        {
+          "id": "s-san-perspektif",
+          "title": "Derinlik ve Yerleşim",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-perspektif-m1",
+              "type": "teach",
+              "title": "Atölye Brifingi: Perspektif",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-perspektif"
+                }
+              ]
+            },
+            {
+              "id": "s-san-perspektif-m2",
+              "type": "practice",
+              "title": "Fırça Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-perspektif"
+              }
+            },
+            {
+              "id": "s-san-perspektif-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-san-perspektif"
+              }
+            },
+            {
+              "id": "s-san-perspektif-m4",
+              "type": "challenge",
+              "title": "Zorlu Eskiz",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-perspektif"
+              }
+            },
+            {
+              "id": "s-san-perspektif-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-perspektif",
+            "tier": "topic",
+            "name": "Yamuk Ufuk Canavarı",
+            "icon": "🏞️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-san-perspektif"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-san-perspektif"
+            }
+          },
+          "bank": [
+            {
+              "q": "Uzaktaki nesneleri nasıl çizeriz?",
+              "skill": "san-perspektif",
+              "options": [
+                "Daha küçük",
+                "Daha büyük",
+                "Aynı boyda",
+                "Hiç çizmeyiz"
+              ],
+              "correct": 0,
+              "hint": "Uzaklaştıkça küçülür gibi görünür."
+            },
+            {
+              "q": "Resme derinlik hissi veren tekniğe ne denir?",
+              "skill": "san-perspektif",
+              "options": [
+                "Perspektif",
+                "Kolaj",
+                "Frotaj",
+                "Origami"
+              ],
+              "correct": 0,
+              "hint": "Yakın büyük, uzak küçük kuralı."
+            },
+            {
+              "q": "Gökyüzü ile yerin buluştuğu çizgiye ne denir?",
+              "skill": "san-perspektif",
+              "options": [
+                "Ufuk çizgisi",
+                "Palet",
+                "Çerçeve",
+                "Gölge"
+              ],
+              "correct": 0,
+              "hint": "Denize bakınca en uzaktaki düz çizgi."
+            },
+            {
+              "q": "Resimdeki nesneleri güzel ve dengeli yerleştirmeye ne denir?",
+              "skill": "san-kompozisyon",
+              "options": [
+                "Kompozisyon",
+                "Perspektif",
+                "Doku",
+                "Ton"
+              ],
+              "correct": 0,
+              "hint": "Neyin nereye konacağının düzeni."
+            },
+            {
+              "q": "Bir yol uzaklaştıkça nasıl görünür?",
+              "skill": "san-perspektif",
+              "options": [
+                "Gittikçe incelir/daralır",
+                "Gittikçe kalınlaşır",
+                "Aynı kalır",
+                "Kaybolup renk olur"
+              ],
+              "correct": 0,
+              "hint": "İki kenar uzakta birbirine yaklaşır."
+            },
+            {
+              "q": "Yakındaki ağaç, uzaktaki dağdan nasıl çizilir?",
+              "skill": "san-perspektif",
+              "options": [
+                "Daha büyük çizilir",
+                "Daha küçük çizilir",
+                "Görünmez çizilir",
+                "Ters çizilir"
+              ],
+              "correct": 0,
+              "hint": "Yakın olan büyük görünür."
+            },
+            {
+              "q": "İyi bir kompozisyonda ana nesne genelde nereye konur?",
+              "skill": "san-kompozisyon",
+              "options": [
+                "Dikkat çekecek dengeli bir noktaya",
+                "Hep en köşeye sıkıştırılır",
+                "Kağıdın dışına",
+                "Görünmeyecek yere"
+              ],
+              "correct": 0,
+              "hint": "Gözün ilk gittiği yer önemli."
+            },
+            {
+              "q": "Resimde 'boş alanlar' neden düşünülür?",
+              "skill": "san-kompozisyon",
+              "options": [
+                "Nesneleri nefes aldırıp dengelemek için",
+                "Boşluk hiç önemli değildir",
+                "Kağıt bitsin diye",
+                "Renk bitsin diye"
+              ],
+              "correct": 0,
+              "hint": "Boşluk da kompozisyonun parçasıdır."
+            },
+            {
+              "q": "Perspektifte çizgilerin uzakta birleştiği noktaya ne denir?",
+              "skill": "san-perspektif",
+              "options": [
+                "Kaçış (yok olma) noktası",
+                "Başlangıç noktası",
+                "Renk noktası",
+                "Gölge noktası"
+              ],
+              "correct": 0,
+              "hint": "Tren rayları uzakta bir noktada buluşur."
+            },
+            {
+              "q": "Çok yakındaki bir nesnenin rengi nasıl görünür?",
+              "skill": "san-perspektif",
+              "options": [
+                "Daha canlı ve net",
+                "Daha soluk ve bulanık",
+                "Hep siyah",
+                "Görünmez"
+              ],
+              "correct": 0,
+              "hint": "Uzaktakiler soluklaşır, yakındakiler net."
+            },
+            {
+              "q": "Dengeli bir kompozisyon resme ne katar?",
+              "skill": "san-kompozisyon",
+              "options": [
+                "Hoş ve düzenli bir görünüm",
+                "Karışıklık",
+                "Renk kaybı",
+                "Koku"
+              ],
+              "correct": 0,
+              "hint": "Göz rahatça gezer."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "title": "ÜNİTE 8 — Sıcak & Soğuk Renkler",
+      "sections": [
+        {
+          "id": "s-san-sicak-soguk",
+          "title": "Renk Sıcaklığı",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-sicak-soguk-m1",
+              "type": "teach",
+              "title": "Atölye Brifingi: Sıcak & Soğuk",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-sicak-soguk"
+                }
+              ]
+            },
+            {
+              "id": "s-san-sicak-soguk-m2",
+              "type": "practice",
+              "title": "Fırça Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-sicak-soguk"
+              }
+            },
+            {
+              "id": "s-san-sicak-soguk-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-san-sicak-soguk"
+              }
+            },
+            {
+              "id": "s-san-sicak-soguk-m4",
+              "type": "challenge",
+              "title": "Zorlu Eskiz",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-sicak-soguk"
+              }
+            },
+            {
+              "id": "s-san-sicak-soguk-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-sicak-soguk",
+            "tier": "topic",
+            "name": "Buz-Ateş İkizleri",
+            "icon": "🔥",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-san-sicak-soguk"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-san-sicak-soguk"
+            }
+          },
+          "bank": [
+            {
+              "q": "Hangisi bir SICAK renktir?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Kırmızı",
+                "Mavi",
+                "Yeşil",
+                "Mor"
+              ],
+              "correct": 0,
+              "hint": "Ateşin rengi."
+            },
+            {
+              "q": "Hangisi bir SOĞUK renktir?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Mavi",
+                "Kırmızı",
+                "Turuncu",
+                "Sarı"
+              ],
+              "correct": 0,
+              "hint": "Denizin ve buzun rengi."
+            },
+            {
+              "q": "Kırmızı, turuncu, sarı hangi gruptur?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Sıcak renkler",
+                "Soğuk renkler",
+                "Renksizler",
+                "Metalikler"
+              ],
+              "correct": 0,
+              "hint": "Güneşi düşün."
+            },
+            {
+              "q": "Mavi, yeşil, mor hangi gruptur?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Soğuk renkler",
+                "Sıcak renkler",
+                "Ana renkler",
+                "Pasteller"
+              ],
+              "correct": 0,
+              "hint": "Buzu düşün."
+            },
+            {
+              "q": "Sıcak renkler bir resimde genelde ne yapar?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Öne çıkar, dikkat çeker",
+                "Geride kaybolur",
+                "Renksiz kalır",
+                "Görünmez olur"
+              ],
+              "correct": 0,
+              "hint": "Enerjik ve göze çarpar."
+            },
+            {
+              "q": "Soğuk renkler bir resimde genelde nasıl durur?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Geride ve sakin",
+                "En önde bağırarak",
+                "Ateş gibi",
+                "Hep parlayarak"
+              ],
+              "correct": 0,
+              "hint": "Dinlendirici ve uzak durur."
+            },
+            {
+              "q": "Neşeli, enerjik bir tablo için hangi renkler seçilir?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Sıcak renkler",
+                "Sadece gri",
+                "Sadece siyah",
+                "Sadece kahve"
+              ],
+              "correct": 0,
+              "hint": "Güneşli bir gün gibi."
+            },
+            {
+              "q": "Sakin, huzurlu bir deniz manzarası için hangi renkler uygundur?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Soğuk renkler",
+                "Sadece kırmızı",
+                "Sadece turuncu",
+                "Sadece sarı"
+              ],
+              "correct": 0,
+              "hint": "Mavi ve yeşilin tonları."
+            },
+            {
+              "q": "Güneşi çizerken hangi renkler daha uygundur?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Sarı ve turuncu",
+                "Mavi ve mor",
+                "Siyah ve gri",
+                "Yeşil ve lacivert"
+              ],
+              "correct": 0,
+              "hint": "Güneş sıcaktır."
+            },
+            {
+              "q": "Bir buzdağını çizerken hangi renkler daha uygundur?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Mavi ve beyaz tonları",
+                "Kırmızı ve turuncu",
+                "Sarı ve kahve",
+                "Pembe ve mor"
+              ],
+              "correct": 0,
+              "hint": "Soğuğu anlatan renkler."
+            },
+            {
+              "q": "Sıcak ve soğuk rengi yan yana koyarsan ne olur?",
+              "skill": "san-sicak-soguk",
+              "options": [
+                "Güçlü bir zıtlık (kontrast) oluşur",
+                "İkisi de kaybolur",
+                "Renksizleşir",
+                "Hiçbir şey olmaz"
+              ],
+              "correct": 0,
+              "hint": "Zıtlık gözü çeker."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u9",
+      "title": "ÜNİTE 9 — El Sanatları & Kolaj",
+      "sections": [
+        {
+          "id": "s-san-kolaj",
+          "title": "Kes Yapıştır Atölyesi",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-kolaj-m1",
+              "type": "teach",
+              "title": "Atölye Brifingi: Kolaj",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-kolaj"
+                }
+              ]
+            },
+            {
+              "id": "s-san-kolaj-m2",
+              "type": "practice",
+              "title": "Fırça Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-kolaj"
+              }
+            },
+            {
+              "id": "s-san-kolaj-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-san-kolaj"
+              }
+            },
+            {
+              "id": "s-san-kolaj-m4",
+              "type": "challenge",
+              "title": "Zorlu Eskiz",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-kolaj"
+              }
+            },
+            {
+              "id": "s-san-kolaj-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-kolaj",
+            "tier": "topic",
+            "name": "Dağınık Kağıt Kasırgası",
+            "icon": "✂️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-san-kolaj"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-san-kolaj"
+            }
+          },
+          "bank": [
+            {
+              "q": "Kesilmiş parçaları yapıştırarak yapılan resme ne denir?",
+              "skill": "san-kolaj",
+              "options": [
+                "Kolaj",
+                "Heykel",
+                "Portre",
+                "Perspektif"
+              ],
+              "correct": 0,
+              "hint": "Kes-yapıştır sanatı."
+            },
+            {
+              "q": "Kolaj yaparken en çok hangi iki araç gerekir?",
+              "skill": "san-kolaj",
+              "options": [
+                "Makas ve yapıştırıcı",
+                "Çekiç ve çivi",
+                "Su ve tuz",
+                "Fırın ve tencere"
+              ],
+              "correct": 0,
+              "hint": "Biri keser, biri yapıştırır."
+            },
+            {
+              "q": "El becerisiyle yapılan örgü, boncuk, keçe işlerine ne denir?",
+              "skill": "san-elsanati",
+              "options": [
+                "El sanatları",
+                "Fotoğrafçılık",
+                "Perspektif",
+                "Gölgeleme"
+              ],
+              "correct": 0,
+              "hint": "Ellerinle ürettiğin işler."
+            },
+            {
+              "q": "Kağıdı katlayarak kuş ya da kayık yapma sanatı hangisidir?",
+              "skill": "san-elsanati",
+              "options": [
+                "Origami",
+                "Kolaj",
+                "Heykel",
+                "Karakalem"
+              ],
+              "correct": 0,
+              "hint": "Japon kağıt katlama sanatı."
+            },
+            {
+              "q": "Kolaj için aşağıdakilerden hangisi malzeme OLABİLİR?",
+              "skill": "san-kolaj",
+              "options": [
+                "Eski dergi kağıtları",
+                "Sadece pahalı boya",
+                "Sadece mermer",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Kesip yapıştırılabilen her şey."
+            },
+            {
+              "q": "Kolajın en güzel yanı nedir?",
+              "skill": "san-kolaj",
+              "options": [
+                "Atık malzemeleri bile sanata çevirmek",
+                "Çok pahalı olması",
+                "Sadece bir renk kullanmak",
+                "Hiç yaratıcılık istememesi"
+              ],
+              "correct": 0,
+              "hint": "Geri dönüşüm artı hayal gücü."
+            },
+            {
+              "q": "İpliklerle kumaş üstüne desen yapmaya ne denir?",
+              "skill": "san-elsanati",
+              "options": [
+                "Nakış (işleme)",
+                "Origami",
+                "Fotoğraf",
+                "Perspektif"
+              ],
+              "correct": 0,
+              "hint": "İğne iplikle işlenen desen."
+            },
+            {
+              "q": "Kolajda farklı dokuları bir araya getirmek resme ne katar?",
+              "skill": "san-kolaj",
+              "options": [
+                "Zenginlik ve ilgi çekicilik",
+                "Kötü koku",
+                "Renk kaybı",
+                "Ağırlık"
+              ],
+              "correct": 0,
+              "hint": "Pürüzlü, parlak, yumuşak bir arada."
+            },
+            {
+              "q": "El sanatlarında en çok neyi kullanırsın?",
+              "skill": "san-elsanati",
+              "options": [
+                "El becerini ve sabrını",
+                "Sadece bilgisayarı",
+                "Sadece parayı",
+                "Hiçbir şeyi"
+              ],
+              "correct": 0,
+              "hint": "Ellerin ve dikkatinle üretirsin."
+            },
+            {
+              "q": "Kolaj yaparken parçaları yapıştırmadan önce ne yapmak akıllıcadır?",
+              "skill": "san-kolaj",
+              "options": [
+                "Önce yapıştırmadan yerini denemek",
+                "Rastgele hemen yapıştırmak",
+                "Gözü kapatmak",
+                "Hepsini üst üste yığmak"
+              ],
+              "correct": 0,
+              "hint": "Önce düzen, sonra yapıştırma."
+            },
+            {
+              "q": "Keçe, boncuk, ip gibi malzemelerle yapılan işler hangi başlığa girer?",
+              "skill": "san-elsanati",
+              "options": [
+                "El sanatları",
+                "Dijital sanat",
+                "Fotoğraf",
+                "Perspektif"
+              ],
+              "correct": 0,
+              "hint": "Elle üretilen dekoratif işler."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u10",
+      "title": "ÜNİTE 10 — Kendi Tarzını Bulmak",
+      "sections": [
+        {
+          "id": "s-san-tarz",
+          "title": "Sanat İmzan",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-tarz-m1",
+              "type": "teach",
+              "title": "Atölye Brifingi: Kendi Tarzın",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-tarz"
+                }
+              ]
+            },
+            {
+              "id": "s-san-tarz-m2",
+              "type": "practice",
+              "title": "Fırça Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-tarz"
+              }
+            },
+            {
+              "id": "s-san-tarz-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-san-tarz"
+              }
+            },
+            {
+              "id": "s-san-tarz-m4",
+              "type": "challenge",
+              "title": "Zorlu Eskiz",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-san-tarz"
+              }
+            },
+            {
+              "id": "s-san-tarz-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-tarz",
+            "tier": "topic",
+            "name": "Kopya Kedisi",
+            "icon": "🐾",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-san-tarz"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-san-tarz"
+            }
+          },
+          "bank": [
+            {
+              "q": "Bir sanatçıyı özel kılan kendine has çizim/renk biçimine ne denir?",
+              "skill": "san-tarz",
+              "options": [
+                "Tarz (üslup)",
+                "Çerçeve",
+                "Palet",
+                "Ufuk çizgisi"
+              ],
+              "correct": 0,
+              "hint": "Senin sanat imzan."
+            },
+            {
+              "q": "Kendi tarzını bulmanın en iyi yolu nedir?",
+              "skill": "san-tarz",
+              "options": [
+                "Bolca denemek ve pratik yapmak",
+                "Hiç çizmemek",
+                "Sadece bir kez denemek",
+                "Başkasını birebir kopyalamak"
+              ],
+              "correct": 0,
+              "hint": "Deneme yanılma sanatçıyı büyütür."
+            },
+            {
+              "q": "Sanatta hata yapınca ne yapmak en iyisidir?",
+              "skill": "san-tarz",
+              "options": [
+                "Ondan öğrenip devam etmek",
+                "Bir daha asla çizmemek",
+                "Ağlayıp bırakmak",
+                "Herkesi suçlamak"
+              ],
+              "correct": 0,
+              "hint": "Hata çoğu zaman yeni bir fikir açar."
+            },
+            {
+              "q": "Başka bir sanatçıdan 'ilham almak' ne demektir?",
+              "skill": "san-tarz",
+              "options": [
+                "Ondan fikir alıp kendi yorumunu katmak",
+                "Birebir aynısını kopyalamak",
+                "Resmini çalmak",
+                "Onu taklit edip imzalamak"
+              ],
+              "correct": 0,
+              "hint": "Fikir tohumu alıp kendi çiçeğini açtırmak."
+            },
+            {
+              "q": "Sanatta 'doğru tek bir yol' var mıdır?",
+              "skill": "san-tarz",
+              "options": [
+                "Hayır, herkesin kendi yolu vardır",
+                "Evet, tek bir doğru vardır",
+                "Sadece ünlüler haklıdır",
+                "Sadece büyükler çizebilir"
+              ],
+              "correct": 0,
+              "hint": "Farklılık sanatın gücüdür."
+            },
+            {
+              "q": "Tarzını geliştirmek için hangisi faydalıdır?",
+              "skill": "san-tarz",
+              "options": [
+                "Farklı malzeme ve konuları denemek",
+                "Hep aynı tek şeyi çizmek",
+                "Hiç yeni şey denememek",
+                "Sadece izlemek"
+              ],
+              "correct": 0,
+              "hint": "Çeşitlilik yeni kapılar açar."
+            },
+            {
+              "q": "Bir eser yaparken en değerli 'malzeme' hangisidir?",
+              "skill": "san-tarz",
+              "options": [
+                "Hayal gücün ve özgünlüğün",
+                "Sadece pahalı boyalar",
+                "Sadece büyük tuval",
+                "Başkasının fikri"
+              ],
+              "correct": 0,
+              "hint": "Bedava, sınırsız ve sadece sende var."
+            },
+            {
+              "q": "Çiziminde beğenmediğin bir kısım olursa?",
+              "skill": "san-tarz",
+              "options": [
+                "Değiştirip geliştirmeyi denersin",
+                "Hemen çöpe atarsın",
+                "Bir daha çizmezsin",
+                "Yakarsın"
+              ],
+              "correct": 0,
+              "hint": "Sanat sabır ve geliştirme işidir."
+            },
+            {
+              "q": "Kendi tarzını bulmuş bir sanatçının işlerini nasıl tanırız?",
+              "skill": "san-tarz",
+              "options": [
+                "Ortak bir 'imza' hissi taşırlar",
+                "Hiç benzemezler",
+                "Hepsi renksizdir",
+                "Hepsi aynı fotoğraftır"
+              ],
+              "correct": 0,
+              "hint": "Van Gogh'un kıvrımları gibi tanıdık gelir."
+            },
+            {
+              "q": "Sanat yapmanın en önemli amacı nedir?",
+              "skill": "san-tarz",
+              "options": [
+                "Kendini ifade etmek ve keyif almak",
+                "Herkesten daha iyi olmak",
+                "Yarışıp kazanmak",
+                "Sadece para"
+              ],
+              "correct": 0,
+              "hint": "İçindekini paylaşmak."
+            },
+            {
+              "q": "Farklı tarzlar hakkında en doğru düşünce hangisidir?",
+              "skill": "san-tarz",
+              "options": [
+                "Hepsi değerlidir ve öğreticidir",
+                "Sadece biri doğrudur",
+                "Eskiler kötüdür",
+                "Yeniler kötüdür"
+              ],
+              "correct": 0,
+              "hint": "Her tarzdan bir şey öğrenilir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u-final",
+      "title": "FİNAL — Renk Diyarı Ustalığı",
+      "sections": [
+        {
+          "id": "s-san-final",
+          "title": "Büyük Sınav",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-san-final-t",
+              "type": "teach",
+              "title": "Final Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "san-final"
+                }
+              ]
+            },
+            {
+              "id": "s-san-final-1",
+              "type": "practice",
+              "title": "Genel Tekrar",
+              "targetCount": 4,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-san-final-2",
+              "type": "challenge",
+              "title": "Ustalık Sınavı",
+              "targetCount": 5,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-san-final-3",
+              "type": "review",
+              "title": "Son Hazırlık",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-san-final",
+            "tier": "final",
+            "name": "Renk Ejderi",
+            "icon": "🎨",
+            "hp": 60,
+            "unlock": {
+              "masteryRequired": 0.6
+            },
+            "generator": {
+              "poolAll": true
+            },
+            "rewards": {
+              "xp": 400,
+              "chest": "legendary",
+              "badge": "b-san-final"
+            }
+          }
         }
       ]
     }

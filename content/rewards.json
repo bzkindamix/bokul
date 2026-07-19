@@ -12,6 +12,7 @@
     "weeklyQuest": 200,
     "bossTopic": 100,
     "bossUnit": 200,
+    "bossFinal": 400,
     "streakMultipliers": {
       "3": 1.5,
       "5": 2

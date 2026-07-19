@@ -125,23 +125,32 @@
       { id: 4, color: '#9A7B3F', name: 'Ela' },    { id: 5, color: '#8FA3C2', name: 'Gri' },
     ],
     hairs: [
+      // Temel modeller ücretsiz; özel modeller Görünüşüm > Saç'tan satın alınır (mağazada değil)
       { id: 0,  name: 'Kısa',        gender: 'both' },
       { id: 1,  name: 'Uzun',        gender: 'kiz' },
       { id: 2,  name: 'Topuz',       gender: 'kiz' },
-      { id: 3,  name: 'Kıvırcık',    gender: 'both' },
+      { id: 3,  name: 'Kıvırcık',    gender: 'both', cosmeticId: 'hair-curly',  rarity: 'common', style: true },
       { id: 4,  name: 'Sıfır',       gender: 'erkek' },
       { id: 5,  name: 'At Kuyruğu',  gender: 'kiz' },
-      { id: 6,  name: 'İki Örgü',    gender: 'kiz' },
+      { id: 6,  name: 'İki Örgü',    gender: 'kiz',   cosmeticId: 'hair-braids', rarity: 'common', style: true },
       { id: 7,  name: 'Kâkül',       gender: 'both' },
-      { id: 8,  name: 'Kirpi',       gender: 'erkek' },
-      { id: 9,  name: 'Mohawk',      gender: 'erkek' },
-      { id: 10, name: 'Afro',        gender: 'both' },
-      { id: 11, name: 'Bob',         gender: 'kiz' },
-      { id: 12, name: 'Uzun Dalgalı', gender: 'kiz' },
+      { id: 8,  name: 'Kirpi',       gender: 'erkek', cosmeticId: 'hair-spiky',  rarity: 'common', style: true },
+      { id: 9,  name: 'Mohawk',      gender: 'erkek', cosmeticId: 'hair-mohawk', rarity: 'rare',   style: true },
+      { id: 10, name: 'Afro',        gender: 'both',  cosmeticId: 'hair-afro',   rarity: 'common', style: true },
+      { id: 11, name: 'Bob',         gender: 'kiz',   cosmeticId: 'hair-bob',    rarity: 'common', style: true },
+      { id: 12, name: 'Uzun Dalgalı', gender: 'kiz',  cosmeticId: 'hair-wavy',   rarity: 'rare',   style: true },
       { id: 13, name: 'Yan Ayrık',   gender: 'both' },
-      { id: 14, name: 'Yüksek Topuz', gender: 'kiz' },
+      { id: 14, name: 'Yüksek Topuz', gender: 'kiz',  cosmeticId: 'hair-highbun', rarity: 'common', style: true },
       { id: 15, name: 'Undercut',    gender: 'erkek' },
-      { id: 16, name: 'İki Topuz',   gender: 'kiz' },
+      { id: 16, name: 'İki Topuz',   gender: 'kiz',   cosmeticId: 'hair-spacebuns', rarity: 'rare', style: true },
+      // Yeni modeller (v0.69) — toplam 24 model
+      { id: 17, name: 'Dağınık',     gender: 'both',  cosmeticId: 'hair-messy',       rarity: 'common', style: true },
+      { id: 18, name: 'Uzun Düz',    gender: 'kiz',   cosmeticId: 'hair-longstraight', rarity: 'common', style: true },
+      { id: 19, name: 'Örgü Taç',    gender: 'kiz',   cosmeticId: 'hair-crownbraid',  rarity: 'rare',   style: true },
+      { id: 20, name: 'Perçemli',    gender: 'both',  cosmeticId: 'hair-fringe',      rarity: 'common', style: true },
+      { id: 21, name: 'Kabarık Puf', gender: 'both',  cosmeticId: 'hair-poof',        rarity: 'rare',   style: true },
+      { id: 22, name: 'Fönlü Bob',   gender: 'kiz',   cosmeticId: 'hair-blowbob',     rarity: 'common', style: true },
+      { id: 23, name: 'Sivri Jel',   gender: 'erkek', cosmeticId: 'hair-gelspike',    rarity: 'common', style: true },
     ],
     eyes: [
       { id: 0, name: 'Klasik' }, { id: 3, name: 'Badem' }, { id: 4, name: 'Kocaman' },
@@ -286,6 +295,18 @@
       case 14: return '<ellipse cx="60" cy="12" rx="14" ry="10" fill="' + color + '"/><rect x="53" y="18" width="14" height="8" rx="3" fill="' + tie + '"/><path d="M28 50 Q28 26 60 24 Q92 26 92 50 L86 48 Q84 34 60 34 Q36 34 34 48 Z" fill="' + color + '"/>';
       case 15: return '<path d="M28 46 Q30 22 60 20 Q90 22 92 46 L86 46 Q84 34 60 34 Q36 34 34 46 Z" fill="' + color + '"/>';
       case 16: return '<circle cx="30" cy="30" r="11" fill="' + color + '"/><circle cx="90" cy="30" r="11" fill="' + color + '"/><path d="M26 50 Q26 24 60 20 Q94 24 94 50 L88 48 Q86 34 60 32 Q34 34 32 48 Z" fill="' + color + '"/>';
+      // v0.69 yeni modeller
+      case 17: return '<path d="M24 52 Q22 22 60 16 Q98 22 96 52 L88 48 Q86 30 60 28 Q34 30 32 48 Z" fill="' + color + '"/>' +
+                      '<path d="M40 20 L44 30 M56 15 L58 26 M72 18 L70 29 M84 24 L80 33" stroke="' + color + '" stroke-width="6" stroke-linecap="round"/>'; // Dağınık
+      case 18: return '<path d="M22 52 Q20 16 60 13 Q100 16 98 52 L100 94 Q94 98 90 94 L88 50 Q84 30 60 28 Q36 30 32 50 L30 94 Q26 98 20 94 Z" fill="' + color + '"/>'; // Uzun Düz
+      case 19: return '<path d="M24 52 Q22 20 60 16 Q98 20 96 52 L90 50 Q88 32 60 30 Q32 32 30 50 Z" fill="' + color + '"/>' +
+                      '<circle cx="34" cy="26" r="5" fill="' + color + '"/><circle cx="46" cy="20" r="5.5" fill="' + color + '"/><circle cx="60" cy="18" r="5.5" fill="' + color + '"/><circle cx="74" cy="20" r="5.5" fill="' + color + '"/><circle cx="86" cy="26" r="5" fill="' + color + '"/>'; // Örgü Taç
+      case 20: return '<path d="M24 52 Q22 18 60 15 Q98 18 96 52 L90 50 Q88 30 56 30 Q44 34 40 50 Q38 40 30 50 Z" fill="' + color + '"/>' +
+                      '<path d="M56 30 Q40 34 34 52 L44 50 Q50 38 60 36 Z" fill="' + color + '"/>'; // Perçemli
+      case 21: return '<ellipse cx="60" cy="30" rx="38" ry="26" fill="' + color + '"/>' +
+                      '<path d="M26 48 Q26 40 34 40 L86 40 Q94 40 94 48 L90 50 Q88 44 60 44 Q32 44 30 50 Z" fill="' + color + '"/>'; // Kabarık Puf
+      case 22: return '<path d="M22 54 Q20 18 60 15 Q100 18 98 54 Q100 66 92 70 L90 50 Q86 32 60 30 Q34 32 30 50 L28 70 Q20 66 22 54 Z" fill="' + color + '"/>'; // Fönlü Bob
+      case 23: return '<path d="M28 50 L30 22 L40 40 L46 14 L54 36 L60 10 L66 36 L74 14 L80 40 L90 22 L92 50 Q78 34 60 34 Q42 34 28 50 Z" fill="' + color + '"/>'; // Sivri Jel
       default: return ''; // 4 sıfır
     }
   }
@@ -516,8 +537,8 @@
   function preset(gender) {
     const base = { gender, skin: 2, hairColor: 0, eyeColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none' };
     return gender === 'kiz'
-      ? Object.assign(base, { hair: 6, outfit: 'elbise-pembe' })
-      : Object.assign(base, { hair: 0, outfit: 'tee-mavi' });
+      ? Object.assign(base, { hair: 1, outfit: 'elbise-pembe' }) // Uzun (ücretsiz)
+      : Object.assign(base, { hair: 0, outfit: 'tee-mavi' });    // Kısa (ücretsiz)
   }
 
   /* Kozmetik id → avatar slotundaki parça id'si */

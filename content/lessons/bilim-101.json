@@ -23,7 +23,16 @@
     "uzay",
     "doga",
     "madde",
-    "bilim-genel"
+    "bilim-genel",
+    "bil-bitki",
+    "bil-hayvan",
+    "bil-vucut",
+    "bil-madde",
+    "bil-kuvvet",
+    "bil-isik",
+    "bil-uzay2",
+    "bil-hava",
+    "bil-cevre"
   ],
   "hints": {},
   "teachScripts": {
@@ -47,6 +56,116 @@
       },
       {
         "say": "Bilim GÖZLEM ve DENEY ile ilerler: merak et, tahmin et, dene, gör. Bir bilim insanı gibi soru sor: 'Acaba neden?' İşte gerçek keşif budur!"
+      }
+    ],
+    "bil-bitkiler": [
+      {
+        "say": "Yeni cephe açıldı Komutan: BİTKİLER! Bir bitkinin gizli takımı vardır — KÖK toprağa tutunur ve su çeker, GÖVDE onu dik tutar, YAPRAK güneşi yakalar, ÇİÇEK ise yeni tohumların doğduğu yerdir."
+      },
+      {
+        "say": "Bitkiler kendi besinini kendi yapar! Buna FOTOSENTEZ denir: güneş ışığı, su ve havadaki karbondioksitle mutfak açarlar ve bize temiz oksijen hediye ederler."
+      },
+      {
+        "say": "Küçük bir tohumdan koca bir ağaç çıkar — su, ışık ve toprak varsa. Sen de bir doğa kâşifisin Komutan; bir yaprağa yakından bak ve merak et!"
+      }
+    ],
+    "bil-hayvanlar": [
+      {
+        "say": "Yeni görev Komutan: HAYVANLAR! Her hayvanın bir YAŞAM ALANI vardır — balık suda, deve çölde, kutup ayısı buzda yaşar. Herkes kendi evinde güçlüdür."
+      },
+      {
+        "say": "Hayvanları beslenmesine göre ayırırız: OTÇULLAR (tavşan, inek) bitki yer, ETÇİLLER (aslan, kartal) et yer, HEPÇİLLER (ayı, insan) hem et hem bitki yer."
+      },
+      {
+        "say": "Kimi hayvan yumurtlar (kuş, kaplumbağa), kimi yavru doğurur (kedi, at). Doğada herkesin bir görevi vardır. Sen de bir doğa gözcüsüsün — hadi keşfet!"
+      }
+    ],
+    "bil-insan-vucudu": [
+      {
+        "say": "Sıradaki keşif senin içinde Komutan: İNSAN VÜCUDU! İskeletimiz kemiklerden yapılıdır ve bizi dik tutar. Kaslarımız kemikleri hareket ettirir. Sen adım atarken yüzlerce takım oyuncusu çalışır!"
+      },
+      {
+        "say": "KALP bir pompadır, kanı tüm vücuda gönderir. AKCİĞERLER havadaki oksijeni alır. BEYİN ise komuta merkezidir — tıpkı senin gibi!"
+      },
+      {
+        "say": "Vücudu güçlü tutmanın sırrı basit: sağlıklı beslen, bol su iç, hareket et ve uykunu al. Bir de ellerini yıka — mikroplara geçit yok!"
+      }
+    ],
+    "bil-maddenin-halleri": [
+      {
+        "say": "Deney zamanı Komutan: MADDENİN HALLERİ! Her şey üç halde bulunabilir — KATI (buz, taş) şeklini korur, SIVI (su, süt) kabın şeklini alır, GAZ (hava, buhar) her yere yayılır."
+      },
+      {
+        "say": "Sihirli anahtar ISI! Buzu ısıtırsan erir, su olur. Suyu daha da ısıtırsan buharlaşır, gaz olur. Soğutursan yolculuk tersine döner: buhar yoğuşur, su donar."
+      },
+      {
+        "say": "Katıyı avucunda tutabilirsin, sıvı parmaklarından akar, gazı ise göremezsin ama vardır — balonu şişiren odur! Hadi gözlem yap, bir bilim insanı gibi."
+      }
+    ],
+    "bil-kuvvet-hareket": [
+      {
+        "say": "Kaslarını hazırla Komutan: KUVVET VE HAREKET! Kuvvet, bir itme ya da çekmedir. Bir cismi itersin ya da çekersin; o zaman hareket eder, durur ya da yön değiştirir."
+      },
+      {
+        "say": "YERÇEKİMİ Dünya'nın gizli çekme gücüdür; her şeyi aşağı, yere doğru çeker. Zıpladığında seni geri indiren odur. SÜRTÜNME ise hareketi yavaşlatır — buzda kaymak kolay, halıda zor!"
+      },
+      {
+        "say": "Mıknatıs uzaktan bile demiri çeker, dokunmadan! İtsen de çeksen de her hareketin ardında bir kuvvet vardır. Bir topu yuvarla ve gözlemle Komutan."
+      }
+    ],
+    "bil-isik-ses": [
+      {
+        "say": "Işıkları yak Komutan: IŞIK VE SES! Işık düz bir çizgide ilerler. Bir cisme çarpıp arkasına geçemeyince GÖLGE oluşur. Güneş, ampul ve ateş ışık kaynağıdır."
+      },
+      {
+        "say": "Aynaya ışık çarpınca geri döner — buna YANSIMA denir; kendini bu yüzden aynada görürsün! Beyaz ışık aslında gökkuşağının tüm renklerini içinde saklar."
+      },
+      {
+        "say": "SES ise titreşimden doğar. Bir davula vurunca titreşir ve ses çıkar. Ses havada yayılır; kulağımız bu titreşimleri yakalar. Şşşt — dinle ve keşfet!"
+      }
+    ],
+    "bil-dunya-ay-gunes": [
+      {
+        "say": "Teleskopu kur Komutan: DÜNYA, AY VE GÜNEŞ! Dünya bir gezegen, kendi ekseninde döner — bu yüzden GECE ve GÜNDÜZ olur. Güneş'e bakan yüz gündüz, arka taraf gecedir."
+      },
+      {
+        "say": "Dünya bir de Güneş'in etrafında koca bir tur atar; bu tur bir YILDIR ve MEVSİMLERİ getirir. Ay ise Dünya'nın uydusudur, etrafında döner ve kendi ışığı yoktur — Güneş'i yansıtır."
+      },
+      {
+        "say": "Ay her gece biraz farklı görünür: hilal, dolunay derken evreleri değişir. Bazen Dünya, Ay ile Güneş arasına girer ve gölge düşürür: işte tutulma! Gökyüzü koca bir gizem, keşfet!"
+      }
+    ],
+    "bil-hava-mevsim": [
+      {
+        "say": "Şemsiyeni al Komutan: HAVA DURUMU VE MEVSİMLER! Güneş, denizlerdeki suyu ısıtır; su buharlaşıp yükselir, soğuyunca bulut olur. Bulutlar ağırlaşınca yağmur düşer. Buna SU DÖNGÜSÜ denir."
+      },
+      {
+        "say": "Bir yılda dört mevsim vardır: İLKBAHAR (çiçekler açar), YAZ (sıcak ve güneşli), SONBAHAR (yapraklar dökülür), KIŞ (soğuk, kar). Her mevsimin bir güzelliği var!"
+      },
+      {
+        "say": "Hava soğuyunca yağmur kara döner, damla donunca dolu olur. Bir bilim insanı gökyüzünü gözlemler ve tahmin eder. Bugün hava nasıl, pencereden bak Komutan!"
+      }
+    ],
+    "bil-cevre-geri-donusum": [
+      {
+        "say": "Son cephe Komutan ama en önemlisi: ÇEVRE VE GERİ DÖNÜŞÜM! Dünya hepimizin ortak evi. Havayı, suyu ve toprağı temiz tutmak her kâşifin görevidir."
+      },
+      {
+        "say": "GERİ DÖNÜŞÜM bir süper güçtür: kağıt, cam, plastik ve metali ayrı kutulara atarız; onlar yeniden işlenip yeni ürün olur. Böylece daha az çöp, daha az kesilen ağaç!"
+      },
+      {
+        "say": "Musluğu boşuna açık bırakma, ışığı kapat, çöpü yere atma, bir ağaç dik. Küçük hareketler koca gezegeni kurtarır. Sen bir Doğa Kahramanısın Komutan!"
+      }
+    ],
+    "bil-final": [
+      {
+        "say": "Bu AN geldi Komutan! Keşif Laboratuvarı cephesinin EN BÜYÜK sınavı: tüm öğrendiklerin bir arada, en zoru."
+      },
+      {
+        "say": "🌌 Bilinmezlik Devi karşında! Onu yenersen bu dersin USTASI olursun. Efsanevi ödül seni bekliyor."
+      },
+      {
+        "say": "Sakin ol, öğrendiklerine güven. Her soru bir darbe. Hazırsan… HÜCUM!"
       }
     ]
   },
@@ -496,6 +615,2122 @@
               "hint": "Güvenlik her zaman önce gelir."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — Bitkiler",
+      "sections": [
+        {
+          "id": "s-bil-bitkiler",
+          "title": "Bitkilerin Dünyası",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-bitkiler-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Bitkilerin Dünyası",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-bitkiler"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-bitkiler-m2",
+              "type": "practice",
+              "title": "Gözlem Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-bitkiler"
+              }
+            },
+            {
+              "id": "s-bil-bitkiler-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-bil-bitkiler"
+              }
+            },
+            {
+              "id": "s-bil-bitkiler-m4",
+              "type": "challenge",
+              "title": "Zorlu Deney",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-bitkiler"
+              }
+            },
+            {
+              "id": "s-bil-bitkiler-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-bitkiler",
+            "tier": "topic",
+            "name": "Solmuş Orman Golemi",
+            "icon": "🌿",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-bil-bitkiler"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-bil-bitkiler"
+            }
+          },
+          "bank": [
+            {
+              "q": "Bir bitkinin toprağa tutunup su çeken kısmı hangisidir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Kök",
+                "Yaprak",
+                "Çiçek",
+                "Meyve"
+              ],
+              "correct": 0,
+              "hint": "Toprağın altında saklıdır."
+            },
+            {
+              "q": "Bitkiler güneş ışığıyla besin ürettiği olaya ne denir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Fotosentez",
+                "Erime",
+                "Yağış",
+                "Deprem"
+              ],
+              "correct": 0,
+              "hint": "Yapraklar güneşi yakalar."
+            },
+            {
+              "q": "Bitkiler fotosentez için havadan neyi alır?",
+              "skill": "bil-bitki",
+              "options": [
+                "Karbondioksit",
+                "Kum",
+                "Ses",
+                "Metal"
+              ],
+              "correct": 0,
+              "hint": "Bizim verdiğimiz gazı bitki kullanır."
+            },
+            {
+              "q": "Bitkiler havaya bizim için hangi gazı verir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Oksijen",
+                "Duman",
+                "Toz",
+                "Buhar"
+              ],
+              "correct": 0,
+              "hint": "Nefes aldığımız hayat gazı."
+            },
+            {
+              "q": "Bir bitki büyümek için en çok neye ihtiyaç duyar?",
+              "skill": "bil-bitki",
+              "options": [
+                "Su, ışık ve toprak",
+                "Sadece karanlık",
+                "Sadece taş",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Üç dostu birlikte gerekir."
+            },
+            {
+              "q": "Yeni bir bitki hangisinden çıkar?",
+              "skill": "bil-bitki",
+              "options": [
+                "Tohum",
+                "Taş",
+                "Cam",
+                "Demir"
+              ],
+              "correct": 0,
+              "hint": "Küçücüktür ama içinde koca ağaç saklıdır."
+            },
+            {
+              "q": "Bitkinin güneş ışığını yakalayan yeşil kısmı hangisidir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Yaprak",
+                "Kök",
+                "Tohum",
+                "Diken"
+              ],
+              "correct": 0,
+              "hint": "Genelde yeşil ve yassıdır."
+            },
+            {
+              "q": "Elma, armut ve domates bitkinin hangi bölümünde oluşur?",
+              "skill": "bil-bitki",
+              "options": [
+                "Meyve",
+                "Kök",
+                "Gövde",
+                "Yaprak"
+              ],
+              "correct": 0,
+              "hint": "İçinde tohumları taşır."
+            },
+            {
+              "q": "Çiçekler bitki için ne işe yarar?",
+              "skill": "bil-bitki",
+              "options": [
+                "Yeni tohumların oluşmasını sağlar",
+                "Suyu içer",
+                "Toprağı tutar",
+                "Işık verir"
+              ],
+              "correct": 0,
+              "hint": "Arılar buraya konar."
+            },
+            {
+              "q": "Aşağıdakilerden hangisi bir bitkidir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Ayçiçeği",
+                "Kelebek",
+                "Taş",
+                "Bulut"
+              ],
+              "correct": 0,
+              "hint": "Güneşe dönen sarı çiçek."
+            },
+            {
+              "q": "Kaktüs çok az suyla yaşayabilir; peki genelde nerede yetişir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Çölde",
+                "Denizin dibinde",
+                "Buzulda",
+                "Ateşte"
+              ],
+              "correct": 0,
+              "hint": "Çok sıcak ve kurak yer."
+            },
+            {
+              "q": "Ağaçların çok olduğu, temiz hava veren yere ne denir?",
+              "skill": "bil-bitki",
+              "options": [
+                "Orman",
+                "Çöl",
+                "Fabrika",
+                "Otopark"
+              ],
+              "correct": 0,
+              "hint": "Yeşilin ve gölgenin bol olduğu yer."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — Hayvanlar ve Yaşam Alanları",
+      "sections": [
+        {
+          "id": "s-bil-hayvanlar",
+          "title": "Hayvanlar ve Yuvaları",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-hayvanlar-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Hayvanlar ve Yuvaları",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-hayvanlar"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-hayvanlar-m2",
+              "type": "practice",
+              "title": "Gözlem Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-hayvanlar"
+              }
+            },
+            {
+              "id": "s-bil-hayvanlar-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-bil-hayvanlar"
+              }
+            },
+            {
+              "id": "s-bil-hayvanlar-m4",
+              "type": "challenge",
+              "title": "Zorlu Deney",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-hayvanlar"
+              }
+            },
+            {
+              "id": "s-bil-hayvanlar-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-hayvanlar",
+            "tier": "topic",
+            "name": "Kayıp Yuva Canavarı",
+            "icon": "🐾",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-bil-hayvanlar"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-bil-hayvanlar"
+            }
+          },
+          "bank": [
+            {
+              "q": "Balıklar nerede yaşar?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Suda",
+                "Çölde",
+                "Bulutta",
+                "Ateşte"
+              ],
+              "correct": 0,
+              "hint": "Yüzgeçleriyle yüzerler."
+            },
+            {
+              "q": "Sadece bitki (ot, yaprak) yiyen hayvanlara ne denir?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Otçul",
+                "Etçil",
+                "Taşçıl",
+                "Camcıl"
+              ],
+              "correct": 0,
+              "hint": "İnek ve tavşan gibi."
+            },
+            {
+              "q": "Aslan ve kartal gibi et yiyen hayvanlara ne denir?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Etçil",
+                "Otçul",
+                "Bitki",
+                "Böcek"
+              ],
+              "correct": 0,
+              "hint": "Avlanarak beslenirler."
+            },
+            {
+              "q": "Aşağıdaki hayvanlardan hangisi yumurtlar?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Tavuk",
+                "Kedi",
+                "At",
+                "Köpek"
+              ],
+              "correct": 0,
+              "hint": "Kümeste toplarız."
+            },
+            {
+              "q": "Kutup ayısı hangi soğuk bölgede yaşar?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Buzul (kutuplar)",
+                "Çöl",
+                "Orman kenarı sıcak",
+                "Deniz dibi"
+              ],
+              "correct": 0,
+              "hint": "Her yer kar ve buz."
+            },
+            {
+              "q": "Deve çölde susuz uzun süre dayanır; peki suyu nerede depolar?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Vücudunda (hörgücünde yağ olarak)",
+                "Ayaklarında su torbasında",
+                "Kulaklarında",
+                "Hiç depolamaz"
+              ],
+              "correct": 0,
+              "hint": "Sırtındaki tümseği düşün."
+            },
+            {
+              "q": "Kuşların uçmasını sağlayan vücut kısmı nedir?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Kanatları",
+                "Kuyruğu tek başına",
+                "Gagası",
+                "Pençesi"
+              ],
+              "correct": 0,
+              "hint": "Tüylerle kaplı, çırpar."
+            },
+            {
+              "q": "Arı çiçekten çiçeğe konarken doğaya nasıl yardım eder?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Çiçek tozu taşıyıp bitkilerin çoğalmasını sağlar",
+                "Çiçekleri koparır",
+                "Suyu içer",
+                "Toprağı bozar"
+              ],
+              "correct": 0,
+              "hint": "Polen taşır, bal yapar."
+            },
+            {
+              "q": "Kurbağa hem suda hem karada yaşar; böyle hayvanlara ne denir?",
+              "skill": "bil-hayvan",
+              "options": [
+                "İki yaşamlı (amfibi)",
+                "Sürüngen",
+                "Kuş",
+                "Balık"
+              ],
+              "correct": 0,
+              "hint": "Hem yüzer hem zıplar."
+            },
+            {
+              "q": "Hem et hem bitki yiyen hayvanlara ne denir?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Hepçil",
+                "Otçul",
+                "Etçil",
+                "Suçul"
+              ],
+              "correct": 0,
+              "hint": "Ayı ve insan gibi."
+            },
+            {
+              "q": "Yılan, kaplumbağa ve kertenkele hangi hayvan grubundandır?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Sürüngenler",
+                "Kuşlar",
+                "Balıklar",
+                "Böcekler"
+              ],
+              "correct": 0,
+              "hint": "Vücutları pullu, karın üstü sürünür."
+            },
+            {
+              "q": "Bir hayvanın yaşadığı, beslendiği ve barındığı doğal yere ne denir?",
+              "skill": "bil-hayvan",
+              "options": [
+                "Yaşam alanı (habitat)",
+                "Otopark",
+                "Market",
+                "Fabrika"
+              ],
+              "correct": 0,
+              "hint": "Onun doğadaki evi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — İnsan Vücudu",
+      "sections": [
+        {
+          "id": "s-bil-insan-vucudu",
+          "title": "Vücudumuzu Tanıyalım",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-insan-vucudu-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Vücudumuzu Tanıyalım",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-insan-vucudu"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-insan-vucudu-m2",
+              "type": "practice",
+              "title": "Gözlem Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-insan-vucudu"
+              }
+            },
+            {
+              "id": "s-bil-insan-vucudu-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-bil-insan-vucudu"
+              }
+            },
+            {
+              "id": "s-bil-insan-vucudu-m4",
+              "type": "challenge",
+              "title": "Zorlu Deney",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-insan-vucudu"
+              }
+            },
+            {
+              "id": "s-bil-insan-vucudu-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-insan-vucudu",
+            "tier": "topic",
+            "name": "Tembel Mikrop Kralı",
+            "icon": "🦴",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-bil-insan-vucudu"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-bil-insan-vucudu"
+            }
+          },
+          "bank": [
+            {
+              "q": "Vücudumuzu dik tutan sert yapı nedir?",
+              "skill": "bil-vucut",
+              "options": [
+                "İskelet (kemikler)",
+                "Bulutlar",
+                "Saçlar",
+                "Tırnaklar"
+              ],
+              "correct": 0,
+              "hint": "Kemiklerden oluşur."
+            },
+            {
+              "q": "Kanı tüm vücuda pompalayan organ hangisidir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Kalp",
+                "Mide",
+                "Göz",
+                "Kulak"
+              ],
+              "correct": 0,
+              "hint": "Göğsümüzde atar: küt küt."
+            },
+            {
+              "q": "Nefes aldığımızda havayı hangi organımız alır?",
+              "skill": "bil-vucut",
+              "options": [
+                "Akciğerler",
+                "Kalp",
+                "Böbrek",
+                "Dil"
+              ],
+              "correct": 0,
+              "hint": "İki tanedir, göğüste şişip iner."
+            },
+            {
+              "q": "Düşünmemizi ve hareketlerimizi yöneten komuta merkezi nedir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Beyin",
+                "Ayak",
+                "Saç",
+                "Diş"
+              ],
+              "correct": 0,
+              "hint": "Kafamızın içinde."
+            },
+            {
+              "q": "Yediğimiz besinlerin sindirildiği (öğütüldüğü) organ hangisidir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Mide",
+                "Göz",
+                "Kulak",
+                "Kalp"
+              ],
+              "correct": 0,
+              "hint": "Karnımızda, yemek buraya iner."
+            },
+            {
+              "q": "Kemikleri hareket ettiren, çekip gevşeyen yapılar nedir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Kaslar",
+                "Tırnaklar",
+                "Kirpikler",
+                "Saçlar"
+              ],
+              "correct": 0,
+              "hint": "Kolunu bükünce şişer."
+            },
+            {
+              "q": "Dişlerimizi neden fırçalamalıyız?",
+              "skill": "bil-vucut",
+              "options": [
+                "Çürükleri ve mikropları önlemek için",
+                "Daha hızlı koşmak için",
+                "Uzasınlar diye",
+                "Renk değiştirsinler diye"
+              ],
+              "correct": 0,
+              "hint": "Günde iki kez, sağlık için."
+            },
+            {
+              "q": "Aşağıdakilerden hangisi bir duyu organımızdır?",
+              "skill": "bil-vucut",
+              "options": [
+                "Göz",
+                "Kemik",
+                "Kas",
+                "Kalp"
+              ],
+              "correct": 0,
+              "hint": "Onunla görürüz."
+            },
+            {
+              "q": "Sağlıklı kalmak için hangisini yapmalıyız?",
+              "skill": "bil-vucut",
+              "options": [
+                "Dengeli beslenip hareket etmek",
+                "Hiç su içmemek",
+                "Hep hareketsiz durmak",
+                "Uyumamak"
+              ],
+              "correct": 0,
+              "hint": "Meyve-sebze, su ve spor."
+            },
+            {
+              "q": "Mikroplardan korunmak için ellerimizi ne zaman yıkamalıyız?",
+              "skill": "bil-vucut",
+              "options": [
+                "Yemekten önce ve tuvaletten sonra",
+                "Hiçbir zaman",
+                "Sadece yılbaşında",
+                "Sadece uyurken"
+              ],
+              "correct": 0,
+              "hint": "Sabun ve suyla, sık sık."
+            },
+            {
+              "q": "Vücudumuzun büyümesi ve enerji alması için ne gerekir?",
+              "skill": "bil-vucut",
+              "options": [
+                "Sağlıklı besinler ve su",
+                "Sadece şeker",
+                "Sadece uyku",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Tabağında renkli sebzeler olsun."
+            },
+            {
+              "q": "Kanımızın kırmızı olmasının bir sebebi vücuda neyi taşımasıdır?",
+              "skill": "bil-vucut",
+              "options": [
+                "Oksijen",
+                "Kum",
+                "Işık",
+                "Ses"
+              ],
+              "correct": 0,
+              "hint": "Akciğerden aldığımız gazı hücrelere götürür."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "ÜNİTE 5 — Maddenin Halleri",
+      "sections": [
+        {
+          "id": "s-bil-maddenin-halleri",
+          "title": "Katı, Sıvı, Gaz",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-maddenin-halleri-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Katı, Sıvı, Gaz",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-maddenin-halleri"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-maddenin-halleri-m2",
+              "type": "practice",
+              "title": "Gözlem Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-maddenin-halleri"
+              }
+            },
+            {
+              "id": "s-bil-maddenin-halleri-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-bil-maddenin-halleri"
+              }
+            },
+            {
+              "id": "s-bil-maddenin-halleri-m4",
+              "type": "challenge",
+              "title": "Zorlu Deney",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-maddenin-halleri"
+              }
+            },
+            {
+              "id": "s-bil-maddenin-halleri-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-maddenin-halleri",
+            "tier": "topic",
+            "name": "Buz Tutmuş Kabus",
+            "icon": "❄️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-bil-maddenin-halleri"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-bil-maddenin-halleri"
+            }
+          },
+          "bank": [
+            {
+              "q": "Maddenin üç temel hali hangileridir?",
+              "skill": "bil-madde",
+              "options": [
+                "Katı, sıvı, gaz",
+                "Sıcak, soğuk, ılık",
+                "Büyük, orta, küçük",
+                "Sarı, mavi, yeşil"
+              ],
+              "correct": 0,
+              "hint": "Buz, su, buhar."
+            },
+            {
+              "q": "Taş hangi haldedir?",
+              "skill": "bil-madde",
+              "options": [
+                "Katı",
+                "Sıvı",
+                "Gaz",
+                "Işık"
+              ],
+              "correct": 0,
+              "hint": "Sert ve şekli belli."
+            },
+            {
+              "q": "Süt hangi haldedir?",
+              "skill": "bil-madde",
+              "options": [
+                "Sıvı",
+                "Katı",
+                "Gaz",
+                "Ses"
+              ],
+              "correct": 0,
+              "hint": "Bardağa dökülür, akar."
+            },
+            {
+              "q": "Buzu ısıtınca ne olur?",
+              "skill": "bil-madde",
+              "options": [
+                "Erir, su olur",
+                "Taşa döner",
+                "Kaybolur",
+                "Renk değiştirir"
+              ],
+              "correct": 0,
+              "hint": "Katıdan sıvıya: erime."
+            },
+            {
+              "q": "Suyu kaynatınca yükselen buhar hangi haldedir?",
+              "skill": "bil-madde",
+              "options": [
+                "Gaz",
+                "Katı",
+                "Sıvı",
+                "Metal"
+              ],
+              "correct": 0,
+              "hint": "Tencerenin üstünde uçuşur."
+            },
+            {
+              "q": "Suyu buzlukta soğutursak ne olur?",
+              "skill": "bil-madde",
+              "options": [
+                "Donar, buz (katı) olur",
+                "Buhar olur",
+                "Yok olur",
+                "Süt olur"
+              ],
+              "correct": 0,
+              "hint": "Sıvıdan katıya: donma."
+            },
+            {
+              "q": "Bir sıvının şekli neden sürekli değişir?",
+              "skill": "bil-madde",
+              "options": [
+                "Konulduğu kabın şeklini alır",
+                "Kendi şeklini korur",
+                "Havada durur",
+                "Hiç değişmez"
+              ],
+              "correct": 0,
+              "hint": "Şişeye de bardağa da uyar."
+            },
+            {
+              "q": "Balonu şişiren şey hangi haldedir?",
+              "skill": "bil-madde",
+              "options": [
+                "Gaz (hava)",
+                "Katı",
+                "Buz",
+                "Taş"
+              ],
+              "correct": 0,
+              "hint": "Görünmez ama balonu doldurur."
+            },
+            {
+              "q": "Soğuk bir bardağın dışının terlemesinin sebebi nedir?",
+              "skill": "bil-madde",
+              "options": [
+                "Havadaki su buharının yoğuşup damla olması",
+                "Bardağın delik olması",
+                "Suyun kaçması",
+                "Camın erimesi"
+              ],
+              "correct": 0,
+              "hint": "Gazdan sıvıya geçiş: yoğuşma."
+            },
+            {
+              "q": "Aşağıdakilerden hangisi katı bir maddedir?",
+              "skill": "bil-madde",
+              "options": [
+                "Tahta kaşık",
+                "Portakal suyu",
+                "Rüzgâr",
+                "Buhar"
+              ],
+              "correct": 0,
+              "hint": "Elinle tutabildiğin, şekli sabit olan."
+            },
+            {
+              "q": "Erimenin (katıdan sıvıya geçiş) olması için ne gerekir?",
+              "skill": "bil-madde",
+              "options": [
+                "Isı vermek (ısıtmak)",
+                "Soğutmak",
+                "Karanlık",
+                "Ses"
+              ],
+              "correct": 0,
+              "hint": "Güneşte kalan dondurmayı düşün."
+            },
+            {
+              "q": "Islak çamaşırın kuruması hangi olayla açıklanır?",
+              "skill": "bil-madde",
+              "options": [
+                "Sudaki nemin buharlaşması",
+                "Suyun donması",
+                "Bezlerin erimesi",
+                "Rüzgârın yağması"
+              ],
+              "correct": 0,
+              "hint": "Su havaya karışır, gaza döner."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "ÜNİTE 6 — Kuvvet ve Hareket",
+      "sections": [
+        {
+          "id": "s-bil-kuvvet-hareket",
+          "title": "İtme, Çekme ve Hareket",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-kuvvet-hareket-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: İtme, Çekme ve Hareket",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-kuvvet-hareket"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-kuvvet-hareket-m2",
+              "type": "practice",
+              "title": "Gözlem Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-kuvvet-hareket"
+              }
+            },
+            {
+              "id": "s-bil-kuvvet-hareket-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-bil-kuvvet-hareket"
+              }
+            },
+            {
+              "id": "s-bil-kuvvet-hareket-m4",
+              "type": "challenge",
+              "title": "Zorlu Deney",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-kuvvet-hareket"
+              }
+            },
+            {
+              "id": "s-bil-kuvvet-hareket-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-kuvvet-hareket",
+            "tier": "topic",
+            "name": "Duran Dev Kaya",
+            "icon": "🧲",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-bil-kuvvet-hareket"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-bil-kuvvet-hareket"
+            }
+          },
+          "bank": [
+            {
+              "q": "Kuvvet en basit haliyle nedir?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "İtme ya da çekme",
+                "Bir renk",
+                "Bir ses",
+                "Bir koku"
+              ],
+              "correct": 0,
+              "hint": "Kapıyı iter ya da çekersin."
+            },
+            {
+              "q": "Duran bir topu harekete geçirmek için ne yaparız?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Ona kuvvet uygularız (iteriz/vururuz)",
+                "Ona bakarız",
+                "Adını söyleriz",
+                "Bekleriz"
+              ],
+              "correct": 0,
+              "hint": "Tekme at, hareket etsin."
+            },
+            {
+              "q": "Havaya attığımız topu tekrar yere indiren kuvvet nedir?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Yerçekimi",
+                "Rüzgâr sesi",
+                "Işık",
+                "Mıknatıs"
+              ],
+              "correct": 0,
+              "hint": "Dünya her şeyi aşağı çeker."
+            },
+            {
+              "q": "Buzda kaymak neden halıda kaymaktan kolaydır?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Buzda sürtünme az olduğu için",
+                "Buz sıcak olduğu için",
+                "Halı ıslak olduğu için",
+                "Işık az olduğu için"
+              ],
+              "correct": 0,
+              "hint": "Pürüzsüz yüzey daha az frenler."
+            },
+            {
+              "q": "Mıknatıs aşağıdakilerden hangisini çeker?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Demir çivi",
+                "Kağıt",
+                "Su",
+                "Tahta"
+              ],
+              "correct": 0,
+              "hint": "Metal cisimleri sever."
+            },
+            {
+              "q": "Bisiklette fren yapınca tekerleği yavaşlatan kuvvet nedir?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Sürtünme kuvveti",
+                "Yerçekimi yukarı çeker",
+                "Işık",
+                "Ses"
+              ],
+              "correct": 0,
+              "hint": "Fren balatası tekere sürtünür."
+            },
+            {
+              "q": "Bir arabayı hem hızlandırıp hem yavaşlatan şey nedir?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Uygulanan kuvvet",
+                "Rengi",
+                "Camının şekli",
+                "Kornası"
+              ],
+              "correct": 0,
+              "hint": "Gaz iter, fren çeker."
+            },
+            {
+              "q": "Salıncakta yüksek çıkıp sonra geri inmemizin sebebi nedir?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Yerçekimi bizi aşağı çeker",
+                "Rüzgâr iter sadece",
+                "Salıncak ağır olduğu için",
+                "Ses yüzünden"
+              ],
+              "correct": 0,
+              "hint": "Yukarı çıkarız ama Dünya bırakmaz."
+            },
+            {
+              "q": "İki mıknatısın aynı kutupları birbirine yaklaşınca ne yapar?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Birbirini iter",
+                "Yapışır kalır",
+                "Erir",
+                "Işık verir"
+              ],
+              "correct": 0,
+              "hint": "Aynı kutuplar dosttan çok ittirir."
+            },
+            {
+              "q": "Sürtünme kuvveti bir cisme ne yapar?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Hareketini yavaşlatır",
+                "Hızlandırır",
+                "Renk verir",
+                "Uçurur"
+              ],
+              "correct": 0,
+              "hint": "Kaymayı zorlaştıran güç."
+            },
+            {
+              "q": "Ayakkabıların altındaki tırtıklı desen ne işe yarar?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Sürtünmeyi artırıp kaymayı önler",
+                "Sadece süs",
+                "Ağırlık verir",
+                "Ses çıkarır"
+              ],
+              "correct": 0,
+              "hint": "Yağmurda kaymamak için."
+            },
+            {
+              "q": "Bir cismi çekince kendine doğru hareket ettiren kuvvet çeşidi nedir?",
+              "skill": "bil-kuvvet",
+              "options": [
+                "Çekme kuvveti",
+                "İtme kuvveti",
+                "Işık",
+                "Isı"
+              ],
+              "correct": 0,
+              "hint": "İpi kendine doğru çekmek gibi."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "title": "ÜNİTE 7 — Işık ve Ses",
+      "sections": [
+        {
+          "id": "s-bil-isik-ses",
+          "title": "Işık ve Sesin Sırları",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-isik-ses-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Işık ve Sesin Sırları",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-isik-ses"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-isik-ses-m2",
+              "type": "practice",
+              "title": "Gözlem Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-isik-ses"
+              }
+            },
+            {
+              "id": "s-bil-isik-ses-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-bil-isik-ses"
+              }
+            },
+            {
+              "id": "s-bil-isik-ses-m4",
+              "type": "challenge",
+              "title": "Zorlu Deney",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-isik-ses"
+              }
+            },
+            {
+              "id": "s-bil-isik-ses-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-isik-ses",
+            "tier": "topic",
+            "name": "Sessiz Karanlık Hayaleti",
+            "icon": "🔦",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-bil-isik-ses"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-bil-isik-ses"
+            }
+          },
+          "bank": [
+            {
+              "q": "Işık nasıl ilerler?",
+              "skill": "bil-isik",
+              "options": [
+                "Düz bir çizgide",
+                "Zikzak yaparak",
+                "Geri geri",
+                "Hiç ilerlemez"
+              ],
+              "correct": 0,
+              "hint": "El fenerinin ışınını düşün."
+            },
+            {
+              "q": "Gölge nasıl oluşur?",
+              "skill": "bil-isik",
+              "options": [
+                "Işık bir cisme çarpıp arkasına geçemeyince",
+                "Karanlık aktığı için",
+                "Renk yüzünden",
+                "Rüzgârdan"
+              ],
+              "correct": 0,
+              "hint": "Işığı engelleyen cismin arkası."
+            },
+            {
+              "q": "Aşağıdakilerden hangisi bir ışık kaynağıdır?",
+              "skill": "bil-isik",
+              "options": [
+                "Güneş",
+                "Ayna",
+                "Taş",
+                "Defter"
+              ],
+              "correct": 0,
+              "hint": "Kendi ışığını üretir."
+            },
+            {
+              "q": "Ses nasıl oluşur?",
+              "skill": "bil-ses",
+              "options": [
+                "Titreşimle",
+                "Renkle",
+                "Gölgeyle",
+                "Kokuyla"
+              ],
+              "correct": 0,
+              "hint": "Davula vurunca yüzeyi titrer."
+            },
+            {
+              "q": "Işığın aynadan geri dönmesine ne denir?",
+              "skill": "bil-isik",
+              "options": [
+                "Yansıma",
+                "Erime",
+                "Donma",
+                "Yağış"
+              ],
+              "correct": 0,
+              "hint": "Aynada kendini görmenin sebebi."
+            },
+            {
+              "q": "Sesleri hangi organımızla duyarız?",
+              "skill": "bil-ses",
+              "options": [
+                "Kulak",
+                "Göz",
+                "Burun",
+                "Dil"
+              ],
+              "correct": 0,
+              "hint": "Titreşimi yakalar."
+            },
+            {
+              "q": "Beyaz ışık bir yağmur damlasından geçince ne görülür?",
+              "skill": "bil-isik",
+              "options": [
+                "Gökkuşağı (renkler)",
+                "Sadece siyah",
+                "Ses",
+                "Duman"
+              ],
+              "correct": 0,
+              "hint": "Yağmurdan sonra gökte belirir."
+            },
+            {
+              "q": "Ses en iyi hangisinin içinde yayılır, en kötü nerede?",
+              "skill": "bil-ses",
+              "options": [
+                "Havada yayılır, boşlukta (uzayda) yayılmaz",
+                "Sadece karanlıkta",
+                "Hiçbir yerde",
+                "Sadece camda"
+              ],
+              "correct": 0,
+              "hint": "Uzayda kimse çığlığını duyamaz."
+            },
+            {
+              "q": "Karanlık bir odada bir şeyi görebilmemiz için ne gerekir?",
+              "skill": "bil-isik",
+              "options": [
+                "Işık",
+                "Ses",
+                "Koku",
+                "Rüzgâr"
+              ],
+              "correct": 0,
+              "hint": "Fenerini aç, görürsün."
+            },
+            {
+              "q": "Şimşek çaktıktan sonra gök gürültüsünü neden biraz sonra duyarız?",
+              "skill": "bil-ses",
+              "options": [
+                "Işık sesten çok daha hızlı olduğu için",
+                "Ses önce gelir",
+                "İkisi aynı anda gelir hep",
+                "Ses hiç gelmez"
+              ],
+              "correct": 0,
+              "hint": "Işık yıldırım hızında, ses ondan yavaş."
+            },
+            {
+              "q": "Bir davula sert vurunca çıkan ses nasıl olur?",
+              "skill": "bil-ses",
+              "options": [
+                "Daha yüksek (gür) olur",
+                "Hiç ses çıkmaz",
+                "Renk değiştirir",
+                "Işık verir"
+              ],
+              "correct": 0,
+              "hint": "Güçlü titreşim, güçlü ses."
+            },
+            {
+              "q": "Camdan ışığın geçebilmesinin sebebi camın nasıl olmasıdır?",
+              "skill": "bil-isik",
+              "options": [
+                "Saydam (şeffaf) olması",
+                "Siyah olması",
+                "Kalın taş olması",
+                "Ahşap olması"
+              ],
+              "correct": 0,
+              "hint": "İçinden görebildiğin madde."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "title": "ÜNİTE 8 — Dünya, Ay ve Güneş",
+      "sections": [
+        {
+          "id": "s-bil-dunya-ay-gunes",
+          "title": "Gökyüzü Komşularımız",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-dunya-ay-gunes-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Gökyüzü Komşularımız",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-dunya-ay-gunes"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-dunya-ay-gunes-m2",
+              "type": "practice",
+              "title": "Gözlem Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-dunya-ay-gunes"
+              }
+            },
+            {
+              "id": "s-bil-dunya-ay-gunes-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-bil-dunya-ay-gunes"
+              }
+            },
+            {
+              "id": "s-bil-dunya-ay-gunes-m4",
+              "type": "challenge",
+              "title": "Zorlu Deney",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-dunya-ay-gunes"
+              }
+            },
+            {
+              "id": "s-bil-dunya-ay-gunes-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-dunya-ay-gunes",
+            "tier": "topic",
+            "name": "Zaman Yiyen Gölge",
+            "icon": "🌍",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-bil-dunya-ay-gunes"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-bil-dunya-ay-gunes"
+            }
+          },
+          "bank": [
+            {
+              "q": "Gece ve gündüz neden olur?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Dünya kendi ekseninde döndüğü için",
+                "Güneş söndüğü için",
+                "Ay engellediği için",
+                "Bulutlar yüzünden"
+              ],
+              "correct": 0,
+              "hint": "Güneş'e bakan yüz gündüz olur."
+            },
+            {
+              "q": "Ay'ın ışığı nereden gelir?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Güneş'in ışığını yansıtır",
+                "Kendi yanar",
+                "Yıldızlardan",
+                "Dünya'dan"
+              ],
+              "correct": 0,
+              "hint": "Ay kendi ışığını üretmez."
+            },
+            {
+              "q": "Ay, Dünya için nedir?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Doğal uydusu",
+                "Yıldızı",
+                "Güneşi",
+                "Gezegeni"
+              ],
+              "correct": 0,
+              "hint": "Etrafında döner, geceleri parlar."
+            },
+            {
+              "q": "Dünya'nın Güneş etrafında bir tam turu ne kadar sürer?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Bir yıl",
+                "Bir gün",
+                "Bir saat",
+                "Bir hafta"
+              ],
+              "correct": 0,
+              "hint": "365 gün."
+            },
+            {
+              "q": "Dünya'nın kendi ekseninde bir tam dönüşü ne kadar sürer?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Bir gün (24 saat)",
+                "Bir yıl",
+                "Bir ay",
+                "Bir dakika"
+              ],
+              "correct": 0,
+              "hint": "Bir gece ve bir gündüz."
+            },
+            {
+              "q": "Güneş aslında nedir?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Bir yıldız",
+                "Bir gezegen",
+                "Bir uydu",
+                "Bir bulut"
+              ],
+              "correct": 0,
+              "hint": "Kendi ışığını üreten dev ateş topu."
+            },
+            {
+              "q": "Ay'ın gökyüzünde hilal, dolunay gibi farklı görünmelerine ne denir?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Ay evreleri",
+                "Mevsimler",
+                "Tutulma",
+                "Yağış"
+              ],
+              "correct": 0,
+              "hint": "Her gece biraz değişir."
+            },
+            {
+              "q": "Güneş tutulması ne zaman olur?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Ay, Dünya ile Güneş arasına girince",
+                "Güneş söndüğünde",
+                "Gece yarısı",
+                "Yağmur yağınca"
+              ],
+              "correct": 0,
+              "hint": "Ay, Güneş'in önünü kapatır."
+            },
+            {
+              "q": "Güneş, Dünya ve Ay'ı büyükten küçüğe sıralarsak hangisi doğrudur?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Güneş > Dünya > Ay",
+                "Ay > Dünya > Güneş",
+                "Dünya > Güneş > Ay",
+                "Hepsi aynı büyüklükte"
+              ],
+              "correct": 0,
+              "hint": "Güneş dev bir yıldız, Ay ise en küçük."
+            },
+            {
+              "q": "Sabah Güneş hangi yönden doğar?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Doğudan",
+                "Batıdan",
+                "Kuzeyden",
+                "Yerin altından"
+              ],
+              "correct": 0,
+              "hint": "Adı da oradan gelir."
+            },
+            {
+              "q": "Mevsimlerin oluşmasının ana sebebi nedir?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Dünya'nın eğik ekseniyle Güneş etrafında dönmesi",
+                "Ay'ın rengi",
+                "Yıldızların sayısı",
+                "Rüzgârın yönü"
+              ],
+              "correct": 0,
+              "hint": "Dünya biraz yana yatık döner."
+            },
+            {
+              "q": "Geceleri gökyüzünde parlayan, Güneş dışındaki uzak ışık noktaları nedir?",
+              "skill": "bil-uzay2",
+              "options": [
+                "Yıldızlar",
+                "Lambalar",
+                "Uçaklar sadece",
+                "Bulutlar"
+              ],
+              "correct": 0,
+              "hint": "Çok uzaktaki güneşler gibidir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u9",
+      "title": "ÜNİTE 9 — Hava Durumu ve Mevsimler",
+      "sections": [
+        {
+          "id": "s-bil-hava-mevsim",
+          "title": "Hava ve Mevsimler",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-hava-mevsim-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Hava ve Mevsimler",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-hava-mevsim"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-hava-mevsim-m2",
+              "type": "practice",
+              "title": "Gözlem Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-hava-mevsim"
+              }
+            },
+            {
+              "id": "s-bil-hava-mevsim-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-bil-hava-mevsim"
+              }
+            },
+            {
+              "id": "s-bil-hava-mevsim-m4",
+              "type": "challenge",
+              "title": "Zorlu Deney",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-hava-mevsim"
+              }
+            },
+            {
+              "id": "s-bil-hava-mevsim-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-hava-mevsim",
+            "tier": "topic",
+            "name": "Kudurgan Fırtına Devi",
+            "icon": "🌦️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-bil-hava-mevsim"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-bil-hava-mevsim"
+            }
+          },
+          "bank": [
+            {
+              "q": "Yağmur nasıl oluşur?",
+              "skill": "bil-hava",
+              "options": [
+                "Bulutlardaki su damlaları ağırlaşıp düşünce",
+                "Güneş eridiği için",
+                "Yıldızlar düştüğü için",
+                "Rüzgâr durduğu için"
+              ],
+              "correct": 0,
+              "hint": "Bulut = küçük su damlacıkları."
+            },
+            {
+              "q": "Suyun buharlaşıp bulut, sonra yağmur olarak geri dönmesine ne denir?",
+              "skill": "bil-hava",
+              "options": [
+                "Su döngüsü",
+                "Fotosentez",
+                "Erime",
+                "Deprem"
+              ],
+              "correct": 0,
+              "hint": "Su hiç bitmez, hep döner."
+            },
+            {
+              "q": "Bir yılda kaç mevsim vardır?",
+              "skill": "bil-hava",
+              "options": [
+                "4",
+                "2",
+                "7",
+                "12"
+              ],
+              "correct": 0,
+              "hint": "İlkbahar, yaz, sonbahar, kış."
+            },
+            {
+              "q": "Hangi mevsimde kar yağar ve hava en soğuktur?",
+              "skill": "bil-hava",
+              "options": [
+                "Kış",
+                "Yaz",
+                "İlkbahar",
+                "Sonbahar"
+              ],
+              "correct": 0,
+              "hint": "Kardan adam mevsimi."
+            },
+            {
+              "q": "Ağaçların yapraklarının sararıp döküldüğü mevsim hangisidir?",
+              "skill": "bil-hava",
+              "options": [
+                "Sonbahar",
+                "Yaz",
+                "Kış ortası",
+                "İlkbahar"
+              ],
+              "correct": 0,
+              "hint": "Yaz ile kış arası."
+            },
+            {
+              "q": "Çiçeklerin açtığı, doğanın canlandığı mevsim hangisidir?",
+              "skill": "bil-hava",
+              "options": [
+                "İlkbahar",
+                "Kış",
+                "Sonbahar",
+                "Gece"
+              ],
+              "correct": 0,
+              "hint": "Kıştan sonra gelir."
+            },
+            {
+              "q": "Bulutlardaki su damlaları çok soğursa yağış ne olarak düşer?",
+              "skill": "bil-hava",
+              "options": [
+                "Kar",
+                "Kum",
+                "Toz",
+                "Işık"
+              ],
+              "correct": 0,
+              "hint": "Beyaz ve soğuk, yere yığılır."
+            },
+            {
+              "q": "Hava durumunu ölçen, sıcaklığı gösteren alete ne denir?",
+              "skill": "bil-hava",
+              "options": [
+                "Termometre",
+                "Teleskop",
+                "Pusula",
+                "Cetvel"
+              ],
+              "correct": 0,
+              "hint": "Ateşin de ölçer."
+            },
+            {
+              "q": "Rüzgâr nedir?",
+              "skill": "bil-hava",
+              "options": [
+                "Hareket eden hava",
+                "Akan su",
+                "Düşen taş",
+                "Parlayan ışık"
+              ],
+              "correct": 0,
+              "hint": "Görünmez ama yaprakları uçurur."
+            },
+            {
+              "q": "Yaz mevsiminde havanın sıcak olmasının sebebi nedir?",
+              "skill": "bil-hava",
+              "options": [
+                "Güneş ışınlarının daha dik ve uzun süre gelmesi",
+                "Güneş'in sönmesi",
+                "Ay'ın büyümesi",
+                "Rüzgârın durması"
+              ],
+              "correct": 0,
+              "hint": "Güneş daha çok ısıtır."
+            },
+            {
+              "q": "Gökkuşağı genellikle ne zaman görülür?",
+              "skill": "bil-hava",
+              "options": [
+                "Yağmurdan sonra güneş çıkınca",
+                "Gece yarısı",
+                "Karlı havada hep",
+                "Rüzgârsız gecede"
+              ],
+              "correct": 0,
+              "hint": "Işık + su damlaları gerekir."
+            },
+            {
+              "q": "Kışın uygun giyinmek için hangisini seçeriz?",
+              "skill": "bil-hava",
+              "options": [
+                "Kalın mont ve atkı",
+                "Mayo ve şort",
+                "Sadece terlik",
+                "Şemsiye yerine güneş gözlüğü tek başına"
+              ],
+              "correct": 0,
+              "hint": "Soğuğa karşı sıcak tutan."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u10",
+      "title": "ÜNİTE 10 — Çevre ve Geri Dönüşüm",
+      "sections": [
+        {
+          "id": "s-bil-cevre-geri-donusum",
+          "title": "Doğayı Koruyalım",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-cevre-geri-donusum-m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Doğayı Koruyalım",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-cevre-geri-donusum"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-cevre-geri-donusum-m2",
+              "type": "practice",
+              "title": "Gözlem Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-cevre-geri-donusum"
+              }
+            },
+            {
+              "id": "s-bil-cevre-geri-donusum-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-bil-cevre-geri-donusum"
+              }
+            },
+            {
+              "id": "s-bil-cevre-geri-donusum-m4",
+              "type": "challenge",
+              "title": "Zorlu Deney",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-bil-cevre-geri-donusum"
+              }
+            },
+            {
+              "id": "s-bil-cevre-geri-donusum-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-cevre-geri-donusum",
+            "tier": "topic",
+            "name": "Çöp Yığını Canavarı",
+            "icon": "♻️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-bil-cevre-geri-donusum"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-bil-cevre-geri-donusum"
+            }
+          },
+          "bank": [
+            {
+              "q": "Geri dönüşüm ne demektir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Kullanılmış maddeleri yeniden işleyip tekrar kullanmak",
+                "Çöpü yakmak",
+                "Her şeyi denize dökmek",
+                "Ağaç kesmek"
+              ],
+              "correct": 0,
+              "hint": "Atık yeniden ürün olur."
+            },
+            {
+              "q": "Aşağıdakilerden hangisi geri dönüştürülebilir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Cam şişe",
+                "Yenmiş elma çöpü",
+                "Duman",
+                "Ses"
+              ],
+              "correct": 0,
+              "hint": "Eritilip yeniden şişe olabilir."
+            },
+            {
+              "q": "Kağıt geri dönüşümü neyi korur?",
+              "skill": "bil-cevre",
+              "options": [
+                "Ağaçları (ormanları)",
+                "Denizleri kurutur",
+                "Havayı kirletir",
+                "Hiçbir şeyi"
+              ],
+              "correct": 0,
+              "hint": "Kağıt ağaçtan yapılır."
+            },
+            {
+              "q": "Suyu boşa harcamamak için ne yapmalıyız?",
+              "skill": "bil-cevre",
+              "options": [
+                "Dişimizi fırçalarken musluğu kapatmak",
+                "Musluğu hep açık bırakmak",
+                "Suyla oyun oynamak",
+                "Bahçeyi öğlen sıcağında sürekli sulamak"
+              ],
+              "correct": 0,
+              "hint": "Gerekmedikçe akıtma."
+            },
+            {
+              "q": "Çöpleri doğaya (ormana, denize) atmak ne yapar?",
+              "skill": "bil-cevre",
+              "options": [
+                "Doğayı ve canlıları kirletir, zarar verir",
+                "Toprağı güzelleştirir",
+                "Havayı temizler",
+                "Hiçbir şey olmaz"
+              ],
+              "correct": 0,
+              "hint": "Hayvanlar zarar görür."
+            },
+            {
+              "q": "Hava kirliliğini azaltmak için hangisi faydalıdır?",
+              "skill": "bil-cevre",
+              "options": [
+                "Ağaç dikmek",
+                "Daha çok duman çıkarmak",
+                "Ormanları kesmek",
+                "Çöp yakmak"
+              ],
+              "correct": 0,
+              "hint": "Ağaçlar havayı temizler."
+            },
+            {
+              "q": "Elektriği ve suyu tasarruflu kullanmak neden önemlidir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Doğal kaynakları korumak için",
+                "Daha fazla çöp için",
+                "Işıkları söndürmemek için",
+                "Hiçbir sebep yok"
+              ],
+              "correct": 0,
+              "hint": "Kaynaklar sınırsız değil."
+            },
+            {
+              "q": "Pili çöpe değil, özel kutusuna atmalıyız çünkü pil...",
+              "skill": "bil-cevre",
+              "options": [
+                "Toprağa ve suya zararlı maddeler yayar",
+                "Çok güzel kokar",
+                "Kendiliğinden yok olur",
+                "Yenilebilir"
+              ],
+              "correct": 0,
+              "hint": "İçinde zehirli maddeler var."
+            },
+            {
+              "q": "Alışverişe giderken en çevreci seçenek hangisidir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Bez (kullanılabilir) çanta kullanmak",
+                "Her seferinde yeni poşet almak",
+                "Poşetleri yere atmak",
+                "Çift kat naylon kullanmak"
+              ],
+              "correct": 0,
+              "hint": "Tekrar tekrar kullanılabilen."
+            },
+            {
+              "q": "Organik atıklar (meyve-sebze kabukları) neye dönüştürülebilir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Kompost (doğal gübre)",
+                "Cam",
+                "Metal",
+                "Plastik"
+              ],
+              "correct": 0,
+              "hint": "Toprağı besleyen doğal gübre."
+            },
+            {
+              "q": "Çevreyi korumak neden hepimizin görevidir?",
+              "skill": "bil-cevre",
+              "options": [
+                "Dünya hepimizin ortak evi olduğu için",
+                "Sadece bilim insanlarının işi olduğu için",
+                "Gerekli olmadığı için",
+                "Sadece yazın önemli olduğu için"
+              ],
+              "correct": 0,
+              "hint": "Tek gezegenimiz var."
+            },
+            {
+              "q": "Odadan çıkarken enerji tasarrufu için ne yapmalıyız?",
+              "skill": "bil-cevre",
+              "options": [
+                "Işıkları kapatmak",
+                "Tüm ışıkları açık bırakmak",
+                "Televizyonu açık unutmak",
+                "Musluğu açmak"
+              ],
+              "correct": 0,
+              "hint": "Boşuna yanmasın."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u-final",
+      "title": "FİNAL — Keşif Laboratuvarı Ustalığı",
+      "sections": [
+        {
+          "id": "s-bil-final",
+          "title": "Büyük Sınav",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-bil-final-t",
+              "type": "teach",
+              "title": "Final Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "bil-final"
+                }
+              ]
+            },
+            {
+              "id": "s-bil-final-1",
+              "type": "practice",
+              "title": "Genel Tekrar",
+              "targetCount": 4,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-bil-final-2",
+              "type": "challenge",
+              "title": "Ustalık Sınavı",
+              "targetCount": 5,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-bil-final-3",
+              "type": "review",
+              "title": "Son Hazırlık",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-bil-final",
+            "tier": "final",
+            "name": "Bilinmezlik Devi",
+            "icon": "🌌",
+            "hp": 60,
+            "unlock": {
+              "masteryRequired": 0.6
+            },
+            "generator": {
+              "poolAll": true
+            },
+            "rewards": {
+              "xp": 400,
+              "chest": "legendary",
+              "badge": "b-bil-final"
+            }
+          }
         }
       ]
     }

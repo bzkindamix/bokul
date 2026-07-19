@@ -23,7 +23,22 @@
     "notalar",
     "ritim",
     "enstruman",
-    "muzik-genel"
+    "muzik-genel",
+    "muz-tempo",
+    "muz-porte",
+    "muz-telli",
+    "muz-uflemeli",
+    "muz-perde",
+    "muz-gurluk",
+    "muz-sarki",
+    "muz-koro",
+    "muz-turler",
+    "muz-yaraticilik",
+    "muz-ritim",
+    "muz-notalar",
+    "muz-vurmali",
+    "muz-melodi",
+    "muz-orkestra"
   ],
   "hints": {},
   "teachScripts": {
@@ -47,6 +62,116 @@
       },
       {
         "say": "Bir orkestrada bu aileler birlikte çalar. Şef hepsini yönetir — tıpkı bir komutan gibi! Şimdi sıra sende."
+      }
+    ],
+    "muz-ritim": [
+      {
+        "say": "Ses Brifingi basliyor Komutan! RITIM, seslerin duzenli tekraridir - tipki yururken adimlarin gibi. Kalbin de bir ritimle atar: gum-gum, gum-gum!"
+      },
+      {
+        "say": "TEMPO ise muzigin hizidir. Yavas tempo bir ninni gibidir, hizli tempo ise kosan bir at gibi! Ayni sarkiyi yavas ya da hizli calabilirsin."
+      },
+      {
+        "say": "Ritmi ellerinle alkislayarak bile tutabilirsin. Enstruman gerekmez - vucudun zaten bir ritim makinesi!"
+      }
+    ],
+    "muz-notalar": [
+      {
+        "say": "Yeni cephe: NOTALAR! Muzigin alfabesi yedi notadir: Do, Re, Mi, Fa, Sol, La, Si. Sonra tekrar Do'ya doner - buna oktav denir."
+      },
+      {
+        "say": "Notalar bir merdiven gibidir. Do en altta durur, yukari ciktikca ses incelir. Asagi indikce kalinlasir!"
+      },
+      {
+        "say": "Notalar 'porte' denen bes cizgi uzerine yazilir. Bir notanin yeri, sesin ne kadar kalin ya da ince oldugunu gosterir."
+      }
+    ],
+    "muz-vurmali": [
+      {
+        "say": "Bam bum! VURMALI calgilar cephesindeyiz. Bu calgilar uzerine vurarak, cubukla ya da elle calinir. Davul, tef, marimba, ziller hepsi bu ailedendir!"
+      },
+      {
+        "say": "Vurmali calgilar muzigin ritmini tutar. Grup dagilmasin diye herkese vurusu onlar hatirlatir - takimin kalbi gibi!"
+      },
+      {
+        "say": "Bazi vurmalilar (marimba, ksilofon) nota da calabilir. Ama cogu sadece ritim icindir. Elin bile bir vurmali calgi olabilir: alkis!"
+      }
+    ],
+    "muz-telli-uflemeli": [
+      {
+        "say": "Iki aile birden Komutan! TELLI calgilar (gitar, keman) tellerini titrestirerek ses verir. Parmakla ya da yayla calinir."
+      },
+      {
+        "say": "UFLEMELI calgilar (flut, trompet, klarnet) icine hava uflenince ses cikarir. Nefesin, calginin icinde titresip notaya donusur!"
+      },
+      {
+        "say": "Keman yayla, gitar parmakla, flut nefesle... Her calginin kendine has bir sesi ve calma yontemi vardir. Simdi hangisi hangi aile, ayirt et!"
+      }
+    ],
+    "muz-perde": [
+      {
+        "say": "Perde cephesi! Sesler TIZ (ince/yuksek) ya da PES (kalin/alcak) olabilir. Kucuk bir kus 'ciik ciik' der - bu tiz. Buyuk bir ayi 'hoom' der - bu pes!"
+      },
+      {
+        "say": "DIKKAT: 'Yuksek ses' burada gurultu demek degil! Perde, sesin ince mi kalin mi oldugudur. Gurluk ise sesin ne kadar kuvvetli oldugudur. Ikisi farkli seydir."
+      },
+      {
+        "say": "Kucuk calgilar genelde tiz, buyuk calgilar genelde pes ses verir. Minik flut ince, koca kontrbas kalin konusur. Simdi kulaklarini ac!"
+      }
+    ],
+    "muz-melodi": [
+      {
+        "say": "MELODI cephesi! Melodi, notalarin pes pese dizilip akilda kalan bir ezgi olusturmasidir. Mirildandigin o kisim iste melodidir!"
+      },
+      {
+        "say": "Bir sarkida genelde melodi (ezgi) ve sozler bir arada olur. Nakarat, sarkinin tekrar tekrar gelen ve en cok akilda kalan bolumudur."
+      },
+      {
+        "say": "Melodi yukselip alcalir, hizlanip yavaslar. Iyi bir melodi bir yolculuk gibidir - seni bir duygudan baska bir duyguya goturur!"
+      }
+    ],
+    "muz-turler": [
+      {
+        "say": "Muzik TURLERI cephesi! Dunyada bircok muzik turu vardir: pop, rock, klasik, caz, halk muzigi ve daha niceleri. Her birinin kendine has bir tadi var!"
+      },
+      {
+        "say": "Klasik muzik orkestrayla calinir ve cok eskidir. Rock'ta elektro gitar ve davul ondedir. Halk muzigi ise bir ulkenin geleneklerini anlatir."
+      },
+      {
+        "say": "Hicbir tur digerinden 'daha dogru' degildir - sadece farklidir! Sen hangisini sevdigini kesfetmek icin hepsini dinleyebilirsin."
+      }
+    ],
+    "muz-orkestra": [
+      {
+        "say": "Buyuk bulusma Komutan: ORKESTRA ve KORO! Orkestra, bircok calginin bir arada caldigi buyuk bir topluluktur. Yaylilar, uflemeliler, vurmalilar hep birlikte!"
+      },
+      {
+        "say": "Orkestrayi bir SEF yonetir. Elindeki degnekle herkesin ayni anda, ayni tempoda calmasini saglar - tipki bir komutan gibi!"
+      },
+      {
+        "say": "KORO ise bircok insanin birlikte sarki soyledigi topluluktur. Farkli sesler (ince ve kalin) birlesince muhtesem bir uyum cikar. Takim calismasi muzigin gucudur!"
+      }
+    ],
+    "muz-yaraticilik": [
+      {
+        "say": "Son cephe Komutan: MUZIK & YARATICILIK! Muzik sadece dinlemek degil, uretmektir de. Kendi ritmini, kendi melodini uydurabilirsin!"
+      },
+      {
+        "say": "Bir beste, birinin kafasinda dogup notaya dokulen yeni bir muziktir. Sen de bir misra mirildanip kendi sarkini baslatabilirsin."
+      },
+      {
+        "say": "Yaraticilikta yanlis yoktur! Kasikla tencereye vurup ritim yapmak bile muziktir. Deneyen, kesfeden ve eglenen kazanir. Haydi, kendi sesini yarat!"
+      }
+    ],
+    "muz-final": [
+      {
+        "say": "Bu AN geldi Komutan! Ses Büyücüsü cephesinin EN BÜYÜK sınavı: tüm öğrendiklerin bir arada, en zoru."
+      },
+      {
+        "say": "🎼 Sessizlik Ejderi karşında! Onu yenersen bu dersin USTASI olursun. Efsanevi ödül seni bekliyor."
+      },
+      {
+        "say": "Sakin ol, öğrendiklerine güven. Her soru bir darbe. Hazırsan… HÜCUM!"
       }
     ]
   },
@@ -496,6 +621,2122 @@
               "hint": "Ses telleri titreşerek ses üretir."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — Ritim & Tempo",
+      "sections": [
+        {
+          "id": "s-muz-ritim",
+          "title": "Ritmin Gücü",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-ritim-m1",
+              "type": "teach",
+              "title": "Ses Brifingi: Ritim",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-ritim"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-ritim-m2",
+              "type": "practice",
+              "title": "Tempo Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-ritim"
+              }
+            },
+            {
+              "id": "s-muz-ritim-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-muz-ritim"
+              }
+            },
+            {
+              "id": "s-muz-ritim-m4",
+              "type": "challenge",
+              "title": "Zorlu Solo",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-ritim"
+              }
+            },
+            {
+              "id": "s-muz-ritim-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-ritim",
+            "tier": "topic",
+            "name": "Falso Şeytanı",
+            "icon": "🥁",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-muz-ritim"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-muz-ritim"
+            }
+          },
+          "bank": [
+            {
+              "q": "Ritim ne demektir?",
+              "skill": "muz-ritim",
+              "options": [
+                "Seslerin düzenli tekrarı",
+                "Bir rengin adı",
+                "Bir yemek çeşidi",
+                "Bir sayı"
+              ],
+              "correct": 0,
+              "hint": "Ayağınla tempo tutarken yaptığın şey."
+            },
+            {
+              "q": "Bir şarkının hızına ne denir?",
+              "skill": "muz-tempo",
+              "options": [
+                "Tempo",
+                "Renk",
+                "Boyut",
+                "Ağırlık"
+              ],
+              "correct": 0,
+              "hint": "Yavaş mı hızlı mı? İşte o."
+            },
+            {
+              "q": "Yavaş bir tempo en çok neye benzer?",
+              "skill": "muz-tempo",
+              "options": [
+                "Ninni",
+                "Koşan at",
+                "Patlama",
+                "Alarm"
+              ],
+              "correct": 0,
+              "hint": "Uyumadan önce dinlenen sakin müzik."
+            },
+            {
+              "q": "Hızlı bir tempo hangi duyguyu daha çok verir?",
+              "skill": "muz-tempo",
+              "options": [
+                "Heyecan ve enerji",
+                "Uyku",
+                "Sıkıntı",
+                "Sessizlik"
+              ],
+              "correct": 0,
+              "hint": "Dans etmek isteyeceğin his."
+            },
+            {
+              "q": "Ritmi enstrümansız nasıl tutabilirsin?",
+              "skill": "muz-ritim",
+              "options": [
+                "Alkışlayarak",
+                "Gözünü kapatarak",
+                "Hiç kımıldamadan",
+                "Susarak"
+              ],
+              "correct": 0,
+              "hint": "İki elini birbirine vur!"
+            },
+            {
+              "q": "Müzikte düzenli tekrar eden vuruşa ne denir?",
+              "skill": "muz-ritim",
+              "options": [
+                "Vuruş (bit)",
+                "Renk",
+                "Koku",
+                "Işık"
+              ],
+              "correct": 0,
+              "hint": "Kalbinin 'güm' dediği an gibi."
+            },
+            {
+              "q": "Aynı şarkıyı hem yavaş hem hızlı çalabilir miyiz?",
+              "skill": "muz-tempo",
+              "options": [
+                "Evet, tempoyu değiştirerek",
+                "Hayır, asla",
+                "Sadece kışın",
+                "Sadece koroda"
+              ],
+              "correct": 0,
+              "hint": "Tempo şarkının hızıdır, değiştirilebilir."
+            },
+            {
+              "q": "Bando yürürken hangisi onlara yardım eder?",
+              "skill": "muz-ritim",
+              "options": [
+                "Düzenli ritim ve tempo",
+                "Sessizlik",
+                "Karışık adımlar",
+                "Parlak ışıklar"
+              ],
+              "correct": 0,
+              "hint": "Herkesin ayağı aynı anda kalkar."
+            },
+            {
+              "q": "Kalbinin atışı neye örnektir?",
+              "skill": "muz-ritim",
+              "options": [
+                "Düzenli bir ritme",
+                "Bir melodiye",
+                "Bir renge",
+                "Bir akora"
+              ],
+              "correct": 0,
+              "hint": "Güm-güm; hep aynı aralıkla."
+            },
+            {
+              "q": "Tempoyu yavaşlatırsak müzik nasıl olur?",
+              "skill": "muz-tempo",
+              "options": [
+                "Daha sakin ve ağır",
+                "Daha hızlı",
+                "Daha gürültülü",
+                "Kaybolur"
+              ],
+              "correct": 0,
+              "hint": "Ağır çekim gibi düşün."
+            },
+            {
+              "q": "Ritim duygusunu geliştirmek için hangisi iyi bir alıştırmadır?",
+              "skill": "muz-ritim",
+              "options": [
+                "Bir şarkıya ayakla tempo tutmak",
+                "Gözleri kapatıp beklemek",
+                "Hiç hareket etmemek",
+                "Yüksek sesle bağırmak"
+              ],
+              "correct": 0,
+              "hint": "Vücudunla vuruşu hisset."
+            },
+            {
+              "q": "Bir davulcunun en önemli görevi nedir?",
+              "skill": "muz-ritim",
+              "options": [
+                "Ritmi ve tempoyu tutmak",
+                "Şarkı sözü yazmak",
+                "Işıkları açmak",
+                "Bilet satmak"
+              ],
+              "correct": 0,
+              "hint": "Grubun kalp atışını o sağlar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — Notalar",
+      "sections": [
+        {
+          "id": "s-muz-notalar",
+          "title": "Nota Merdiveni",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-notalar-m1",
+              "type": "teach",
+              "title": "Ses Brifingi: Notalar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-notalar"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-notalar-m2",
+              "type": "practice",
+              "title": "Nota Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-notalar"
+              }
+            },
+            {
+              "id": "s-muz-notalar-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-muz-notalar"
+              }
+            },
+            {
+              "id": "s-muz-notalar-m4",
+              "type": "challenge",
+              "title": "Zorlu Solo",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-notalar"
+              }
+            },
+            {
+              "id": "s-muz-notalar-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-notalar",
+            "tier": "topic",
+            "name": "Kayıp Nota Hayaleti",
+            "icon": "🎼",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-muz-notalar"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-muz-notalar"
+            }
+          },
+          "bank": [
+            {
+              "q": "Müzikte kaç temel nota vardır?",
+              "skill": "muz-notalar",
+              "options": [
+                "7",
+                "5",
+                "9",
+                "3"
+              ],
+              "correct": 0,
+              "hint": "Do-Re-Mi-Fa-Sol-La-Si, say bakalım!"
+            },
+            {
+              "q": "Notaların doğru sırası hangisidir?",
+              "skill": "muz-notalar",
+              "options": [
+                "Do Re Mi Fa Sol La Si",
+                "Do Mi Re Sol Fa La Si",
+                "Si La Sol Do Re Mi Fa",
+                "Re Mi Do Fa Sol La Si"
+              ],
+              "correct": 0,
+              "hint": "Merdivenin en altı Do."
+            },
+            {
+              "q": "İlk nota hangisidir?",
+              "skill": "muz-notalar",
+              "options": [
+                "Do",
+                "Sol",
+                "Si",
+                "Fa"
+              ],
+              "correct": 0,
+              "hint": "Merdivenin ilk basamağı."
+            },
+            {
+              "q": "'Si' notasından sonra hangi nota gelir?",
+              "skill": "muz-notalar",
+              "options": [
+                "Yine Do (bir oktav tiz)",
+                "La",
+                "Fa",
+                "Mi"
+              ],
+              "correct": 0,
+              "hint": "Yedi notadan sonra başa dönülür."
+            },
+            {
+              "q": "Notaların yazıldığı beş çizgiye ne denir?",
+              "skill": "muz-porte",
+              "options": [
+                "Porte",
+                "Cetvel",
+                "Tablo",
+                "Kutu"
+              ],
+              "correct": 0,
+              "hint": "Beş çizgi ve dört aralık."
+            },
+            {
+              "q": "Bir 'Do'dan bir üst 'Do'ya çıkışa ne denir?",
+              "skill": "muz-notalar",
+              "options": [
+                "Oktav",
+                "Akor",
+                "Es",
+                "Tempo"
+              ],
+              "correct": 0,
+              "hint": "Sekiz nota sonra aynı isim döner."
+            },
+            {
+              "q": "Nota merdiveninde yukarı çıktıkça ses nasıl olur?",
+              "skill": "muz-notalar",
+              "options": [
+                "İncelir (tizleşir)",
+                "Kalınlaşır",
+                "Susar",
+                "Renklenir"
+              ],
+              "correct": 0,
+              "hint": "Yukarı = ince, aşağı = kalın."
+            },
+            {
+              "q": "Do-Re-Mi'den sonra hangi nota gelir?",
+              "skill": "muz-notalar",
+              "options": [
+                "Fa",
+                "La",
+                "Si",
+                "Sol"
+              ],
+              "correct": 0,
+              "hint": "Dördüncü basamak."
+            },
+            {
+              "q": "Aynı anda çalınan birkaç uyumlu notaya ne denir?",
+              "skill": "muz-notalar",
+              "options": [
+                "Akor",
+                "Es",
+                "Porte",
+                "Tempo"
+              ],
+              "correct": 0,
+              "hint": "Gitarda tek seferde birkaç tel."
+            },
+            {
+              "q": "'Sol' notasından bir basamak aşağıdaki nota hangisidir?",
+              "skill": "muz-notalar",
+              "options": [
+                "Fa",
+                "La",
+                "Do",
+                "Si"
+              ],
+              "correct": 0,
+              "hint": "Sıralamada Sol'den hemen önce gelen."
+            },
+            {
+              "q": "Notalar neden porteye yazılır?",
+              "skill": "muz-porte",
+              "options": [
+                "Hangi sesin çalınacağını göstermek için",
+                "Süslemek için",
+                "Renklendirmek için",
+                "Saymak için"
+              ],
+              "correct": 0,
+              "hint": "Notanın yeri sesini belli eder."
+            },
+            {
+              "q": "Yedi notanın tekrar başa dönmesine verilen isim nedir?",
+              "skill": "muz-notalar",
+              "options": [
+                "Oktav",
+                "Ritim",
+                "Tempo",
+                "Koro"
+              ],
+              "correct": 0,
+              "hint": "Do'dan Do'ya bir tur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — Vurmalı Çalgılar",
+      "sections": [
+        {
+          "id": "s-muz-vurmali",
+          "title": "Vuruşun Ustaları",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-vurmali-m1",
+              "type": "teach",
+              "title": "Ses Brifingi: Vurmalılar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-vurmali"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-vurmali-m2",
+              "type": "practice",
+              "title": "Vuruş Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-vurmali"
+              }
+            },
+            {
+              "id": "s-muz-vurmali-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-muz-vurmali"
+              }
+            },
+            {
+              "id": "s-muz-vurmali-m4",
+              "type": "challenge",
+              "title": "Zorlu Solo",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-vurmali"
+              }
+            },
+            {
+              "id": "s-muz-vurmali-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-vurmali",
+            "tier": "topic",
+            "name": "Gümbürtü Golemi",
+            "icon": "🥁",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-muz-vurmali"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-muz-vurmali"
+            }
+          },
+          "bank": [
+            {
+              "q": "Davul hangi çalgı ailesindendir?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Vurmalı",
+                "Telli",
+                "Üflemeli",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Üzerine vurarak ses çıkar."
+            },
+            {
+              "q": "Vurmalı çalgılar nasıl çalınır?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Vurarak veya sallayarak",
+                "Sadece üfleyerek",
+                "Sadece yayla",
+                "Elektrikle"
+              ],
+              "correct": 0,
+              "hint": "Adı ipucu veriyor: VUR-malı."
+            },
+            {
+              "q": "Hangisi vurmalı bir çalgıdır?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Tef",
+                "Keman",
+                "Flüt",
+                "Gitar"
+              ],
+              "correct": 0,
+              "hint": "Elle vurulan, kenarında ziller olan yuvarlak çalgı."
+            },
+            {
+              "q": "Marimba ve ksilofonun vurmalı çalgılar içinde özel yönü nedir?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Nota da çalabilirler",
+                "Üflenerek çalınırlar",
+                "Telleri vardır",
+                "Elektriklidir"
+              ],
+              "correct": 0,
+              "hint": "Farklı çubuklar farklı notalar verir."
+            },
+            {
+              "q": "Vurmalı çalgıların müzikteki ana görevi nedir?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Ritmi tutmak",
+                "Şarkı sözü söylemek",
+                "Işık yakmak",
+                "Sahne kurmak"
+              ],
+              "correct": 0,
+              "hint": "Grubun kalp atışını sağlarlar."
+            },
+            {
+              "q": "Ziller (zil çifti) nasıl çalınır?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Birbirine vurularak",
+                "Üflenerek",
+                "Yayla",
+                "Tuşla"
+              ],
+              "correct": 0,
+              "hint": "İki metal tabağı çarpıştırırsın."
+            },
+            {
+              "q": "Hangisi vurmalı çalgı DEĞİLDİR?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Trompet",
+                "Davul",
+                "Tef",
+                "Marimba"
+              ],
+              "correct": 0,
+              "hint": "Üfleyerek çalınan parlak çalgı."
+            },
+            {
+              "q": "Bateri (davul seti) hangi ailedendir?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Vurmalı",
+                "Telli",
+                "Üflemeli",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Çubuklarla vurularak çalınır."
+            },
+            {
+              "q": "Vurmalı çalgı çalmak için en çok neye ihtiyaç vardır?",
+              "skill": "muz-vurmali",
+              "options": [
+                "İyi bir ritim duygusu",
+                "Uzun nefes",
+                "Elektrik",
+                "Yay"
+              ],
+              "correct": 0,
+              "hint": "Zamanında vurmak önemli."
+            },
+            {
+              "q": "Ellerinle alkış tutmak neye benzer?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Doğal bir vurmalı çalgıya",
+                "Bir telli çalgıya",
+                "Bir üflemeliye",
+                "Bir tuşluya"
+              ],
+              "correct": 0,
+              "hint": "Vücudunla çıkardığın vuruş sesi."
+            },
+            {
+              "q": "Davulun sesini nasıl değiştirebiliriz?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Farklı yerlerine ve farklı sertlikte vurarak",
+                "Üfleyerek",
+                "Renk vererek",
+                "Tel takarak"
+              ],
+              "correct": 0,
+              "hint": "Sert vurmak yüksek, hafif vurmak alçak ses verir."
+            },
+            {
+              "q": "Trafik gürültüsü ile müzikteki vurmalı ritim arasındaki fark nedir?",
+              "skill": "muz-vurmali",
+              "options": [
+                "Ritim düzenli ve planlıdır",
+                "İkisi de aynıdır",
+                "Ritim hep sessizdir",
+                "Gürültü daha müzikaldir"
+              ],
+              "correct": 0,
+              "hint": "Müzikte vuruşlar bir düzene göre gelir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "ÜNİTE 5 — Telli & Üflemeli Çalgılar",
+      "sections": [
+        {
+          "id": "s-muz-telli-uflemeli",
+          "title": "Tel ve Nefes",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-telli-uflemeli-m1",
+              "type": "teach",
+              "title": "Ses Brifingi: Telli & Üflemeli",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-telli-uflemeli"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-telli-uflemeli-m2",
+              "type": "practice",
+              "title": "Tel Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-telli-uflemeli"
+              }
+            },
+            {
+              "id": "s-muz-telli-uflemeli-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-muz-telli-uflemeli"
+              }
+            },
+            {
+              "id": "s-muz-telli-uflemeli-m4",
+              "type": "challenge",
+              "title": "Zorlu Solo",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-telli-uflemeli"
+              }
+            },
+            {
+              "id": "s-muz-telli-uflemeli-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-telli-uflemeli",
+            "tier": "topic",
+            "name": "Kopuk Tel Cini",
+            "icon": "🎻",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-muz-telli-uflemeli"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-muz-telli-uflemeli"
+            }
+          },
+          "bank": [
+            {
+              "q": "Gitar hangi çalgı ailesindendir?",
+              "skill": "muz-telli",
+              "options": [
+                "Telli",
+                "Üflemeli",
+                "Vurmalı",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Tellerini parmakla titreştirirsin."
+            },
+            {
+              "q": "Flüt hangi aileye aittir?",
+              "skill": "muz-uflemeli",
+              "options": [
+                "Üflemeli",
+                "Telli",
+                "Vurmalı",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "İçine hava üflenir."
+            },
+            {
+              "q": "Keman genellikle neyle çalınır?",
+              "skill": "muz-telli",
+              "options": [
+                "Yay",
+                "Nefes",
+                "Çubuk",
+                "Elektrik"
+              ],
+              "correct": 0,
+              "hint": "Yayı tellerin üzerinde gezdirirsin."
+            },
+            {
+              "q": "Telli çalgılar sesi nasıl üretir?",
+              "skill": "muz-telli",
+              "options": [
+                "Teller titreşerek",
+                "Hava üflenerek",
+                "Deriye vurularak",
+                "Işıkla"
+              ],
+              "correct": 0,
+              "hint": "Teli çekince titrer ve ses çıkar."
+            },
+            {
+              "q": "Üflemeli çalgılar sesi nasıl üretir?",
+              "skill": "muz-uflemeli",
+              "options": [
+                "İçlerine hava üflenerek",
+                "Tel titreşerek",
+                "Vurularak",
+                "Tuşla"
+              ],
+              "correct": 0,
+              "hint": "Nefesin çalgının içinde titreşir."
+            },
+            {
+              "q": "Trompet hangi aileye aittir?",
+              "skill": "muz-uflemeli",
+              "options": [
+                "Üflemeli",
+                "Telli",
+                "Vurmalı",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Dudakla üfleyerek çalınan parlak çalgı."
+            },
+            {
+              "q": "Hangisi telli bir çalgıdır?",
+              "skill": "muz-telli",
+              "options": [
+                "Keman",
+                "Davul",
+                "Flüt",
+                "Trompet"
+              ],
+              "correct": 0,
+              "hint": "Yayla çalınan, dört telli çalgı."
+            },
+            {
+              "q": "Hangisi üflemeli bir çalgıdır?",
+              "skill": "muz-uflemeli",
+              "options": [
+                "Klarnet",
+                "Gitar",
+                "Davul",
+                "Keman"
+              ],
+              "correct": 0,
+              "hint": "Ağızlıktan üflenen siyah bir çalgı."
+            },
+            {
+              "q": "Gitarda daha ince (tiz) ses için ne yaparız?",
+              "skill": "muz-telli",
+              "options": [
+                "İnce tellere ya da daha kısa boya basarız",
+                "Daha çok üfleriz",
+                "Daha sert vururuz",
+                "Işık açarız"
+              ],
+              "correct": 0,
+              "hint": "İnce ve kısa teller tiz ses verir."
+            },
+            {
+              "q": "Üflemeli çalgı çalmak için en çok neye ihtiyaç vardır?",
+              "skill": "muz-uflemeli",
+              "options": [
+                "İyi bir nefes kontrolü",
+                "Uzun tırnak",
+                "Ağır çubuk",
+                "Elektrik"
+              ],
+              "correct": 0,
+              "hint": "Havayı düzenli üflemelisin."
+            },
+            {
+              "q": "Viyola, çello ve kontrbas hangi ailedendir?",
+              "skill": "muz-telli",
+              "options": [
+                "Telli (yaylı)",
+                "Üflemeli",
+                "Vurmalı",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Hepsi keman gibi yayla çalınır."
+            },
+            {
+              "q": "Saksafon hangi çalgı ailesindendir?",
+              "skill": "muz-uflemeli",
+              "options": [
+                "Üflemeli",
+                "Telli",
+                "Vurmalı",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Cazda sık duyulan, üflenerek çalınan çalgı."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "ÜNİTE 6 — Yüksek & Alçak",
+      "sections": [
+        {
+          "id": "s-muz-perde",
+          "title": "Tiz ve Pes",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-perde-m1",
+              "type": "teach",
+              "title": "Ses Brifingi: Perde",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-perde"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-perde-m2",
+              "type": "practice",
+              "title": "Perde Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-perde"
+              }
+            },
+            {
+              "id": "s-muz-perde-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-muz-perde"
+              }
+            },
+            {
+              "id": "s-muz-perde-m4",
+              "type": "challenge",
+              "title": "Zorlu Solo",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-perde"
+              }
+            },
+            {
+              "id": "s-muz-perde-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-perde",
+            "tier": "topic",
+            "name": "Tiz Çığlık Cini",
+            "icon": "🎚️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-muz-perde"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-muz-perde"
+            }
+          },
+          "bank": [
+            {
+              "q": "İnce ve yüksek bir sese ne denir?",
+              "skill": "muz-perde",
+              "options": [
+                "Tiz",
+                "Pes",
+                "Sessiz",
+                "Yavaş"
+              ],
+              "correct": 0,
+              "hint": "Küçük kuşun 'ciik' sesi gibi."
+            },
+            {
+              "q": "Kalın ve alçak bir sese ne denir?",
+              "skill": "muz-perde",
+              "options": [
+                "Pes",
+                "Tiz",
+                "Hızlı",
+                "Parlak"
+              ],
+              "correct": 0,
+              "hint": "Büyük ayının 'hoom' sesi gibi."
+            },
+            {
+              "q": "Küçük bir kuşun sesi nasıldır?",
+              "skill": "muz-perde",
+              "options": [
+                "Tiz (ince)",
+                "Pes (kalın)",
+                "Çok yavaş",
+                "Sessiz"
+              ],
+              "correct": 0,
+              "hint": "Minik canlılar ince ses çıkarır."
+            },
+            {
+              "q": "Büyük bir davul ya da kontrbas nasıl bir ses verir?",
+              "skill": "muz-perde",
+              "options": [
+                "Pes (kalın)",
+                "Tiz (ince)",
+                "Hiç ses vermez",
+                "Sadece parlak"
+              ],
+              "correct": 0,
+              "hint": "Büyük cisimler kalın ses verir."
+            },
+            {
+              "q": "'Perde' müzikte neyi anlatır?",
+              "skill": "muz-perde",
+              "options": [
+                "Sesin ince mi kalın mı olduğunu",
+                "Sesin ne kadar kuvvetli olduğunu",
+                "Şarkının hızını",
+                "Çalgının rengini"
+              ],
+              "correct": 0,
+              "hint": "Tiz mi pes mi sorusu."
+            },
+            {
+              "q": "Sesin kuvvetine (yumuşak/kuvvetli) ne denir?",
+              "skill": "muz-gurluk",
+              "options": [
+                "Gürlük (nüans)",
+                "Perde",
+                "Tempo",
+                "Nota"
+              ],
+              "correct": 0,
+              "hint": "Fısıltı mı bağırış mı? İşte o."
+            },
+            {
+              "q": "Bir çocuk fısıldarken sesi hem yumuşaktır hem de...",
+              "skill": "muz-perde",
+              "options": [
+                "Tiz olabilir (perde ayrı, gürlük ayrı)",
+                "Kesinlikle pestir",
+                "Hiç ses değildir",
+                "Hep aynıdır"
+              ],
+              "correct": 0,
+              "hint": "Yumuşak söylemek perdeyi değil gürlüğü belirler."
+            },
+            {
+              "q": "Bir çalgı büyüdükçe sesi genelde nasıl olur?",
+              "skill": "muz-perde",
+              "options": [
+                "Daha pes (kalın)",
+                "Daha tiz (ince)",
+                "Hiç değişmez",
+                "Kaybolur"
+              ],
+              "correct": 0,
+              "hint": "Kontrbas kemandan büyük ve daha kalın seslidir."
+            },
+            {
+              "q": "Piyanoda sağa doğru gidildikçe sesler nasıl olur?",
+              "skill": "muz-perde",
+              "options": [
+                "Tizleşir (incelir)",
+                "Pesleşir (kalınlaşır)",
+                "Susar",
+                "Yavaşlar"
+              ],
+              "correct": 0,
+              "hint": "Sağ taraf ince, sol taraf kalın seslidir."
+            },
+            {
+              "q": "Bir şarkıyı hem kuvvetli hem de pes perdeden söyleyebilir miyiz?",
+              "skill": "muz-perde",
+              "options": [
+                "Evet; gürlük ve perde farklı şeylerdir",
+                "Hayır, imkânsız",
+                "Sadece koroda",
+                "Sadece sabah"
+              ],
+              "correct": 0,
+              "hint": "Kalın sesle kuvvetlice söylemek mümkün."
+            },
+            {
+              "q": "Sirenin 'iiii' diye çıkan sesi nasıldır?",
+              "skill": "muz-perde",
+              "options": [
+                "Tiz",
+                "Pes",
+                "Sessiz",
+                "Kalın"
+              ],
+              "correct": 0,
+              "hint": "İnce ve keskin bir ses."
+            },
+            {
+              "q": "Perde ile gürlüğü karıştırmamak neden önemlidir?",
+              "skill": "muz-gurluk",
+              "options": [
+                "Biri incelik-kalınlık, diğeri kuvvet olduğu için",
+                "İkisi tamamen aynı olduğu için",
+                "Önemli değildir",
+                "Sadece sınavda gerektiği için"
+              ],
+              "correct": 0,
+              "hint": "Farklı iki özellik: ince/kalın vs. yumuşak/kuvvetli."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "title": "ÜNİTE 7 — Melodi & Şarkı",
+      "sections": [
+        {
+          "id": "s-muz-melodi",
+          "title": "Akılda Kalan Ezgi",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-melodi-m1",
+              "type": "teach",
+              "title": "Ses Brifingi: Melodi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-melodi"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-melodi-m2",
+              "type": "practice",
+              "title": "Ezgi Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-melodi"
+              }
+            },
+            {
+              "id": "s-muz-melodi-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-muz-melodi"
+              }
+            },
+            {
+              "id": "s-muz-melodi-m4",
+              "type": "challenge",
+              "title": "Zorlu Solo",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-melodi"
+              }
+            },
+            {
+              "id": "s-muz-melodi-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-melodi",
+            "tier": "topic",
+            "name": "Unutkan Ezgi Hortlağı",
+            "icon": "🎶",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-muz-melodi"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-muz-melodi"
+            }
+          },
+          "bank": [
+            {
+              "q": "Melodi nedir?",
+              "skill": "muz-melodi",
+              "options": [
+                "Notaların peş peşe oluşturduğu ezgi",
+                "Sadece davul sesi",
+                "Sahnenin ışığı",
+                "Bir çalgı türü"
+              ],
+              "correct": 0,
+              "hint": "Mırıldandığın akılda kalan kısım."
+            },
+            {
+              "q": "Bir şarkının tekrar tekrar gelen, en akılda kalan bölümüne ne denir?",
+              "skill": "muz-sarki",
+              "options": [
+                "Nakarat",
+                "Porte",
+                "Oktav",
+                "Tempo"
+              ],
+              "correct": 0,
+              "hint": "Herkesin birlikte söylediği kısım."
+            },
+            {
+              "q": "Bir şarkıda melodinin yanında genelde ne bulunur?",
+              "skill": "muz-sarki",
+              "options": [
+                "Sözler",
+                "Trafik levhası",
+                "Reçete",
+                "Harita"
+              ],
+              "correct": 0,
+              "hint": "Şarkıcının söylediği kelimeler."
+            },
+            {
+              "q": "Melodi hep aynı notada mı kalır?",
+              "skill": "muz-melodi",
+              "options": [
+                "Hayır; yükselir ve alçalır",
+                "Evet, hiç değişmez",
+                "Sadece susar",
+                "Sadece hızlanır"
+              ],
+              "correct": 0,
+              "hint": "Bir yolculuk gibi inişli çıkışlı."
+            },
+            {
+              "q": "Bir melodiyi mırıldanmak ne demektir?",
+              "skill": "muz-melodi",
+              "options": [
+                "Ezgiyi sözsüz seslendirmek",
+                "Bağırmak",
+                "Alkışlamak",
+                "Susmak"
+              ],
+              "correct": 0,
+              "hint": "Ağzın kapalı 'mmm' diye ezgiyi söylemek."
+            },
+            {
+              "q": "İyi bir melodinin en önemli özelliği nedir?",
+              "skill": "muz-melodi",
+              "options": [
+                "Akılda kalıcı olması",
+                "Çok gürültülü olması",
+                "Hiç bitmemesi",
+                "Renkli olması"
+              ],
+              "correct": 0,
+              "hint": "Duyunca kolayca hatırlarsın."
+            },
+            {
+              "q": "Şarkının kıtaları (dizeleri) arasında genelde ne tekrarlanır?",
+              "skill": "muz-sarki",
+              "options": [
+                "Nakarat",
+                "Yeni bir çalgı",
+                "Reklam",
+                "Sessizlik"
+              ],
+              "correct": 0,
+              "hint": "Şarkının 'ana' bölümü tekrar gelir."
+            },
+            {
+              "q": "Melodi ile ritim arasındaki fark nedir?",
+              "skill": "muz-melodi",
+              "options": [
+                "Melodi ezgidir, ritim vuruş düzenidir",
+                "İkisi aynıdır",
+                "Melodi sadece davuldur",
+                "Ritim sadece sözdür"
+              ],
+              "correct": 0,
+              "hint": "Biri notaların dizilişi, diğeri vuruşların düzeni."
+            },
+            {
+              "q": "Bir şarkıcının görevi nedir?",
+              "skill": "muz-sarki",
+              "options": [
+                "Melodiyi ve sözleri sesiyle seslendirmek",
+                "Sadece dans etmek",
+                "Işıkları açmak",
+                "Bilet satmak"
+              ],
+              "correct": 0,
+              "hint": "Sesiyle ezgiyi taşır."
+            },
+            {
+              "q": "Aynı melodi farklı çalgılarla çalınabilir mi?",
+              "skill": "muz-melodi",
+              "options": [
+                "Evet; melodi aynı kalır, ses rengi değişir",
+                "Hayır, asla",
+                "Sadece piyanoyla",
+                "Sadece koroda"
+              ],
+              "correct": 0,
+              "hint": "Ezgi aynı, çalan çalgı farklı olabilir."
+            },
+            {
+              "q": "Bir ninninin melodisi genelde nasıldır?",
+              "skill": "muz-melodi",
+              "options": [
+                "Sakin ve yumuşak",
+                "Çok hızlı ve sert",
+                "Bağırışlı",
+                "Karmaşık"
+              ],
+              "correct": 0,
+              "hint": "Uyutmak için tasarlanır."
+            },
+            {
+              "q": "Melodi bir 'yolculuğa' neden benzetilir?",
+              "skill": "muz-melodi",
+              "options": [
+                "Seni bir duygudan başka bir duyguya taşıdığı için",
+                "Hep aynı yerde durduğu için",
+                "Sadece kısa olduğu için",
+                "Renkli olduğu için"
+              ],
+              "correct": 0,
+              "hint": "İnişleri, çıkışları ve varış noktası vardır."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "title": "ÜNİTE 8 — Müzik Türleri",
+      "sections": [
+        {
+          "id": "s-muz-turler",
+          "title": "Seslerin Renkleri",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-turler-m1",
+              "type": "teach",
+              "title": "Ses Brifingi: Müzik Türleri",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-turler"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-turler-m2",
+              "type": "practice",
+              "title": "Tür Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-turler"
+              }
+            },
+            {
+              "id": "s-muz-turler-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-muz-turler"
+              }
+            },
+            {
+              "id": "s-muz-turler-m4",
+              "type": "challenge",
+              "title": "Zorlu Solo",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-turler"
+              }
+            },
+            {
+              "id": "s-muz-turler-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-turler",
+            "tier": "topic",
+            "name": "Karışık Kanal Canavarı",
+            "icon": "🎸",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-muz-turler"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-muz-turler"
+            }
+          },
+          "bank": [
+            {
+              "q": "Aşağıdakilerden hangisi bir müzik türüdür?",
+              "skill": "muz-turler",
+              "options": [
+                "Caz",
+                "Kalem",
+                "Bisiklet",
+                "Buzdolabı"
+              ],
+              "correct": 0,
+              "hint": "Trompet ve saksafonun sık duyulduğu tür."
+            },
+            {
+              "q": "Orkestrayla çalınan, çok eski ve köklü türe ne denir?",
+              "skill": "muz-turler",
+              "options": [
+                "Klasik müzik",
+                "Rap",
+                "Elektronik",
+                "Reggae"
+              ],
+              "correct": 0,
+              "hint": "Beethoven ve Mozart bu türde eser yazdı."
+            },
+            {
+              "q": "Rock müzikte hangi çalgı çok öne çıkar?",
+              "skill": "muz-turler",
+              "options": [
+                "Elektro gitar",
+                "Arp",
+                "Flüt",
+                "Marimba"
+              ],
+              "correct": 0,
+              "hint": "Kuvvetli, elektrikli telli çalgı."
+            },
+            {
+              "q": "Bir ülkenin geleneklerini ve hikâyelerini anlatan müzik türü hangisidir?",
+              "skill": "muz-turler",
+              "options": [
+                "Halk müziği",
+                "Elektronik müzik",
+                "Rap",
+                "Opera"
+              ],
+              "correct": 0,
+              "hint": "Yörelere ve türkülere ait."
+            },
+            {
+              "q": "Hangi tür 'daha doğru' müziktir?",
+              "skill": "muz-turler",
+              "options": [
+                "Hiçbiri; hepsi farklıdır",
+                "Sadece klasik",
+                "Sadece pop",
+                "Sadece rock"
+              ],
+              "correct": 0,
+              "hint": "Her tür kendi güzelliğini taşır."
+            },
+            {
+              "q": "Pop müziğin en belirgin özelliği genellikle nedir?",
+              "skill": "muz-turler",
+              "options": [
+                "Akılda kalan, sevilen melodiler",
+                "Sadece sessizlik",
+                "Hiç sözü olmaması",
+                "Sadece davul olması"
+              ],
+              "correct": 0,
+              "hint": "Radyoda sık duyulan, herkesin mırıldandığı."
+            },
+            {
+              "q": "Caz müziğinin sevilen bir özelliği nedir?",
+              "skill": "muz-turler",
+              "options": [
+                "Doğaçlama (anında uydurma) yapılabilmesi",
+                "Hiç değişmemesi",
+                "Sadece tek nota olması",
+                "Hiç çalgı olmaması"
+              ],
+              "correct": 0,
+              "hint": "Müzisyenler o an akıllarına geleni çalar."
+            },
+            {
+              "q": "Operada sanatçılar ne yapar?",
+              "skill": "muz-turler",
+              "options": [
+                "Hikâyeyi şarkı söyleyerek anlatır",
+                "Sadece dans eder",
+                "Sadece resim yapar",
+                "Sessizce oturur"
+              ],
+              "correct": 0,
+              "hint": "Sahnede güçlü sesle söylenen bir tiyatro gibi."
+            },
+            {
+              "q": "Elektronik müzik en çok neyle üretilir?",
+              "skill": "muz-turler",
+              "options": [
+                "Bilgisayar ve elektronik cihazlar",
+                "Sadece davul",
+                "Sadece keman",
+                "Sadece nefes"
+              ],
+              "correct": 0,
+              "hint": "Sentezleyici ve bilgisayar sesleri."
+            },
+            {
+              "q": "Farklı müzik türlerini dinlemek neden iyidir?",
+              "skill": "muz-turler",
+              "options": [
+                "Neyi sevdiğini keşfedersin",
+                "Hiçbir işe yaramaz",
+                "Sadece zaman kaybıdır",
+                "Kulağa zarar verir"
+              ],
+              "correct": 0,
+              "hint": "Denemeden en sevdiğini bulamazsın."
+            },
+            {
+              "q": "Türkü hangi müzik türüne örnektir?",
+              "skill": "muz-turler",
+              "options": [
+                "Halk müziği",
+                "Elektronik",
+                "Opera",
+                "Caz"
+              ],
+              "correct": 0,
+              "hint": "Anadolu'nun geleneksel ezgileri."
+            },
+            {
+              "q": "Marş nasıl bir müziktir?",
+              "skill": "muz-turler",
+              "options": [
+                "Düzenli, güçlü ritimli, birlikte yürünen müzik",
+                "Uyku getiren yavaş müzik",
+                "Hiç ritmi olmayan",
+                "Sadece fısıltı"
+              ],
+              "correct": 0,
+              "hint": "Bando ile adımlara uyumlu çalınır."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u9",
+      "title": "ÜNİTE 9 — Orkestra & Koro",
+      "sections": [
+        {
+          "id": "s-muz-orkestra",
+          "title": "Birlikte Güçlüyüz",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-orkestra-m1",
+              "type": "teach",
+              "title": "Ses Brifingi: Orkestra & Koro",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-orkestra"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-orkestra-m2",
+              "type": "practice",
+              "title": "Uyum Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-orkestra"
+              }
+            },
+            {
+              "id": "s-muz-orkestra-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-muz-orkestra"
+              }
+            },
+            {
+              "id": "s-muz-orkestra-m4",
+              "type": "challenge",
+              "title": "Zorlu Solo",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-orkestra"
+              }
+            },
+            {
+              "id": "s-muz-orkestra-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-orkestra",
+            "tier": "topic",
+            "name": "Dağınık Şef Hayaleti",
+            "icon": "🎻",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-muz-orkestra"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-muz-orkestra"
+            }
+          },
+          "bank": [
+            {
+              "q": "Orkestra nedir?",
+              "skill": "muz-orkestra",
+              "options": [
+                "Birçok çalgının birlikte çaldığı büyük topluluk",
+                "Tek bir davulcu",
+                "Bir şarkı adı",
+                "Bir çalgı türü"
+              ],
+              "correct": 0,
+              "hint": "Yaylılar, üflemeliler, vurmalılar bir arada."
+            },
+            {
+              "q": "Orkestrayı kim yönetir?",
+              "skill": "muz-orkestra",
+              "options": [
+                "Şef (orkestra şefi)",
+                "Seyirci",
+                "Kapıcı",
+                "Işıkçı"
+              ],
+              "correct": 0,
+              "hint": "Elinde değnekle herkesi birlikte çaldırır."
+            },
+            {
+              "q": "Koro nedir?",
+              "skill": "muz-koro",
+              "options": [
+                "Birçok kişinin birlikte şarkı söylediği topluluk",
+                "Tek kişilik solo",
+                "Bir çalgı",
+                "Bir dans"
+              ],
+              "correct": 0,
+              "hint": "Sesler bir araya gelir."
+            },
+            {
+              "q": "Orkestra şefinin elindeki değneğe ne denir?",
+              "skill": "muz-orkestra",
+              "options": [
+                "Baget",
+                "Yay",
+                "Çubuk şeker",
+                "Kalem"
+              ],
+              "correct": 0,
+              "hint": "Şef bununla tempoyu gösterir."
+            },
+            {
+              "q": "Bir orkestrada en kalabalık aile hangisidir?",
+              "skill": "muz-orkestra",
+              "options": [
+                "Yaylılar (keman ailesi)",
+                "Sadece davul",
+                "Sadece flüt",
+                "Hiçbiri"
+              ],
+              "correct": 0,
+              "hint": "Keman, viyola, çello, kontrbas..."
+            },
+            {
+              "q": "Koroda farklı sesler birleşince ne oluşur?",
+              "skill": "muz-koro",
+              "options": [
+                "Uyum (armoni)",
+                "Gürültü",
+                "Sessizlik",
+                "Kavga"
+              ],
+              "correct": 0,
+              "hint": "İnce ve kalın sesler güzelce kaynaşır."
+            },
+            {
+              "q": "Şefin en önemli görevi nedir?",
+              "skill": "muz-orkestra",
+              "options": [
+                "Herkesi aynı tempoda birlikte tutmak",
+                "Bilet satmak",
+                "Sahne süpürmek",
+                "Işık yakmak"
+              ],
+              "correct": 0,
+              "hint": "Dağılmamaları için tempoyu o verir."
+            },
+            {
+              "q": "Koroda herkes aynı notayı mı söyler?",
+              "skill": "muz-koro",
+              "options": [
+                "Bazen farklı sesler söyleyip uyum oluşturur",
+                "Evet, hep aynı tek nota",
+                "Hayır, herkes bağırır",
+                "Sadece susarlar"
+              ],
+              "correct": 0,
+              "hint": "Farklı partiler birlikte armoni kurar."
+            },
+            {
+              "q": "Orkestra ve koro birlikte çalışırken en önemli şey nedir?",
+              "skill": "muz-orkestra",
+              "options": [
+                "Takım çalışması ve dinlemek",
+                "Herkesin bağırması",
+                "Kimsenin şefe bakmaması",
+                "Farklı tempoda çalmak"
+              ],
+              "correct": 0,
+              "hint": "Birbirini dinlemek uyumu sağlar."
+            },
+            {
+              "q": "Bir orkestrada üflemeli aileden hangisi bulunur?",
+              "skill": "muz-orkestra",
+              "options": [
+                "Flüt ve trompet",
+                "Sadece davul",
+                "Sadece keman",
+                "Sadece piyano"
+              ],
+              "correct": 0,
+              "hint": "Nefesle çalınan çalgılar."
+            },
+            {
+              "q": "Koroda çok kalın (pes) sesli grubun partisine ne denir?",
+              "skill": "muz-koro",
+              "options": [
+                "Bas",
+                "Soprano",
+                "Davul",
+                "Baget"
+              ],
+              "correct": 0,
+              "hint": "En kalın ses grubu."
+            },
+            {
+              "q": "Neden bir orkestra tek bir çalgıdan daha zengin ses çıkarır?",
+              "skill": "muz-orkestra",
+              "options": [
+                "Birçok farklı çalgı birlikte çaldığı için",
+                "Daha yüksek sesli olduğu için",
+                "Daha pahalı olduğu için",
+                "Daha büyük sahnede olduğu için"
+              ],
+              "correct": 0,
+              "hint": "Farklı renkler bir araya gelir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u10",
+      "title": "ÜNİTE 10 — Müzik & Yaratıcılık",
+      "sections": [
+        {
+          "id": "s-muz-yaraticilik",
+          "title": "Kendi Sesini Yarat",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-yaraticilik-m1",
+              "type": "teach",
+              "title": "Ses Brifingi: Yaratıcılık",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-yaraticilik"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-yaraticilik-m2",
+              "type": "practice",
+              "title": "İlham Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-yaraticilik"
+              }
+            },
+            {
+              "id": "s-muz-yaraticilik-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-muz-yaraticilik"
+              }
+            },
+            {
+              "id": "s-muz-yaraticilik-m4",
+              "type": "challenge",
+              "title": "Zorlu Solo",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-muz-yaraticilik"
+              }
+            },
+            {
+              "id": "s-muz-yaraticilik-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-yaraticilik",
+            "tier": "topic",
+            "name": "İlham Kaçıran Gölge",
+            "icon": "✨",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-muz-yaraticilik"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-muz-yaraticilik"
+            }
+          },
+          "bank": [
+            {
+              "q": "Yeni bir müzik yaratmaya (yapmaya) ne denir?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Beste yapmak",
+                "Sadece dinlemek",
+                "Bilet almak",
+                "Sahne süpürmek"
+              ],
+              "correct": 0,
+              "hint": "Kafandaki ezgiyi notaya dökmek."
+            },
+            {
+              "q": "Müzik yaparken 'yanlış' var mıdır?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Yaratıcılıkta denemek özgürdür",
+                "Evet, tek bir doğru vardır",
+                "Her şey yanlıştır",
+                "Sadece öğretmen doğru yapar"
+              ],
+              "correct": 0,
+              "hint": "Keşfetmek ve denemek serbesttir."
+            },
+            {
+              "q": "Evde ritim yapmak için hangisini kullanabilirsin?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Kaşık ve tencere",
+                "Sadece gerçek davul",
+                "Hiçbir şey",
+                "Sadece bilgisayar"
+              ],
+              "correct": 0,
+              "hint": "Etrafındaki eşyalar da çalgı olabilir."
+            },
+            {
+              "q": "Bir müzisyenin o an aklına geleni çalmasına ne denir?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Doğaçlama",
+                "Es",
+                "Porte",
+                "Oktav"
+              ],
+              "correct": 0,
+              "hint": "Cazda çok sevilen, anında uydurma."
+            },
+            {
+              "q": "Kendi şarkını yazmaya nereden başlayabilirsin?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Bir mısra mırıldanarak",
+                "Sahne kurarak",
+                "Bilet basarak",
+                "Işık ayarlayarak"
+              ],
+              "correct": 0,
+              "hint": "Küçük bir ezgi parçasıyla başla."
+            },
+            {
+              "q": "Bir şarkı yazarken müziğin yanında ne de üretilebilir?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Sözler",
+                "Trafik levhası",
+                "Yemek tarifi",
+                "Harita"
+              ],
+              "correct": 0,
+              "hint": "Şarkının anlattığı kelimeler."
+            },
+            {
+              "q": "Yaratıcılığını geliştirmek için en iyi yol nedir?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Bol bol denemek ve dinlemek",
+                "Hiç denememek",
+                "Sadece izlemek",
+                "Korkmak"
+              ],
+              "correct": 0,
+              "hint": "Deneyen keşfeder."
+            },
+            {
+              "q": "Bir müziği farklı hissettirmek için ne değiştirebilirsin?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Tempoyu, ritmi ya da melodiyi",
+                "Sadece salonun rengini",
+                "Sadece bileti",
+                "Hiçbir şeyi"
+              ],
+              "correct": 0,
+              "hint": "Hızı ya da ezgiyi değiştir, duygu değişir."
+            },
+            {
+              "q": "İki farklı şarkının parçalarını birleştirmek nasıl bir yaratıcılıktır?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Yeni bir şey üretmek (miks/uyarlama)",
+                "Kopya çekmek",
+                "Hata yapmak",
+                "İmkânsız"
+              ],
+              "correct": 0,
+              "hint": "Parçaları harmanlayıp yeni bir şey yaratırsın."
+            },
+            {
+              "q": "Müzik yapmak neden eğlencelidir?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Duygularını ve hayal gücünü sesle anlatırsın",
+                "Hiç eğlenceli değildir",
+                "Sadece zor olduğu için",
+                "Sadece yarışma olduğu için"
+              ],
+              "correct": 0,
+              "hint": "İçindeki hayal dünyasını sese çevirirsin."
+            },
+            {
+              "q": "Bir 'ritim kalıbı' uydurmak ne demektir?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Tekrar eden bir vuruş dizisi oluşturmak",
+                "Şarkı sözü ezberlemek",
+                "Nota saymak",
+                "Susmak"
+              ],
+              "correct": 0,
+              "hint": "Kendi 'güm-tak-güm-tak' desenini yarat."
+            },
+            {
+              "q": "Öğrendiğin her şeyi (ritim, nota, çalgı) birleştirince ne olursun?",
+              "skill": "muz-yaraticilik",
+              "options": [
+                "Kendi müziğini yaratan bir Ses Büyücüsü",
+                "Sadece bir dinleyici",
+                "Bir seyirci",
+                "Bir ışıkçı"
+              ],
+              "correct": 0,
+              "hint": "Bilgiyle yaratıcılık birleşince sen üretirsin!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u-final",
+      "title": "FİNAL — Ses Büyücüsü Ustalığı",
+      "sections": [
+        {
+          "id": "s-muz-final",
+          "title": "Büyük Sınav",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-muz-final-t",
+              "type": "teach",
+              "title": "Final Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "muz-final"
+                }
+              ]
+            },
+            {
+              "id": "s-muz-final-1",
+              "type": "practice",
+              "title": "Genel Tekrar",
+              "targetCount": 4,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-muz-final-2",
+              "type": "challenge",
+              "title": "Ustalık Sınavı",
+              "targetCount": 5,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-muz-final-3",
+              "type": "review",
+              "title": "Son Hazırlık",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-muz-final",
+            "tier": "final",
+            "name": "Sessizlik Ejderi",
+            "icon": "🎼",
+            "hp": 60,
+            "unlock": {
+              "masteryRequired": 0.6
+            },
+            "generator": {
+              "poolAll": true
+            },
+            "rewards": {
+              "xp": 400,
+              "chest": "legendary",
+              "badge": "b-muz-final"
+            }
+          }
         }
       ]
     }

@@ -23,7 +23,16 @@
     "kurallar",
     "saglik",
     "branslar",
-    "spor-genel"
+    "spor-genel",
+    "isinma-guvenlik",
+    "futbol",
+    "basketbol",
+    "voleybol",
+    "atletizm",
+    "yuzme",
+    "jimnastik",
+    "takim-ruhu",
+    "olimpiyat-saglik"
   ],
   "hints": {},
   "teachScripts": {
@@ -47,6 +56,116 @@
       },
       {
         "say": "Spor sadece kas değildir: düzenli spor kalbini güçlendirir, uykunu düzeltir, moralini yükseltir. Sağlıklı beslenme + spor + uyku = süper komutan üçlüsü. Hadi göster kendini!"
+      }
+    ],
+    "spr-isinma-guvenlik": [
+      {
+        "say": "Dinle asker! Her görev ısınmayla başlar. Soğuk kaslar tıpkı buz gibidir, zorlanınca çatlar. Önce 5 dakika hafif koşu, sonra esneme. Böylece kaslar hazır olur!"
+      },
+      {
+        "say": "Güvenlik altın kuraldır: uygun ayakkabı giy, sahayı kontrol et, ağrı hissedince dur. Kahraman komutan vücudunu dinler!"
+      },
+      {
+        "say": "Görev sonunda soğuma yap: yavaşça yürü, esne, su iç. Böylece kaslar ertesi güne dinç kalır. Şimdi hazırsın!"
+      }
+    ],
+    "spr-futbol": [
+      {
+        "say": "Sahaya çık komutan! Futbol takım sporudur: 11 oyuncu, 1 top, 2 kale. Amaç topu rakip kaleye göndermek, kendi kaleni korumak."
+      },
+      {
+        "say": "Pas vermek en güçlü silahtır! Tek başına değil, arkadaşlarınla oynarsın. Kaleci hariç kimse topa elle dokunamaz."
+      },
+      {
+        "say": "Fair play unutulmaz: faul yapma, hakeme saygı göster. Şimdi göster kendini futbolcu!"
+      }
+    ],
+    "spr-basketbol": [
+      {
+        "say": "Parkeye çık! Basketbolda amaç topu yukarıdaki potaya sokmak. Her takımda sahada 5 oyuncu vardır."
+      },
+      {
+        "say": "Top elde koşulmaz, top sektirilir buna \"dribbling\" (top sürme) denir. Sayılar 1, 2 veya 3 puan değerindedir."
+      },
+      {
+        "say": "Hızlı pas, iyi savunma ve takım oyunu kazandırır. Hadi potaya, komutan!"
+      }
+    ],
+    "spr-voleybol": [
+      {
+        "say": "File başına geç komutan! Voleybolda top filenin üstünden karşıya gönderilir ve yere düşürülmemeye çalışılır."
+      },
+      {
+        "say": "Her takım topa en fazla 3 kez dokunabilir: karşılama, pas, smaç. Top elde tutulmaz, vurulur!"
+      },
+      {
+        "say": "Servisle oyun başlar. Takım ruhuyla file üstünde savaş kazanılır. Hazır ol!"
+      }
+    ],
+    "spr-atletizm": [
+      {
+        "say": "Piste çık asker! Atletizm koşu, atlama ve atma sporlarını kapsar. En eski spordur, sadece sen ve gücün!"
+      },
+      {
+        "say": "Kısa mesafede hız, uzun mesafede dayanıklılık önemlidir. Uzun atlama, yüksek atlama gibi dallar da vardır."
+      },
+      {
+        "say": "Kalbin ve nefesin güçlenir. Düzenli koşuyla dayanıklılık artar. Hadi rekor kır!"
+      }
+    ],
+    "spr-yuzme": [
+      {
+        "say": "Suya dalış vakti komutan! Yüzme, neredeyse tüm vücut kaslarını çalıştıran harika bir spordur."
+      },
+      {
+        "say": "Serbest, kurbağalama, sırtüstü, kelebek gibi stiller vardır. Güvenlik önce gelir: asla yalnız ve gözetimsiz suya girme!"
+      },
+      {
+        "say": "Nefes kontrolü ve kol-bacak uyumu öğrenilir. Su seni serinletir ve güçlendirir. Hazır ol!"
+      }
+    ],
+    "spr-jimnastik": [
+      {
+        "say": "Minderin başına geç komutan! Jimnastik esneklik, denge, güç ve koordinasyon sporudur."
+      },
+      {
+        "say": "Takla, köprü, amuda kalkma gibi hareketler yapılır. Her hareket önce yavaş ve güvenli minderde öğrenilir."
+      },
+      {
+        "say": "Vücut farkındalığı ve denge gelişir. Sabırla çalışan komutan başarır. Hadi göster!"
+      }
+    ],
+    "spr-takim-ruhu": [
+      {
+        "say": "Dinle kahraman! Gerçek zafer sadece skorla değil, takım ruhuyla kazanılır. Birlik olan takım güçlüdür."
+      },
+      {
+        "say": "Fair play: hile yapmadan, rakibe ve hakeme saygıyla oynamak. Kazanınca alçakgönüllü, kaybedince centilmen olmak asıl kahramanlıktır."
+      },
+      {
+        "say": "Takım arkadaşını destekle, düşeni kaldır, hata yapanı yüreklendir. Birlikten kuvvet doğar!"
+      }
+    ],
+    "spr-olimpiyat-saglik": [
+      {
+        "say": "Büyük final komutan! Olimpiyat Oyunları, dünyanın en büyük spor bayramıdır. 4 yılda bir düzenlenir ve tüm ülkeler barış içinde yarışır."
+      },
+      {
+        "say": "Beş halkalı sembol beş kıtayı temsil eder. Altın, gümüş, bronz madalyalar verilir. Ama asıl amaç dostluk ve sağlıklı rekabettir."
+      },
+      {
+        "say": "Sağlıklı yaşam üçlüsü: düzenli spor + dengeli beslenme + yeterli uyku. Bunları yaparsan süper komutan olursun!"
+      }
+    ],
+    "spr-final": [
+      {
+        "say": "Bu AN geldi Komutan! Şampiyon Arenası cephesinin EN BÜYÜK sınavı: tüm öğrendiklerin bir arada, en zoru."
+      },
+      {
+        "say": "🏆 Şampiyonlar Devi karşında! Onu yenersen bu dersin USTASI olursun. Efsanevi ödül seni bekliyor."
+      },
+      {
+        "say": "Sakin ol, öğrendiklerine güven. Her soru bir darbe. Hazırsan… HÜCUM!"
       }
     ]
   },
@@ -496,6 +615,2014 @@
               "hint": "Beş kıtayı temsil eden iç içe halkalar."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — Isınma & Güvenlik",
+      "sections": [
+        {
+          "id": "s-spr-isinma-guvenlik",
+          "title": "Isınma ve Güvenli Spor",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-isinma-guvenlik-m1",
+              "type": "teach",
+              "title": "Antrenman Brifingi: Isınma & Güvenlik",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-isinma-guvenlik"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-isinma-guvenlik-m2",
+              "type": "practice",
+              "title": "Saha Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-isinma-guvenlik"
+              }
+            },
+            {
+              "id": "s-spr-isinma-guvenlik-m3",
+              "type": "practice",
+              "title": "Antrenman Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-spr-isinma-guvenlik"
+              }
+            },
+            {
+              "id": "s-spr-isinma-guvenlik-m4",
+              "type": "challenge",
+              "title": "Zorlu Maç",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-isinma-guvenlik"
+              }
+            },
+            {
+              "id": "s-spr-isinma-guvenlik-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-isinma-guvenlik",
+            "tier": "topic",
+            "name": "Buz Kas Canavarı",
+            "icon": "🧊",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-spr-isinma-guvenlik"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spr-isinma-guvenlik"
+            }
+          },
+          "bank": [
+            {
+              "q": "Spora başlamadan önce kasları hazırlamak için ne yaparız?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Isınma hareketleri yaparız",
+                "Hemen en yüksek hızda koşarız",
+                "Uzun uzun uyuruz",
+                "Dondurma yeriz"
+              ],
+              "correct": 0,
+              "hint": "Soğuk kas kolay incinir."
+            },
+            {
+              "q": "Neden ısınma yapmak önemlidir?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Sakatlanma riskini azaltır",
+                "Bizi yorar ve zayıflatır",
+                "Hiçbir işe yaramaz",
+                "Boyumuzu uzatır"
+              ],
+              "correct": 0,
+              "hint": "Hazır kas daha güvenlidir."
+            },
+            {
+              "q": "Isınma genellikle hangisiyle başlar?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Hafif koşu ve yürüyüş",
+                "Ağır halter kaldırma",
+                "Yarış koşusu",
+                "Uzun atlama"
+              ],
+              "correct": 0,
+              "hint": "Önce nabzı yavaşça yükseltiriz."
+            },
+            {
+              "q": "Spor yaparken ayağını en iyi ne korur?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Uygun spor ayakkabısı",
+                "Terlik",
+                "Çıplak ayak",
+                "Kışlık bot"
+              ],
+              "correct": 0,
+              "hint": "Kaymayı ve burkulmayı önler."
+            },
+            {
+              "q": "Esneme hareketleri neyi artırır?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Kasların esnekliğini",
+                "Susuzluğu",
+                "Uykuyu",
+                "Açlığı"
+              ],
+              "correct": 0,
+              "hint": "Esnek kas daha az zorlanır."
+            },
+            {
+              "q": "Spor sırasında keskin bir ağrı hissedersen ne yapmalısın?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Durup dinlenmeli, gerekirse büyüğüne söylemeli",
+                "Ağrıya rağmen zorlamalı",
+                "Daha hızlı yapmalı",
+                "Görmezden gelip koşmalı"
+              ],
+              "correct": 0,
+              "hint": "Vücudun sana sinyal veriyordur."
+            },
+            {
+              "q": "Sıcak bir günde açık havada spor yaparken en önemlisi nedir?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Bol su içmek ve gölgede dinlenmek",
+                "Hiç su içmemek",
+                "Kalın mont giymek",
+                "Öğle güneşinde hiç durmadan koşmak"
+              ],
+              "correct": 0,
+              "hint": "Terleyince su kaybedersin."
+            },
+            {
+              "q": "Spordan sonra yapılan yavaşlama ve esnemeye ne denir?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Soğuma",
+                "Isınma",
+                "Faul",
+                "Gol"
+              ],
+              "correct": 0,
+              "hint": "Isınmanın tersi, görev sonu."
+            },
+            {
+              "q": "Bisiklete binerken güvenlik için ne takarız?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Kask",
+                "Şapka yerine hiçbir şey",
+                "Gözlük yerine el feneri",
+                "Palet"
+              ],
+              "correct": 0,
+              "hint": "Başını korur."
+            },
+            {
+              "q": "Isınmadan ağır spora başlarsak ne olabilir?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Kaslar incinebilir",
+                "Daha güçlü oluruz",
+                "Hiçbir şey olmaz",
+                "Daha uzun boylu oluruz"
+              ],
+              "correct": 0,
+              "hint": "Hazırlıksız kas risklidir."
+            },
+            {
+              "q": "Güvenli bir antrenman alanı nasıl olmalı?",
+              "skill": "isinma-guvenlik",
+              "options": [
+                "Düz, temiz ve engelsiz",
+                "Cam kırıklarıyla dolu",
+                "Islak ve kaygan",
+                "Karanlık ve dağınık"
+              ],
+              "correct": 0,
+              "hint": "Takılıp düşmeyi önler."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — Futbol",
+      "sections": [
+        {
+          "id": "s-spr-futbol",
+          "title": "Sahada Futbol",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-futbol-m1",
+              "type": "teach",
+              "title": "Antrenman Brifingi: Futbol",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-futbol"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-futbol-m2",
+              "type": "practice",
+              "title": "Saha Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-futbol"
+              }
+            },
+            {
+              "id": "s-spr-futbol-m3",
+              "type": "practice",
+              "title": "Antrenman Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-spr-futbol"
+              }
+            },
+            {
+              "id": "s-spr-futbol-m4",
+              "type": "challenge",
+              "title": "Zorlu Maç",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-futbol"
+              }
+            },
+            {
+              "id": "s-spr-futbol-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-futbol",
+            "tier": "topic",
+            "name": "Tembellik Kalecisi",
+            "icon": "⚽",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-spr-futbol"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spr-futbol"
+            }
+          },
+          "bank": [
+            {
+              "q": "Futbolda bir takımda sahada kaç oyuncu bulunur?",
+              "skill": "futbol",
+              "options": [
+                "11",
+                "5",
+                "7",
+                "15"
+              ],
+              "correct": 0,
+              "hint": "Kaleci dahil sayıyoruz."
+            },
+            {
+              "q": "Futbolda topa elle dokunabilen tek oyuncu kimdir?",
+              "skill": "futbol",
+              "options": [
+                "Kaleci (kendi ceza sahasında)",
+                "Forvet",
+                "Orta saha",
+                "Defans"
+              ],
+              "correct": 0,
+              "hint": "Kaleyi koruyan oyuncu."
+            },
+            {
+              "q": "Futbolda gol nasıl olur?",
+              "skill": "futbol",
+              "options": [
+                "Top kale çizgisini tamamen geçince",
+                "Top direğe çarpınca",
+                "Top taca çıkınca",
+                "Hakem düdük çalınca"
+              ],
+              "correct": 0,
+              "hint": "Topun tamamı çizgiyi geçmeli."
+            },
+            {
+              "q": "Futbolda topu ayakla arkadaşına göndermeye ne denir?",
+              "skill": "futbol",
+              "options": [
+                "Pas",
+                "Faul",
+                "Korner",
+                "Aut"
+              ],
+              "correct": 0,
+              "hint": "Takım oyununun temeli."
+            },
+            {
+              "q": "Sarı kart neyi ifade eder?",
+              "skill": "futbol",
+              "options": [
+                "Uyarı",
+                "Gol",
+                "Maçın bitişi",
+                "Oyuncu değişikliği"
+              ],
+              "correct": 0,
+              "hint": "İkincisi kırmızıya döner."
+            },
+            {
+              "q": "Kırmızı kart gören oyuncu ne yapar?",
+              "skill": "futbol",
+              "options": [
+                "Oyundan çıkar",
+                "Gol atar",
+                "Kaleye geçer",
+                "Penaltı kullanır"
+              ],
+              "correct": 0,
+              "hint": "Ciddi hata sonucu sahayı terk eder."
+            },
+            {
+              "q": "Bir futbol maçı normalde kaç dakikadır?",
+              "skill": "futbol",
+              "options": [
+                "90 dakika (2 devre)",
+                "30 dakika",
+                "120 dakika",
+                "45 dakika tek devre"
+              ],
+              "correct": 0,
+              "hint": "İki devre, her biri 45 dakika."
+            },
+            {
+              "q": "Kaleyi koruyan oyuncuya ne denir?",
+              "skill": "futbol",
+              "options": [
+                "Kaleci",
+                "Forvet",
+                "Hakem",
+                "Antrenör"
+              ],
+              "correct": 0,
+              "hint": "Elleriyle topu tutabilir."
+            },
+            {
+              "q": "Top yan çizgiden dışarı çıkarsa oyun nasıl devam eder?",
+              "skill": "futbol",
+              "options": [
+                "Taç atışıyla",
+                "Penaltıyla",
+                "Golle",
+                "Kornerle"
+              ],
+              "correct": 0,
+              "hint": "El ile içeri atılır."
+            },
+            {
+              "q": "Futbolda en önemli takım becerisi hangisidir?",
+              "skill": "futbol",
+              "options": [
+                "Pas vererek birlikte oynamak",
+                "Herkesin topu kendine saklaması",
+                "Rakibe bağırmak",
+                "Kurallara uymamak"
+              ],
+              "correct": 0,
+              "hint": "Birlikten kuvvet doğar."
+            },
+            {
+              "q": "Ceza sahasında yapılan büyük faulün cezası genelde nedir?",
+              "skill": "futbol",
+              "options": [
+                "Penaltı",
+                "Taç",
+                "Korner",
+                "Sarı kart yerine gol"
+              ],
+              "correct": 0,
+              "hint": "Kaleyle birebir atış hakkı."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — Basketbol",
+      "sections": [
+        {
+          "id": "s-spr-basketbol",
+          "title": "Potaya Doğru Basketbol",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-basketbol-m1",
+              "type": "teach",
+              "title": "Antrenman Brifingi: Basketbol",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-basketbol"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-basketbol-m2",
+              "type": "practice",
+              "title": "Saha Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-basketbol"
+              }
+            },
+            {
+              "id": "s-spr-basketbol-m3",
+              "type": "practice",
+              "title": "Antrenman Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-spr-basketbol"
+              }
+            },
+            {
+              "id": "s-spr-basketbol-m4",
+              "type": "challenge",
+              "title": "Zorlu Maç",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-basketbol"
+              }
+            },
+            {
+              "id": "s-spr-basketbol-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-basketbol",
+            "tier": "topic",
+            "name": "Pota Gölgesi",
+            "icon": "🏀",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-spr-basketbol"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spr-basketbol"
+            }
+          },
+          "bank": [
+            {
+              "q": "Basketbolda amaç nedir?",
+              "skill": "basketbol",
+              "options": [
+                "Topu potaya (çembere) atmak",
+                "Kaleye gol atmak",
+                "Fileden aşırmak",
+                "En hızlı yüzmek"
+              ],
+              "correct": 0,
+              "hint": "Yukarıdaki çembere sayı."
+            },
+            {
+              "q": "Basketbolda bir takımda sahada kaç oyuncu bulunur?",
+              "skill": "basketbol",
+              "options": [
+                "5",
+                "11",
+                "7",
+                "6"
+              ],
+              "correct": 0,
+              "hint": "Futboldan az, voleyboldan da az."
+            },
+            {
+              "q": "Topu yere sektirerek ilerlemeye ne denir?",
+              "skill": "basketbol",
+              "options": [
+                "Top sürme (dribbling)",
+                "Smaç",
+                "Faul",
+                "Servis"
+              ],
+              "correct": 0,
+              "hint": "Topu elde tutup koşamazsın."
+            },
+            {
+              "q": "Çizgi gerisinden atılan uzak bir basket kaç sayıdır?",
+              "skill": "basketbol",
+              "options": [
+                "3 sayı",
+                "1 sayı",
+                "5 sayı",
+                "10 sayı"
+              ],
+              "correct": 0,
+              "hint": "En değerli normal atış."
+            },
+            {
+              "q": "Serbest atış (faul atışı) kaç sayı değerindedir?",
+              "skill": "basketbol",
+              "options": [
+                "1 sayı",
+                "2 sayı",
+                "3 sayı",
+                "0 sayı"
+              ],
+              "correct": 0,
+              "hint": "Ceza atışının değeri en düşüktür."
+            },
+            {
+              "q": "Topu arkadaşına atıp yönlendirmeye ne denir?",
+              "skill": "basketbol",
+              "options": [
+                "Pas",
+                "Ribaunt",
+                "Faul",
+                "Aut"
+              ],
+              "correct": 0,
+              "hint": "Takım oyununun temeli."
+            },
+            {
+              "q": "Rakibin kaçırdığı topu havada kapmaya ne denir?",
+              "skill": "basketbol",
+              "options": [
+                "Ribaunt",
+                "Servis",
+                "Penaltı",
+                "Korner"
+              ],
+              "correct": 0,
+              "hint": "Potadan seken topu almak."
+            },
+            {
+              "q": "Basketbolda topu potaya çok yakından güçlü şekilde sokmaya ne denir?",
+              "skill": "basketbol",
+              "options": [
+                "Smaç",
+                "Taç",
+                "Faul",
+                "Pas"
+              ],
+              "correct": 0,
+              "hint": "Zıplayıp yukarıdan basmak."
+            },
+            {
+              "q": "Basketbol topunu elle mi ayakla mı oynarız?",
+              "skill": "basketbol",
+              "options": [
+                "Elle",
+                "Ayakla",
+                "Kafayla",
+                "Raketle"
+              ],
+              "correct": 0,
+              "hint": "Futbolun tersi."
+            },
+            {
+              "q": "İyi bir savunmacı ne yapar?",
+              "skill": "basketbol",
+              "options": [
+                "Rakibin sayı atmasını engellemeye çalışır",
+                "Sadece izler",
+                "Kendi potasına atar",
+                "Topu saklar"
+              ],
+              "correct": 0,
+              "hint": "Kendi potanı korumak."
+            },
+            {
+              "q": "Basketbolda başarı için en önemlisi hangisidir?",
+              "skill": "basketbol",
+              "options": [
+                "Takımca pas ve iş birliği",
+                "Herkesin tek başına oynaması",
+                "Rakibe bağırmak",
+                "Topu hiç paslaşmamak"
+              ],
+              "correct": 0,
+              "hint": "Beş kişi bir bütündür."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "ÜNİTE 5 — Voleybol",
+      "sections": [
+        {
+          "id": "s-spr-voleybol",
+          "title": "File Üstünde Voleybol",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-voleybol-m1",
+              "type": "teach",
+              "title": "Antrenman Brifingi: Voleybol",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-voleybol"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-voleybol-m2",
+              "type": "practice",
+              "title": "Saha Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-voleybol"
+              }
+            },
+            {
+              "id": "s-spr-voleybol-m3",
+              "type": "practice",
+              "title": "Antrenman Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-spr-voleybol"
+              }
+            },
+            {
+              "id": "s-spr-voleybol-m4",
+              "type": "challenge",
+              "title": "Zorlu Maç",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-voleybol"
+              }
+            },
+            {
+              "id": "s-spr-voleybol-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-voleybol",
+            "tier": "topic",
+            "name": "Düşen Top Hayaleti",
+            "icon": "🏐",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-spr-voleybol"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spr-voleybol"
+            }
+          },
+          "bank": [
+            {
+              "q": "Voleybolda top nereden karşıya geçer?",
+              "skill": "voleybol",
+              "options": [
+                "Filenin üstünden",
+                "Potadan",
+                "Kaleden",
+                "Yerin altından"
+              ],
+              "correct": 0,
+              "hint": "Ortadaki file iki takımı ayırır."
+            },
+            {
+              "q": "Voleybolda bir takımda sahada kaç oyuncu bulunur?",
+              "skill": "voleybol",
+              "options": [
+                "6",
+                "5",
+                "11",
+                "3"
+              ],
+              "correct": 0,
+              "hint": "Basketboldan bir fazla."
+            },
+            {
+              "q": "Bir takım topa en fazla kaç kez dokunabilir?",
+              "skill": "voleybol",
+              "options": [
+                "3 kez",
+                "1 kez",
+                "6 kez",
+                "Sınırsız"
+              ],
+              "correct": 0,
+              "hint": "Karşılama, pas, smaç."
+            },
+            {
+              "q": "Oyunu başlatan, filenin üstünden atılan ilk vuruşa ne denir?",
+              "skill": "voleybol",
+              "options": [
+                "Servis",
+                "Smaç",
+                "Faul",
+                "Pas"
+              ],
+              "correct": 0,
+              "hint": "Arka çizgiden atılır."
+            },
+            {
+              "q": "Topu güçlü bir şekilde karşı sahaya indirmeye ne denir?",
+              "skill": "voleybol",
+              "options": [
+                "Smaç",
+                "Servis",
+                "Ribaunt",
+                "Korner"
+              ],
+              "correct": 0,
+              "hint": "Zıplayıp yukarıdan sertçe vurmak."
+            },
+            {
+              "q": "Rakibin smacını filede durdurmaya ne denir?",
+              "skill": "voleybol",
+              "options": [
+                "Blok",
+                "Pas",
+                "Servis",
+                "Aut"
+              ],
+              "correct": 0,
+              "hint": "Filenin üstünde eller kalkar."
+            },
+            {
+              "q": "Voleybolda sayı ne zaman kazanılır?",
+              "skill": "voleybol",
+              "options": [
+                "Top rakip sahada yere düşünce",
+                "Top file olunca",
+                "Servis atılınca",
+                "Oyuncu değişince"
+              ],
+              "correct": 0,
+              "hint": "Karşı takım topu düşürünce."
+            },
+            {
+              "q": "Voleybol topunu elle mi ayakla mı oynamak esastır?",
+              "skill": "voleybol",
+              "options": [
+                "Elle/kolla vurarak",
+                "Sadece ayakla",
+                "Sadece kafayla",
+                "Raketle"
+              ],
+              "correct": 0,
+              "hint": "Kollarla karşılarız."
+            },
+            {
+              "q": "Top elde tutulup taşınırsa ne olur?",
+              "skill": "voleybol",
+              "options": [
+                "Faul (hata) sayılır",
+                "Sayı kazanılır",
+                "Servis olur",
+                "Gol olur"
+              ],
+              "correct": 0,
+              "hint": "Top tutulmaz, vurulur."
+            },
+            {
+              "q": "Voleybolda başarı için en önemlisi nedir?",
+              "skill": "voleybol",
+              "options": [
+                "Takımca uyum ve iyi pas",
+                "Herkesin tek başına vurması",
+                "Rakibe bağırmak",
+                "Topu hiç paslaşmamak"
+              ],
+              "correct": 0,
+              "hint": "Üç dokunuş takım işidir."
+            },
+            {
+              "q": "İyi bir arka savunmacı (libero) ne yapar?",
+              "skill": "voleybol",
+              "options": [
+                "Gelen sert topları karşılar",
+                "Sadece smaç yapar",
+                "Kaleyi korur",
+                "Pota altında bekler"
+              ],
+              "correct": 0,
+              "hint": "Savunmada topu havada tutar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "ÜNİTE 6 — Atletizm",
+      "sections": [
+        {
+          "id": "s-spr-atletizm",
+          "title": "Piste Doğru Atletizm",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-atletizm-m1",
+              "type": "teach",
+              "title": "Antrenman Brifingi: Atletizm",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-atletizm"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-atletizm-m2",
+              "type": "practice",
+              "title": "Saha Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-atletizm"
+              }
+            },
+            {
+              "id": "s-spr-atletizm-m3",
+              "type": "practice",
+              "title": "Antrenman Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-spr-atletizm"
+              }
+            },
+            {
+              "id": "s-spr-atletizm-m4",
+              "type": "challenge",
+              "title": "Zorlu Maç",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-atletizm"
+              }
+            },
+            {
+              "id": "s-spr-atletizm-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-atletizm",
+            "tier": "topic",
+            "name": "Yavaşlık Rüzgarı",
+            "icon": "🏃",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-spr-atletizm"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spr-atletizm"
+            }
+          },
+          "bank": [
+            {
+              "q": "Atletizm hangi hareketleri kapsar?",
+              "skill": "atletizm",
+              "options": [
+                "Koşu, atlama ve atma",
+                "Sadece yüzme",
+                "Sadece top oyunları",
+                "Sadece satranç"
+              ],
+              "correct": 0,
+              "hint": "Pistin ve sahanın sporları."
+            },
+            {
+              "q": "Kısa mesafe koşusunda (sürat) en önemlisi nedir?",
+              "skill": "atletizm",
+              "options": [
+                "Yüksek hız",
+                "Uzun süre yavaş gitmek",
+                "Durmadan dinlenmek",
+                "Yürümek"
+              ],
+              "correct": 0,
+              "hint": "En hızlı olan kazanır."
+            },
+            {
+              "q": "Uzun mesafe koşusunda en önemlisi nedir?",
+              "skill": "atletizm",
+              "options": [
+                "Dayanıklılık",
+                "Sadece tek adım",
+                "Bağırmak",
+                "Zıplamak"
+              ],
+              "correct": 0,
+              "hint": "Yorulmadan uzun süre devam etmek."
+            },
+            {
+              "q": "Dayanıklılık ne demektir?",
+              "skill": "atletizm",
+              "options": [
+                "Uzun süre yorulmadan devam edebilmek",
+                "Bir kez zıplamak",
+                "Çok bağırmak",
+                "Hızlı yemek"
+              ],
+              "correct": 0,
+              "hint": "Kalp ve nefes güçlenince artar."
+            },
+            {
+              "q": "Koşu yarışı nasıl başlar?",
+              "skill": "atletizm",
+              "options": [
+                "Başlangıç işareti (start) ile",
+                "Golle",
+                "Servisle",
+                "Smaçla"
+              ],
+              "correct": 0,
+              "hint": "Herkes aynı anda çıkar."
+            },
+            {
+              "q": "Uzun atlamada sporcu ne yapar?",
+              "skill": "atletizm",
+              "options": [
+                "Koşup mümkün olduğunca uzağa atlar",
+                "Topu potaya atar",
+                "Suda yüzer",
+                "Raketle vurur"
+              ],
+              "correct": 0,
+              "hint": "Hız alıp ileriye sıçramak."
+            },
+            {
+              "q": "Yüksek atlamada amaç nedir?",
+              "skill": "atletizm",
+              "options": [
+                "Çıtanın üstünden atlamak",
+                "En uzağa koşmak",
+                "Topu tutmak",
+                "Suya dalmak"
+              ],
+              "correct": 0,
+              "hint": "Yukarı doğru sıçramak."
+            },
+            {
+              "q": "Bayrak yarışında sporcular birbirine ne verir?",
+              "skill": "atletizm",
+              "options": [
+                "Bayrak (baton) çubuğunu",
+                "Topu",
+                "Raketi",
+                "Su şişesini"
+              ],
+              "correct": 0,
+              "hint": "Takım koşusunda el değiştirir."
+            },
+            {
+              "q": "Maraton nasıl bir koşudur?",
+              "skill": "atletizm",
+              "options": [
+                "Çok uzun mesafeli bir koşu",
+                "Çok kısa bir koşu",
+                "Suda yapılan koşu",
+                "Tek adımlık koşu"
+              ],
+              "correct": 0,
+              "hint": "Dayanıklılık ister, saatlerce sürebilir."
+            },
+            {
+              "q": "Koşarken nefesini nasıl kullanmalısın?",
+              "skill": "atletizm",
+              "options": [
+                "Düzenli ve dengeli nefes almalı",
+                "Hiç nefes almamalı",
+                "Sadece bir kez nefes almalı",
+                "Nefesini tutmalı"
+              ],
+              "correct": 0,
+              "hint": "Düzenli nefes dayanıklılığı artırır."
+            },
+            {
+              "q": "Atletizm çoğunlukla nasıl bir spordur?",
+              "skill": "atletizm",
+              "options": [
+                "Bireysel (kendi gücünle)",
+                "Sadece takım sporu",
+                "Sadece su sporu",
+                "Masa başı oyunu"
+              ],
+              "correct": 0,
+              "hint": "Kendi rekorunla yarışırsın."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "title": "ÜNİTE 7 — Yüzme",
+      "sections": [
+        {
+          "id": "s-spr-yuzme",
+          "title": "Suda Yüzme",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-yuzme-m1",
+              "type": "teach",
+              "title": "Antrenman Brifingi: Yüzme",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-yuzme"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-yuzme-m2",
+              "type": "practice",
+              "title": "Saha Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-yuzme"
+              }
+            },
+            {
+              "id": "s-spr-yuzme-m3",
+              "type": "practice",
+              "title": "Antrenman Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-spr-yuzme"
+              }
+            },
+            {
+              "id": "s-spr-yuzme-m4",
+              "type": "challenge",
+              "title": "Zorlu Maç",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-yuzme"
+              }
+            },
+            {
+              "id": "s-spr-yuzme-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-yuzme",
+            "tier": "topic",
+            "name": "Batık Korku Denizatı",
+            "icon": "🏊",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-spr-yuzme"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spr-yuzme"
+            }
+          },
+          "bank": [
+            {
+              "q": "Yüzme hangi açıdan çok faydalıdır?",
+              "skill": "yuzme",
+              "options": [
+                "Neredeyse tüm vücudu çalıştırır",
+                "Sadece parmakları",
+                "Sadece göz kaslarını",
+                "Hiçbir kası"
+              ],
+              "correct": 0,
+              "hint": "Suda kollar, bacaklar, sırt hep çalışır."
+            },
+            {
+              "q": "Aşağıdakilerden hangisi bir yüzme stilidir?",
+              "skill": "yuzme",
+              "options": [
+                "Kurbağalama",
+                "Smaç",
+                "Penaltı",
+                "Ribaunt"
+              ],
+              "correct": 0,
+              "hint": "Kollar iki yana açılır, bacaklar itler."
+            },
+            {
+              "q": "Havuzda güvenlik için en önemli kural nedir?",
+              "skill": "yuzme",
+              "options": [
+                "Gözetimsiz ve yalnız suya girmemek",
+                "Koşarak havuza atlamak",
+                "Derin suya tek başına dalmak",
+                "Su içinde itişmek"
+              ],
+              "correct": 0,
+              "hint": "Yanında bir büyük olmalı."
+            },
+            {
+              "q": "Yüzerken hangisi önemlidir?",
+              "skill": "yuzme",
+              "options": [
+                "Doğru nefes alıp verme",
+                "Hiç nefes almamak",
+                "Gözleri hep kapalı tutmak",
+                "Suda bağırmak"
+              ],
+              "correct": 0,
+              "hint": "Başını çevirip nefes alırsın."
+            },
+            {
+              "q": "Sırtüstü yüzmede yüzücü nasıl durur?",
+              "skill": "yuzme",
+              "options": [
+                "Sırtı suya bakacak şekilde ters durur",
+                "Yüzükoyun durur",
+                "Ayakta durur",
+                "Oturur"
+              ],
+              "correct": 0,
+              "hint": "Yüzü havaya bakar."
+            },
+            {
+              "q": "Havuza girmeden önce yapılması iyi olan nedir?",
+              "skill": "yuzme",
+              "options": [
+                "Isınma ve duş almak",
+                "Tıka basa yemek yemek",
+                "Koşarak atlamak",
+                "Hiç ısınmamak"
+              ],
+              "correct": 0,
+              "hint": "Kaslar hazır olmalı."
+            },
+            {
+              "q": "Yeni başlayanlar için yüzme öğrenirken ne kullanılabilir?",
+              "skill": "yuzme",
+              "options": [
+                "Kolluk veya yüzme tahtası",
+                "Futbol topu",
+                "Basketbol potası",
+                "Raket"
+              ],
+              "correct": 0,
+              "hint": "Suda destek verir."
+            },
+            {
+              "q": "Yüzme çoğunlukla nasıl bir spordur?",
+              "skill": "yuzme",
+              "options": [
+                "Bireysel bir spor",
+                "Sadece takım sporu",
+                "Kar sporu",
+                "Masa oyunu"
+              ],
+              "correct": 0,
+              "hint": "Kendi gücünle yüzersin."
+            },
+            {
+              "q": "En hızlı yüzme stili genellikle hangisidir?",
+              "skill": "yuzme",
+              "options": [
+                "Serbest stil",
+                "Kurbağalama",
+                "Sırtüstü",
+                "Hiçbiri hareket etmez"
+              ],
+              "correct": 0,
+              "hint": "Yarışlarda çokça tercih edilir."
+            },
+            {
+              "q": "Suda kramp (kas ağrısı) girerse ne yapılmalı?",
+              "skill": "yuzme",
+              "options": [
+                "Sakin kalıp yardım istemek",
+                "Panikleyip çırpınmak",
+                "Daha derine dalmak",
+                "Bağırıp su yutmak"
+              ],
+              "correct": 0,
+              "hint": "Sakinlik ve destek istemek güvenlidir."
+            },
+            {
+              "q": "Yüzmenin kalbe faydası nedir?",
+              "skill": "yuzme",
+              "options": [
+                "Kalbi güçlendirir",
+                "Kalbi zayıflatır",
+                "Hiç etkilemez",
+                "Kalbi durdurur"
+              ],
+              "correct": 0,
+              "hint": "Düzenli spor kalbi çalıştırır."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "title": "ÜNİTE 8 — Jimnastik",
+      "sections": [
+        {
+          "id": "s-spr-jimnastik",
+          "title": "Minderde Jimnastik",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-jimnastik-m1",
+              "type": "teach",
+              "title": "Antrenman Brifingi: Jimnastik",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-jimnastik"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-jimnastik-m2",
+              "type": "practice",
+              "title": "Saha Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-jimnastik"
+              }
+            },
+            {
+              "id": "s-spr-jimnastik-m3",
+              "type": "practice",
+              "title": "Antrenman Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-spr-jimnastik"
+              }
+            },
+            {
+              "id": "s-spr-jimnastik-m4",
+              "type": "challenge",
+              "title": "Zorlu Maç",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-jimnastik"
+              }
+            },
+            {
+              "id": "s-spr-jimnastik-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-jimnastik",
+            "tier": "topic",
+            "name": "Katı Kas Golemi",
+            "icon": "🤸",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-spr-jimnastik"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spr-jimnastik"
+            }
+          },
+          "bank": [
+            {
+              "q": "Jimnastikte hangisi ön plandadır?",
+              "skill": "jimnastik",
+              "options": [
+                "Esneklik ve denge",
+                "Topu kaleye atmak",
+                "Araba sürmek",
+                "Şarkı söylemek"
+              ],
+              "correct": 0,
+              "hint": "Takla, denge, esneme."
+            },
+            {
+              "q": "Jimnastikte öne doğru yuvarlanma hareketine ne denir?",
+              "skill": "jimnastik",
+              "options": [
+                "Takla (öne perende)",
+                "Smaç",
+                "Servis",
+                "Penaltı"
+              ],
+              "correct": 0,
+              "hint": "Minderde yuvarlanmak."
+            },
+            {
+              "q": "Jimnastik hareketleri en güvenli nerede öğrenilir?",
+              "skill": "jimnastik",
+              "options": [
+                "Yumuşak minderde ve gözetimde",
+                "Sert betonda tek başına",
+                "Merdivende",
+                "Havuz kenarında koşarak"
+              ],
+              "correct": 0,
+              "hint": "Düşme riskini azaltır."
+            },
+            {
+              "q": "Denge tahtasında (denge aleti) sporcu ne yapar?",
+              "skill": "jimnastik",
+              "options": [
+                "Düşmeden dengede yürür ve hareket eder",
+                "Yüzer",
+                "Top sürer",
+                "Raketle vurur"
+              ],
+              "correct": 0,
+              "hint": "İnce bir çubuk üzerinde denge."
+            },
+            {
+              "q": "İki elin üzerinde ters durmaya ne denir?",
+              "skill": "jimnastik",
+              "options": [
+                "Amuda kalkmak",
+                "Servis atmak",
+                "Ribaunt almak",
+                "Faul yapmak"
+              ],
+              "correct": 0,
+              "hint": "Baş aşağı, eller yerde."
+            },
+            {
+              "q": "Jimnastikte esnekliği artırmak için ne yapılır?",
+              "skill": "jimnastik",
+              "options": [
+                "Düzenli esneme çalışması",
+                "Hiç hareket etmemek",
+                "Sadece uyumak",
+                "Sürekli oturmak"
+              ],
+              "correct": 0,
+              "hint": "Kaslar zamanla esner."
+            },
+            {
+              "q": "Jimnastikte denge neden önemlidir?",
+              "skill": "jimnastik",
+              "options": [
+                "Düşmeden hareket yapabilmek için",
+                "Daha hızlı yemek için",
+                "Bağırmak için",
+                "Hiç önemli değil"
+              ],
+              "correct": 0,
+              "hint": "Kontrollü duruş gerekir."
+            },
+            {
+              "q": "Yeni bir jimnastik hareketini nasıl öğrenmeliyiz?",
+              "skill": "jimnastik",
+              "options": [
+                "Yavaş yavaş ve sabırla",
+                "Hemen en zorunu deneyerek",
+                "Gözü kapalı acele ederek",
+                "Hiç çalışmadan"
+              ],
+              "correct": 0,
+              "hint": "Aşama aşama ilerlemek güvenlidir."
+            },
+            {
+              "q": "Jimnastik hangi kasları geliştirir?",
+              "skill": "jimnastik",
+              "options": [
+                "Neredeyse tüm vücut kaslarını",
+                "Sadece dil kasını",
+                "Sadece kulakları",
+                "Hiçbir kası"
+              ],
+              "correct": 0,
+              "hint": "Kol, bacak, karın hepsi çalışır."
+            },
+            {
+              "q": "Jimnastik çoğunlukla nasıl bir spordur?",
+              "skill": "jimnastik",
+              "options": [
+                "Bireysel bir spor",
+                "Kaleli bir top sporu",
+                "Su sporu",
+                "Kar sporu"
+              ],
+              "correct": 0,
+              "hint": "Kendi vücudunla çalışırsın."
+            },
+            {
+              "q": "Zor bir harekette korkarsan ne yapmalısın?",
+              "skill": "jimnastik",
+              "options": [
+                "Antrenörden yardım istemek",
+                "Zorla tek başına denemek",
+                "Vazgeçip küsmek",
+                "Başkasını itmek"
+              ],
+              "correct": 0,
+              "hint": "Güvenli ilerleme için destek al."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u9",
+      "title": "ÜNİTE 9 — Takım Ruhu & Fair Play",
+      "sections": [
+        {
+          "id": "s-spr-takim-ruhu",
+          "title": "Takım Ruhu ve Fair Play",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-takim-ruhu-m1",
+              "type": "teach",
+              "title": "Antrenman Brifingi: Takım Ruhu & Fair Play",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-takim-ruhu"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-takim-ruhu-m2",
+              "type": "practice",
+              "title": "Saha Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-takim-ruhu"
+              }
+            },
+            {
+              "id": "s-spr-takim-ruhu-m3",
+              "type": "practice",
+              "title": "Antrenman Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-spr-takim-ruhu"
+              }
+            },
+            {
+              "id": "s-spr-takim-ruhu-m4",
+              "type": "challenge",
+              "title": "Zorlu Maç",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-takim-ruhu"
+              }
+            },
+            {
+              "id": "s-spr-takim-ruhu-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-takim-ruhu",
+            "tier": "topic",
+            "name": "Bencillik Ejderi",
+            "icon": "🤝",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-spr-takim-ruhu"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spr-takim-ruhu"
+            }
+          },
+          "bank": [
+            {
+              "q": "'Fair play' ne demektir?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Dürüst ve saygılı oynamak",
+                "Ne olursa olsun kazanmak",
+                "Rakibe bağırmak",
+                "Hakemi kandırmak"
+              ],
+              "correct": 0,
+              "hint": "Hilesiz, rakibe saygılı oyun."
+            },
+            {
+              "q": "Maçı kaybedince gerçek bir sporcu ne yapar?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Rakibini tebrik eder",
+                "Küser ve gider",
+                "Kavga çıkarır",
+                "Ağlayıp bırakır"
+              ],
+              "correct": 0,
+              "hint": "Yenilgiyi de centilmence karşılamak."
+            },
+            {
+              "q": "Bir takım arkadaşın düşünce ne yaparsın?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Kalkmasına yardım ederim",
+                "Gülerim",
+                "Görmezden gelirim",
+                "İterim"
+              ],
+              "correct": 0,
+              "hint": "Takımına da saygı fair play sayılır."
+            },
+            {
+              "q": "Takım sporunda başarı için en önemlisi hangisidir?",
+              "skill": "takim-ruhu",
+              "options": [
+                "İş birliği ve pas vermek",
+                "Herkesin tek başına oynaması",
+                "Sadece bir kişinin oynaması",
+                "Kurallara uymamak"
+              ],
+              "correct": 0,
+              "hint": "Birlikten kuvvet doğar."
+            },
+            {
+              "q": "Hakemin kararına sporcu nasıl davranmalı?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Saygı göstermeli",
+                "Üstüne yürümeli",
+                "Bağırmalı",
+                "Oyunu bırakmalı"
+              ],
+              "correct": 0,
+              "hint": "Hakem tarafsız kural bekçisidir."
+            },
+            {
+              "q": "Kazanınca iyi bir sporcu nasıl davranır?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Alçakgönüllü olur, rakibe saygı gösterir",
+                "Rakibiyle alay eder",
+                "Böbürlenir",
+                "Rakibe güler"
+              ],
+              "correct": 0,
+              "hint": "Zafer büyüklük gösterme sebebi değildir."
+            },
+            {
+              "q": "Takım arkadaşın hata yapıp gol yerse ne dersin?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Boş ver, devam et diye yüreklendiririm",
+                "Onu suçlarım",
+                "Takımdan atarım",
+                "Bağırırım"
+              ],
+              "correct": 0,
+              "hint": "Destek takımı güçlü tutar."
+            },
+            {
+              "q": "Hile yaparak kazanmak nasıl bir davranıştır?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Yanlış, fair playe aykırı",
+                "Çok akıllıca",
+                "Kahramanlık",
+                "Gerekli"
+              ],
+              "correct": 0,
+              "hint": "Dürüstlük her zaman kazanır."
+            },
+            {
+              "q": "Takım kaptanının görevi nedir?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Takımı yönlendirmek ve örnek olmak",
+                "Sadece kendi golünü atmak",
+                "Arkadaşlarına bağırmak",
+                "Oyunu terk etmek"
+              ],
+              "correct": 0,
+              "hint": "Liderlik sorumluluktur."
+            },
+            {
+              "q": "Maç sonunda iki takım genellikle ne yapar?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Birbirini tebrik edip el sıkışır",
+                "Kavga eder",
+                "Küser",
+                "Kaçar"
+              ],
+              "correct": 0,
+              "hint": "Centilmenlik göstergesi."
+            },
+            {
+              "q": "Takım ruhu ne demektir?",
+              "skill": "takim-ruhu",
+              "options": [
+                "Herkesin ortak amaç için birlikte çalışması",
+                "Herkesin kendi başına oynaması",
+                "Sadece kazananın önemli olması",
+                "Kimseyle konuşmamak"
+              ],
+              "correct": 0,
+              "hint": "Bir bütün gibi hareket etmek."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u10",
+      "title": "ÜNİTE 10 — Olimpiyatlar & Sağlıklı Yaşam",
+      "sections": [
+        {
+          "id": "s-spr-olimpiyat-saglik",
+          "title": "Olimpiyatlar ve Sağlıklı Yaşam",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-olimpiyat-saglik-m1",
+              "type": "teach",
+              "title": "Antrenman Brifingi: Olimpiyatlar & Sağlıklı Yaşam",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-olimpiyat-saglik"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-olimpiyat-saglik-m2",
+              "type": "practice",
+              "title": "Saha Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-olimpiyat-saglik"
+              }
+            },
+            {
+              "id": "s-spr-olimpiyat-saglik-m3",
+              "type": "practice",
+              "title": "Antrenman Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-spr-olimpiyat-saglik"
+              }
+            },
+            {
+              "id": "s-spr-olimpiyat-saglik-m4",
+              "type": "challenge",
+              "title": "Zorlu Maç",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-spr-olimpiyat-saglik"
+              }
+            },
+            {
+              "id": "s-spr-olimpiyat-saglik-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-olimpiyat-saglik",
+            "tier": "topic",
+            "name": "Cips Canavarı",
+            "icon": "🏅",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-spr-olimpiyat-saglik"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spr-olimpiyat-saglik"
+            }
+          },
+          "bank": [
+            {
+              "q": "Olimpiyat oyunlarının sembolü kaç halkadır?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "5 halka",
+                "3 halka",
+                "7 halka",
+                "10 halka"
+              ],
+              "correct": 0,
+              "hint": "Beş kıtayı temsil eden iç içe halkalar."
+            },
+            {
+              "q": "Olimpiyat Oyunları kaç yılda bir düzenlenir?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "4 yılda bir",
+                "Her yıl",
+                "10 yılda bir",
+                "Her ay"
+              ],
+              "correct": 0,
+              "hint": "Uzun bir bekleyiş vardır."
+            },
+            {
+              "q": "Birinci olan sporcuya hangi madalya verilir?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "Altın",
+                "Bronz",
+                "Gümüş",
+                "Tahta"
+              ],
+              "correct": 0,
+              "hint": "En değerli renk."
+            },
+            {
+              "q": "İkinci olan sporcu hangi madalyayı alır?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "Gümüş",
+                "Altın",
+                "Bronz",
+                "Hiçbiri"
+              ],
+              "correct": 0,
+              "hint": "Altından bir sonraki."
+            },
+            {
+              "q": "Sağlıklı bir sporcu için hangisi en doğrudur?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "Dengeli beslenir, su içer, uyur",
+                "Hiç uyumaz",
+                "Sadece cips yer",
+                "Hiç su içmez"
+              ],
+              "correct": 0,
+              "hint": "Spor + beslenme + uyku üçlüsü."
+            },
+            {
+              "q": "Sağlıklı yaşam için günde ne kadar uyku önerilir (çocuklar)?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "Yeterli ve düzenli (yaklaşık 9-11 saat)",
+                "Hiç uyumamak",
+                "1 saat",
+                "Sadece gündüz"
+              ],
+              "correct": 0,
+              "hint": "Vücut uykuda dinlenir ve büyür."
+            },
+            {
+              "q": "Hangi beslenme daha sağlıklıdır?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "Meyve, sebze ve dengeli öğünler",
+                "Sadece şeker ve cips",
+                "Sadece gazlı içecek",
+                "Hiç yememek"
+              ],
+              "correct": 0,
+              "hint": "Renkli ve dengeli tabak."
+            },
+            {
+              "q": "Her gün hareketsiz oturmak vücuda ne yapar?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "Kasları güçsüzleştirir, enerjini düşürür",
+                "Daha da güçlendirir",
+                "Hiçbir etkisi yoktur",
+                "Boyu uzatır"
+              ],
+              "correct": 0,
+              "hint": "Hareket etmeyen kas zayıflar."
+            },
+            {
+              "q": "Düzenli spor yapmak neyi güçlendirir?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "Kalbi ve kasları",
+                "Sadece saçları",
+                "Sadece tırnakları",
+                "Hiçbir şeyi"
+              ],
+              "correct": 0,
+              "hint": "Kalp de bir kastır."
+            },
+            {
+              "q": "Olimpiyat ruhunun asıl amacı nedir?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "Dostluk ve dürüst rekabet",
+                "Ne olursa olsun kazanmak",
+                "Rakiple kavga etmek",
+                "Hile yapmak"
+              ],
+              "correct": 0,
+              "hint": "Barış ve fair play önemlidir."
+            },
+            {
+              "q": "Sağlıklı yaşam için ekranlar (telefon/TV) karşısında ne yapmalıyız?",
+              "skill": "olimpiyat-saglik",
+              "options": [
+                "Süreyi sınırlayıp hareket etmeli",
+                "Bütün gün oturmalı",
+                "Hiç dışarı çıkmamalı",
+                "Hiç uyumamalı"
+              ],
+              "correct": 0,
+              "hint": "Ara ver, kalk, hareket et."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u-final",
+      "title": "FİNAL — Şampiyon Arenası Ustalığı",
+      "sections": [
+        {
+          "id": "s-spr-final",
+          "title": "Büyük Sınav",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-spr-final-t",
+              "type": "teach",
+              "title": "Final Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "spr-final"
+                }
+              ]
+            },
+            {
+              "id": "s-spr-final-1",
+              "type": "practice",
+              "title": "Genel Tekrar",
+              "targetCount": 4,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-spr-final-2",
+              "type": "challenge",
+              "title": "Ustalık Sınavı",
+              "targetCount": 5,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-spr-final-3",
+              "type": "review",
+              "title": "Son Hazırlık",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-spr-final",
+            "tier": "final",
+            "name": "Şampiyonlar Devi",
+            "icon": "🏆",
+            "hp": 60,
+            "unlock": {
+              "masteryRequired": 0.6
+            },
+            "generator": {
+              "poolAll": true
+            },
+            "rewards": {
+              "xp": 400,
+              "chest": "legendary",
+              "badge": "b-spr-final"
+            }
+          }
         }
       ]
     }

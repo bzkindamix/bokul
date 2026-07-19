@@ -175,15 +175,16 @@
           B.Badges.grant({ id: boss.rewards.badge, name: boss.name, icon: boss.icon, tier: boss.tier,
             lesson: lesson.title, lessonId: lesson.id, section: section.title });
         }
+        const isFinal = boss.tier === 'final';
         const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
-        const coins = B.Reward.addCoins(isUnit ? 100 : 50, 'boss');
+        const coins = B.Reward.addCoins(isFinal ? 250 : isUnit ? 100 : 50, 'boss');
         head.classList.remove('boss-hit', 'boss-enter'); void head.offsetWidth;
         head.classList.add('boss-defeated'); // patlama animasyonu
         B.Bus.emit(B.Events.BOSS_DEFEATED, { bossId: boss.id, tier: boss.tier }); // konfeti + ekran parlaması
         // Zafer kartını biraz geciktir: önce boss'un patlaması + konfeti görünsün
         setTimeout(() => B.UI.overlay(
           '<div class="ov-big">' + boss.icon + '💥</div><h2>' + boss.name.toUpperCase() + ' DEVRİLDİ!</h2>' +
-          '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
+          '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (isFinal ? ' · 🐉 DERS USTASI OLDUN!' : isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
           '<p class="ov-crystal">💠 Bir Sayı Kristali parçası daha kurtarıldı!</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('boss.win') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]

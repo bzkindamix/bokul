@@ -47,6 +47,116 @@
       {
         "say": "Ve unutma: seninle aynı düşünmeyen kişi düşmanın değildir. Filozoflar fikirlerle güreşir, insanlarla değil. Dinlemek de düşünmenin yarısıdır."
       }
+    ],
+    "phi-dogruyanlis": [
+      {
+        "say": "Yeni görev asker! Bugün konumuz doğru ile yanlışı ayırmak. Bazen zor görünür ama içindeki pusula her zaman çalışır."
+      },
+      {
+        "say": "Bir davranışın doğru mu yanlış mı olduğunu anlamak için sor: \"Bu, birine zarar veriyor mu? Ben olsam hoşuma gider miydi?\""
+      },
+      {
+        "say": "Unutma: doğruyu yapmak bazen zordur ama içini rahatlatır. Yanlış ise kolay görünür, sonra pişmanlık bırakır."
+      }
+    ],
+    "phi-adalet": [
+      {
+        "say": "Bugünkü cephe: adalet! Adalet, herkese hak ettiğini vermek demektir. Bazen eşit, bazen ihtiyaca göre."
+      },
+      {
+        "say": "Paylaşmak zor gelebilir çünkü elimizdekini kaybedeceğimizi sanırız. Oysa paylaşmak dostluğu büyütür."
+      },
+      {
+        "say": "Adil biri sorar: \"Bu paylaşım herkes için haklı mı? Kimse mağdur oluyor mu?\" İşte pusulan bu."
+      }
+    ],
+    "phi-arkadaslik": [
+      {
+        "say": "Bugün en güzel konulardan biri: arkadaşlık! İyi bir arkadaş, iyi günde de kötü günde de yanında olandır."
+      },
+      {
+        "say": "Arkadaşlık güvenle büyür. Sözünü tutmak, sır saklamak ve zor anda destek olmak dostluğun tuğlalarıdır."
+      },
+      {
+        "say": "Unutma: gerçek dost seni olduğun gibi sever ve doğru olmadığında da nazikçe uyarır."
+      }
+    ],
+    "phi-cesaret": [
+      {
+        "say": "Bugün cesaret cephesindeyiz! Cesaret, hiç korkmamak değildir. Cesaret, korkmana rağmen doğru olanı yapabilmektir."
+      },
+      {
+        "say": "Korku aslında bir dostumuzdur, bizi tehlikeden korur. Ama bazı korkular abartılıdır ve onları küçük adımlarla aşarız."
+      },
+      {
+        "say": "En büyük cesaret bazen \"özür dilerim\", \"yanıldım\" ya da \"yardıma ihtiyacım var\" diyebilmektir."
+      }
+    ],
+    "phi-durustluk": [
+      {
+        "say": "Bugünkü değerimiz: dürüstlük! Dürüst olmak, hem sözlerimizde hem davranışlarımızda doğru olmaktır."
+      },
+      {
+        "say": "Bir yalan söylenince, onu örtmek için yeni yalanlar gerekir. Doğru ise tek başına ayakta durur."
+      },
+      {
+        "say": "Dürüstlük bazen zordur ama güven kazandırır. Güvenilen insan, en değerli hazineye sahiptir."
+      }
+    ],
+    "phi-saygi": [
+      {
+        "say": "Bugün çok önemli bir cephe: farklılıklara saygı! Dünyada milyonlarca insan var ve hepimiz birbirimizden farklıyız. İşte bu güzel!"
+      },
+      {
+        "say": "Farklı dil, farklı görünüş, farklı fikir... Bunlar korkulacak değil, keşfedilecek şeylerdir. Bir bahçe tek renk çiçekle değil, rengarenk çiçekle güzeldir."
+      },
+      {
+        "say": "Saygı demek, \"Ben senden farklıyım ama sana değer veriyorum\" diyebilmektir. Kimseyi farklı diye dışlamayız."
+      }
+    ],
+    "phi-sorumluluk": [
+      {
+        "say": "Yükseldik asker! Bugün büyük bir konu: seçimlerimiz ve sorumluluğumuz. Her gün onlarca seçim yaparız ve her seçimin bir sonucu vardır."
+      },
+      {
+        "say": "Sorumluluk demek, seçimlerimizin sonuçlarını sahiplenmektir. \"Ben yaptım, düzeltirim\" diyebilmek büyümenin işaretidir."
+      },
+      {
+        "say": "Bahaneler kolaydır ama bir şeyi değiştirmez. Sorumluluk almak zordur ama seni güçlü ve güvenilir yapar."
+      }
+    ],
+    "phi-mutluluk": [
+      {
+        "say": "Bugün çok özel bir soru: mutluluk nedir? Filozoflar binlerce yıldır bunu düşünüyor ve tek bir cevabı yok."
+      },
+      {
+        "say": "Mutluluk bir kelebeğe benzer: kovalarsan kaçar, sen güzel şeylere odaklanınca omzuna konar. Yeni bir oyuncak kısa mutluluk verir; sevgi ve dostluk ise uzun."
+      },
+      {
+        "say": "Mutluluğun sırrı çoğu zaman şudur: sahip olduklarına şükretmek, sevdiklerinle vakit geçirmek ve başkalarına iyilik yapmak."
+      }
+    ],
+    "phi-mantikoyun": [
+      {
+        "say": "Son cephe ve en eğlencelisi: mantık oyunları! Beynin bir kas gibidir; bilmecelerle çalıştırdıkça güçlenir."
+      },
+      {
+        "say": "Mantık, adım adım düşünmektir. \"Şu doğruysa, o zaman bu da doğru olmalı\" diye ilerleriz. Acele karar tuzağa düşürür."
+      },
+      {
+        "say": "Unutma: iyi bir dedektif gibi ipuçlarını toplar, \"gerçekten öyle mi?\" diye sorar ve sonra karar veririz."
+      }
+    ],
+    "phi-final": [
+      {
+        "say": "Bu AN geldi Komutan! Anlam Arayışı cephesinin EN BÜYÜK sınavı: tüm öğrendiklerin bir arada, en zoru."
+      },
+      {
+        "say": "🦉 Bilgelik Sfenksi karşında! Onu yenersen bu dersin USTASI olursun. Efsanevi ödül seni bekliyor."
+      },
+      {
+        "say": "Sakin ol, öğrendiklerine güven. Her soru bir darbe. Hazırsan… HÜCUM!"
+      }
     ]
   },
   "units": [
@@ -543,6 +653,2026 @@
               "hint": "Kendini onun yerine koy."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — Doğru & Yanlış",
+      "sections": [
+        {
+          "id": "s-phi-dogruyanlis",
+          "title": "Doğru & Yanlış",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-dogruyanlis-m1",
+              "type": "teach",
+              "title": "Düşünce Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-dogruyanlis"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-dogruyanlis-m2",
+              "type": "practice",
+              "title": "Akıl Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-dogruyanlis"
+              }
+            },
+            {
+              "id": "s-phi-dogruyanlis-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-phi-dogruyanlis"
+              }
+            },
+            {
+              "id": "s-phi-dogruyanlis-m4",
+              "type": "challenge",
+              "title": "Zorlu Bilmece",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-dogruyanlis"
+              }
+            },
+            {
+              "id": "s-phi-dogruyanlis-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-dogruyanlis",
+            "tier": "topic",
+            "name": "Kararsızlık Bulutu",
+            "icon": "⚖️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-phi-dogruyanlis"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-phi-dogruyanlis"
+            }
+          },
+          "bank": [
+            {
+              "q": "Bir arkadaşın yanlışlıkla bardağını kırdı ve hemen özür diledi. En doğru davranış nedir?",
+              "skill": "empati",
+              "options": [
+                "Anlayış göstermek",
+                "Ona bağırmak",
+                "Küsüp gitmek",
+                "Onun bir eşyasını kırmak"
+              ],
+              "correct": 0,
+              "hint": "Sen olsan sana nasıl davranılmasını isterdin?"
+            },
+            {
+              "q": "Yerde bir cüzdan buldun, içinde para var. Doğru olan nedir?",
+              "skill": "durustluk",
+              "options": [
+                "Sahibine ulaştırmaya çalışmak",
+                "Parayı cebe atmak",
+                "Yere geri fırlatmak",
+                "Arkadaşlarla paylaşmak"
+              ],
+              "correct": 0,
+              "hint": "O cüzdan senin olsaydı ne olmasını isterdin?"
+            },
+            {
+              "q": "Yaptığın bir yanlışı fark ettin. En olgun davranış hangisi?",
+              "skill": "durustluk",
+              "options": [
+                "Kabul edip düzeltmeye çalışmak",
+                "Başkasının üstüne atmak",
+                "Görmezden gelmek",
+                "İnkâr etmek"
+              ],
+              "correct": 0,
+              "hint": "Hatayı kabul etmek, onu düzeltmenin ilk adımıdır."
+            },
+            {
+              "q": "Bir davranışın doğru olup olmadığını nasıl anlarız?",
+              "skill": "mantik",
+              "options": [
+                "Kimseye haksızlık ve zarar veriyor mu diye düşünerek",
+                "Kolay mı diye bakarak",
+                "Eğlenceli mi diye bakarak",
+                "Hızlı mı diye bakarak"
+              ],
+              "correct": 0,
+              "hint": "Doğru davranış, başkasına zarar vermeyendir."
+            },
+            {
+              "q": "Kimse görmüyorken kurala uymak neyin işaretidir?",
+              "skill": "durustluk",
+              "options": [
+                "Gerçek dürüstlüğün",
+                "Korkunun",
+                "Şansın",
+                "Zayıflığın"
+              ],
+              "correct": 0,
+              "hint": "Kimse bakmıyorken kim olduğun, gerçek karakterindir."
+            },
+            {
+              "q": "Arkadaşın kopya çekmeni istiyor. Doğru olan hangisi?",
+              "skill": "mantik",
+              "options": [
+                "Nazikçe hayır demek",
+                "Hemen kabul etmek",
+                "Öğretmene bağırmak",
+                "Sınavı yırtmak"
+              ],
+              "correct": 0,
+              "hint": "Doğru davranış her zaman en kolay olan değildir."
+            },
+            {
+              "q": "Yanlış bir şey yapmak bazen neden kolay görünür?",
+              "skill": "mantik",
+              "options": [
+                "Sonucunu o an düşünmediğimiz için",
+                "Her zaman iyi olduğu için",
+                "Kimse yapmadığı için",
+                "İmkânsız olduğu için"
+              ],
+              "correct": 0,
+              "hint": "Kolay görüneni yapmadan önce sonucunu düşün."
+            },
+            {
+              "q": "Küçük bir yalan söyleyip birini üzmekten kurtulabilirsin. En doğrusu?",
+              "skill": "durustluk",
+              "options": [
+                "Nazik ama dürüst olmak",
+                "Büyük bir yalan söylemek",
+                "Hiç konuşmamak",
+                "Suçu başkasına atmak"
+              ],
+              "correct": 0,
+              "hint": "Dürüstlük ile kırıcılık aynı şey değildir; nazikçe doğruyu söyleyebilirsin."
+            },
+            {
+              "q": "Doğru olanı yaptığında içinde nasıl bir his olur?",
+              "skill": "empati",
+              "options": [
+                "Huzur ve rahatlık",
+                "Sürekli korku",
+                "Boşluk",
+                "Hiçbir his"
+              ],
+              "correct": 0,
+              "hint": "Doğru davranış çoğu zaman içini rahatlatır."
+            },
+            {
+              "q": "Bir kural sana haksız geliyor. En olgun yol hangisi?",
+              "skill": "mantik",
+              "options": [
+                "Neden konduğunu sormak ve konuşmak",
+                "Herkese bağırmak",
+                "Zarar vermek",
+                "Kaçmak"
+              ],
+              "correct": 0,
+              "hint": "Filozoflar önce anlamaya, sonra tartışmaya çalışır."
+            },
+            {
+              "q": "İki seçenek de zor. Doğruyu seçmek için ne yaparız?",
+              "skill": "mantik",
+              "options": [
+                "Hangisi daha az zarar verir diye düşünürüz",
+                "Yazı tura atarız",
+                "En hızlısını seçeriz",
+                "Hiç seçmeyiz"
+              ],
+              "correct": 0,
+              "hint": "Bazen doğru, en az zarar veren yoldur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — Adalet & Paylaşma",
+      "sections": [
+        {
+          "id": "s-phi-adalet",
+          "title": "Adalet & Paylaşma",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-adalet-m1",
+              "type": "teach",
+              "title": "Düşünce Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-adalet"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-adalet-m2",
+              "type": "practice",
+              "title": "Akıl Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-adalet"
+              }
+            },
+            {
+              "id": "s-phi-adalet-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-phi-adalet"
+              }
+            },
+            {
+              "id": "s-phi-adalet-m4",
+              "type": "challenge",
+              "title": "Zorlu Bilmece",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-adalet"
+              }
+            },
+            {
+              "id": "s-phi-adalet-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-adalet",
+            "tier": "topic",
+            "name": "Bencillik Devi",
+            "icon": "🍰",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-phi-adalet"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-phi-adalet"
+            }
+          },
+          "bank": [
+            {
+              "q": "12 kurabiye var, 3 arkadaş eşit paylaşacak. Adil dağıtım nedir?",
+              "skill": "kavram",
+              "options": [
+                "Herkese 4 tane",
+                "En büyüğe 10 tane",
+                "İlk kapan hepsini alır",
+                "Kimseye vermemek"
+              ],
+              "correct": 0,
+              "hint": "Adaletin matematiği çoğu zaman bölmedir."
+            },
+            {
+              "q": "Oyuncakla sıra beklemek neden önemlidir?",
+              "skill": "empati",
+              "options": [
+                "Herkesin hakkı olduğu için",
+                "Sıkıcı olduğu için",
+                "Kimse istemediği için",
+                "Zorunlu olduğu için"
+              ],
+              "correct": 0,
+              "hint": "Sıra beklemek, herkesin hakkına saygıdır."
+            },
+            {
+              "q": "Bir arkadaşının hiç kalemi yok, senin üç tane var. Adil olan?",
+              "skill": "empati",
+              "options": [
+                "Bir tanesini ona vermek",
+                "Hepsini saklamak",
+                "Onunla alay etmek",
+                "Kalemleri kırmak"
+              ],
+              "correct": 0,
+              "hint": "Paylaşmak, ihtiyacı olana el uzatmaktır."
+            },
+            {
+              "q": "Takım oyununda adalet nasıl sağlanır?",
+              "skill": "kavram",
+              "options": [
+                "Herkese oynama fırsatı vererek",
+                "Sadece en iyiyi oynatarak",
+                "Kimseyi oynatmayarak",
+                "Kural koymayarak"
+              ],
+              "correct": 0,
+              "hint": "Adil takım, herkese şans tanır."
+            },
+            {
+              "q": "\"Adil\" ne demektir?",
+              "skill": "kavram",
+              "options": [
+                "Herkese hak ettiğini vermek",
+                "En güçlünün kazanması",
+                "Her zaman eşit bölmek zorunda olmak",
+                "Hiç paylaşmamak"
+              ],
+              "correct": 0,
+              "hint": "Adalet bazen eşitlik, bazen ihtiyaca göre olur."
+            },
+            {
+              "q": "Sıranı beklerken biri öne geçmeye çalışıyor. En olgun tavır?",
+              "skill": "empati",
+              "options": [
+                "Nazikçe sıranın senin olduğunu söylemek",
+                "İtip kakmak",
+                "Bağırmak",
+                "Vurmak"
+              ],
+              "correct": 0,
+              "hint": "Hakkını nazikçe ama net savunabilirsin."
+            },
+            {
+              "q": "Bir yarışmada arkadaşın kazandı, sen kaybettin. Adil davranış?",
+              "skill": "empati",
+              "options": [
+                "Onu tebrik etmek",
+                "Kızıp gitmek",
+                "Hile yaptığını söylemek",
+                "Ödülü saklamak"
+              ],
+              "correct": 0,
+              "hint": "Adalet, kaybettiğinde de dürüst kalmaktır."
+            },
+            {
+              "q": "İki kardeş bir pastayı paylaşacak. En adil yöntem?",
+              "skill": "mantik",
+              "options": [
+                "Biri keser, diğeri ilk parçayı seçer",
+                "Büyük olan hepsini alır",
+                "Kimse yemez",
+                "Yere atarlar"
+              ],
+              "correct": 0,
+              "hint": "Kesen adil keser çünkü seçme sırası diğerinde!"
+            },
+            {
+              "q": "Grup ödevinde bir kişi hiç çalışmadı ama ödülü istiyor. Adil olan?",
+              "skill": "kavram",
+              "options": [
+                "Emek verenin hakkını gözetmek",
+                "Herkesi cezalandırmak",
+                "Çalışanları unutmak",
+                "Kavga etmek"
+              ],
+              "correct": 0,
+              "hint": "Adalet, emeğe saygı gösterir."
+            },
+            {
+              "q": "Paylaşmak bize ne kazandırır?",
+              "skill": "empati",
+              "options": [
+                "Dostluk ve güven",
+                "Yalnızlık",
+                "Hiçbir şey",
+                "Kayıp"
+              ],
+              "correct": 0,
+              "hint": "Paylaştıkça mutluluk azalmaz, çoğalır."
+            },
+            {
+              "q": "Herkese aynı ayakkabı numarası vermek adil midir?",
+              "skill": "mantik",
+              "options": [
+                "Hayır, çünkü ihtiyaçlar farklıdır",
+                "Evet, her zaman",
+                "Evet, kolaydır",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Adalet bazen \"herkese aynısı\" değil, \"herkese uygunu\" demektir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — Arkadaşlık",
+      "sections": [
+        {
+          "id": "s-phi-arkadaslik",
+          "title": "Arkadaşlık",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-arkadaslik-m1",
+              "type": "teach",
+              "title": "Düşünce Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-arkadaslik"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-arkadaslik-m2",
+              "type": "practice",
+              "title": "Akıl Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-arkadaslik"
+              }
+            },
+            {
+              "id": "s-phi-arkadaslik-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-phi-arkadaslik"
+              }
+            },
+            {
+              "id": "s-phi-arkadaslik-m4",
+              "type": "challenge",
+              "title": "Zorlu Bilmece",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-arkadaslik"
+              }
+            },
+            {
+              "id": "s-phi-arkadaslik-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-arkadaslik",
+            "tier": "topic",
+            "name": "Yalnızlık Golemi",
+            "icon": "🤝",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-phi-arkadaslik"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-phi-arkadaslik"
+            }
+          },
+          "bank": [
+            {
+              "q": "Gerçek bir arkadaş nasıldır?",
+              "skill": "empati",
+              "options": [
+                "İyi ve kötü günde yanında olur",
+                "Sadece bir şey isteyince arar",
+                "Seninle alay eder",
+                "Sırlarını herkese anlatır"
+              ],
+              "correct": 0,
+              "hint": "Dostluk, zor günde belli olur."
+            },
+            {
+              "q": "Arkadaşın üzgün. En güzel davranış?",
+              "skill": "empati",
+              "options": [
+                "Onu dinlemek ve yanında olmak",
+                "Görmezden gelmek",
+                "Gülmek",
+                "Konuyu değiştirmek"
+              ],
+              "correct": 0,
+              "hint": "Bazen en güzel yardım, sadece dinlemektir."
+            },
+            {
+              "q": "Bir sırrını sana emanet etti. Doğru olan?",
+              "skill": "durustluk",
+              "options": [
+                "Sırrını saklamak",
+                "Herkese anlatmak",
+                "Onunla dalga geçmek",
+                "Başkasına satmak"
+              ],
+              "correct": 0,
+              "hint": "Sır saklamak, güvenin temelidir."
+            },
+            {
+              "q": "Arkadaşın yanlış bir şey yapıyor. Gerçek dost ne yapar?",
+              "skill": "mantik",
+              "options": [
+                "Nazikçe uyarır",
+                "Onu kışkırtır",
+                "Alay eder",
+                "Görmezden gelir"
+              ],
+              "correct": 0,
+              "hint": "Gerçek dost, seni doğruya çağırandır."
+            },
+            {
+              "q": "Yeni gelen bir çocuk sınıfta kimseyi tanımıyor. Sen ne yaparsın?",
+              "skill": "empati",
+              "options": [
+                "Onunla arkadaş olmayı teklif ederim",
+                "Yok sayarım",
+                "Alay ederim",
+                "Uzak dururum"
+              ],
+              "correct": 0,
+              "hint": "Küçük bir \"merhaba\" bir dostluğun başlangıcı olabilir."
+            },
+            {
+              "q": "Arkadaşınla tartıştın. Barışmak için en olgun adım?",
+              "skill": "empati",
+              "options": [
+                "Konuşup özür dilemek",
+                "Sonsuza dek küsmek",
+                "Herkese şikâyet etmek",
+                "İntikam almak"
+              ],
+              "correct": 0,
+              "hint": "Barışmak, kaybetmek değil olgunluktur."
+            },
+            {
+              "q": "İyi bir arkadaş, senin başarını görünce ne hisseder?",
+              "skill": "empati",
+              "options": [
+                "Senin adına sevinir",
+                "Kıskanır",
+                "Üzülür",
+                "Umursamaz"
+              ],
+              "correct": 0,
+              "hint": "Gerçek dost, senin mutluluğunla mutlu olur."
+            },
+            {
+              "q": "Arkadaş grubun bir çocuğu dışlıyor. En doğru tavır?",
+              "skill": "empati",
+              "options": [
+                "Dışlanana destek olmak",
+                "Gruba katılıp dışlamak",
+                "Sessiz kalıp izlemek",
+                "Alay etmek"
+              ],
+              "correct": 0,
+              "hint": "Doğru olan, çoğunluğa değil vicdanına uymaktır."
+            },
+            {
+              "q": "Arkadaşlıkta güven nasıl büyür?",
+              "skill": "mantik",
+              "options": [
+                "Sözünü tutup dürüst olarak",
+                "Sürekli yalan söyleyerek",
+                "Sır satarak",
+                "Kandırarak"
+              ],
+              "correct": 0,
+              "hint": "Her tutulan söz, güveni bir tuğla büyütür."
+            },
+            {
+              "q": "Arkadaşın senden bir oyunda hep kazanmanı bekliyor, kaybedince kızıyor. Bu sağlıklı mı?",
+              "skill": "mantik",
+              "options": [
+                "Hayır, dostluk kazanmaya bağlı olmamalı",
+                "Evet, hep kazanmalısın",
+                "Evet, kızmakta haklı",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Gerçek dostluk skor tablosuna bakmaz."
+            },
+            {
+              "q": "Bir arkadaşın seni sürekli üzüyor ve hiç özür dilemiyor. Ne yaparsın?",
+              "skill": "empati",
+              "options": [
+                "Nazikçe hislerimi anlatırım",
+                "Ben de onu üzerim",
+                "Herkese kötülerim",
+                "Hemen dövüşürüm"
+              ],
+              "correct": 0,
+              "hint": "Hislerini anlatmak, sorunu çözmenin ilk adımıdır."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "ÜNİTE 5 — Cesaret & Korku",
+      "sections": [
+        {
+          "id": "s-phi-cesaret",
+          "title": "Cesaret & Korku",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-cesaret-m1",
+              "type": "teach",
+              "title": "Düşünce Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-cesaret"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-cesaret-m2",
+              "type": "practice",
+              "title": "Akıl Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-cesaret"
+              }
+            },
+            {
+              "id": "s-phi-cesaret-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-phi-cesaret"
+              }
+            },
+            {
+              "id": "s-phi-cesaret-m4",
+              "type": "challenge",
+              "title": "Zorlu Bilmece",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-cesaret"
+              }
+            },
+            {
+              "id": "s-phi-cesaret-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-cesaret",
+            "tier": "topic",
+            "name": "Korku Hayaleti",
+            "icon": "🦁",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-phi-cesaret"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-phi-cesaret"
+            }
+          },
+          "bank": [
+            {
+              "q": "Cesaret ne demektir?",
+              "skill": "kavram",
+              "options": [
+                "Korkmana rağmen doğru olanı yapmak",
+                "Hiç korkmamak",
+                "Herkesle kavga etmek",
+                "Tehlikeye atlamak"
+              ],
+              "correct": 0,
+              "hint": "Cesur insan da korkar, ama korkusuna teslim olmaz."
+            },
+            {
+              "q": "Sınıfta yanlış bir şeye herkes gülüyor, sadece sen üzülüyorsun. Cesur davranış?",
+              "skill": "mantik",
+              "options": [
+                "Doğru bulmadığını sakince söylemek",
+                "Sen de gülmek",
+                "Kaçmak",
+                "Susup sinmek"
+              ],
+              "correct": 0,
+              "hint": "Bazen en büyük cesaret, kalabalığa karşı durmaktır."
+            },
+            {
+              "q": "Karanlıktan korkuyorsun. Korkunu aşmanın iyi yolu?",
+              "skill": "mantik",
+              "options": [
+                "Küçük adımlarla alışmak",
+                "Hiç denememek",
+                "Herkesten saklamak",
+                "Sonsuza dek kaçmak"
+              ],
+              "correct": 0,
+              "hint": "Korkular çoğu zaman üstüne gidince küçülür."
+            },
+            {
+              "q": "Bir yanlış yaptın ve itiraf etmek seni korkutuyor. En cesur davranış?",
+              "skill": "durustluk",
+              "options": [
+                "Korksan da doğruyu söylemek",
+                "Yalan söylemek",
+                "Suçu başkasına atmak",
+                "Kaçmak"
+              ],
+              "correct": 0,
+              "hint": "\"Yanıldım\" demek, en cesur cümlelerden biridir."
+            },
+            {
+              "q": "Korku bize ne işe yarar?",
+              "skill": "mantik",
+              "options": [
+                "Bizi tehlikeden korur",
+                "Hiçbir işe yaramaz",
+                "Sadece zarar verir",
+                "Bizi zayıf yapar"
+              ],
+              "correct": 0,
+              "hint": "Korku, dikkatli olmamızı sağlayan bir alarmdır."
+            },
+            {
+              "q": "Yeni bir şey denemekten korkuyorsun. En iyi yaklaşım?",
+              "skill": "mantik",
+              "options": [
+                "Küçük bir adımla başlamak",
+                "Hiç denememek",
+                "Vazgeçmek",
+                "Başkasını suçlamak"
+              ],
+              "correct": 0,
+              "hint": "Her büyük yolculuk tek bir adımla başlar."
+            },
+            {
+              "q": "Bir arkadaşın haksızlığa uğruyor. Cesur olan ne yapar?",
+              "skill": "empati",
+              "options": [
+                "Yanında durup destek olur",
+                "Görmezden gelir",
+                "Kaçar",
+                "Zorbaya katılır"
+              ],
+              "correct": 0,
+              "hint": "Cesaret, bazen başkası için ses çıkarmaktır."
+            },
+            {
+              "q": "Yardıma ihtiyacın var ama istemeye utanıyorsun. En doğrusu?",
+              "skill": "empati",
+              "options": [
+                "Cesurca yardım istemek",
+                "Susup zorlanmak",
+                "Kızmak",
+                "Kaçmak"
+              ],
+              "correct": 0,
+              "hint": "Yardım istemek zayıflık değil, akıllılıktır."
+            },
+            {
+              "q": "Cesaret ile pervasızlık (dikkatsizce tehlikeye atlamak) aynı şey midir?",
+              "skill": "mantik",
+              "options": [
+                "Hayır, cesaret düşünerek hareket eder",
+                "Evet, aynıdır",
+                "Evet, ikisi de aynı",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Cesur insan düşünür; pervasız insan düşünmeden atılır."
+            },
+            {
+              "q": "Sahnede konuşmaktan korkuyorsun ama görevlisin. Cesur adım?",
+              "skill": "mantik",
+              "options": [
+                "Korkuma rağmen deneyip konuşmak",
+                "Hiç çıkmamak",
+                "Ağlayıp kaçmak",
+                "Başkasını suçlamak"
+              ],
+              "correct": 0,
+              "hint": "Kalbin hızlı atsa bile denemek, cesaretin ta kendisidir."
+            },
+            {
+              "q": "Bir zorba senden küçük birine kötü davranıyor. En doğrusu?",
+              "skill": "empati",
+              "options": [
+                "Büyükten yardım isteyip destek olmak",
+                "Katılmak",
+                "Gülmek",
+                "Kaçmak"
+              ],
+              "correct": 0,
+              "hint": "Cesaret her zaman kavga değildir; doğru yardımı çağırmak da cesarettir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "ÜNİTE 6 — Dürüstlük",
+      "sections": [
+        {
+          "id": "s-phi-durustluk",
+          "title": "Dürüstlük",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-durustluk-m1",
+              "type": "teach",
+              "title": "Düşünce Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-durustluk"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-durustluk-m2",
+              "type": "practice",
+              "title": "Akıl Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-durustluk"
+              }
+            },
+            {
+              "id": "s-phi-durustluk-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-phi-durustluk"
+              }
+            },
+            {
+              "id": "s-phi-durustluk-m4",
+              "type": "challenge",
+              "title": "Zorlu Bilmece",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-durustluk"
+              }
+            },
+            {
+              "id": "s-phi-durustluk-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-durustluk",
+            "tier": "topic",
+            "name": "Yalan Tilkisi",
+            "icon": "🦊",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-phi-durustluk"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-phi-durustluk"
+            }
+          },
+          "bank": [
+            {
+              "q": "Dürüstlük ne demektir?",
+              "skill": "kavram",
+              "options": [
+                "Sözde ve davranışta doğru olmak",
+                "Her istediğini almak",
+                "Hep susmak",
+                "En hızlı olmak"
+              ],
+              "correct": 0,
+              "hint": "Dürüst insan, olduğu gibi görünendir."
+            },
+            {
+              "q": "Vazoyu sen kırdın ama kimse görmedi. En dürüst davranış?",
+              "skill": "durustluk",
+              "options": [
+                "Doğruyu söyleyip özür dilemek",
+                "Kardeşin yaptı demek",
+                "Saklamak",
+                "İnkâr etmek"
+              ],
+              "correct": 0,
+              "hint": "Kimse görmese de doğruyu söylemek gerçek dürüstlüktür."
+            },
+            {
+              "q": "Bir yalan söyledin. Sonra ne olur genelde?",
+              "skill": "mantik",
+              "options": [
+                "Onu örtmek için yeni yalanlar gerekir",
+                "Her şey kolaylaşır",
+                "Hiçbir şey olmaz",
+                "Herkes sevinir"
+              ],
+              "correct": 0,
+              "hint": "Yalan, kartondan bir kule gibidir; büyüdükçe yıkılır."
+            },
+            {
+              "q": "Sınavda kopya çekmek dürüstlüğe uyar mı?",
+              "skill": "mantik",
+              "options": [
+                "Hayır, kendini ve başkalarını kandırmaktır",
+                "Evet, akıllıcadır",
+                "Evet, herkes yapar",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Kopya, öğrenmeyi değil sadece notu taklit eder."
+            },
+            {
+              "q": "Fazla para üstü aldın. Dürüst davranış?",
+              "skill": "durustluk",
+              "options": [
+                "Fazlasını geri vermek",
+                "Cebe atmak",
+                "Hızla kaçmak",
+                "Arkadaşla paylaşmak"
+              ],
+              "correct": 0,
+              "hint": "Sana ait olmayanı geri vermek dürüstlüktür."
+            },
+            {
+              "q": "Bir arkadaşın yeni saç kesimini beğenmedin ama o çok mutlu. Nazik ve dürüst yol?",
+              "skill": "empati",
+              "options": [
+                "\"Sen mutluysan bu güzel\" gibi nazik olmak",
+                "Yüzüne gülüp arkadan alay etmek",
+                "Çok kırıcı konuşmak",
+                "Yalan yere çok övmek"
+              ],
+              "correct": 0,
+              "hint": "Dürüstlük ile nezaket birlikte yürüyebilir."
+            },
+            {
+              "q": "Dürüst insanlara neden güvenilir?",
+              "skill": "mantik",
+              "options": [
+                "Sözleri ile davranışları uyuştuğu için",
+                "Hızlı oldukları için",
+                "Güçlü oldukları için",
+                "Zengin oldukları için"
+              ],
+              "correct": 0,
+              "hint": "Güven, tutulan sözlerle kazanılır."
+            },
+            {
+              "q": "Ödevini yapmadın. Öğretmen sorunca en dürüst cevap?",
+              "skill": "durustluk",
+              "options": [
+                "Yapmadığımı dürüstçe söylemek",
+                "Unuttum diye yalan uydurmak",
+                "Köpeğim yedi demek",
+                "Suçu arkadaşa atmak"
+              ],
+              "correct": 0,
+              "hint": "Dürüst itiraf, uydurulmuş bahaneden değerlidir."
+            },
+            {
+              "q": "Küçük bir yalan zararsızdır diyenlere ne dersin?",
+              "skill": "mantik",
+              "options": [
+                "Küçük yalanlar da güveni yıpratır",
+                "Doğru, hiç zararı yok",
+                "Yalanlar hep iyidir",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Bir çatlak küçük başlar ama büyür."
+            },
+            {
+              "q": "Arkadaşın kopya çektiğini gördün. En olgun davranış?",
+              "skill": "mantik",
+              "options": [
+                "Onunla konuşup doğruya çağırmak",
+                "Hemen herkese yaymak",
+                "Ben de çekmek",
+                "Şantaj yapmak"
+              ],
+              "correct": 0,
+              "hint": "Dürüstlük başkasını utandırmadan uyarabilir."
+            },
+            {
+              "q": "Dürüst olmak bazen neden zordur?",
+              "skill": "mantik",
+              "options": [
+                "Bazen doğru, duymak istenmeyen şeydir",
+                "Her zaman kolaydır",
+                "Hiç zor değildir",
+                "Anlamsızdır"
+              ],
+              "correct": 0,
+              "hint": "Zor olsa da doğru, uzun vadede kazandırır."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "title": "ÜNİTE 7 — Farklılıklara Saygı",
+      "sections": [
+        {
+          "id": "s-phi-saygi",
+          "title": "Farklılıklara Saygı",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-saygi-m1",
+              "type": "teach",
+              "title": "Düşünce Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-saygi"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-saygi-m2",
+              "type": "practice",
+              "title": "Akıl Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-saygi"
+              }
+            },
+            {
+              "id": "s-phi-saygi-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-phi-saygi"
+              }
+            },
+            {
+              "id": "s-phi-saygi-m4",
+              "type": "challenge",
+              "title": "Zorlu Bilmece",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-saygi"
+              }
+            },
+            {
+              "id": "s-phi-saygi-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-saygi",
+            "tier": "topic",
+            "name": "Önyargı Canavarı",
+            "icon": "🌈",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-phi-saygi"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-phi-saygi"
+            }
+          },
+          "bank": [
+            {
+              "q": "İnsanların birbirinden farklı olması nasıl bir şeydir?",
+              "skill": "kavram",
+              "options": [
+                "Dünyayı zengin ve renkli yapar",
+                "Kötü bir şeydir",
+                "Herkesi aynı yapmalıyız",
+                "Korkutucudur"
+              ],
+              "correct": 0,
+              "hint": "Bir bahçe rengarenk çiçekle güzeldir."
+            },
+            {
+              "q": "Sınıfa farklı bir ülkeden çocuk geldi, dilimizi az biliyor. En doğru davranış?",
+              "skill": "empati",
+              "options": [
+                "Sabırla yardım edip arkadaş olmak",
+                "Alay etmek",
+                "Dışlamak",
+                "Görmezden gelmek"
+              ],
+              "correct": 0,
+              "hint": "Farklılık, dostluğa engel değildir."
+            },
+            {
+              "q": "Biri senden farklı düşünüyor. Saygılı tavır?",
+              "skill": "empati",
+              "options": [
+                "Fikrini dinleyip değer vermek",
+                "Aptal demek",
+                "Susturmak",
+                "Alay etmek"
+              ],
+              "correct": 0,
+              "hint": "Farklı fikir, düşman değildir."
+            },
+            {
+              "q": "Bir arkadaşın farklı bir yemek yiyor. Ne yaparsın?",
+              "skill": "empati",
+              "options": [
+                "Merak edip saygı gösteririm",
+                "Tiksinirim ve alay ederim",
+                "Yemeğini atarım",
+                "Onunla oturmam"
+              ],
+              "correct": 0,
+              "hint": "Her kültürün lezzetleri farklıdır ve bu güzeldir."
+            },
+            {
+              "q": "Saygı ne demektir?",
+              "skill": "kavram",
+              "options": [
+                "Farklı olsa da birine değer vermek",
+                "Herkesi kendine benzetmek",
+                "Kimseyle konuşmamak",
+                "Hep kazanmak"
+              ],
+              "correct": 0,
+              "hint": "\"Farklıyız ama değerlisin\" demektir."
+            },
+            {
+              "q": "Tekerlekli sandalye kullanan bir arkadaşın var. En doğru tavır?",
+              "skill": "empati",
+              "options": [
+                "Onu olduğu gibi kabul edip dost olmak",
+                "Acıyıp dışlamak",
+                "Alay etmek",
+                "Görmezden gelmek"
+              ],
+              "correct": 0,
+              "hint": "Herkes bir arkadaş olmayı hak eder."
+            },
+            {
+              "q": "\"Herkes benim gibi düşünmeli\" demek doğru mudur?",
+              "skill": "mantik",
+              "options": [
+                "Hayır, farklı fikirler bizi zenginleştirir",
+                "Evet, herkes aynı olmalı",
+                "Evet, farklılık kötü",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Bir orkestrada farklı sesler bir arada güzeldir."
+            },
+            {
+              "q": "Bir çocuk farklı bir dine ya da geleneğe sahip. Saygılı davranış?",
+              "skill": "empati",
+              "options": [
+                "Merak edip saygı göstermek",
+                "Yanlış demek",
+                "Alay etmek",
+                "Dışlamak"
+              ],
+              "correct": 0,
+              "hint": "Anlamaya çalışmak, yargılamaktan güzeldir."
+            },
+            {
+              "q": "Önyargı ne demektir?",
+              "skill": "mantik",
+              "options": [
+                "Tanımadan biri hakkında kötü karar vermek",
+                "Birini tanıyıp sevmek",
+                "Adil olmak",
+                "Merak etmek"
+              ],
+              "correct": 0,
+              "hint": "Kitabı kapağına bakıp yargılamak gibidir."
+            },
+            {
+              "q": "Farklı görünen birini tanımadan \"garip\" demek doğru mu?",
+              "skill": "mantik",
+              "options": [
+                "Hayır, önce tanımak gerekir",
+                "Evet, hemen karar vermeli",
+                "Evet, dış görünüş yeter",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Tanımadan verilen karar çoğu zaman yanlıştır."
+            },
+            {
+              "q": "Herkes aynı olsaydı dünya nasıl olurdu?",
+              "skill": "kavram",
+              "options": [
+                "Çok sıkıcı ve tek renk",
+                "Daha güzel",
+                "Daha eğlenceli",
+                "Aynı kalırdı"
+              ],
+              "correct": 0,
+              "hint": "Farklılıklar hayatı ilginç kılar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "title": "ÜNİTE 8 — Seçim & Sorumluluk",
+      "sections": [
+        {
+          "id": "s-phi-sorumluluk",
+          "title": "Seçim & Sorumluluk",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-sorumluluk-m1",
+              "type": "teach",
+              "title": "Düşünce Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-sorumluluk"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-sorumluluk-m2",
+              "type": "practice",
+              "title": "Akıl Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-sorumluluk"
+              }
+            },
+            {
+              "id": "s-phi-sorumluluk-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-phi-sorumluluk"
+              }
+            },
+            {
+              "id": "s-phi-sorumluluk-m4",
+              "type": "challenge",
+              "title": "Zorlu Bilmece",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-sorumluluk"
+              }
+            },
+            {
+              "id": "s-phi-sorumluluk-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-sorumluluk",
+            "tier": "topic",
+            "name": "Bahane Ejderi",
+            "icon": "🧭",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-phi-sorumluluk"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-phi-sorumluluk"
+            }
+          },
+          "bank": [
+            {
+              "q": "Sorumluluk almak ne demektir?",
+              "skill": "kavram",
+              "options": [
+                "Seçimlerimin sonucunu sahiplenmek",
+                "Suçu başkasına atmak",
+                "Hiç seçim yapmamak",
+                "Kaçmak"
+              ],
+              "correct": 0,
+              "hint": "\"Ben yaptım, düzeltirim\" diyebilmektir."
+            },
+            {
+              "q": "Odanı dağıttın. Sorumlu davranış hangisi?",
+              "skill": "mantik",
+              "options": [
+                "Toplayıp düzeltmek",
+                "Kardeşimin üstüne atmak",
+                "Görmezden gelmek",
+                "Başka odaya kaçmak"
+              ],
+              "correct": 0,
+              "hint": "Kendi dağıttığını toplamak sorumluluktur."
+            },
+            {
+              "q": "Bir bitkiyi sulamak sana verildi ama unuttun ve soldu. Olgun tavır?",
+              "skill": "empati",
+              "options": [
+                "Hatamı kabul edip bakımına özen göstermek",
+                "Bitki zaten kötüydü demek",
+                "Suçu havaya atmak",
+                "Bir daha bakmamak"
+              ],
+              "correct": 0,
+              "hint": "Sorumluluk, bize emanet edilene özen göstermektir."
+            },
+            {
+              "q": "Her seçimin ne olur?",
+              "skill": "mantik",
+              "options": [
+                "Bir sonucu vardır",
+                "Hiçbir etkisi yoktur",
+                "Hep aynıdır",
+                "Anlamsızdır"
+              ],
+              "correct": 0,
+              "hint": "Attığın her taş suya halka bırakır."
+            },
+            {
+              "q": "Ödevini oyun yüzünden yapmadın. En dürüst açıklama?",
+              "skill": "durustluk",
+              "options": [
+                "Oyunu seçtim, sorumluluğu bende",
+                "Zaman yetmedi diye yalan",
+                "Öğretmen çok verdi demek",
+                "İnternet gitti demek"
+              ],
+              "correct": 0,
+              "hint": "Kendi seçimini sahiplenmek olgunluktur."
+            },
+            {
+              "q": "Bir söz verdin ama tutmak zor geliyor. Sorumlu davranış?",
+              "skill": "durustluk",
+              "options": [
+                "Elimden geleni yapıp sözümü tutmak",
+                "Unutmuş gibi yapmak",
+                "Söz vermedim demek",
+                "Kaçmak"
+              ],
+              "correct": 0,
+              "hint": "Verilen söz, bir borç gibidir."
+            },
+            {
+              "q": "Bahane bulmak bir sorunu çözer mi?",
+              "skill": "mantik",
+              "options": [
+                "Hayır, sadece erteler",
+                "Evet, hemen çözer",
+                "Evet, her zaman",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Bahane, halının altına süpürmek gibidir; toz orada durur."
+            },
+            {
+              "q": "İki ödev arasında seçim yapacaksın, ikisi de önemli. En akıllıca yol?",
+              "skill": "mantik",
+              "options": [
+                "Öncelik sırası koyup planlamak",
+                "İkisini de yapmamak",
+                "Yazı tura atmak",
+                "Kaçmak"
+              ],
+              "correct": 0,
+              "hint": "İyi seçim, düşünerek ve planlayarak yapılır."
+            },
+            {
+              "q": "Evcil hayvan sahiplenmek nasıl bir sorumluluktur?",
+              "skill": "kavram",
+              "options": [
+                "Onu her gün beslemek ve sevmekle sürer",
+                "Sadece ilk gün önemlidir",
+                "Hiç sorumluluk değildir",
+                "Sadece oynamaktır"
+              ],
+              "correct": 0,
+              "hint": "Bir canlıya bakmak, her gün süren bir sözdür."
+            },
+            {
+              "q": "Yanlış bir seçim yaptığını fark ettin. En olgun adım?",
+              "skill": "mantik",
+              "options": [
+                "Kabul edip düzeltmeye çalışmak",
+                "Herkesi suçlamak",
+                "İnkâr etmek",
+                "Kaçmak"
+              ],
+              "correct": 0,
+              "hint": "Yanlış seçimi düzeltmek de bir olgunluktur."
+            },
+            {
+              "q": "Takım görevinde senin işini yapmazsan ne olur?",
+              "skill": "empati",
+              "options": [
+                "Bütün takım etkilenir",
+                "Hiçbir şey olmaz",
+                "Sadece ben etkilenirim",
+                "Herkes sevinir"
+              ],
+              "correct": 0,
+              "hint": "Sorumluluk, sadece kendini değil ekibi de ilgilendirir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u9",
+      "title": "ÜNİTE 9 — Mutluluk Nedir",
+      "sections": [
+        {
+          "id": "s-phi-mutluluk",
+          "title": "Mutluluk Nedir",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-mutluluk-m1",
+              "type": "teach",
+              "title": "Düşünce Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-mutluluk"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-mutluluk-m2",
+              "type": "practice",
+              "title": "Akıl Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-mutluluk"
+              }
+            },
+            {
+              "id": "s-phi-mutluluk-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-phi-mutluluk"
+              }
+            },
+            {
+              "id": "s-phi-mutluluk-m4",
+              "type": "challenge",
+              "title": "Zorlu Bilmece",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-mutluluk"
+              }
+            },
+            {
+              "id": "s-phi-mutluluk-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-mutluluk",
+            "tier": "topic",
+            "name": "Bıkkınlık Bulutu",
+            "icon": "😊",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-phi-mutluluk"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-phi-mutluluk"
+            }
+          },
+          "bank": [
+            {
+              "q": "Filozoflara göre mutluluğun tek bir doğru cevabı var mı?",
+              "skill": "kavram",
+              "options": [
+                "Hayır, herkes kendi anlamını bulur",
+                "Evet, kitapta yazar",
+                "Evet, öğretmen söyler",
+                "Evet, market belirler"
+              ],
+              "correct": 0,
+              "hint": "Bazı sorular yönü gösterir, tek cevabı değil."
+            },
+            {
+              "q": "Yeni bir oyuncak aldın. Bu mutluluk nasıldır genelde?",
+              "skill": "mantik",
+              "options": [
+                "Güzel ama kısa sürer",
+                "Sonsuza kadar sürer",
+                "Hiç mutluluk vermez",
+                "Herkesi üzer"
+              ],
+              "correct": 0,
+              "hint": "Bazı mutluluklar kısa, bazıları uzundur."
+            },
+            {
+              "q": "Hangisi daha uzun süren bir mutluluk verir?",
+              "skill": "kavram",
+              "options": [
+                "Sevgi ve dostluk",
+                "Sürekli yeni eşya almak",
+                "Başkasını üzmek",
+                "Yalnız kalmak"
+              ],
+              "correct": 0,
+              "hint": "En kalıcı hazineler satın alınamaz."
+            },
+            {
+              "q": "Mutluluk en çok neye benzer?",
+              "skill": "kavram",
+              "options": [
+                "Kelebeğe; kovalayınca kaçar, sakinken konar",
+                "Bir markete",
+                "Bir sınav notuna",
+                "Bir Wi-Fi şifresine"
+              ],
+              "correct": 0,
+              "hint": "Filozoflar zor kavramları benzetmeyle anlatır."
+            },
+            {
+              "q": "Başkasına iyilik yapmak mutluluğu nasıl etkiler?",
+              "skill": "empati",
+              "options": [
+                "Bizi de mutlu eder",
+                "Bizi üzer",
+                "Hiç etkilemez",
+                "Fakir yapar"
+              ],
+              "correct": 0,
+              "hint": "Paylaşılan sevinç iki katına çıkar."
+            },
+            {
+              "q": "Sürekli başkalarıyla kendini kıyaslamak mutluluğa ne yapar?",
+              "skill": "mantik",
+              "options": [
+                "Genelde azaltır",
+                "Hep artırır",
+                "Hiç etkilemez",
+                "Zengin eder"
+              ],
+              "correct": 0,
+              "hint": "Herkesin yolu farklıdır; kendi adımını say."
+            },
+            {
+              "q": "Şükretmek (sahip olduklarına değer vermek) mutlulukla nasıl ilişkilidir?",
+              "skill": "kavram",
+              "options": [
+                "Mutluluğu büyütür",
+                "Mutluluğu bitirir",
+                "İlgisizdir",
+                "Üzer"
+              ],
+              "correct": 0,
+              "hint": "Elindekini görmek, mutluluğun anahtarıdır."
+            },
+            {
+              "q": "\"Her şeyim olsa mutlu olurdum\" diyen birine ne dersin?",
+              "skill": "mantik",
+              "options": [
+                "Mutluluk sadece sahip olmak değildir",
+                "Doğru, eşya mutluluk verir",
+                "Evet, ne kadar çok o kadar iyi",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "En çok eşyaya sahip olan hep en mutlu değildir."
+            },
+            {
+              "q": "Kötü bir gün geçirdin. Mutluluğu geri bulmak için sağlıklı yol?",
+              "skill": "empati",
+              "options": [
+                "Sevdiklerimle konuşup güzel şeye odaklanmak",
+                "Herkese kızmak",
+                "Yalnız kalıp somurtmak",
+                "Başkasını üzmek"
+              ],
+              "correct": 0,
+              "hint": "Bulutlu bir gün, güneşin bittiği anlamına gelmez."
+            },
+            {
+              "q": "Oyun oynarken kaybettin ama çok eğlendin. Bu ne gösterir?",
+              "skill": "kavram",
+              "options": [
+                "Mutluluk her zaman kazanmak değildir",
+                "Kaybetmek kötüdür",
+                "Sadece kazanan mutludur",
+                "Oyun anlamsızdır"
+              ],
+              "correct": 0,
+              "hint": "Bazen yolun kendisi ödülden güzeldir."
+            },
+            {
+              "q": "Mutluluğun bir kısmı neden başkalarına bağlıdır?",
+              "skill": "empati",
+              "options": [
+                "Sevgi ve dostluk paylaşılınca büyür",
+                "Çünkü onlar para verir",
+                "Çünkü onlar ödev yapar",
+                "Bağlı değildir"
+              ],
+              "correct": 0,
+              "hint": "İnsan, birlikte olduğunda daha mutludur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u10",
+      "title": "ÜNİTE 10 — Mantık & Düşünme Oyunları",
+      "sections": [
+        {
+          "id": "s-phi-mantikoyun",
+          "title": "Mantık & Düşünme Oyunları",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-mantikoyun-m1",
+              "type": "teach",
+              "title": "Düşünce Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-mantikoyun"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-mantikoyun-m2",
+              "type": "practice",
+              "title": "Akıl Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-mantikoyun"
+              }
+            },
+            {
+              "id": "s-phi-mantikoyun-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-phi-mantikoyun"
+              }
+            },
+            {
+              "id": "s-phi-mantikoyun-m4",
+              "type": "challenge",
+              "title": "Zorlu Bilmece",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-phi-mantikoyun"
+              }
+            },
+            {
+              "id": "s-phi-mantikoyun-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-mantikoyun",
+            "tier": "topic",
+            "name": "Bulmaca Golemi",
+            "icon": "🧩",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-phi-mantikoyun"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-phi-mantikoyun"
+            }
+          },
+          "bank": [
+            {
+              "q": "\"Bütün kuşlar uçar. Penguen kuştur. Öyleyse penguen uçar.\" Hata nerede?",
+              "skill": "mantik",
+              "options": [
+                "İlk cümle yanlış; bazı kuşlar uçamaz",
+                "Penguen kuş değildir",
+                "Hiç hata yok",
+                "Penguenler gizlice uçar"
+              ],
+              "correct": 0,
+              "hint": "Zincir, en zayıf halkası kadar sağlamdır."
+            },
+            {
+              "q": "Ali, Ayşe’den uzun. Ayşe, Can’dan uzun. En uzun kim?",
+              "skill": "mantik",
+              "options": [
+                "Ali",
+                "Can",
+                "Ayşe",
+                "Belli olmaz"
+              ],
+              "correct": 0,
+              "hint": "Sıralamayı adım adım diz: Ali > Ayşe > Can."
+            },
+            {
+              "q": "Bir şeye karar vermeden önce en akıllıca ilk adım?",
+              "skill": "mantik",
+              "options": [
+                "İpuçlarını ve gerçekleri toplamak",
+                "Hemen karar vermek",
+                "Yazı tura atmak",
+                "Bağırmak"
+              ],
+              "correct": 0,
+              "hint": "İyi dedektif önce delilleri toplar."
+            },
+            {
+              "q": "\"Bütün balıklar yüzer. Yunus yüzer. Öyleyse yunus balıktır.\" Hata nerede?",
+              "skill": "mantik",
+              "options": [
+                "Yüzmek, balık olmayı gerektirmez",
+                "Yunuslar yüzmez",
+                "Balıklar yüzmez",
+                "Hata yok"
+              ],
+              "correct": 0,
+              "hint": "Ortak bir özellik, aynı şey olmayı kanıtlamaz."
+            },
+            {
+              "q": "2, 4, 6, 8, ... Sıradaki sayı kaç?",
+              "skill": "mantik",
+              "options": [
+                "10",
+                "9",
+                "12",
+                "7"
+              ],
+              "correct": 0,
+              "hint": "Her seferinde kaç ekleniyor? Örüntüyü bul."
+            },
+            {
+              "q": "Bir arkadaşın \"kanıtım yok ama kesin böyle\" diyor. Mantıklı tavır?",
+              "skill": "mantik",
+              "options": [
+                "Kanıt istemek",
+                "Hemen inanmak",
+                "Korkmak",
+                "Kaçmak"
+              ],
+              "correct": 0,
+              "hint": "İyi düşünen, \"nereden biliyorsun?\" diye sorar."
+            },
+            {
+              "q": "Örümceğin 8 bacağı var. 2 örümcekte kaç bacak olur?",
+              "skill": "mantik",
+              "options": [
+                "16",
+                "10",
+                "8",
+                "12"
+              ],
+              "correct": 0,
+              "hint": "8 + 8 kaç eder? Adım adım topla."
+            },
+            {
+              "q": "Acele verilen kararlar neden çoğu zaman yanlış olur?",
+              "skill": "mantik",
+              "options": [
+                "Yeterince düşünmeden verildiği için",
+                "Hep doğru olduğu için",
+                "Hızlı olduğu için iyidir",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Beyin, düşünmek için zaman ister."
+            },
+            {
+              "q": "Bir bilmeceyi çözemedin. En iyi yaklaşım?",
+              "skill": "mantik",
+              "options": [
+                "Farklı yollar deneyip tekrar düşünmek",
+                "Hemen vazgeçmek",
+                "Cevabı ezberlemek",
+                "Sinirlenmek"
+              ],
+              "correct": 0,
+              "hint": "Her bilmece, sabırla bir kapı açar."
+            },
+            {
+              "q": "\"Dışarısı ıslak, öyleyse kesin yağmur yağdı\" demek her zaman doğru mu?",
+              "skill": "mantik",
+              "options": [
+                "Hayır, biri suyu dökmüş de olabilir",
+                "Evet, tek sebep yağmurdur",
+                "Evet, hep doğru",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Bir sonuç için birden çok sebep olabilir."
+            },
+            {
+              "q": "Mantıklı düşünmek beynimize ne yapar?",
+              "skill": "kavram",
+              "options": [
+                "Onu bir kas gibi güçlendirir",
+                "Onu yorup zayıflatır",
+                "Hiçbir şey yapmaz",
+                "Küçültür"
+              ],
+              "correct": 0,
+              "hint": "Çalıştırılan beyin, güçlenen kastır."
+            },
+            {
+              "q": "Bir iddianın doğru olup olmadığını en iyi nasıl anlarız?",
+              "skill": "mantik",
+              "options": [
+                "Gerekçe ve kanıtına bakarak",
+                "Yüksek sesle söyleyene bakarak",
+                "İlk söyleyene inanarak",
+                "Şansa bırakarak"
+              ],
+              "correct": 0,
+              "hint": "Gerçek, sesin yüksekliğiyle değil kanıtla ölçülür."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u-final",
+      "title": "FİNAL — Anlam Arayışı Ustalığı",
+      "sections": [
+        {
+          "id": "s-phi-final",
+          "title": "Büyük Sınav",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-phi-final-t",
+              "type": "teach",
+              "title": "Final Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "phi-final"
+                }
+              ]
+            },
+            {
+              "id": "s-phi-final-1",
+              "type": "practice",
+              "title": "Genel Tekrar",
+              "targetCount": 4,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-phi-final-2",
+              "type": "challenge",
+              "title": "Ustalık Sınavı",
+              "targetCount": 5,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-phi-final-3",
+              "type": "review",
+              "title": "Son Hazırlık",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-phi-final",
+            "tier": "final",
+            "name": "Bilgelik Sfenksi",
+            "icon": "🦉",
+            "hp": 60,
+            "unlock": {
+              "masteryRequired": 0.6
+            },
+            "generator": {
+              "poolAll": true
+            },
+            "rewards": {
+              "xp": 400,
+              "chest": "legendary",
+              "badge": "b-phi-final"
+            }
+          }
         }
       ]
     }

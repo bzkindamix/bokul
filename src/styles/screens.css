@@ -1108,3 +1108,19 @@
 .cos-prev-tall svg { width: auto; height: 100%; max-width: 100%; }
 .cos-grid { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); }
 .store-sub { font-size: 11px; opacity: .6; }
+
+/* === v0.69 — Menü/ızgara: son eksik satırı üste göre ORTALA (her sayfada tutarlı) ===
+ * Grid'ler flex-wrap + justify-center'a çevrilir: her satırda eşit kutu; son satır
+ * yeterli kutu yoksa ortalanır. Kutular sabit genişlikte (büyümez) ki ortalama şaşmasın. */
+.evim-doors { display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-start; }
+.evim-doors .door { flex: 0 1 168px; }
+.part-grid, .store-grid, .badge-grid, .cos-grid {
+  display: flex; flex-wrap: wrap; justify-content: center; align-content: flex-start;
+}
+.part-grid > .part-card { flex: 0 1 104px; }
+.part-grid.grid-tall > .part-card { flex: 0 1 96px; }
+.store-grid > .store-card { flex: 0 1 150px; }
+.badge-grid > .badge-card { flex: 0 1 104px; }
+.cos-grid > .cos-card { flex: 0 1 150px; }
+/* boş dolap ipucu bloğu tam satır kaplasın (flex bozmasın) */
+.part-grid.part-grid-empty { display: block; }

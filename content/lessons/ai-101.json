@@ -22,7 +22,15 @@
     "ai-temel",
     "ai-guvenlik",
     "prompt-aciklik",
-    "prompt-baglam"
+    "prompt-baglam",
+    "ai-robot",
+    "ai-veri",
+    "ai-algoritma",
+    "ai-makine-ogrenmesi",
+    "ai-sesli-asistan",
+    "ai-goruntu-tanima",
+    "ai-gunluk-hayat",
+    "ai-gelecek"
   ],
   "hints": {},
   "teachScripts": {
@@ -46,6 +54,116 @@
       },
       {
         "say": "Örnek: 'Bana bir şey anlat' KÖTÜ. 'Uzayı 10 yaşında birine, 3 kısa maddeyle, eğlenceli anlat' MÜKEMMEL. Fark bu işte!"
+      }
+    ],
+    "ai-robot": [
+      {
+        "say": "Sistem brifingi! ROBOT, programlanmış görevleri yapan bir makinedir. Kolları, tekerlekleri veya sensörleri olabilir; fabrikalarda, hastanelerde ve hatta uzayda çalışır."
+      },
+      {
+        "say": "Her robot yapay zekâ değildir: bazıları sadece aynı hareketi tekrar eder. Ama bazı robotlar sensörlerden gelen bilgiyle karar verir; işte orada yapay zekâ devreye girer."
+      },
+      {
+        "say": "Unutma: robotlar bize yardım etmek için tasarlanır, ama gerçek duyguları yoktur. Bir robotla konuşurken de kişisel bilgilerini paylaşma; emin olamadığında büyüğüne danış."
+      }
+    ],
+    "ai-veri": [
+      {
+        "say": "Sistem brifingi! VERİ, bilgisayarın öğrenmek için kullandığı bilgi parçalarıdır: sayılar, kelimeler, resimler, sesler. Yapay zekâ ne kadar çok iyi veri görürse o kadar iyi öğrenir."
+      },
+      {
+        "say": "ÖRÜNTÜ ise tekrar eden bir kalıptır. Kırmızı-mavi-kırmızı-mavi... sırada ne gelir? Yapay zekâ da örneklere bakıp örüntüleri bulur ve tahmin yapar."
+      },
+      {
+        "say": "Dikkat: veri yanlış veya eksikse, yapay zekâ da yanlış öğrenir. Ve verilerin bazıları kişiseldir; senin bilgilerin izinsiz toplanmamalı. Emin değilsen büyüğüne sor."
+      }
+    ],
+    "ai-algoritma": [
+      {
+        "say": "Sistem brifingi! ALGORİTMA, bir işi bitirmek için sıralı adımlar listesidir. Diş fırçalamak bile bir algoritmadır: fırçayı al, macun sür, fırçala, durula."
+      },
+      {
+        "say": "Bilgisayarlar ve yapay zekâ, işleri algoritmalarla yapar. Adımlar açık ve doğru sırada olmalı; yoksa sonuç şaşar. Sıra çok önemlidir!"
+      },
+      {
+        "say": "İyi bir komutan gibi düşün: büyük görevi küçük adımlara böl. Bir adım yanlışsa, geri dönüp düzeltebilirsin. Hata yapmak öğrenmenin parçasıdır."
+      }
+    ],
+    "ai-makine-ogrenmesi": [
+      {
+        "say": "Sistem brifingi! MAKİNE ÖĞRENMESİ, bilgisayarın örneklerden öğrenmesidir. Ona binlerce kedi fotoğrafı gösterirsin; sonra yeni bir fotoğrafta bu kedi diyebilir."
+      },
+      {
+        "say": "Bilgisayara tek tek kural yazmak yerine, çok örnek gösteririz ve o kalıbı kendi bulur. Tıpkı senin çok pratikle bisiklete binmeyi öğrenmen gibi."
+      },
+      {
+        "say": "Ama dikkat: makine sadece gördüğü örnekler kadar iyidir. Örnekler eksik veya haksızsa, yanlış öğrenir. Bu yüzden çıktısını hep sağlamalı ve büyüğüne danışmalısın."
+      }
+    ],
+    "ai-sesli-asistan": [
+      {
+        "say": "Sistem brifingi! SESLİ ASİSTAN, sesini duyup sana cevap veren yapay zekâdır. Telefondaki asistanlar, akıllı hoparlörler bunlara örnektir: Hava nasıl dersin, o söyler."
+      },
+      {
+        "say": "Nasıl çalışır? Önce sesini yazıya çevirir, ne istediğini anlar, cevabı bulur ve sesli söyler. Bunların hepsi bir saniyede olur; ama arkasında çok fazla veri ve öğrenme vardır."
+      },
+      {
+        "say": "Güvenlik kuralı: sesli asistan seni dinliyor olabilir. Ona şifreni, adresini söyleme; alışveriş gibi şeyleri tek başına yaptırma. Her zaman büyüğünle birlikte kullan."
+      }
+    ],
+    "ai-goruntu-tanima": [
+      {
+        "say": "Sistem brifingi! GÖRÜNTÜ TANIMA, yapay zekânın resimlerdeki nesneleri tanımasıdır. Bir fotoğrafa bakıp bu bir köpek, bu bir araba diyebilir."
+      },
+      {
+        "say": "Nasıl? Ona milyonlarca etiketli resim gösterilir. Kenarları, renkleri, şekilleri öğrenir ve yeni bir resimde bunları arayarak tahmin eder."
+      },
+      {
+        "say": "Ama yanılabilir: bulanık bir resimde kurabiyeyi köpek sanabilir! Ayrıca yüz tanıma kişisel bir konudur; fotoğraflarını herkesle paylaşma, önce büyüğüne danış."
+      }
+    ],
+    "ai-gunluk-hayat": [
+      {
+        "say": "Sistem brifingi! Yapay zekâ artık her yerde. Video önerileri, harita yol tarifi, çeviri uygulamaları, oyunlardaki rakipler ve spam filtreleri... hepsinde yapay zekâ var."
+      },
+      {
+        "say": "Yapay zekâ hayatı kolaylaştırır: hızlı çeviri yapar, en kısa yolu bulur, sevdiğin şarkıları önerir. Ama bunların hepsi senin verilerini kullanarak çalışır."
+      },
+      {
+        "say": "Akıllı kullanım: önerilere körü körüne uyma, kendi kararını da ver. Ekranda çok zaman geçirme ve şüphelendiğinde büyüğüne danış. Sen komutansın, yapay zekâ yardımcın!"
+      }
+    ],
+    "ai-etik-guvenlik": [
+      {
+        "say": "Sistem brifingi! Yapay zekâyı kullanırken bazı altın kurallar var. Birincisi GİZLİLİK: adını, adresini, şifreni, fotoğrafını yapay zekâya verme. Bunlar sadece sana aittir."
+      },
+      {
+        "say": "İkincisi DOĞRULUK: yapay zekâ bazen kendinden emin şekilde yanlış söyler; buna uydurma denir. Önemli bilgileri her zaman başka güvenilir bir kaynaktan kontrol et."
+      },
+      {
+        "say": "Üçüncüsü DÜRÜSTLÜK ve NEZAKET: yapay zekâya ödevini tamamen yaptırma, ondan öğren. Emin olmadığın veya seni rahatsız eden her durumda mutlaka bir büyüğüne danış."
+      }
+    ],
+    "ai-gelecek": [
+      {
+        "say": "Sistem brifingi! Gelecekte yapay zekâ daha da gelişecek. Belki hastalıkları daha erken bulacak, temiz enerji tasarlayacak, uzayı keşfetmemize yardım edecek."
+      },
+      {
+        "say": "Ama en önemlisi şu: yapay zekâ ne kadar gelişse de bir ARAÇTIR. Kararları insanlar verir. Yaratıcılık, merak ve iyi kalp senin süper güçlerin; bunları makine taklit edemez."
+      },
+      {
+        "say": "Geleceğin komutanı sensin! Yapay zekâyı öğrenmek, sorumlu kullanmak ve iyilik için kullanmak sana bağlı. Merak et, soru sor, öğren ve her zaman güvenli kal."
+      }
+    ],
+    "ai-final": [
+      {
+        "say": "Bu AN geldi Komutan! Robot Aklı cephesinin EN BÜYÜK sınavı: tüm öğrendiklerin bir arada, en zoru."
+      },
+      {
+        "say": "🧠 Süper Zekâ karşında! Onu yenersen bu dersin USTASI olursun. Efsanevi ödül seni bekliyor."
+      },
+      {
+        "say": "Sakin ol, öğrendiklerine güven. Her soru bir darbe. Hazırsan… HÜCUM!"
       }
     ]
   },
@@ -543,6 +661,2122 @@
               "hint": "Prompt yazmak bir sohbet — düzelterek ilerler."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — ROBOTLAR",
+      "sections": [
+        {
+          "id": "s-ai-robot",
+          "title": "Robotlar",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-robot-m1",
+              "type": "teach",
+              "title": "Sistem Brifingi: Robotlar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-robot"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-robot-m2",
+              "type": "practice",
+              "title": "Devre Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-robot"
+              }
+            },
+            {
+              "id": "s-ai-robot-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-ai-robot"
+              }
+            },
+            {
+              "id": "s-ai-robot-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-robot"
+              }
+            },
+            {
+              "id": "s-ai-robot-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-robot",
+            "tier": "topic",
+            "name": "Bozuk Devre Golemi",
+            "icon": "🤖",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-ai-robot"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-ai-robot"
+            }
+          },
+          "bank": [
+            {
+              "q": "Robot nedir?",
+              "skill": "ai-robot",
+              "options": [
+                "Görevleri yapabilen bir makine",
+                "Bir tür hayvan",
+                "Bir meyve türü",
+                "Bir bulut çeşidi"
+              ],
+              "correct": 0,
+              "hint": "İnsanlara işlerinde yardım eden makineleri düşün."
+            },
+            {
+              "q": "Robotlar nerede çalışabilir?",
+              "skill": "ai-robot",
+              "options": [
+                "Fabrikada, hastanede ve uzayda",
+                "Sadece rüyalarda",
+                "Sadece masallarda",
+                "Hiçbir yerde"
+              ],
+              "correct": 0,
+              "hint": "Zor veya tehlikeli işlerde insanlara yardım ederler."
+            },
+            {
+              "q": "Her robot yapay zekâ mıdır?",
+              "skill": "ai-robot",
+              "options": [
+                "Hayır; bazıları sadece aynı hareketi tekrarlar",
+                "Evet, hepsi düşünür",
+                "Evet, hepsi konuşur",
+                "Robot diye bir şey yok"
+              ],
+              "correct": 0,
+              "hint": "Bir robotun karar verebilmesi için sensör ve öğrenme gerekir."
+            },
+            {
+              "q": "Robotların karar vermesini ne sağlar?",
+              "skill": "ai-robot",
+              "options": [
+                "Sensörlerden gelen bilgi ve yazılım",
+                "Sihirli bir toz",
+                "Şans",
+                "Pil rengi"
+              ],
+              "correct": 0,
+              "hint": "Çevresini hissedip ona göre hareket eder."
+            },
+            {
+              "q": "Robotların gerçek duyguları var mıdır?",
+              "skill": "ai-robot",
+              "options": [
+                "Hayır; duyguları taklit edebilir ama hissetmez",
+                "Evet, üzülür ve ağlar",
+                "Evet, sever ve kızar",
+                "Sadece geceleri hisseder"
+              ],
+              "correct": 0,
+              "hint": "Makinelerin bilinci ve kalbi yoktur."
+            },
+            {
+              "q": "Bir robot sana adresini sorarsa ne yaparsın?",
+              "skill": "ai-robot",
+              "options": [
+                "Vermem ve büyüğüme söylerim",
+                "Hemen veririm",
+                "Fotoğrafımı da eklerim",
+                "Şifremi de yazarım"
+              ],
+              "correct": 0,
+              "hint": "Kişisel bilgiler ailede kalır."
+            },
+            {
+              "q": "Hangisi bir robot örneğidir?",
+              "skill": "ai-robot",
+              "options": [
+                "Fabrikada araba birleştiren robot kol",
+                "Tahta bir sandalye",
+                "Cam bir bardak",
+                "Kâğıt bir defter"
+              ],
+              "correct": 0,
+              "hint": "Hareket eden ve iş yapan makineyi ara."
+            },
+            {
+              "q": "Robotlar neden tehlikeli işlerde kullanılır?",
+              "skill": "ai-robot",
+              "options": [
+                "İnsanların güvenliğini korumak için",
+                "Şaka olsun diye",
+                "Yoruldukları için",
+                "Uykuları geldiği için"
+              ],
+              "correct": 0,
+              "hint": "İnsan yerine riskli işi robot yapabilir."
+            },
+            {
+              "q": "Robotları kim tasarlar ve programlar?",
+              "skill": "ai-robot",
+              "options": [
+                "Mühendisler ve yazılımcılar, yani insanlar",
+                "Başka robotlar tek başına",
+                "Bulutlar",
+                "Kimse"
+              ],
+              "correct": 0,
+              "hint": "Robotların arkasında hep insanlar vardır."
+            },
+            {
+              "q": "Bir robot yanlış bir şey yaparsa sorumlu kimdir?",
+              "skill": "ai-robot",
+              "options": [
+                "Onu yapan ve kullanan insanlar",
+                "Robotun kendisi",
+                "Kimse",
+                "Elektrik"
+              ],
+              "correct": 0,
+              "hint": "Aracı yapan ve kullanan insanlar sorumludur."
+            },
+            {
+              "q": "Uzay robotları ne işe yarar?",
+              "skill": "ai-robot",
+              "options": [
+                "Gezegenleri keşfeder ve bilgi toplar",
+                "Yemek pişirir",
+                "Şarkı söyler",
+                "Uyur"
+              ],
+              "correct": 0,
+              "hint": "İnsanın gidemediği yerlere robot gider."
+            },
+            {
+              "q": "Süpürge robotu evi nasıl temizler?",
+              "skill": "ai-robot",
+              "options": [
+                "Sensörlerle etrafı algılayıp yol bularak",
+                "Gözleriyle görerek",
+                "Sihirle",
+                "Tesadüfen"
+              ],
+              "correct": 0,
+              "hint": "Duvarları ve eşyaları sensörle algılar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — VERİ VE ÖRÜNTÜLER",
+      "sections": [
+        {
+          "id": "s-ai-veri",
+          "title": "Veri ve Örüntüler",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-veri-m1",
+              "type": "teach",
+              "title": "Sistem Brifingi: Veri ve Örüntüler",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-veri"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-veri-m2",
+              "type": "practice",
+              "title": "Devre Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-veri"
+              }
+            },
+            {
+              "id": "s-ai-veri-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-ai-veri"
+              }
+            },
+            {
+              "id": "s-ai-veri-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-veri"
+              }
+            },
+            {
+              "id": "s-ai-veri-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-veri",
+            "tier": "topic",
+            "name": "Karmakarışık Veri Ejderi",
+            "icon": "🐉",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-ai-veri"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-ai-veri"
+            }
+          },
+          "bank": [
+            {
+              "q": "Veri nedir?",
+              "skill": "ai-veri",
+              "options": [
+                "Bilgisayarın kullandığı bilgi parçaları",
+                "Bir tür oyuncak",
+                "Bir meyve",
+                "Bir hayvan"
+              ],
+              "correct": 0,
+              "hint": "Sayılar, kelimeler, resimler... hepsi veridir."
+            },
+            {
+              "q": "Örüntü nedir?",
+              "skill": "ai-veri",
+              "options": [
+                "Tekrar eden bir kalıp",
+                "Rastgele karmaşa",
+                "Bir renk",
+                "Bir ses"
+              ],
+              "correct": 0,
+              "hint": "Kırmızı-mavi-kırmızı-mavi gibi tekrar edeni düşün."
+            },
+            {
+              "q": "2, 4, 6, 8, ... Sırada ne gelir?",
+              "skill": "ai-veri",
+              "options": [
+                "10",
+                "9",
+                "7",
+                "100"
+              ],
+              "correct": 0,
+              "hint": "Her seferinde 2 ekleniyor."
+            },
+            {
+              "q": "Yapay zekâ daha iyi öğrenmek için neye ihtiyaç duyar?",
+              "skill": "ai-veri",
+              "options": [
+                "Çok sayıda iyi örnek (veri)",
+                "Az uyku",
+                "Sıcak hava",
+                "Şeker"
+              ],
+              "correct": 0,
+              "hint": "Ne kadar çok örnek, o kadar iyi öğrenme."
+            },
+            {
+              "q": "Veri yanlış veya eksikse ne olur?",
+              "skill": "ai-veri",
+              "options": [
+                "Yapay zekâ yanlış öğrenir",
+                "Daha akıllı olur",
+                "Hiçbir şey olmaz",
+                "Daha hızlı olur"
+              ],
+              "correct": 0,
+              "hint": "Kötü örnekten kötü ders çıkar."
+            },
+            {
+              "q": "Örüntü bulmak neden işe yarar?",
+              "skill": "ai-veri",
+              "options": [
+                "Bir sonraki adımı tahmin etmeye yarar",
+                "Sadece eğlence için",
+                "Hiçbir işe yaramaz",
+                "Zaman kaybıdır"
+              ],
+              "correct": 0,
+              "hint": "Kalıbı bilirsen sıradakini tahmin edebilirsin."
+            },
+            {
+              "q": "Hangisi veridir?",
+              "skill": "ai-veri",
+              "options": [
+                "Sınıftaki öğrencilerin boyları listesi",
+                "Bir tahta parçası",
+                "Bir bulut",
+                "Bir rüzgâr"
+              ],
+              "correct": 0,
+              "hint": "Toplanıp yazılabilen bilgiyi ara."
+            },
+            {
+              "q": "Senin kişisel verilerin (adın, fotoğrafın) izinsiz toplanmalı mı?",
+              "skill": "ai-veri",
+              "options": [
+                "Hayır; izin gerekir ve büyüğüne danışmalısın",
+                "Evet, herkes toplayabilir",
+                "Sadece geceleri",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Kişisel veriler korunması gereken bilgilerdir."
+            },
+            {
+              "q": "Meteoroloji geçmiş verilere bakarak ne yapar?",
+              "skill": "ai-veri",
+              "options": [
+                "Yarının havasını tahmin eder",
+                "Bugünü değiştirir",
+                "Yağmuru durdurur",
+                "Güneşi kapatır"
+              ],
+              "correct": 0,
+              "hint": "Geçmiş örüntüler geleceğe ipucu verir."
+            },
+            {
+              "q": "A-B-B-A-B-B-A-... örüntüsünde sırada ne gelir?",
+              "skill": "ai-veri",
+              "options": [
+                "B",
+                "A",
+                "C",
+                "D"
+              ],
+              "correct": 0,
+              "hint": "A harfinden sonra iki tane B geliyor."
+            },
+            {
+              "q": "Yapay zekâ örüntüleri nasıl bulur?",
+              "skill": "ai-veri",
+              "options": [
+                "Çok sayıda örneğe bakıp tekrar edeni fark ederek",
+                "Uyuyarak",
+                "Tahmin oyunuyla",
+                "Hiç bulamaz"
+              ],
+              "correct": 0,
+              "hint": "Örneklerdeki benzerlikleri arar."
+            },
+            {
+              "q": "Verileri düzenli tutmak neden önemli?",
+              "skill": "ai-veri",
+              "options": [
+                "Karışık veriden doğru örüntü çıkmaz",
+                "Renkli olsun diye",
+                "Önemli değil",
+                "Sadece güzel görünsün diye"
+              ],
+              "correct": 0,
+              "hint": "Dağınık bilgiden temiz sonuç çıkmaz."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — ALGORİTMA VE ADIMLAR",
+      "sections": [
+        {
+          "id": "s-ai-algoritma",
+          "title": "Algoritma ve Adımlar",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-algoritma-m1",
+              "type": "teach",
+              "title": "Sistem Brifingi: Algoritma ve Adımlar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-algoritma"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-algoritma-m2",
+              "type": "practice",
+              "title": "Devre Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-algoritma"
+              }
+            },
+            {
+              "id": "s-ai-algoritma-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-ai-algoritma"
+              }
+            },
+            {
+              "id": "s-ai-algoritma-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-algoritma"
+              }
+            },
+            {
+              "id": "s-ai-algoritma-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-algoritma",
+            "tier": "topic",
+            "name": "Şaşkın Adım Cini",
+            "icon": "🧩",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-ai-algoritma"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-ai-algoritma"
+            }
+          },
+          "bank": [
+            {
+              "q": "Algoritma nedir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Bir işi bitirmek için sıralı adımlar",
+                "Bir tür robot",
+                "Bir oyun konsolu",
+                "Bir gezegen"
+              ],
+              "correct": 0,
+              "hint": "Adım adım yapılan bir tarif gibi."
+            },
+            {
+              "q": "Hangisi bir algoritma örneğidir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Kek yapma tarifi",
+                "Bir renk",
+                "Bir sayı",
+                "Bir bulut"
+              ],
+              "correct": 0,
+              "hint": "Sırayla yapılan adımları içeren şeyi ara."
+            },
+            {
+              "q": "Algoritmada adımların sırası neden önemli?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Yanlış sıra yanlış sonuç verir",
+                "Önemli değil",
+                "Sadece güzel görünsün diye",
+                "Renk için"
+              ],
+              "correct": 0,
+              "hint": "Önce çorap sonra ayakkabı; tersi olmaz!"
+            },
+            {
+              "q": "Büyük bir görevi nasıl kolaylaştırırsın?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Küçük adımlara bölerek",
+                "Hiç yapmayarak",
+                "Bir kerede yaparak",
+                "Gözümü kapatarak"
+              ],
+              "correct": 0,
+              "hint": "Parça parça yaparsan kolaylaşır."
+            },
+            {
+              "q": "Diş fırçalama sırası hangisidir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Macun sür, fırçala, durula",
+                "Durula, fırçala, macun sür",
+                "Fırçala, macun sür, uyu",
+                "Sadece durula"
+              ],
+              "correct": 0,
+              "hint": "Önce macun, sonra fırçalama."
+            },
+            {
+              "q": "Bir adım yanlış olursa ne yaparsın?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Geri dönüp o adımı düzeltirim",
+                "Pes ederim",
+                "Baştan her şeyi silerim",
+                "Ağlarım"
+              ],
+              "correct": 0,
+              "hint": "Hatayı bulup düzeltmek çözümdür."
+            },
+            {
+              "q": "Bilgisayarlar işleri neyle yapar?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Algoritmalarla (adım adım talimatlarla)",
+                "Sihirle",
+                "Tahminle",
+                "Şansla"
+              ],
+              "correct": 0,
+              "hint": "Ona ne yapacağını adım adım söyleriz."
+            },
+            {
+              "q": "Bir tarifte yumurtayı kır adımı unutulursa ne olur?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Sonuç istediğimiz gibi olmaz",
+                "Daha lezzetli olur",
+                "Hiçbir şey değişmez",
+                "Kek uçar"
+              ],
+              "correct": 0,
+              "hint": "Eksik adım, bozuk sonuç demektir."
+            },
+            {
+              "q": "Algoritmayı yazarken adımlar nasıl olmalı?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Açık ve anlaşılır",
+                "Karışık ve gizli",
+                "Çok belirsiz",
+                "Hiç yazılmamalı"
+              ],
+              "correct": 0,
+              "hint": "Net adımlar doğru sonucu getirir."
+            },
+            {
+              "q": "Okula gitme algoritmanda ilk adım hangisi olabilir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Uyanmak",
+                "Sınıfa oturmak",
+                "Eve dönmek",
+                "Uyumak"
+              ],
+              "correct": 0,
+              "hint": "En baştaki adımı düşün."
+            },
+            {
+              "q": "Aynı işi her seferinde doğru yapmak için ne gerekir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Aynı adımları aynı sırayla izlemek",
+                "Her seferinde farklı yapmak",
+                "Adımları atlamak",
+                "Şansa bırakmak"
+              ],
+              "correct": 0,
+              "hint": "Tutarlı adımlar tutarlı sonuç verir."
+            },
+            {
+              "q": "Hata yapmak öğrenirken nasıl bir şeydir?",
+              "skill": "ai-algoritma",
+              "options": [
+                "Normaldir; düzeltip devam ederiz",
+                "Çok kötüdür, pes etmeliyiz",
+                "Hiç olmaz",
+                "Yasaktır"
+              ],
+              "correct": 0,
+              "hint": "Hatalar öğrenmenin parçasıdır."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "ÜNİTE 5 — MAKİNE ÖĞRENMESİ",
+      "sections": [
+        {
+          "id": "s-ai-makine-ogrenmesi",
+          "title": "Makine Öğrenmesi",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-makine-ogrenmesi-m1",
+              "type": "teach",
+              "title": "Sistem Brifingi: Makine Öğrenmesi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-makine-ogrenmesi"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-makine-ogrenmesi-m2",
+              "type": "practice",
+              "title": "Devre Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-makine-ogrenmesi"
+              }
+            },
+            {
+              "id": "s-ai-makine-ogrenmesi-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-ai-makine-ogrenmesi"
+              }
+            },
+            {
+              "id": "s-ai-makine-ogrenmesi-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-makine-ogrenmesi"
+              }
+            },
+            {
+              "id": "s-ai-makine-ogrenmesi-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-makine-ogrenmesi",
+            "tier": "topic",
+            "name": "Yanlış Örnek Yaratığı",
+            "icon": "👾",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-ai-makine-ogrenmesi"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-ai-makine-ogrenmesi"
+            }
+          },
+          "bank": [
+            {
+              "q": "Makine öğrenmesi nedir?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Bilgisayarın örneklerden öğrenmesi",
+                "Bilgisayarın uyuması",
+                "Bir bilgisayar oyunu",
+                "Bir tür pil"
+              ],
+              "correct": 0,
+              "hint": "Çok örnek göstererek öğretiriz."
+            },
+            {
+              "q": "Bilgisayara bu kedidir dedirtmek için ne yaparız?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Ona birçok kedi örneği gösteririz",
+                "Ona bir kedi hediye ederiz",
+                "Hiçbir şey",
+                "Şarkı söyleriz"
+              ],
+              "correct": 0,
+              "hint": "Örneklerle öğrenir."
+            },
+            {
+              "q": "Makine öğrenmesi neye benzer?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Pratikle bisiklet öğrenmeye",
+                "Uyumaya",
+                "Yemek yemeye",
+                "Koşmaya"
+              ],
+              "correct": 0,
+              "hint": "Tekrar ve örnekle gelişir."
+            },
+            {
+              "q": "Bilgisayar kalıbı nasıl bulur?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Çok örneğe bakıp benzerlikleri fark ederek",
+                "Tahmin oyunuyla",
+                "Zar atarak",
+                "Uyuyarak"
+              ],
+              "correct": 0,
+              "hint": "Örneklerdeki ortak noktaları arar."
+            },
+            {
+              "q": "Örnekler eksik veya haksızsa ne olur?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Makine yanlış öğrenir",
+                "Daha iyi öğrenir",
+                "Hiçbir şey olmaz",
+                "Daha hızlı olur"
+              ],
+              "correct": 0,
+              "hint": "Kötü örnek kötü öğrenme demek."
+            },
+            {
+              "q": "Bir makine öğrenmesi modeli her zaman doğru mu?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Hayır; hata yapabilir, kontrol etmeliyiz",
+                "Evet, hiç yanılmaz",
+                "Evet, mükemmeldir",
+                "Sadece geceleri yanılır"
+              ],
+              "correct": 0,
+              "hint": "Öğrendiği kadarını bilir, yanılabilir."
+            },
+            {
+              "q": "Bir modele sadece siyah kedi gösterirsek ne olur?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Beyaz kediyi tanımakta zorlanabilir",
+                "Her rengi bilir",
+                "Köpekleri öğrenir",
+                "Hiçbir sorun olmaz"
+              ],
+              "correct": 0,
+              "hint": "Sadece gördüğü örnekleri iyi bilir."
+            },
+            {
+              "q": "Makine öğrenmesinde öğretmen kimdir?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Doğru örnekleri hazırlayan insanlar",
+                "Bulutlar",
+                "Robotlar tek başına",
+                "Kimse"
+              ],
+              "correct": 0,
+              "hint": "Örnekleri insanlar seçer ve etiketler."
+            },
+            {
+              "q": "Neden tek tek kural yazmak yerine örnek gösteririz?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Çok karmaşık şeyleri örnekle öğretmek daha kolaydır",
+                "Örnek yazmak yasak olduğu için",
+                "Kural yazmak imkânsız olduğu için",
+                "Örnekler gereksiz olduğu için"
+              ],
+              "correct": 0,
+              "hint": "Bir kedinin tarifini yazmak çok zordur; göstermek kolaydır."
+            },
+            {
+              "q": "E-postalardaki spam (çöp mesaj) nasıl ayıklanır?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Örneklerden öğrenen bir modelle",
+                "Elle tek tek okuyarak",
+                "Şansla",
+                "Hiç ayıklanmaz"
+              ],
+              "correct": 0,
+              "hint": "Model, spam örneklerini öğrenir."
+            },
+            {
+              "q": "Model bir şeyi yanlış tanırsa ne yapmalıyız?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Daha iyi örneklerle tekrar öğretmeliyiz",
+                "Bilgisayarı atmalıyız",
+                "Vazgeçmeliyiz",
+                "Sinirlenmeliyiz"
+              ],
+              "correct": 0,
+              "hint": "Daha iyi örnek, daha iyi öğrenme."
+            },
+            {
+              "q": "Makine öğrenmesi çıktısına nasıl yaklaşmalıyız?",
+              "skill": "ai-makine-ogrenmesi",
+              "options": [
+                "Kontrol ederek ve gerektiğinde büyüğe danışarak",
+                "Körü körüne inanarak",
+                "Hiç bakmayarak",
+                "Her zaman yanlış diyerek"
+              ],
+              "correct": 0,
+              "hint": "Güven ama teyit et."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "ÜNİTE 6 — SESLİ ASİSTANLAR",
+      "sections": [
+        {
+          "id": "s-ai-sesli-asistan",
+          "title": "Sesli Asistanlar",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-sesli-asistan-m1",
+              "type": "teach",
+              "title": "Sistem Brifingi: Sesli Asistanlar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-sesli-asistan"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-sesli-asistan-m2",
+              "type": "practice",
+              "title": "Devre Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-sesli-asistan"
+              }
+            },
+            {
+              "id": "s-ai-sesli-asistan-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-ai-sesli-asistan"
+              }
+            },
+            {
+              "id": "s-ai-sesli-asistan-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-sesli-asistan"
+              }
+            },
+            {
+              "id": "s-ai-sesli-asistan-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-sesli-asistan",
+            "tier": "topic",
+            "name": "Karışık Ses Hayaleti",
+            "icon": "🔊",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-ai-sesli-asistan"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-ai-sesli-asistan"
+            }
+          },
+          "bank": [
+            {
+              "q": "Sesli asistan nedir?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Sesini duyup cevap veren yapay zekâ",
+                "Bir tür telefon kılıfı",
+                "Bir müzik aleti",
+                "Bir hoparlör kablosu"
+              ],
+              "correct": 0,
+              "hint": "Konuşarak komut verdiğin yardımcıyı düşün."
+            },
+            {
+              "q": "Hangisi bir sesli asistan örneğidir?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Telefondaki asistan veya akıllı hoparlör",
+                "Tahta kaşık",
+                "Kurşun kalem",
+                "Cam bardak"
+              ],
+              "correct": 0,
+              "hint": "Konuşup cevap alabildiğin cihazı ara."
+            },
+            {
+              "q": "Sesli asistan önce ne yapar?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Sesini yazıya çevirir",
+                "Uyur",
+                "Şarkı söyler",
+                "Kapanır"
+              ],
+              "correct": 0,
+              "hint": "Konuşmanı anlaması için önce yazıya döker."
+            },
+            {
+              "q": "Sesli asistana şifreni söyler misin?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Hayır; kişisel bilgiler paylaşılmaz",
+                "Evet, hemen",
+                "Sadece hafta sonu",
+                "Bağırarak söylerim"
+              ],
+              "correct": 0,
+              "hint": "Cihaz seni dinliyor olabilir."
+            },
+            {
+              "q": "Sesli asistan seni her zaman doğru anlar mı?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Hayır; bazen yanlış duyabilir",
+                "Evet, hiç şaşmaz",
+                "Evet, düşünceni okur",
+                "Sadece geceleri"
+              ],
+              "correct": 0,
+              "hint": "Gürültüde ya da yeni kelimelerde şaşabilir."
+            },
+            {
+              "q": "Sesli asistanla alışveriş yapmak istersen ne yaparsın?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Büyüğümle birlikte yaparım",
+                "Tek başıma yaparım",
+                "Gizlice yaparım",
+                "Bir sürü şey alırım"
+              ],
+              "correct": 0,
+              "hint": "Para harcamak büyüklerin iznini gerektirir."
+            },
+            {
+              "q": "Sesli asistan cevabı nasıl verir?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Sesli olarak konuşarak",
+                "Mektupla",
+                "Rüyanda",
+                "Hiç vermez"
+              ],
+              "correct": 0,
+              "hint": "Duyabileceğin şekilde konuşur."
+            },
+            {
+              "q": "Sesli asistan bilmiyorum derse ne yaparsın?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Başka kaynaktan öğrenirim",
+                "Kızarım",
+                "Kapatırım",
+                "Israrla bağırırım"
+              ],
+              "correct": 0,
+              "hint": "Her şeyi bilemez; başka yer de var."
+            },
+            {
+              "q": "Sesli asistanlar nasıl bu kadar iyi anlıyor?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Çok sayıda ses örneğinden öğrenmişler",
+                "Sihir sayesinde",
+                "Şans eseri",
+                "İçlerinde küçük bir insan var"
+              ],
+              "correct": 0,
+              "hint": "Makine öğrenmesini hatırla."
+            },
+            {
+              "q": "Odada gürültü varsa sesli asistan ne yapar?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Seni yanlış anlayabilir",
+                "Daha iyi duyar",
+                "Kapanır",
+                "Uçar"
+              ],
+              "correct": 0,
+              "hint": "Karışık seste anlaması zorlaşır."
+            },
+            {
+              "q": "Sesli asistan bir arkadaş mıdır?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Hayır; yardımcı bir araçtır, duyguları yoktur",
+                "Evet, en iyi dostumdur",
+                "Evet, üzülür",
+                "Evet, seni özler"
+              ],
+              "correct": 0,
+              "hint": "Yararlı bir araçtır ama insan değildir."
+            },
+            {
+              "q": "Sesli asistanı en güvenli nasıl kullanırsın?",
+              "skill": "ai-sesli-asistan",
+              "options": [
+                "Büyüklerin bilgisiyle ve kişisel bilgi vermeden",
+                "Gizli gizli",
+                "Bütün sırlarımı anlatarak",
+                "Adresimi söyleyerek"
+              ],
+              "correct": 0,
+              "hint": "Aile bilgisi ve gizlilik birlikte güvenli kullanım demektir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "title": "ÜNİTE 7 — GÖRÜNTÜ TANIMA",
+      "sections": [
+        {
+          "id": "s-ai-goruntu-tanima",
+          "title": "Görüntü Tanıma",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-goruntu-tanima-m1",
+              "type": "teach",
+              "title": "Sistem Brifingi: Görüntü Tanıma",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-goruntu-tanima"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-goruntu-tanima-m2",
+              "type": "practice",
+              "title": "Devre Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-goruntu-tanima"
+              }
+            },
+            {
+              "id": "s-ai-goruntu-tanima-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-ai-goruntu-tanima"
+              }
+            },
+            {
+              "id": "s-ai-goruntu-tanima-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-goruntu-tanima"
+              }
+            },
+            {
+              "id": "s-ai-goruntu-tanima-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-goruntu-tanima",
+            "tier": "topic",
+            "name": "Bulanık Piksel Canavarı",
+            "icon": "📷",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-ai-goruntu-tanima"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-ai-goruntu-tanima"
+            }
+          },
+          "bank": [
+            {
+              "q": "Görüntü tanıma nedir?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Yapay zekânın resimlerdeki nesneleri tanıması",
+                "Resim boyama",
+                "Fotoğraf çekme",
+                "Ekran temizleme"
+              ],
+              "correct": 0,
+              "hint": "Fotoğrafta bu ne sorusunu yanıtlar."
+            },
+            {
+              "q": "Yapay zekâ görüntü tanımayı nasıl öğrenir?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Milyonlarca etiketli resimden",
+                "Tek bir resimden",
+                "Uyuyarak",
+                "Hiç öğrenmez"
+              ],
+              "correct": 0,
+              "hint": "Çok örnek, iyi öğrenme sağlar."
+            },
+            {
+              "q": "Görüntü tanıma neye bakarak tahmin yapar?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Şekillere, renklere ve kenarlara",
+                "Sadece kokuya",
+                "Sadece sese",
+                "Sadece tada"
+              ],
+              "correct": 0,
+              "hint": "Resmin görsel özelliklerini inceler."
+            },
+            {
+              "q": "Görüntü tanıma her zaman doğru mu bilir?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Hayır; bazen yanlış tanıyabilir",
+                "Evet, hiç yanılmaz",
+                "Evet, mükemmeldir",
+                "Sadece renkleri bilir"
+              ],
+              "correct": 0,
+              "hint": "Bulanık resimde şaşabilir."
+            },
+            {
+              "q": "Hangisi görüntü tanıma kullanır?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Telefonun fotoğrafları kişilere göre gruplaması",
+                "Kâğıt katlama",
+                "İp atlama",
+                "Bulaşık yıkama"
+              ],
+              "correct": 0,
+              "hint": "Fotoğrafları tanıyıp düzenleyen özelliği düşün."
+            },
+            {
+              "q": "Bulanık bir fotoğrafta yapay zekâ ne yapabilir?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Yanlış tahmin yapabilir",
+                "Her zaman doğru bilir",
+                "Fotoğrafı netleştirir",
+                "Hiç bakmaz"
+              ],
+              "correct": 0,
+              "hint": "Az bilgi, çok hata riski."
+            },
+            {
+              "q": "Yüz tanıma kişisel bir konu mudur?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Evet; fotoğraflarını korumalı ve büyüğüne danışmalısın",
+                "Hayır, önemsizdir",
+                "Sadece geceleri",
+                "Fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Yüzün senin özel bilgindir."
+            },
+            {
+              "q": "Doktorlar görüntü tanımayı nasıl kullanabilir?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Röntgen gibi görüntüleri incelemede yardımcı olarak",
+                "Şarkı söyletmek için",
+                "Yemek yapmak için",
+                "Uyumak için"
+              ],
+              "correct": 0,
+              "hint": "Sağlıkta görüntüleri incelemeye yardım eder."
+            },
+            {
+              "q": "Yapay zekâ bir resimde köpeği kurabiyeye benzetirse bu nedir?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Bir hatadır; yapay zekâ da yanılır",
+                "İmkânsızdır",
+                "Hiç olmaz",
+                "Her zaman doğrudur"
+              ],
+              "correct": 0,
+              "hint": "Benzer görünen şeyleri karıştırabilir."
+            },
+            {
+              "q": "Kendi kendine giden arabalar yolu nasıl görür?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Kameralar ve görüntü tanıma ile",
+                "Gözleriyle",
+                "Kulaklarıyla",
+                "Sihirle"
+              ],
+              "correct": 0,
+              "hint": "Etrafındaki nesneleri kamerayla tanır."
+            },
+            {
+              "q": "İyi görüntü tanıma için resimler nasıl olmalı?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Net ve çeşitli",
+                "Hep bulanık",
+                "Hep aynı",
+                "Hiç olmamalı"
+              ],
+              "correct": 0,
+              "hint": "Net ve çeşitli örnek, iyi öğrenme sağlar."
+            },
+            {
+              "q": "Görüntü tanıma yaparken yapay zekâ gerçekten görüyor mu?",
+              "skill": "ai-goruntu-tanima",
+              "options": [
+                "Hayır; sayılarla desenleri hesaplıyor",
+                "Evet, gözleri var",
+                "Evet, bizim gibi görür",
+                "Rüyada görür"
+              ],
+              "correct": 0,
+              "hint": "Resmi sayılara çevirip inceler."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "title": "ÜNİTE 8 — YAPAY ZEKÂ GÜNLÜK HAYATTA",
+      "sections": [
+        {
+          "id": "s-ai-gunluk-hayat",
+          "title": "Yapay Zekâ Günlük Hayatta",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-gunluk-hayat-m1",
+              "type": "teach",
+              "title": "Sistem Brifingi: Yapay Zekâ Günlük Hayatta",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-gunluk-hayat"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-gunluk-hayat-m2",
+              "type": "practice",
+              "title": "Devre Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-gunluk-hayat"
+              }
+            },
+            {
+              "id": "s-ai-gunluk-hayat-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-ai-gunluk-hayat"
+              }
+            },
+            {
+              "id": "s-ai-gunluk-hayat-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-gunluk-hayat"
+              }
+            },
+            {
+              "id": "s-ai-gunluk-hayat-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-gunluk-hayat",
+            "tier": "topic",
+            "name": "Sonsuz Kaydırma Devi",
+            "icon": "📱",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-ai-gunluk-hayat"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-ai-gunluk-hayat"
+            }
+          },
+          "bank": [
+            {
+              "q": "Hangisinde yapay zekâ kullanılır?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Video önerileri ve harita yol tarifi",
+                "Tahta kaşık",
+                "Cam bardak",
+                "Kâğıt uçak"
+              ],
+              "correct": 0,
+              "hint": "Sana bir şeyler öneren uygulamaları düşün."
+            },
+            {
+              "q": "Çeviri uygulamaları ne işe yarar?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Bir dili başka dile çevirir",
+                "Resim boyar",
+                "Şarkı söyler",
+                "Yemek pişirir"
+              ],
+              "correct": 0,
+              "hint": "Farklı dilleri anlamana yardım eder."
+            },
+            {
+              "q": "Harita uygulaması yol tarifini nasıl bulur?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Trafik ve mesafe verisini yapay zekâ ile hesaplayarak",
+                "Şansla",
+                "Tahminle",
+                "Sihirle"
+              ],
+              "correct": 0,
+              "hint": "En kısa ve hızlı yolu veriyle bulur."
+            },
+            {
+              "q": "Video önerileri neye göre yapılır?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Daha önce izlediklerine göre",
+                "Havaya göre",
+                "Adına göre",
+                "Rastgele"
+              ],
+              "correct": 0,
+              "hint": "İlgi alanlarını öğrenip önerir."
+            },
+            {
+              "q": "Önerilere nasıl yaklaşmalısın?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Kendi kararımı da veririm",
+                "Hepsine körü körüne uyarım",
+                "Hiç bakmam",
+                "Her önerileni izlerim"
+              ],
+              "correct": 0,
+              "hint": "Sen komutansın; öneri sadece öneridir."
+            },
+            {
+              "q": "Yapay zekâ günlük hayatta ne sağlar?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "İşleri kolaylaştırır",
+                "Her şeyi bozar",
+                "Sadece zaman kaybettirir",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Doğru kullanılırsa yardımcıdır."
+            },
+            {
+              "q": "Öneriler senin neyini kullanır?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Verilerini (neyi izlediğini, neyi sevdiğini)",
+                "Sadece boyunu",
+                "Kalemini",
+                "Ayakkabını"
+              ],
+              "correct": 0,
+              "hint": "Seni tanımak için verilerine bakar."
+            },
+            {
+              "q": "Ekranda çok zaman geçirmek konusunda en akıllıcası nedir?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Süreyi dengede tutup ara vermek",
+                "Hiç durmadan izlemek",
+                "Bütün gün oynamak",
+                "Uykuyu bırakmak"
+              ],
+              "correct": 0,
+              "hint": "Denge sağlıklıdır."
+            },
+            {
+              "q": "Oyunlardaki bilgisayar rakipleri nasıl davranır?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Yapay zekâ ile senin hareketlerine tepki verir",
+                "Rastgele",
+                "Hiç oynamaz",
+                "Uyur"
+              ],
+              "correct": 0,
+              "hint": "Sana karşı akıllıca oynar."
+            },
+            {
+              "q": "Spam filtresi ne yapar?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Çöp ve istenmeyen mesajları ayıklar",
+                "Mesaj siler",
+                "Şifre bulur",
+                "Oyun oynar"
+              ],
+              "correct": 0,
+              "hint": "İstenmeyen mesajları tanıyıp ayırır."
+            },
+            {
+              "q": "Bir uygulama şüpheli bir şey isterse ne yaparsın?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Büyüğüme danışırım",
+                "Hemen izin veririm",
+                "Bütün bilgilerimi veririm",
+                "Gizlerim"
+              ],
+              "correct": 0,
+              "hint": "Emin değilsen aileye sor."
+            },
+            {
+              "q": "Yapay zekânın günlük hayattaki rolü nedir?",
+              "skill": "ai-gunluk-hayat",
+              "options": [
+                "Yardımcı bir araç olmak",
+                "Patron olmak",
+                "Bizi yönetmek",
+                "Karar vermemizi engellemek"
+              ],
+              "correct": 0,
+              "hint": "Sen karar verirsin, o yardım eder."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u9",
+      "title": "ÜNİTE 9 — YAPAY ZEKÂ ETİĞİ VE GÜVENLİK",
+      "sections": [
+        {
+          "id": "s-ai-etik-guvenlik",
+          "title": "Yapay Zekâ Etiği ve Güvenlik",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-etik-guvenlik-m1",
+              "type": "teach",
+              "title": "Sistem Brifingi: Yapay Zekâ Etiği ve Güvenlik",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-etik-guvenlik"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-etik-guvenlik-m2",
+              "type": "practice",
+              "title": "Devre Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-etik-guvenlik"
+              }
+            },
+            {
+              "id": "s-ai-etik-guvenlik-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-ai-etik-guvenlik"
+              }
+            },
+            {
+              "id": "s-ai-etik-guvenlik-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-etik-guvenlik"
+              }
+            },
+            {
+              "id": "s-ai-etik-guvenlik-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-etik-guvenlik",
+            "tier": "topic",
+            "name": "Yalan Söyleyen Gölge",
+            "icon": "🕵️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-ai-etik-guvenlik"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-ai-etik-guvenlik"
+            }
+          },
+          "bank": [
+            {
+              "q": "Yapay zekâya hangisini ASLA vermezsin?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Ev adresini ve şifreni",
+                "Matematik sorusunu",
+                "Hava durumu sorusunu",
+                "Masal isteğini"
+              ],
+              "correct": 0,
+              "hint": "Kişisel bilgiler ailede kalır."
+            },
+            {
+              "q": "Yapay zekâ bir bilgiyi kendinden emin söyledi. Ne yaparsın?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Önemliyse başka kaynaktan doğrularım",
+                "Kesin doğrudur derim",
+                "Herkese yayarım",
+                "Hiç düşünmem"
+              ],
+              "correct": 0,
+              "hint": "Emin görünmesi doğru olduğu anlamına gelmez."
+            },
+            {
+              "q": "Yapay zekânın gerçek olmayan bilgi uydurmasına ne denir?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Uydurma (yanlış üretme)",
+                "Gerçek",
+                "Doğruluk",
+                "Kanıt"
+              ],
+              "correct": 0,
+              "hint": "Bazen olmayan şeyleri varmış gibi söyler."
+            },
+            {
+              "q": "Ödevini yapay zekâ tamamen yazsın mı?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Hayır; ondan öğrenirim, işi kendim yaparım",
+                "Evet, hiç uğraşmam",
+                "Evet, kimse anlamaz",
+                "Evet, imzalasın"
+              ],
+              "correct": 0,
+              "hint": "Beynin de kas gibidir; çalıştıran güçlenir."
+            },
+            {
+              "q": "Yapay zekâ seni rahatsız eden bir şey söylerse ne yaparsın?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Kapatır ve büyüğüme söylerim",
+                "Devam ederim",
+                "Gizlerim",
+                "Cevap veririm"
+              ],
+              "correct": 0,
+              "hint": "Rahatsız olduğunda hemen aileye danış."
+            },
+            {
+              "q": "Gizlilik neden önemlidir?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Kişisel bilgiler kötü niyetli kişilere gitmesin diye",
+                "Sadece eğlence için",
+                "Önemli değildir",
+                "Renk için"
+              ],
+              "correct": 0,
+              "hint": "Bilgilerin güvende olmalı."
+            },
+            {
+              "q": "Yapay zekânın verdiği bilgi eskimiş olabilir mi?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Evet; belli bir tarihe kadarını bilir",
+                "Hayır, geleceği bilir",
+                "Hayır, her şeyi anında bilir",
+                "Bilgi hiç eskimez"
+              ],
+              "correct": 0,
+              "hint": "Öğrendiği tarihten sonrasını bilmeyebilir."
+            },
+            {
+              "q": "Yapay zekâ bir insana haksız davranırsa (örneğin ayrımcılık) bu nasıldır?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Yanlıştır; örnekler adil değilse böyle olabilir, düzeltilmeli",
+                "Doğrudur",
+                "Önemsizdir",
+                "Her zaman iyidir"
+              ],
+              "correct": 0,
+              "hint": "Adaletsiz veriden adaletsiz sonuç çıkar."
+            },
+            {
+              "q": "İnternette bir robotla mı insanla mı konuştuğundan emin değilsin. Ne yaparsın?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Kişisel bilgi vermem ve büyüğüme söylerim",
+                "Adresimi veririm",
+                "Fotoğraf gönderirim",
+                "Şifremi paylaşırım"
+              ],
+              "correct": 0,
+              "hint": "Emin değilsen paylaşma, aileye danış."
+            },
+            {
+              "q": "Yapay zekâ ile üretilen sahte resim veya videolara ne demeli?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Gerçek sanılabilir; bu gerçek mi diye sormalıyız",
+                "Her zaman gerçektir",
+                "Hiç yapılamaz",
+                "Hep siyah beyazdır"
+              ],
+              "correct": 0,
+              "hint": "Gördüğün her şey gerçek olmayabilir."
+            },
+            {
+              "q": "Yapay zekâya nazik davranmak gerekir mi?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Nazik olmak güzel bir alışkanlıktır; ama o hissetmez",
+                "Hayır, bağırmalıyız",
+                "O üzülür",
+                "Fark etmez, çünkü canlıdır"
+              ],
+              "correct": 0,
+              "hint": "Nezaket iyi bir huydur; ama makine hissetmez."
+            },
+            {
+              "q": "Güvenli yapay zekâ kullanımının özeti nedir?",
+              "skill": "ai-guvenlik",
+              "options": [
+                "Gizli tut, doğrula, dürüst ol ve büyüğüne danış",
+                "Her şeyi paylaş",
+                "Hepsine inan",
+                "Tek başına karar ver"
+              ],
+              "correct": 0,
+              "hint": "Gizlilik, doğrulama, dürüstlük ve aile birlikte."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u10",
+      "title": "ÜNİTE 10 — GELECEĞİN YAPAY ZEKÂSI",
+      "sections": [
+        {
+          "id": "s-ai-gelecek",
+          "title": "Geleceğin Yapay Zekâsı",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-gelecek-m1",
+              "type": "teach",
+              "title": "Sistem Brifingi: Geleceğin Yapay Zekâsı",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-gelecek"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-gelecek-m2",
+              "type": "practice",
+              "title": "Devre Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-gelecek"
+              }
+            },
+            {
+              "id": "s-ai-gelecek-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-ai-gelecek"
+              }
+            },
+            {
+              "id": "s-ai-gelecek-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-ai-gelecek"
+              }
+            },
+            {
+              "id": "s-ai-gelecek-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-gelecek",
+            "tier": "topic",
+            "name": "Gelecek Bilmecesi Robotu",
+            "icon": "🚀",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-ai-gelecek"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-ai-gelecek"
+            }
+          },
+          "bank": [
+            {
+              "q": "Gelecekte yapay zekâ ne yapabilir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Hastalıkları erken bulmaya yardım edebilir",
+                "Zamanı geri alabilir",
+                "Sihir yapabilir",
+                "Hiç değişmez"
+              ],
+              "correct": 0,
+              "hint": "Bilim ve sağlıkta yardımcı olabilir."
+            },
+            {
+              "q": "Yapay zekâ ne kadar gelişse de nedir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Bir araçtır; kararları insanlar verir",
+                "Bir patrondur",
+                "Bir insandır",
+                "Bir hayvandır"
+              ],
+              "correct": 0,
+              "hint": "Sen komutansın, o yardımcı."
+            },
+            {
+              "q": "Makinenin taklit edemeyeceği senin süper gücün nedir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Yaratıcılık, merak ve iyi kalp",
+                "Şarj olmak",
+                "Fiş takmak",
+                "Kablo olmak"
+              ],
+              "correct": 0,
+              "hint": "İnsana özel değerleri düşün."
+            },
+            {
+              "q": "Geleceğin yapay zekâsını iyi yapan nedir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Onu sorumlu ve iyilik için kullanmak",
+                "Gizli tutmak",
+                "Hiç kullanmamak",
+                "Kötüye kullanmak"
+              ],
+              "correct": 0,
+              "hint": "Aracı nasıl kullandığımız önemli."
+            },
+            {
+              "q": "Yapay zekâ gelecekte uzayda ne yapabilir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Gezegenleri keşfetmeye yardım edebilir",
+                "Yıldızları söndürebilir",
+                "Ayı taşıyabilir",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Keşiflerde bize yardımcı olabilir."
+            },
+            {
+              "q": "Geleceğe hazırlanmak için en iyisi hangisi?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Merak edip öğrenmeye devam etmek",
+                "Hiçbir şey öğrenmemek",
+                "Korkmak",
+                "Vazgeçmek"
+              ],
+              "correct": 0,
+              "hint": "Öğrenmek en güçlü hazırlıktır."
+            },
+            {
+              "q": "Yapay zekâ gelecekte de hata yapabilir mi?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Evet; bu yüzden kontrol ve insan gerekir",
+                "Hayır, mükemmel olacak",
+                "Hayır, her şeyi bilecek",
+                "Asla konuşmayacak"
+              ],
+              "correct": 0,
+              "hint": "Ne kadar gelişse de yanılabilir."
+            },
+            {
+              "q": "Geleceğin yapay zekâsını kim yönlendirmeli?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Sorumlu ve iyi niyetli insanlar",
+                "Sadece makineler",
+                "Kimse",
+                "Şans"
+              ],
+              "correct": 0,
+              "hint": "Kararlar insanlarda olmalı."
+            },
+            {
+              "q": "Yapay zekâ temiz enerjiye nasıl yardım edebilir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Daha iyi çözümler tasarlamaya yardım ederek",
+                "Güneşi kapatarak",
+                "Rüzgârı durdurarak",
+                "Hiç edemez"
+              ],
+              "correct": 0,
+              "hint": "Bilimsel problemlerde yardımcı olabilir."
+            },
+            {
+              "q": "Geleceğin komutanı kimdir?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Öğrenen ve sorumlu davranan sen",
+                "Sadece robotlar",
+                "Kimse",
+                "Bulutlar"
+              ],
+              "correct": 0,
+              "hint": "Kontrol senin elinde!"
+            },
+            {
+              "q": "Yeni bir yapay zekâ aracıyla karşılaşınca ne yaparsın?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Merakla öğrenir ama güvenlik kurallarına uyarım",
+                "Bütün bilgilerimi veririm",
+                "Korkup kaçarım",
+                "Hemen her şeye inanırım"
+              ],
+              "correct": 0,
+              "hint": "Merak ve güvenlik birlikte akıllı komutan yapar."
+            },
+            {
+              "q": "Yapay zekâyı öğrenmek neden önemli?",
+              "skill": "ai-gelecek",
+              "options": [
+                "Geleceği güvenli ve akıllıca kullanmak için",
+                "Sadece oyun için",
+                "Gereksiz",
+                "Zaman kaybı"
+              ],
+              "correct": 0,
+              "hint": "Bilgi seni güçlü ve güvende tutar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u-final",
+      "title": "FİNAL — Robot Aklı Ustalığı",
+      "sections": [
+        {
+          "id": "s-ai-final",
+          "title": "Büyük Sınav",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-ai-final-t",
+              "type": "teach",
+              "title": "Final Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "ai-final"
+                }
+              ]
+            },
+            {
+              "id": "s-ai-final-1",
+              "type": "practice",
+              "title": "Genel Tekrar",
+              "targetCount": 4,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-ai-final-2",
+              "type": "challenge",
+              "title": "Ustalık Sınavı",
+              "targetCount": 5,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-ai-final-3",
+              "type": "review",
+              "title": "Son Hazırlık",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-ai-final",
+            "tier": "final",
+            "name": "Süper Zekâ",
+            "icon": "🧠",
+            "hp": 60,
+            "unlock": {
+              "masteryRequired": 0.6
+            },
+            "generator": {
+              "poolAll": true
+            },
+            "rewards": {
+              "xp": 400,
+              "chest": "legendary",
+              "badge": "b-ai-final"
+            }
+          }
         }
       ]
     }

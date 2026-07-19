@@ -102,38 +102,41 @@
         return g;
       }
 
-      /* Saç rengi gridi: doğal renkler ücretsiz; özel renkler (dye) saç boyasıyla açılır.
-       * Boya buradan alınır — mağazada satılmaz. Bir kez alınınca o renk kalıcı açılır. */
-      function dyeGrid(colors, curColor) {
+      /* Satın-alınabilir görünüm gridi (saç modeli / saç boyası): sahip olunanlar
+       * doğrudan uygulanır; kilitli olanlar bağlam-içi satın alınır (mağazada değil).
+       * opts: { icon, buyTitle, buyBody, yes, gotToast } — apply(avatar,item) parçayı takar. */
+      function buyGrid(items, apply, isCur, opts) {
+        opts = opts || {};
         const g = document.createElement('div'); g.className = 'part-grid';
-        colors.forEach(col => {
-          const a = av(); a.usePhoto = false; a.hairColor = col.id;
-          const unlocked = B.Avatar.isUnlocked(col);
+        items.forEach(it => {
+          const a = av(); a.usePhoto = false; apply(a, it);
+          const unlocked = B.Avatar.isUnlocked(it);
+          const price = prices[it.rarity] || 50;
           const card = document.createElement('button');
-          card.className = 'part-card' + (col.id === curColor ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
+          card.className = 'part-card' + (isCur(it) ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
           card.innerHTML =
             '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
-            '<span class="part-name">' + col.name + '</span>' +
-            (unlocked ? '' : '<span class="part-price">🎨 ' + (prices[col.rarity] || 50) + '</span>');
+            '<span class="part-name">' + (it.name || '') + '</span>' +
+            (unlocked ? '' : '<span class="part-price">' + (opts.icon || '💰') + ' ' + price + '</span>');
           card.onclick = () => {
             B.Audio.play('tick');
             if (!unlocked) {
               B.UI.confirm({
-                icon: '🎨', title: col.name + ' saç boyası alınsın mı?',
-                body: '💰 ' + (prices[col.rarity] || 50) + ' Altın — bu boyayı alınca saçını istediğin zaman bu renge boyayabilirsin.',
-                yes: 'Boyayı al', no: 'Vazgeç',
+                icon: opts.icon || '🛍️', title: (it.name || 'Bu') + ' ' + (opts.buyTitle || 'alınsın mı?'),
+                body: '💰 ' + price + ' Altın — ' + (opts.buyBody || 'alınca kalıcı açılır.'),
+                yes: opts.yes || 'Satın al', no: 'Vazgeç',
                 onYes: () => {
-                  if (!B.Reward.spendCoins(prices[col.rarity] || 50)) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
-                  B.State.data.inventory.cosmetics.push(B.Avatar.unlockKey(col));
-                  if (B.Bus && B.Events && B.Events.COSMETIC_UNLOCKED) B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: B.Avatar.unlockKey(col) });
+                  if (!B.Reward.spendCoins(price)) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+                  B.State.data.inventory.cosmetics.push(B.Avatar.unlockKey(it));
+                  if (B.Bus && B.Events && B.Events.COSMETIC_UNLOCKED) B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: B.Avatar.unlockKey(it) });
                   B.Audio.play('chest');
-                  B.UI.toast('🎨 ' + col.name + ' boyası alındı! Saçın boyandı.');
-                  const cur = av(); cur.hairColor = col.id; commit(cur);
+                  B.UI.toast((opts.icon || '✨') + ' ' + (it.name || '') + ' ' + (opts.gotToast || 'alındı!'));
+                  const cur = av(); apply(cur, it); commit(cur);
                 },
               });
               return;
             }
-            const cur = av(); cur.hairColor = col.id; commit(cur);
+            const cur = av(); apply(cur, it); commit(cur);
           };
           g.appendChild(card);
         });
@@ -146,11 +149,13 @@
         host.innerHTML = '';
 
         if (tab === 'hair') {
-          // Saç: hem model (ücretsiz) hem renk (özel renkler saç boyasıyla açılır)
+          // Saç: temel modeller ücretsiz; özel modeller ✂️ ile, özel renkler 🎨 boya ile satın alınır
           host.appendChild(label('💇 SAÇ MODELİ'));
-          host.appendChild(grid(B.Avatar.hairsFor(a.gender), (x, p) => { x.hair = p.id; }, p => p.id === a.hair));
+          host.appendChild(buyGrid(B.Avatar.hairsFor(a.gender), (x, it) => { x.hair = it.id; }, it => it.id === a.hair,
+            { icon: '✂️', buyTitle: 'saç modeli alınsın mı?', buyBody: 'bu modeli alınca saçını istediğin zaman böyle yapabilirsin.', yes: 'Modeli al', gotToast: 'modeli alındı! Saçın değişti.' }));
           host.appendChild(label('🎨 SAÇ RENGİ'));
-          host.appendChild(dyeGrid(C.hairColors, a.hairColor));
+          host.appendChild(buyGrid(C.hairColors, (x, it) => { x.hairColor = it.id; }, it => it.id === a.hairColor,
+            { icon: '🎨', buyTitle: 'saç boyası alınsın mı?', buyBody: 'bu boyayı alınca saçını istediğin zaman bu renge boyayabilirsin.', yes: 'Boyayı al', gotToast: 'boyası alındı! Saçın boyandı.' }));
         } else if (tab === 'outfit') {
           // Üst kıyafetler cinsiyete göre süzülür — tam vücut önizleme
           host.appendChild(grid(B.Avatar.outfitsFor(a.gender), (x, p) => { x.outfit = p.id; }, p => p.id === a.outfit, null, true));

@@ -22,7 +22,16 @@
     "hijyen",
     "dis-bakim",
     "bakim-duzen",
-    "uyku-saglik"
+    "uyku-saglik",
+    "care-dis",
+    "care-beslenme",
+    "care-uyku",
+    "care-egzersiz",
+    "care-guvenlik",
+    "care-duygular",
+    "care-mikrop",
+    "care-ilkyardim",
+    "care-ekran"
   ],
   "hints": {},
   "teachScripts": {
@@ -46,6 +55,116 @@
       },
       {
         "say": "Son emir: odan senin üssündür. Üssü dağınık olan komutan, kalemini savaşta bulamaz. Her akşam 5 dakikalık toparlama, sabah 15 dakika kazandırır!"
+      }
+    ],
+    "care-dis": [
+      {
+        "say": "Sağlık Brifingi: Dişler! Ağzındaki her diş küçük bir kahramandır. Onları korumanın yolu basit: günde İKİ kez, İKİŞER dakika fırçalamak. Sabah ve gece, hiç aksatmadan!"
+      },
+      {
+        "say": "En önemli fırçalama gece yatmadan öncedir. Uyurken ağızda kalan şeker artıkları, çürük mikroplarının en sevdiği ziyafettir. Fırça, o ziyafeti bozar!"
+      },
+      {
+        "say": "Bezelye kadar macun yeter. Fırçanın giremediği aralara diş ipi yardım eder. Yılda bir-iki kez diş hekimi kontrolü ise dişlerinin bakım servisidir. Parla, komutan!"
+      }
+    ],
+    "care-beslenme": [
+      {
+        "say": "Sağlık Brifingi: Beslenme! Vücudun bir motordur ve doğru yakıtı ister. En güçlü yakıt renkli bir tabaktır: sebze, meyve, tahıl, süt ürünleri ve protein — her gruptan biraz."
+      },
+      {
+        "say": "Bir numaralı içecek sudur. Şekerli gazozlar önce zıplatır, sonra yorar, dişe de zarar verir. Abur cubur ara sıra keyiftir; her öğün değil!"
+      },
+      {
+        "say": "Kahvaltı, beynin sabah yakıtıdır — asla atlanmaz. Yavaş çiğne, düzenli saatlerde ye. Renkli tabak, güçlü komutan demektir!"
+      }
+    ],
+    "care-uyku": [
+      {
+        "say": "Sağlık Brifingi: Uyku! Senin yaşında bir komutanın gecede 9-11 saat uykuya ihtiyacı var. Uyurken beyin, gün içinde öğrendiklerini kaydeder — yani uyumak da ders çalışmaktır!"
+      },
+      {
+        "say": "İyi uyku için üs karanlık, sessiz ve serin olmalı. Yatmadan önce ekran, beyne gündüz devam ediyor yalanı söyler; bu yüzden ekranı erken kapat."
+      },
+      {
+        "say": "Her gece aynı saatte yatmak vücut saatini düzene sokar. Yatmadan kitap oku, sakinleş. Zinde bir sabahın sırrı, güzel bir gecedir!"
+      }
+    ],
+    "care-egzersiz": [
+      {
+        "say": "Sağlık Brifingi: Hareket! Vücut hareket ettikçe güçlenir. Günde en az bir saat koş, zıpla, oyna — kalbin ve kasların bunu sever!"
+      },
+      {
+        "say": "Spordan önce ısınmak kasları göreve hazırlar, sakatlanmayı önler. Terleyince bol su iç. Sonra yavaşça soğu ve esne."
+      },
+      {
+        "say": "Uzun süre hareketsiz oturma; arada kalk, gerin, yürü. Gün içinde harcanan enerji, gece güzel uyku getirir. Hareketli komutan, mutlu komutan!"
+      }
+    ],
+    "care-guvenlik": [
+      {
+        "say": "Sağlık Brifingi: Güvenlik! Bir komutan cesurdur ama dikkatlidir. Karşıya yaya geçidinden, ışık yeşilken geçilir. Önce dur, sağa-sola bak, dinle; sonra geç."
+      },
+      {
+        "say": "Arabada emniyet kemeri, bisiklette kask şarttır. Evde prizler, ilaçlar ve temizlik ürünleri oyuncak değildir — onlara dokunmak büyüklerin işidir."
+      },
+      {
+        "say": "Tanımadığın biri seni bir yere çağırırsa gitme, hemen güvendiğin bir büyüğe söyle. Acil durumda yardım numarası 112. Dikkatli komutan, güvende komutan!"
+      }
+    ],
+    "care-duygular": [
+      {
+        "say": "Sağlık Brifingi: Duygular! Mutluluk, üzüntü, öfke, heyecan... Hepsi normaldir; herkes hisseder. Önemli olan onları tanımak ve güzelce yönetmektir."
+      },
+      {
+        "say": "Çok sinirlenince derin bir nefes al ve yavaşça saymayı dene — nefes, öfkenin frenidir. Üzgün olduğunda güvendiğin birine anlat; paylaşmak yükü hafifletir."
+      },
+      {
+        "say": "Hata yapmak öğrenmenin bir parçasıdır. Kendine bir arkadaşınmış gibi nazik davran. Biri sana ya da başkasına kötü davranıyorsa mutlaka bir büyüğe söyle!"
+      }
+    ],
+    "care-mikrop": [
+      {
+        "say": "Sağlık Brifingi: Mikroplar! Gözle görülmezler ama her yerdeler. Neyse ki en güçlü silahımız var: sabunla düzenli el yıkamak. Tuvaletten sonra ve yemekten önce şarttır."
+      },
+      {
+        "say": "Hapşırıp öksürürken ağzını ve burnunu dirseğinle kapat — mikropları etrafa yaymazsın. Hastaysan dinlen, bardağını kimseyle paylaşma."
+      },
+      {
+        "say": "Vücudunda seni koruyan bir ordu var: bağışıklık sistemi. Onu güçlü tutmak için iyi uyu, dengeli beslen, hareket et. Aşılar da bu ordunun antrenmanıdır!"
+      }
+    ],
+    "care-ilkyardim": [
+      {
+        "say": "Sağlık Brifingi: İlk Yardım! Bir kaza gördüğünde ilk kural sakin kalmaktır. Sakin komutan doğru düşünür. İkinci kural: hemen bir büyüğe haber ver."
+      },
+      {
+        "say": "Acil yardım numarası 112. Ararken nerede olduğunu ve ne olduğunu net söyle — bu, yardımın hızını artırır. İlaçları sadece büyükler ve doktor verir."
+      },
+      {
+        "say": "Küçük bir kesikte yarayı temiz tut ve yara bandı yap. Hafif yanıkta soğuk akan su iyi gelir. Sen küçük bir ilk yardım kahramanısın; asıl işi ise büyükler yapar!"
+      }
+    ],
+    "care-ekran": [
+      {
+        "say": "Sağlık Brifingi: Ekran Dengesi! Ekranlar eğlenceli ve öğreticidir ama her şeyin bir dengesi vardır. Ekran; uyku, ödev, oyun ve hareketten sonra gelir."
+      },
+      {
+        "say": "Gözlerini korumak için 20-20 kuralını hatırla: 20 dakikada bir, uzağa bak ve ara ver. Yatmadan hemen önce ekran, uykunu zorlaştırır."
+      },
+      {
+        "say": "İnternette tanımadığın biri seninle konuşursa cevaplama, büyüğüne söyle. Kişisel bilgilerini kimseye verme. Ekranda gördüğün her bilgi doğru olmayabilir — sor ve düşün!"
+      }
+    ],
+    "care-final": [
+      {
+        "say": "Bu AN geldi Komutan! Sağlık Kalkanı cephesinin EN BÜYÜK sınavı: tüm öğrendiklerin bir arada, en zoru."
+      },
+      {
+        "say": "🛡️ Sağlık Kalkanı Kralı karşında! Onu yenersen bu dersin USTASI olursun. Efsanevi ödül seni bekliyor."
+      },
+      {
+        "say": "Sakin ol, öğrendiklerine güven. Her soru bir darbe. Hazırsan… HÜCUM!"
       }
     ]
   },
@@ -543,6 +662,2122 @@
               "hint": "20 dakikada bir uzağa bakmak gözü dinlendirir."
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "ÜNİTE 2 — Diş Sağlığı",
+      "sections": [
+        {
+          "id": "s-care-dis",
+          "title": "Parlak Dişler",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-dis-m1",
+              "type": "teach",
+              "title": "Sağlık Brifingi: Diş Sağlığı",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-dis"
+                }
+              ]
+            },
+            {
+              "id": "s-care-dis-m2",
+              "type": "practice",
+              "title": "Bakım Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-dis"
+              }
+            },
+            {
+              "id": "s-care-dis-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-care-dis"
+              }
+            },
+            {
+              "id": "s-care-dis-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-dis"
+              }
+            },
+            {
+              "id": "s-care-dis-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-dis",
+            "tier": "topic",
+            "name": "Şeker Çürüğü Canavarı",
+            "icon": "🦷",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-care-dis"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-care-dis"
+            }
+          },
+          "bank": [
+            {
+              "q": "Dişlerini günde kaç kez fırçalamalısın?",
+              "skill": "care-dis",
+              "options": [
+                "En az 2 kez",
+                "Ayda 1 kez",
+                "Hiç",
+                "Yılda 1 kez"
+              ],
+              "correct": 0,
+              "hint": "Sabah ve akşam düşün."
+            },
+            {
+              "q": "Bir fırçalama ne kadar sürmeli?",
+              "skill": "care-dis",
+              "options": [
+                "Yaklaşık 2 dakika",
+                "3 saniye",
+                "Yarım saat",
+                "10 saat"
+              ],
+              "correct": 0,
+              "hint": "İki dakika: bütün dişlere sıra gelsin."
+            },
+            {
+              "q": "Dişini en önemli ne zaman fırçalarsın?",
+              "skill": "care-dis",
+              "options": [
+                "Gece yatmadan önce",
+                "Sadece misafir gelince",
+                "Sadece doğum gününde",
+                "Hiçbir zaman"
+              ],
+              "correct": 0,
+              "hint": "Gece ağızda kalan artıklar çürük yapar."
+            },
+            {
+              "q": "Diş çürüğüne en çok ne yol açar?",
+              "skill": "care-dis",
+              "options": [
+                "Çok şekerli yiyip fırçalamamak",
+                "Su içmek",
+                "Sebze yemek",
+                "Gülmek"
+              ],
+              "correct": 0,
+              "hint": "Şeker, çürük mikroplarının ziyafetidir."
+            },
+            {
+              "q": "Diş fırçana ne kadar macun koymalısın?",
+              "skill": "care-dis",
+              "options": [
+                "Bezelye tanesi kadar",
+                "Fırçayı dolduracak kadar",
+                "Hiç koymadan",
+                "Bir avuç dolusu"
+              ],
+              "correct": 0,
+              "hint": "Küçük bir bezelye kadarı yeterli."
+            },
+            {
+              "q": "Diş fırçanı ne zaman değiştirmelisin?",
+              "skill": "care-dis",
+              "options": [
+                "3-4 ayda bir ya da kılları dağılınca",
+                "10 yılda bir",
+                "Hiç",
+                "Her gün yenisini"
+              ],
+              "correct": 0,
+              "hint": "Dağılmış kıllar dişi temizleyemez."
+            },
+            {
+              "q": "Dişlerin arasını temizlemek için ne kullanılır?",
+              "skill": "care-dis",
+              "options": [
+                "Diş ipi",
+                "Çivi",
+                "Makas",
+                "Silgi"
+              ],
+              "correct": 0,
+              "hint": "İnce ip, fırçanın giremediği yere ulaşır."
+            },
+            {
+              "q": "Fırçalarken dilini de fırçalamak neden iyi?",
+              "skill": "care-dis",
+              "options": [
+                "Dilde mikrop ve kötü koku birikir",
+                "Dil renk değiştirsin diye",
+                "Gerek yok",
+                "Dil acıksın diye"
+              ],
+              "correct": 0,
+              "hint": "Ağız kokusunun bir sebebi dildeki mikroplardır."
+            },
+            {
+              "q": "Diş ağrın ya da çürüğün varsa kime gidersin?",
+              "skill": "care-dis",
+              "options": [
+                "Diş hekimine",
+                "Kütüphaneciye",
+                "Manava",
+                "Kimseye"
+              ],
+              "correct": 0,
+              "hint": "Diş doktoru, dişlerin uzman komutanıdır."
+            },
+            {
+              "q": "Hangisi dişler için daha dostudur?",
+              "skill": "care-dis",
+              "options": [
+                "Su ve süt",
+                "Sürekli şekerli gazoz",
+                "Bol lokum",
+                "Çok fazla şeker"
+              ],
+              "correct": 0,
+              "hint": "Şekersiz içecekler dişleri korur."
+            },
+            {
+              "q": "Süt dişin düşüp yeni diş çıkarken ne yaparsın?",
+              "skill": "care-dis",
+              "options": [
+                "Fırçalamaya özenle devam ederim",
+                "Fırçalamayı bırakırım",
+                "Dişimi hiç yıkamam",
+                "Gazoz içerim"
+              ],
+              "correct": 0,
+              "hint": "Yeni dişler de bakım ister."
+            },
+            {
+              "q": "Diş hekimine ne sıklıkla kontrole gitmek iyidir?",
+              "skill": "care-dis",
+              "options": [
+                "Yılda 1-2 kez düzenli",
+                "Hiçbir zaman",
+                "Sadece diş kırılınca",
+                "10 yılda bir"
+              ],
+              "correct": 0,
+              "hint": "Düzenli kontrol, sorunları küçükken yakalar."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "ÜNİTE 3 — Dengeli Beslenme",
+      "sections": [
+        {
+          "id": "s-care-beslenme",
+          "title": "Renkli Tabak",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-beslenme-m1",
+              "type": "teach",
+              "title": "Sağlık Brifingi: Dengeli Beslenme",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-beslenme"
+                }
+              ]
+            },
+            {
+              "id": "s-care-beslenme-m2",
+              "type": "practice",
+              "title": "Bakım Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-beslenme"
+              }
+            },
+            {
+              "id": "s-care-beslenme-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-care-beslenme"
+              }
+            },
+            {
+              "id": "s-care-beslenme-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-beslenme"
+              }
+            },
+            {
+              "id": "s-care-beslenme-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-beslenme",
+            "tier": "topic",
+            "name": "Abur Cubur Ejderi",
+            "icon": "🍔",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-care-beslenme"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-care-beslenme"
+            }
+          },
+          "bank": [
+            {
+              "q": "Dengeli beslenmek ne demektir?",
+              "skill": "care-beslenme",
+              "options": [
+                "Her gruptan çeşitli yemek yemek",
+                "Sadece cips yemek",
+                "Hiç yememek",
+                "Sadece şeker yemek"
+              ],
+              "correct": 0,
+              "hint": "Sebze, meyve, tahıl, protein... hepsinden biraz."
+            },
+            {
+              "q": "Günde kaç porsiyon meyve-sebze iyidir?",
+              "skill": "care-beslenme",
+              "options": [
+                "Bol bol, her öğünde",
+                "Yılda bir",
+                "Hiç",
+                "Sadece 1 tane, ayda bir"
+              ],
+              "correct": 0,
+              "hint": "Renkli tabak, güçlü komutan!"
+            },
+            {
+              "q": "Hangi içecek en sağlıklıdır?",
+              "skill": "care-beslenme",
+              "options": [
+                "Su",
+                "Şekerli gazoz",
+                "Enerji içeceği",
+                "Çok tatlı hazır meyve suyu"
+              ],
+              "correct": 0,
+              "hint": "Su, vücudun bir numaralı yakıtıdır."
+            },
+            {
+              "q": "Kahvaltı neden önemlidir?",
+              "skill": "care-beslenme",
+              "options": [
+                "Güne enerji verir, derste dikkat toplar",
+                "Sadece kilo aldırır",
+                "Hiç gerek yok",
+                "Uyku getirir"
+              ],
+              "correct": 0,
+              "hint": "Kahvaltı, beynin sabah yakıtıdır."
+            },
+            {
+              "q": "Abur cubur için en doğrusu nedir?",
+              "skill": "care-beslenme",
+              "options": [
+                "Ara sıra, az miktarda",
+                "Her öğün yerine",
+                "Kahvaltı yerine",
+                "Sınırsız"
+              ],
+              "correct": 0,
+              "hint": "Ara sıra keyif, her gün değil."
+            },
+            {
+              "q": "Hangisi sağlıklı bir atıştırmalıktır?",
+              "skill": "care-beslenme",
+              "options": [
+                "Meyve ya da yoğurt",
+                "Bir kutu çikolata",
+                "Bir paket cips",
+                "Şekerleme torbası"
+              ],
+              "correct": 0,
+              "hint": "Doğal atıştırmalık hem doyurur hem güç verir."
+            },
+            {
+              "q": "Kemiklerin güçlü olması için hangisi iyidir?",
+              "skill": "care-beslenme",
+              "options": [
+                "Süt, yoğurt, peynir",
+                "Sadece şeker",
+                "Sadece cips",
+                "Hiç süt ürünü yememek"
+              ],
+              "correct": 0,
+              "hint": "Süt ürünlerindeki kalsiyum kemikleri güçlendirir."
+            },
+            {
+              "q": "Tabağının çoğu neyle dolu olmalı?",
+              "skill": "care-beslenme",
+              "options": [
+                "Sebze ve tahıllarla",
+                "Sadece tatlıyla",
+                "Sadece kızartmayla",
+                "Sadece şekerle"
+              ],
+              "correct": 0,
+              "hint": "Renkli sebzeler tabağın kahramanıdır."
+            },
+            {
+              "q": "Yavaş ve iyi çiğneyerek yemek neden iyi?",
+              "skill": "care-beslenme",
+              "options": [
+                "Sindirime yardım eder, tıkanmayı önler",
+                "Yemek soğusun diye",
+                "Hiç faydası yok",
+                "Daha hızlı bitsin diye"
+              ],
+              "correct": 0,
+              "hint": "Lokmayı iyi çiğnemek mideye yardımcı olur."
+            },
+            {
+              "q": "Çok şeker yemenin zararı nedir?",
+              "skill": "care-beslenme",
+              "options": [
+                "Diş çürüğü ve ani enerji düşüşü",
+                "Daha akıllı olmak",
+                "Hiçbir zarar",
+                "Daha hızlı koşmak"
+              ],
+              "correct": 0,
+              "hint": "Şeker önce zıplatır, sonra yorar; dişe de zarar verir."
+            },
+            {
+              "q": "Yeşil sebzeleri sevmesen bile ne yaparsın?",
+              "skill": "care-beslenme",
+              "options": [
+                "Az az deneyip alışmaya çalışırım",
+                "Hiç denemem",
+                "Yerine şeker yerim",
+                "Tabağı çöpe atarım"
+              ],
+              "correct": 0,
+              "hint": "Tat alışkanlığı denedikçe gelişir."
+            },
+            {
+              "q": "Öğünleri düzenli saatlerde yemek neden iyi?",
+              "skill": "care-beslenme",
+              "options": [
+                "Vücut enerjiyi dengede tutar",
+                "Saatler karışsın diye",
+                "Hiç önemi yok",
+                "Daha çok acıkmak için"
+              ],
+              "correct": 0,
+              "hint": "Düzenli öğün, düzenli enerji demektir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "ÜNİTE 4 — Uyku & Dinlenme",
+      "sections": [
+        {
+          "id": "s-care-uyku",
+          "title": "Tatlı Rüyalar Üssü",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-uyku-m1",
+              "type": "teach",
+              "title": "Sağlık Brifingi: Uyku & Dinlenme",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-uyku"
+                }
+              ]
+            },
+            {
+              "id": "s-care-uyku-m2",
+              "type": "practice",
+              "title": "Bakım Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-uyku"
+              }
+            },
+            {
+              "id": "s-care-uyku-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-care-uyku"
+              }
+            },
+            {
+              "id": "s-care-uyku-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-uyku"
+              }
+            },
+            {
+              "id": "s-care-uyku-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-uyku",
+            "tier": "topic",
+            "name": "Uykusuzluk Baykuşu",
+            "icon": "🦉",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-care-uyku"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-care-uyku"
+            }
+          },
+          "bank": [
+            {
+              "q": "Senin yaşında bir çocuk günde kaç saat uyumalı?",
+              "skill": "care-uyku",
+              "options": [
+                "9-11 saat",
+                "2 saat",
+                "30 dakika",
+                "Hiç"
+              ],
+              "correct": 0,
+              "hint": "Beyin, öğrendiklerini uykuda kaydeder."
+            },
+            {
+              "q": "Uyku beyne ne yapar?",
+              "skill": "care-uyku",
+              "options": [
+                "Gün içinde öğrenilenleri pekiştirir",
+                "Beyni yorar",
+                "Hiçbir şey",
+                "Unutmayı hızlandırır"
+              ],
+              "correct": 0,
+              "hint": "Uyumak da bir çeşit ders çalışmaktır."
+            },
+            {
+              "q": "Yatmadan önce ekrana bakmak uykuyu nasıl etkiler?",
+              "skill": "care-uyku",
+              "options": [
+                "Beyni uyanık tutar, uykuyu zorlaştırır",
+                "Daha güzel uyutur",
+                "Hiç etkilemez",
+                "Rüyaları renklendirir"
+              ],
+              "correct": 0,
+              "hint": "Ekran ışığı beyne gündüz yalanı söyler."
+            },
+            {
+              "q": "İyi bir uyku için oda nasıl olmalı?",
+              "skill": "care-uyku",
+              "options": [
+                "Karanlık, sessiz ve serin",
+                "Işıklar açık ve gürültülü",
+                "Çok sıcak",
+                "Televizyon açık"
+              ],
+              "correct": 0,
+              "hint": "Karanlık ve sessizlik uykunun dostudur."
+            },
+            {
+              "q": "Her gün aynı saatte yatmak neden iyi?",
+              "skill": "care-uyku",
+              "options": [
+                "Vücut saati düzene girer",
+                "Hiç faydası yok",
+                "Saatler bozulsun diye",
+                "Daha az uyumak için"
+              ],
+              "correct": 0,
+              "hint": "Düzenli uyku saati, kolay uyumayı sağlar."
+            },
+            {
+              "q": "Uykusuz kaldığında ne olur?",
+              "skill": "care-uyku",
+              "options": [
+                "Dikkatin dağılır, sinirli olursun",
+                "Daha güçlü olursun",
+                "Hiçbir şey",
+                "Daha hızlı büyürsün"
+              ],
+              "correct": 0,
+              "hint": "Yorgun komutan iyi karar veremez."
+            },
+            {
+              "q": "Yatmadan önce hangisi seni rahatlatır?",
+              "skill": "care-uyku",
+              "options": [
+                "Kitap okumak ya da sakin müzik",
+                "Heyecanlı oyun oynamak",
+                "Bol şekerli içecek",
+                "Zıplayıp koşmak"
+              ],
+              "correct": 0,
+              "hint": "Sakin aktiviteler beyni uykuya hazırlar."
+            },
+            {
+              "q": "Gündüz kısa bir dinlenme molası neye yarar?",
+              "skill": "care-uyku",
+              "options": [
+                "Enerji toplar, dikkati tazeler",
+                "Zaman kaybıdır",
+                "Hiçbir işe yaramaz",
+                "Seni yorar"
+              ],
+              "correct": 0,
+              "hint": "Kısa molalar komutanı tazeler."
+            },
+            {
+              "q": "Yatağa çok aç ya da çok tok gitmek uykuyu nasıl etkiler?",
+              "skill": "care-uyku",
+              "options": [
+                "Zorlaştırabilir; dengeli olmalı",
+                "Hep iyi uyutur",
+                "Hiç etkilemez",
+                "Daha erken uyutur"
+              ],
+              "correct": 0,
+              "hint": "Ne çok aç ne çok tok: denge en iyisidir."
+            },
+            {
+              "q": "Sabah zinde uyanmak için en önemlisi nedir?",
+              "skill": "care-uyku",
+              "options": [
+                "Gece yeterli uyumak",
+                "Gece geç yatmak",
+                "Hiç uyumamak",
+                "Sabah çok geç kalkmak"
+              ],
+              "correct": 0,
+              "hint": "Yeterli uyku, zinde sabahın anahtarıdır."
+            },
+            {
+              "q": "Rüya görmek normal midir?",
+              "skill": "care-uyku",
+              "options": [
+                "Evet, uykunun doğal bir parçasıdır",
+                "Hayır, hastalıktır",
+                "Sadece büyükler görür",
+                "Rüya yoktur"
+              ],
+              "correct": 0,
+              "hint": "Rüyalar uykuda beynin çalışmasıdır."
+            },
+            {
+              "q": "Uyumadan önce oyuncakları toplamak neden iyi?",
+              "skill": "care-uyku",
+              "options": [
+                "Sabah düzenli başlar, kafan rahatlar",
+                "Oyuncaklar küser",
+                "Hiç gerek yok",
+                "Daha geç uyumak için"
+              ],
+              "correct": 0,
+              "hint": "Düzenli üs, huzurlu uyku demektir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "ÜNİTE 5 — Egzersiz & Hareket",
+      "sections": [
+        {
+          "id": "s-care-egzersiz",
+          "title": "Hareket Timi",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-egzersiz-m1",
+              "type": "teach",
+              "title": "Sağlık Brifingi: Egzersiz & Hareket",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-egzersiz"
+                }
+              ]
+            },
+            {
+              "id": "s-care-egzersiz-m2",
+              "type": "practice",
+              "title": "Bakım Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-egzersiz"
+              }
+            },
+            {
+              "id": "s-care-egzersiz-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-care-egzersiz"
+              }
+            },
+            {
+              "id": "s-care-egzersiz-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-egzersiz"
+              }
+            },
+            {
+              "id": "s-care-egzersiz-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-egzersiz",
+            "tier": "topic",
+            "name": "Tembellik Tembelhayvanı",
+            "icon": "🦥",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-care-egzersiz"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-care-egzersiz"
+            }
+          },
+          "bank": [
+            {
+              "q": "Her gün hareket etmek neden önemli?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Kalbi ve kasları güçlendirir, enerji verir",
+                "Sadece yorar",
+                "Hiçbir faydası yok",
+                "Zaman kaybıdır"
+              ],
+              "correct": 0,
+              "hint": "Hareket eden komutan güçlü olur."
+            },
+            {
+              "q": "Günde ne kadar hareketli olmak iyidir?",
+              "skill": "care-egzersiz",
+              "options": [
+                "En az 1 saat oyun ya da spor",
+                "Hiç",
+                "Yılda 1 gün",
+                "10 saniye"
+              ],
+              "correct": 0,
+              "hint": "Koş, zıpla, oyna: gün boyu hareket!"
+            },
+            {
+              "q": "Spordan önce ne yapmak sakatlanmayı önler?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Isınma hareketleri yapmak",
+                "Hemen zıplamak",
+                "Bol şeker yemek",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Isınma, kasları göreve hazırlar."
+            },
+            {
+              "q": "Hangisi güzel bir hareket etkinliğidir?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Bisiklet, ip atlama, top oynamak",
+                "Bütün gün oturmak",
+                "Sadece telefona bakmak",
+                "Hiç kıpırdamamak"
+              ],
+              "correct": 0,
+              "hint": "Eğlenerek hareket etmek en iyisidir."
+            },
+            {
+              "q": "Uzun süre hiç hareketsiz oturmak ne yapar?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Kasları uyuşturur, enerji düşürür",
+                "Seni güçlendirir",
+                "Hiçbir şey",
+                "Daha hızlı koşturur"
+              ],
+              "correct": 0,
+              "hint": "Arada kalk, gerin, biraz yürü."
+            },
+            {
+              "q": "Spor yaparken bol bol ne yapmalısın?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Su içmek",
+                "Şeker yemek",
+                "Nefesini tutmak",
+                "Hiç su içmemek"
+              ],
+              "correct": 0,
+              "hint": "Terleyen vücut suya susar."
+            },
+            {
+              "q": "Spordan sonra ne yapmak iyidir?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Yavaşça soğuyup esnemek ve su içmek",
+                "Hemen çok yemek yemek",
+                "Hiçbir şey",
+                "Uzun süre hareketsiz kalmak"
+              ],
+              "correct": 0,
+              "hint": "Yavaşça soğumak kasları rahatlatır."
+            },
+            {
+              "q": "Düzenli hareket uykuya nasıl yardım eder?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Daha rahat ve derin uyutur",
+                "Uykuyu bozar",
+                "Hiç etkilemez",
+                "Uykuyu azaltır"
+              ],
+              "correct": 0,
+              "hint": "Gün içinde harcanan enerji, gece güzel uyku getirir."
+            },
+            {
+              "q": "Bir düşme ya da zorlanmada canın çok yanarsa ne yaparsın?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Büyüğüme söyler, dinlenirim",
+                "Görmezden gelirim",
+                "Daha çok zorlarım",
+                "Kimseye söylemem"
+              ],
+              "correct": 0,
+              "hint": "Vücut dur diyorsa dinlenmek gerekir."
+            },
+            {
+              "q": "Yürüyüş, koşu, dans... hepsi ne sayılır?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Sağlıklı hareket",
+                "Zararlı şeyler",
+                "Sadece yorgunluk",
+                "Gereksiz"
+              ],
+              "correct": 0,
+              "hint": "Her türlü hareket vücuda iyi gelir."
+            },
+            {
+              "q": "Takım oyunları hareketin yanında ne kazandırır?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Arkadaşlık ve iş birliği",
+                "Sadece yorgunluk",
+                "Hiçbir şey",
+                "Yalnızlık"
+              ],
+              "correct": 0,
+              "hint": "Birlikte oynamak hem eğlenceli hem öğretici."
+            },
+            {
+              "q": "Açık havada oyun oynamanın ekstra faydası nedir?",
+              "skill": "care-egzersiz",
+              "options": [
+                "Temiz hava ve güneş enerjisi",
+                "Hiçbir şey",
+                "Sadece kir",
+                "Zararlı"
+              ],
+              "correct": 0,
+              "hint": "Açık hava vücuda ve keyfe iyi gelir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "ÜNİTE 6 — Ev & Trafik Güvenliği",
+      "sections": [
+        {
+          "id": "s-care-guvenlik",
+          "title": "Güvenlik Devriyesi",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-guvenlik-m1",
+              "type": "teach",
+              "title": "Sağlık Brifingi: Ev & Trafik Güvenliği",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-guvenlik"
+                }
+              ]
+            },
+            {
+              "id": "s-care-guvenlik-m2",
+              "type": "practice",
+              "title": "Bakım Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-guvenlik"
+              }
+            },
+            {
+              "id": "s-care-guvenlik-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-care-guvenlik"
+              }
+            },
+            {
+              "id": "s-care-guvenlik-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-guvenlik"
+              }
+            },
+            {
+              "id": "s-care-guvenlik-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-guvenlik",
+            "tier": "topic",
+            "name": "Dikkatsizlik Golemi",
+            "icon": "🚦",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-care-guvenlik"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-care-guvenlik"
+            }
+          },
+          "bank": [
+            {
+              "q": "Karşıdan karşıya nereden geçilir?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Yaya geçidinden, ışık yeşilken",
+                "Koşarak her yerden",
+                "Arabaların arasından",
+                "Gözünü kapatıp"
+              ],
+              "correct": 0,
+              "hint": "Yaya geçidi ve yeşil ışık en güvenlisidir."
+            },
+            {
+              "q": "Yolda karşıya geçmeden önce ne yaparsın?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Sağa-sola bakar, aracı kontrol ederim",
+                "Hiç bakmam koşarım",
+                "Telefona bakarım",
+                "Gözümü kaparım"
+              ],
+              "correct": 0,
+              "hint": "Önce dur, bak, dinle; sonra geç."
+            },
+            {
+              "q": "Arabada mutlaka ne takılır?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Emniyet kemeri",
+                "Şapka",
+                "Kulaklık",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Kemer, kaza anında seni korur."
+            },
+            {
+              "q": "Bisiklete binerken ne takmak akıllıcadır?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Kask",
+                "Terlik",
+                "Uçan pelerin",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "Kask kafanı korur; kahramanların bile kaskı var."
+            },
+            {
+              "q": "Evde prizlerle ne yapmamalısın?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Parmağını ya da bir cisim sokmak",
+                "Uzak durmak",
+                "Büyüğe söylemek",
+                "Hiç dokunmamak"
+              ],
+              "correct": 0,
+              "hint": "Elektrik tehlikelidir; prizle oynanmaz."
+            },
+            {
+              "q": "Mutfakta ocak ve sıcak tencereye karşı ne yaparsın?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Uzak dururum, büyükten yardım isterim",
+                "Tencereyi tutarım",
+                "Ocakla oynarım",
+                "Ateşe yaklaşırım"
+              ],
+              "correct": 0,
+              "hint": "Sıcak yüzeyler yakar; bu büyüklerin işi."
+            },
+            {
+              "q": "Tanımadığın biri seni bir yere çağırırsa ne yaparsın?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Gitmem, hemen büyüğüme söylerim",
+                "Hemen giderim",
+                "Sır olarak saklarım",
+                "Peşinden koşarım"
+              ],
+              "correct": 0,
+              "hint": "Yabancıyla gidilmez; güvendiğin büyüğe haber ver."
+            },
+            {
+              "q": "İlaçlar ve temizlik ürünleri için doğru olan nedir?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Onlar oyuncak değil, ellemem",
+                "Tadına bakarım",
+                "Karıştırıp oynarım",
+                "İçerim"
+              ],
+              "correct": 0,
+              "hint": "Bunlar tehlikeli; sadece büyükler kullanır."
+            },
+            {
+              "q": "Acil durumda (yangın, kaza) ne yapılır?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Büyüğe haber verip 112 aranır",
+                "Saklanılır ve söylenmez",
+                "Oyun oynanır",
+                "Hiçbir şey yapılmaz"
+              ],
+              "correct": 0,
+              "hint": "Acil yardım numarası 112 hayat kurtarır."
+            },
+            {
+              "q": "Merdivende koşmak yerine ne yaparsın?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Yavaş iner, tırabzana tutunurum",
+                "Koşarak inerim",
+                "Zıplayarak inerim",
+                "Gözümü kaparım"
+              ],
+              "correct": 0,
+              "hint": "Merdivende acele, düşme sebebidir."
+            },
+            {
+              "q": "Yolda yürürken nerede olmalısın?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Kaldırımda, yola yakın kenardan uzak",
+                "Yolun ortasında",
+                "Araçların arasında",
+                "Koşarak her yerde"
+              ],
+              "correct": 0,
+              "hint": "Kaldırım yayanın güvenli alanıdır."
+            },
+            {
+              "q": "Kaynar su ya da bıçak gerektiğinde ne yaparsın?",
+              "skill": "care-guvenlik",
+              "options": [
+                "Büyükten yardım isterim",
+                "Tek başıma kullanırım",
+                "Oyuncak gibi oynarım",
+                "Arkadaşıma veririm"
+              ],
+              "correct": 0,
+              "hint": "Tehlikeli aletler büyüklerin gözetiminde kullanılır."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u7",
+      "title": "ÜNİTE 7 — Duygular & Ruh Sağlığı",
+      "sections": [
+        {
+          "id": "s-care-duygular",
+          "title": "Duygu Pusulası",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-duygular-m1",
+              "type": "teach",
+              "title": "Sağlık Brifingi: Duygular & Ruh Sağlığı",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-duygular"
+                }
+              ]
+            },
+            {
+              "id": "s-care-duygular-m2",
+              "type": "practice",
+              "title": "Bakım Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-duygular"
+              }
+            },
+            {
+              "id": "s-care-duygular-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-care-duygular"
+              }
+            },
+            {
+              "id": "s-care-duygular-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-duygular"
+              }
+            },
+            {
+              "id": "s-care-duygular-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-duygular",
+            "tier": "topic",
+            "name": "Öfke Bulutu",
+            "icon": "🌩️",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-care-duygular"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-care-duygular"
+            }
+          },
+          "bank": [
+            {
+              "q": "Üzgün hissettiğinde en iyisi nedir?",
+              "skill": "care-duygular",
+              "options": [
+                "Güvendiğim birine anlatmak",
+                "İçime atıp saklamak",
+                "Kimseye söylememek",
+                "Herkese kızmak"
+              ],
+              "correct": 0,
+              "hint": "Duyguları paylaşmak yükü hafifletir."
+            },
+            {
+              "q": "Kızgın olmak kötü bir şey midir?",
+              "skill": "care-duygular",
+              "options": [
+                "Hayır, herkes kızabilir; önemlisi ne yaptığın",
+                "Evet, kızmak yasaktır",
+                "Kızgınken vurmak serbesttir",
+                "Kızgınlık hastalıktır"
+              ],
+              "correct": 0,
+              "hint": "Duygular normaldir; onları güzel yönetmek önemlidir."
+            },
+            {
+              "q": "Çok sinirlendiğinde sakinleşmek için ne yaparsın?",
+              "skill": "care-duygular",
+              "options": [
+                "Derin nefes alıp yavaşça sayarım",
+                "Bir şeyler kırarım",
+                "Bağırıp vururum",
+                "Etrafa zarar veririm"
+              ],
+              "correct": 0,
+              "hint": "Derin nefes, öfkenin frenidir."
+            },
+            {
+              "q": "Bir arkadaşın üzgünse ne yaparsın?",
+              "skill": "care-duygular",
+              "options": [
+                "Dinler, yanında olurum",
+                "Dalga geçerim",
+                "Görmezden gelirim",
+                "Daha çok üzerim"
+              ],
+              "correct": 0,
+              "hint": "Empati: kendini onun yerine koymak."
+            },
+            {
+              "q": "Kendini kötü hissettiren bir olay olduğunda ne yaparsın?",
+              "skill": "care-duygular",
+              "options": [
+                "Anne-babama ya da öğretmenime anlatırım",
+                "Sır olarak saklarım",
+                "Kimseye söylemem",
+                "Görmezden gelirim"
+              ],
+              "correct": 0,
+              "hint": "Güvendiğin büyükler yardım için vardır."
+            },
+            {
+              "q": "Hata yaptığında en sağlıklı düşünce nedir?",
+              "skill": "care-duygular",
+              "options": [
+                "Hatadan öğrenir, tekrar denerim",
+                "Ben hep başarısızım",
+                "Bir daha hiç denemem",
+                "Herkes benden nefret ediyor"
+              ],
+              "correct": 0,
+              "hint": "Hata, öğrenmenin bir parçasıdır."
+            },
+            {
+              "q": "Duyguları anlamak neden önemli?",
+              "skill": "care-duygular",
+              "options": [
+                "Kendimizi ve başkalarını daha iyi anlarız",
+                "Hiç önemi yok",
+                "Sadece büyükler için",
+                "Zaman kaybı"
+              ],
+              "correct": 0,
+              "hint": "Duygularını tanıyan komutan güçlüdür."
+            },
+            {
+              "q": "Sınav ya da yeni bir şey öncesi heyecan olması nasıldır?",
+              "skill": "care-duygular",
+              "options": [
+                "Normaldir, herkes hisseder",
+                "Sadece sana olur",
+                "Utanılacak bir şey",
+                "Bir hastalık"
+              ],
+              "correct": 0,
+              "hint": "Heyecan doğaldır; derin nefes yardımcı olur."
+            },
+            {
+              "q": "Mutlu hissettiren şeyleri yapmak neden iyi?",
+              "skill": "care-duygular",
+              "options": [
+                "Ruhumuzu dinlendirir, moral verir",
+                "Zaman kaybıdır",
+                "Zararlıdır",
+                "Hiç fark etmez"
+              ],
+              "correct": 0,
+              "hint": "Sevdiğin uğraşlar ruh sağlığına iyi gelir."
+            },
+            {
+              "q": "Biri sana ya da başkasına zorbalık yapıyorsa ne yaparsın?",
+              "skill": "care-duygular",
+              "options": [
+                "Güvendiğim bir büyüğe söylerim",
+                "Susup katlanırım",
+                "Ben de zorbalık yaparım",
+                "Kimseye söylemem"
+              ],
+              "correct": 0,
+              "hint": "Zorbalıkla mücadele için büyükten destek al."
+            },
+            {
+              "q": "Güzel şeyleri fark edip şükretmek neye yarar?",
+              "skill": "care-duygular",
+              "options": [
+                "Daha mutlu ve umutlu hissettirir",
+                "Hiçbir şeye",
+                "Üzer",
+                "Zararlıdır"
+              ],
+              "correct": 0,
+              "hint": "Günde bir güzel şeyi fark etmek moral verir."
+            },
+            {
+              "q": "Kendine karşı nasıl konuşmak sağlıklıdır?",
+              "skill": "care-duygular",
+              "options": [
+                "Nazik ve cesaretlendirici",
+                "Sürekli kötüleyerek",
+                "Hep kızarak",
+                "Umutsuzca"
+              ],
+              "correct": 0,
+              "hint": "Kendine bir arkadaşınmış gibi nazik ol."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u8",
+      "title": "ÜNİTE 8 — Mikroplar & Hastalıktan Korunma",
+      "sections": [
+        {
+          "id": "s-care-mikrop",
+          "title": "Kalkan Ordusu",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-mikrop-m1",
+              "type": "teach",
+              "title": "Sağlık Brifingi: Mikroplar & Hastalıktan Korunma",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-mikrop"
+                }
+              ]
+            },
+            {
+              "id": "s-care-mikrop-m2",
+              "type": "practice",
+              "title": "Bakım Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-mikrop"
+              }
+            },
+            {
+              "id": "s-care-mikrop-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-care-mikrop"
+              }
+            },
+            {
+              "id": "s-care-mikrop-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-mikrop"
+              }
+            },
+            {
+              "id": "s-care-mikrop-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-mikrop",
+            "tier": "topic",
+            "name": "Nezle Ninjası",
+            "icon": "🤧",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-care-mikrop"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-care-mikrop"
+            }
+          },
+          "bank": [
+            {
+              "q": "Hasta olmamak için en güçlü silah nedir?",
+              "skill": "care-mikrop",
+              "options": [
+                "Düzenli el yıkamak",
+                "Hiç su içmemek",
+                "Elleri hiç yıkamamak",
+                "Gürültü yapmak"
+              ],
+              "correct": 0,
+              "hint": "Sabun, mikropların bir numaralı düşmanıdır."
+            },
+            {
+              "q": "Hapşırıp öksürürken ne yaparsın?",
+              "skill": "care-mikrop",
+              "options": [
+                "Ağız-burnu dirseğimle kapatırım",
+                "Etrafa doğru saçarım",
+                "Elime saçıp devam ederim",
+                "Hiç kapatmam"
+              ],
+              "correct": 0,
+              "hint": "Dirsek kapağı mikrobu yaymanı önler."
+            },
+            {
+              "q": "Mikroplar gözle görülür mü?",
+              "skill": "care-mikrop",
+              "options": [
+                "Hayır, çok küçüktürler",
+                "Evet, kocamandırlar",
+                "Sadece geceleri",
+                "Renkli toplardır"
+              ],
+              "correct": 0,
+              "hint": "Görünmezler ama sabundan kaçamazlar."
+            },
+            {
+              "q": "Hastayken başkalarını korumak için ne yaparsın?",
+              "skill": "care-mikrop",
+              "options": [
+                "Dinlenir, mesafe koyar, maske takarım",
+                "Herkese sarılırım",
+                "Bardağımı paylaşırım",
+                "Yüzlerine öksürürüm"
+              ],
+              "correct": 0,
+              "hint": "Hastayken dinlenmek hem sana hem başkalarına iyi gelir."
+            },
+            {
+              "q": "Meyve ve sebzeleri yemeden önce ne yaparsın?",
+              "skill": "care-mikrop",
+              "options": [
+                "Suyla iyice yıkarım",
+                "Direkt yerim",
+                "Yere sürterim",
+                "Hiç yıkamam"
+              ],
+              "correct": 0,
+              "hint": "Yıkamak, üzerindeki mikropları uzaklaştırır."
+            },
+            {
+              "q": "Aşılar ne işe yarar?",
+              "skill": "care-mikrop",
+              "options": [
+                "Vücudu bazı hastalıklara karşı korur",
+                "Hiçbir işe",
+                "Hasta eder",
+                "Sadece acıtır"
+              ],
+              "correct": 0,
+              "hint": "Aşı, vücuda kalkan antrenmanı yaptırır."
+            },
+            {
+              "q": "Hasta bir arkadaşınla ne yapmamalısın?",
+              "skill": "care-mikrop",
+              "options": [
+                "Aynı bardak ya da çatalı paylaşmak",
+                "Uzaktan geçmiş olsun demek",
+                "Ellerini yıkamak",
+                "Ona iyi dilekte bulunmak"
+              ],
+              "correct": 0,
+              "hint": "Ağza değen eşyalar paylaşılmaz."
+            },
+            {
+              "q": "Vücudun hastalıklarla savaşan sistemine ne denir?",
+              "skill": "care-mikrop",
+              "options": [
+                "Bağışıklık sistemi",
+                "Kemik sistemi",
+                "Uyku sistemi",
+                "Ses sistemi"
+              ],
+              "correct": 0,
+              "hint": "Bağışıklık, vücudun asker ordusudur."
+            },
+            {
+              "q": "Bağışıklığı güçlü tutmak için hangisi iyidir?",
+              "skill": "care-mikrop",
+              "options": [
+                "İyi uyku, dengeli beslenme, hareket",
+                "Uykusuzluk",
+                "Sadece şeker",
+                "Hiç hareket etmemek"
+              ],
+              "correct": 0,
+              "hint": "Sağlıklı alışkanlıklar ordunu güçlendirir."
+            },
+            {
+              "q": "Ellerini ne zaman mutlaka yıkarsın?",
+              "skill": "care-mikrop",
+              "options": [
+                "Tuvaletten sonra ve yemekten önce",
+                "Sadece yılbaşında",
+                "Hiçbir zaman",
+                "Sadece kar yağınca"
+              ],
+              "correct": 0,
+              "hint": "Bu iki an, mikropla en çok karşılaştığın anlardır."
+            },
+            {
+              "q": "Ateşin çıkıp kendini kötü hissedersen ne yaparsın?",
+              "skill": "care-mikrop",
+              "options": [
+                "Büyüğüme söylerim, dinlenirim",
+                "Saklarım",
+                "Koşup oynarım",
+                "Kimseye söylemem"
+              ],
+              "correct": 0,
+              "hint": "Vücut dur diyorsa büyüklere haber ver."
+            },
+            {
+              "q": "Kapı kolu gibi ortak yüzeylere dokununca ne yaparsın?",
+              "skill": "care-mikrop",
+              "options": [
+                "Sonra elimi yıkamaya dikkat ederim",
+                "Elimi ağzıma götürürüm",
+                "Hiç önemsemem",
+                "Gözümü ovuştururum"
+              ],
+              "correct": 0,
+              "hint": "Mikroplar ellerle taşınır; sabun onları durdurur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u9",
+      "title": "ÜNİTE 9 — İlk Yardım Temelleri",
+      "sections": [
+        {
+          "id": "s-care-ilkyardim",
+          "title": "İlk Yardım Kahramanı",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-ilkyardim-m1",
+              "type": "teach",
+              "title": "Sağlık Brifingi: İlk Yardım Temelleri",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-ilkyardim"
+                }
+              ]
+            },
+            {
+              "id": "s-care-ilkyardim-m2",
+              "type": "practice",
+              "title": "Bakım Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-ilkyardim"
+              }
+            },
+            {
+              "id": "s-care-ilkyardim-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-care-ilkyardim"
+              }
+            },
+            {
+              "id": "s-care-ilkyardim-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-ilkyardim"
+              }
+            },
+            {
+              "id": "s-care-ilkyardim-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-ilkyardim",
+            "tier": "topic",
+            "name": "Panik Hayaleti",
+            "icon": "🚑",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-care-ilkyardim"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-care-ilkyardim"
+            }
+          },
+          "bank": [
+            {
+              "q": "Acil durumda aranan yardım numarası kaçtır?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "112",
+                "000",
+                "555",
+                "Numara yok"
+              ],
+              "correct": 0,
+              "hint": "112, ülkemizin acil yardım hattıdır."
+            },
+            {
+              "q": "Küçük bir kesik olduğunda ilk ne yaparsın?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Büyüğe söyler, yarayı temiz tutarım",
+                "Görmezden gelirim",
+                "Kir bulaştırırım",
+                "Ovuştururum"
+              ],
+              "correct": 0,
+              "hint": "Temiz yara, hızlı iyileşen yaradır."
+            },
+            {
+              "q": "Ciddi bir kaza gördüğünde ilk hamlen ne olur?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Bir büyüğe haber vermek",
+                "Kaçıp saklanmak",
+                "Fotoğraf çekmek",
+                "Hiçbir şey yapmamak"
+              ],
+              "correct": 0,
+              "hint": "İlk iş: yardım çağırmak."
+            },
+            {
+              "q": "Burnun kanadığında ne yapmak doğrudur?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Öne eğilip burun kanadını sıkmak",
+                "Başı geriye atmak",
+                "Koşmak",
+                "Hiçbir şey yapmamak"
+              ],
+              "correct": 0,
+              "hint": "Hafifçe öne eğil, burun kanadını sık."
+            },
+            {
+              "q": "Bir yerini hafifçe yakarsan ne iyi gelir?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Soğuk akan su altında tutmak",
+                "Diş macunu sürmek",
+                "Sıcak su dökmek",
+                "Ovuşturmak"
+              ],
+              "correct": 0,
+              "hint": "Soğuk (buz değil) akan su yanığı yatıştırır."
+            },
+            {
+              "q": "112 aranırken ne söylenmeli?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Nerede olduğun ve ne olduğu",
+                "Sadece gülmek",
+                "Hiçbir şey",
+                "Şarkı söylemek"
+              ],
+              "correct": 0,
+              "hint": "Yer ve durum bilgisi, yardımın hızını artırır."
+            },
+            {
+              "q": "Arkadaşın düşüp canı yandıysa ne yaparsın?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Sakin olur, büyük çağırırım",
+                "Dalga geçerim",
+                "Kaçarım",
+                "Onu zorlarım"
+              ],
+              "correct": 0,
+              "hint": "Sakinlik ve yardım çağırmak en doğrusu."
+            },
+            {
+              "q": "İlk yardımda sakin kalmak neden önemli?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Doğru düşünüp yardım çağırabilmek için",
+                "Hiç önemi yok",
+                "Panik daha iyidir",
+                "Bağırmak gerekir"
+              ],
+              "correct": 0,
+              "hint": "Sakin komutan, doğru kararı verir."
+            },
+            {
+              "q": "İlaçları kim vermeli?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Sadece büyükler ya da doktor",
+                "Kendim istediğimi",
+                "Arkadaşım",
+                "Herkes"
+              ],
+              "correct": 0,
+              "hint": "İlaç, büyüklerin ve doktorun işidir."
+            },
+            {
+              "q": "Küçük bir sıyrık için ne uygundur?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Temizleyip yara bandı yapmak",
+                "Toprak sürmek",
+                "Ovuşturmak",
+                "Açıkta bırakıp kirletmek"
+              ],
+              "correct": 0,
+              "hint": "Temiz yara bandı yarayı korur."
+            },
+            {
+              "q": "Birinin bayıldığını görürsen ne yaparsın?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Hemen büyüğe ya da 112ye haber veririm",
+                "Üstünden atlarım",
+                "Görmezden gelirim",
+                "Sallayıp bağırırım"
+              ],
+              "correct": 0,
+              "hint": "Vakit kaybetmeden yardım çağır."
+            },
+            {
+              "q": "İlk yardım çantasında ne bulunur?",
+              "skill": "care-ilkyardim",
+              "options": [
+                "Yara bandı, gazlı bez, antiseptik",
+                "Şeker ve oyuncak",
+                "Sadece kalem",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "hint": "İlk yardım çantası küçük yaralar için hazır durur."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u10",
+      "title": "ÜNİTE 10 — Ekran Dengesi & Sağlıklı Alışkanlıklar",
+      "sections": [
+        {
+          "id": "s-care-ekran",
+          "title": "Denge Ustası",
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-ekran-m1",
+              "type": "teach",
+              "title": "Sağlık Brifingi: Ekran Dengesi & Sağlıklı Alışkanlıklar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-ekran"
+                }
+              ]
+            },
+            {
+              "id": "s-care-ekran-m2",
+              "type": "practice",
+              "title": "Bakım Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-ekran"
+              }
+            },
+            {
+              "id": "s-care-ekran-m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-care-ekran"
+              }
+            },
+            {
+              "id": "s-care-ekran-m4",
+              "type": "challenge",
+              "title": "Zorlu Görev",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-care-ekran"
+              }
+            },
+            {
+              "id": "s-care-ekran-m5",
+              "type": "review",
+              "title": "Tekrar Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-ekran",
+            "tier": "topic",
+            "name": "Ekran Zombisi",
+            "icon": "📱",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-care-ekran"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-care-ekran"
+            }
+          },
+          "bank": [
+            {
+              "q": "Ekran karşısında uzun süre kalınca gözler için ne iyi?",
+              "skill": "care-ekran",
+              "options": [
+                "20 dakikada bir uzağa bakıp ara vermek",
+                "Hiç ara vermemek",
+                "Ekrana daha yakın oturmak",
+                "Karanlıkta izlemek"
+              ],
+              "correct": 0,
+              "hint": "20-20 kuralı: 20 dakikada bir uzağa bak."
+            },
+            {
+              "q": "Ekran süresi için en doğru yaklaşım nedir?",
+              "skill": "care-ekran",
+              "options": [
+                "Dengeli ve sınırlı kullanmak",
+                "Bütün gün ekranda kalmak",
+                "Uyku yerine izlemek",
+                "Ödev yerine oyun"
+              ],
+              "correct": 0,
+              "hint": "Ekran güzeldir ama denge şarttır."
+            },
+            {
+              "q": "Yatmadan hemen önce ekran neden iyi değil?",
+              "skill": "care-ekran",
+              "options": [
+                "Uykuyu zorlaştırır",
+                "Daha güzel uyutur",
+                "Hiç etkilemez",
+                "Rüyayı bozar"
+              ],
+              "correct": 0,
+              "hint": "Ekran ışığı beyni uyanık tutar."
+            },
+            {
+              "q": "Ekrandan sıkılınca en güzel alternatif nedir?",
+              "skill": "care-ekran",
+              "options": [
+                "Dışarı çıkıp oynamak, kitap okumak",
+                "Başka ekrana geçmek",
+                "Uyumamak",
+                "Daha uzun izlemek"
+              ],
+              "correct": 0,
+              "hint": "Gerçek dünyada da bol macera var!"
+            },
+            {
+              "q": "İnternette tanımadığın biri seninle konuşursa ne yaparsın?",
+              "skill": "care-ekran",
+              "options": [
+                "Cevaplamam, büyüğüme söylerim",
+                "Adresimi veririm",
+                "Fotoğraf gönderirim",
+                "Buluşmaya giderim"
+              ],
+              "correct": 0,
+              "hint": "Kişisel bilgiler internette yabancılara verilmez."
+            },
+            {
+              "q": "Ekrana çok yakından bakmak neye zarar verir?",
+              "skill": "care-ekran",
+              "options": [
+                "Gözlere",
+                "Ayaklara",
+                "Kulaklara",
+                "Hiçbir şeye"
+              ],
+              "correct": 0,
+              "hint": "Gözler için uygun mesafe ve ışık önemlidir."
+            },
+            {
+              "q": "Oyun oynarken doğru duruş nasıldır?",
+              "skill": "care-ekran",
+              "options": [
+                "Dik oturmak, arada gerinmek",
+                "İki büklüm yatmak",
+                "Yüzü ekrana yapıştırmak",
+                "Hiç kıpırdamamak"
+              ],
+              "correct": 0,
+              "hint": "Dik duruş sırtını korur; arada kalkıp gerin."
+            },
+            {
+              "q": "Ekran süresinin sınırını kim belirler?",
+              "skill": "care-ekran",
+              "options": [
+                "Ailenle birlikte konuşup karar verirsin",
+                "Sadece sen sınırsız",
+                "Kimse",
+                "Ekran kendisi"
+              ],
+              "correct": 0,
+              "hint": "Aileyle kurulan denge en sağlıklısıdır."
+            },
+            {
+              "q": "İnternette üzücü ya da korkutucu bir şey görürsen ne yaparsın?",
+              "skill": "care-ekran",
+              "options": [
+                "Kapatır, büyüğüme anlatırım",
+                "Saklarım",
+                "İzlemeye devam ederim",
+                "Herkese yollarım"
+              ],
+              "correct": 0,
+              "hint": "Rahatsız eden içeriği büyüğüne söyle."
+            },
+            {
+              "q": "Sağlıklı bir günlük düzende ekran nerede olmalı?",
+              "skill": "care-ekran",
+              "options": [
+                "Uyku, ödev, oyun ve hareketten sonra dengeli",
+                "Her şeyin yerine",
+                "Uyku yerine",
+                "Yemek yerine"
+              ],
+              "correct": 0,
+              "hint": "Önce görevler, sonra dengeli ekran keyfi."
+            },
+            {
+              "q": "Ekranda gördüğün her bilgi doğru mudur?",
+              "skill": "care-ekran",
+              "options": [
+                "Hayır, büyüğüne sorup teyit etmek gerekir",
+                "Evet, hepsi doğru",
+                "Sadece renkliyse doğru",
+                "Hiç düşünmem"
+              ],
+              "correct": 0,
+              "hint": "İnternette yanlış bilgi de olabilir; sor ve düşün."
+            },
+            {
+              "q": "Ekran yerine hangi alışkanlık uzun vadede daha çok kazandırır?",
+              "skill": "care-ekran",
+              "options": [
+                "Kitap okuma ve dışarıda oyun",
+                "Sürekli video izleme",
+                "Hiç hareket etmemek",
+                "Geç yatmak"
+              ],
+              "correct": 0,
+              "hint": "Kitap ve oyun hem eğlendirir hem geliştirir."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "u-final",
+      "title": "FİNAL — Sağlık Kalkanı Ustalığı",
+      "sections": [
+        {
+          "id": "s-care-final",
+          "title": "Büyük Sınav",
+          "interactionType": "multiple-choice",
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
+          "missions": [
+            {
+              "id": "s-care-final-t",
+              "type": "teach",
+              "title": "Final Brifingi",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "care-final"
+                }
+              ]
+            },
+            {
+              "id": "s-care-final-1",
+              "type": "practice",
+              "title": "Genel Tekrar",
+              "targetCount": 4,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-care-final-2",
+              "type": "challenge",
+              "title": "Ustalık Sınavı",
+              "targetCount": 5,
+              "generator": {
+                "poolAll": true
+              }
+            },
+            {
+              "id": "s-care-final-3",
+              "type": "review",
+              "title": "Son Hazırlık",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
+          ],
+          "boss": {
+            "id": "boss-care-final",
+            "tier": "final",
+            "name": "Sağlık Kalkanı Kralı",
+            "icon": "🛡️",
+            "hp": 60,
+            "unlock": {
+              "masteryRequired": 0.6
+            },
+            "generator": {
+              "poolAll": true
+            },
+            "rewards": {
+              "xp": 400,
+              "chest": "legendary",
+              "badge": "b-care-final"
+            }
+          }
         }
       ]
     }

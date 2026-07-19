@@ -42,7 +42,14 @@
     /* Üretici çözümleme: { pool: "sX" } gibi bölüm referanslarını
      * o bölümün soru bankasına çevirir (çoktan seçmeli dersler için). */
     resolveGenerator(sectionId, gen) {
-      if (!gen || typeof gen.pool !== 'string') return gen;
+      if (!gen) return gen;
+      // Final boss / ders-geneli sınav: dersin TÜM bölümlerinin bankalarını birleştir (en zor).
+      if (gen.poolAll) {
+        const all = [];
+        B.Lesson.sections().forEach(x => (x.section.bank || []).forEach(b => all.push(b)));
+        return { pool: all };
+      }
+      if (typeof gen.pool !== 'string') return gen;
       const ref = B.Lesson.findSection(gen.pool) || B.Lesson.findSection(sectionId);
       return { pool: (ref && ref.section.bank) || [] };
     },

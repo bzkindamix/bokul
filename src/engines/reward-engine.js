@@ -97,7 +97,7 @@
     stepXp() { return R().xp.perStep; },
     questionXp(stars) { return R().xp.perQuestionByStars[String(stars)] || 0; },
     missionBonus() { return R().xp.missionBonus; },
-    bossXp(tier) { return tier === 'unit' ? R().xp.bossUnit : R().xp.bossTopic; },
+    bossXp(tier) { return tier === 'final' ? (R().xp.bossFinal || R().xp.bossUnit * 2) : tier === 'unit' ? R().xp.bossUnit : R().xp.bossTopic; },
 
     init() {
       // Harekât bittiğinde günlük seri işlenir
