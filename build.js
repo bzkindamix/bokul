@@ -73,6 +73,7 @@ const JS = [
   'src/ui/screens/creator-screen.js',
   'src/ui/screens/character-screen.js',
   'src/ui/screens/room-screen.js',
+  'src/ui/screens/atolye-screen.js',
   'src/ui/screens/login-screen.js',
   'src/ui/screens/wishes-screen.js',
   'src/ui/screens/admin-screen.js',

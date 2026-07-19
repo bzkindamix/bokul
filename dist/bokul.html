@@ -1420,6 +1420,19 @@ h1, h2, h3, h4,
 .screen-home .home-doors { width: 100%; }
 .home-scroll { align-items: stretch; }
 
+/* === v0.57 — Atölye ekranı (craft alanı) + Evim kapı rengi === */
+.evim-doors .door-atolye { background: linear-gradient(180deg, #B5602E, #7A3E1E); }
+.atolye-wrap { flex: 1; overflow-y: auto; padding: 10px 14px 20px; max-width: 720px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.atolye-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.atolye-title { font-size: 22px; font-weight: 900; }
+.atolye-mats { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+.atolye-mats-empty { color: var(--ink-dim); font-size: 13px; text-align: center; }
+.atolye-mats-t { font-size: 12px; font-weight: 800; color: var(--xp); margin-bottom: 6px; }
+.atolye-mats-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.mat-chip { font-size: 12px; font-weight: 700; background: var(--bg-raised); border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; }
+.mat-chip b { color: var(--xp); }
+.atolye-recipes { display: flex; flex-direction: column; gap: 6px; }
+
 </style>
 </head>
 <body>
@@ -1429,7 +1442,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.56 — Evim kapıları düzeltme: tüm kapılar tek tip hizalı grid kart (ikon+başlık+alt yazı) — alt yazı yapışması giderildi</div>
+      <div class="splash-note">v0.57 — Atölye kendi ekranı oldu (Evim kapısı): depodaki malzemelerle craft; Mağaza'dan çıkarıldı</div>
     </div>
   </div>
 
@@ -13394,6 +13407,7 @@ h1, h2, h3, h4,
           '<button class="btn door door-dolap"><span class="door-ico">👕</span><span class="door-tt">DOLAP</span><small>Kıyafet al · sat · giy</small></button>' +
           '<button class="btn door door-room"><span class="door-ico">🛋️</span><span class="door-tt">ODAM</span><small>Eşya yerleştir · süsle</small></button>' +
           '<button class="btn door door-store"><span class="door-ico">📦</span><span class="door-tt">DEPOM</span><small>Eşya al · sakla</small></button>' +
+          '<button class="btn door door-atolye"><span class="door-ico">🔨</span><span class="door-tt">ATÖLYE</span><small>Depodan eşya üret</small></button>' +
           '<button class="btn door door-pets">' + petBadge + '<span class="door-ico">🐾</span><span class="door-tt">EVCİL HAYVANLARIM</span><small>' + (needy.length ? '🐾 ' + needy.length + ' dost bakım bekliyor' : 'Sahiplen · bak') + '</small></button>' +
           '<button class="btn door door-int"><span class="door-ico">🎯</span><span class="door-tt">İLGİ ALANLARIM</span><small>Sevdiklerim</small></button>' +
         '</div>';
@@ -13407,6 +13421,7 @@ h1, h2, h3, h4,
 
       wrap.querySelector('.door-char').onclick = () => { B.Audio.play('tick'); B.UI.show('character'); };
       evimGate(wrap.querySelector('.door-room'), 'shop', () => { B.Audio.play('tick'); B.UI.show('room'); });
+      evimGate(wrap.querySelector('.door-atolye'), 'shop', () => { B.Audio.play('tick'); B.UI.show('atolye'); });
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
       function evimGate(el, feature, go) {
@@ -13438,6 +13453,7 @@ h1, h2, h3, h4,
       const hud = B.UI.buildHud(root, { backTo: 'evim' });
       this._hud = hud;
       let tab = (params && params.tab) || 'shop';
+      if (tab === 'craft') tab = 'shop'; // craft artık kendi ekranı (atolye)
       let cat = 'all';
 
       const wrap = document.createElement('div');
@@ -13451,15 +13467,17 @@ h1, h2, h3, h4,
           '<div class="store-top"><div class="chip store-gold">💰 ' + coins() + ' Altın</div></div>' +
           '<div class="store-tabs">' +
             '<button class="chip stab" data-t="shop">🏪 Mağaza</button>' +
-            '<button class="chip stab" data-t="craft">🔨 Atölye</button>' +
             '<button class="chip stab" data-t="depo">📦 Depom (' + B.Items.total() + ')</button>' +
+            '<button class="chip stab store-goatolye">🔨 Atölye ▶</button>' +
           '</div>' +
           '<div class="store-body"></div>';
-        wrap.querySelectorAll('.stab').forEach(b => b.onclick = () => {
+        wrap.querySelectorAll('.stab[data-t]').forEach(b => b.onclick = () => {
           tab = b.dataset.t;
           wrap.querySelectorAll('.stab').forEach(x => x.classList.toggle('tab-on', x === b));
           renderBody();
         });
+        const goAt = wrap.querySelector('.store-goatolye');
+        if (goAt) goAt.onclick = () => { B.Audio.play('tick'); B.UI.show('atolye'); };
         wrap.querySelector('.stab[data-t="' + tab + '"]').classList.add('tab-on');
         renderBody();
       }
@@ -13467,7 +13485,6 @@ h1, h2, h3, h4,
       function renderBody() {
         const body = wrap.querySelector('.store-body');
         if (tab === 'shop') renderShop(body);
-        else if (tab === 'craft') renderCraft(body);
         else renderDepo(body);
       }
 
@@ -13534,57 +13551,7 @@ h1, h2, h3, h4,
         });
       }
 
-      /* ---- 🔨 Atölye (craft) ---- */
-      function renderCraft(body) {
-        babaSays('craft', '🔨', B.Craft.intro());
-        const tiers = B.Craft.tiers();
-        const recipes = B.Craft.recipes();
-        body.innerHTML = tiers.map(t => {
-          const rs = recipes.filter(r => r.tier === t.id);
-          if (!rs.length) return '';
-          return '<div class="craft-tier"><b>' + t.name + '</b><small>' + (t.hint || '') + '</small></div>' +
-            '<div class="craft-list">' + rs.map(craftCard).join('') + '</div>';
-        }).join('');
-
-        body.querySelectorAll('.craft-do').forEach(btn => btn.onclick = () => {
-          const r = B.Craft.get(btn.dataset.id);
-          if (!r) return;
-          B.UI.confirm({
-            icon: r.icon, title: r.name + ' üretilsin mi?',
-            body: 'Gerekli malzemeler harcanacak.',
-            yes: 'Üret 🔨', no: 'Vazgeç',
-            onYes: () => {
-              const res = B.Craft.craft(btn.dataset.id);
-              if (!res.ok) { B.Audio.play('wrong'); B.UI.toast('⚠️ ' + res.err); return; }
-              B.Audio.play('chest');
-              // Baba örnekle açıklar (öğretici)
-              B.UI.overlay('<div class="ov-baba">' + r.icon + '</div><h2>' + r.name + ' üretildi! 🎉</h2>' +
-                '<p class="ov-quote">' + (r.teach || '') + '</p>', [{ label: 'Süper!', onClick: null }]);
-              shell();
-              tab = 'craft';
-              wrap.querySelectorAll('.stab').forEach(x => x.classList.toggle('tab-on', x.dataset.t === 'craft'));
-              renderBody();
-            },
-          });
-        });
-      }
-
-      function craftCard(r) {
-        const miss = B.Craft.missing(r);
-        const can = miss.length === 0;
-        const needRows = Object.keys(r.needs).map(k => {
-          const it = B.Items.get(k) || { name: k, icon: '❔' };
-          const have = B.Items.count(k), need = r.needs[k];
-          const ok = have >= need;
-          return '<span class="craft-need' + (ok ? ' need-ok' : ' need-no') + '">' + it.icon + ' ' + it.name + ' ' + have + '/' + need + '</span>';
-        }).join('');
-        return '<div class="craft-card' + (can ? '' : ' craft-cant') + '">' +
-          '<div class="craft-head"><span class="craft-ic">' + r.icon + '</span><b>' + r.name + '</b></div>' +
-          '<div class="craft-needs">' + needRows + '</div>' +
-          '<button class="btn craft-do' + (can ? ' btn-action' : ' btn-quiet') + '" data-id="' + r.id + '"' + (can ? '' : ' disabled') + '>' +
-            (can ? '🔨 Üret' : '🔒 Malzeme eksik') + '</button>' +
-          '</div>';
-      }
+      /* Not: Atölye (craft) artık ayrı ekran → src/ui/screens/atolye-screen.js */
 
       /* ---- 📦 Depom ---- */
       function renderDepo(body) {
@@ -14239,6 +14206,95 @@ h1, h2, h3, h4,
       });
       wrap.querySelector('.rtab').classList.add('rtab-on');
       applyRoom(); renderPlaced(); renderPanel();
+    },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/atolye-screen.js === */
+/* BOKUL — Atölye (craft alanı)
+ * Depodaki (Depom) ham malzemelerle yeni eşyalar ÜRET. Craft edilen parçalarla
+ * daha büyük eşyalar craftlanır; evini/depoyu geliştirir, evcil hayvan ön koşulu
+ * sağlarsın. Malzemeler B.State.inventory.items'ten (Depom) harcanır. */
+(function (B) {
+  B.UI.registerScreen('atolye', {
+    enter(root) {
+      const hud = B.UI.buildHud(root, { backTo: 'evim' });
+      this._hud = hud;
+      const wrap = document.createElement('div');
+      wrap.className = 'atolye-wrap';
+      root.appendChild(wrap);
+
+      // Baba ilk kez açıklar
+      (function babaIntro() {
+        const seen = B.Save.settings.get();
+        if (seen.tut_craft) return;
+        B.Save.settings.set({ tut_craft: true });
+        B.UI.overlay('<div class="ov-baba">🔨</div><h2>Atölye</h2>' +
+          '<p class="ov-quote">' + B.Craft.intro() + '</p>', [{ label: 'Anlaşıldı!', onClick: null }]);
+      })();
+
+      /* Depodaki craft malzemeleri (ne ile üreteceğini gör) */
+      function matStrip() {
+        const owned = B.Items.ownedList().filter(o => ['malzeme', 'craft', 'pet'].includes(o.item.cat));
+        if (!owned.length) {
+          return '<div class="atolye-mats atolye-mats-empty">📦 Depon boş — 🏪 Mağaza\'dan ham malzeme (tahta, cam, metal, vida…) al, sonra burada birleştir!</div>';
+        }
+        return '<div class="atolye-mats"><div class="atolye-mats-t">📦 Depondaki malzemeler</div>' +
+          '<div class="atolye-mats-list">' + owned.map(o =>
+            '<span class="mat-chip">' + o.item.icon + ' ' + o.item.name + ' <b>×' + o.count + '</b></span>').join('') +
+          '</div></div>';
+      }
+
+      function craftCard(r) {
+        const can = B.Craft.missing(r).length === 0;
+        const needRows = Object.keys(r.needs).map(k => {
+          const it = B.Items.get(k) || { name: k, icon: '❔' };
+          const have = B.Items.count(k), need = r.needs[k];
+          const ok = have >= need;
+          return '<span class="craft-need' + (ok ? ' need-ok' : ' need-no') + '">' + it.icon + ' ' + it.name + ' ' + have + '/' + need + '</span>';
+        }).join('');
+        return '<div class="craft-card' + (can ? '' : ' craft-cant') + '">' +
+          '<div class="craft-head"><span class="craft-ic">' + r.icon + '</span><b>' + r.name + '</b></div>' +
+          '<div class="craft-needs">' + needRows + '</div>' +
+          '<button class="btn craft-do' + (can ? ' btn-action' : ' btn-quiet') + '" data-id="' + r.id + '"' + (can ? '' : ' disabled') + '>' +
+            (can ? '🔨 Üret' : '🔒 Malzeme eksik') + '</button>' +
+        '</div>';
+      }
+
+      function render() {
+        const tiers = B.Craft.tiers();
+        const recipes = B.Craft.recipes();
+        wrap.innerHTML =
+          '<div class="atolye-head"><div class="atolye-title">🔨 Atölye</div>' +
+            '<div class="chip store-gold">💰 ' + (B.State.data.player.coins || 0) + '</div></div>' +
+          matStrip() +
+          '<div class="atolye-recipes">' + tiers.map(t => {
+            const rs = recipes.filter(r => r.tier === t.id);
+            if (!rs.length) return '';
+            return '<div class="craft-tier"><b>' + t.name + '</b><small>' + (t.hint || '') + '</small></div>' +
+              '<div class="craft-list">' + rs.map(craftCard).join('') + '</div>';
+          }).join('') + '</div>';
+
+        wrap.querySelectorAll('.craft-do').forEach(btn => btn.onclick = () => {
+          const r = B.Craft.get(btn.dataset.id);
+          if (!r) return;
+          B.UI.confirm({
+            icon: r.icon, title: r.name + ' üretilsin mi?',
+            body: 'Depondaki gerekli malzemeler harcanacak.', yes: 'Üret 🔨', no: 'Vazgeç',
+            onYes: () => {
+              const res = B.Craft.craft(btn.dataset.id);
+              if (!res.ok) { B.Audio.play('wrong'); B.UI.toast('⚠️ ' + res.err); return; }
+              B.Audio.play('chest');
+              B.UI.overlay('<div class="ov-baba">' + r.icon + '</div><h2>' + r.name + ' üretildi! 🎉</h2>' +
+                '<p class="ov-quote">' + (r.teach || '') + '</p>', [{ label: 'Süper!', onClick: null }]);
+              render();
+            },
+          });
+        });
+      }
+
+      render();
     },
     exit() { if (this._hud) this._hud.dispose(); },
   });
@@ -15375,7 +15431,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.56'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.57'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

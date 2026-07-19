@@ -44,6 +44,7 @@
           '<button class="btn door door-dolap"><span class="door-ico">👕</span><span class="door-tt">DOLAP</span><small>Kıyafet al · sat · giy</small></button>' +
           '<button class="btn door door-room"><span class="door-ico">🛋️</span><span class="door-tt">ODAM</span><small>Eşya yerleştir · süsle</small></button>' +
           '<button class="btn door door-store"><span class="door-ico">📦</span><span class="door-tt">DEPOM</span><small>Eşya al · sakla</small></button>' +
+          '<button class="btn door door-atolye"><span class="door-ico">🔨</span><span class="door-tt">ATÖLYE</span><small>Depodan eşya üret</small></button>' +
           '<button class="btn door door-pets">' + petBadge + '<span class="door-ico">🐾</span><span class="door-tt">EVCİL HAYVANLARIM</span><small>' + (needy.length ? '🐾 ' + needy.length + ' dost bakım bekliyor' : 'Sahiplen · bak') + '</small></button>' +
           '<button class="btn door door-int"><span class="door-ico">🎯</span><span class="door-tt">İLGİ ALANLARIM</span><small>Sevdiklerim</small></button>' +
         '</div>';
@@ -57,6 +58,7 @@
 
       wrap.querySelector('.door-char').onclick = () => { B.Audio.play('tick'); B.UI.show('character'); };
       evimGate(wrap.querySelector('.door-room'), 'shop', () => { B.Audio.play('tick'); B.UI.show('room'); });
+      evimGate(wrap.querySelector('.door-atolye'), 'shop', () => { B.Audio.play('tick'); B.UI.show('atolye'); });
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
       function evimGate(el, feature, go) {

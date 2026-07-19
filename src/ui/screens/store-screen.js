@@ -8,6 +8,7 @@
       const hud = B.UI.buildHud(root, { backTo: 'evim' });
       this._hud = hud;
       let tab = (params && params.tab) || 'shop';
+      if (tab === 'craft') tab = 'shop'; // craft artık kendi ekranı (atolye)
       let cat = 'all';
 
       const wrap = document.createElement('div');
@@ -21,15 +22,17 @@
           '<div class="store-top"><div class="chip store-gold">💰 ' + coins() + ' Altın</div></div>' +
           '<div class="store-tabs">' +
             '<button class="chip stab" data-t="shop">🏪 Mağaza</button>' +
-            '<button class="chip stab" data-t="craft">🔨 Atölye</button>' +
             '<button class="chip stab" data-t="depo">📦 Depom (' + B.Items.total() + ')</button>' +
+            '<button class="chip stab store-goatolye">🔨 Atölye ▶</button>' +
           '</div>' +
           '<div class="store-body"></div>';
-        wrap.querySelectorAll('.stab').forEach(b => b.onclick = () => {
+        wrap.querySelectorAll('.stab[data-t]').forEach(b => b.onclick = () => {
           tab = b.dataset.t;
           wrap.querySelectorAll('.stab').forEach(x => x.classList.toggle('tab-on', x === b));
           renderBody();
         });
+        const goAt = wrap.querySelector('.store-goatolye');
+        if (goAt) goAt.onclick = () => { B.Audio.play('tick'); B.UI.show('atolye'); };
         wrap.querySelector('.stab[data-t="' + tab + '"]').classList.add('tab-on');
         renderBody();
       }
@@ -37,7 +40,6 @@
       function renderBody() {
         const body = wrap.querySelector('.store-body');
         if (tab === 'shop') renderShop(body);
-        else if (tab === 'craft') renderCraft(body);
         else renderDepo(body);
       }
 
@@ -104,57 +106,7 @@
         });
       }
 
-      /* ---- 🔨 Atölye (craft) ---- */
-      function renderCraft(body) {
-        babaSays('craft', '🔨', B.Craft.intro());
-        const tiers = B.Craft.tiers();
-        const recipes = B.Craft.recipes();
-        body.innerHTML = tiers.map(t => {
-          const rs = recipes.filter(r => r.tier === t.id);
-          if (!rs.length) return '';
-          return '<div class="craft-tier"><b>' + t.name + '</b><small>' + (t.hint || '') + '</small></div>' +
-            '<div class="craft-list">' + rs.map(craftCard).join('') + '</div>';
-        }).join('');
-
-        body.querySelectorAll('.craft-do').forEach(btn => btn.onclick = () => {
-          const r = B.Craft.get(btn.dataset.id);
-          if (!r) return;
-          B.UI.confirm({
-            icon: r.icon, title: r.name + ' üretilsin mi?',
-            body: 'Gerekli malzemeler harcanacak.',
-            yes: 'Üret 🔨', no: 'Vazgeç',
-            onYes: () => {
-              const res = B.Craft.craft(btn.dataset.id);
-              if (!res.ok) { B.Audio.play('wrong'); B.UI.toast('⚠️ ' + res.err); return; }
-              B.Audio.play('chest');
-              // Baba örnekle açıklar (öğretici)
-              B.UI.overlay('<div class="ov-baba">' + r.icon + '</div><h2>' + r.name + ' üretildi! 🎉</h2>' +
-                '<p class="ov-quote">' + (r.teach || '') + '</p>', [{ label: 'Süper!', onClick: null }]);
-              shell();
-              tab = 'craft';
-              wrap.querySelectorAll('.stab').forEach(x => x.classList.toggle('tab-on', x.dataset.t === 'craft'));
-              renderBody();
-            },
-          });
-        });
-      }
-
-      function craftCard(r) {
-        const miss = B.Craft.missing(r);
-        const can = miss.length === 0;
-        const needRows = Object.keys(r.needs).map(k => {
-          const it = B.Items.get(k) || { name: k, icon: '❔' };
-          const have = B.Items.count(k), need = r.needs[k];
-          const ok = have >= need;
-          return '<span class="craft-need' + (ok ? ' need-ok' : ' need-no') + '">' + it.icon + ' ' + it.name + ' ' + have + '/' + need + '</span>';
-        }).join('');
-        return '<div class="craft-card' + (can ? '' : ' craft-cant') + '">' +
-          '<div class="craft-head"><span class="craft-ic">' + r.icon + '</span><b>' + r.name + '</b></div>' +
-          '<div class="craft-needs">' + needRows + '</div>' +
-          '<button class="btn craft-do' + (can ? ' btn-action' : ' btn-quiet') + '" data-id="' + r.id + '"' + (can ? '' : ' disabled') + '>' +
-            (can ? '🔨 Üret' : '🔒 Malzeme eksik') + '</button>' +
-          '</div>';
-      }
+      /* Not: Atölye (craft) artık ayrı ekran → src/ui/screens/atolye-screen.js */
 
       /* ---- 📦 Depom ---- */
       function renderDepo(body) {

@@ -1037,3 +1037,16 @@
 .home-dash, .home-reasons, .home-footer { width: 100%; }
 .screen-home .home-doors { width: 100%; }
 .home-scroll { align-items: stretch; }
+
+/* === v0.57 — Atölye ekranı (craft alanı) + Evim kapı rengi === */
+.evim-doors .door-atolye { background: linear-gradient(180deg, #B5602E, #7A3E1E); }
+.atolye-wrap { flex: 1; overflow-y: auto; padding: 10px 14px 20px; max-width: 720px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.atolye-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.atolye-title { font-size: 22px; font-weight: 900; }
+.atolye-mats { background: var(--bg-panel); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+.atolye-mats-empty { color: var(--ink-dim); font-size: 13px; text-align: center; }
+.atolye-mats-t { font-size: 12px; font-weight: 800; color: var(--xp); margin-bottom: 6px; }
+.atolye-mats-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.mat-chip { font-size: 12px; font-weight: 700; background: var(--bg-raised); border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; }
+.mat-chip b { color: var(--xp); }
+.atolye-recipes { display: flex; flex-direction: column; gap: 6px; }
