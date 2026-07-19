@@ -75,7 +75,7 @@
         const famRow = B.Cloud.configured()
           ? '<div class="adm-fam">' +
               (code
-                ? '<div>🎟️ Davet Kodun: <b class="adm-code">' + code + '</b> <button class="chip adm-copy">Kopyala</button>' +
+                ? '<div>🎟️ Davet Kodun: <b class="adm-code">' + code + '</b> <button class="chip adm-copy">Kopyala</button> <button class="chip adm-send">📤 Çocuğa Gönder</button>' +
                   '<div class="adm-fam-hint">Bu kodu çocuklarının cihazında giriş ekranı → "🎮 Oyuncuyum" / "🎟️ Davet Kodu" bölümüne gir. Sonra "☁️ Bulut (aile)" sekmesinden hepsini görürsün.</div></div>'
                 : '<button class="chip adm-gencode">🎟️ Davet kodu oluştur</button>' +
                   '<span class="adm-fam-hint"> — çocukların cihazlarını bağlamak için (veya e-posta ile giriş yap, kod otomatik gelsin)</span>') +
@@ -121,6 +121,8 @@
         });
         const cp = root.querySelector('.adm-copy');
         if (cp) cp.onclick = () => { try { navigator.clipboard.writeText(code); B.UI.toast('Kod kopyalandı'); } catch (e) {} };
+        const sendBtn = root.querySelector('.adm-send');
+        if (sendBtn) sendBtn.onclick = () => shareInvite(code);
         const gc = root.querySelector('.adm-gencode');
         if (gc) gc.onclick = () => { B.Cloud.setCode(B.Cloud.genCode()); source = 'cloud'; shell(); load(); };
 
@@ -384,6 +386,39 @@
         });
       }
 
+      /* Davet kodunu + oyun giriş linkini çocuğun cihazına gönder (iMessage/SMS, WhatsApp, yerel paylaşım) */
+      function shareInvite(code) {
+        code = code || ((B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode());
+        if (!code) { B.UI.toast('Önce davet kodu oluştur.'); return; }
+        // Oyun linki: yayındaki genel URL (localhost/dev ise sabit üsse yönlendir)
+        const here = location.origin + location.pathname;
+        const link = /localhost|127\.0\.0\.1|^file:/.test(location.href) ? 'https://bzkindamix.github.io/bokul/dist/bokul.html' : here;
+        const msg = '🎮 BOKUL Eğitim Üssü\'ne davetlisin!\n\n' +
+          '1) Oyunu aç:\n' + link + '\n\n' +
+          '2) "🎮 Oyuncuyum" → "🎟️ Davet Kodu" bölümüne şu kodu gir:\n👉 ' + code + '\n\n' +
+          'Hadi göreve başla, asker! 🚀';
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const ov = B.UI.overlay(
+          '<div class="ov-big">📤</div><h2>Çocuğuna Gönder</h2>' +
+          '<p class="ov-quote">Davet kodunu ve oyun bağlantısını çocuğunun cihazına ilet. O, linke dokunup kodu girecek — ailene bağlanacak.</p>' +
+          '<div class="share-preview">' + esc(msg) + '</div>' +
+          '<div class="share-btns">' +
+            '<button class="btn share-main" id="sh-native">📤 Paylaş (Mesaj · WhatsApp · AirDrop…)</button>' +
+            '<button class="btn btn-quiet" id="sh-sms">💬 ' + (isIOS ? 'iMessage / Mesaj' : 'SMS') + '</button>' +
+            '<button class="btn btn-quiet" id="sh-wa">🟢 WhatsApp</button>' +
+            '<button class="btn btn-quiet" id="sh-copy">📋 Metni Kopyala</button>' +
+          '</div>',
+          [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+        ov.querySelector('.overlay-btns .btn').onclick = () => ov.remove();
+        const nb = ov.querySelector('#sh-native');
+        if (navigator.share) nb.onclick = async () => { try { await navigator.share({ title: 'BOKUL daveti', text: msg }); } catch (e) {} };
+        else nb.style.display = 'none';
+        ov.querySelector('#sh-sms').onclick = () => { location.href = 'sms:' + (isIOS ? '&' : '?') + 'body=' + encodeURIComponent(msg); };
+        ov.querySelector('#sh-wa').onclick = () => { window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank'); };
+        ov.querySelector('#sh-copy').onclick = async () => { try { await navigator.clipboard.writeText(msg); B.UI.toast('📋 Mesaj kopyalandı'); } catch (e) {} };
+      }
+
       function familyMenu() {
         const code = (B.AuthCloud && B.AuthCloud.current()) ? B.AuthCloud.inviteCode() : B.Cloud.getCode();
         const ov = B.UI.overlay('<div class="ov-big">🎟️</div><h2>Aile & Davet Kodu</h2>' +
@@ -396,10 +431,7 @@
         const cp = ov.querySelector('#fm-copy');
         if (cp) cp.onclick = () => { try { navigator.clipboard.writeText(code); B.UI.toast('Kod kopyalandı'); } catch (e) {} };
         const sh = ov.querySelector('#fm-share');
-        if (sh) sh.onclick = async () => {
-          const txt = 'BOKUL davet kodum: ' + code + ' — Giriş ekranında "🎮 Oyuncuyum → 🎟️ Davet Kodu" ile gir.';
-          try { if (navigator.share) await navigator.share({ title: 'BOKUL Davet Kodu', text: txt }); else { navigator.clipboard.writeText(txt); B.UI.toast('Panoya kopyalandı'); } } catch (e) {}
-        };
+        if (sh) sh.onclick = () => { ov.remove(); shareInvite(code); };
         const ul = ov.querySelector('#fm-unlink');
         if (ul) ul.onclick = () => { B.Cloud.setCode(''); ov.remove(); B.UI.toast('Bağlantı kaldırıldı'); };
       }

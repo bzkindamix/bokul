@@ -874,3 +874,14 @@
 .reg-form .name-input { width: 100%; }
 .acc-rank { display: inline-block; margin-left: 6px; font-size: 12px; font-weight: 800; color: var(--xp);
   background: rgba(255,213,46,.12); border: 1px solid rgba(255,213,46,.35); border-radius: 99px; padding: 1px 8px; }
+
+/* === v0.48 — Davet paylaşımı (SMS/iMessage + WhatsApp + yerel paylaşım) === */
+.share-preview {
+  white-space: pre-wrap; text-align: left; font-size: 13px; line-height: 1.5; color: var(--ink-dim);
+  background: var(--bg-deep); border: 1px solid var(--line); border-radius: 12px;
+  padding: 12px 14px; margin: 4px auto 12px; max-width: 340px; max-height: 160px; overflow-y: auto; word-break: break-word;
+}
+.share-btns { display: flex; flex-direction: column; gap: 9px; width: 100%; max-width: 340px; margin: 0 auto; }
+.share-btns .btn { width: 100%; }
+.share-main { background: linear-gradient(180deg, #35B36B, #1F8A4C); color: #eafff2; }
+.adm-send { background: rgba(82,232,140,.14); border: 1px solid rgba(82,232,140,.4); color: var(--success); }
