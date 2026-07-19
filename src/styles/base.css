@@ -14,6 +14,9 @@
   --epic: #9D6BFF;
   --legendary: #3DF2D2;
   --mono: Consolas, 'Courier New', monospace;
+  /* Marka fontları (fonts.css'te gömülü) — display=Fredoka (yuvarlak, karakterli), gövde=Nunito */
+  --display: 'Fredoka', 'Baloo 2', system-ui, sans-serif;
+  --sans: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -23,7 +26,7 @@ html, body {
   overflow: hidden;
   background: var(--bg-deep);
   color: var(--ink);
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--sans);
   user-select: none;
   touch-action: manipulation; /* çift-dokunuş zoom'unu kapat (tap/scroll çalışır) */
   -webkit-text-size-adjust: 100%;
@@ -69,3 +72,16 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   font-size: 13px;
   white-space: nowrap;
 }
+
+/* === Marka tipografisi (stil kılavuzu) ===
+   Karakterli yuvarlak display font başlıklarda/butonlarda/isimlerde;
+   gövde metni (soru, açıklama) Nunito ile okunur kalır. */
+h1, h2, h3, h4,
+.btn,
+.splash-title,
+[class*="-title"],
+[class*="-name"] {
+  font-family: var(--display);
+  letter-spacing: -.005em;
+}
+.btn { letter-spacing: 0; }

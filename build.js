@@ -11,6 +11,7 @@ const read = p => fs.readFileSync(path.join(ROOT, p), 'utf8');
 
 /* Deterministik yükleme sırası (index.html ile birebir aynı) */
 const CSS = [
+  'src/styles/fonts.css',
   'src/styles/base.css',
   'src/styles/components.css',
   'src/styles/screens.css',
