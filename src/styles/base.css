@@ -25,6 +25,8 @@ html, body {
   color: var(--ink);
   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
   user-select: none;
+  touch-action: manipulation; /* çift-dokunuş zoom'unu kapat (tap/scroll çalışır) */
+  -webkit-text-size-adjust: 100%;
 }
 
 #app {

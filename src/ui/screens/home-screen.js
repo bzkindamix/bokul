@@ -94,7 +94,8 @@
       doors.innerHTML =
         '<button class="btn door door-main">⚔️<br>HAREKÂT</button>' +
         '<button class="btn door door-side door-quests">📋<br>GÖREVLER' + badge + '</button>' +
-        '<button class="btn door door-side door-evim">🏠<br>EVİM</button>';
+        '<button class="btn door door-side door-evim">🏠<br>EVİM</button>' +
+        '<button class="btn door door-side door-store">🏪<br>MAĞAZA</button>';
       root.appendChild(doors);
 
       // Ebeveyn kilidi: engelli özellikler tıklanınca uyarı verir
@@ -107,6 +108,7 @@
       doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('world'); };
       gate(doors.querySelector('.door-evim'), 'shop', () => { B.Audio.play('tick'); B.UI.show('evim'); });
       gate(doors.querySelector('.door-quests'), 'quests', () => { B.Audio.play('tick'); B.UI.show('quests'); });
+      gate(doors.querySelector('.door-store'), 'store', () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'shop' }); });
 
       // Hikâyeyi tekrar izleme
       const replay = document.createElement('button');

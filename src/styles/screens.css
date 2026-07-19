@@ -718,3 +718,24 @@
 /* ---------- v0.31: 4 kategori sandık — eşya ödülü gösterimi ---------- */
 .loot-items { display: flex; flex-direction: column; gap: 5px; align-items: center; padding: 6px 0; }
 .loot-item { font-size: 13px; font-weight: 700; background: rgba(255,255,255,.08); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; }
+
+/* ---------- v0.33: Yatay/zoom uyumu + Mağaza ana menü ---------- */
+/* Home ekranı taşarsa kaydırılabilsin (yatay iPad'de butonlar kesilmesin) */
+.screen-home { overflow-y: auto; overflow-x: hidden; }
+.screen-home .home-mid { flex: 0 0 auto; }
+
+/* HAREKÂT üstte tam genişlik, altında 3 kapı (Görevler/Evim/Mağaza) */
+.home-doors { grid-template-columns: 1fr 1fr 1fr; }
+.home-doors .door-main { grid-column: 1 / -1; }
+
+/* Yatay (landscape) — kısa ekranda her şey sığsın */
+@media (orientation: landscape) and (max-height: 600px) {
+  .home-mid { padding: 6px 14px; }
+  .home-mid .commander-face { width: 80px; height: 96px; font-size: 42px; }
+  .home-mid .commander-balloon { font-size: 14px; }
+  .home-doors { padding: 0 14px 8px; gap: 8px; }
+  .home-doors .door { padding: 10px 8px; font-size: 15px; }
+  .home-dash { margin: 2px auto 4px; }
+  .dash-paths { gap: 5px; }
+  .home-reasons { margin: 0 auto 4px; }
+}

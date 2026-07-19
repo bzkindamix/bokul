@@ -34,7 +34,7 @@
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
       const storeDoor = wrap.querySelector('.door-store');
-      if (B.Perms.feature('store')) storeDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('store', {}); };
+      if (B.Perms.feature('store')) storeDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'depo' }); };
       else { storeDoor.classList.add('feat-locked'); storeDoor.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); }; }
       const petsDoor = wrap.querySelector('.door-pets');
       if (B.Perms.feature('pets')) petsDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };

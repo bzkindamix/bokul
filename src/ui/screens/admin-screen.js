@@ -39,7 +39,9 @@
   B.UI.registerScreen('admin', {
     enter(root) {
       let tab = 'players';
-      let source = B.Cloud.enabled() ? 'cloud' : 'local';
+      // Ebeveyn (Google/e-posta) giriş yaptıysa bulutu varsayıla — davet kodu
+      // shell()'de set edildiğinden, kaynağı baştan 'cloud' seçmek güvenli.
+      let source = (B.Cloud.enabled() || (B.AuthCloud && B.AuthCloud.current())) ? 'cloud' : 'local';
       let players = [];
       root.classList.add('admin-root');
 

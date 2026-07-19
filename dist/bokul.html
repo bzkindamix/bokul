@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>BOKUL — Baba Okulu Eğitim Üssü</title>
 
@@ -36,6 +36,8 @@ html, body {
   color: var(--ink);
   font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
   user-select: none;
+  touch-action: manipulation; /* çift-dokunuş zoom'unu kapat (tap/scroll çalışır) */
+  -webkit-text-size-adjust: 100%;
 }
 
 #app {
@@ -1076,6 +1078,27 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .loot-items { display: flex; flex-direction: column; gap: 5px; align-items: center; padding: 6px 0; }
 .loot-item { font-size: 13px; font-weight: 700; background: rgba(255,255,255,.08); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; }
 
+/* ---------- v0.33: Yatay/zoom uyumu + Mağaza ana menü ---------- */
+/* Home ekranı taşarsa kaydırılabilsin (yatay iPad'de butonlar kesilmesin) */
+.screen-home { overflow-y: auto; overflow-x: hidden; }
+.screen-home .home-mid { flex: 0 0 auto; }
+
+/* HAREKÂT üstte tam genişlik, altında 3 kapı (Görevler/Evim/Mağaza) */
+.home-doors { grid-template-columns: 1fr 1fr 1fr; }
+.home-doors .door-main { grid-column: 1 / -1; }
+
+/* Yatay (landscape) — kısa ekranda her şey sığsın */
+@media (orientation: landscape) and (max-height: 600px) {
+  .home-mid { padding: 6px 14px; }
+  .home-mid .commander-face { width: 80px; height: 96px; font-size: 42px; }
+  .home-mid .commander-balloon { font-size: 14px; }
+  .home-doors { padding: 0 14px 8px; gap: 8px; }
+  .home-doors .door { padding: 10px 8px; font-size: 15px; }
+  .home-dash { margin: 2px auto 4px; }
+  .dash-paths { gap: 5px; }
+  .home-reasons { margin: 0 auto 4px; }
+}
+
 </style>
 </head>
 <body>
@@ -1085,7 +1108,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.32 — Soru bankaları genişledi (+40 soru, tüm dersler)</div>
+      <div class="splash-note">v0.33 — iPad zoom/yatay düzeltmeleri · Mağaza ana menüde · Bulut admin</div>
     </div>
   </div>
 
@@ -6612,7 +6635,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       doors.innerHTML =
         '<button class="btn door door-main">⚔️<br>HAREKÂT</button>' +
         '<button class="btn door door-side door-quests">📋<br>GÖREVLER' + badge + '</button>' +
-        '<button class="btn door door-side door-evim">🏠<br>EVİM</button>';
+        '<button class="btn door door-side door-evim">🏠<br>EVİM</button>' +
+        '<button class="btn door door-side door-store">🏪<br>MAĞAZA</button>';
       root.appendChild(doors);
 
       // Ebeveyn kilidi: engelli özellikler tıklanınca uyarı verir
@@ -6625,6 +6649,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       doors.querySelector('.door-main').onclick = () => { B.Audio.play('tick'); B.UI.show('world'); };
       gate(doors.querySelector('.door-evim'), 'shop', () => { B.Audio.play('tick'); B.UI.show('evim'); });
       gate(doors.querySelector('.door-quests'), 'quests', () => { B.Audio.play('tick'); B.UI.show('quests'); });
+      gate(doors.querySelector('.door-store'), 'store', () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'shop' }); });
 
       // Hikâyeyi tekrar izleme
       const replay = document.createElement('button');
@@ -7522,7 +7547,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
       const storeDoor = wrap.querySelector('.door-store');
-      if (B.Perms.feature('store')) storeDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('store', {}); };
+      if (B.Perms.feature('store')) storeDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'depo' }); };
       else { storeDoor.classList.add('feat-locked'); storeDoor.onclick = () => { B.Audio.play('wrong'); B.UI.toast('🔒 Bu bölümü ebeveynin kapatmış.'); }; }
       const petsDoor = wrap.querySelector('.door-pets');
       if (B.Perms.feature('pets')) petsDoor.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); };
@@ -8492,7 +8517,9 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
   B.UI.registerScreen('admin', {
     enter(root) {
       let tab = 'players';
-      let source = B.Cloud.enabled() ? 'cloud' : 'local';
+      // Ebeveyn (Google/e-posta) giriş yaptıysa bulutu varsayıla — davet kodu
+      // shell()'de set edildiğinden, kaynağı baştan 'cloud' seçmek güvenli.
+      let source = (B.Cloud.enabled() || (B.AuthCloud && B.AuthCloud.current())) ? 'cloud' : 'local';
       let players = [];
       root.classList.add('admin-root');
 
@@ -9080,6 +9107,15 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 /* === src/main.js === */
 /* BOKUL — Giriş noktası */
 (function (B) {
+  // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
+  // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.
+  ['gesturestart', 'gesturechange', 'gestureend'].forEach(ev =>
+    document.addEventListener(ev, e => { if (e.cancelable) e.preventDefault(); }, { passive: false }));
+  // Kazara zoom olduysa yönlendirme değişiminde ölçeği sıfırla (iOS)
+  window.addEventListener('orientationchange', () => {
+    document.body.style.zoom = ''; window.scrollTo(0, 0);
+  });
+
   window.addEventListener('DOMContentLoaded', async () => {
     try {
       await B.Engine.boot();
