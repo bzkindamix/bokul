@@ -19,9 +19,20 @@
     return g === 0 ? 1 : g + 1;
   }
 
+  /* Yaş/zorluk bandı: 1=küçük (6-8/≤2. sınıf), 2=orta (9-10/3-4), 3=büyük (11+/5+).
+   * Matematik dışı dersler bu banda göre uyarlanır (küçüklere daha az şık = kolay).
+   * Bilinmiyorsa 3 (en geniş) — hiçbir şey kısıtlanmaz. */
+  function ageBand() {
+    const p = B.State.data.player || {};
+    if (p.grade != null) return p.grade <= 2 ? 1 : p.grade <= 4 ? 2 : 3;
+    if (p.age != null) return p.age <= 8 ? 1 : p.age <= 10 ? 2 : 3;
+    return 3;
+  }
+
   B.Curriculum = {
     mathCaps,
     currentGrade,
+    ageBand,
 
     /* Bölüm çocuğun sınıfına uygun mu? (section.minGrade) */
     gradeOk(section) {

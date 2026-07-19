@@ -1113,7 +1113,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.34 — Şıklarda "seçili gibi" çerçeve kaldırıldı (dokunmatik hover)</div>
+      <div class="splash-note">v0.35 — Yaş-bazlı içerik: küçük yaşlara daha kolay sorular</div>
     </div>
   </div>
 
@@ -2991,9 +2991,20 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     return g === 0 ? 1 : g + 1;
   }
 
+  /* Yaş/zorluk bandı: 1=küçük (6-8/≤2. sınıf), 2=orta (9-10/3-4), 3=büyük (11+/5+).
+   * Matematik dışı dersler bu banda göre uyarlanır (küçüklere daha az şık = kolay).
+   * Bilinmiyorsa 3 (en geniş) — hiçbir şey kısıtlanmaz. */
+  function ageBand() {
+    const p = B.State.data.player || {};
+    if (p.grade != null) return p.grade <= 2 ? 1 : p.grade <= 4 ? 2 : 3;
+    if (p.age != null) return p.age <= 8 ? 1 : p.age <= 10 ? 2 : 3;
+    return 3;
+  }
+
   B.Curriculum = {
     mathCaps,
     currentGrade,
+    ageBand,
 
     /* Bölüm çocuğun sınıfına uygun mu? (section.minGrade) */
     gradeOk(section) {
@@ -5392,8 +5403,16 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     const root = el('div', 'mc-root');
     root.appendChild(el('div', 'mc-question', item.q));
 
+    // Yaşa göre uyarla: küçük yaşlarda (band 1) daha az şık = daha kolay
+    // (doğru cevap + 2 çeldirici). Orta/büyük yaşta tüm şıklar.
+    let idxs = item.options.map((_, i) => i);
+    const band = (B.Curriculum && B.Curriculum.ageBand) ? B.Curriculum.ageBand() : 3;
+    if (band === 1 && idxs.length > 3) {
+      const wrong = idxs.filter(i => i !== item.correct).sort(() => Math.random() - 0.5).slice(0, 2);
+      idxs = [item.correct, ...wrong];
+    }
     // Seçenekleri karıştır ama orijinal indeksleri koru
-    const order = item.options.map((_, i) => i).sort(() => Math.random() - 0.5);
+    const order = idxs.sort(() => Math.random() - 0.5);
     const grid = el('div', 'mc-options');
     order.forEach(origIdx => {
       const btn = el('button', 'mc-opt', item.options[origIdx]);

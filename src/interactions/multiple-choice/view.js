@@ -21,8 +21,16 @@
     const root = el('div', 'mc-root');
     root.appendChild(el('div', 'mc-question', item.q));
 
+    // Yaşa göre uyarla: küçük yaşlarda (band 1) daha az şık = daha kolay
+    // (doğru cevap + 2 çeldirici). Orta/büyük yaşta tüm şıklar.
+    let idxs = item.options.map((_, i) => i);
+    const band = (B.Curriculum && B.Curriculum.ageBand) ? B.Curriculum.ageBand() : 3;
+    if (band === 1 && idxs.length > 3) {
+      const wrong = idxs.filter(i => i !== item.correct).sort(() => Math.random() - 0.5).slice(0, 2);
+      idxs = [item.correct, ...wrong];
+    }
     // Seçenekleri karıştır ama orijinal indeksleri koru
-    const order = item.options.map((_, i) => i).sort(() => Math.random() - 0.5);
+    const order = idxs.sort(() => Math.random() - 0.5);
     const grid = el('div', 'mc-options');
     order.forEach(origIdx => {
       const btn = el('button', 'mc-opt', item.options[origIdx]);
