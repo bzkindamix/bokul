@@ -4,8 +4,8 @@
  * zaman reklam izletmeden, sadece öğrenme+oyun döngüsüyle. */
 (function (B) {
   const REWARDS = [
-    { coins: 20 }, { coins: 30 }, { coins: 40, chest: 'bronze' }, { coins: 50 },
-    { coins: 60 }, { coins: 80 }, { coins: 120, chest: 'gold' },
+    { coins: 20 }, { coins: 30 }, { coins: 40, chest: 'esya' }, { coins: 50 },
+    { coins: 60 }, { coins: 80 }, { coins: 120, chest: 'nadir' },
   ];
   function state() { const s = B.State.data; if (!s.daily) s.daily = { lastClaim: '', streak: 0 }; return s.daily; }
   function today() { return new Date().toISOString().slice(0, 10); }

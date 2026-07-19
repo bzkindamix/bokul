@@ -714,3 +714,7 @@
 .home-daily.daily-ready { background: linear-gradient(180deg, #FF7AA8, #FF4FD8); color: #fff; animation: dpulse 1.4s ease-in-out infinite; }
 @keyframes dpulse { 50% { transform: scale(1.06); filter: brightness(1.12); } }
 @media (prefers-reduced-motion: reduce) { .home-daily.daily-ready { animation: none; } }
+
+/* ---------- v0.31: 4 kategori sandık — eşya ödülü gösterimi ---------- */
+.loot-items { display: flex; flex-direction: column; gap: 5px; align-items: center; padding: 6px 0; }
+.loot-item { font-size: 13px; font-weight: 700; background: rgba(255,255,255,.08); border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; }

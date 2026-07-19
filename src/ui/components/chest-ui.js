@@ -42,7 +42,7 @@
       setTimeout(() => {
         B.Anim.confetti(40);
         let cardHtml;
-        if (result.item) {
+        if (result.item) { // kozmetik (kıyafet/nadir)
           const rar = RARITY[result.item.rarity] || RARITY.common;
           cardHtml =
             '<div class="loot-card" style="--rar:' + rar.color + '">' +
@@ -50,11 +50,24 @@
               '<div class="loot-art">' + lootArt(result.item) + '</div>' +
               '<div class="loot-name">' + result.item.name + '</div>' +
             '</div>';
-        } else {
+        } else if (result.items && result.items.length) { // eşya sandığı
+          cardHtml =
+            '<div class="loot-card" style="--rar:#52E88C">' +
+              '<div class="loot-rarity">EŞYA</div>' +
+              '<div class="loot-items">' + result.items.map(it =>
+                '<span class="loot-item">' + it.icon + ' ' + it.name + ' ×' + it.n + '</span>').join('') + '</div>' +
+            '</div>';
+        } else if (result.xpPack) { // teselli
           cardHtml =
             '<div class="loot-card" style="--rar:#FFD52E">' +
               '<div class="loot-rarity">XP PAKETİ</div>' +
-              '<div class="loot-art loot-xp">+50 XP</div>' +
+              '<div class="loot-art loot-xp">+' + result.xpPack + ' XP</div>' +
+            '</div>';
+        } else { // altın sandığı (sadece altın)
+          cardHtml =
+            '<div class="loot-card" style="--rar:#FFD52E">' +
+              '<div class="loot-rarity">ALTIN</div>' +
+              '<div class="loot-art loot-xp">💰</div>' +
             '</div>';
         }
         const scene = ov.querySelector('.chest-scene');
