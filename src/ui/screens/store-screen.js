@@ -199,14 +199,30 @@
         });
       }
 
-      /* ---- 📦 Depom (kare-ızgara envanter, kapasite limitli, level ile büyür) ---- */
+      /* Eşya bilgisi + Sat popup'ı */
+      function openItemPopup(it) {
+        if (!it) return;
+        B.Audio.play('tick');
+        const sellPrice = Math.max(1, Math.round((it.price || 0) * 0.4)); // %60 daha ucuz
+        B.UI.overlay('<div class="ov-big">' + it.icon + '</div><h2>' + esc(it.name) + '</h2>' +
+          '<p class="ov-quote">' + esc(it.desc || '') + '</p>' +
+          '<p class="ov-xp">Depoda: ' + B.Items.count(it.id) + ' adet · ' + ({ common: '🟢 Yaygın', rare: '🔵 Nadir', epic: '🟣 Epik', legendary: '🟡 Efsanevi' }[it.rarity || 'common']) + '</p>',
+          [
+            { label: '💰 Sat (' + sellPrice + ')', onClick: () => {
+              const r = B.Items.sell(it.id);
+              if (r.ok) { B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın'); }
+              shell(); // altın + depo tazelensin (depo sekmesinde kal)
+            } },
+            { label: 'Kapat', onClick: null },
+          ]);
+      }
+
+      /* ---- 📦 Depom (kare-ızgara envanter; sürükleyip dizilebilir) ---- */
       function renderDepo(body) {
-        const owned = B.Items.ownedList();
+        const owned = B.Items.orderedOwned(); // oyuncunun seçtiği sıra
         const cap = B.Items.capacity();
         const used = owned.length;
         const overfull = used > cap;
-        // Dolu hücreler (kategoriye göre sıralı) + boş hücreler kapasiteye kadar
-        owned.sort((a, b) => (a.item.cat + a.item.name).localeCompare(b.item.cat + b.item.name, 'tr'));
         const cells = owned.map(o =>
           '<button class="inv-cell filled rar-' + (o.item.rarity || 'common') + '" data-id="' + o.item.id + '" title="' + esc(o.item.name) + '">' +
             '<span class="inv-ic">' + o.item.icon + '</span>' +
@@ -220,26 +236,67 @@
             '<span class="inv-cap' + (overfull ? ' inv-over' : (used >= cap ? ' inv-warn' : '')) + '">' + used + ' / ' + cap + ' dolu</span>' +
             '<span class="inv-lvl">🎖️ Sv.' + ((B.State.data.player.level) || 1) + ' — seviye atlayınca depo büyür</span>' +
           '</div>' +
-          (used ? '' : '<div class="store-empty">Depon boş. Mağazadan eşya al, burada saklansın!</div>') +
+          (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: dizilişi değiştir</div>' : '<div class="store-empty">Depon boş. Mağazadan eşya al, burada saklansın!</div>') +
           '<div class="inv-grid">' + cells + empties + '</div>' +
           (overfull ? '<div class="adm-warn">⚠️ Depo kapasiten aşıldı — seviye atla ya da eşyaları üretimde/bakımunda kullan.</div>' : '');
-        // Hücreye dokun → eşya bilgisi
-        body.querySelectorAll('.inv-cell.filled').forEach(c => c.onclick = () => {
-          const it = B.Items.get(c.dataset.id); if (!it) return;
-          B.Audio.play('tick');
-          const sellPrice = Math.max(1, Math.round((it.price || 0) * 0.4)); // %60 daha ucuz
-          B.UI.overlay('<div class="ov-big">' + it.icon + '</div><h2>' + esc(it.name) + '</h2>' +
-            '<p class="ov-quote">' + esc(it.desc || '') + '</p>' +
-            '<p class="ov-xp">Depoda: ' + B.Items.count(it.id) + ' adet · ' + ({ common: '🟢 Yaygın', rare: '🔵 Nadir', epic: '🟣 Epik', legendary: '🟡 Efsanevi' }[it.rarity || 'common']) + '</p>',
-            [
-              { label: '💰 Sat (' + sellPrice + ')', onClick: () => {
-                const r = B.Items.sell(it.id);
-                if (r.ok) { B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın'); }
-                shell(); // altın + depo tazelensin (depo sekmesinde kal)
-              } },
-              { label: 'Kapat', onClick: null },
-            ]);
+
+        // Hücreleri sürükle-diz (pointer: fare+dokunmatik); az hareket = dokun (popup)
+        const grid = body.querySelector('.inv-grid');
+        body.querySelectorAll('.inv-cell.filled').forEach(cell => makeCellDraggable(cell, grid, body));
+      }
+
+      /* Bir depo hücresini sürüklenebilir yap; eşik altı hareket = dokun→popup */
+      function makeCellDraggable(cell, grid, body) {
+        let sx = 0, sy = 0, dragging = false, ghost = null;
+        const TH = 7;
+        cell.style.touchAction = 'none';
+        cell.addEventListener('pointerdown', (e) => {
+          if (e.button != null && e.button !== 0) return;
+          sx = e.clientX; sy = e.clientY; dragging = false;
+          const onMove = (ev) => {
+            const dx = ev.clientX - sx, dy = ev.clientY - sy;
+            if (!dragging && Math.hypot(dx, dy) > TH) {
+              dragging = true;
+              cell.classList.add('inv-dragging');
+              ghost = cell.cloneNode(true);
+              ghost.className = 'inv-cell filled inv-ghost ' + (cell.className.match(/rar-\w+/) || [''])[0];
+              ghost.style.position = 'fixed'; ghost.style.pointerEvents = 'none'; ghost.style.zIndex = 9999;
+              ghost.style.width = cell.offsetWidth + 'px'; ghost.style.height = cell.offsetHeight + 'px';
+              document.body.appendChild(ghost);
+              B.Audio.play('tick');
+            }
+            if (dragging && ghost) {
+              ghost.style.left = (ev.clientX - ghost.offsetWidth / 2) + 'px';
+              ghost.style.top = (ev.clientY - ghost.offsetHeight / 2) + 'px';
+              // hedef hücreyi vurgula
+              grid.querySelectorAll('.inv-cell.inv-target').forEach(t => t.classList.remove('inv-target'));
+              const tgt = cellUnder(ev.clientX, ev.clientY, grid, cell);
+              if (tgt) tgt.classList.add('inv-target');
+            }
+          };
+          const onUp = (ev) => {
+            document.removeEventListener('pointermove', onMove);
+            document.removeEventListener('pointerup', onUp);
+            if (ghost) { ghost.remove(); ghost = null; }
+            cell.classList.remove('inv-dragging');
+            grid.querySelectorAll('.inv-cell.inv-target').forEach(t => t.classList.remove('inv-target'));
+            if (!dragging) { openItemPopup(B.Items.get(cell.dataset.id)); return; } // dokun
+            const tgt = cellUnder(ev.clientX, ev.clientY, grid, cell);
+            const toId = tgt ? (tgt.dataset.id || null) : null; // boş hücre → sona
+            if (tgt) { B.Items.reorder(cell.dataset.id, toId); renderDepo(body); }
+          };
+          document.addEventListener('pointermove', onMove);
+          document.addEventListener('pointerup', onUp);
         });
+      }
+
+      /* Noktadaki grid hücresi (kendisi hariç) */
+      function cellUnder(x, y, grid, self) {
+        const el = document.elementFromPoint(x, y);
+        if (!el) return null;
+        const c = el.closest ? el.closest('.inv-cell') : null;
+        if (!c || c === self || !grid.contains(c)) return null;
+        return c;
       }
 
       shell();

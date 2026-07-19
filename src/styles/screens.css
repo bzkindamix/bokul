@@ -1333,6 +1333,10 @@
 .inv-ic { font-size: 30px; line-height: 1; filter: drop-shadow(0 2px 3px rgba(0,0,0,.35)); }
 .inv-count { position: absolute; bottom: 3px; right: 5px; font-size: 12px; font-weight: 800; color: #fff; background: rgba(0,0,0,.6); padding: 0 5px; border-radius: 7px; font-variant-numeric: tabular-nums; }
 @media (hover: hover) { .inv-cell.filled:hover { transform: translateY(-2px); } }
+.inv-hint { font-size: 11px; color: var(--ink-dim); margin: 2px 0 10px; opacity: .85; }
+.inv-cell.filled.inv-dragging { opacity: .3; }
+.inv-cell.inv-target { border-color: var(--xp); box-shadow: 0 0 0 2px var(--xp) inset; transform: scale(1.04); }
+.inv-cell.inv-ghost { opacity: .9; transform: scale(1.08); box-shadow: 0 8px 20px rgba(0,0,0,.45); background: var(--bg-raised); }
 
 /* === v0.79 — Sürükle-bırak üretim atölyesi === */
 .craft-bench { min-height: 96px; border: 2.5px dashed var(--line-2, rgba(255,255,255,.2)); border-radius: 16px; background: rgba(255,255,255,.03);

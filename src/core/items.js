@@ -40,6 +40,32 @@
         .filter(x => x.item);
     },
 
+    /* ---- Depo özel dizilişi (oyuncu hücreleri sürükleyip diler) ----
+     * inventory.order = [itemId,...] oyuncunun seçtiği sıra. Sırada olmayan
+     * (yeni alınan) eşyalar kategori+ad ile sona eklenir. */
+    orderList() { const i = B.State.data.inventory; if (!i.order) i.order = []; return i.order; },
+    orderedOwned() {
+      const owned = B.Items.ownedList();
+      const byId = {}; owned.forEach(o => { byId[o.item.id] = o; });
+      const out = [];
+      B.Items.orderList().forEach(id => { if (byId[id]) { out.push(byId[id]); delete byId[id]; } });
+      Object.values(byId)
+        .sort((a, b) => (a.item.cat + a.item.name).localeCompare(b.item.cat + b.item.name, 'tr'))
+        .forEach(o => out.push(o));
+      return out;
+    },
+    /* fromId eşyasını toId'nin yerine taşı (toId yoksa sona) */
+    reorder(fromId, toId) {
+      const ids = B.Items.orderedOwned().map(o => o.item.id);
+      const from = ids.indexOf(fromId); if (from < 0) return;
+      ids.splice(from, 1);
+      let to = toId ? ids.indexOf(toId) : ids.length;
+      if (to < 0) to = ids.length;
+      ids.splice(to, 0, fromId);
+      B.State.data.inventory.order = ids;
+      B.Save.saveSoon();
+    },
+
     /* ---- Günlük stok (her eşyanın günlük satın alma limiti; gün bitince yenilenir) ---- */
     stockMax(id) { const it = B.Items.get(id); if (!it) return 0; return { common: 8, rare: 5, epic: 3, legendary: 2 }[it.rarity || 'common'] || 5; },
     dailyBox() {
