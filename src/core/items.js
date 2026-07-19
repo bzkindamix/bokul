@@ -39,6 +39,10 @@
      * (b) Atölye'de "Depo Rafı" üret — ikisi de depoLevel'ı artırır. Oyuncu SEVİYESİNDEN bağımsız. */
     depoLevel() { return (B.State.data.player && B.State.data.player.depoLevel) || 0; },
     capacity() { return 16 + B.Items.depoLevel() * 4; },
+    /* Depo yükseltme TAVANI = karakter seviyesi. Her karakter seviyesi 1 depo
+     * yükseltme hakkı açar; tavana gelince önce seviye atlamak gerekir. */
+    maxDepoLevel() { return (B.State.data.player && B.State.data.player.level) || 1; },
+    canUpgradeDepo() { return B.Items.depoLevel() < B.Items.maxDepoLevel(); },
 
     /* İki yükseltme yolu:
      *  1) ALTIN — çok pahalı (kolay ama masraflı).
@@ -61,6 +65,7 @@
       return out;
     },
     upgradeDepo() { // ALTIN yolu (pahalı)
+      if (!B.Items.canUpgradeDepo()) return { ok: false, err: 'Depo bu karakter seviyesi için maks. — önce seviye atla!', maxed: true };
       const cost = B.Items.depoUpgradeCost();
       if ((B.State.data.player.coins || 0) < cost) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
       if (!B.Reward.spendCoins(cost)) return { ok: false, err: 'Altının yetmiyor!' };
@@ -69,6 +74,7 @@
       return { ok: true, level: p.depoLevel, cap: B.Items.capacity() };
     },
     upgradeDepoWithMaterials() { // HAM MADDE yolu (%30 ucuz)
+      if (!B.Items.canUpgradeDepo()) return { ok: false, err: 'Depo bu karakter seviyesi için maks. — önce seviye atla!', maxed: true };
       const missing = B.Items.depoMaterialsMissing();
       if (missing.length) return { ok: false, err: 'Ham maddelerin eksik.', missing };
       const m = B.Items.depoMaterials();

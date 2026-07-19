@@ -1385,6 +1385,7 @@
 .inv-bp-tag { position: absolute; top: 2px; left: 3px; font-size: 11px; }
 .depo-up { font-size: 12px; font-weight: 800; background: rgba(255,213,46,.16); border: 1px solid rgba(255,213,46,.5); cursor: pointer; }
 .depo-up:active { transform: scale(.97); }
+.depo-maxed { font-size: 12px; font-weight: 800; background: rgba(255,255,255,.06); border: 1px dashed var(--line); color: var(--ink-dim); }
 /* Depo yükseltme seçenek kartları (overlay) */
 .up-opt { text-align: left; background: rgba(255,255,255,.05); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin: 8px 0; }
 .up-h { font-weight: 800; font-size: 14px; display: flex; align-items: center; gap: 6px; }

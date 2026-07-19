@@ -83,11 +83,15 @@
           }
         }
         const upCost = B.Items.depoUpgradeCost();
+        const dLvl = B.Items.depoLevel(), dMax = B.Items.maxDepoLevel(), maxed = !B.Items.canUpgradeDepo();
+        const upCtrl = maxed
+          ? '<span class="chip depo-maxed">🔒 Maks (Sv.' + dMax + ') — seviye atla</span>'
+          : '<button class="chip depo-up' + (coins() >= upCost ? '' : ' store-poor') + '">⬆️ Depoyu Yükselt · Sv.' + dLvl + '/' + dMax + '</button>';
         body.innerHTML =
           '<div class="inv-head">' +
             '<span class="inv-title">📦 Depo</span>' +
             '<span class="inv-cap' + (used >= cap ? ' inv-warn' : '') + '">' + used + ' / ' + cap + ' dolu</span>' +
-            '<button class="chip depo-up' + (coins() >= upCost ? '' : ' store-poor') + '">⬆️ Depoyu Yükselt · 💰 ' + upCost + '</button>' +
+            upCtrl +
           '</div>' +
           filterRow +
           (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: istediğin boş hücreye taşı</div>' : '<div class="store-empty">Depon boş. Çarşı\'dan eşya al, burada saklansın!</div>') +
@@ -118,7 +122,7 @@
         }).join('');
         B.UI.overlay(
           '<div class="ov-big">📦</div><h2>Depoyu Yükselt</h2>' +
-          '<p class="ov-quote">Kapasite ' + capNow + ' → ' + (capNow + 4) + ' (+4 hücre)</p>' +
+          '<p class="ov-quote">Kapasite ' + capNow + ' → ' + (capNow + 4) + ' (+4 hücre) · Depo Sv.' + B.Items.depoLevel() + '/' + B.Items.maxDepoLevel() + '</p>' +
           '<div class="up-opt"><div class="up-h">💰 Altınla <b class="up-tag pahali">pahalı</b></div>' +
             '<div class="up-cost' + (canGold ? '' : ' up-miss') + '">' + goldCost + ' Altın</div></div>' +
           '<div class="up-opt"><div class="up-h">🧰 Ham madde ile <b class="up-tag ucuz">%30 ucuz</b></div>' +

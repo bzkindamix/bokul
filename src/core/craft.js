@@ -52,14 +52,19 @@
       const r = B.Craft.get(id);
       if (!r) return { ok: false, err: 'Tarif bulunamadı.' };
       const bp = B.Craft.lockedBy(r);
-      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" blueprint\'ini öğren (Çarşı → Tarifhane ya da Hobi Kursu).', locked: true, bp };
+      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" tarifini Depom\'dan öğren (ya da Hobi Kursu).', locked: true, bp };
       if (!B.Craft.canCraft(r)) return { ok: false, err: 'Malzemen eksik.' };
-      Object.keys(r.needs).forEach(k => B.Items.remove(k, r.needs[k]));
       const p = r.produces || {};
+      // Depo Rafı üretimi de depo tavanına (karakter seviyesi) tabi
+      if (p.type === 'upgrade' && p.id === 'depoLevel' && B.Items.canUpgradeDepo && !B.Items.canUpgradeDepo()) {
+        return { ok: false, err: 'Depo bu karakter seviyesi için maks. — önce seviye atla!', maxed: true };
+      }
+      Object.keys(r.needs).forEach(k => B.Items.remove(k, r.needs[k]));
       if (p.type === 'item') B.Items.add(p.id, p.qty || 1);
       else if (p.type === 'upgrade') {
         const pl = B.State.data.player;
-        pl[p.id] = (pl[p.id] || 1) + (p.qty || 1);
+        const base = (p.id === 'depoLevel') ? 0 : 1; // depoLevel 0'dan başlar (coin yoluyla tutarlı)
+        pl[p.id] = (pl[p.id] || base) + (p.qty || 1);
       }
       B.Bus.emit(B.Events.ITEM_CRAFTED, { recipeId: id });
       B.Save.saveSoon();
