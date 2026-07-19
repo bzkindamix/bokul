@@ -2,46 +2,468 @@
   "schema": 1,
   "version": 1,
   "intro": "Evcil hayvan sahibi olmak sorumluluktur Komutan! Önce onun evini/eşyalarını hazırlaman gerekir — bazıları Atölye'de üretilir, bazıları Mağaza'dan alınır. Ön koşulları tamamlayınca hayvanını sahiplenirsin. Sonra onu düzenli beslemeli, mutlu etmelisin: acıkır ve zamanla üzülür. Her hayvanın kendine has bakımı vardır!",
-  "decayPerHour": { "tokluk": 6, "mutluluk": 4 },
+  "decayPerHour": {
+    "tokluk": 6,
+    "mutluluk": 4
+  },
   "villain": "Bulanık",
-  "capture": { "afterHours": 24, "freeAt": 50 },
+  "capture": {
+    "afterHours": 24,
+    "freeAt": 50
+  },
   "pets": [
     {
-      "id": "kus", "name": "Kuş", "icon": "🐦",
-      "prereq": [ { "item": "kafes", "n": 1 } ],
+      "id": "kus",
+      "name": "Kuş",
+      "icon": "🐦",
+      "prereq": [
+        {
+          "item": "kafes",
+          "n": 1
+        }
+      ],
       "teach": "Kafesin hazır, kuşun içine kondu! Kuşlar küçük ama bakım ister: yemini eksik etme, ara sıra şarkı söyleterek neşelendir.",
       "care": [
-        { "id": "besle", "label": "Yem ver", "icon": "🌾", "consume": { "kus_yemi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
-        { "id": "sarki", "label": "Şarkı söylet", "icon": "🎶", "cooldownH": 2, "restore": { "mutluluk": 30 }, "xp": 4, "coin": 1 }
+        {
+          "id": "besle",
+          "label": "Yem ver",
+          "icon": "🌾",
+          "consume": {
+            "kus_yemi": 1
+          },
+          "restore": {
+            "tokluk": 40
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "sarki",
+          "label": "Şarkı söylet",
+          "icon": "🎶",
+          "cooldownH": 2,
+          "restore": {
+            "mutluluk": 30
+          },
+          "xp": 4,
+          "coin": 1
+        }
       ]
     },
     {
-      "id": "kedi", "name": "Kedi", "icon": "🐈",
-      "prereq": [ { "item": "kedi_kumu", "n": 1 }, { "item": "mama_kabi", "n": 1 }, { "item": "tirmalama", "n": 1 } ],
+      "id": "kedi",
+      "name": "Kedi",
+      "icon": "🐈",
+      "prereq": [
+        {
+          "item": "kedi_kumu",
+          "n": 1
+        },
+        {
+          "item": "mama_kabi",
+          "n": 1
+        },
+        {
+          "item": "tirmalama",
+          "n": 1
+        }
+      ],
       "teach": "Kedin geldi! Bağımsızdır ama sevgi ister. Mamasını ver, tırmalama tahtasıyla oynat, ara sıra tımar et. Mutlu kedi mırlar!",
       "care": [
-        { "id": "besle", "label": "Mama ver", "icon": "🥫", "consume": { "kedi_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
-        { "id": "oyna", "label": "Oynat", "icon": "🧶", "cooldownH": 2, "restore": { "mutluluk": 35 }, "xp": 5, "coin": 2 },
-        { "id": "timar", "label": "Tımar et", "icon": "🪮", "cooldownH": 4, "restore": { "mutluluk": 25 }, "xp": 4, "coin": 1 }
+        {
+          "id": "besle",
+          "label": "Mama ver",
+          "icon": "🥫",
+          "consume": {
+            "kedi_mamasi": 1
+          },
+          "restore": {
+            "tokluk": 40
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "oyna",
+          "label": "Oynat",
+          "icon": "🧶",
+          "cooldownH": 2,
+          "restore": {
+            "mutluluk": 35
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "timar",
+          "label": "Tımar et",
+          "icon": "🪮",
+          "cooldownH": 4,
+          "restore": {
+            "mutluluk": 25
+          },
+          "xp": 4,
+          "coin": 1
+        }
       ]
     },
     {
-      "id": "kopek", "name": "Köpek", "icon": "🐕",
-      "prereq": [ { "item": "kopek_kulubesi", "n": 1 }, { "item": "tasma", "n": 1 }, { "item": "mama_kabi", "n": 1 } ],
+      "id": "kopek",
+      "name": "Köpek",
+      "icon": "🐕",
+      "prereq": [
+        {
+          "item": "kopek_kulubesi",
+          "n": 1
+        },
+        {
+          "item": "tasma",
+          "n": 1
+        },
+        {
+          "item": "mama_kabi",
+          "n": 1
+        }
+      ],
       "teach": "En sadık dostun geldi! Köpekler enerji doludur: mamasını ver, tasmayla gezdir, kemikle oyna. Gezdirmek onları en çok mutlu eder!",
       "care": [
-        { "id": "besle", "label": "Mama ver", "icon": "🦴", "consume": { "kopek_mamasi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
-        { "id": "gezdir", "label": "Gezdir", "icon": "🦮", "cooldownH": 3, "restore": { "mutluluk": 45, "tokluk": -5 }, "xp": 7, "coin": 3 },
-        { "id": "oyna", "label": "Kemikle oyna", "icon": "🦴", "consume": { "oyuncak_kemik": 1 }, "restore": { "mutluluk": 30 }, "xp": 5, "coin": 2 }
+        {
+          "id": "besle",
+          "label": "Mama ver",
+          "icon": "🦴",
+          "consume": {
+            "kopek_mamasi": 1
+          },
+          "restore": {
+            "tokluk": 40
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "gezdir",
+          "label": "Gezdir",
+          "icon": "🦮",
+          "cooldownH": 3,
+          "restore": {
+            "mutluluk": 45,
+            "tokluk": -5
+          },
+          "xp": 7,
+          "coin": 3
+        },
+        {
+          "id": "oyna",
+          "label": "Kemikle oyna",
+          "icon": "🦴",
+          "consume": {
+            "oyuncak_kemik": 1
+          },
+          "restore": {
+            "mutluluk": 30
+          },
+          "xp": 5,
+          "coin": 2
+        }
       ]
     },
     {
-      "id": "balik", "name": "Balık", "icon": "🐠",
-      "prereq": [ { "item": "akvaryum", "n": 1 } ],
+      "id": "balik",
+      "name": "Balık",
+      "icon": "🐠",
+      "prereq": [
+        {
+          "item": "akvaryum",
+          "n": 1
+        }
+      ],
       "teach": "Ürettiğin akvaryum işe yaradı — balığın yüzüyor! Balıklar sessizdir ama bakım ister: yemini ver, suyunu tazele. Temiz su = mutlu balık.",
       "care": [
-        { "id": "besle", "label": "Yem ver", "icon": "🍥", "consume": { "balik_yemi": 1 }, "restore": { "tokluk": 40 }, "xp": 5, "coin": 2 },
-        { "id": "temizle", "label": "Suyu tazele", "icon": "💧", "consume": { "temiz_su": 1 }, "restore": { "mutluluk": 35 }, "xp": 5, "coin": 2 }
+        {
+          "id": "besle",
+          "label": "Yem ver",
+          "icon": "🍥",
+          "consume": {
+            "balik_yemi": 1
+          },
+          "restore": {
+            "tokluk": 40
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "temizle",
+          "label": "Suyu tazele",
+          "icon": "💧",
+          "consume": {
+            "temiz_su": 1
+          },
+          "restore": {
+            "mutluluk": 35
+          },
+          "xp": 5,
+          "coin": 2
+        }
+      ]
+    },
+    {
+      "id": "hamster",
+      "name": "Hamster",
+      "icon": "🐹",
+      "prereq": [
+        {
+          "item": "hamster_kafesi",
+          "n": 1
+        },
+        {
+          "item": "talas",
+          "n": 1
+        }
+      ],
+      "teach": "Hamsterın geldi! Minik ama enerjik. Yemini eksik etme, koşu tekeriyle oynat, arada talaşı tazele. Mutlu hamster yanağını doldurur!",
+      "care": [
+        {
+          "id": "besle",
+          "label": "Yem ver",
+          "icon": "🌰",
+          "consume": {
+            "hamster_yemi": 1
+          },
+          "restore": {
+            "tokluk": 40
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "oynat",
+          "label": "Tekerde koştur",
+          "icon": "🎡",
+          "cooldownH": 2,
+          "restore": {
+            "mutluluk": 35
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "timar",
+          "label": "Talaş tazele",
+          "icon": "🟫",
+          "cooldownH": 6,
+          "consume": {
+            "talas": 1
+          },
+          "restore": {
+            "mutluluk": 20
+          },
+          "xp": 3,
+          "coin": 1
+        }
+      ]
+    },
+    {
+      "id": "tavsan",
+      "name": "Tavşan",
+      "icon": "🐰",
+      "prereq": [
+        {
+          "item": "tavsan_yuvasi",
+          "n": 1
+        }
+      ],
+      "teach": "Tavşanın geldi! Sevimli ve meraklı. Havuçla besle, oynat, ara sıra tımar et. Mutlu tavşan zıplar!",
+      "care": [
+        {
+          "id": "besle",
+          "label": "Havuç ver",
+          "icon": "🥕",
+          "consume": {
+            "havuc": 1
+          },
+          "restore": {
+            "tokluk": 40
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "oynat",
+          "label": "Oynat",
+          "icon": "🥎",
+          "cooldownH": 2,
+          "restore": {
+            "mutluluk": 35
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "timar",
+          "label": "Tımar et",
+          "icon": "🪮",
+          "cooldownH": 4,
+          "restore": {
+            "mutluluk": 25
+          },
+          "xp": 4,
+          "coin": 1
+        }
+      ]
+    },
+    {
+      "id": "kaplumbaga",
+      "name": "Kaplumbağa",
+      "icon": "🐢",
+      "prereq": [
+        {
+          "item": "teraryum",
+          "n": 1
+        },
+        {
+          "item": "isitici_lamba",
+          "n": 1
+        }
+      ],
+      "teach": "Kaplumbağan geldi! Sakin ve uzun ömürlü. Yeşillikle besle, lambayla güneşlet, suyunu temiz tut. Yavaş ama sağlam dost!",
+      "care": [
+        {
+          "id": "besle",
+          "label": "Yem ver",
+          "icon": "🥬",
+          "consume": {
+            "kaplumbaga_yemi": 1
+          },
+          "restore": {
+            "tokluk": 40
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "oynat",
+          "label": "Güneşlet",
+          "icon": "💡",
+          "cooldownH": 3,
+          "restore": {
+            "mutluluk": 30
+          },
+          "xp": 4,
+          "coin": 2
+        },
+        {
+          "id": "timar",
+          "label": "Suyunu tazele",
+          "icon": "💧",
+          "cooldownH": 6,
+          "consume": {
+            "temiz_su": 1
+          },
+          "restore": {
+            "mutluluk": 25
+          },
+          "xp": 4,
+          "coin": 1
+        }
+      ]
+    },
+    {
+      "id": "papagan",
+      "name": "Papağan",
+      "icon": "🦜",
+      "prereq": [
+        {
+          "item": "buyuk_kafes",
+          "n": 1
+        }
+      ],
+      "teach": "Papağanın geldi! Renkli ve konuşkan. Yemini ver, konuştur, oynat. Mutlu papağan seninle sohbet eder!",
+      "care": [
+        {
+          "id": "besle",
+          "label": "Yem ver",
+          "icon": "🥜",
+          "consume": {
+            "papagan_yemi": 1
+          },
+          "restore": {
+            "tokluk": 40
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "oynat",
+          "label": "Konuştur",
+          "icon": "🗣️",
+          "cooldownH": 2,
+          "restore": {
+            "mutluluk": 35
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "timar",
+          "label": "Tüylerini tımarla",
+          "icon": "🪶",
+          "cooldownH": 4,
+          "restore": {
+            "mutluluk": 25
+          },
+          "xp": 4,
+          "coin": 1
+        }
+      ]
+    },
+    {
+      "id": "kirpi",
+      "name": "Kirpi",
+      "icon": "🦔",
+      "prereq": [
+        {
+          "item": "kirpi_yuvasi",
+          "n": 1
+        }
+      ],
+      "teach": "Kirpin geldi! Dikenli ama tatlı. Yemini ver, nazikçe oynat, yuvasını temiz tut. Güvenince açılır!",
+      "care": [
+        {
+          "id": "besle",
+          "label": "Yem ver",
+          "icon": "🐛",
+          "consume": {
+            "kirpi_yemi": 1
+          },
+          "restore": {
+            "tokluk": 40
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "oynat",
+          "label": "Oynat",
+          "icon": "🍂",
+          "cooldownH": 2,
+          "restore": {
+            "mutluluk": 30
+          },
+          "xp": 5,
+          "coin": 2
+        },
+        {
+          "id": "timar",
+          "label": "Yuvasını temizle",
+          "icon": "🧹",
+          "cooldownH": 6,
+          "restore": {
+            "mutluluk": 20
+          },
+          "xp": 4,
+          "coin": 1
+        }
       ]
     }
   ]

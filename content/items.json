@@ -578,6 +578,123 @@
       "craftOnly": true,
       "desc": "Kazandığın rozetleri sergilediğin dolap. Odana koy, tüm başarılarını göster!",
       "rarity": "common"
+    },
+    {
+      "id": "hamster_kafesi",
+      "name": "Hamster Kafesi",
+      "icon": "🏠",
+      "price": 55,
+      "cat": "pet",
+      "desc": "Hamsterın rahat yuvası.",
+      "rarity": "rare"
+    },
+    {
+      "id": "talas",
+      "name": "Talaş",
+      "icon": "🟫",
+      "price": 12,
+      "cat": "pet",
+      "desc": "Kafes altlığı; temiz tutar.",
+      "rarity": "common"
+    },
+    {
+      "id": "kosu_tekeri",
+      "name": "Koşu Tekeri",
+      "icon": "🎡",
+      "price": 30,
+      "cat": "pet",
+      "desc": "Hamster koşup eğlenir.",
+      "rarity": "rare"
+    },
+    {
+      "id": "hamster_yemi",
+      "name": "Hamster Yemi",
+      "icon": "🌰",
+      "price": 8,
+      "cat": "pet",
+      "desc": "Tohum ve tahıl karışımı.",
+      "rarity": "common"
+    },
+    {
+      "id": "tavsan_yuvasi",
+      "name": "Tavşan Yuvası",
+      "icon": "🏡",
+      "price": 55,
+      "cat": "pet",
+      "desc": "Tavşanın sıcak yuvası.",
+      "rarity": "rare"
+    },
+    {
+      "id": "havuc",
+      "name": "Havuç",
+      "icon": "🥕",
+      "price": 8,
+      "cat": "pet",
+      "desc": "Tavşanların favorisi!",
+      "rarity": "common"
+    },
+    {
+      "id": "teraryum",
+      "name": "Teraryum",
+      "icon": "🪟",
+      "price": 65,
+      "cat": "pet",
+      "desc": "Kaplumbağa için camlı yaşam alanı.",
+      "rarity": "epic"
+    },
+    {
+      "id": "isitici_lamba",
+      "name": "Isıtıcı Lamba",
+      "icon": "💡",
+      "price": 40,
+      "cat": "pet",
+      "desc": "Kaplumbağayı ısıtır.",
+      "rarity": "rare"
+    },
+    {
+      "id": "kaplumbaga_yemi",
+      "name": "Kaplumbağa Yemi",
+      "icon": "🥬",
+      "price": 10,
+      "cat": "pet",
+      "desc": "Yeşillik ve pelet.",
+      "rarity": "common"
+    },
+    {
+      "id": "buyuk_kafes",
+      "name": "Büyük Kafes",
+      "icon": "🪺",
+      "price": 65,
+      "cat": "pet",
+      "desc": "Papağan için geniş kafes.",
+      "rarity": "epic"
+    },
+    {
+      "id": "papagan_yemi",
+      "name": "Papağan Yemi",
+      "icon": "🥜",
+      "price": 12,
+      "cat": "pet",
+      "desc": "Ayçekirdeği ve fındık.",
+      "rarity": "common"
+    },
+    {
+      "id": "kirpi_yuvasi",
+      "name": "Kirpi Yuvası",
+      "icon": "🛖",
+      "price": 50,
+      "cat": "pet",
+      "desc": "Kirpinin saklanma yuvası.",
+      "rarity": "rare"
+    },
+    {
+      "id": "kirpi_yemi",
+      "name": "Kirpi Yemi",
+      "icon": "🐛",
+      "price": 10,
+      "cat": "pet",
+      "desc": "Böcek ve mama karışımı.",
+      "rarity": "common"
     }
   ]
 }
