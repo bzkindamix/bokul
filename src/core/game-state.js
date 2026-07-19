@@ -23,6 +23,7 @@
       ideas: [],  // { id, text, created, status, note }
       perms: { lessons: {}, features: {} }, // ebeveyn kilitleri (yoksa=serbest)
       pets: [], // sahiplenilen evcil hayvanlar
+      daily: { lastClaim: '', streak: 0 }, // günlük ödül (retention)
     };
   }
 

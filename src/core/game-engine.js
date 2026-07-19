@@ -60,6 +60,8 @@
       B.Items.ensure();
       if (!B.State.data.pets) B.State.data.pets = []; // evcil hayvanlar
       B.Pets.ensure();
+      if (!B.State.data.daily) B.State.data.daily = { lastClaim: '', streak: 0 }; // günlük ödül
+      B.Daily.ensure();
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
       if (B.State.data.stats.firstTryCorrect == null) B.State.data.stats.firstTryCorrect = 0;
       if (B.State.data.stats.timeSumMs == null) B.State.data.stats.timeSumMs = 0;

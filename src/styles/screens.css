@@ -698,3 +698,19 @@
 .av-turn.av-spring { transition: transform .5s cubic-bezier(.34, 1.5, .5, 1); }
 .turn-hint { text-align: center; font-size: 11.5px; color: var(--ink-dim); margin-top: 2px; opacity: .85; }
 @media (prefers-reduced-motion: reduce) { .turn-hint { display: none; } }
+
+/* ---------- v0.30: Günlük ödül + retention kancaları ---------- */
+.daily-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin: 12px 0 4px; }
+@media (max-width: 480px) { .daily-cal { grid-template-columns: repeat(4, 1fr); } }
+.daily-day { background: var(--bg-deep); border: 1px solid var(--line); border-radius: 10px; padding: 8px 4px; text-align: center; position: relative; }
+.dd-n { display: block; font-size: 10px; color: var(--ink-dim); }
+.dd-r { display: block; font-size: 12px; font-weight: 700; margin-top: 3px; }
+.day-today { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); }
+.day-claimed { opacity: .6; }
+.dd-ok { position: absolute; top: 2px; right: 4px; color: var(--success); font-size: 12px; font-weight: 800; }
+
+.home-reasons { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; max-width: 640px; margin: 2px auto 6px; padding: 0 10px; }
+.reason-chip { background: color-mix(in srgb, var(--xp) 16%, transparent); border: 1px solid color-mix(in srgb, var(--xp) 40%, transparent); color: var(--xp); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.home-daily.daily-ready { background: linear-gradient(180deg, #FF7AA8, #FF4FD8); color: #fff; animation: dpulse 1.4s ease-in-out infinite; }
+@keyframes dpulse { 50% { transform: scale(1.06); filter: brightness(1.12); } }
+@media (prefers-reduced-motion: reduce) { .home-daily.daily-ready { animation: none; } }

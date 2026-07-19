@@ -71,6 +71,20 @@
         if (l) { B.Lesson.setActive(l); B.UI.show('map'); }
       });
 
+      // "Seni bekleyenler" — geri gelme kancaları (retention, reklamsız)
+      const reasons = [];
+      if (B.Daily.canClaim()) reasons.push('🎁 Günlük ödül hazır!');
+      const needy = (B.Perms.feature('pets') && B.Pets ? B.Pets.adopted() : []).filter(p => p.tokluk < 50 || p.mutluluk < 50);
+      if (needy.length) reasons.push('🐾 ' + needy.length + ' dostun bakım istiyor');
+      const chq = B.Chest.queue ? B.Chest.queue().length : 0;
+      if (chq) reasons.push('📦 ' + chq + ' sandık seni bekliyor');
+      if (reasons.length) {
+        const rz = document.createElement('div');
+        rz.className = 'home-reasons';
+        rz.innerHTML = reasons.map(r => '<span class="reason-chip">' + r + '</span>').join('');
+        root.appendChild(rz);
+      }
+
       // Toplanmayı bekleyen görev sayısı (kapıda rozet)
       const pending = B.Quest.pending();
       const badge = pending ? '<span class="door-badge">' + pending + '</span>' : '';
@@ -109,12 +123,22 @@
       gate(wish, 'wishes', () => B.UI.show('wishes'));
       root.appendChild(wish);
 
+      // Günlük ödül (retention)
+      const daily = document.createElement('button');
+      daily.className = 'chip home-daily' + (B.Daily.canClaim() ? ' daily-ready' : '');
+      daily.textContent = B.Daily.canClaim() ? '🎁 Günlük Ödül!' : '🎁 Seri: ' + B.Daily.streak() + ' gün';
+      daily.onclick = () => B.Daily.show();
+      root.appendChild(daily);
+
       // Oyuncu değiştir / çıkış
       const out = document.createElement('button');
       out.className = 'chip home-logout';
       out.textContent = '🚪 Çıkış';
       out.onclick = () => B.Engine.logout();
       root.appendChild(out);
+
+      // Günlük ödül hazırsa otomatik aç (günde bir; ekran korunuyorsa)
+      if (B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
 
       this._hud = hud;
     },

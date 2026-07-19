@@ -1056,6 +1056,22 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
 .turn-hint { text-align: center; font-size: 11.5px; color: var(--ink-dim); margin-top: 2px; opacity: .85; }
 @media (prefers-reduced-motion: reduce) { .turn-hint { display: none; } }
 
+/* ---------- v0.30: Günlük ödül + retention kancaları ---------- */
+.daily-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin: 12px 0 4px; }
+@media (max-width: 480px) { .daily-cal { grid-template-columns: repeat(4, 1fr); } }
+.daily-day { background: var(--bg-deep); border: 1px solid var(--line); border-radius: 10px; padding: 8px 4px; text-align: center; position: relative; }
+.dd-n { display: block; font-size: 10px; color: var(--ink-dim); }
+.dd-r { display: block; font-size: 12px; font-weight: 700; margin-top: 3px; }
+.day-today { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 35%, transparent); }
+.day-claimed { opacity: .6; }
+.dd-ok { position: absolute; top: 2px; right: 4px; color: var(--success); font-size: 12px; font-weight: 800; }
+
+.home-reasons { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; max-width: 640px; margin: 2px auto 6px; padding: 0 10px; }
+.reason-chip { background: color-mix(in srgb, var(--xp) 16%, transparent); border: 1px solid color-mix(in srgb, var(--xp) 40%, transparent); color: var(--xp); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.home-daily.daily-ready { background: linear-gradient(180deg, #FF7AA8, #FF4FD8); color: #fff; animation: dpulse 1.4s ease-in-out infinite; }
+@keyframes dpulse { 50% { transform: scale(1.06); filter: brightness(1.12); } }
+@media (prefers-reduced-motion: reduce) { .home-daily.daily-ready { animation: none; } }
+
 </style>
 </head>
 <body>
@@ -1065,7 +1081,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.29 — 3D Döndürülebilir Karakter · Yeni Kıyafetler</div>
+      <div class="splash-note">v0.30 — Günlük Ödül · Seni Bekleyenler (retention, reklamsız)</div>
     </div>
   </div>
 
@@ -2655,6 +2671,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       ideas: [],  // { id, text, created, status, note }
       perms: { lessons: {}, features: {} }, // ebeveyn kilitleri (yoksa=serbest)
       pets: [], // sahiplenilen evcil hayvanlar
+      daily: { lastClaim: '', streak: 0 }, // günlük ödül (retention)
     };
   }
 
@@ -3621,6 +3638,76 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
     mood(pet) {
       const avg = ((pet.tokluk || 0) + (pet.mutluluk || 0)) / 2;
       return avg >= 75 ? '😀' : avg >= 50 ? '🙂' : avg >= 25 ? '😐' : '😢';
+    },
+  };
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/core/daily.js === */
+/* BOKUL — Günlük Ödül (retention motoru, REKLAMSIZ)
+ * Her gün giriş yapınca artan ödül; ardışık günlerde seri büyür, gün kaçırılırsa
+ * sıfırlanır. 7 günlük döngü. Amaç: çocuğu her gün ekrana geri getirmek — hiçbir
+ * zaman reklam izletmeden, sadece öğrenme+oyun döngüsüyle. */
+(function (B) {
+  const REWARDS = [
+    { coins: 20 }, { coins: 30 }, { coins: 40, chest: 'bronze' }, { coins: 50 },
+    { coins: 60 }, { coins: 80 }, { coins: 120, chest: 'gold' },
+  ];
+  function state() { const s = B.State.data; if (!s.daily) s.daily = { lastClaim: '', streak: 0 }; return s.daily; }
+  function today() { return new Date().toISOString().slice(0, 10); }
+  function yesterday() { return new Date(Date.now() - 86400000).toISOString().slice(0, 10); }
+
+  B.Daily = {
+    ensure() { state(); },
+    REWARDS,
+    canClaim() { return state().lastClaim !== today(); },
+    streak() { return state().streak || 0; },
+    /* Bu sefer alınırsa seri kaç olacak (görüntü için) */
+    nextStreak() { const s = state(); return (s.lastClaim === yesterday()) ? (s.streak || 0) + 1 : 1; },
+    /* Bugünkü döngü günü (0..6) */
+    todayIndex() { return (B.Daily.nextStreak() - 1) % 7; },
+
+    claim() {
+      if (!B.Daily.canClaim()) return { ok: false };
+      const s = state();
+      s.streak = (s.lastClaim === yesterday()) ? (s.streak || 0) + 1 : 1;
+      s.lastClaim = today();
+      const idx = (s.streak - 1) % 7;
+      const r = REWARDS[idx];
+      B.Reward.addCoins(r.coins, 'daily');
+      if (r.chest && B.Chest) B.Chest.earn(r.chest);
+      B.Save.saveNow();
+      return { ok: true, reward: r, streak: s.streak, dayIndex: idx };
+    },
+
+    /* Günlük ödül takvimi (7 kutu) — claimable ise "AL" düğmesiyle */
+    show() {
+      const claimable = B.Daily.canClaim();
+      const todayIdx = B.Daily.todayIndex();
+      const streakNow = claimable ? B.Daily.nextStreak() - 1 : B.Daily.streak(); // bu döngüde alınmış gün sayısı
+      const claimedInCycle = streakNow % 7; // bugünden önce bu döngüde alınanlar
+      const tiles = REWARDS.map((r, i) => {
+        const isToday = claimable && i === todayIdx;
+        const isClaimed = i < claimedInCycle || (!claimable && i <= todayIdx);
+        const cls = isToday ? ' day-today' : isClaimed ? ' day-claimed' : ' day-locked';
+        return '<div class="daily-day' + cls + '"><span class="dd-n">' + (i + 1) + '. gün</span>' +
+          '<span class="dd-r">💰' + r.coins + (r.chest ? ' 🎁' : '') + '</span>' +
+          (isClaimed ? '<span class="dd-ok">✓</span>' : '') + '</div>';
+      }).join('');
+      const body = '<div class="ov-baba">🎁</div><h2>Günlük Ödül</h2>' +
+        '<p class="ov-quote">' + (claimable ? '🔥 ' + B.Daily.nextStreak() + '. gün serisi! Ödülünü al ve yarın yine gel.' : '✅ Bugünkü ödülü aldın. Serin: ' + B.Daily.streak() + ' gün. Yarın devam!') + '</p>' +
+        '<div class="daily-cal">' + tiles + '</div>';
+      const ov = B.UI.overlay(body, claimable
+        ? [{ label: '🎁 ÖDÜLÜ AL', onClick: null }]
+        : [{ label: 'Kapat', cls: 'btn-quiet', onClick: null }]);
+      if (claimable) {
+        ov.querySelector('.overlay-btns .btn').onclick = () => {
+          const r = B.Daily.claim(); ov.remove();
+          if (!r.ok) return;
+          B.Audio.play('fanfare'); if (B.Anim.confetti) B.Anim.confetti(50);
+          B.UI.toast('🎁 +' + r.reward.coins + ' Altın' + (r.reward.chest ? ' + sandık!' : '') + ' · 🔥 ' + r.streak + '. gün');
+        };
+      }
+      return ov;
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -6352,6 +6439,20 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
         if (l) { B.Lesson.setActive(l); B.UI.show('map'); }
       });
 
+      // "Seni bekleyenler" — geri gelme kancaları (retention, reklamsız)
+      const reasons = [];
+      if (B.Daily.canClaim()) reasons.push('🎁 Günlük ödül hazır!');
+      const needy = (B.Perms.feature('pets') && B.Pets ? B.Pets.adopted() : []).filter(p => p.tokluk < 50 || p.mutluluk < 50);
+      if (needy.length) reasons.push('🐾 ' + needy.length + ' dostun bakım istiyor');
+      const chq = B.Chest.queue ? B.Chest.queue().length : 0;
+      if (chq) reasons.push('📦 ' + chq + ' sandık seni bekliyor');
+      if (reasons.length) {
+        const rz = document.createElement('div');
+        rz.className = 'home-reasons';
+        rz.innerHTML = reasons.map(r => '<span class="reason-chip">' + r + '</span>').join('');
+        root.appendChild(rz);
+      }
+
       // Toplanmayı bekleyen görev sayısı (kapıda rozet)
       const pending = B.Quest.pending();
       const badge = pending ? '<span class="door-badge">' + pending + '</span>' : '';
@@ -6390,12 +6491,22 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       gate(wish, 'wishes', () => B.UI.show('wishes'));
       root.appendChild(wish);
 
+      // Günlük ödül (retention)
+      const daily = document.createElement('button');
+      daily.className = 'chip home-daily' + (B.Daily.canClaim() ? ' daily-ready' : '');
+      daily.textContent = B.Daily.canClaim() ? '🎁 Günlük Ödül!' : '🎁 Seri: ' + B.Daily.streak() + ' gün';
+      daily.onclick = () => B.Daily.show();
+      root.appendChild(daily);
+
       // Oyuncu değiştir / çıkış
       const out = document.createElement('button');
       out.className = 'chip home-logout';
       out.textContent = '🚪 Çıkış';
       out.onclick = () => B.Engine.logout();
       root.appendChild(out);
+
+      // Günlük ödül hazırsa otomatik aç (günde bir; ekran korunuyorsa)
+      if (B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
 
       this._hud = hud;
     },
@@ -8779,6 +8890,8 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       B.Items.ensure();
       if (!B.State.data.pets) B.State.data.pets = []; // evcil hayvanlar
       B.Pets.ensure();
+      if (!B.State.data.daily) B.State.data.daily = { lastClaim: '', streak: 0 }; // günlük ödül
+      B.Daily.ensure();
       if (B.State.data.stats.questionsDone == null) B.State.data.stats.questionsDone = 0;
       if (B.State.data.stats.firstTryCorrect == null) B.State.data.stats.firstTryCorrect = 0;
       if (B.State.data.stats.timeSumMs == null) B.State.data.stats.timeSumMs = 0;
