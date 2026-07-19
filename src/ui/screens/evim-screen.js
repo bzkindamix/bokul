@@ -39,13 +39,13 @@
           compHtml +
         '</div>' +
         '<div class="evim-doors">' +
-          '<button class="btn door door-char">🎖️<br>KARAKTERİM<small>Kimlik · rozetler · istatistik</small></button>' +
-          '<button class="btn door door-ben">🧍<br>BEN<small>Tipimi ayarla</small></button>' +
-          '<button class="btn door door-dolap">👕<br>DOLAP<small>Kıyafet al · sat · giy</small></button>' +
-          '<button class="btn door door-room">🛋️<br>ODAM<small>Eşya yerleştir · süsle</small></button>' +
-          '<button class="btn door door-store">📦<br>DEPOM<small>Eşya al · sakla</small></button>' +
-          '<button class="btn door door-pets">' + petBadge + '🐾<br>EVCİL HAYVANLARIM<small>' + (needy.length ? '🐾 ' + needy.length + ' dost bakım bekliyor' : 'Sahiplen · bak') + '</small></button>' +
-          '<button class="btn door door-int">🎯<br>İLGİ ALANLARIM<small>Sevdiklerim</small></button>' +
+          '<button class="btn door door-char"><span class="door-ico">🎖️</span><span class="door-tt">KARAKTERİM</span><small>Kimlik · rozetler · istatistik</small></button>' +
+          '<button class="btn door door-ben"><span class="door-ico">🧍</span><span class="door-tt">BEN</span><small>Tipimi ayarla</small></button>' +
+          '<button class="btn door door-dolap"><span class="door-ico">👕</span><span class="door-tt">DOLAP</span><small>Kıyafet al · sat · giy</small></button>' +
+          '<button class="btn door door-room"><span class="door-ico">🛋️</span><span class="door-tt">ODAM</span><small>Eşya yerleştir · süsle</small></button>' +
+          '<button class="btn door door-store"><span class="door-ico">📦</span><span class="door-tt">DEPOM</span><small>Eşya al · sakla</small></button>' +
+          '<button class="btn door door-pets">' + petBadge + '<span class="door-ico">🐾</span><span class="door-tt">EVCİL HAYVANLARIM</span><small>' + (needy.length ? '🐾 ' + needy.length + ' dost bakım bekliyor' : 'Sahiplen · bak') + '</small></button>' +
+          '<button class="btn door door-int"><span class="door-ico">🎯</span><span class="door-tt">İLGİ ALANLARIM</span><small>Sevdiklerim</small></button>' +
         '</div>';
       root.appendChild(wrap);
 
