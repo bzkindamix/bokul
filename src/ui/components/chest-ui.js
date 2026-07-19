@@ -12,12 +12,18 @@
   /* Kuyruktaki sandıkları sırayla aç; bitince onDone */
   function openCeremony(onDone) {
     if (!B.Chest.queue().length) { if (onDone) onDone(); return; }
-    const meta = B.Chest.meta(B.Chest.queue()[0]);
+    const entry = B.Chest.queue()[0];
+    const meta = B.Chest.meta(entry);
+    const tm = B.Chest.tierMeta ? B.Chest.tierMeta(entry) : null;
+    const frame = (tm && tm.frame) || meta.color || '#FFD52E';
+    const tierName = (tm && tm.name) ? tm.name : '';
 
     const ov = document.createElement('div');
     ov.className = 'overlay chest-overlay';
+    ov.style.setProperty('--chest-frame', frame);
     ov.innerHTML =
       '<div class="chest-scene">' +
+        (tierName ? '<div class="chest-tier" style="color:' + frame + ';border-color:' + frame + '">' + tierName + ' Kademe</div>' : '') +
         '<div class="chest-title">' + meta.name + '</div>' +
         '<div class="chest3d chest-shake">' +
           '<div class="chest-lid"></div>' +

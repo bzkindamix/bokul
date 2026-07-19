@@ -12,7 +12,27 @@
 
   function R() { return B.Content.get('rewards'); }
   function cats() { return R().chestCats || {}; }
-  function meta(type) { return cats()[norm(type)] || { name: 'Sandık', icon: '🎁', color: '#FFD52E' }; }
+  function tiers() { return R().chestTiers || [{ min: 1, name: '', frame: '#FFD52E', coinMult: 1, itemBonus: 0, rarityBoost: 0 }]; }
+  // Sandık girişini normalize et: eski kayıtlar string, yenileri { type, tier }
+  function entryOf(e) { return (typeof e === 'string') ? { type: norm(e), tier: 0 } : { type: norm(e && e.type), tier: (e && e.tier) || 0 }; }
+  function meta(x) { const t = (typeof x === 'string') ? norm(x) : norm(x && x.type); return cats()[t] || { name: 'Sandık', icon: '🎁', color: '#FFD52E' }; }
+  function tierMeta(x) { const tier = (x && typeof x === 'object') ? (x.tier || 0) : 0; return tiers()[tier] || tiers()[0]; }
+  // Oyuncunun seviyesine göre sandık kademesi (aşama ilerledikçe daha iyi sandık)
+  function tierIdx() {
+    const lvl = (B.State.data.player && B.State.data.player.level) || 1;
+    let idx = 0; tiers().forEach((t, i) => { if (lvl >= (t.min || 1)) idx = i; });
+    return idx;
+  }
+  // Nadirlik dağılımını yükselt (üst kademede daha iyi kozmetik şansı)
+  function boostDist(dist, boost) {
+    if (!boost) return dist;
+    const d = Object.assign({}, dist);
+    let take = Math.min(d.common || 0, boost);
+    if (take > 0) { d.common -= take; }
+    else { take = Math.min(d.rare || 0, boost); d.rare = (d.rare || 0) - take; }
+    if (take > 0) { d.epic = (d.epic || 0) + take * 0.7; d.legendary = (d.legendary || 0) + take * 0.3; }
+    return d;
+  }
   function ri(range) { const a = range[0], b = range[1]; return a + Math.floor(Math.random() * (b - a + 1)); }
 
   function inv() {
@@ -52,28 +72,32 @@
   }
 
   B.Chest = {
-    meta,
+    meta, tierMeta,
     queue() { return inv().chests; },
 
     earn(type) {
       if (B.Demo && B.Demo.isDemo()) return; // demo: sandık kazanılamaz
       type = norm(type);
-      inv().chests.push(type);
-      const m = meta(type);
-      B.Bus.emit(B.Events.CHEST_EARNED, { chestType: type });
-      B.UI.toast(m.icon + ' ' + m.name + ' kazandın!');
+      const tier = tierIdx();
+      inv().chests.push({ type: type, tier: tier });
+      const m = meta(type), tm = tiers()[tier] || {};
+      B.Bus.emit(B.Events.CHEST_EARNED, { chestType: type, tier: tier });
+      B.UI.toast((tm.name ? tm.name + ' ' : '') + m.icon + ' ' + m.name + ' kazandın!');
       B.Save.saveSoon();
     },
 
-    /* Kategoriye göre ödül üret */
-    roll(type) {
+    /* Kategoriye + kademeye göre ödül üret (üst kademe = daha çok altın/eşya/nadirlik) */
+    roll(type, tier) {
+      const t = tiers()[tier || 0] || tiers()[0] || { coinMult: 1, itemBonus: 0, rarityBoost: 0 };
       const cfg = cats()[norm(type)] || {};
-      const out = { coins: ri(cfg.coins || [20, 40]) };
+      const out = { coins: Math.round(ri(cfg.coins || [20, 40]) * (t.coinMult || 1)), tier: tier || 0 };
       if (cfg.cosmetic) {
-        const item = rollCosmetic(cfg.cosmetic);
-        if (item) out.item = item; else out.xpPack = 50; // her şey açıksa teselli
+        const item = rollCosmetic(boostDist(cfg.cosmetic, t.rarityBoost || 0));
+        if (item) out.item = item; else out.xpPack = 50 + (tier || 0) * 30; // her şey açıksa teselli (kademeyle artar)
       } else if (cfg.items) {
-        out.items = rollItems(cfg.items);
+        const c = cfg.items.count || [1, 2];
+        const boosted = Object.assign({}, cfg.items, { count: [c[0], (c[1] || c[0]) + (t.itemBonus || 0)] });
+        out.items = rollItems(boosted);
       }
       return out;
     },
@@ -82,8 +106,9 @@
     openNext() {
       const q = inv().chests;
       if (!q.length) return null;
-      const type = norm(q.shift());
-      const result = B.Chest.roll(type);
+      const e = entryOf(q.shift());
+      const type = e.type, tier = e.tier;
+      const result = B.Chest.roll(type, tier);
       B.Reward.addCoins(result.coins, 'chest');
       if (result.item) {
         B.State.data.inventory.cosmetics.push(result.item.id);
@@ -91,9 +116,9 @@
       }
       if (result.items) result.items.forEach(it => { if (B.Items) B.Items.add(it.id, it.n); });
       if (result.xpPack) B.Reward.addXp(result.xpPack, 'chest');
-      B.Bus.emit(B.Events.CHEST_OPENED, { chestType: type, item: result.item || null });
+      B.Bus.emit(B.Events.CHEST_OPENED, { chestType: type, tier: tier, item: result.item || null });
       B.Save.saveSoon();
-      return { type, result };
+      return { type, tier, tierMeta: tierMeta({ tier: tier }), result };
     },
 
     init() {

@@ -2,65 +2,409 @@
   "schema": 1,
   "xp": {
     "perStep": 2,
-    "perQuestionByStars": { "1": 10, "2": 15, "3": 25 },
+    "perQuestionByStars": {
+      "1": 10,
+      "2": 15,
+      "3": 25
+    },
     "missionBonus": 20,
     "dailyQuest": 50,
     "weeklyQuest": 200,
     "bossTopic": 100,
     "bossUnit": 200,
-    "streakMultipliers": { "3": 1.5, "5": 2.0 },
-    "dailyStreakBonusPerDay": 0.10,
-    "dailyStreakBonusMax": 0.50
+    "streakMultipliers": {
+      "3": 1.5,
+      "5": 2
+    },
+    "dailyStreakBonusPerDay": 0.1,
+    "dailyStreakBonusMax": 0.5
   },
-  "levels": { "base": 100, "perLevel": 75 },
+  "levels": {
+    "base": 100,
+    "perLevel": 75
+  },
   "ranks": [
-    { "minLevel": 1,  "id": "rank1", "title": "Çaylak Komutan",     "icon": "🐣" },
-    { "minLevel": 4,  "id": "rank2", "title": "Hedef Gözcüsü",      "icon": "🔭" },
-    { "minLevel": 8,  "id": "rank3", "title": "Bölme Eri",          "icon": "🎖️" },
-    { "minLevel": 13, "id": "rank4", "title": "Takım Lideri",       "icon": "⭐" },
-    { "minLevel": 19, "id": "rank5", "title": "Komutan Yardımcısı", "icon": "🌟" },
-    { "minLevel": 26, "id": "rank6", "title": "Komutan",            "icon": "👑" },
-    { "minLevel": 35, "id": "rank7", "title": "Sürünün Gururu",     "icon": "🦁" }
+    {
+      "minLevel": 1,
+      "id": "rank1",
+      "title": "Çaylak Komutan",
+      "icon": "🐣"
+    },
+    {
+      "minLevel": 4,
+      "id": "rank2",
+      "title": "Hedef Gözcüsü",
+      "icon": "🔭"
+    },
+    {
+      "minLevel": 8,
+      "id": "rank3",
+      "title": "Bölme Eri",
+      "icon": "🎖️"
+    },
+    {
+      "minLevel": 13,
+      "id": "rank4",
+      "title": "Takım Lideri",
+      "icon": "⭐"
+    },
+    {
+      "minLevel": 19,
+      "id": "rank5",
+      "title": "Komutan Yardımcısı",
+      "icon": "🌟"
+    },
+    {
+      "minLevel": 26,
+      "id": "rank6",
+      "title": "Komutan",
+      "icon": "👑"
+    },
+    {
+      "minLevel": 35,
+      "id": "rank7",
+      "title": "Sürünün Gururu",
+      "icon": "🦁"
+    }
   ],
   "chestStarEvery": 10,
   "chestCats": {
-    "altin":   { "name": "Altın Sandığı",   "icon": "💰", "color": "#FFD52E", "coins": [80, 160] },
-    "kiyafet": { "name": "Kıyafet Sandığı", "icon": "👕", "color": "#FF4FD8", "coins": [15, 30], "cosmetic": { "common": 68, "rare": 27, "epic": 5 } },
-    "esya":    { "name": "Eşya Sandığı",    "icon": "📦", "color": "#52E88C", "coins": [15, 30], "items": { "count": [1, 3], "pool": [
-      { "id": "tahta", "n": [2, 5] }, { "id": "cam", "n": [1, 3] }, { "id": "metal", "n": [1, 3] }, { "id": "vida", "n": [3, 6] },
-      { "id": "ip", "n": [2, 5] }, { "id": "boya", "n": [1, 2] }, { "id": "balik_yemi", "n": [2, 4] }, { "id": "kus_yemi", "n": [2, 4] },
-      { "id": "kopek_mamasi", "n": [1, 3] }, { "id": "kedi_mamasi", "n": [1, 3] }, { "id": "temiz_su", "n": [2, 4] }, { "id": "cakil", "n": [1, 2] }
-    ] } },
-    "nadir":   { "name": "Nadir Sandığı",   "icon": "💎", "color": "#3DF2D2", "coins": [100, 220], "cosmetic": { "rare": 40, "epic": 45, "legendary": 15 } }
+    "altin": {
+      "name": "Altın Sandığı",
+      "icon": "💰",
+      "color": "#FFD52E",
+      "coins": [
+        80,
+        160
+      ]
+    },
+    "kiyafet": {
+      "name": "Kıyafet Sandığı",
+      "icon": "👕",
+      "color": "#FF4FD8",
+      "coins": [
+        15,
+        30
+      ],
+      "cosmetic": {
+        "common": 68,
+        "rare": 27,
+        "epic": 5
+      }
+    },
+    "esya": {
+      "name": "Eşya Sandığı",
+      "icon": "📦",
+      "color": "#52E88C",
+      "coins": [
+        15,
+        30
+      ],
+      "items": {
+        "count": [
+          1,
+          3
+        ],
+        "pool": [
+          {
+            "id": "tahta",
+            "n": [
+              2,
+              5
+            ]
+          },
+          {
+            "id": "cam",
+            "n": [
+              1,
+              3
+            ]
+          },
+          {
+            "id": "metal",
+            "n": [
+              1,
+              3
+            ]
+          },
+          {
+            "id": "vida",
+            "n": [
+              3,
+              6
+            ]
+          },
+          {
+            "id": "ip",
+            "n": [
+              2,
+              5
+            ]
+          },
+          {
+            "id": "boya",
+            "n": [
+              1,
+              2
+            ]
+          },
+          {
+            "id": "balik_yemi",
+            "n": [
+              2,
+              4
+            ]
+          },
+          {
+            "id": "kus_yemi",
+            "n": [
+              2,
+              4
+            ]
+          },
+          {
+            "id": "kopek_mamasi",
+            "n": [
+              1,
+              3
+            ]
+          },
+          {
+            "id": "kedi_mamasi",
+            "n": [
+              1,
+              3
+            ]
+          },
+          {
+            "id": "temiz_su",
+            "n": [
+              2,
+              4
+            ]
+          },
+          {
+            "id": "cakil",
+            "n": [
+              1,
+              2
+            ]
+          }
+        ]
+      }
+    },
+    "nadir": {
+      "name": "Nadir Sandığı",
+      "icon": "💎",
+      "color": "#3DF2D2",
+      "coins": [
+        100,
+        220
+      ],
+      "cosmetic": {
+        "rare": 40,
+        "epic": 45,
+        "legendary": 15
+      }
+    }
   },
-  "shopPrices": { "common": 50, "rare": 120, "epic": 250, "legendary": 500 },
+  "shopPrices": {
+    "common": 50,
+    "rare": 120,
+    "epic": 250,
+    "legendary": 500
+  },
   "sellRatio": 0.4,
   "cosmetics": [
-    { "id": "av-beret",    "type": "acc",       "rarity": "common",    "name": "Komutan Beresi" },
-    { "id": "hair-curly",  "type": "hair",      "rarity": "common",    "name": "Kıvırcık Saç" },
-    { "id": "mouth-grin",  "type": "mouth",     "rarity": "common",    "name": "Sırıtış" },
-    { "id": "hc-blue",     "type": "hairColor", "rarity": "rare",      "name": "Gece Mavisi Saç" },
-    { "id": "hc-purple",   "type": "hairColor", "rarity": "rare",      "name": "Mor Saç" },
-    { "id": "hc-teal",     "type": "hairColor", "rarity": "epic",      "name": "Turkuaz Saç" },
-    { "id": "hair-spiky",  "type": "hair",      "rarity": "rare",      "name": "Kirpi Saç" },
-    { "id": "hair-mohawk", "type": "hair",      "rarity": "rare",      "name": "Mohawk Saç" },
-    { "id": "hair-wavy",   "type": "hair",      "rarity": "epic",      "name": "Uzun Dalgalı Saç" },
-    { "id": "of-uniforma", "type": "outfit",    "rarity": "rare",      "name": "Komutan Üniforması" },
-    { "id": "of-cubbe",    "type": "outfit",    "rarity": "rare",      "name": "Filozof Cübbesi" },
-    { "id": "of-takim",    "type": "outfit",    "rarity": "rare",      "name": "Şık Takım" },
-    { "id": "of-zirh",     "type": "outfit",    "rarity": "epic",      "name": "Şövalye Zırhı" },
-    { "id": "of-uzay",     "type": "outfit",    "rarity": "epic",      "name": "Uzay Giysisi" },
-    { "id": "of-robot",    "type": "outfit",    "rarity": "epic",      "name": "Robot Zırhı" },
-    { "id": "of-balo",     "type": "outfit",    "rarity": "epic",      "name": "Balo Elbisesi" },
-    { "id": "of-pelerin",  "type": "outfit",    "rarity": "legendary", "name": "Kahraman Pelerini" },
-    { "id": "eyes-star",   "type": "eyes",      "rarity": "rare",      "name": "Yıldız Göz" },
-    { "id": "acc-glasses", "type": "acc",       "rarity": "rare",      "name": "Pilot Gözlüğü" },
-    { "id": "hc-neon",     "type": "hairColor", "rarity": "epic",      "name": "Neon Pembe Saç" },
-    { "id": "acc-headset", "type": "acc",       "rarity": "epic",      "name": "Uzay Kulaklığı" },
-    { "id": "ring-neon",   "type": "ring",      "rarity": "epic",      "name": "Neon Halka" },
-    { "id": "acc-crown",   "type": "acc",       "rarity": "legendary", "name": "Galaksi Tacı" },
-    { "id": "ring-galaxy", "type": "ring",      "rarity": "legendary", "name": "Galaksi Halkası" },
-    { "id": "t-golem",     "type": "title",     "rarity": "legendary", "name": "Golem Deviren" },
-    { "id": "t-makine",    "type": "title",     "rarity": "legendary", "name": "Makine Söken" }
+    {
+      "id": "av-beret",
+      "type": "acc",
+      "rarity": "common",
+      "name": "Komutan Beresi"
+    },
+    {
+      "id": "hair-curly",
+      "type": "hair",
+      "rarity": "common",
+      "name": "Kıvırcık Saç"
+    },
+    {
+      "id": "mouth-grin",
+      "type": "mouth",
+      "rarity": "common",
+      "name": "Sırıtış"
+    },
+    {
+      "id": "hc-blue",
+      "type": "hairColor",
+      "rarity": "rare",
+      "name": "Gece Mavisi Saç"
+    },
+    {
+      "id": "hc-purple",
+      "type": "hairColor",
+      "rarity": "rare",
+      "name": "Mor Saç"
+    },
+    {
+      "id": "hc-teal",
+      "type": "hairColor",
+      "rarity": "epic",
+      "name": "Turkuaz Saç"
+    },
+    {
+      "id": "hair-spiky",
+      "type": "hair",
+      "rarity": "rare",
+      "name": "Kirpi Saç"
+    },
+    {
+      "id": "hair-mohawk",
+      "type": "hair",
+      "rarity": "rare",
+      "name": "Mohawk Saç"
+    },
+    {
+      "id": "hair-wavy",
+      "type": "hair",
+      "rarity": "epic",
+      "name": "Uzun Dalgalı Saç"
+    },
+    {
+      "id": "of-uniforma",
+      "type": "outfit",
+      "rarity": "rare",
+      "name": "Komutan Üniforması"
+    },
+    {
+      "id": "of-cubbe",
+      "type": "outfit",
+      "rarity": "rare",
+      "name": "Filozof Cübbesi"
+    },
+    {
+      "id": "of-takim",
+      "type": "outfit",
+      "rarity": "rare",
+      "name": "Şık Takım"
+    },
+    {
+      "id": "of-zirh",
+      "type": "outfit",
+      "rarity": "epic",
+      "name": "Şövalye Zırhı"
+    },
+    {
+      "id": "of-uzay",
+      "type": "outfit",
+      "rarity": "epic",
+      "name": "Uzay Giysisi"
+    },
+    {
+      "id": "of-robot",
+      "type": "outfit",
+      "rarity": "epic",
+      "name": "Robot Zırhı"
+    },
+    {
+      "id": "of-balo",
+      "type": "outfit",
+      "rarity": "epic",
+      "name": "Balo Elbisesi"
+    },
+    {
+      "id": "of-pelerin",
+      "type": "outfit",
+      "rarity": "legendary",
+      "name": "Kahraman Pelerini"
+    },
+    {
+      "id": "eyes-star",
+      "type": "eyes",
+      "rarity": "rare",
+      "name": "Yıldız Göz"
+    },
+    {
+      "id": "acc-glasses",
+      "type": "acc",
+      "rarity": "rare",
+      "name": "Pilot Gözlüğü"
+    },
+    {
+      "id": "hc-neon",
+      "type": "hairColor",
+      "rarity": "epic",
+      "name": "Neon Pembe Saç"
+    },
+    {
+      "id": "acc-headset",
+      "type": "acc",
+      "rarity": "epic",
+      "name": "Uzay Kulaklığı"
+    },
+    {
+      "id": "ring-neon",
+      "type": "ring",
+      "rarity": "epic",
+      "name": "Neon Halka"
+    },
+    {
+      "id": "acc-crown",
+      "type": "acc",
+      "rarity": "legendary",
+      "name": "Galaksi Tacı"
+    },
+    {
+      "id": "ring-galaxy",
+      "type": "ring",
+      "rarity": "legendary",
+      "name": "Galaksi Halkası"
+    },
+    {
+      "id": "t-golem",
+      "type": "title",
+      "rarity": "legendary",
+      "name": "Golem Deviren"
+    },
+    {
+      "id": "t-makine",
+      "type": "title",
+      "rarity": "legendary",
+      "name": "Makine Söken"
+    }
+  ],
+  "chestTiers": [
+    {
+      "min": 1,
+      "name": "Bronz",
+      "frame": "#B87333",
+      "coinMult": 1,
+      "itemBonus": 0,
+      "rarityBoost": 0
+    },
+    {
+      "min": 5,
+      "name": "Gümüş",
+      "frame": "#C9C9D9",
+      "coinMult": 1.4,
+      "itemBonus": 1,
+      "rarityBoost": 8
+    },
+    {
+      "min": 10,
+      "name": "Altın",
+      "frame": "#FFD52E",
+      "coinMult": 1.9,
+      "itemBonus": 1,
+      "rarityBoost": 16
+    },
+    {
+      "min": 20,
+      "name": "Elmas",
+      "frame": "#3DF2D2",
+      "coinMult": 2.6,
+      "itemBonus": 2,
+      "rarityBoost": 26
+    }
   ]
 }
