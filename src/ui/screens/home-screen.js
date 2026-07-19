@@ -13,6 +13,44 @@
       const first = B.State.data.streaks.lastPlayDate !== today;
       cmd.sayFrom(first ? 'greeting.firstOfDay' : 'greeting');
 
+      // Baba her 10 sn'de bir yeni bir şey söyler: şaka · bekleyen iş · craft bilgisi
+      const babaJokes = [
+        'Matematik kitabı neden üzgünmüş? Çünkü çok problemi varmış! 😄',
+        'Sıfır sekize ne demiş? "Güzel kemerin varmış!" 🥋',
+        'Kalem tıraşa girdi, çıkınca çok keskin bir fikir buldu! ✏️',
+        'Bilgisayar neden hasta olmuş? Virüs kapmış tabii! 🦠',
+        'İki nokta üst üste gelince ne olur? İki nokta olur, başka ne olacak! 😁',
+        'Toplama işlemi neden popülermiş? Herkesi bir araya getiriyormuş! ➕',
+      ];
+      const craftTips = [
+        'Atölye sırrı: 2 cam + 1 vida = cam panel. Küçük parçalar büyük eşyalara dönüşür! 🔨',
+        'Balık ister misin? Önce akvaryum craftla: cam panel + filtre + temiz su + çakıl! 🐠',
+        'İpi 3 kez birleştirince kumaş olur; kumaşla evini geliştirebilirsin! 🧵',
+        'Ürettiğin eşyalarla hem evini hem dep\'onu büyüt — daha çok eşya saklarsın! 🏠',
+        'Bir eşya craftlamak için birden çok parça gerekebilir; önce malzeme topla! 🧰',
+        'Craft zinciri: küçük craftladığınla yenisini craftlarsın — Arc Raiders gibi! ⚙️',
+      ];
+      function babaPending() {
+        const b = [];
+        if (B.Quest && B.Quest.pending && B.Quest.pending()) b.push('Toplamanı bekleyen ' + B.Quest.pending() + ' görev ödülü var! 📋');
+        if (B.Daily && B.Daily.canClaim && B.Daily.canClaim()) b.push('Günlük ödülün hazır — al da serin büyüsün! 🎁');
+        const pets = (B.Perms.feature('pets') && B.Pets) ? B.Pets.adopted() : [];
+        const cap = pets.filter(x => B.Pets.isCaptured(x)).length;
+        const needy = pets.filter(x => !B.Pets.isCaptured(x) && (x.tokluk < 50 || x.mutluluk < 50)).length;
+        if (cap) b.push(cap + ' dostun ' + B.Pets.villain() + "'a kaçırıldı — kurtar! 😈");
+        else if (needy) b.push(needy + ' dostun bakım bekliyor, unutma! 🐾');
+        const ch = (B.Chest && B.Chest.queue) ? B.Chest.queue().length : 0;
+        if (ch) b.push(ch + ' sandık açılmayı bekliyor! 📦');
+        return b.length ? b[Math.floor(Math.random() * b.length)] : 'Bekleyen işin yok — her şey yolunda, aferin asker! ✅';
+      }
+      let bJ = 0, bC = 0, bR = 0;
+      const babaCats = [() => babaJokes[bJ++ % babaJokes.length], () => babaPending(), () => craftTips[bC++ % craftTips.length]];
+      this._babaTimer = setInterval(() => {
+        if (B.UI.currentScreen() !== 'home') return;
+        if (document.querySelector('.overlay')) return; // tur/overlay açıkken bekle
+        cmd.say(babaCats[bR++ % babaCats.length]());
+      }, 10000);
+
       // Bekleyen sandık: sallanan buton (dopamin kancası)
       const q = B.Chest.queue();
       if (q.length) {
@@ -42,15 +80,6 @@
             '<small>⭐ ' + stars + '/' + max + ' · 💠 ' + done + '/' + bosses + '</small></span>' +
           '<span class="dash-pgo">▶</span></button>';
       }).join('');
-      const jokes = [
-        'Matematik kitabı neden üzgünmüş? Çünkü çok problemi varmış! 😄',
-        'Sıfır sekize ne demiş? "Güzel kemerin varmış!" 🥋',
-        'Kalem tıraşına girdi, çıkınca çok keskin bir fikir buldu! ✏️',
-        'Bilgisayar neden hasta olmuş? Virüs kapmış tabii! 🦠',
-        'İki nokta üst üste gelince ne olur? İki nokta olur, başka ne olacak! 😁',
-      ];
-      const joke = jokes[(p.level + (st.questionsDone || 0)) % jokes.length];
-
       const dash = document.createElement('div');
       dash.className = 'home-dash';
       dash.innerHTML =
@@ -62,8 +91,7 @@
           '<span class="dash-stat">✅ ' + (st.questionsDone || 0) + ' soru</span>' +
         '</div>' +
         '<div class="dash-title">🗺️ Öğrenme Yolların</div>' +
-        '<div class="dash-paths">' + (pathRows || '<div class="dash-empty">Cephe bulunamadı.</div>') + '</div>' +
-        '<div class="dash-joke">🧑‍✈️ <b>Baba:</b> ' + joke + '</div>';
+        '<div class="dash-paths">' + (pathRows || '<div class="dash-empty">Cephe bulunamadı.</div>') + '</div>';
       root.appendChild(dash);
       dash.querySelectorAll('.dash-path').forEach(b => b.onclick = () => {
         B.Audio.play('tick');
@@ -119,20 +147,25 @@
       gate(doors.querySelector('.door-quests'), 'quests', () => { B.Audio.play('tick'); B.UI.show('quests'); });
       gate(doors.querySelector('.door-store'), 'store', () => { B.Audio.play('tick'); B.UI.show('store', { tab: 'shop' }); });
 
+      // Alt araç çubuğu (kompakt tek satır — ekrana sığması için)
+      const footer = document.createElement('div');
+      footer.className = 'home-footer';
+      root.appendChild(footer);
+
       // Hikâyeyi tekrar izleme
       const replay = document.createElement('button');
       replay.className = 'chip home-story';
-      replay.textContent = '🎬 Hikâyeyi izle';
+      replay.textContent = '🎬 Hikâye';
       gate(replay, 'story', () => B.UI.show('intro', { replay: true }));
-      root.appendChild(replay);
+      footer.appendChild(replay);
 
       // Dilek Kutusu (ödül isteği + oyun fikri)
       const wish = document.createElement('button');
       wish.className = 'chip home-wishes';
       const earned = (B.State.data.wishes || []).some(w => w.status === 'earned');
-      wish.textContent = '🎁 Dilek Kutusu' + (earned ? ' 🎉' : '');
+      wish.textContent = '🎁 Dilek' + (earned ? ' 🎉' : '');
       gate(wish, 'wishes', () => B.UI.show('wishes'));
-      root.appendChild(wish);
+      footer.appendChild(wish);
 
       const demoMode = B.Demo && B.Demo.isDemo();
       const tourPending = !(B.State.data.meta && B.State.data.meta.homeTourSeen); // ilk oyun: ekran turu
@@ -143,7 +176,7 @@
         daily.className = 'chip home-daily' + (B.Daily.canClaim() ? ' daily-ready' : '');
         daily.textContent = B.Daily.canClaim() ? '🎁 Günlük Ödül!' : '🎁 Seri: ' + B.Daily.streak() + ' gün';
         daily.onclick = () => B.Daily.show();
-        root.appendChild(daily);
+        footer.appendChild(daily);
       }
 
       // Demo bilgi + tam sürüme geçiş (davet kodu)
@@ -167,7 +200,7 @@
           };
           btns[1].onclick = () => ov.remove();
         };
-        root.appendChild(demo);
+        footer.appendChild(demo);
       }
 
       // Oyuncu değiştir / çıkış
@@ -175,7 +208,7 @@
       out.className = 'chip home-logout';
       out.textContent = '🚪 Çıkış';
       out.onclick = () => B.Engine.logout();
-      root.appendChild(out);
+      footer.appendChild(out);
 
       // Günlük ödül hazırsa otomatik aç (günde bir; demo/tur değilse)
       if (!demoMode && !tourPending && B.Daily.canClaim()) setTimeout(() => { if (B.UI.currentScreen() === 'home') B.Daily.show(); }, 550);
@@ -195,6 +228,6 @@
 
       this._hud = hud;
     },
-    exit() { if (this._hud) this._hud.dispose(); },
+    exit() { if (this._babaTimer) { clearInterval(this._babaTimer); this._babaTimer = null; } if (this._hud) this._hud.dispose(); },
   });
 })(window.BOKUL = window.BOKUL || {});

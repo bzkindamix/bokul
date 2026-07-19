@@ -885,3 +885,27 @@
 .share-btns .btn { width: 100%; }
 .share-main { background: linear-gradient(180deg, #35B36B, #1F8A4C); color: #eafff2; }
 .adm-send { background: rgba(82,232,140,.14); border: 1px solid rgba(82,232,140,.4); color: var(--success); }
+
+/* === v0.49 — Ana ekran ekrana sığması (kompakt düzen) === */
+.screen-home { padding-bottom: 6px; }
+.screen-home .home-mid { padding: 4px 16px; flex: 0 0 auto; }
+.screen-home .home-mid .commander-face { width: 82px; height: 98px; font-size: 42px; }
+.screen-home .home-mid .commander-balloon { font-size: 15px; min-height: 46px; padding: 10px 14px; }
+/* Öğrenme yolları: uzayınca içeride kaydır (HAREKÂT + kapılar hep erişilebilir) */
+.dash-paths { max-height: 34vh; overflow-y: auto; overflow-x: hidden; padding-right: 2px; }
+.dash-path { padding: 8px 10px; }
+/* HAREKÂT butonu daha derli toplu */
+.home-doors .door-main { padding: 12px 8px; font-size: 18px; }
+.home-doors .door-main .door-ic { font-size: 26px; margin-bottom: 0; }
+.home-doors .door-side { padding: 11px 6px; }
+.home-doors .door-side .door-ic { font-size: 26px; }
+/* Alt araç çubuğu: kompakt, ortalı, tek satırda sarmalı */
+.home-footer { display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 7px; padding: 9px 14px 4px; max-width: 760px; margin: 0 auto; }
+.home-footer .chip { margin: 0; }
+
+@media (max-height: 720px) {
+  .dash-paths { max-height: 26vh; }
+  .screen-home .home-mid .commander-face { width: 66px; height: 80px; font-size: 34px; }
+  .home-doors .door-main { padding: 9px 8px; font-size: 17px; }
+}
