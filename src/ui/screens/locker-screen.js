@@ -102,17 +102,55 @@
         return g;
       }
 
+      /* Saç rengi gridi: doğal renkler ücretsiz; özel renkler (dye) saç boyasıyla açılır.
+       * Boya buradan alınır — mağazada satılmaz. Bir kez alınınca o renk kalıcı açılır. */
+      function dyeGrid(colors, curColor) {
+        const g = document.createElement('div'); g.className = 'part-grid';
+        colors.forEach(col => {
+          const a = av(); a.usePhoto = false; a.hairColor = col.id;
+          const unlocked = B.Avatar.isUnlocked(col);
+          const card = document.createElement('button');
+          card.className = 'part-card' + (col.id === curColor ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
+          card.innerHTML =
+            '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
+            '<span class="part-name">' + col.name + '</span>' +
+            (unlocked ? '' : '<span class="part-price">🎨 ' + (prices[col.rarity] || 50) + '</span>');
+          card.onclick = () => {
+            B.Audio.play('tick');
+            if (!unlocked) {
+              B.UI.confirm({
+                icon: '🎨', title: col.name + ' saç boyası alınsın mı?',
+                body: '💰 ' + (prices[col.rarity] || 50) + ' Altın — bu boyayı alınca saçını istediğin zaman bu renge boyayabilirsin.',
+                yes: 'Boyayı al', no: 'Vazgeç',
+                onYes: () => {
+                  if (!B.Reward.spendCoins(prices[col.rarity] || 50)) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+                  B.State.data.inventory.cosmetics.push(B.Avatar.unlockKey(col));
+                  if (B.Bus && B.Events && B.Events.COSMETIC_UNLOCKED) B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: B.Avatar.unlockKey(col) });
+                  B.Audio.play('chest');
+                  B.UI.toast('🎨 ' + col.name + ' boyası alındı! Saçın boyandı.');
+                  const cur = av(); cur.hairColor = col.id; commit(cur);
+                },
+              });
+              return;
+            }
+            const cur = av(); cur.hairColor = col.id; commit(cur);
+          };
+          g.appendChild(card);
+        });
+        return g;
+      }
+
       function renderTab() {
         const a = av();
         const host = right.querySelector('.locker-parts');
         host.innerHTML = '';
 
         if (tab === 'hair') {
-          // Saç: hem model hem renk aynı menüde
+          // Saç: hem model (ücretsiz) hem renk (özel renkler saç boyasıyla açılır)
           host.appendChild(label('💇 SAÇ MODELİ'));
           host.appendChild(grid(B.Avatar.hairsFor(a.gender), (x, p) => { x.hair = p.id; }, p => p.id === a.hair));
           host.appendChild(label('🎨 SAÇ RENGİ'));
-          host.appendChild(grid(C.hairColors, (x, p) => { x.hairColor = p.id; }, p => p.id === a.hairColor));
+          host.appendChild(dyeGrid(C.hairColors, a.hairColor));
         } else if (tab === 'outfit') {
           // Üst kıyafetler cinsiyete göre süzülür — tam vücut önizleme
           host.appendChild(grid(B.Avatar.outfitsFor(a.gender), (x, p) => { x.outfit = p.id; }, p => p.id === a.outfit, null, true));

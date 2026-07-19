@@ -1500,7 +1500,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.67 — Görünüm (saç/göz rengi, saç modeli, yüz) tamamen ücretsiz; Mağaza yalnız giyilebilir eşya satar; sandık havuzu avatar kataloğundan</div>
+      <div class="splash-note">v0.68 — Saç boyası: özel saç renkleri Görünüşüm'de boya alınarak açılır (mağazada satılmaz)</div>
     </div>
   </div>
 
@@ -12213,10 +12213,11 @@ h1, h2, h3, h4,
       { id: 0, color: '#3B2A1A', name: 'Kahve' }, { id: 1, color: '#1C1C24', name: 'Siyah' },
       { id: 2, color: '#B7742F', name: 'Kumral' }, { id: 3, color: '#E8C25A', name: 'Sarı' },
       { id: 4, color: '#C4472B', name: 'Kızıl' },  { id: 5, color: '#C9C9D9', name: 'Gümüş' },
-      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi' },
-      { id: 7, color: '#9D6BFF', name: 'Mor' },
-      { id: 8, color: '#FF4FD8', name: 'Neon Pembe' },
-      { id: 9, color: '#3DF2D2', name: 'Turkuaz' },
+      // Özel renkler: saç boyasıyla açılır (Görünüşüm'deki boya reyonundan alınır, mağazada değil)
+      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue', rarity: 'rare', dye: true },
+      { id: 7, color: '#9D6BFF', name: 'Mor', cosmeticId: 'hc-purple', rarity: 'rare', dye: true },
+      { id: 8, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon', rarity: 'epic', dye: true },
+      { id: 9, color: '#3DF2D2', name: 'Turkuaz', cosmeticId: 'hc-teal', rarity: 'epic', dye: true },
     ],
     eyeColors: [
       { id: 0, color: '#6B4423', name: 'Kahve' }, { id: 1, color: '#23212B', name: 'Siyah' },
@@ -14105,17 +14106,55 @@ h1, h2, h3, h4,
         return g;
       }
 
+      /* Saç rengi gridi: doğal renkler ücretsiz; özel renkler (dye) saç boyasıyla açılır.
+       * Boya buradan alınır — mağazada satılmaz. Bir kez alınınca o renk kalıcı açılır. */
+      function dyeGrid(colors, curColor) {
+        const g = document.createElement('div'); g.className = 'part-grid';
+        colors.forEach(col => {
+          const a = av(); a.usePhoto = false; a.hairColor = col.id;
+          const unlocked = B.Avatar.isUnlocked(col);
+          const card = document.createElement('button');
+          card.className = 'part-card' + (col.id === curColor ? ' part-on' : '') + (unlocked ? '' : ' part-locked');
+          card.innerHTML =
+            '<span class="part-prev">' + B.Avatar.svg(a) + '</span>' +
+            '<span class="part-name">' + col.name + '</span>' +
+            (unlocked ? '' : '<span class="part-price">🎨 ' + (prices[col.rarity] || 50) + '</span>');
+          card.onclick = () => {
+            B.Audio.play('tick');
+            if (!unlocked) {
+              B.UI.confirm({
+                icon: '🎨', title: col.name + ' saç boyası alınsın mı?',
+                body: '💰 ' + (prices[col.rarity] || 50) + ' Altın — bu boyayı alınca saçını istediğin zaman bu renge boyayabilirsin.',
+                yes: 'Boyayı al', no: 'Vazgeç',
+                onYes: () => {
+                  if (!B.Reward.spendCoins(prices[col.rarity] || 50)) { B.Audio.play('wrong'); B.UI.toast('💰 Altının yetmiyor!'); return; }
+                  B.State.data.inventory.cosmetics.push(B.Avatar.unlockKey(col));
+                  if (B.Bus && B.Events && B.Events.COSMETIC_UNLOCKED) B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: B.Avatar.unlockKey(col) });
+                  B.Audio.play('chest');
+                  B.UI.toast('🎨 ' + col.name + ' boyası alındı! Saçın boyandı.');
+                  const cur = av(); cur.hairColor = col.id; commit(cur);
+                },
+              });
+              return;
+            }
+            const cur = av(); cur.hairColor = col.id; commit(cur);
+          };
+          g.appendChild(card);
+        });
+        return g;
+      }
+
       function renderTab() {
         const a = av();
         const host = right.querySelector('.locker-parts');
         host.innerHTML = '';
 
         if (tab === 'hair') {
-          // Saç: hem model hem renk aynı menüde
+          // Saç: hem model (ücretsiz) hem renk (özel renkler saç boyasıyla açılır)
           host.appendChild(label('💇 SAÇ MODELİ'));
           host.appendChild(grid(B.Avatar.hairsFor(a.gender), (x, p) => { x.hair = p.id; }, p => p.id === a.hair));
           host.appendChild(label('🎨 SAÇ RENGİ'));
-          host.appendChild(grid(C.hairColors, (x, p) => { x.hairColor = p.id; }, p => p.id === a.hairColor));
+          host.appendChild(dyeGrid(C.hairColors, a.hairColor));
         } else if (tab === 'outfit') {
           // Üst kıyafetler cinsiyete göre süzülür — tam vücut önizleme
           host.appendChild(grid(B.Avatar.outfitsFor(a.gender), (x, p) => { x.outfit = p.id; }, p => p.id === a.outfit, null, true));
@@ -16432,7 +16471,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.67'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.68'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

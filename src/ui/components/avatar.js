@@ -113,10 +113,11 @@
       { id: 0, color: '#3B2A1A', name: 'Kahve' }, { id: 1, color: '#1C1C24', name: 'Siyah' },
       { id: 2, color: '#B7742F', name: 'Kumral' }, { id: 3, color: '#E8C25A', name: 'Sarı' },
       { id: 4, color: '#C4472B', name: 'Kızıl' },  { id: 5, color: '#C9C9D9', name: 'Gümüş' },
-      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi' },
-      { id: 7, color: '#9D6BFF', name: 'Mor' },
-      { id: 8, color: '#FF4FD8', name: 'Neon Pembe' },
-      { id: 9, color: '#3DF2D2', name: 'Turkuaz' },
+      // Özel renkler: saç boyasıyla açılır (Görünüşüm'deki boya reyonundan alınır, mağazada değil)
+      { id: 6, color: '#3E7BFF', name: 'Gece Mavisi', cosmeticId: 'hc-blue', rarity: 'rare', dye: true },
+      { id: 7, color: '#9D6BFF', name: 'Mor', cosmeticId: 'hc-purple', rarity: 'rare', dye: true },
+      { id: 8, color: '#FF4FD8', name: 'Neon Pembe', cosmeticId: 'hc-neon', rarity: 'epic', dye: true },
+      { id: 9, color: '#3DF2D2', name: 'Turkuaz', cosmeticId: 'hc-teal', rarity: 'epic', dye: true },
     ],
     eyeColors: [
       { id: 0, color: '#6B4423', name: 'Kahve' }, { id: 1, color: '#23212B', name: 'Siyah' },
