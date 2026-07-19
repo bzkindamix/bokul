@@ -1372,6 +1372,17 @@
 .inv-count { position: absolute; bottom: 3px; right: 5px; font-size: 12px; font-weight: 800; color: #fff; background: rgba(0,0,0,.6); padding: 0 5px; border-radius: 7px; font-variant-numeric: tabular-nums; }
 @media (hover: hover) { .inv-cell.filled:hover { transform: translateY(-2px); } }
 .inv-hint { font-size: 11px; color: var(--ink-dim); margin: 2px 0 10px; opacity: .85; }
+/* Depo araç çubuğu: süzme + sıralama */
+.depo-tools { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin: 6px 0 4px; }
+.depo-filters, .depo-sorts { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.depo-sorts { font-size: 12px; color: var(--ink-dim); }
+.dchip { font-size: 12px; }
+.dchip.tab-on { background: var(--xp); color: #3a2e05; }
+.schip { font-size: 12px; background: rgba(255,255,255,.08); cursor: pointer; }
+.schip:active { transform: scale(.96); }
+.inv-cell.inv-dim { opacity: .22; filter: grayscale(.6); }
+.inv-cell.inv-bp { box-shadow: 0 0 0 1.5px #FFD52E inset; }
+.inv-bp-tag { position: absolute; top: 2px; left: 3px; font-size: 11px; }
 .inv-cell.filled.inv-dragging { opacity: .3; }
 .inv-cell.inv-target { border-color: var(--xp); box-shadow: 0 0 0 2px var(--xp) inset; transform: scale(1.04); }
 .inv-cell.inv-ghost { opacity: .9; transform: scale(1.08); box-shadow: 0 8px 20px rgba(0,0,0,.45); background: var(--bg-raised); }

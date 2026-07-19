@@ -103,6 +103,11 @@
         const boosted = Object.assign({}, cfg.items, { count: [c[0], (c[1] || c[0]) + (t.itemBonus || 0)] });
         out.items = rollItems(boosted);
       }
+      // 📐 Nadir sandık: blueprint'ler SATIN ALINAMAZ — buradan (ve hobi kurslarından) düşer.
+      if (norm(type) === 'nadir' && B.Blueprints) {
+        const avail = B.Blueprints.all().filter(b => !B.Blueprints.isLearned(b.id) && (!B.Items || B.Items.count(b.id) === 0));
+        if (avail.length && Math.random() < 0.4) out.blueprint = avail[Math.floor(Math.random() * avail.length)].id;
+      }
       return out;
     },
 
@@ -119,6 +124,7 @@
         B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: result.item.id });
       }
       if (result.items) result.items.forEach(it => { if (B.Items) B.Items.add(it.id, it.n); });
+      if (result.blueprint && B.Items) B.Items.add(result.blueprint, 1); // depoya düşer, oyuncu "Öğren" ile açar
       if (result.xpPack) B.Reward.addXp(result.xpPack, 'chest');
       B.Bus.emit(B.Events.CHEST_OPENED, { chestType: type, tier: tier, item: result.item || null });
       B.Save.saveSoon();

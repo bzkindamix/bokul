@@ -40,13 +40,23 @@
       return { ok: true, bp: b, free };
     },
 
-    /* Bir hobi kursu (lesson id) bitince ilgili blueprint'i ücretsiz öğret.
-     * Zaten öğrenilmişse sessizce geçer. Döner: öğrenilen blueprint ya da null. */
+    /* Bir hobi kursu (lesson id) bitince ilgili blueprint'i DEPOYA düşür (ödül).
+     * Oyuncu sonra Depom'dan "Öğren" ile açar. Zaten öğrenilmişse/eldeyse geç.
+     * Döner: düşen blueprint ya da null. */
     grantForHobby(hobbyLessonId) {
       const b = (data().blueprints || []).find(x => x.hobby === hobbyLessonId);
-      if (!b || B.Blueprints.isLearned(b.id)) return null;
-      const r = B.Blueprints.learn(b.id, { free: true });
-      return r.ok ? b : null;
+      if (!b || B.Blueprints.isLearned(b.id) || (B.Items && B.Items.count(b.id) > 0)) return null;
+      if (B.Items) B.Items.add(b.id, 1);
+      return b;
+    },
+
+    /* Depodaki blueprint item'ından öğren: yeteneği aç + item'ı tüket (bedelsiz) */
+    learnFromDepot(id) {
+      if (B.Blueprints.isLearned(id)) return { ok: false, err: 'Bu tarifi zaten biliyorsun.' };
+      const r = B.Blueprints.learn(id, { free: true });
+      if (!r.ok) return r;
+      if (B.Items && B.Items.count(id) > 0) B.Items.remove(id, 1); // öğrenince item tükenir
+      return r;
     },
   };
 })(window.BOKUL = window.BOKUL || {});

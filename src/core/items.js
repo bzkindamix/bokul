@@ -15,8 +15,19 @@
     ensure() { inv(); },
     catalog() { return data().items; },
     categories() { return data().categories; },
-    get(id) { return data().items.find(x => x.id === id) || null; },
-    catName(cat) { const c = data().categories.find(x => x.id === cat); return c ? c.name : cat; },
+    get(id) {
+      const it = data().items.find(x => x.id === id);
+      if (it) return it;
+      // Blueprint'ler de depoda "item" gibi durur (satılabilir, öğrenilebilir; satın ALINAMAZ)
+      if (B.Blueprints) {
+        const bp = B.Blueprints.get(id);
+        if (bp) return { id: bp.id, name: bp.name + ' Tarifi', icon: bp.icon, rarity: 'legendary', cat: 'blueprint', desc: bp.desc, price: bp.price, blueprint: true, unique: true };
+      }
+      return null;
+    },
+    catName(cat) { if (cat === 'blueprint') return 'Blueprint'; const c = data().categories.find(x => x.id === cat); return c ? c.name : cat; },
+    /* Enderlik sırası (sıralama için): efsanevi en üstte */
+    rarRank(r) { return { common: 0, rare: 1, epic: 2, legendary: 3 }[r || 'common'] || 0; },
 
     count(id) { return inv()[id] || 0; },
     have(id, n) { return (inv()[id] || 0) >= (n || 1); },
@@ -88,6 +99,21 @@
       if (from === to || from < 0 || to < 0 || from >= slots.length || to >= slots.length) return;
       const a = slots[from] || null, b = slots[to] || null;
       slots[to] = a; slots[from] = b;
+      B.Save.saveSoon();
+    },
+    /* Depoyu sırala + baştan sıkıştır (boşlukları kapatır). key: 'name'|'rarity'|'cat' */
+    sortSlots(key) {
+      const owned = B.Items.ownedList();
+      const nm = (o) => (o.item.name || '').toLocaleLowerCase('tr');
+      const cmp = {
+        name: (a, b) => nm(a).localeCompare(nm(b), 'tr'),
+        rarity: (a, b) => B.Items.rarRank(b.item.rarity) - B.Items.rarRank(a.item.rarity) || nm(a).localeCompare(nm(b), 'tr'),
+        cat: (a, b) => (a.item.cat || '').localeCompare(b.item.cat || '', 'tr') || nm(a).localeCompare(nm(b), 'tr'),
+      }[key] || (() => 0);
+      owned.sort(cmp);
+      const slots = B.Items.slotArray();
+      for (let i = 0; i < slots.length; i++) slots[i] = null;
+      owned.forEach((o, i) => { if (i < slots.length) slots[i] = o.item.id; });
       B.Save.saveSoon();
     },
 

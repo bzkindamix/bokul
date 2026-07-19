@@ -11,6 +11,7 @@
       wrap.className = 'store-wrap';
       root.appendChild(wrap);
       function coins() { return B.State.data.player.coins || 0; }
+      let filterCat = 'all'; // süzme: kategori (dokunmatik dostu, konumu bozmaz)
 
       function shell() {
         wrap.innerHTML =
@@ -24,17 +25,27 @@
         if (!it) return;
         B.Audio.play('tick');
         const sellPrice = Math.max(1, Math.round((it.price || 0) * 0.4)); // %60 daha ucuz
+        const actions = [];
+        // Blueprint ise ÖĞREN seçeneği (yeteneği açar, item'ı tüketir) — satın ALINAMAZ, satılabilir
+        if (it.blueprint) {
+          actions.push({ label: '📖 Öğren', onClick: () => {
+            const r = B.Blueprints.learnFromDepot(it.id);
+            if (!r.ok) { B.Audio.play('wrong'); B.UI.toast('⚠️ ' + r.err); return; }
+            B.Audio.play('chest'); B.UI.toast('🎓 ' + (it.name || 'Tarif') + ' öğrenildi! Artık Atölye\'de üretebilirsin.');
+            shell();
+          } });
+        }
+        actions.push({ label: '💰 Sat (' + sellPrice + ')', onClick: () => {
+          const r = B.Items.sell(it.id);
+          if (r.ok) { B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın'); }
+          shell();
+        } });
+        actions.push({ label: 'Kapat', onClick: null });
         B.UI.overlay('<div class="ov-big">' + it.icon + '</div><h2>' + esc(it.name) + '</h2>' +
           '<p class="ov-quote">' + esc(it.desc || '') + '</p>' +
-          '<p class="ov-xp">Depoda: ' + B.Items.count(it.id) + ' adet · ' + ({ common: '🟢 Yaygın', rare: '🔵 Nadir', epic: '🟣 Epik', legendary: '🟡 Efsanevi' }[it.rarity || 'common']) + '</p>',
-          [
-            { label: '💰 Sat (' + sellPrice + ')', onClick: () => {
-              const r = B.Items.sell(it.id);
-              if (r.ok) { B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın'); }
-              shell();
-            } },
-            { label: 'Kapat', onClick: null },
-          ]);
+          '<p class="ov-xp">Depoda: ' + B.Items.count(it.id) + ' adet · ' + ({ common: '🟢 Yaygın', rare: '🔵 Nadir', epic: '🟣 Epik', legendary: '🟡 Efsanevi' }[it.rarity || 'common']) +
+            (it.blueprint ? '<br>📐 Bu bir üretim tarifi — <b>Öğren</b>ince Atölye\'de yeni eşyalar üretebilirsin.' : '') + '</p>',
+          actions);
       }
 
       function renderDepo(body) {
@@ -42,13 +53,30 @@
         const slots = B.Items.slotArray();
         const cap = B.Items.capacity();
         const used = slots.filter(Boolean).length;
+        // Süzme için mevcut kategoriler
+        const owned = B.Items.ownedList();
+        const catSet = [];
+        owned.forEach(o => { const c = o.item.cat || 'diger'; if (!catSet.some(x => x.id === c)) catSet.push({ id: c, name: B.Items.catName(c) }); });
+        if (!owned.some(o => (o.item.cat || 'diger') === filterCat)) if (filterCat !== 'all') filterCat = 'all';
+        const filterRow = used ? '<div class="depo-tools">' +
+          '<div class="depo-filters">' +
+            '<button class="chip dchip' + (filterCat === 'all' ? ' tab-on' : '') + '" data-f="all">Tümü</button>' +
+            catSet.map(c => '<button class="chip dchip' + (filterCat === c.id ? ' tab-on' : '') + '" data-f="' + c.id + '">' + esc(c.name) + '</button>').join('') +
+          '</div>' +
+          '<div class="depo-sorts">🔀 Sırala: ' +
+            '<button class="chip schip" data-s="rarity">Enderlik</button>' +
+            '<button class="chip schip" data-s="name">Ad</button>' +
+            '<button class="chip schip" data-s="cat">Tür</button>' +
+          '</div></div>' : '';
         let cells = '';
         for (let i = 0; i < cap; i++) {
           const ci = B.Items.cellItem(i);
           if (ci) {
-            cells += '<button class="inv-cell filled rar-' + (ci.item.rarity || 'common') + '" data-idx="' + i + '" data-id="' + ci.item.id + '" title="' + esc(ci.item.name) + '">' +
+            const dim = filterCat !== 'all' && (ci.item.cat || 'diger') !== filterCat;
+            cells += '<button class="inv-cell filled rar-' + (ci.item.rarity || 'common') + (dim ? ' inv-dim' : '') + (ci.item.blueprint ? ' inv-bp' : '') + '" data-idx="' + i + '" data-id="' + ci.item.id + '" title="' + esc(ci.item.name) + '">' +
               '<span class="inv-ic">' + ci.item.icon + '</span>' +
               (ci.count > 1 ? '<span class="inv-count">' + ci.count + '</span>' : '') +
+              (ci.item.blueprint ? '<span class="inv-bp-tag">📐</span>' : '') +
             '</button>';
           } else {
             cells += '<div class="inv-cell empty" data-idx="' + i + '"></div>';
@@ -60,11 +88,16 @@
             '<span class="inv-cap' + (used >= cap ? ' inv-warn' : '') + '">' + used + ' / ' + cap + ' dolu</span>' +
             '<span class="inv-lvl">🎖️ Sv.' + ((B.State.data.player.level) || 1) + ' — seviye atlayınca depo büyür</span>' +
           '</div>' +
+          filterRow +
           (used ? '<div class="inv-hint">👆 Dokun: bilgi/sat · ✋ Sürükle: istediğin boş hücreye taşı</div>' : '<div class="store-empty">Depon boş. Çarşı\'dan eşya al, burada saklansın!</div>') +
           '<div class="inv-grid">' + cells + '</div>' +
           (B.Items.slotsUsed() > used ? '<div class="adm-warn">⚠️ Bazı eşyalar depoya sığmadı — seviye atla ya da eşyaları üretimde/bakımında kullan.</div>' : '');
         const grid = body.querySelector('.inv-grid');
         body.querySelectorAll('.inv-cell.filled').forEach(cell => makeCellDraggable(cell, grid, body));
+        // Süzme (kategoriye göre soluklaştır; konumu bozmaz, sürükleme çalışır)
+        body.querySelectorAll('.dchip').forEach(b => b.onclick = () => { filterCat = b.dataset.f; B.Audio.play('tick'); renderDepo(body); });
+        // Sıralama (baştan sıkıştır + sırala)
+        body.querySelectorAll('.schip').forEach(b => b.onclick = () => { B.Items.sortSlots(b.dataset.s); B.Audio.play('tick'); filterCat = 'all'; renderDepo(body); });
       }
 
       /* Hücre sürükle-diz; setPointerCapture ile dokunmatikte kaymaz.
