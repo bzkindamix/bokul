@@ -39,6 +39,7 @@
           compHtml +
         '</div>' +
         '<div class="evim-doors">' +
+          '<button class="btn door door-char">🎖️<br>KARAKTERİM<small>Kimlik · rozetler · istatistik</small></button>' +
           '<button class="btn door door-ben">🧍<br>BEN<small>Tipimi ayarla</small></button>' +
           '<button class="btn door door-dolap">👕<br>DOLAP<small>Kıyafet al · sat · giy</small></button>' +
           '<button class="btn door door-store">📦<br>DEPOM<small>Eşya al · sakla</small></button>' +
@@ -53,6 +54,7 @@
       const evimTurn = wrap.querySelector('.evim-avatar .avatar-holder');
       if (evimTurn) B.Avatar.turntable(evimTurn); // pseudo-3D döndürme
 
+      wrap.querySelector('.door-char').onclick = () => { B.Audio.play('tick'); B.UI.show('character'); };
       wrap.querySelector('.door-ben').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'ben' }); };
       wrap.querySelector('.door-dolap').onclick = () => { B.Audio.play('tick'); B.UI.show('locker', { section: 'dolap' }); };
       function evimGate(el, feature, go) {

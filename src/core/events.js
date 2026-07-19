@@ -41,6 +41,7 @@
     BOSS_ATTACKED:     'boss:attacked',  // { armorLeft } — sadece Ünite Boss'u
     BOSS_DEFEATED:     'boss:defeated',  // { bossId, tier }
     BOSS_RETREAT:      'boss:retreat',
+    BADGE_EARNED:      'badge:earned',   // { id, name }
 
     // Sistem
     GAME_SAVED:     'game:saved',

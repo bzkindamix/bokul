@@ -170,6 +170,11 @@
         if (timerCtl) { timerCtl.stop(); timerCtl = null; }
         if (view) { view.destroy(); view = null; }
         B.Lesson.defeatBoss(params.sectionId);
+        // Rozet (nişan) kazan — bölüm/ünite tamamlama madalyası
+        if (B.Badges && boss.rewards && boss.rewards.badge) {
+          B.Badges.grant({ id: boss.rewards.badge, name: boss.name, icon: boss.icon, tier: boss.tier,
+            lesson: lesson.title, lessonId: lesson.id, section: section.title });
+        }
         const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
         const coins = B.Reward.addCoins(isUnit ? 100 : 50, 'boss');
         head.classList.remove('boss-hit', 'boss-enter'); void head.offsetWidth;
