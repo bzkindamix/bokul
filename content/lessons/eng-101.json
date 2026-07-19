@@ -76,7 +76,15 @@
             { "q": "'Yes' ne demek?", "skill": "eng-kelime",
               "options": ["Evet", "Hayır", "Belki", "Dur"], "correct": 0, "hint": "Kabul ederken." },
             { "q": "'Water' ne demek?", "skill": "eng-kelime",
-              "options": ["Su", "Ekmek", "Süt", "Çay"], "correct": 0, "hint": "Susayınca içtiğin şey." }
+              "options": ["Su", "Ekmek", "Süt", "Çay"], "correct": 0, "hint": "Susayınca içtiğin şey." },
+            { "q": "'Two' hangi sayı?", "skill": "eng-sayi",
+              "options": ["2", "5", "8", "10"], "correct": 0, "hint": "'One, two, three...'" },
+            { "q": "'Green' hangi renk?", "skill": "eng-kelime",
+              "options": ["Yeşil", "Sarı", "Mor", "Siyah"], "correct": 0, "hint": "Yaprakların rengi." },
+            { "q": "'Sun' ne demek?", "skill": "eng-kelime",
+              "options": ["Güneş", "Ay", "Bulut", "Yıldız"], "correct": 0, "hint": "Gökyüzünü aydınlatır." },
+            { "q": "'Good morning' ne zaman söylenir?", "skill": "eng-selam",
+              "options": ["Sabah", "Gece", "Öğlen", "Akşam"], "correct": 0, "hint": "'morning' = sabah." }
           ]
         },
         {
@@ -122,7 +130,15 @@
             { "q": "'Small' ne demek?", "skill": "eng-kelime",
               "options": ["Küçük", "Büyük", "Hızlı", "Yavaş"], "correct": 0, "hint": "Karınca ... bir böcektir." },
             { "q": "'Good night' ne zaman söylenir?", "skill": "eng-selam",
-              "options": ["Yatarken", "Kahvaltıda", "Okula giderken", "Öğlen"], "correct": 0, "hint": "'night' = gece." }
+              "options": ["Yatarken", "Kahvaltıda", "Okula giderken", "Öğlen"], "correct": 0, "hint": "'night' = gece." },
+            { "q": "'I am hungry' ne demek?", "skill": "eng-cumle",
+              "options": ["Açım", "Susadım", "Yorgunum", "Mutluyum"], "correct": 0, "hint": "'hungry' = aç." },
+            { "q": "'Friend' ne demek?", "skill": "eng-kelime",
+              "options": ["Arkadaş", "Öğretmen", "Anne", "Komşu"], "correct": 0, "hint": "Birlikte oynadığın kişi." },
+            { "q": "'Thank you very much' ne anlatır?", "skill": "eng-cumle",
+              "options": ["Çok teşekkür ederim", "Özür dilerim", "Merhaba", "Hoşça kal"], "correct": 0, "hint": "'thank' = teşekkür." },
+            { "q": "'School' ne demek?", "skill": "eng-kelime",
+              "options": ["Okul", "Ev", "Park", "Market"], "correct": 0, "hint": "Ders gördüğün yer." }
           ]
         }
       ]

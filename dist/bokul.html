@@ -1085,7 +1085,7 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.31 — 4 Kategori Sandık: 💰Altın · 👕Kıyafet · 📦Eşya · 💎Nadir</div>
+      <div class="splash-note">v0.32 — Soru bankaları genişledi (+40 soru, tüm dersler)</div>
     </div>
   </div>
 
@@ -1929,7 +1929,15 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             { "q": "'Yes' ne demek?", "skill": "eng-kelime",
               "options": ["Evet", "Hayır", "Belki", "Dur"], "correct": 0, "hint": "Kabul ederken." },
             { "q": "'Water' ne demek?", "skill": "eng-kelime",
-              "options": ["Su", "Ekmek", "Süt", "Çay"], "correct": 0, "hint": "Susayınca içtiğin şey." }
+              "options": ["Su", "Ekmek", "Süt", "Çay"], "correct": 0, "hint": "Susayınca içtiğin şey." },
+            { "q": "'Two' hangi sayı?", "skill": "eng-sayi",
+              "options": ["2", "5", "8", "10"], "correct": 0, "hint": "'One, two, three...'" },
+            { "q": "'Green' hangi renk?", "skill": "eng-kelime",
+              "options": ["Yeşil", "Sarı", "Mor", "Siyah"], "correct": 0, "hint": "Yaprakların rengi." },
+            { "q": "'Sun' ne demek?", "skill": "eng-kelime",
+              "options": ["Güneş", "Ay", "Bulut", "Yıldız"], "correct": 0, "hint": "Gökyüzünü aydınlatır." },
+            { "q": "'Good morning' ne zaman söylenir?", "skill": "eng-selam",
+              "options": ["Sabah", "Gece", "Öğlen", "Akşam"], "correct": 0, "hint": "'morning' = sabah." }
           ]
         },
         {
@@ -1975,7 +1983,15 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             { "q": "'Small' ne demek?", "skill": "eng-kelime",
               "options": ["Küçük", "Büyük", "Hızlı", "Yavaş"], "correct": 0, "hint": "Karınca ... bir böcektir." },
             { "q": "'Good night' ne zaman söylenir?", "skill": "eng-selam",
-              "options": ["Yatarken", "Kahvaltıda", "Okula giderken", "Öğlen"], "correct": 0, "hint": "'night' = gece." }
+              "options": ["Yatarken", "Kahvaltıda", "Okula giderken", "Öğlen"], "correct": 0, "hint": "'night' = gece." },
+            { "q": "'I am hungry' ne demek?", "skill": "eng-cumle",
+              "options": ["Açım", "Susadım", "Yorgunum", "Mutluyum"], "correct": 0, "hint": "'hungry' = aç." },
+            { "q": "'Friend' ne demek?", "skill": "eng-kelime",
+              "options": ["Arkadaş", "Öğretmen", "Anne", "Komşu"], "correct": 0, "hint": "Birlikte oynadığın kişi." },
+            { "q": "'Thank you very much' ne anlatır?", "skill": "eng-cumle",
+              "options": ["Çok teşekkür ederim", "Özür dilerim", "Merhaba", "Hoşça kal"], "correct": 0, "hint": "'thank' = teşekkür." },
+            { "q": "'School' ne demek?", "skill": "eng-kelime",
+              "options": ["Okul", "Ev", "Park", "Market"], "correct": 0, "hint": "Ders gördüğün yer." }
           ]
         }
       ]
@@ -2074,7 +2090,19 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
               "correct": 0, "hint": "Emin olmadığın yerde kural hep aynı: paylaşma, aileye danış." },
             { "q": "Yapay zekâ resim de üretebilir. Bu resimler...", "skill": "ai-temel",
               "options": ["Gerçek fotoğraf sanılabilir, dikkatli olmak gerekir", "Her zaman gerçektir", "Asla gerçekçi olamaz", "Sadece siyah beyazdır"],
-              "correct": 0, "hint": "Gördüğün her görüntü gerçek olmayabilir — 'bu gerçek mi?' diye sormak süper güçtür." }
+              "correct": 0, "hint": "Gördüğün her görüntü gerçek olmayabilir — 'bu gerçek mi?' diye sormak süper güçtür." },
+            { "q": "Yapay zekâ insan gibi 'düşünen' bir varlık mı?", "skill": "ai-temel",
+              "options": ["Hayır; çok veriden kalıp öğrenip taklit eder, bilinci yoktur", "Evet, insan gibi düşünür", "Evet, duyguları vardır", "Rüya görür"],
+              "correct": 0, "hint": "Görüp taklit eder; hissetmez, bilmez." },
+            { "q": "Yapay zekâya şifreni veya ev adresini vermeli misin?", "skill": "ai-guvenlik",
+              "options": ["Hayır, kişisel bilgiler paylaşılmaz", "Evet, hepsini ver", "Sadece şifreyi", "Sadece adresi"],
+              "correct": 0, "hint": "Kişisel bilgiler yalnızca sana aittir." },
+            { "q": "Yapay zekânın verdiği bilgi yanlış olabilir mi?", "skill": "ai-guvenlik",
+              "options": ["Evet; önemli şeyleri başka kaynaktan doğrula", "Hayır, hep doğrudur", "Sadece geceleri yanlış olur", "Asla konuşmaz"],
+              "correct": 0, "hint": "Emin olmak için ikinci bir kaynağa bak." },
+            { "q": "Hangisi günlük hayatta yapay zekâ örneğidir?", "skill": "ai-temel",
+              "options": ["Sesli asistan ve harita yol tarifi", "Tahta kaşık", "Kurşun kalem", "Cam bardak"],
+              "correct": 0, "hint": "Telefonundaki asistanı düşün." }
           ]
         },
         {
@@ -2130,7 +2158,19 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
               "correct": 0, "hint": "Komutanlar ilk atışta tutturamayınca nişanı düzeltir. Prompt da böyle!" },
             { "q": "Hangi prompt bir MASAL için en iyisi?", "skill": "prompt-aciklik",
               "options": ["\"Uzayda geçen, kahramanı korkak bir robot olan, komik ve kısa bir masal yaz\"", "\"Masal\"", "\"Bir şeyler yaz işte\"", "\"Uzun yaz\""],
-              "correct": 0, "hint": "Yer + kahraman + ton + uzunluk... hepsi promptta!" }
+              "correct": 0, "hint": "Yer + kahraman + ton + uzunluk... hepsi promptta!" },
+            { "q": "İyi bir prompt için en önemlisi hangisi?", "skill": "prompt-aciklik",
+              "options": ["Ne istediğini açık ve ayrıntılı söylemek", "Tek kelime yazmak", "Bağırarak yazmak", "Boş bırakmak"],
+              "correct": 0, "hint": "Ne kadar net, o kadar iyi cevap." },
+            { "q": "Cevabı adım adım istiyorsan prompta ne eklersin?", "skill": "prompt-baglam",
+              "options": ["\"Adım adım açıkla\"", "\"Çok hızlı ol\"", "\"Kısa kes\"", "Hiçbir şey"],
+              "correct": 0, "hint": "İstediğin biçimi sen söylersin." },
+            { "q": "Yapay zekâya örnek vermek (\"şu tarzda yaz:\") ne sağlar?", "skill": "prompt-baglam",
+              "options": ["İstediğin tarza daha yakın cevap", "Cevabı yavaşlatır", "Hiçbir şey", "Cevabı bozar"],
+              "correct": 0, "hint": "Örnek, hedefi gösterir." },
+            { "q": "İlk cevap istediğin gibi çıkmadıysa en akıllıcası?", "skill": "prompt-aciklik",
+              "options": ["Promptu düzeltip tekrar denerim", "Hemen vazgeçerim", "Sinirlenirim", "Kapatırım"],
+              "correct": 0, "hint": "Prompt yazmak bir sohbet — düzelterek ilerler." }
           ]
         }
       ]
@@ -2229,7 +2269,19 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
               "correct": 0, "hint": "Tırnak dibi, mikropların en sevdiği saklanma üssüdür." },
             { "q": "Okuldan eve geldin. İlk hamle?", "skill": "hijyen",
               "options": ["Ellerimi sabunla yıkarım", "Doğrudan buzdolabına giderim", "Elimi silmeden atıştırırım", "Ayakkabıyla koltuğa otururum"],
-              "correct": 0, "hint": "Dışarının bütün mikropları ellerinde otostop çekiyor!" }
+              "correct": 0, "hint": "Dışarının bütün mikropları ellerinde otostop çekiyor!" },
+            { "q": "Diş fırçanı ne zaman değiştirmelisin?", "skill": "dis-bakim",
+              "options": ["3-4 ayda bir ya da kılları dağılınca", "10 yılda bir", "Hiç değiştirmem", "Her gün yenisini alırım"],
+              "correct": 0, "hint": "Kılları dağılmış fırça dişi temizleyemez." },
+            { "q": "Öksürürken maske ya da mendil yoksa en doğrusu?", "skill": "hijyen",
+              "options": ["Dirseğimin içine öksürürüm", "Avucuma öksürürüm", "Etrafa doğru öksürürüm", "Hiç kapatmam"],
+              "correct": 0, "hint": "Dirsek kapağı: mikrop eline bulaşmaz, kimseye taşımazsın." },
+            { "q": "Dişini fırçalarken dilini de fırçalamak neden iyi?", "skill": "dis-bakim",
+              "options": ["Dilde de mikrop ve kötü koku birikir", "Dil renk değiştirsin diye", "Hiç gerek yok", "Dil acıksın diye"],
+              "correct": 0, "hint": "Ağız kokusunun bir sebebi dildeki mikroplardır." },
+            { "q": "Havlunu neden başkasıyla paylaşmamalısın?", "skill": "hijyen",
+              "options": ["Cilt ve göz mikropları havluyla geçebilir", "Havlu küçülür", "Renkleri karışır", "Paylaşmak serbesttir"],
+              "correct": 0, "hint": "Havlu, diş fırçası gibi kişiseldir." }
           ]
         },
         {
@@ -2285,7 +2337,19 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
               "correct": 0, "hint": "Üç adımlık sabah harekâtı: yüz, diş, kahvaltı. Sonra dünya senindir!" },
             { "q": "Su içmek neden önemli?", "skill": "uyku-saglik",
               "options": ["Vücut ve beyin susuz iyi çalışmaz", "Sadece yazın gerekir", "Su modası olduğu için", "Önemli değildir"],
-              "correct": 0, "hint": "Beynin bile büyük bölümü su! Susuz komutan yavaş düşünür." }
+              "correct": 0, "hint": "Beynin bile büyük bölümü su! Susuz komutan yavaş düşünür." },
+            { "q": "Tırnaklarını neden düzenli kesmelisin?", "skill": "bakim-duzen",
+              "options": ["Uzun tırnak altında mikrop birikir", "Kısa tırnak modası için", "Daha hızlı koşmak için", "Gerek yoktur"],
+              "correct": 0, "hint": "Tırnak dibi mikropların saklandığı yerdir." },
+            { "q": "Sabah kahvaltısını atlarsan ne olur?", "skill": "uyku-saglik",
+              "options": ["Enerjin düşer, derste dikkatin dağılır", "Daha güçlü olursun", "Hiçbir şey", "Daha hızlı büyürsün"],
+              "correct": 0, "hint": "Kahvaltı, beynin sabah yakıtıdır." },
+            { "q": "Çantanı ve masanı düzenli tutmanın faydası?", "skill": "bakim-duzen",
+              "options": ["Eşyanı hemen bulur, zaman kazanırsın", "Çanta küsmez", "Renkleri parlar", "Hiçbir faydası yok"],
+              "correct": 0, "hint": "Düzenli üs = hızlı komutan." },
+            { "q": "Ekranı çok yakından ve karanlıkta izlemek neye zarar verir?", "skill": "uyku-saglik",
+              "options": ["Gözlere; ara vermek ve ışık gerekir", "Kulaklara", "Ayaklara", "Hiçbir şeye"],
+              "correct": 0, "hint": "20 dakikada bir uzağa bakmak gözü dinlendirir." }
           ]
         }
       ]
@@ -2384,7 +2448,19 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
               "correct": 0, "hint": "Hedef karşındakini yenmek değil, birlikte doğruya yaklaşmaktır." },
             { "q": "\"Mutluluk nedir?\" sorusunun tek bir doğru cevabı var mıdır?", "skill": "kavram",
               "options": ["Hayır — herkes düşünüp kendi gerekçesini bulmalı", "Evet, kitabın arkasında yazar", "Evet, öğretmen söyler", "Sormak yasaktır"],
-              "correct": 0, "hint": "Bazı sorular pusula gibidir: cevabı değil, yönü gösterir." }
+              "correct": 0, "hint": "Bazı sorular pusula gibidir: cevabı değil, yönü gösterir." },
+            { "q": "Bir şeye \"neden?\" diye sormak neden değerlidir?", "skill": "soru-sorma",
+              "options": ["Daha derin anlamamızı sağlar", "Zaman kaybıdır", "Kimseyi ilgilendirmez", "Yasaktır"],
+              "correct": 0, "hint": "Merak, öğrenmenin motorudur." },
+            { "q": "Arkadaşın senden farklı düşünüyor. En olgun tavır?", "skill": "empati",
+              "options": ["Dinler, nedenini anlamaya çalışırım", "Alay ederim", "Küserim", "Bağırırım"],
+              "correct": 0, "hint": "Farklı fikir düşman değildir." },
+            { "q": "\"Herkes yapıyor\" bir şeyi doğru yapar mı?", "skill": "mantik",
+              "options": ["Hayır; doğruluk çoğunlukla ölçülmez", "Evet, herkes hep haklıdır", "Bazen sihirli olur", "Sormak gerekmez"],
+              "correct": 0, "hint": "Çoğunluk da yanılabilir." },
+            { "q": "Adalet en çok neye benzer?", "skill": "kavram",
+              "options": ["Herkese hakkını adilce vermek", "En güçlünün kazanması", "Kura çekmek", "Hiç paylaşmamak"],
+              "correct": 0, "hint": "Adil = herkese hak ettiğini vermek." }
           ]
         },
         {
@@ -2440,7 +2516,19 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
               "correct": 0, "hint": "Bu oyunun anayasası da öyle demiyor mu? Yanlış = istihbarat!" },
             { "q": "Empati ne demektir?", "skill": "empati",
               "options": ["Kendini başkasının yerine koyup onun gibi hissetmeyi denemek", "Herkesle aynı fikirde olmak", "Hızlı koşmak", "Çok konuşmak"],
-              "correct": 0, "hint": "Bir günlüğüne arkadaşının ayakkabılarıyla yürüdüğünü hayal et." }
+              "correct": 0, "hint": "Bir günlüğüne arkadaşının ayakkabılarıyla yürüdüğünü hayal et." },
+            { "q": "\"Bütün balıklar yüzer. Yunus yüzer. Öyleyse yunus balıktır.\" Hata nerede?", "skill": "mantik",
+              "options": ["Yüzmek, balık olmayı gerektirmez", "Yunuslar yüzmez", "Balıklar yüzmez", "Hata yok"],
+              "correct": 0, "hint": "Bir ortak özellik, aynı şey olmayı kanıtlamaz." },
+            { "q": "Düşünce deneyi ne işe yarar?", "skill": "mantik",
+              "options": ["Bir fikri hayalde deneyerek sınamaya", "Ödev kaçırmaya", "Uyumaya", "Koşmaya"],
+              "correct": 0, "hint": "'Ya şöyle olsaydı?' diye düşünmek." },
+            { "q": "Mutluluk daha çok neye benzer?", "skill": "kavram",
+              "options": ["Herkese göre değişen kişisel bir şeye", "Tek bir doğru cevaba", "Bir sayıya", "Bir renge"],
+              "correct": 0, "hint": "Herkesin mutluluğu farklı olabilir." },
+            { "q": "Üzgün bir arkadaşına empati göstermek nedir?", "skill": "empati",
+              "options": ["Nasıl hissettiğini anlamaya çalışmak", "Görmezden gelmek", "Gülmek", "Konuyu değiştirmek"],
+              "correct": 0, "hint": "Kendini onun yerine koy." }
           ]
         }
       ]
@@ -2522,7 +2610,17 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             { "q": "Sessizliğin de bir süresi vardır; buna ne denir?", "skill": "ritim",
               "options": ["Es (susku)", "Nota", "Akor", "Do"], "correct": 0, "hint": "Müzikte susmak da bir parçadır: es." },
             { "q": "Aynı anda çalınan birkaç uyumlu notaya ne denir?", "skill": "notalar",
-              "options": ["Akor", "Es", "Porte", "Oktav"], "correct": 0, "hint": "Gitarda tek seferde birkaç tel = akor." }
+              "options": ["Akor", "Es", "Porte", "Oktav"], "correct": 0, "hint": "Gitarda tek seferde birkaç tel = akor." },
+            { "q": "Notalar kalından inceye doğru nasıl sıralanır?", "skill": "notalar",
+              "options": ["Do en kalın, yukarı çıktıkça incelir", "Hepsi aynı kalınlıkta", "İnceden kalına hep aynı", "Sırasızdır"],
+              "correct": 0, "hint": "Merdiven gibi: aşağı kalın, yukarı ince." },
+            { "q": "Bir şarkının hızına ne denir?", "skill": "ritim",
+              "options": ["Tempo", "Akor", "Porte", "Nota"], "correct": 0, "hint": "Tempo = müziğin nabzı." },
+            { "q": "Bir 'Do'dan bir üst 'Do'ya çıkışa ne denir?", "skill": "notalar",
+              "options": ["Oktav", "Akor", "Es", "Tempo"], "correct": 0, "hint": "Sekiz nota sonra aynı isim tekrar gelir." },
+            { "q": "Elle alkış tutmak müzikte neyi çalıştırır?", "skill": "ritim",
+              "options": ["Vuruş ve tempo duygusunu", "Nota rengini", "Enstrüman fiyatını", "Şarkı sözünü"],
+              "correct": 0, "hint": "Ritmi enstrümansız, elle bile hissedebilirsin." }
           ]
         },
         {
@@ -2560,7 +2658,15 @@ button { font-family: inherit; color: inherit; border: none; background: none; c
             { "q": "Hangisi vurmalı bir çalgı DEĞİLDİR?", "skill": "enstruman",
               "options": ["Keman", "Davul", "Ziller", "Marimba"], "correct": 0, "hint": "Keman yayla/telle çalınır, vurmalı değildir." },
             { "q": "Trompet hangi aileye aittir?", "skill": "enstruman",
-              "options": ["Üflemeli (bakır)", "Telli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "Dudakla üfleyerek çalınan parlak bir çalgı." }
+              "options": ["Üflemeli (bakır)", "Telli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "Dudakla üfleyerek çalınan parlak bir çalgı." },
+            { "q": "Piyano hangi aileye girer?", "skill": "enstruman",
+              "options": ["Tuşlu (içinde teller de vardır)", "Sadece üflemeli", "Sadece vurmalı", "Yaylı"], "correct": 0, "hint": "Tuşa basınca içerideki çekiç tele vurur." },
+            { "q": "Bir orkestrada en kalabalık aile hangisidir?", "skill": "muzik-genel",
+              "options": ["Yaylılar (keman ailesi)", "Sadece davul", "Sadece flüt", "Hiçbiri"], "correct": 0, "hint": "Keman, viyola, çello, kontrbas..." },
+            { "q": "Bateri (davul seti) hangi ailedendir?", "skill": "enstruman",
+              "options": ["Vurmalı", "Telli", "Üflemeli", "Tuşlu"], "correct": 0, "hint": "Çubukla vurularak çalınır." },
+            { "q": "İnsan sesi (şarkı söylemek) bir enstrüman sayılır mı?", "skill": "muzik-genel",
+              "options": ["Evet; en doğal enstrümandır", "Hayır, asla", "Sadece koroda", "Sadece sabah"], "correct": 0, "hint": "Ses telleri titreşerek ses üretir." }
           ]
         }
       ]

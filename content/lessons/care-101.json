@@ -87,7 +87,19 @@
               "correct": 0, "hint": "Tırnak dibi, mikropların en sevdiği saklanma üssüdür." },
             { "q": "Okuldan eve geldin. İlk hamle?", "skill": "hijyen",
               "options": ["Ellerimi sabunla yıkarım", "Doğrudan buzdolabına giderim", "Elimi silmeden atıştırırım", "Ayakkabıyla koltuğa otururum"],
-              "correct": 0, "hint": "Dışarının bütün mikropları ellerinde otostop çekiyor!" }
+              "correct": 0, "hint": "Dışarının bütün mikropları ellerinde otostop çekiyor!" },
+            { "q": "Diş fırçanı ne zaman değiştirmelisin?", "skill": "dis-bakim",
+              "options": ["3-4 ayda bir ya da kılları dağılınca", "10 yılda bir", "Hiç değiştirmem", "Her gün yenisini alırım"],
+              "correct": 0, "hint": "Kılları dağılmış fırça dişi temizleyemez." },
+            { "q": "Öksürürken maske ya da mendil yoksa en doğrusu?", "skill": "hijyen",
+              "options": ["Dirseğimin içine öksürürüm", "Avucuma öksürürüm", "Etrafa doğru öksürürüm", "Hiç kapatmam"],
+              "correct": 0, "hint": "Dirsek kapağı: mikrop eline bulaşmaz, kimseye taşımazsın." },
+            { "q": "Dişini fırçalarken dilini de fırçalamak neden iyi?", "skill": "dis-bakim",
+              "options": ["Dilde de mikrop ve kötü koku birikir", "Dil renk değiştirsin diye", "Hiç gerek yok", "Dil acıksın diye"],
+              "correct": 0, "hint": "Ağız kokusunun bir sebebi dildeki mikroplardır." },
+            { "q": "Havlunu neden başkasıyla paylaşmamalısın?", "skill": "hijyen",
+              "options": ["Cilt ve göz mikropları havluyla geçebilir", "Havlu küçülür", "Renkleri karışır", "Paylaşmak serbesttir"],
+              "correct": 0, "hint": "Havlu, diş fırçası gibi kişiseldir." }
           ]
         },
         {
@@ -143,7 +155,19 @@
               "correct": 0, "hint": "Üç adımlık sabah harekâtı: yüz, diş, kahvaltı. Sonra dünya senindir!" },
             { "q": "Su içmek neden önemli?", "skill": "uyku-saglik",
               "options": ["Vücut ve beyin susuz iyi çalışmaz", "Sadece yazın gerekir", "Su modası olduğu için", "Önemli değildir"],
-              "correct": 0, "hint": "Beynin bile büyük bölümü su! Susuz komutan yavaş düşünür." }
+              "correct": 0, "hint": "Beynin bile büyük bölümü su! Susuz komutan yavaş düşünür." },
+            { "q": "Tırnaklarını neden düzenli kesmelisin?", "skill": "bakim-duzen",
+              "options": ["Uzun tırnak altında mikrop birikir", "Kısa tırnak modası için", "Daha hızlı koşmak için", "Gerek yoktur"],
+              "correct": 0, "hint": "Tırnak dibi mikropların saklandığı yerdir." },
+            { "q": "Sabah kahvaltısını atlarsan ne olur?", "skill": "uyku-saglik",
+              "options": ["Enerjin düşer, derste dikkatin dağılır", "Daha güçlü olursun", "Hiçbir şey", "Daha hızlı büyürsün"],
+              "correct": 0, "hint": "Kahvaltı, beynin sabah yakıtıdır." },
+            { "q": "Çantanı ve masanı düzenli tutmanın faydası?", "skill": "bakim-duzen",
+              "options": ["Eşyanı hemen bulur, zaman kazanırsın", "Çanta küsmez", "Renkleri parlar", "Hiçbir faydası yok"],
+              "correct": 0, "hint": "Düzenli üs = hızlı komutan." },
+            { "q": "Ekranı çok yakından ve karanlıkta izlemek neye zarar verir?", "skill": "uyku-saglik",
+              "options": ["Gözlere; ara vermek ve ışık gerekir", "Kulaklara", "Ayaklara", "Hiçbir şeye"],
+              "correct": 0, "hint": "20 dakikada bir uzağa bakmak gözü dinlendirir." }
           ]
         }
       ]

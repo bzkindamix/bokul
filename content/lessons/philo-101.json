@@ -87,7 +87,19 @@
               "correct": 0, "hint": "Hedef karşındakini yenmek değil, birlikte doğruya yaklaşmaktır." },
             { "q": "\"Mutluluk nedir?\" sorusunun tek bir doğru cevabı var mıdır?", "skill": "kavram",
               "options": ["Hayır — herkes düşünüp kendi gerekçesini bulmalı", "Evet, kitabın arkasında yazar", "Evet, öğretmen söyler", "Sormak yasaktır"],
-              "correct": 0, "hint": "Bazı sorular pusula gibidir: cevabı değil, yönü gösterir." }
+              "correct": 0, "hint": "Bazı sorular pusula gibidir: cevabı değil, yönü gösterir." },
+            { "q": "Bir şeye \"neden?\" diye sormak neden değerlidir?", "skill": "soru-sorma",
+              "options": ["Daha derin anlamamızı sağlar", "Zaman kaybıdır", "Kimseyi ilgilendirmez", "Yasaktır"],
+              "correct": 0, "hint": "Merak, öğrenmenin motorudur." },
+            { "q": "Arkadaşın senden farklı düşünüyor. En olgun tavır?", "skill": "empati",
+              "options": ["Dinler, nedenini anlamaya çalışırım", "Alay ederim", "Küserim", "Bağırırım"],
+              "correct": 0, "hint": "Farklı fikir düşman değildir." },
+            { "q": "\"Herkes yapıyor\" bir şeyi doğru yapar mı?", "skill": "mantik",
+              "options": ["Hayır; doğruluk çoğunlukla ölçülmez", "Evet, herkes hep haklıdır", "Bazen sihirli olur", "Sormak gerekmez"],
+              "correct": 0, "hint": "Çoğunluk da yanılabilir." },
+            { "q": "Adalet en çok neye benzer?", "skill": "kavram",
+              "options": ["Herkese hakkını adilce vermek", "En güçlünün kazanması", "Kura çekmek", "Hiç paylaşmamak"],
+              "correct": 0, "hint": "Adil = herkese hak ettiğini vermek." }
           ]
         },
         {
@@ -143,7 +155,19 @@
               "correct": 0, "hint": "Bu oyunun anayasası da öyle demiyor mu? Yanlış = istihbarat!" },
             { "q": "Empati ne demektir?", "skill": "empati",
               "options": ["Kendini başkasının yerine koyup onun gibi hissetmeyi denemek", "Herkesle aynı fikirde olmak", "Hızlı koşmak", "Çok konuşmak"],
-              "correct": 0, "hint": "Bir günlüğüne arkadaşının ayakkabılarıyla yürüdüğünü hayal et." }
+              "correct": 0, "hint": "Bir günlüğüne arkadaşının ayakkabılarıyla yürüdüğünü hayal et." },
+            { "q": "\"Bütün balıklar yüzer. Yunus yüzer. Öyleyse yunus balıktır.\" Hata nerede?", "skill": "mantik",
+              "options": ["Yüzmek, balık olmayı gerektirmez", "Yunuslar yüzmez", "Balıklar yüzmez", "Hata yok"],
+              "correct": 0, "hint": "Bir ortak özellik, aynı şey olmayı kanıtlamaz." },
+            { "q": "Düşünce deneyi ne işe yarar?", "skill": "mantik",
+              "options": ["Bir fikri hayalde deneyerek sınamaya", "Ödev kaçırmaya", "Uyumaya", "Koşmaya"],
+              "correct": 0, "hint": "'Ya şöyle olsaydı?' diye düşünmek." },
+            { "q": "Mutluluk daha çok neye benzer?", "skill": "kavram",
+              "options": ["Herkese göre değişen kişisel bir şeye", "Tek bir doğru cevaba", "Bir sayıya", "Bir renge"],
+              "correct": 0, "hint": "Herkesin mutluluğu farklı olabilir." },
+            { "q": "Üzgün bir arkadaşına empati göstermek nedir?", "skill": "empati",
+              "options": ["Nasıl hissettiğini anlamaya çalışmak", "Görmezden gelmek", "Gülmek", "Konuyu değiştirmek"],
+              "correct": 0, "hint": "Kendini onun yerine koy." }
           ]
         }
       ]

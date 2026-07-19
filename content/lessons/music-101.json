@@ -70,7 +70,17 @@
             { "q": "Sessizliğin de bir süresi vardır; buna ne denir?", "skill": "ritim",
               "options": ["Es (susku)", "Nota", "Akor", "Do"], "correct": 0, "hint": "Müzikte susmak da bir parçadır: es." },
             { "q": "Aynı anda çalınan birkaç uyumlu notaya ne denir?", "skill": "notalar",
-              "options": ["Akor", "Es", "Porte", "Oktav"], "correct": 0, "hint": "Gitarda tek seferde birkaç tel = akor." }
+              "options": ["Akor", "Es", "Porte", "Oktav"], "correct": 0, "hint": "Gitarda tek seferde birkaç tel = akor." },
+            { "q": "Notalar kalından inceye doğru nasıl sıralanır?", "skill": "notalar",
+              "options": ["Do en kalın, yukarı çıktıkça incelir", "Hepsi aynı kalınlıkta", "İnceden kalına hep aynı", "Sırasızdır"],
+              "correct": 0, "hint": "Merdiven gibi: aşağı kalın, yukarı ince." },
+            { "q": "Bir şarkının hızına ne denir?", "skill": "ritim",
+              "options": ["Tempo", "Akor", "Porte", "Nota"], "correct": 0, "hint": "Tempo = müziğin nabzı." },
+            { "q": "Bir 'Do'dan bir üst 'Do'ya çıkışa ne denir?", "skill": "notalar",
+              "options": ["Oktav", "Akor", "Es", "Tempo"], "correct": 0, "hint": "Sekiz nota sonra aynı isim tekrar gelir." },
+            { "q": "Elle alkış tutmak müzikte neyi çalıştırır?", "skill": "ritim",
+              "options": ["Vuruş ve tempo duygusunu", "Nota rengini", "Enstrüman fiyatını", "Şarkı sözünü"],
+              "correct": 0, "hint": "Ritmi enstrümansız, elle bile hissedebilirsin." }
           ]
         },
         {
@@ -108,7 +118,15 @@
             { "q": "Hangisi vurmalı bir çalgı DEĞİLDİR?", "skill": "enstruman",
               "options": ["Keman", "Davul", "Ziller", "Marimba"], "correct": 0, "hint": "Keman yayla/telle çalınır, vurmalı değildir." },
             { "q": "Trompet hangi aileye aittir?", "skill": "enstruman",
-              "options": ["Üflemeli (bakır)", "Telli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "Dudakla üfleyerek çalınan parlak bir çalgı." }
+              "options": ["Üflemeli (bakır)", "Telli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "Dudakla üfleyerek çalınan parlak bir çalgı." },
+            { "q": "Piyano hangi aileye girer?", "skill": "enstruman",
+              "options": ["Tuşlu (içinde teller de vardır)", "Sadece üflemeli", "Sadece vurmalı", "Yaylı"], "correct": 0, "hint": "Tuşa basınca içerideki çekiç tele vurur." },
+            { "q": "Bir orkestrada en kalabalık aile hangisidir?", "skill": "muzik-genel",
+              "options": ["Yaylılar (keman ailesi)", "Sadece davul", "Sadece flüt", "Hiçbiri"], "correct": 0, "hint": "Keman, viyola, çello, kontrbas..." },
+            { "q": "Bateri (davul seti) hangi ailedendir?", "skill": "enstruman",
+              "options": ["Vurmalı", "Telli", "Üflemeli", "Tuşlu"], "correct": 0, "hint": "Çubukla vurularak çalınır." },
+            { "q": "İnsan sesi (şarkı söylemek) bir enstrüman sayılır mı?", "skill": "muzik-genel",
+              "options": ["Evet; en doğal enstrümandır", "Hayır, asla", "Sadece koroda", "Sadece sabah"], "correct": 0, "hint": "Ses telleri titreşerek ses üretir." }
           ]
         }
       ]

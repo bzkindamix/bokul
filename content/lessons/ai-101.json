@@ -87,7 +87,19 @@
               "correct": 0, "hint": "Emin olmadığın yerde kural hep aynı: paylaşma, aileye danış." },
             { "q": "Yapay zekâ resim de üretebilir. Bu resimler...", "skill": "ai-temel",
               "options": ["Gerçek fotoğraf sanılabilir, dikkatli olmak gerekir", "Her zaman gerçektir", "Asla gerçekçi olamaz", "Sadece siyah beyazdır"],
-              "correct": 0, "hint": "Gördüğün her görüntü gerçek olmayabilir — 'bu gerçek mi?' diye sormak süper güçtür." }
+              "correct": 0, "hint": "Gördüğün her görüntü gerçek olmayabilir — 'bu gerçek mi?' diye sormak süper güçtür." },
+            { "q": "Yapay zekâ insan gibi 'düşünen' bir varlık mı?", "skill": "ai-temel",
+              "options": ["Hayır; çok veriden kalıp öğrenip taklit eder, bilinci yoktur", "Evet, insan gibi düşünür", "Evet, duyguları vardır", "Rüya görür"],
+              "correct": 0, "hint": "Görüp taklit eder; hissetmez, bilmez." },
+            { "q": "Yapay zekâya şifreni veya ev adresini vermeli misin?", "skill": "ai-guvenlik",
+              "options": ["Hayır, kişisel bilgiler paylaşılmaz", "Evet, hepsini ver", "Sadece şifreyi", "Sadece adresi"],
+              "correct": 0, "hint": "Kişisel bilgiler yalnızca sana aittir." },
+            { "q": "Yapay zekânın verdiği bilgi yanlış olabilir mi?", "skill": "ai-guvenlik",
+              "options": ["Evet; önemli şeyleri başka kaynaktan doğrula", "Hayır, hep doğrudur", "Sadece geceleri yanlış olur", "Asla konuşmaz"],
+              "correct": 0, "hint": "Emin olmak için ikinci bir kaynağa bak." },
+            { "q": "Hangisi günlük hayatta yapay zekâ örneğidir?", "skill": "ai-temel",
+              "options": ["Sesli asistan ve harita yol tarifi", "Tahta kaşık", "Kurşun kalem", "Cam bardak"],
+              "correct": 0, "hint": "Telefonundaki asistanı düşün." }
           ]
         },
         {
@@ -143,7 +155,19 @@
               "correct": 0, "hint": "Komutanlar ilk atışta tutturamayınca nişanı düzeltir. Prompt da böyle!" },
             { "q": "Hangi prompt bir MASAL için en iyisi?", "skill": "prompt-aciklik",
               "options": ["\"Uzayda geçen, kahramanı korkak bir robot olan, komik ve kısa bir masal yaz\"", "\"Masal\"", "\"Bir şeyler yaz işte\"", "\"Uzun yaz\""],
-              "correct": 0, "hint": "Yer + kahraman + ton + uzunluk... hepsi promptta!" }
+              "correct": 0, "hint": "Yer + kahraman + ton + uzunluk... hepsi promptta!" },
+            { "q": "İyi bir prompt için en önemlisi hangisi?", "skill": "prompt-aciklik",
+              "options": ["Ne istediğini açık ve ayrıntılı söylemek", "Tek kelime yazmak", "Bağırarak yazmak", "Boş bırakmak"],
+              "correct": 0, "hint": "Ne kadar net, o kadar iyi cevap." },
+            { "q": "Cevabı adım adım istiyorsan prompta ne eklersin?", "skill": "prompt-baglam",
+              "options": ["\"Adım adım açıkla\"", "\"Çok hızlı ol\"", "\"Kısa kes\"", "Hiçbir şey"],
+              "correct": 0, "hint": "İstediğin biçimi sen söylersin." },
+            { "q": "Yapay zekâya örnek vermek (\"şu tarzda yaz:\") ne sağlar?", "skill": "prompt-baglam",
+              "options": ["İstediğin tarza daha yakın cevap", "Cevabı yavaşlatır", "Hiçbir şey", "Cevabı bozar"],
+              "correct": 0, "hint": "Örnek, hedefi gösterir." },
+            { "q": "İlk cevap istediğin gibi çıkmadıysa en akıllıcası?", "skill": "prompt-aciklik",
+              "options": ["Promptu düzeltip tekrar denerim", "Hemen vazgeçerim", "Sinirlenirim", "Kapatırım"],
+              "correct": 0, "hint": "Prompt yazmak bir sohbet — düzelterek ilerler." }
           ]
         }
       ]
