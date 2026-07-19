@@ -1163,6 +1163,33 @@ h1, h2, h3, h4,
 .evim-pet.pet-cap { border-color: #7a4bd0; background: #1a1030; }
 .evim-pet.pet-cap .ep-ico { animation: none; filter: grayscale(.4) brightness(.8); }
 
+/* === v0.45 — Özel ikon seti + UI juice / kart derinliği (stil kılavuzu) === */
+.icn { flex: none; }
+.hud-coins .icn-coin { font-size: 17px; margin-right: 1px; filter: drop-shadow(0 1px 1px rgba(0,0,0,.35)); }
+.hud-coinval { font-variant-numeric: tabular-nums; }
+.door-ic { display: block; font-size: 30px; line-height: 1; margin-bottom: 2px; }
+.door-ic .icn { filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+
+/* Juice: kartlarda kenar-ışığı + derinlik, dokunuş/hover geri bildirimi */
+.card, .dash-path, .store-card, .quest-card, .pet-card, .adopt-card, .craft-card, .evim-pet {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 3px 12px rgba(8,4,22,.28);
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.dash-path:active, .door:active { transform: translateY(1px) scale(.99); }
+.door { transition: transform .1s ease, box-shadow .12s ease; }
+.door-ic .icn, .dash-picon { transition: transform .18s ease; }
+.door:active .door-ic .icn { transform: scale(.92); }
+
+@media (hover: hover) and (pointer: fine) {
+  .dash-path:hover, .store-card:hover, .quest-card:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 8px 20px rgba(8,4,22,.4);
+    border-color: var(--accent);
+  }
+  .door:hover { transform: translateY(-2px); filter: brightness(1.06); }
+  .door:hover .door-ic .icn { transform: scale(1.08) rotate(-3deg); }
+}
+
 </style>
 </head>
 <body>
@@ -1172,7 +1199,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.44 — math-core 3 yeni ünite: Geometri, Kesirler, Zaman/Para/Ölçü</div>
+      <div class="splash-note">v0.45 — Özel SVG ikon seti (ekonomi+kapılar) + UI juice/kart derinliği cilası</div>
     </div>
   </div>
 
@@ -7126,6 +7153,92 @@ h1, h2, h3, h4,
   B.ChestUI = { openCeremony };
 })(window.BOKUL = window.BOKUL || {});
 
+/* === src/ui/components/icon.js === */
+/* BOKUL — Özel İkon Seti (stil kılavuzu)
+ * Emoji yerine el çizimi inline SVG ikonlar — tek dosya şartına uygun, keskin, temaya duyarlı.
+ * Kural (style bible): 24px grid, kalın yuvarlak kontur (#120A26), tek dolgu + tek highlight,
+ * galaksi paleti, işleve göre tek vurgu rengi. B.Icon('coin') → <svg> string.
+ * Öncelik seti: EKONOMİ (coin/xp/rank/streak) + KAPILAR (sword/home/shop/quests) + pet/chest. */
+(function (B) {
+  const OUTLINE = '#120A26';
+
+  // Her ikon: 24x24 viewBox içeriği. Renkler galaksi paletinden sabit (tutarlı "set" kimliği).
+  const ART = {
+    // --- EKONOMİ ---
+    coin:
+      '<circle cx="12" cy="12" r="9" fill="#FFD52E" stroke="' + OUTLINE + '" stroke-width="1.8"/>' +
+      '<circle cx="12" cy="12" r="5.6" fill="none" stroke="#B8890A" stroke-width="1.4"/>' +
+      '<path d="M12 8.4l1 2.1 2.3.3-1.7 1.6.4 2.3-2-1.1-2 1.1.4-2.3-1.7-1.6 2.3-.3z" fill="#B8890A"/>' +
+      '<circle cx="8.7" cy="8.4" r="1.5" fill="#FFF7CC" opacity=".8"/>',
+    xp:
+      '<path d="M12 3l2.5 5.6 6.1.6-4.6 4 1.4 6-5.4-3.2-5.4 3.2 1.4-6-4.6-4 6.1-.6z" fill="#FFD52E" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<circle cx="9.5" cy="8.5" r="1.4" fill="#FFF7CC" opacity=".85"/>',
+    rank:
+      '<path d="M7 3h10l-1.2 6.2a4 4 0 01-7.6 0z" fill="#9D6BFF" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<path d="M12 13v4M9.5 21h5l-.7-4h-3.6z" fill="#FF4FD8" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<circle cx="12" cy="8" r="2.3" fill="#FFD52E" stroke="' + OUTLINE + '" stroke-width="1.2"/>',
+    streak:
+      '<path d="M13 2c1 3-1 4-2.2 5.6C9 9.7 8 11.2 8 13.5A6 6 0 0018 14c0-3-1.8-4.8-2.6-6 .6 1.8-.2 2.8-1 3.2.4-2.6-1-4.8-1.4-9.2z" fill="#FF9F1C" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<path d="M11.6 13.2c0-1.4.8-2.2 1.4-3 .4 1 1 1.6 1 2.8a2.4 2.4 0 01-4.8.2c0-.7.3-1.3.7-1.8.1.9.8 1.4 1.7 1.6z" fill="#FFD52E"/>',
+    // --- KAPILAR ---
+    sword:
+      '<path d="M18.5 3.5L9 13l2 2 9.5-9.5V3.5z" fill="#FF4FD8" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<path d="M7.8 12.2l4 4-1.4 1.4-1-.6-2 2-1.8-1.8 2-2-.6-1z" fill="#C0B3E0" stroke="' + OUTLINE + '" stroke-width="1.4" stroke-linejoin="round"/>' +
+      '<path d="M14.5 16.5l4 4M16 15l4 4" stroke="' + OUTLINE + '" stroke-width="1.8" stroke-linecap="round"/>',
+    home:
+      '<path d="M4 11l8-6.5 8 6.5" fill="none" stroke="' + OUTLINE + '" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M6 10.2V19h12v-8.8L12 5.4z" fill="#FF4FD8" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<rect x="10.2" y="13" width="3.6" height="6" rx=".8" fill="#2A1F55"/>' +
+      '<path d="M7 9.4L12 5.5" stroke="#FF9FEC" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>',
+    shop:
+      '<path d="M4.5 8.5L6 5h12l1.5 3.5z" fill="#FFD52E" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<path d="M5.5 8.5V19h13V8.5" fill="#FF4FD8" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<rect x="9.2" y="12.5" width="5.6" height="6.5" rx=".8" fill="#2A1F55"/>' +
+      '<circle cx="8" cy="8.5" r="1.2" fill="#FFF7CC" opacity=".7"/>',
+    quests:
+      '<rect x="5" y="4" width="14" height="17" rx="2.4" fill="#3DF2D2" stroke="' + OUTLINE + '" stroke-width="1.6"/>' +
+      '<rect x="9" y="2.6" width="6" height="3.4" rx="1.4" fill="#2A1F55" stroke="' + OUTLINE + '" stroke-width="1.4"/>' +
+      '<path d="M8.2 10.5l1.6 1.6 2.6-2.6M8.2 15.5l1.6 1.6 2.6-2.6" fill="none" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path d="M13.5 11h3M13.5 16h3" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linecap="round"/>',
+    // --- EK ---
+    paw:
+      '<ellipse cx="12" cy="16" rx="4.4" ry="3.6" fill="#52E88C" stroke="' + OUTLINE + '" stroke-width="1.6"/>' +
+      '<circle cx="6.6" cy="11" r="2" fill="#52E88C" stroke="' + OUTLINE + '" stroke-width="1.4"/>' +
+      '<circle cx="10" cy="8" r="2" fill="#52E88C" stroke="' + OUTLINE + '" stroke-width="1.4"/>' +
+      '<circle cx="14" cy="8" r="2" fill="#52E88C" stroke="' + OUTLINE + '" stroke-width="1.4"/>' +
+      '<circle cx="17.4" cy="11" r="2" fill="#52E88C" stroke="' + OUTLINE + '" stroke-width="1.4"/>',
+    chest:
+      '<path d="M4 9.5A2 2 0 016 7.5h12a2 2 0 012 2V11H4z" fill="#FF9F1C" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<rect x="4" y="11" width="16" height="8" rx="1.4" fill="#FF4FD8" stroke="' + OUTLINE + '" stroke-width="1.6"/>' +
+      '<rect x="10.6" y="12.5" width="2.8" height="4" rx="1.2" fill="#FFD52E" stroke="' + OUTLINE + '" stroke-width="1.2"/>' +
+      '<path d="M4 11h16" stroke="' + OUTLINE + '" stroke-width="1.4"/>',
+    heart:
+      '<path d="M12 20S3.5 14.5 3.5 8.8A4.3 4.3 0 0112 6a4.3 4.3 0 018.5 2.8C20.5 14.5 12 20 12 20z" fill="#FF4FD8" stroke="' + OUTLINE + '" stroke-width="1.6" stroke-linejoin="round"/>' +
+      '<path d="M7 8.6a3 3 0 012.6-2.2" stroke="#FFB3F0" stroke-width="1.4" stroke-linecap="round" fill="none" opacity=".8"/>',
+    lock:
+      '<rect x="5.5" y="10.5" width="13" height="9.5" rx="2.2" fill="#6E619A" stroke="' + OUTLINE + '" stroke-width="1.6"/>' +
+      '<path d="M8 10.5V8a4 4 0 018 0v2.5" fill="none" stroke="' + OUTLINE + '" stroke-width="1.8" stroke-linecap="round"/>' +
+      '<circle cx="12" cy="14.5" r="1.6" fill="#2A1F55"/><rect x="11.2" y="15" width="1.6" height="3" rx=".8" fill="#2A1F55"/>',
+    check:
+      '<circle cx="12" cy="12" r="9" fill="#52E88C" stroke="' + OUTLINE + '" stroke-width="1.6"/>' +
+      '<path d="M7.5 12.4l3 3 6-6.4" fill="none" stroke="' + OUTLINE + '" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+  };
+
+  function svg(name, cls) {
+    const art = ART[name];
+    if (!art) return '';
+    return '<svg class="icn ' + (cls || '') + '" viewBox="0 0 24 24" width="1em" height="1em" ' +
+      'aria-hidden="true" focusable="false" style="display:inline-block;vertical-align:-.15em">' + art + '</svg>';
+  }
+
+  const Icon = function (name, cls) { return svg(name, cls); };
+  Icon.get = svg;
+  Icon.has = function (name) { return !!ART[name]; };
+  Icon.names = function () { return Object.keys(ART); };
+
+  B.Icon = Icon;
+})(window.BOKUL = window.BOKUL || {});
+
 /* === src/ui/ui-manager.js === */
 /* BOKUL — UIManager
  * Ekran yönlendirici + ortak HUD + tören katmanları (overlay/toast).
@@ -7167,7 +7280,7 @@ h1, h2, h3, h4,
         (opts.backTo ? '<button class="chip hud-back">◀</button>' : '<div class="hud-avatar">' + B.Avatar.el(p.avatar) + '</div>') +
         '<div class="chip hud-rank">' + rank.icon + ' ' + rank.title + '</div>' +
         '<div class="hud-xpbar"><span class="hud-lvl">' + p.level + '</span><i></i></div>' +
-        '<div class="chip hud-coins">💰 ' + (p.coins || 0) + '</div>' +
+        '<div class="chip hud-coins">' + (B.Icon ? B.Icon('coin', 'icn-coin') : '💰') + ' <span class="hud-coinval">' + (p.coins || 0) + '</span></div>' +
         (opts.extra || '') +
         '<button class="chip hud-sound">' + (B.Audio.isEnabled() ? '🔊' : '🔇') + '</button>';
       root.appendChild(hud);
@@ -7184,8 +7297,8 @@ h1, h2, h3, h4,
       const offXp = B.Bus.on(B.Events.XP_GAINED, refresh);
       const offLvl = B.Bus.on(B.Events.LEVEL_UP, refresh);
       const offCoin = B.Bus.on(B.Events.COINS_CHANGED, p2 => {
-        const c = hud.querySelector('.hud-coins');
-        if (c) c.textContent = '💰 ' + p2.total;
+        const cv = hud.querySelector('.hud-coinval');
+        if (cv) cv.textContent = p2.total;
       });
 
       if (opts.backTo) hud.querySelector('.hud-back').onclick = () => B.UI.show(opts.backTo, opts.backParams);
@@ -7360,11 +7473,12 @@ h1, h2, h3, h4,
 
       const doors = document.createElement('div');
       doors.className = 'home-doors';
+      const ic = n => B.Icon ? '<span class="door-ic">' + B.Icon(n) + '</span>' : '';
       doors.innerHTML =
-        '<button class="btn door door-main">⚔️<br>HAREKÂT</button>' +
-        '<button class="btn door door-side door-quests">📋<br>GÖREVLER' + badge + '</button>' +
-        '<button class="btn door door-side door-evim">🏠<br>EVİM</button>' +
-        '<button class="btn door door-side door-store">🏪<br>MAĞAZA</button>';
+        '<button class="btn door door-main">' + (ic('sword') || '⚔️') + '<br>HAREKÂT</button>' +
+        '<button class="btn door door-side door-quests">' + (ic('quests') || '📋') + '<br>GÖREVLER' + badge + '</button>' +
+        '<button class="btn door door-side door-evim">' + (ic('home') || '🏠') + '<br>EVİM</button>' +
+        '<button class="btn door door-side door-store">' + (ic('shop') || '🏪') + '<br>MAĞAZA</button>';
       root.appendChild(doors);
 
       // Kilit: demo kısıtı VEYA ebeveyn kilidi → tıklanınca uyarı
@@ -9968,7 +10082,7 @@ h1, h2, h3, h4,
 /* === src/main.js === */
 /* BOKUL — Giriş noktası + Sürüm Kontrolü */
 (function (B) {
-  B.VERSION = '0.44'; // bu sürümün etiketi (version.json ile eşleşmeli)
+  B.VERSION = '0.45'; // bu sürümün etiketi (version.json ile eşleşmeli)
 
   // iOS Safari 'user-scalable=no'yu yok sayar → çocuklar pinch/çift-dokunuşla
   // zoom yapıp ekranı kaydırıyor. Pinch (gesture) ve çift-dokunuş zoom'unu engelle.

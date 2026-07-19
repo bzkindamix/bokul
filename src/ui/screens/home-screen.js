@@ -94,11 +94,12 @@
 
       const doors = document.createElement('div');
       doors.className = 'home-doors';
+      const ic = n => B.Icon ? '<span class="door-ic">' + B.Icon(n) + '</span>' : '';
       doors.innerHTML =
-        '<button class="btn door door-main">⚔️<br>HAREKÂT</button>' +
-        '<button class="btn door door-side door-quests">📋<br>GÖREVLER' + badge + '</button>' +
-        '<button class="btn door door-side door-evim">🏠<br>EVİM</button>' +
-        '<button class="btn door door-side door-store">🏪<br>MAĞAZA</button>';
+        '<button class="btn door door-main">' + (ic('sword') || '⚔️') + '<br>HAREKÂT</button>' +
+        '<button class="btn door door-side door-quests">' + (ic('quests') || '📋') + '<br>GÖREVLER' + badge + '</button>' +
+        '<button class="btn door door-side door-evim">' + (ic('home') || '🏠') + '<br>EVİM</button>' +
+        '<button class="btn door door-side door-store">' + (ic('shop') || '🏪') + '<br>MAĞAZA</button>';
       root.appendChild(doors);
 
       // Kilit: demo kısıtı VEYA ebeveyn kilidi → tıklanınca uyarı

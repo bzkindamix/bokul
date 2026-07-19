@@ -56,6 +56,7 @@ const JS = [
   'src/ui/components/avatar.js',
   'src/ui/components/commander.js',
   'src/ui/components/chest-ui.js',
+  'src/ui/components/icon.js',
   'src/ui/ui-manager.js',
   'src/ui/screens/home-screen.js',
   'src/ui/screens/world-screen.js',

@@ -38,7 +38,7 @@
         (opts.backTo ? '<button class="chip hud-back">◀</button>' : '<div class="hud-avatar">' + B.Avatar.el(p.avatar) + '</div>') +
         '<div class="chip hud-rank">' + rank.icon + ' ' + rank.title + '</div>' +
         '<div class="hud-xpbar"><span class="hud-lvl">' + p.level + '</span><i></i></div>' +
-        '<div class="chip hud-coins">💰 ' + (p.coins || 0) + '</div>' +
+        '<div class="chip hud-coins">' + (B.Icon ? B.Icon('coin', 'icn-coin') : '💰') + ' <span class="hud-coinval">' + (p.coins || 0) + '</span></div>' +
         (opts.extra || '') +
         '<button class="chip hud-sound">' + (B.Audio.isEnabled() ? '🔊' : '🔇') + '</button>';
       root.appendChild(hud);
@@ -55,8 +55,8 @@
       const offXp = B.Bus.on(B.Events.XP_GAINED, refresh);
       const offLvl = B.Bus.on(B.Events.LEVEL_UP, refresh);
       const offCoin = B.Bus.on(B.Events.COINS_CHANGED, p2 => {
-        const c = hud.querySelector('.hud-coins');
-        if (c) c.textContent = '💰 ' + p2.total;
+        const cv = hud.querySelector('.hud-coinval');
+        if (cv) cv.textContent = p2.total;
       });
 
       if (opts.backTo) hud.querySelector('.hud-back').onclick = () => B.UI.show(opts.backTo, opts.backParams);
