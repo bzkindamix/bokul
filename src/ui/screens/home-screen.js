@@ -4,24 +4,22 @@
     enter(root) {
       const hud = B.UI.buildHud(root, {});
 
+      // Kaydırılabilir orta bölge (komutan + pano); alt butonlar (HAREKÂT/kapılar/footer)
+      // root'ta kalır ve ekranın altına SABİTLENİR → butonlar hep görünür (ekrana sığar).
+      const scroll = document.createElement('div');
+      scroll.className = 'home-scroll';
+      root.appendChild(scroll);
+
       const mid = document.createElement('div');
       mid.className = 'home-mid';
-      root.appendChild(mid);
+      scroll.appendChild(mid);
       const cmd = B.Commander.mount(mid);
 
       const today = new Date().toISOString().slice(0, 10);
       const first = B.State.data.streaks.lastPlayDate !== today;
       cmd.sayFrom(first ? 'greeting.firstOfDay' : 'greeting');
 
-      // Baba her 10 sn'de bir yeni bir şey söyler: şaka · bekleyen iş · craft bilgisi
-      const babaJokes = [
-        'Matematik kitabı neden üzgünmüş? Çünkü çok problemi varmış! 😄',
-        'Sıfır sekize ne demiş? "Güzel kemerin varmış!" 🥋',
-        'Kalem tıraşa girdi, çıkınca çok keskin bir fikir buldu! ✏️',
-        'Bilgisayar neden hasta olmuş? Virüs kapmış tabii! 🦠',
-        'İki nokta üst üste gelince ne olur? İki nokta olur, başka ne olacak! 😁',
-        'Toplama işlemi neden popülermiş? Herkesi bir araya getiriyormuş! ➕',
-      ];
+      // Baba her 10 sn'de bir yeni bir şey söyler: bekleyen iş · craft bilgisi (şaka yok — Onur kaldırdı)
       const craftTips = [
         'Atölye sırrı: 2 cam + 1 vida = cam panel. Küçük parçalar büyük eşyalara dönüşür! 🔨',
         'Balık ister misin? Önce akvaryum craftla: cam panel + filtre + temiz su + çakıl! 🐠',
@@ -43,8 +41,8 @@
         if (ch) b.push(ch + ' sandık açılmayı bekliyor! 📦');
         return b.length ? b[Math.floor(Math.random() * b.length)] : 'Bekleyen işin yok — her şey yolunda, aferin asker! ✅';
       }
-      let bJ = 0, bC = 0, bR = 0;
-      const babaCats = [() => babaJokes[bJ++ % babaJokes.length], () => babaPending(), () => craftTips[bC++ % craftTips.length]];
+      let bC = 0, bR = 0;
+      const babaCats = [() => babaPending(), () => craftTips[bC++ % craftTips.length]];
       this._babaTimer = setInterval(() => {
         if (B.UI.currentScreen() !== 'home') return;
         if (document.querySelector('.overlay')) return; // tur/overlay açıkken bekle
@@ -92,7 +90,7 @@
         '</div>' +
         '<div class="dash-title">🗺️ Öğrenme Yolların</div>' +
         '<div class="dash-paths">' + (pathRows || '<div class="dash-empty">Cephe bulunamadı.</div>') + '</div>';
-      root.appendChild(dash);
+      scroll.appendChild(dash);
       dash.querySelectorAll('.dash-path').forEach(b => b.onclick = () => {
         B.Audio.play('tick');
         const l = lessons.find(x => x.id === b.dataset.lid);
@@ -113,7 +111,7 @@
         const rz = document.createElement('div');
         rz.className = 'home-reasons';
         rz.innerHTML = reasons.map(r => '<span class="reason-chip">' + r + '</span>').join('');
-        root.appendChild(rz);
+        scroll.appendChild(rz);
       }
 
       // Toplanmayı bekleyen görev sayısı (kapıda rozet)

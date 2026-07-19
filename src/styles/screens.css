@@ -987,3 +987,21 @@
   background: rgba(0,0,0,.25); box-shadow: 0 0 14px var(--chest-frame, #FFD52E); }
 .chest-overlay .chest3d { filter: drop-shadow(0 0 18px var(--chest-frame, #FFD52E)); }
 .chest-overlay .chest-glow { box-shadow: 0 0 40px 10px var(--chest-frame, #FFD52E); }
+
+/* === v0.54 — Ana ekran KESİN sığma: alt butonlar sabit, orta bölge kayar === */
+.screen-home { display: flex !important; flex-direction: column; overflow: hidden !important; }
+.home-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden;
+  display: flex; flex-direction: column; }
+/* Orta bölge kaydığı için öğrenme yolları iç-kapağını kaldır (tek kaydırma) */
+.dash-paths { max-height: none; overflow: visible; }
+/* Alt navigasyon her zaman görünür (ekranın altına sabit) */
+.screen-home .home-doors { flex: 0 0 auto; margin-top: auto; }
+.screen-home .home-footer { flex: 0 0 auto; }
+/* Kısa/geniş ekranlarda daha da derli toplu */
+@media (max-height: 780px) {
+  .screen-home .home-mid { padding: 3px 14px; }
+  .screen-home .home-mid .commander-face { width: 64px; height: 78px; font-size: 34px; }
+  .home-doors .door-main { padding: 8px 8px; font-size: 16px; }
+  .home-doors .door-side { padding: 8px 6px; font-size: 13px; }
+  .home-doors .door-ic, .home-doors .door-main .door-ic, .home-doors .door-side .door-ic { font-size: 22px; }
+}

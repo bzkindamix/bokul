@@ -1,35 +1,55 @@
 {
   "id": "spor-101",
   "schema": 1,
-  "title": "Spor Cephesi",
-  "subtitle": "Sağlıklı Beden, Güçlü Komutan",
+  "title": "Şampiyon Arenası",
+  "subtitle": "Spor: kurallar, branşlar, sağlık",
   "icon": "⚽",
   "theme": "galaxy-base",
   "interactionType": "multiple-choice",
   "interestKey": "sporlar",
-
   "outcomes": [
-    { "id": "o1", "code": "SPR.1", "text": "Sporun temel kurallarını ve fair play'i tanır." },
-    { "id": "o2", "code": "SPR.2", "text": "Spor branşlarını ve sağlıklı yaşamı ayırt eder." }
+    {
+      "id": "o1",
+      "code": "SPR.1",
+      "text": "Sporun temel kurallarını ve fair play'i tanır."
+    },
+    {
+      "id": "o2",
+      "code": "SPR.2",
+      "text": "Spor branşlarını ve sağlıklı yaşamı ayırt eder."
+    }
   ],
-
-  "skills": ["kurallar", "saglik", "branslar", "spor-genel"],
-
+  "skills": [
+    "kurallar",
+    "saglik",
+    "branslar",
+    "spor-genel"
+  ],
   "hints": {},
-
   "teachScripts": {
     "temel-brief": [
-      { "say": "Gizli cephe açıldı Komutan — çünkü sen SPORU seçtin! Sporun ilk kuralı: ısınmadan başlama. Kaslar soğukken zorlanırsa incinir. Önce hafif koşu, esneme; sonra oyun!" },
-      { "say": "İkinci kural: FAIR PLAY (dürüst oyun). Kazanmak güzeldir ama HİLE yapmadan, rakibe saygıyla oynamak asıl kahramanlıktır. Yenilince de tebrik edersin — gerçek komutan böyle olur." },
-      { "say": "Ve unutma: su iç! Spor yaparken terlersin, su kaybedersin. Susuz komutan yorulur. Şimdi sahaya, asker!" }
+      {
+        "say": "Gizli cephe açıldı Komutan — çünkü sen SPORU seçtin! Sporun ilk kuralı: ısınmadan başlama. Kaslar soğukken zorlanırsa incinir. Önce hafif koşu, esneme; sonra oyun!"
+      },
+      {
+        "say": "İkinci kural: FAIR PLAY (dürüst oyun). Kazanmak güzeldir ama HİLE yapmadan, rakibe saygıyla oynamak asıl kahramanlıktır. Yenilince de tebrik edersin — gerçek komutan böyle olur."
+      },
+      {
+        "say": "Ve unutma: su iç! Spor yaparken terlersin, su kaybedersin. Susuz komutan yorulur. Şimdi sahaya, asker!"
+      }
     ],
     "brans-brief": [
-      { "say": "İkinci brifing: spor BRANŞLARI. Bazıları TAKIM sporudur — futbol, basketbol, voleybol. Arkadaşlarınla birlikte, pas vererek oynarsın." },
-      { "say": "Bazıları BİREYSEL sporudur — yüzme, koşu, jimnastik, tenis. Kendi gücünle yarışırsın. İkisi de seni güçlendirir!" },
-      { "say": "Spor sadece kas değildir: düzenli spor kalbini güçlendirir, uykunu düzeltir, moralini yükseltir. Sağlıklı beslenme + spor + uyku = süper komutan üçlüsü. Hadi göster kendini!" }
+      {
+        "say": "İkinci brifing: spor BRANŞLARI. Bazıları TAKIM sporudur — futbol, basketbol, voleybol. Arkadaşlarınla birlikte, pas vererek oynarsın."
+      },
+      {
+        "say": "Bazıları BİREYSEL sporudur — yüzme, koşu, jimnastik, tenis. Kendi gücünle yarışırsın. İkisi de seni güçlendirir!"
+      },
+      {
+        "say": "Spor sadece kas değildir: düzenli spor kalbini güçlendirir, uykunu düzeltir, moralini yükseltir. Sağlıklı beslenme + spor + uyku = süper komutan üçlüsü. Hadi göster kendini!"
+      }
     ]
   },
-
   "units": [
     {
       "id": "u1",
@@ -38,93 +58,443 @@
         {
           "id": "s1",
           "title": "Kurallar ve Fair Play",
-          "outcomeIds": ["o1"],
-          "unlock": { "starsRequired": 0 },
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
           "missions": [
-            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Sporun Temelleri",
-              "segments": [ { "model": "abstract", "script": "temel-brief" } ] },
-            { "id": "s1m2", "type": "practice", "title": "Isınma Turu", "targetCount": 3, "generator": { "pool": "s1" } },
-            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
-            { "id": "s1m4", "type": "challenge", "title": "Şampiyonluk Maçı", "targetCount": 3, "generator": { "pool": "s1" } },
-            { "id": "s1m5", "type": "review", "title": "Antrenman Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s1m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Sporun Temelleri",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "temel-brief"
+                }
+              ]
+            },
+            {
+              "id": "s1m2",
+              "type": "practice",
+              "title": "Isınma Turu",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s1"
+              }
+            },
+            {
+              "id": "s1m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s1"
+              }
+            },
+            {
+              "id": "s1m4",
+              "type": "challenge",
+              "title": "Şampiyonluk Maçı",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s1"
+              }
+            },
+            {
+              "id": "s1m5",
+              "type": "review",
+              "title": "Antrenman Tekrarı",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-spor1", "tier": "topic", "name": "Faul Canavarı", "icon": "🟥", "hp": 30,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "pool": "s1" },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-spor1" }
+            "id": "boss-spor1",
+            "tier": "topic",
+            "name": "Faul Canavarı",
+            "icon": "🟥",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s1"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spor1"
+            }
           },
           "bank": [
-            { "q": "Spora başlamadan önce ilk ne yapılır?", "skill": "kurallar",
-              "options": ["Isınma (esneme + hafif koşu)", "Hemen tam hızla koşmak", "Bol bol yemek yemek", "Uyumak"], "correct": 0, "hint": "Soğuk kas kolay incinir; önce ısın." },
-            { "q": "'Fair play' ne demektir?", "skill": "kurallar",
-              "options": ["Dürüst ve saygılı oynamak", "Ne olursa olsun kazanmak", "Rakibe bağırmak", "Hakemi kandırmak"], "correct": 0, "hint": "Hilesiz, rakibe saygılı oyun." },
-            { "q": "Maçı kaybedince gerçek bir sporcu ne yapar?", "skill": "kurallar",
-              "options": ["Rakibini tebrik eder", "Küser ve gider", "Kavga çıkarır", "Ağlayıp bırakır"], "correct": 0, "hint": "Yenilgiyi de centilmence karşılamak kahramanlıktır." },
-            { "q": "Spor yaparken neden su içmeliyiz?", "skill": "saglik",
-              "options": ["Terleyince kaybettiğimiz suyu yerine koymak için", "Karnımız acıkmasın diye", "Daha hızlı olmak için sadece", "Gerek yoktur"], "correct": 0, "hint": "Terle su kaybedersin." },
-            { "q": "Futbolda topa elle dokunmak (kaleci hariç) nedir?", "skill": "kurallar",
-              "options": ["Faul (el)", "Gol", "Serbest hareket", "Penaltı kazanmak"], "correct": 0, "hint": "Sadece kaleci ceza sahasında elle oynar." },
-            { "q": "Hakemin görevi nedir?", "skill": "kurallar",
-              "options": ["Kuralların uygulanmasını sağlamak", "En iyi golü atmak", "Takımı desteklemek", "Seyirciyi eğlendirmek"], "correct": 0, "hint": "Tarafsız kural bekçisi." },
-            { "q": "Spordan sonra kaslar için ne iyidir?", "skill": "saglik",
-              "options": ["Soğuma ve esneme hareketleri", "Hemen dondurma yemek", "Hiç hareket etmemek", "Bol bol bağırmak"], "correct": 0, "hint": "Isınmanın tersi: yavaşça soğu." },
-            { "q": "Takım sporunda başarı için en önemlisi hangisidir?", "skill": "spor-genel",
-              "options": ["İş birliği ve pas vermek", "Herkesin tek başına oynaması", "Sadece bir kişinin oynaması", "Kurallara uymamak"], "correct": 0, "hint": "Birlikten kuvvet doğar." },
-            { "q": "Spor ayakkabısı neden önemlidir?", "skill": "saglik",
-              "options": ["Ayağı korur, kaymayı önler", "Sadece güzel görünsün diye", "Hızlı yesin diye", "Önemli değildir"], "correct": 0, "hint": "Doğru ayakkabı sakatlanmayı azaltır." },
-            { "q": "Sarı kart futbolda neyi gösterir?", "skill": "kurallar",
-              "options": ["Uyarı (dikkatli ol!)", "Gol", "Maç bitti", "Oyuncu değişikliği"], "correct": 0, "hint": "İkinci sarı = kırmızı olur." },
-            { "q": "Düzenli spor yapmak neyi güçlendirir?", "skill": "saglik",
-              "options": ["Kalbi ve kasları", "Sadece saçları", "Sadece tırnakları", "Hiçbir şeyi"], "correct": 0, "hint": "Kalp de bir kastır, çalışınca güçlenir." },
-            { "q": "Bir takım arkadaşın düşünce ne yaparsın?", "skill": "spor-genel",
-              "options": ["Kalkmasına yardım ederim", "Gülerim", "Görmezden gelirim", "İterim"], "correct": 0, "hint": "Fair play sadece rakibe değil, takımına da saygı." }
+            {
+              "q": "Spora başlamadan önce ilk ne yapılır?",
+              "skill": "kurallar",
+              "options": [
+                "Isınma (esneme + hafif koşu)",
+                "Hemen tam hızla koşmak",
+                "Bol bol yemek yemek",
+                "Uyumak"
+              ],
+              "correct": 0,
+              "hint": "Soğuk kas kolay incinir; önce ısın."
+            },
+            {
+              "q": "'Fair play' ne demektir?",
+              "skill": "kurallar",
+              "options": [
+                "Dürüst ve saygılı oynamak",
+                "Ne olursa olsun kazanmak",
+                "Rakibe bağırmak",
+                "Hakemi kandırmak"
+              ],
+              "correct": 0,
+              "hint": "Hilesiz, rakibe saygılı oyun."
+            },
+            {
+              "q": "Maçı kaybedince gerçek bir sporcu ne yapar?",
+              "skill": "kurallar",
+              "options": [
+                "Rakibini tebrik eder",
+                "Küser ve gider",
+                "Kavga çıkarır",
+                "Ağlayıp bırakır"
+              ],
+              "correct": 0,
+              "hint": "Yenilgiyi de centilmence karşılamak kahramanlıktır."
+            },
+            {
+              "q": "Spor yaparken neden su içmeliyiz?",
+              "skill": "saglik",
+              "options": [
+                "Terleyince kaybettiğimiz suyu yerine koymak için",
+                "Karnımız acıkmasın diye",
+                "Daha hızlı olmak için sadece",
+                "Gerek yoktur"
+              ],
+              "correct": 0,
+              "hint": "Terle su kaybedersin."
+            },
+            {
+              "q": "Futbolda topa elle dokunmak (kaleci hariç) nedir?",
+              "skill": "kurallar",
+              "options": [
+                "Faul (el)",
+                "Gol",
+                "Serbest hareket",
+                "Penaltı kazanmak"
+              ],
+              "correct": 0,
+              "hint": "Sadece kaleci ceza sahasında elle oynar."
+            },
+            {
+              "q": "Hakemin görevi nedir?",
+              "skill": "kurallar",
+              "options": [
+                "Kuralların uygulanmasını sağlamak",
+                "En iyi golü atmak",
+                "Takımı desteklemek",
+                "Seyirciyi eğlendirmek"
+              ],
+              "correct": 0,
+              "hint": "Tarafsız kural bekçisi."
+            },
+            {
+              "q": "Spordan sonra kaslar için ne iyidir?",
+              "skill": "saglik",
+              "options": [
+                "Soğuma ve esneme hareketleri",
+                "Hemen dondurma yemek",
+                "Hiç hareket etmemek",
+                "Bol bol bağırmak"
+              ],
+              "correct": 0,
+              "hint": "Isınmanın tersi: yavaşça soğu."
+            },
+            {
+              "q": "Takım sporunda başarı için en önemlisi hangisidir?",
+              "skill": "spor-genel",
+              "options": [
+                "İş birliği ve pas vermek",
+                "Herkesin tek başına oynaması",
+                "Sadece bir kişinin oynaması",
+                "Kurallara uymamak"
+              ],
+              "correct": 0,
+              "hint": "Birlikten kuvvet doğar."
+            },
+            {
+              "q": "Spor ayakkabısı neden önemlidir?",
+              "skill": "saglik",
+              "options": [
+                "Ayağı korur, kaymayı önler",
+                "Sadece güzel görünsün diye",
+                "Hızlı yesin diye",
+                "Önemli değildir"
+              ],
+              "correct": 0,
+              "hint": "Doğru ayakkabı sakatlanmayı azaltır."
+            },
+            {
+              "q": "Sarı kart futbolda neyi gösterir?",
+              "skill": "kurallar",
+              "options": [
+                "Uyarı (dikkatli ol!)",
+                "Gol",
+                "Maç bitti",
+                "Oyuncu değişikliği"
+              ],
+              "correct": 0,
+              "hint": "İkinci sarı = kırmızı olur."
+            },
+            {
+              "q": "Düzenli spor yapmak neyi güçlendirir?",
+              "skill": "saglik",
+              "options": [
+                "Kalbi ve kasları",
+                "Sadece saçları",
+                "Sadece tırnakları",
+                "Hiçbir şeyi"
+              ],
+              "correct": 0,
+              "hint": "Kalp de bir kastır, çalışınca güçlenir."
+            },
+            {
+              "q": "Bir takım arkadaşın düşünce ne yaparsın?",
+              "skill": "spor-genel",
+              "options": [
+                "Kalkmasına yardım ederim",
+                "Gülerim",
+                "Görmezden gelirim",
+                "İterim"
+              ],
+              "correct": 0,
+              "hint": "Fair play sadece rakibe değil, takımına da saygı."
+            }
           ]
         },
         {
           "id": "s2",
           "title": "Branşlar ve Sağlık",
-          "outcomeIds": ["o2"],
-          "unlock": { "starsRequired": 10 },
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 10
+          },
           "missions": [
-            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Spor Branşları",
-              "segments": [ { "model": "abstract", "script": "brans-brief" } ] },
-            { "id": "s2m2", "type": "practice", "title": "Branş Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
-            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
-            { "id": "s2m4", "type": "challenge", "title": "Olimpiyat Operasyonu", "targetCount": 3, "generator": { "pool": "s2" } },
-            { "id": "s2m5", "type": "review", "title": "Antrenman Tekrarı", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s2m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Spor Branşları",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "brans-brief"
+                }
+              ]
+            },
+            {
+              "id": "s2m2",
+              "type": "practice",
+              "title": "Branş Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s2"
+              }
+            },
+            {
+              "id": "s2m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s2"
+              }
+            },
+            {
+              "id": "s2m4",
+              "type": "challenge",
+              "title": "Olimpiyat Operasyonu",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s2"
+              }
+            },
+            {
+              "id": "s2m5",
+              "type": "review",
+              "title": "Antrenman Tekrarı",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-spor2", "tier": "topic", "name": "Tembellik Devi", "icon": "🛋️", "hp": 33,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "pool": "s2" },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-spor2" }
+            "id": "boss-spor2",
+            "tier": "topic",
+            "name": "Tembellik Devi",
+            "icon": "🛋️",
+            "hp": 33,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s2"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-spor2"
+            }
           },
           "bank": [
-            { "q": "Hangisi bir TAKIM sporudur?", "skill": "branslar",
-              "options": ["Basketbol", "Yüzme", "Koşu", "Tenis (tekli)"], "correct": 0, "hint": "Birden çok kişiyle birlikte oynanır." },
-            { "q": "Hangisi genellikle BİREYSEL bir spordur?", "skill": "branslar",
-              "options": ["Yüzme", "Futbol", "Voleybol", "Basketbol"], "correct": 0, "hint": "Kendi başına, kendi gücünle." },
-            { "q": "Basketbolda amaç nedir?", "skill": "branslar",
-              "options": ["Topu potaya atmak", "Kaleye gol atmak", "Fileden aşırmak", "En hızlı yüzmek"], "correct": 0, "hint": "Yukarıdaki çembere sayı." },
-            { "q": "Voleybolda top nereden karşıya geçer?", "skill": "branslar",
-              "options": ["Filenin üstünden", "Potadan", "Kaleden", "Yerden"], "correct": 0, "hint": "Ortadaki file iki takımı ayırır." },
-            { "q": "Sağlıklı bir sporcu için hangisi en doğrudur?", "skill": "saglik",
-              "options": ["Dengeli beslenir, su içer, uyur", "Hiç uyumaz", "Sadece cips yer", "Hiç su içmez"], "correct": 0, "hint": "Spor + beslenme + uyku üçlüsü." },
-            { "q": "Yüzme hangi açıdan çok faydalıdır?", "skill": "saglik",
-              "options": ["Neredeyse tüm vücudu çalıştırır", "Sadece parmakları", "Sadece göz kaslarını", "Hiçbir kası"], "correct": 0, "hint": "Suda kolların, bacakların, sırtın hep çalışır." },
-            { "q": "Jimnastikte hangisi ön plandadır?", "skill": "branslar",
-              "options": ["Esneklik ve denge", "Topu kaleye atmak", "Araba sürmek", "Şarkı söylemek"], "correct": 0, "hint": "Takla, denge, esneme." },
-            { "q": "Uzun bir maçtan önce ne yemek daha iyidir?", "skill": "saglik",
-              "options": ["Enerji veren dengeli bir öğün", "Sadece çikolata", "Hiçbir şey", "Çok ağır, yağlı yemek"], "correct": 0, "hint": "Enerji lazım ama mideyi de yormamalı." },
-            { "q": "Koşuda dayanıklılık ne demektir?", "skill": "spor-genel",
-              "options": ["Uzun süre yorulmadan devam edebilmek", "Bir kez zıplamak", "Çok bağırmak", "Hızlı yemek"], "correct": 0, "hint": "Kalp ve nefes güçlenince uzun koşarsın." },
-            { "q": "Tenis nasıl bir sporudur?", "skill": "branslar",
-              "options": ["Raketle top vurulan bir spor", "Ayakla top sürülen spor", "Suda yapılan spor", "Kar sporu"], "correct": 0, "hint": "File üzerinden raketle." },
-            { "q": "Her gün hareketsiz oturmak vücuda ne yapar?", "skill": "saglik",
-              "options": ["Kasları güçsüzleştirir, enerjini düşürür", "Daha da güçlendirir", "Hiçbir etkisi yoktur", "Boyu uzatır"], "correct": 0, "hint": "Hareket etmeyen kas zayıflar." },
-            { "q": "Olimpiyat oyunlarının sembolü kaç halkadır?", "skill": "spor-genel",
-              "options": ["5 halka", "3 halka", "7 halka", "10 halka"], "correct": 0, "hint": "Beş kıtayı temsil eden iç içe halkalar." }
+            {
+              "q": "Hangisi bir TAKIM sporudur?",
+              "skill": "branslar",
+              "options": [
+                "Basketbol",
+                "Yüzme",
+                "Koşu",
+                "Tenis (tekli)"
+              ],
+              "correct": 0,
+              "hint": "Birden çok kişiyle birlikte oynanır."
+            },
+            {
+              "q": "Hangisi genellikle BİREYSEL bir spordur?",
+              "skill": "branslar",
+              "options": [
+                "Yüzme",
+                "Futbol",
+                "Voleybol",
+                "Basketbol"
+              ],
+              "correct": 0,
+              "hint": "Kendi başına, kendi gücünle."
+            },
+            {
+              "q": "Basketbolda amaç nedir?",
+              "skill": "branslar",
+              "options": [
+                "Topu potaya atmak",
+                "Kaleye gol atmak",
+                "Fileden aşırmak",
+                "En hızlı yüzmek"
+              ],
+              "correct": 0,
+              "hint": "Yukarıdaki çembere sayı."
+            },
+            {
+              "q": "Voleybolda top nereden karşıya geçer?",
+              "skill": "branslar",
+              "options": [
+                "Filenin üstünden",
+                "Potadan",
+                "Kaleden",
+                "Yerden"
+              ],
+              "correct": 0,
+              "hint": "Ortadaki file iki takımı ayırır."
+            },
+            {
+              "q": "Sağlıklı bir sporcu için hangisi en doğrudur?",
+              "skill": "saglik",
+              "options": [
+                "Dengeli beslenir, su içer, uyur",
+                "Hiç uyumaz",
+                "Sadece cips yer",
+                "Hiç su içmez"
+              ],
+              "correct": 0,
+              "hint": "Spor + beslenme + uyku üçlüsü."
+            },
+            {
+              "q": "Yüzme hangi açıdan çok faydalıdır?",
+              "skill": "saglik",
+              "options": [
+                "Neredeyse tüm vücudu çalıştırır",
+                "Sadece parmakları",
+                "Sadece göz kaslarını",
+                "Hiçbir kası"
+              ],
+              "correct": 0,
+              "hint": "Suda kolların, bacakların, sırtın hep çalışır."
+            },
+            {
+              "q": "Jimnastikte hangisi ön plandadır?",
+              "skill": "branslar",
+              "options": [
+                "Esneklik ve denge",
+                "Topu kaleye atmak",
+                "Araba sürmek",
+                "Şarkı söylemek"
+              ],
+              "correct": 0,
+              "hint": "Takla, denge, esneme."
+            },
+            {
+              "q": "Uzun bir maçtan önce ne yemek daha iyidir?",
+              "skill": "saglik",
+              "options": [
+                "Enerji veren dengeli bir öğün",
+                "Sadece çikolata",
+                "Hiçbir şey",
+                "Çok ağır, yağlı yemek"
+              ],
+              "correct": 0,
+              "hint": "Enerji lazım ama mideyi de yormamalı."
+            },
+            {
+              "q": "Koşuda dayanıklılık ne demektir?",
+              "skill": "spor-genel",
+              "options": [
+                "Uzun süre yorulmadan devam edebilmek",
+                "Bir kez zıplamak",
+                "Çok bağırmak",
+                "Hızlı yemek"
+              ],
+              "correct": 0,
+              "hint": "Kalp ve nefes güçlenince uzun koşarsın."
+            },
+            {
+              "q": "Tenis nasıl bir sporudur?",
+              "skill": "branslar",
+              "options": [
+                "Raketle top vurulan bir spor",
+                "Ayakla top sürülen spor",
+                "Suda yapılan spor",
+                "Kar sporu"
+              ],
+              "correct": 0,
+              "hint": "File üzerinden raketle."
+            },
+            {
+              "q": "Her gün hareketsiz oturmak vücuda ne yapar?",
+              "skill": "saglik",
+              "options": [
+                "Kasları güçsüzleştirir, enerjini düşürür",
+                "Daha da güçlendirir",
+                "Hiçbir etkisi yoktur",
+                "Boyu uzatır"
+              ],
+              "correct": 0,
+              "hint": "Hareket etmeyen kas zayıflar."
+            },
+            {
+              "q": "Olimpiyat oyunlarının sembolü kaç halkadır?",
+              "skill": "spor-genel",
+              "options": [
+                "5 halka",
+                "3 halka",
+                "7 halka",
+                "10 halka"
+              ],
+              "correct": 0,
+              "hint": "Beş kıtayı temsil eden iç içe halkalar."
+            }
           ]
         }
       ]

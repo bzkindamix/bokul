@@ -1,35 +1,55 @@
 {
   "id": "music-101",
   "schema": 1,
-  "title": "Müzik Cephesi",
-  "subtitle": "Notalar ve Enstrümanlar",
+  "title": "Ses Büyücüsü",
+  "subtitle": "Müzik: notalar ve enstrümanlar",
   "icon": "🎵",
   "theme": "galaxy-base",
   "interactionType": "multiple-choice",
   "interestKey": "muzik",
-
   "outcomes": [
-    { "id": "o1", "code": "MUS.1", "text": "Temel notaları ve müzik işaretlerini tanır." },
-    { "id": "o2", "code": "MUS.2", "text": "Enstrüman ailelerini ve seslerini ayırt eder." }
+    {
+      "id": "o1",
+      "code": "MUS.1",
+      "text": "Temel notaları ve müzik işaretlerini tanır."
+    },
+    {
+      "id": "o2",
+      "code": "MUS.2",
+      "text": "Enstrüman ailelerini ve seslerini ayırt eder."
+    }
   ],
-
-  "skills": ["notalar", "ritim", "enstruman", "muzik-genel"],
-
+  "skills": [
+    "notalar",
+    "ritim",
+    "enstruman",
+    "muzik-genel"
+  ],
   "hints": {},
-
   "teachScripts": {
     "nota-brief": [
-      { "say": "Gizli cephe açıldı Komutan — çünkü sen MÜZİĞİ seçtin! Müziğin alfabesi yedi notadır: Do, Re, Mi, Fa, Sol, La, Si. Sonra tekrar Do'ya döner, bu bir 'oktav'dır." },
-      { "say": "Notalar bir merdiven gibidir: Do en altta, yukarı çıktıkça ses incelir. Portede (beş çizgi) notalar farklı yerlerde durur; yeri, sesin kalınlığını gösterir." },
-      { "say": "Bir de RİTİM var: notaların ne kadar sürdüğü. Uzun notalar, kısa notalar... Ritim, müziğin kalp atışıdır!" }
+      {
+        "say": "Gizli cephe açıldı Komutan — çünkü sen MÜZİĞİ seçtin! Müziğin alfabesi yedi notadır: Do, Re, Mi, Fa, Sol, La, Si. Sonra tekrar Do'ya döner, bu bir 'oktav'dır."
+      },
+      {
+        "say": "Notalar bir merdiven gibidir: Do en altta, yukarı çıktıkça ses incelir. Portede (beş çizgi) notalar farklı yerlerde durur; yeri, sesin kalınlığını gösterir."
+      },
+      {
+        "say": "Bir de RİTİM var: notaların ne kadar sürdüğü. Uzun notalar, kısa notalar... Ritim, müziğin kalp atışıdır!"
+      }
     ],
     "enstruman-brief": [
-      { "say": "İkinci brifing: enstrüman AİLELERİ. Telliler (gitar, keman), üflemeliler (flüt, trompet), vurmalılar (davul, marimba) ve tuşlular (piyano)." },
-      { "say": "Piyano hem tuşlu hem tellidir — tuşa basınca içerideki çekiç TELE vurur! Keman yayla, gitar parmakla çalınır. Her ailenin kendine has bir sesi vardır." },
-      { "say": "Bir orkestrada bu aileler birlikte çalar. Şef hepsini yönetir — tıpkı bir komutan gibi! Şimdi sıra sende." }
+      {
+        "say": "İkinci brifing: enstrüman AİLELERİ. Telliler (gitar, keman), üflemeliler (flüt, trompet), vurmalılar (davul, marimba) ve tuşlular (piyano)."
+      },
+      {
+        "say": "Piyano hem tuşlu hem tellidir — tuşa basınca içerideki çekiç TELE vurur! Keman yayla, gitar parmakla çalınır. Her ailenin kendine has bir sesi vardır."
+      },
+      {
+        "say": "Bir orkestrada bu aileler birlikte çalar. Şef hepsini yönetir — tıpkı bir komutan gibi! Şimdi sıra sende."
+      }
     ]
   },
-
   "units": [
     {
       "id": "u1",
@@ -38,95 +58,443 @@
         {
           "id": "s1",
           "title": "Notalar ve Ritim",
-          "outcomeIds": ["o1"],
-          "unlock": { "starsRequired": 0 },
+          "outcomeIds": [
+            "o1"
+          ],
+          "unlock": {
+            "starsRequired": 0
+          },
           "missions": [
-            { "id": "s1m1", "type": "teach", "title": "Keşif Brifingi: Notalar",
-              "segments": [ { "model": "abstract", "script": "nota-brief" } ] },
-            { "id": "s1m2", "type": "practice", "title": "Nota Devriyesi", "targetCount": 3, "generator": { "pool": "s1" } },
-            { "id": "s1m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s1" } },
-            { "id": "s1m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s1" } },
-            { "id": "s1m5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s1m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Notalar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "nota-brief"
+                }
+              ]
+            },
+            {
+              "id": "s1m2",
+              "type": "practice",
+              "title": "Nota Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s1"
+              }
+            },
+            {
+              "id": "s1m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s1"
+              }
+            },
+            {
+              "id": "s1m4",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s1"
+              }
+            },
+            {
+              "id": "s1m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-music1", "tier": "topic", "name": "Akortsuz Gulyabani", "icon": "🎼", "hp": 30,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "pool": "s1" },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-music1" }
+            "id": "boss-music1",
+            "tier": "topic",
+            "name": "Akortsuz Gulyabani",
+            "icon": "🎼",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s1"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-music1"
+            }
           },
           "bank": [
-            { "q": "Müzikte kaç temel nota vardır?", "skill": "notalar",
-              "options": ["7", "5", "10", "3"], "correct": 0, "hint": "Do-Re-Mi-Fa-Sol-La-Si: say bakalım!" },
-            { "q": "Notaların doğru sırası hangisidir?", "skill": "notalar",
-              "options": ["Do Re Mi Fa Sol La Si", "Do Mi Re Fa La Sol Si", "Si La Sol Fa Mi Re Do", "Re Do Mi Fa Sol Si La"], "correct": 0, "hint": "Merdivenin en altı Do'dur, yukarı çıkarsın." },
-            { "q": "'Do' notasından sonra gelen 'yedi nota sonra' hangi notadır?", "skill": "notalar",
-              "options": ["Yine Do (bir oktav tiz)", "Si", "Fa", "Sol"], "correct": 0, "hint": "Yedi notadan sonra tekrar başa dönülür — buna oktav denir." },
-            { "q": "Notaların yazıldığı beş çizgiye ne denir?", "skill": "notalar",
-              "options": ["Porte", "Cetvel", "Merdiven", "Tablo"], "correct": 0, "hint": "Beş çizgi + dört aralık = porte." },
-            { "q": "Ritim müzikte neyi belirler?", "skill": "ritim",
-              "options": ["Notaların ne kadar sürdüğünü", "Şarkının rengini", "Şarkıcının adını", "Sahnenin ışığını"], "correct": 0, "hint": "Ritim, müziğin kalp atışıdır — uzunluk ve vuruş." },
-            { "q": "Bir notanın sesi 'ince/tiz' ise porte üzerinde nerededir?", "skill": "notalar",
-              "options": ["Daha yukarıda", "Daha aşağıda", "Hep ortada", "Portenin dışında"], "correct": 0, "hint": "Yukarı çıktıkça ses incelir." },
-            { "q": "Sessizliğin de bir süresi vardır; buna ne denir?", "skill": "ritim",
-              "options": ["Es (susku)", "Nota", "Akor", "Do"], "correct": 0, "hint": "Müzikte susmak da bir parçadır: es." },
-            { "q": "Aynı anda çalınan birkaç uyumlu notaya ne denir?", "skill": "notalar",
-              "options": ["Akor", "Es", "Porte", "Oktav"], "correct": 0, "hint": "Gitarda tek seferde birkaç tel = akor." },
-            { "q": "Notalar kalından inceye doğru nasıl sıralanır?", "skill": "notalar",
-              "options": ["Do en kalın, yukarı çıktıkça incelir", "Hepsi aynı kalınlıkta", "İnceden kalına hep aynı", "Sırasızdır"],
-              "correct": 0, "hint": "Merdiven gibi: aşağı kalın, yukarı ince." },
-            { "q": "Bir şarkının hızına ne denir?", "skill": "ritim",
-              "options": ["Tempo", "Akor", "Porte", "Nota"], "correct": 0, "hint": "Tempo = müziğin nabzı." },
-            { "q": "Bir 'Do'dan bir üst 'Do'ya çıkışa ne denir?", "skill": "notalar",
-              "options": ["Oktav", "Akor", "Es", "Tempo"], "correct": 0, "hint": "Sekiz nota sonra aynı isim tekrar gelir." },
-            { "q": "Elle alkış tutmak müzikte neyi çalıştırır?", "skill": "ritim",
-              "options": ["Vuruş ve tempo duygusunu", "Nota rengini", "Enstrüman fiyatını", "Şarkı sözünü"],
-              "correct": 0, "hint": "Ritmi enstrümansız, elle bile hissedebilirsin." }
+            {
+              "q": "Müzikte kaç temel nota vardır?",
+              "skill": "notalar",
+              "options": [
+                "7",
+                "5",
+                "10",
+                "3"
+              ],
+              "correct": 0,
+              "hint": "Do-Re-Mi-Fa-Sol-La-Si: say bakalım!"
+            },
+            {
+              "q": "Notaların doğru sırası hangisidir?",
+              "skill": "notalar",
+              "options": [
+                "Do Re Mi Fa Sol La Si",
+                "Do Mi Re Fa La Sol Si",
+                "Si La Sol Fa Mi Re Do",
+                "Re Do Mi Fa Sol Si La"
+              ],
+              "correct": 0,
+              "hint": "Merdivenin en altı Do'dur, yukarı çıkarsın."
+            },
+            {
+              "q": "'Do' notasından sonra gelen 'yedi nota sonra' hangi notadır?",
+              "skill": "notalar",
+              "options": [
+                "Yine Do (bir oktav tiz)",
+                "Si",
+                "Fa",
+                "Sol"
+              ],
+              "correct": 0,
+              "hint": "Yedi notadan sonra tekrar başa dönülür — buna oktav denir."
+            },
+            {
+              "q": "Notaların yazıldığı beş çizgiye ne denir?",
+              "skill": "notalar",
+              "options": [
+                "Porte",
+                "Cetvel",
+                "Merdiven",
+                "Tablo"
+              ],
+              "correct": 0,
+              "hint": "Beş çizgi + dört aralık = porte."
+            },
+            {
+              "q": "Ritim müzikte neyi belirler?",
+              "skill": "ritim",
+              "options": [
+                "Notaların ne kadar sürdüğünü",
+                "Şarkının rengini",
+                "Şarkıcının adını",
+                "Sahnenin ışığını"
+              ],
+              "correct": 0,
+              "hint": "Ritim, müziğin kalp atışıdır — uzunluk ve vuruş."
+            },
+            {
+              "q": "Bir notanın sesi 'ince/tiz' ise porte üzerinde nerededir?",
+              "skill": "notalar",
+              "options": [
+                "Daha yukarıda",
+                "Daha aşağıda",
+                "Hep ortada",
+                "Portenin dışında"
+              ],
+              "correct": 0,
+              "hint": "Yukarı çıktıkça ses incelir."
+            },
+            {
+              "q": "Sessizliğin de bir süresi vardır; buna ne denir?",
+              "skill": "ritim",
+              "options": [
+                "Es (susku)",
+                "Nota",
+                "Akor",
+                "Do"
+              ],
+              "correct": 0,
+              "hint": "Müzikte susmak da bir parçadır: es."
+            },
+            {
+              "q": "Aynı anda çalınan birkaç uyumlu notaya ne denir?",
+              "skill": "notalar",
+              "options": [
+                "Akor",
+                "Es",
+                "Porte",
+                "Oktav"
+              ],
+              "correct": 0,
+              "hint": "Gitarda tek seferde birkaç tel = akor."
+            },
+            {
+              "q": "Notalar kalından inceye doğru nasıl sıralanır?",
+              "skill": "notalar",
+              "options": [
+                "Do en kalın, yukarı çıktıkça incelir",
+                "Hepsi aynı kalınlıkta",
+                "İnceden kalına hep aynı",
+                "Sırasızdır"
+              ],
+              "correct": 0,
+              "hint": "Merdiven gibi: aşağı kalın, yukarı ince."
+            },
+            {
+              "q": "Bir şarkının hızına ne denir?",
+              "skill": "ritim",
+              "options": [
+                "Tempo",
+                "Akor",
+                "Porte",
+                "Nota"
+              ],
+              "correct": 0,
+              "hint": "Tempo = müziğin nabzı."
+            },
+            {
+              "q": "Bir 'Do'dan bir üst 'Do'ya çıkışa ne denir?",
+              "skill": "notalar",
+              "options": [
+                "Oktav",
+                "Akor",
+                "Es",
+                "Tempo"
+              ],
+              "correct": 0,
+              "hint": "Sekiz nota sonra aynı isim tekrar gelir."
+            },
+            {
+              "q": "Elle alkış tutmak müzikte neyi çalıştırır?",
+              "skill": "ritim",
+              "options": [
+                "Vuruş ve tempo duygusunu",
+                "Nota rengini",
+                "Enstrüman fiyatını",
+                "Şarkı sözünü"
+              ],
+              "correct": 0,
+              "hint": "Ritmi enstrümansız, elle bile hissedebilirsin."
+            }
           ]
         },
         {
           "id": "s2",
           "title": "Enstrümanlar",
-          "outcomeIds": ["o2"],
-          "unlock": { "starsRequired": 10 },
+          "outcomeIds": [
+            "o2"
+          ],
+          "unlock": {
+            "starsRequired": 10
+          },
           "missions": [
-            { "id": "s2m1", "type": "teach", "title": "Keşif Brifingi: Enstrümanlar",
-              "segments": [ { "model": "abstract", "script": "enstruman-brief" } ] },
-            { "id": "s2m2", "type": "practice", "title": "Enstrüman Devriyesi", "targetCount": 3, "generator": { "pool": "s2" } },
-            { "id": "s2m3", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s2" } },
-            { "id": "s2m4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s2" } },
-            { "id": "s2m5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s2m1",
+              "type": "teach",
+              "title": "Keşif Brifingi: Enstrümanlar",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "enstruman-brief"
+                }
+              ]
+            },
+            {
+              "id": "s2m2",
+              "type": "practice",
+              "title": "Enstrüman Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s2"
+              }
+            },
+            {
+              "id": "s2m3",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s2"
+              }
+            },
+            {
+              "id": "s2m4",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s2"
+              }
+            },
+            {
+              "id": "s2m5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-music2", "tier": "topic", "name": "Gürültü Devi", "icon": "🥁", "hp": 33,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "pool": "s2" },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-music2" }
+            "id": "boss-music2",
+            "tier": "topic",
+            "name": "Gürültü Devi",
+            "icon": "🥁",
+            "hp": 33,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s2"
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-music2"
+            }
           },
           "bank": [
-            { "q": "Gitar hangi enstrüman ailesindendir?", "skill": "enstruman",
-              "options": ["Telli", "Üflemeli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "Telleri parmakla titreştirirsin." },
-            { "q": "Flüt hangi aileye aittir?", "skill": "enstruman",
-              "options": ["Üflemeli", "Telli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "İçine ÜFLEYEREK çalınır." },
-            { "q": "Davul hangi enstrüman ailesindendir?", "skill": "enstruman",
-              "options": ["Vurmalı", "Telli", "Üflemeli", "Tuşlu"], "correct": 0, "hint": "Üzerine VURARAK ses çıkarırsın." },
-            { "q": "Piyanoda tuşa basınca içeride ne olur?", "skill": "enstruman",
-              "options": ["Küçük bir çekiç tele vurur", "Bir zil çalar", "Hava üflenir", "Işık yanar"], "correct": 0, "hint": "Bu yüzden piyano hem tuşlu hem tellidir!" },
-            { "q": "Keman genellikle neyle çalınır?", "skill": "enstruman",
-              "options": ["Yay", "Çubuk", "Nefes", "Elektrik"], "correct": 0, "hint": "Yayı tellerin üzerinde gezdirirsin." },
-            { "q": "Bir orkestrayı kim yönetir?", "skill": "muzik-genel",
-              "options": ["Şef (orkestra şefi)", "Seyirci", "Kapıcı", "Işıkçı"], "correct": 0, "hint": "Elinde bir değnekle herkesi birlikte çaldırır." },
-            { "q": "Hangisi vurmalı bir çalgı DEĞİLDİR?", "skill": "enstruman",
-              "options": ["Keman", "Davul", "Ziller", "Marimba"], "correct": 0, "hint": "Keman yayla/telle çalınır, vurmalı değildir." },
-            { "q": "Trompet hangi aileye aittir?", "skill": "enstruman",
-              "options": ["Üflemeli (bakır)", "Telli", "Vurmalı", "Tuşlu"], "correct": 0, "hint": "Dudakla üfleyerek çalınan parlak bir çalgı." },
-            { "q": "Piyano hangi aileye girer?", "skill": "enstruman",
-              "options": ["Tuşlu (içinde teller de vardır)", "Sadece üflemeli", "Sadece vurmalı", "Yaylı"], "correct": 0, "hint": "Tuşa basınca içerideki çekiç tele vurur." },
-            { "q": "Bir orkestrada en kalabalık aile hangisidir?", "skill": "muzik-genel",
-              "options": ["Yaylılar (keman ailesi)", "Sadece davul", "Sadece flüt", "Hiçbiri"], "correct": 0, "hint": "Keman, viyola, çello, kontrbas..." },
-            { "q": "Bateri (davul seti) hangi ailedendir?", "skill": "enstruman",
-              "options": ["Vurmalı", "Telli", "Üflemeli", "Tuşlu"], "correct": 0, "hint": "Çubukla vurularak çalınır." },
-            { "q": "İnsan sesi (şarkı söylemek) bir enstrüman sayılır mı?", "skill": "muzik-genel",
-              "options": ["Evet; en doğal enstrümandır", "Hayır, asla", "Sadece koroda", "Sadece sabah"], "correct": 0, "hint": "Ses telleri titreşerek ses üretir." }
+            {
+              "q": "Gitar hangi enstrüman ailesindendir?",
+              "skill": "enstruman",
+              "options": [
+                "Telli",
+                "Üflemeli",
+                "Vurmalı",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Telleri parmakla titreştirirsin."
+            },
+            {
+              "q": "Flüt hangi aileye aittir?",
+              "skill": "enstruman",
+              "options": [
+                "Üflemeli",
+                "Telli",
+                "Vurmalı",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "İçine ÜFLEYEREK çalınır."
+            },
+            {
+              "q": "Davul hangi enstrüman ailesindendir?",
+              "skill": "enstruman",
+              "options": [
+                "Vurmalı",
+                "Telli",
+                "Üflemeli",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Üzerine VURARAK ses çıkarırsın."
+            },
+            {
+              "q": "Piyanoda tuşa basınca içeride ne olur?",
+              "skill": "enstruman",
+              "options": [
+                "Küçük bir çekiç tele vurur",
+                "Bir zil çalar",
+                "Hava üflenir",
+                "Işık yanar"
+              ],
+              "correct": 0,
+              "hint": "Bu yüzden piyano hem tuşlu hem tellidir!"
+            },
+            {
+              "q": "Keman genellikle neyle çalınır?",
+              "skill": "enstruman",
+              "options": [
+                "Yay",
+                "Çubuk",
+                "Nefes",
+                "Elektrik"
+              ],
+              "correct": 0,
+              "hint": "Yayı tellerin üzerinde gezdirirsin."
+            },
+            {
+              "q": "Bir orkestrayı kim yönetir?",
+              "skill": "muzik-genel",
+              "options": [
+                "Şef (orkestra şefi)",
+                "Seyirci",
+                "Kapıcı",
+                "Işıkçı"
+              ],
+              "correct": 0,
+              "hint": "Elinde bir değnekle herkesi birlikte çaldırır."
+            },
+            {
+              "q": "Hangisi vurmalı bir çalgı DEĞİLDİR?",
+              "skill": "enstruman",
+              "options": [
+                "Keman",
+                "Davul",
+                "Ziller",
+                "Marimba"
+              ],
+              "correct": 0,
+              "hint": "Keman yayla/telle çalınır, vurmalı değildir."
+            },
+            {
+              "q": "Trompet hangi aileye aittir?",
+              "skill": "enstruman",
+              "options": [
+                "Üflemeli (bakır)",
+                "Telli",
+                "Vurmalı",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Dudakla üfleyerek çalınan parlak bir çalgı."
+            },
+            {
+              "q": "Piyano hangi aileye girer?",
+              "skill": "enstruman",
+              "options": [
+                "Tuşlu (içinde teller de vardır)",
+                "Sadece üflemeli",
+                "Sadece vurmalı",
+                "Yaylı"
+              ],
+              "correct": 0,
+              "hint": "Tuşa basınca içerideki çekiç tele vurur."
+            },
+            {
+              "q": "Bir orkestrada en kalabalık aile hangisidir?",
+              "skill": "muzik-genel",
+              "options": [
+                "Yaylılar (keman ailesi)",
+                "Sadece davul",
+                "Sadece flüt",
+                "Hiçbiri"
+              ],
+              "correct": 0,
+              "hint": "Keman, viyola, çello, kontrbas..."
+            },
+            {
+              "q": "Bateri (davul seti) hangi ailedendir?",
+              "skill": "enstruman",
+              "options": [
+                "Vurmalı",
+                "Telli",
+                "Üflemeli",
+                "Tuşlu"
+              ],
+              "correct": 0,
+              "hint": "Çubukla vurularak çalınır."
+            },
+            {
+              "q": "İnsan sesi (şarkı söylemek) bir enstrüman sayılır mı?",
+              "skill": "muzik-genel",
+              "options": [
+                "Evet; en doğal enstrümandır",
+                "Hayır, asla",
+                "Sadece koroda",
+                "Sadece sabah"
+              ],
+              "correct": 0,
+              "hint": "Ses telleri titreşerek ses üretir."
+            }
           ]
         }
       ]

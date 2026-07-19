@@ -2,80 +2,246 @@
   "id": "math-core",
   "schema": 1,
   "subject": "math",
-  "title": "Matematik Cephesi",
-  "subtitle": "Sayı Kristali Harekâtı",
+  "title": "Sayı Savaşı",
+  "subtitle": "Matematik: toplama, çarpma, bölme, geometri…",
   "icon": "⚔️",
   "theme": "galaxy-base",
   "interactionType": "arithmetic",
   "gradeAware": true,
-
   "outcomes": [
-    { "id": "o-add", "code": "M.1-2.1", "text": "Toplama ve çıkarma işlemlerini yapar." },
-    { "id": "o-mul", "code": "M.2-3.2", "text": "Çarpma işlemine giriş: tekrarlı toplama ve çarpım tablosu." },
-    { "id": "o-div", "code": "M.3-4.3", "text": "Bölme işlemine giriş: eşit paylaştırma ve tek basamaklı bölme." },
-    { "id": "o-long", "code": "M.4-5.4", "text": "Uzun bölme yöntemiyle çok basamaklı bölme." },
-    { "id": "o-geo", "code": "M.2-3.5", "text": "Temel geometrik şekilleri, kenar/köşe ve cisimleri tanır." },
-    { "id": "o-frac", "code": "M.3-4.6", "text": "Kesir kavramını (yarım, çeyrek, pay/payda) tanır." },
-    { "id": "o-meas", "code": "M.3-4.7", "text": "Zaman, para ve temel ölçü birimlerini tanır." }
+    {
+      "id": "o-add",
+      "code": "M.1-2.1",
+      "text": "Toplama ve çıkarma işlemlerini yapar."
+    },
+    {
+      "id": "o-mul",
+      "code": "M.2-3.2",
+      "text": "Çarpma işlemine giriş: tekrarlı toplama ve çarpım tablosu."
+    },
+    {
+      "id": "o-div",
+      "code": "M.3-4.3",
+      "text": "Bölme işlemine giriş: eşit paylaştırma ve tek basamaklı bölme."
+    },
+    {
+      "id": "o-long",
+      "code": "M.4-5.4",
+      "text": "Uzun bölme yöntemiyle çok basamaklı bölme."
+    },
+    {
+      "id": "o-geo",
+      "code": "M.2-3.5",
+      "text": "Temel geometrik şekilleri, kenar/köşe ve cisimleri tanır."
+    },
+    {
+      "id": "o-frac",
+      "code": "M.3-4.6",
+      "text": "Kesir kavramını (yarım, çeyrek, pay/payda) tanır."
+    },
+    {
+      "id": "o-meas",
+      "code": "M.3-4.7",
+      "text": "Zaman, para ve temel ölçü birimlerini tanır."
+    }
   ],
-
-  "skills": ["add", "sub", "mul", "div", "select", "estimate", "multiply", "subtract", "bringdown", "geometry", "fraction", "measure"],
-
+  "skills": [
+    "add",
+    "sub",
+    "mul",
+    "div",
+    "select",
+    "estimate",
+    "multiply",
+    "subtract",
+    "bringdown",
+    "geometry",
+    "fraction",
+    "measure"
+  ],
   "hints": {
-    "select":    { "1": ["hint.select.soft.1"], "2": ["hint.select.guide.1"], "3": ["hint.select.explain"] },
-    "estimate":  { "1": ["hint.estimate.soft.1"], "2": ["hint.estimate.guide.1"], "3": ["hint.estimate.explain"] },
-    "multiply":  { "1": ["hint.multiply.soft.1"], "2": ["hint.multiply.guide.1"], "3": ["hint.multiply.explain"] },
-    "subtract":  { "1": ["hint.subtract.soft.1"], "2": ["hint.subtract.guide.1"], "3": ["hint.subtract.explain"] },
-    "bringdown": { "1": ["hint.bringdown.soft.1"], "2": ["hint.bringdown.guide.1"], "3": ["hint.bringdown.explain"] }
+    "select": {
+      "1": [
+        "hint.select.soft.1"
+      ],
+      "2": [
+        "hint.select.guide.1"
+      ],
+      "3": [
+        "hint.select.explain"
+      ]
+    },
+    "estimate": {
+      "1": [
+        "hint.estimate.soft.1"
+      ],
+      "2": [
+        "hint.estimate.guide.1"
+      ],
+      "3": [
+        "hint.estimate.explain"
+      ]
+    },
+    "multiply": {
+      "1": [
+        "hint.multiply.soft.1"
+      ],
+      "2": [
+        "hint.multiply.guide.1"
+      ],
+      "3": [
+        "hint.multiply.explain"
+      ]
+    },
+    "subtract": {
+      "1": [
+        "hint.subtract.soft.1"
+      ],
+      "2": [
+        "hint.subtract.guide.1"
+      ],
+      "3": [
+        "hint.subtract.explain"
+      ]
+    },
+    "bringdown": {
+      "1": [
+        "hint.bringdown.soft.1"
+      ],
+      "2": [
+        "hint.bringdown.guide.1"
+      ],
+      "3": [
+        "hint.bringdown.explain"
+      ]
+    }
   },
-
   "teachScripts": {
     "add-brief": [
-      { "say": "Brifing Komutan! TOPLAMA, iki grubu birleştirmektir. Bak şimdi: elmaları sayalım." },
-      { "objects": { "a": 3, "b": 2, "emoji": "🍎", "op": "+" } },
-      { "say": "3 elma ile 2 elmayı birleştirdik: 5 etti! Artı işareti (+) 'birleştir' demektir." },
-      { "ask": "4 + 3 kaç eder?", "expect": 7 },
-      { "say": "Aynen! Toplama bu kadar basit. Şimdi sahaya!" }
+      {
+        "say": "Brifing Komutan! TOPLAMA, iki grubu birleştirmektir. Bak şimdi: elmaları sayalım."
+      },
+      {
+        "objects": {
+          "a": 3,
+          "b": 2,
+          "emoji": "🍎",
+          "op": "+"
+        }
+      },
+      {
+        "say": "3 elma ile 2 elmayı birleştirdik: 5 etti! Artı işareti (+) 'birleştir' demektir."
+      },
+      {
+        "ask": "4 + 3 kaç eder?",
+        "expect": 7
+      },
+      {
+        "say": "Aynen! Toplama bu kadar basit. Şimdi sahaya!"
+      }
     ],
     "sub-brief": [
-      { "say": "ÇIKARMA, bir gruptan koparıp almaktır. Kurabiyelerle görelim." },
-      { "objects": { "a": 7, "b": 3, "emoji": "🍪", "op": "-" } },
-      { "say": "7 kurabiye vardı, 3'ünü yedik... 4 kaldı! Eksi işareti (−) 'geriye ne kaldı' diye sorar." },
-      { "ask": "9 − 4 kaç eder?", "expect": 5 },
-      { "say": "Harika! Kalanı buldun. Çıkarma da cephaneliğe girdi." }
+      {
+        "say": "ÇIKARMA, bir gruptan koparıp almaktır. Kurabiyelerle görelim."
+      },
+      {
+        "objects": {
+          "a": 7,
+          "b": 3,
+          "emoji": "🍪",
+          "op": "-"
+        }
+      },
+      {
+        "say": "7 kurabiye vardı, 3'ünü yedik... 4 kaldı! Eksi işareti (−) 'geriye ne kaldı' diye sorar."
+      },
+      {
+        "ask": "9 − 4 kaç eder?",
+        "expect": 5
+      },
+      {
+        "say": "Harika! Kalanı buldun. Çıkarma da cephaneliğe girdi."
+      }
     ],
     "mul-brief": [
-      { "say": "ÇARPMA bir kestirme yoldur Komutan! 'Kaç grup, her grupta kaç tane' demektir. Yıldızlara bak:" },
-      { "groups": { "n": 4, "per": 3, "emoji": "⭐" } },
-      { "say": "4 grup, her grupta 3 yıldız = 12. Yani 4 × 3 = 12. Tek tek toplamak yerine çarpıyoruz!" },
-      { "ask": "2 grup, her grupta 3 tane. 2 × 3 kaç eder?", "expect": 6 },
-      { "say": "İşte bu! Çarpım tablosu en güçlü silahındır." }
+      {
+        "say": "ÇARPMA bir kestirme yoldur Komutan! 'Kaç grup, her grupta kaç tane' demektir. Yıldızlara bak:"
+      },
+      {
+        "groups": {
+          "n": 4,
+          "per": 3,
+          "emoji": "⭐"
+        }
+      },
+      {
+        "say": "4 grup, her grupta 3 yıldız = 12. Yani 4 × 3 = 12. Tek tek toplamak yerine çarpıyoruz!"
+      },
+      {
+        "ask": "2 grup, her grupta 3 tane. 2 × 3 kaç eder?",
+        "expect": 6
+      },
+      {
+        "say": "İşte bu! Çarpım tablosu en güçlü silahındır."
+      }
     ],
     "share-brief": [
-      { "say": "Şimdi sıra BÖLMEDE. Bölme, ADİL PAYLAŞTIRMAKTIR. 12 kutuyu 3 takıma eşit dağıtalım, bakalım her takıma kaç düşecek." },
-      { "deal": { "total": 12, "groups": 3 } },
-      { "ask": "12'yi 3'e paylaştırdık. Her takıma kaç kutu düştü?", "expect": 4 },
-      { "say": "Aynen! 12 ÷ 3 = 4. Bölme, çarpmanın tersidir: 3 × 4 = 12, 12 ÷ 3 = 4. İkiz kardeş gibiler!" }
+      {
+        "say": "Şimdi sıra BÖLMEDE. Bölme, ADİL PAYLAŞTIRMAKTIR. 12 kutuyu 3 takıma eşit dağıtalım, bakalım her takıma kaç düşecek."
+      },
+      {
+        "deal": {
+          "total": 12,
+          "groups": 3
+        }
+      },
+      {
+        "ask": "12'yi 3'e paylaştırdık. Her takıma kaç kutu düştü?",
+        "expect": 4
+      },
+      {
+        "say": "Aynen! 12 ÷ 3 = 4. Bölme, çarpmanın tersidir: 3 × 4 = 12, 12 ÷ 3 = 4. İkiz kardeş gibiler!"
+      }
     ],
     "long-brief": [
-      { "say": "En büyük harekât Komutan: UZUN BÖLME! Büyük sayıları bölmek için adım adım gideriz: seç, tahmin et, çarp, çıkar, indir. Ben yanındayım." },
-      { "guided": { "dividend": 84, "divisor": 4 } },
-      { "say": "Gördün mü? Büyük sayı bile adım adım teslim oldu. Artık dört basamaklı kaleleri açabilirsin!" }
+      {
+        "say": "En büyük harekât Komutan: UZUN BÖLME! Büyük sayıları bölmek için adım adım gideriz: seç, tahmin et, çarp, çıkar, indir. Ben yanındayım."
+      },
+      {
+        "guided": {
+          "dividend": 84,
+          "divisor": 4
+        }
+      },
+      {
+        "say": "Gördün mü? Büyük sayı bile adım adım teslim oldu. Artık dört basamaklı kaleleri açabilirsin!"
+      }
     ],
     "geo-brief": [
-      { "say": "Yeni harekât Komutan: GEOMETRİ! Etrafımız şekillerle dolu. Düz kenarlı olanlara bak: ÜÇGEN 3 kenar 3 köşe, KARE 4 eşit kenar 4 köşe, DİKDÖRTGEN de 4 kenar ama kenarları ikişerli eşit." },
-      { "say": "DAİRE'nin ise kenarı yok, tek bir yuvarlak çizgi. Bir de üç boyutlu CİSİMLER var: küp (zar gibi), küre (top gibi), silindir (kutu gibi). Şekiller cephenin haritasıdır — tanımayı öğren!" }
+      {
+        "say": "Yeni harekât Komutan: GEOMETRİ! Etrafımız şekillerle dolu. Düz kenarlı olanlara bak: ÜÇGEN 3 kenar 3 köşe, KARE 4 eşit kenar 4 köşe, DİKDÖRTGEN de 4 kenar ama kenarları ikişerli eşit."
+      },
+      {
+        "say": "DAİRE'nin ise kenarı yok, tek bir yuvarlak çizgi. Bir de üç boyutlu CİSİMLER var: küp (zar gibi), küre (top gibi), silindir (kutu gibi). Şekiller cephenin haritasıdır — tanımayı öğren!"
+      }
     ],
     "frac-brief": [
-      { "say": "Brifing: KESİRLER! Bir bütünü eşit parçalara böldüğümüzde her parça bir kesirdir. Bir pizzayı ikiye bölersen her parça YARIM (1/2), dörde bölersen her parça ÇEYREK (1/4)." },
-      { "say": "Alttaki sayı PAYDA'dır: bütün kaç eşit parçaya bölündü. Üstteki sayı PAY'dır: kaç parça aldık. 3/4 demek: 4 eşit parçadan 3'ünü aldık. Ne kadar çok parçaya bölersen, her parça o kadar KÜÇÜK olur!" }
+      {
+        "say": "Brifing: KESİRLER! Bir bütünü eşit parçalara böldüğümüzde her parça bir kesirdir. Bir pizzayı ikiye bölersen her parça YARIM (1/2), dörde bölersen her parça ÇEYREK (1/4)."
+      },
+      {
+        "say": "Alttaki sayı PAYDA'dır: bütün kaç eşit parçaya bölündü. Üstteki sayı PAY'dır: kaç parça aldık. 3/4 demek: 4 eşit parçadan 3'ünü aldık. Ne kadar çok parçaya bölersen, her parça o kadar KÜÇÜK olur!"
+      }
     ],
     "meas-brief": [
-      { "say": "Harekât: ÖLÇÜLER! ZAMAN saatle ölçülür: 1 saat = 60 dakika, 1 dakika = 60 saniye. Bir günde 24 saat vardır." },
-      { "say": "PARA: 1 Türk Lirası = 100 kuruş. UZUNLUK metreyle ölçülür: 1 metre = 100 santimetre, 1 kilometre = 1000 metre. Ağırlık ise kilogramla: 1 kilogram = 1000 gram. Doğru birim, doğru ölçüm demektir!" }
+      {
+        "say": "Harekât: ÖLÇÜLER! ZAMAN saatle ölçülür: 1 saat = 60 dakika, 1 dakika = 60 saniye. Bir günde 24 saat vardır."
+      },
+      {
+        "say": "PARA: 1 Türk Lirası = 100 kuruş. UZUNLUK metreyle ölçülür: 1 metre = 100 santimetre, 1 kilometre = 1000 metre. Ağırlık ise kilogramla: 1 kilogram = 1000 gram. Doğru birim, doğru ölçüm demektir!"
+      }
     ]
   },
-
   "units": [
     {
       "id": "u1",
@@ -85,42 +251,172 @@
           "id": "s-add",
           "title": "Toplama Ustalığı",
           "minGrade": 1,
-          "outcomeIds": ["o-add"],
+          "outcomeIds": [
+            "o-add"
+          ],
           "interactionType": "arithmetic",
-          "unlock": { "starsRequired": 0 },
+          "unlock": {
+            "starsRequired": 0
+          },
           "missions": [
-            { "id": "s-add-t", "type": "teach", "title": "Keşif Brifingi: Toplama",
-              "segments": [ { "model": "abstract", "script": "add-brief" } ] },
-            { "id": "s-add-1", "type": "practice", "title": "Toplama Devriyesi", "targetCount": 4, "generator": { "op": "+", "a": [1, 10], "b": [1, 10] } },
-            { "id": "s-add-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "+", "a": [5, 20], "b": [3, 20] } },
-            { "id": "s-add-3", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s-add-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Toplama",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "add-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-add-1",
+              "type": "practice",
+              "title": "Toplama Devriyesi",
+              "targetCount": 4,
+              "generator": {
+                "op": "+",
+                "a": [
+                  1,
+                  10
+                ],
+                "b": [
+                  1,
+                  10
+                ]
+              }
+            },
+            {
+              "id": "s-add-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "op": "+",
+                "a": [
+                  5,
+                  20
+                ],
+                "b": [
+                  3,
+                  20
+                ]
+              }
+            },
+            {
+              "id": "s-add-3",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-add", "tier": "topic", "name": "Toplama Devi", "icon": "➕", "hp": 30,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "op": "+", "a": [2, 20], "b": [2, 20] },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-add" }
+            "id": "boss-add",
+            "tier": "topic",
+            "name": "Toplama Devi",
+            "icon": "➕",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "op": "+",
+              "a": [
+                2,
+                20
+              ],
+              "b": [
+                2,
+                20
+              ]
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-add"
+            }
           }
         },
         {
           "id": "s-sub",
           "title": "Çıkarma Ustalığı",
           "minGrade": 1,
-          "outcomeIds": ["o-add"],
+          "outcomeIds": [
+            "o-add"
+          ],
           "interactionType": "arithmetic",
-          "unlock": { "starsRequired": 8 },
+          "unlock": {
+            "starsRequired": 8
+          },
           "missions": [
-            { "id": "s-sub-t", "type": "teach", "title": "Keşif Brifingi: Çıkarma",
-              "segments": [ { "model": "abstract", "script": "sub-brief" } ] },
-            { "id": "s-sub-1", "type": "practice", "title": "Çıkarma Devriyesi", "targetCount": 4, "generator": { "op": "-", "a": [2, 10] } },
-            { "id": "s-sub-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "-", "a": [5, 20] } },
-            { "id": "s-sub-3", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s-sub-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Çıkarma",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "sub-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-sub-1",
+              "type": "practice",
+              "title": "Çıkarma Devriyesi",
+              "targetCount": 4,
+              "generator": {
+                "op": "-",
+                "a": [
+                  2,
+                  10
+                ]
+              }
+            },
+            {
+              "id": "s-sub-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "op": "-",
+                "a": [
+                  5,
+                  20
+                ]
+              }
+            },
+            {
+              "id": "s-sub-3",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-sub", "tier": "topic", "name": "Çıkarma Golemi", "icon": "➖", "hp": 30,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "op": "-", "a": [4, 20] },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-sub" }
+            "id": "boss-sub",
+            "tier": "topic",
+            "name": "Çıkarma Golemi",
+            "icon": "➖",
+            "hp": 30,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "op": "-",
+              "a": [
+                4,
+                20
+              ]
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-sub"
+            }
           }
         }
       ]
@@ -133,22 +429,109 @@
           "id": "s-mul",
           "title": "Çarpım Tablosu",
           "minGrade": 2,
-          "outcomeIds": ["o-mul"],
+          "outcomeIds": [
+            "o-mul"
+          ],
           "interactionType": "arithmetic",
-          "unlock": { "starsRequired": 0 },
+          "unlock": {
+            "starsRequired": 0
+          },
           "missions": [
-            { "id": "s-mul-t", "type": "teach", "title": "Keşif Brifingi: Çarpma",
-              "segments": [ { "model": "abstract", "script": "mul-brief" } ] },
-            { "id": "s-mul-1", "type": "practice", "title": "Çarpma Devriyesi", "targetCount": 4, "generator": { "op": "*", "a": [1, 5], "b": [1, 5] } },
-            { "id": "s-mul-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "*", "a": [2, 9], "b": [2, 9] } },
-            { "id": "s-mul-3", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "op": "*", "a": [3, 10], "b": [3, 10] } },
-            { "id": "s-mul-4", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s-mul-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Çarpma",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "mul-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-mul-1",
+              "type": "practice",
+              "title": "Çarpma Devriyesi",
+              "targetCount": 4,
+              "generator": {
+                "op": "*",
+                "a": [
+                  1,
+                  5
+                ],
+                "b": [
+                  1,
+                  5
+                ]
+              }
+            },
+            {
+              "id": "s-mul-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "op": "*",
+                "a": [
+                  2,
+                  9
+                ],
+                "b": [
+                  2,
+                  9
+                ]
+              }
+            },
+            {
+              "id": "s-mul-3",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "op": "*",
+                "a": [
+                  3,
+                  10
+                ],
+                "b": [
+                  3,
+                  10
+                ]
+              }
+            },
+            {
+              "id": "s-mul-4",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-mul", "tier": "topic", "name": "Çarpım Ejderi", "icon": "✖️", "hp": 33,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "op": "*", "a": [2, 9], "b": [2, 9] },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-mul" }
+            "id": "boss-mul",
+            "tier": "topic",
+            "name": "Çarpım Ejderi",
+            "icon": "✖️",
+            "hp": 33,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "op": "*",
+              "a": [
+                2,
+                9
+              ],
+              "b": [
+                2,
+                9
+              ]
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-mul"
+            }
           }
         }
       ]
@@ -161,22 +544,109 @@
           "id": "s-div",
           "title": "Eşit Paylaştırma",
           "minGrade": 3,
-          "outcomeIds": ["o-div"],
+          "outcomeIds": [
+            "o-div"
+          ],
           "interactionType": "arithmetic",
-          "unlock": { "starsRequired": 0 },
+          "unlock": {
+            "starsRequired": 0
+          },
           "missions": [
-            { "id": "s-div-t", "type": "teach", "title": "Keşif Brifingi: Bölme",
-              "segments": [ { "model": "abstract", "script": "share-brief" } ] },
-            { "id": "s-div-1", "type": "practice", "title": "Paylaştırma Devriyesi", "targetCount": 4, "generator": { "op": "/", "b": [2, 5], "q": [1, 5] } },
-            { "id": "s-div-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "op": "/", "b": [2, 9], "q": [2, 9] } },
-            { "id": "s-div-3", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "op": "/", "b": [3, 9], "q": [2, 10] } },
-            { "id": "s-div-4", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s-div-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Bölme",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "share-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-div-1",
+              "type": "practice",
+              "title": "Paylaştırma Devriyesi",
+              "targetCount": 4,
+              "generator": {
+                "op": "/",
+                "b": [
+                  2,
+                  5
+                ],
+                "q": [
+                  1,
+                  5
+                ]
+              }
+            },
+            {
+              "id": "s-div-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "op": "/",
+                "b": [
+                  2,
+                  9
+                ],
+                "q": [
+                  2,
+                  9
+                ]
+              }
+            },
+            {
+              "id": "s-div-3",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "op": "/",
+                "b": [
+                  3,
+                  9
+                ],
+                "q": [
+                  2,
+                  10
+                ]
+              }
+            },
+            {
+              "id": "s-div-4",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-div", "tier": "topic", "name": "Paylaştırma Canavarı", "icon": "➗", "hp": 33,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "op": "/", "b": [2, 9], "q": [2, 9] },
-            "rewards": { "xp": 100, "chest": "epic", "badge": "b-div" }
+            "id": "boss-div",
+            "tier": "topic",
+            "name": "Paylaştırma Canavarı",
+            "icon": "➗",
+            "hp": 33,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "op": "/",
+              "b": [
+                2,
+                9
+              ],
+              "q": [
+                2,
+                9
+              ]
+            },
+            "rewards": {
+              "xp": 100,
+              "chest": "epic",
+              "badge": "b-div"
+            }
           }
         }
       ]
@@ -189,32 +659,127 @@
           "id": "s-long",
           "title": "Uzun Bölme Ustalığı",
           "minGrade": 4,
-          "outcomeIds": ["o-long"],
+          "outcomeIds": [
+            "o-long"
+          ],
           "interactionType": "long-division",
-          "unlock": { "starsRequired": 0 },
+          "unlock": {
+            "starsRequired": 0
+          },
           "missions": [
-            { "id": "s-long-t", "type": "teach", "title": "Keşif Brifingi: Uzun Bölme",
-              "segments": [ { "model": "abstract", "script": "long-brief" } ] },
-            { "id": "s-long-1", "type": "guided", "title": "Ortak Harekât", "targetCount": 3,
-              "scaffold": { "prefilledSteps": ["select", "estimate"], "fadeOut": true },
-              "generator": { "divisorRange": [2, 6], "dividendDigits": 2, "remainder": false } },
-            { "id": "s-long-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4,
-              "generator": { "divisorRange": [2, 9], "dividendDigits": 3, "remainder": false } },
-            { "id": "s-long-3", "type": "practice", "title": "Zorlu Devriye", "targetCount": 4,
-              "generator": { "divisorRange": [3, 9], "dividendDigits": 4, "remainder": false } },
-            { "id": "s-long-4", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 2,
-              "generator": { "divisorRange": [3, 8], "dividendDigits": 4, "remainder": false },
+            {
+              "id": "s-long-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Uzun Bölme",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "long-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-long-1",
+              "type": "guided",
+              "title": "Ortak Harekât",
+              "targetCount": 3,
+              "scaffold": {
+                "prefilledSteps": [
+                  "select",
+                  "estimate"
+                ],
+                "fadeOut": true
+              },
+              "generator": {
+                "divisorRange": [
+                  2,
+                  6
+                ],
+                "dividendDigits": 2,
+                "remainder": false
+              }
+            },
+            {
+              "id": "s-long-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "divisorRange": [
+                  2,
+                  9
+                ],
+                "dividendDigits": 3,
+                "remainder": false
+              }
+            },
+            {
+              "id": "s-long-3",
+              "type": "practice",
+              "title": "Zorlu Devriye",
+              "targetCount": 4,
+              "generator": {
+                "divisorRange": [
+                  3,
+                  9
+                ],
+                "dividendDigits": 4,
+                "remainder": false
+              }
+            },
+            {
+              "id": "s-long-4",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 2,
+              "generator": {
+                "divisorRange": [
+                  3,
+                  8
+                ],
+                "dividendDigits": 4,
+                "remainder": false
+              },
               "problemTemplates": [
                 "Karargâha {dividend} kutu malzeme geldi. Komutan {name} bunları {divisor} depoya eşit yerleştirecek. Her depoya kaç kutu girer?"
-              ] },
-            { "id": "s-long-5", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+              ]
+            },
+            {
+              "id": "s-long-5",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-long", "tier": "unit", "name": "Basamak Golemi", "icon": "🗿", "hp": 150,
-            "unlock": { "masteryRequired": 0.8 },
-            "armor": 3, "regroupHpCarry": 0.5,
-            "generator": { "divisorRange": [3, 9], "dividendDigits": [3, 4], "remainder": false },
-            "rewards": { "xp": 200, "chest": "legendary", "badge": "b-long", "title": "t-golem" }
+            "id": "boss-long",
+            "tier": "unit",
+            "name": "Basamak Golemi",
+            "icon": "🗿",
+            "hp": 150,
+            "unlock": {
+              "masteryRequired": 0.8
+            },
+            "armor": 3,
+            "regroupHpCarry": 0.5,
+            "generator": {
+              "divisorRange": [
+                3,
+                9
+              ],
+              "dividendDigits": [
+                3,
+                4
+              ],
+              "remainder": false
+            },
+            "rewards": {
+              "xp": 200,
+              "chest": "legendary",
+              "badge": "b-long",
+              "title": "t-golem"
+            }
           }
         }
       ]
@@ -227,36 +792,223 @@
           "id": "s-geo",
           "title": "Şekiller ve Cisimler",
           "interactionType": "multiple-choice",
-          "outcomeIds": ["o-geo"],
+          "outcomeIds": [
+            "o-geo"
+          ],
           "minGrade": 2,
-          "unlock": { "starsRequired": 0 },
+          "unlock": {
+            "starsRequired": 0
+          },
           "missions": [
-            { "id": "s-geo-t", "type": "teach", "title": "Keşif Brifingi: Geometri",
-              "segments": [ { "model": "abstract", "script": "geo-brief" } ] },
-            { "id": "s-geo-1", "type": "practice", "title": "Şekil Devriyesi", "targetCount": 3, "generator": { "pool": "s-geo" } },
-            { "id": "s-geo-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s-geo" } },
-            { "id": "s-geo-3", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s-geo" } },
-            { "id": "s-geo-4", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s-geo-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Geometri",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "geo-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-geo-1",
+              "type": "practice",
+              "title": "Şekil Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-geo"
+              }
+            },
+            {
+              "id": "s-geo-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-geo"
+              }
+            },
+            {
+              "id": "s-geo-3",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-geo"
+              }
+            },
+            {
+              "id": "s-geo-4",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-geo", "tier": "topic", "name": "Köşesiz Gölge", "icon": "🔷", "hp": 33,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "pool": "s-geo" },
-            "rewards": { "xp": 110, "chest": "epic", "badge": "b-geo" }
+            "id": "boss-geo",
+            "tier": "topic",
+            "name": "Köşesiz Gölge",
+            "icon": "🔷",
+            "hp": 33,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-geo"
+            },
+            "rewards": {
+              "xp": 110,
+              "chest": "epic",
+              "badge": "b-geo"
+            }
           },
           "bank": [
-            { "q": "Üçgenin kaç kenarı vardır?", "skill": "geometry", "options": ["3", "4", "5", "2"], "correct": 0, "hint": "Üç-gen: adında ipucu var." },
-            { "q": "Karenin kaç köşesi vardır?", "skill": "geometry", "options": ["4", "3", "5", "6"], "correct": 0, "hint": "Kenar sayısı kadar köşesi var." },
-            { "q": "Hangi şeklin köşesi YOKTUR?", "skill": "geometry", "options": ["Daire", "Kare", "Üçgen", "Dikdörtgen"], "correct": 0, "hint": "Tek yuvarlak çizgi." },
-            { "q": "Dikdörtgenin kaç kenarı vardır?", "skill": "geometry", "options": ["4", "3", "6", "5"], "correct": 0, "hint": "Karşılıklı kenarları eşit, toplam dört." },
-            { "q": "Bütün kenarları eşit olan dört kenarlı şekil hangisidir?", "skill": "geometry", "options": ["Kare", "Dikdörtgen", "Üçgen", "Daire"], "correct": 0, "hint": "Dört eşit kenar." },
-            { "q": "Bir top (futbol topu) hangi cisme benzer?", "skill": "geometry", "options": ["Küre", "Küp", "Silindir", "Piramit"], "correct": 0, "hint": "Yuvarlak, her yönü aynı." },
-            { "q": "Oyun zarı hangi cisme benzer?", "skill": "geometry", "options": ["Küp", "Küre", "Koni", "Daire"], "correct": 0, "hint": "Altı eşit kare yüzü var." },
-            { "q": "Üçgenin kaç köşesi vardır?", "skill": "geometry", "options": ["3", "4", "1", "6"], "correct": 0, "hint": "Kenar sayısıyla aynı." },
-            { "q": "Bir şekli ortadan katlayınca iki yarısı tam üst üste geliyorsa buna ne denir?", "skill": "geometry", "options": ["Simetri", "Köşe", "Kenar", "Açı"], "correct": 0, "hint": "Kelebek kanatları gibi." },
-            { "q": "Hangisi ÜÇ BOYUTLU bir cisimdir?", "skill": "geometry", "options": ["Küp", "Kare", "Üçgen", "Daire"], "correct": 0, "hint": "Kare düz, küp kutu gibidir." },
-            { "q": "Konserve kutusu (silindir) hangi cisme örnektir?", "skill": "geometry", "options": ["Silindir", "Küp", "Küre", "Piramit"], "correct": 0, "hint": "Yuvarlak ama uzun, iki daire tabanlı." },
-            { "q": "Bir karenin bütün kenarları nasıldır?", "skill": "geometry", "options": ["Birbirine eşittir", "Hepsi farklıdır", "İkisi kısa ikisi uzundur", "Yoktur"], "correct": 0, "hint": "Kare = dört eşit kenar." }
+            {
+              "q": "Üçgenin kaç kenarı vardır?",
+              "skill": "geometry",
+              "options": [
+                "3",
+                "4",
+                "5",
+                "2"
+              ],
+              "correct": 0,
+              "hint": "Üç-gen: adında ipucu var."
+            },
+            {
+              "q": "Karenin kaç köşesi vardır?",
+              "skill": "geometry",
+              "options": [
+                "4",
+                "3",
+                "5",
+                "6"
+              ],
+              "correct": 0,
+              "hint": "Kenar sayısı kadar köşesi var."
+            },
+            {
+              "q": "Hangi şeklin köşesi YOKTUR?",
+              "skill": "geometry",
+              "options": [
+                "Daire",
+                "Kare",
+                "Üçgen",
+                "Dikdörtgen"
+              ],
+              "correct": 0,
+              "hint": "Tek yuvarlak çizgi."
+            },
+            {
+              "q": "Dikdörtgenin kaç kenarı vardır?",
+              "skill": "geometry",
+              "options": [
+                "4",
+                "3",
+                "6",
+                "5"
+              ],
+              "correct": 0,
+              "hint": "Karşılıklı kenarları eşit, toplam dört."
+            },
+            {
+              "q": "Bütün kenarları eşit olan dört kenarlı şekil hangisidir?",
+              "skill": "geometry",
+              "options": [
+                "Kare",
+                "Dikdörtgen",
+                "Üçgen",
+                "Daire"
+              ],
+              "correct": 0,
+              "hint": "Dört eşit kenar."
+            },
+            {
+              "q": "Bir top (futbol topu) hangi cisme benzer?",
+              "skill": "geometry",
+              "options": [
+                "Küre",
+                "Küp",
+                "Silindir",
+                "Piramit"
+              ],
+              "correct": 0,
+              "hint": "Yuvarlak, her yönü aynı."
+            },
+            {
+              "q": "Oyun zarı hangi cisme benzer?",
+              "skill": "geometry",
+              "options": [
+                "Küp",
+                "Küre",
+                "Koni",
+                "Daire"
+              ],
+              "correct": 0,
+              "hint": "Altı eşit kare yüzü var."
+            },
+            {
+              "q": "Üçgenin kaç köşesi vardır?",
+              "skill": "geometry",
+              "options": [
+                "3",
+                "4",
+                "1",
+                "6"
+              ],
+              "correct": 0,
+              "hint": "Kenar sayısıyla aynı."
+            },
+            {
+              "q": "Bir şekli ortadan katlayınca iki yarısı tam üst üste geliyorsa buna ne denir?",
+              "skill": "geometry",
+              "options": [
+                "Simetri",
+                "Köşe",
+                "Kenar",
+                "Açı"
+              ],
+              "correct": 0,
+              "hint": "Kelebek kanatları gibi."
+            },
+            {
+              "q": "Hangisi ÜÇ BOYUTLU bir cisimdir?",
+              "skill": "geometry",
+              "options": [
+                "Küp",
+                "Kare",
+                "Üçgen",
+                "Daire"
+              ],
+              "correct": 0,
+              "hint": "Kare düz, küp kutu gibidir."
+            },
+            {
+              "q": "Konserve kutusu (silindir) hangi cisme örnektir?",
+              "skill": "geometry",
+              "options": [
+                "Silindir",
+                "Küp",
+                "Küre",
+                "Piramit"
+              ],
+              "correct": 0,
+              "hint": "Yuvarlak ama uzun, iki daire tabanlı."
+            },
+            {
+              "q": "Bir karenin bütün kenarları nasıldır?",
+              "skill": "geometry",
+              "options": [
+                "Birbirine eşittir",
+                "Hepsi farklıdır",
+                "İkisi kısa ikisi uzundur",
+                "Yoktur"
+              ],
+              "correct": 0,
+              "hint": "Kare = dört eşit kenar."
+            }
           ]
         }
       ]
@@ -269,36 +1021,223 @@
           "id": "s-frac",
           "title": "Kesir Kavramı",
           "interactionType": "multiple-choice",
-          "outcomeIds": ["o-frac"],
+          "outcomeIds": [
+            "o-frac"
+          ],
           "minGrade": 3,
-          "unlock": { "starsRequired": 0 },
+          "unlock": {
+            "starsRequired": 0
+          },
           "missions": [
-            { "id": "s-frac-t", "type": "teach", "title": "Keşif Brifingi: Kesirler",
-              "segments": [ { "model": "abstract", "script": "frac-brief" } ] },
-            { "id": "s-frac-1", "type": "practice", "title": "Dilim Devriyesi", "targetCount": 3, "generator": { "pool": "s-frac" } },
-            { "id": "s-frac-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s-frac" } },
-            { "id": "s-frac-3", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s-frac" } },
-            { "id": "s-frac-4", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s-frac-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Kesirler",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "frac-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-frac-1",
+              "type": "practice",
+              "title": "Dilim Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-frac"
+              }
+            },
+            {
+              "id": "s-frac-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-frac"
+              }
+            },
+            {
+              "id": "s-frac-3",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-frac"
+              }
+            },
+            {
+              "id": "s-frac-4",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-frac", "tier": "topic", "name": "Bölük Pörçük", "icon": "🍕", "hp": 36,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "pool": "s-frac" },
-            "rewards": { "xp": 110, "chest": "epic", "badge": "b-frac" }
+            "id": "boss-frac",
+            "tier": "topic",
+            "name": "Bölük Pörçük",
+            "icon": "🍕",
+            "hp": 36,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-frac"
+            },
+            "rewards": {
+              "xp": 110,
+              "chest": "epic",
+              "badge": "b-frac"
+            }
           },
           "bank": [
-            { "q": "Bir bütünü iki eşit parçaya bölünce her parçaya ne denir?", "skill": "fraction", "options": ["Yarım (1/2)", "Çeyrek (1/4)", "Bütün", "Üçte bir"], "correct": 0, "hint": "İki eşit parçadan biri." },
-            { "q": "Bir pizza dört eşit parçaya bölündü; bir parça kaçtır?", "skill": "fraction", "options": ["Çeyrek (1/4)", "Yarım (1/2)", "Bütün", "3/4"], "correct": 0, "hint": "Dörtte bir." },
-            { "q": "3/4 kesrinde PAYDA (alttaki sayı) kaçtır?", "skill": "fraction", "options": ["4", "3", "7", "1"], "correct": 0, "hint": "Çizginin altındaki." },
-            { "q": "3/4 kesrinde PAY (üstteki sayı) kaçtır?", "skill": "fraction", "options": ["3", "4", "1", "7"], "correct": 0, "hint": "Çizginin üstündeki." },
-            { "q": "Kesirde payda neyi gösterir?", "skill": "fraction", "options": ["Bütün kaç eşit parçaya bölündü", "Kaç parça aldık", "Toplamı", "Rengini"], "correct": 0, "hint": "Alttaki sayı = toplam parça." },
-            { "q": "Hangisi daha büyüktür: 1/2 mi, 1/4 mü?", "skill": "fraction", "options": ["1/2", "1/4", "İkisi eşit", "Belli olmaz"], "correct": 0, "hint": "Yarım, çeyrekten büyüktür." },
-            { "q": "Bir çikolatayı ne kadar ÇOK parçaya bölersen her parça nasıl olur?", "skill": "fraction", "options": ["Daha küçük olur", "Daha büyük olur", "Aynı kalır", "Kaybolur"], "correct": 0, "hint": "Çok bölünce her dilim küçülür." },
-            { "q": "2/2 kesri ne kadar eder?", "skill": "fraction", "options": ["Bir bütün (tam)", "Yarım", "Çeyrek", "Sıfır"], "correct": 0, "hint": "Bütün parçaların hepsi." },
-            { "q": "Yarım bir elmayı kesir olarak nasıl yazarız?", "skill": "fraction", "options": ["1/2", "1/4", "2/1", "3/4"], "correct": 0, "hint": "İki eşit parçadan biri." },
-            { "q": "4 eşit dilimli pastadan 3'ünü aldık; aldığımız kısım kesir olarak nedir?", "skill": "fraction", "options": ["3/4", "1/4", "4/3", "1/2"], "correct": 0, "hint": "Dörtte üç." },
-            { "q": "Hangisi bir bütünün tam yarısıdır?", "skill": "fraction", "options": ["1/2", "1/3", "1/4", "1/5"], "correct": 0, "hint": "İkide bir." },
-            { "q": "Kesir çizgisinin ÜSTÜNDEKİ sayı neyi gösterir?", "skill": "fraction", "options": ["Kaç parça aldığımızı", "Toplam parça sayısını", "Bütünü", "Hiçbir şeyi"], "correct": 0, "hint": "Pay = alınan parça." }
+            {
+              "q": "Bir bütünü iki eşit parçaya bölünce her parçaya ne denir?",
+              "skill": "fraction",
+              "options": [
+                "Yarım (1/2)",
+                "Çeyrek (1/4)",
+                "Bütün",
+                "Üçte bir"
+              ],
+              "correct": 0,
+              "hint": "İki eşit parçadan biri."
+            },
+            {
+              "q": "Bir pizza dört eşit parçaya bölündü; bir parça kaçtır?",
+              "skill": "fraction",
+              "options": [
+                "Çeyrek (1/4)",
+                "Yarım (1/2)",
+                "Bütün",
+                "3/4"
+              ],
+              "correct": 0,
+              "hint": "Dörtte bir."
+            },
+            {
+              "q": "3/4 kesrinde PAYDA (alttaki sayı) kaçtır?",
+              "skill": "fraction",
+              "options": [
+                "4",
+                "3",
+                "7",
+                "1"
+              ],
+              "correct": 0,
+              "hint": "Çizginin altındaki."
+            },
+            {
+              "q": "3/4 kesrinde PAY (üstteki sayı) kaçtır?",
+              "skill": "fraction",
+              "options": [
+                "3",
+                "4",
+                "1",
+                "7"
+              ],
+              "correct": 0,
+              "hint": "Çizginin üstündeki."
+            },
+            {
+              "q": "Kesirde payda neyi gösterir?",
+              "skill": "fraction",
+              "options": [
+                "Bütün kaç eşit parçaya bölündü",
+                "Kaç parça aldık",
+                "Toplamı",
+                "Rengini"
+              ],
+              "correct": 0,
+              "hint": "Alttaki sayı = toplam parça."
+            },
+            {
+              "q": "Hangisi daha büyüktür: 1/2 mi, 1/4 mü?",
+              "skill": "fraction",
+              "options": [
+                "1/2",
+                "1/4",
+                "İkisi eşit",
+                "Belli olmaz"
+              ],
+              "correct": 0,
+              "hint": "Yarım, çeyrekten büyüktür."
+            },
+            {
+              "q": "Bir çikolatayı ne kadar ÇOK parçaya bölersen her parça nasıl olur?",
+              "skill": "fraction",
+              "options": [
+                "Daha küçük olur",
+                "Daha büyük olur",
+                "Aynı kalır",
+                "Kaybolur"
+              ],
+              "correct": 0,
+              "hint": "Çok bölünce her dilim küçülür."
+            },
+            {
+              "q": "2/2 kesri ne kadar eder?",
+              "skill": "fraction",
+              "options": [
+                "Bir bütün (tam)",
+                "Yarım",
+                "Çeyrek",
+                "Sıfır"
+              ],
+              "correct": 0,
+              "hint": "Bütün parçaların hepsi."
+            },
+            {
+              "q": "Yarım bir elmayı kesir olarak nasıl yazarız?",
+              "skill": "fraction",
+              "options": [
+                "1/2",
+                "1/4",
+                "2/1",
+                "3/4"
+              ],
+              "correct": 0,
+              "hint": "İki eşit parçadan biri."
+            },
+            {
+              "q": "4 eşit dilimli pastadan 3'ünü aldık; aldığımız kısım kesir olarak nedir?",
+              "skill": "fraction",
+              "options": [
+                "3/4",
+                "1/4",
+                "4/3",
+                "1/2"
+              ],
+              "correct": 0,
+              "hint": "Dörtte üç."
+            },
+            {
+              "q": "Hangisi bir bütünün tam yarısıdır?",
+              "skill": "fraction",
+              "options": [
+                "1/2",
+                "1/3",
+                "1/4",
+                "1/5"
+              ],
+              "correct": 0,
+              "hint": "İkide bir."
+            },
+            {
+              "q": "Kesir çizgisinin ÜSTÜNDEKİ sayı neyi gösterir?",
+              "skill": "fraction",
+              "options": [
+                "Kaç parça aldığımızı",
+                "Toplam parça sayısını",
+                "Bütünü",
+                "Hiçbir şeyi"
+              ],
+              "correct": 0,
+              "hint": "Pay = alınan parça."
+            }
           ]
         }
       ]
@@ -311,36 +1250,223 @@
           "id": "s-meas",
           "title": "Ölçü Birimleri",
           "interactionType": "multiple-choice",
-          "outcomeIds": ["o-meas"],
+          "outcomeIds": [
+            "o-meas"
+          ],
           "minGrade": 3,
-          "unlock": { "starsRequired": 0 },
+          "unlock": {
+            "starsRequired": 0
+          },
           "missions": [
-            { "id": "s-meas-t", "type": "teach", "title": "Keşif Brifingi: Ölçüler",
-              "segments": [ { "model": "abstract", "script": "meas-brief" } ] },
-            { "id": "s-meas-1", "type": "practice", "title": "Ölçü Devriyesi", "targetCount": 3, "generator": { "pool": "s-meas" } },
-            { "id": "s-meas-2", "type": "practice", "title": "Saha Görevi", "targetCount": 4, "generator": { "pool": "s-meas" } },
-            { "id": "s-meas-3", "type": "challenge", "title": "Yeni Nesil Operasyon", "targetCount": 3, "generator": { "pool": "s-meas" } },
-            { "id": "s-meas-4", "type": "review", "title": "Devriye Turu", "targetCount": 4, "source": "spaced-repetition" }
+            {
+              "id": "s-meas-t",
+              "type": "teach",
+              "title": "Keşif Brifingi: Ölçüler",
+              "segments": [
+                {
+                  "model": "abstract",
+                  "script": "meas-brief"
+                }
+              ]
+            },
+            {
+              "id": "s-meas-1",
+              "type": "practice",
+              "title": "Ölçü Devriyesi",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-meas"
+              }
+            },
+            {
+              "id": "s-meas-2",
+              "type": "practice",
+              "title": "Saha Görevi",
+              "targetCount": 4,
+              "generator": {
+                "pool": "s-meas"
+              }
+            },
+            {
+              "id": "s-meas-3",
+              "type": "challenge",
+              "title": "Yeni Nesil Operasyon",
+              "targetCount": 3,
+              "generator": {
+                "pool": "s-meas"
+              }
+            },
+            {
+              "id": "s-meas-4",
+              "type": "review",
+              "title": "Devriye Turu",
+              "targetCount": 4,
+              "source": "spaced-repetition"
+            }
           ],
           "boss": {
-            "id": "boss-meas", "tier": "topic", "name": "Ayarsız Cetvel", "icon": "📏", "hp": 36,
-            "unlock": { "masteryRequired": 0.7 },
-            "generator": { "pool": "s-meas" },
-            "rewards": { "xp": 110, "chest": "epic", "badge": "b-meas" }
+            "id": "boss-meas",
+            "tier": "topic",
+            "name": "Ayarsız Cetvel",
+            "icon": "📏",
+            "hp": 36,
+            "unlock": {
+              "masteryRequired": 0.7
+            },
+            "generator": {
+              "pool": "s-meas"
+            },
+            "rewards": {
+              "xp": 110,
+              "chest": "epic",
+              "badge": "b-meas"
+            }
           },
           "bank": [
-            { "q": "1 saat kaç dakikadır?", "skill": "measure", "options": ["60", "100", "24", "30"], "correct": 0, "hint": "Saatin etrafı 60 dakika." },
-            { "q": "1 dakika kaç saniyedir?", "skill": "measure", "options": ["60", "100", "24", "12"], "correct": 0, "hint": "Dakika da 60'a bölünür." },
-            { "q": "Bir günde kaç saat vardır?", "skill": "measure", "options": ["24", "12", "60", "7"], "correct": 0, "hint": "Gündüz + gece." },
-            { "q": "1 Türk Lirası kaç kuruştur?", "skill": "measure", "options": ["100", "10", "1000", "50"], "correct": 0, "hint": "Yüzde birlik parça kuruş." },
-            { "q": "1 metre kaç santimetredir?", "skill": "measure", "options": ["100", "10", "1000", "60"], "correct": 0, "hint": "Cetvelde 100 cm = 1 m." },
-            { "q": "1 kilometre kaç metredir?", "skill": "measure", "options": ["1000", "100", "10", "60"], "correct": 0, "hint": "Kilo = bin." },
-            { "q": "1 kilogram kaç gramdır?", "skill": "measure", "options": ["1000", "100", "10", "500"], "correct": 0, "hint": "Kilo = bin, yine bin gram." },
-            { "q": "Uzunluk ölçmek için hangi birim kullanılır?", "skill": "measure", "options": ["Metre", "Kilogram", "Litre", "Saat"], "correct": 0, "hint": "Boy, mesafe için." },
-            { "q": "Ağırlık (kütle) ölçmek için hangi birim kullanılır?", "skill": "measure", "options": ["Kilogram", "Metre", "Saniye", "Kuruş"], "correct": 0, "hint": "Terazide tartılır." },
-            { "q": "Yarım saat kaç dakikadır?", "skill": "measure", "options": ["30", "60", "15", "45"], "correct": 0, "hint": "60'ın yarısı." },
-            { "q": "Sıvı (su, süt) miktarını ölçmek için hangi birim kullanılır?", "skill": "measure", "options": ["Litre", "Metre", "Kilogram", "Saat"], "correct": 0, "hint": "Şişenin üstünde yazar: 1 L." },
-            { "q": "Saat tam 3'ü gösteriyor; 1 saat sonra kaçı gösterir?", "skill": "measure", "options": ["4", "2", "5", "3 buçuk"], "correct": 0, "hint": "3 + 1 saat." }
+            {
+              "q": "1 saat kaç dakikadır?",
+              "skill": "measure",
+              "options": [
+                "60",
+                "100",
+                "24",
+                "30"
+              ],
+              "correct": 0,
+              "hint": "Saatin etrafı 60 dakika."
+            },
+            {
+              "q": "1 dakika kaç saniyedir?",
+              "skill": "measure",
+              "options": [
+                "60",
+                "100",
+                "24",
+                "12"
+              ],
+              "correct": 0,
+              "hint": "Dakika da 60'a bölünür."
+            },
+            {
+              "q": "Bir günde kaç saat vardır?",
+              "skill": "measure",
+              "options": [
+                "24",
+                "12",
+                "60",
+                "7"
+              ],
+              "correct": 0,
+              "hint": "Gündüz + gece."
+            },
+            {
+              "q": "1 Türk Lirası kaç kuruştur?",
+              "skill": "measure",
+              "options": [
+                "100",
+                "10",
+                "1000",
+                "50"
+              ],
+              "correct": 0,
+              "hint": "Yüzde birlik parça kuruş."
+            },
+            {
+              "q": "1 metre kaç santimetredir?",
+              "skill": "measure",
+              "options": [
+                "100",
+                "10",
+                "1000",
+                "60"
+              ],
+              "correct": 0,
+              "hint": "Cetvelde 100 cm = 1 m."
+            },
+            {
+              "q": "1 kilometre kaç metredir?",
+              "skill": "measure",
+              "options": [
+                "1000",
+                "100",
+                "10",
+                "60"
+              ],
+              "correct": 0,
+              "hint": "Kilo = bin."
+            },
+            {
+              "q": "1 kilogram kaç gramdır?",
+              "skill": "measure",
+              "options": [
+                "1000",
+                "100",
+                "10",
+                "500"
+              ],
+              "correct": 0,
+              "hint": "Kilo = bin, yine bin gram."
+            },
+            {
+              "q": "Uzunluk ölçmek için hangi birim kullanılır?",
+              "skill": "measure",
+              "options": [
+                "Metre",
+                "Kilogram",
+                "Litre",
+                "Saat"
+              ],
+              "correct": 0,
+              "hint": "Boy, mesafe için."
+            },
+            {
+              "q": "Ağırlık (kütle) ölçmek için hangi birim kullanılır?",
+              "skill": "measure",
+              "options": [
+                "Kilogram",
+                "Metre",
+                "Saniye",
+                "Kuruş"
+              ],
+              "correct": 0,
+              "hint": "Terazide tartılır."
+            },
+            {
+              "q": "Yarım saat kaç dakikadır?",
+              "skill": "measure",
+              "options": [
+                "30",
+                "60",
+                "15",
+                "45"
+              ],
+              "correct": 0,
+              "hint": "60'ın yarısı."
+            },
+            {
+              "q": "Sıvı (su, süt) miktarını ölçmek için hangi birim kullanılır?",
+              "skill": "measure",
+              "options": [
+                "Litre",
+                "Metre",
+                "Kilogram",
+                "Saat"
+              ],
+              "correct": 0,
+              "hint": "Şişenin üstünde yazar: 1 L."
+            },
+            {
+              "q": "Saat tam 3'ü gösteriyor; 1 saat sonra kaçı gösterir?",
+              "skill": "measure",
+              "options": [
+                "4",
+                "2",
+                "5",
+                "3 buçuk"
+              ],
+              "correct": 0,
+              "hint": "3 + 1 saat."
+            }
           ]
         }
       ]
