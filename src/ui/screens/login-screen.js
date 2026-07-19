@@ -4,6 +4,52 @@
  * veya yerel PIN ile açılır. Aile kodu ile cihazlar buluta bağlanır. */
 (function (B) {
 
+  /* ---------- Görsel: kahraman amblemi (Bilgi Kristali — hikâye lore'u) ---------- */
+  function hero() {
+    return '<svg class="hero-svg" viewBox="0 0 120 122" width="1em" height="1em" aria-hidden="true" focusable="false">' +
+      '<defs>' +
+        '<radialGradient id="lg-glow" cx="50%" cy="46%" r="55%">' +
+          '<stop offset="0%" stop-color="#FF4FD8" stop-opacity=".6"/>' +
+          '<stop offset="65%" stop-color="#9D6BFF" stop-opacity=".14"/>' +
+          '<stop offset="100%" stop-color="#9D6BFF" stop-opacity="0"/>' +
+        '</radialGradient>' +
+        '<linearGradient id="lg-cry" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="#8FF9E8"/><stop offset="45%" stop-color="#FF4FD8"/><stop offset="100%" stop-color="#A5329A"/>' +
+        '</linearGradient>' +
+      '</defs>' +
+      '<circle class="lg-halo" cx="60" cy="58" r="54" fill="url(#lg-glow)"/>' +
+      '<g class="lg-orbit"><ellipse cx="60" cy="60" rx="47" ry="15" fill="none" stroke="#FF4FD8" stroke-width="2" opacity=".45"/>' +
+        '<circle cx="107" cy="60" r="4" fill="#FFD52E" stroke="#120A26" stroke-width="1.6"/>' +
+        '<circle cx="13" cy="60" r="2.6" fill="#3DF2D2" stroke="#120A26" stroke-width="1.3"/></g>' +
+      '<g class="lg-cry">' +
+        '<path d="M60 12 L38 46 L60 108 L82 46 Z" fill="url(#lg-cry)" stroke="#120A26" stroke-width="3" stroke-linejoin="round"/>' +
+        '<path d="M60 12 L38 46 L60 46 Z" fill="#8FF9E8" opacity=".55"/>' +
+        '<path d="M60 12 L82 46 L60 46 Z" fill="#3DF2D2" opacity=".32"/>' +
+        '<path d="M38 46 L60 108 L60 46 Z" fill="#FF7BE4" opacity=".22"/>' +
+        '<path d="M82 46 L60 108 L60 46 Z" fill="#7A1F6C" opacity=".32"/>' +
+        '<path d="M38 46 H82" stroke="#120A26" stroke-width="2"/>' +
+        '<path d="M60 46 V108" stroke="#120A26" stroke-width="1.4" opacity=".45"/>' +
+        '<path d="M52 22 L46 40" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".75"/>' +
+      '</g>' +
+      '<g class="lg-spark">' +
+        '<path d="M98 26 l2 5.5 5.5 2 -5.5 2 -2 5.5 -2 -5.5 -5.5 -2 5.5 -2z" fill="#FFD52E"/>' +
+        '<path d="M20 32 l1.6 4.2 4.2 1.6 -4.2 1.6 -1.6 4.2 -1.6 -4.2 -4.2 -1.6 4.2 -1.6z" fill="#3DF2D2"/>' +
+        '<circle cx="30" cy="92" r="2" fill="#fff"/><circle cx="92" cy="86" r="2.3" fill="#FFD52E"/>' +
+      '</g>' +
+    '</svg>';
+  }
+
+  /* ---------- Görsel: animasyonlu galaksi arka planı ---------- */
+  function fx() {
+    const stars = [[12, 20], [80, 14], [26, 70], [90, 60], [55, 12], [70, 84], [40, 40], [18, 88], [64, 52], [86, 34]]
+      .map((s, i) => '<span class="lfx-star" style="left:' + s[0] + '%;top:' + s[1] + '%;animation-delay:' + (i * 0.4) + 's"></span>').join('');
+    return '<div class="login-fx" aria-hidden="true">' +
+      '<span class="lfx-neb lfx-neb-1"></span><span class="lfx-neb lfx-neb-2"></span>' +
+      '<span class="lfx-planet lfx-planet-1"></span><span class="lfx-planet lfx-planet-2"></span>' +
+      stars + '<span class="lfx-shoot"></span>' +
+    '</div>';
+  }
+
   /* ---------- Ebeveyn: e-posta hesabı akışı ---------- */
   function parentEmailFlow() {
     const savedEmail = B.AuthCloud.email();
@@ -132,7 +178,7 @@
   /* İlk açılış: Ebeveyn mi Oyuncu mu? */
   function renderWelcome(root) {
     root.innerHTML =
-      '<div class="login-box"><div class="login-logo">🌌</div>' +
+      '<div class="login-box"><div class="login-hero">' + hero() + '</div>' +
       '<h2 class="login-title">BOKUL Eğitim Üssü</h2>' +
       '<p class="login-sub">Kim kuruyor?</p>' +
       '<div class="welcome-choices">' +
@@ -176,7 +222,7 @@
     }).join('');
     cards += '<button class="login-card login-new"><span class="login-av"><span class="login-anon">➕</span></span><span class="login-cardname">Yeni Oyuncu</span></button>';
     root.innerHTML =
-      '<div class="login-box login-box-wide"><div class="login-logo">🌌</div>' +
+      '<div class="login-box login-box-wide"><div class="login-hero">' + hero() + '</div>' +
       '<h2 class="login-title">Kim oynuyor?</h2>' +
       '<p class="login-sub">Profiline dokun ve oyna!</p>' +
       '<div class="login-cards">' + cards + '</div></div>';
@@ -192,7 +238,7 @@
 
   function renderRegister(root, firstEver) {
     root.innerHTML =
-      '<div class="login-box"><div class="login-logo">🌌</div>' +
+      '<div class="login-box"><div class="login-hero">' + hero() + '</div>' +
       '<h2 class="login-title">' + (firstEver ? 'Üsse hoş geldin!' : 'Yeni Oyuncu') + '</h2>' +
       '<p class="login-sub">Kendine bir ad seç. İlerlemen bu ada kaydolur (şifre gerekmez).</p>' +
       '<input id="reg-name" class="name-input" maxlength="14" placeholder="Adın">' +
@@ -218,7 +264,7 @@
   B.UI.registerScreen('login', {
     enter(root) {
       root.classList.add('login-root');
-      root.innerHTML = '<div class="login-content"></div>';
+      root.innerHTML = fx() + '<div class="login-content"></div>';
       const content = root.querySelector('.login-content');
 
       const foot = document.createElement('div');

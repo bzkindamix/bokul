@@ -807,3 +807,64 @@
   .door:hover { transform: translateY(-2px); filter: brightness(1.06); }
   .door:hover .door-ic .icn { transform: scale(1.08) rotate(-3deg); }
 }
+
+/* === v0.46 — Giriş ekranı görsel zenginliği (galaksi sahnesi + kristal amblem) === */
+.login-root { position: relative; overflow: hidden; }
+.login-content { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; width: 100%; }
+
+/* Arka plan sahnesi */
+.login-fx { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.lfx-neb { position: absolute; border-radius: 50%; filter: blur(48px); opacity: .5; }
+.lfx-neb-1 { width: 60vmin; height: 60vmin; left: -14vmin; top: -10vmin;
+  background: radial-gradient(circle, rgba(255,79,216,.55), transparent 62%); animation: lfxDrift1 22s ease-in-out infinite; }
+.lfx-neb-2 { width: 52vmin; height: 52vmin; right: -12vmin; bottom: -12vmin;
+  background: radial-gradient(circle, rgba(61,242,210,.4), transparent 62%); animation: lfxDrift2 26s ease-in-out infinite; }
+.lfx-planet { position: absolute; border-radius: 50%; box-shadow: inset -6px -6px 14px rgba(0,0,0,.45), 0 0 24px rgba(0,0,0,.3); }
+.lfx-planet-1 { width: 58px; height: 58px; left: 10%; top: 22%;
+  background: radial-gradient(circle at 34% 30%, #FFC46B, #C86A1E); animation: floatY 7s ease-in-out infinite; }
+.lfx-planet-1::after { content: ""; position: absolute; inset: -7px 18px; border: 3px solid rgba(255,213,46,.55); border-radius: 50%; transform: rotate(-18deg); }
+.lfx-planet-2 { width: 34px; height: 34px; right: 12%; top: 16%;
+  background: radial-gradient(circle at 34% 30%, #9D8BFF, #5A3F9E); animation: floatY 9s ease-in-out infinite .6s; }
+.lfx-star { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 6px #fff; animation: lfxTwinkle 3.2s ease-in-out infinite; }
+.lfx-shoot { position: absolute; top: 18%; left: -10%; width: 120px; height: 2px;
+  background: linear-gradient(90deg, transparent, #fff, rgba(255,255,255,.1)); border-radius: 2px;
+  transform: rotate(18deg); opacity: 0; animation: lfxShoot 9s ease-in 3s infinite; }
+
+@keyframes lfxDrift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(6vmin,4vmin) scale(1.08); } }
+@keyframes lfxDrift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-5vmin,-3vmin) scale(1.1); } }
+@keyframes lfxTwinkle { 0%,100% { opacity: .25; transform: scale(.8); } 50% { opacity: 1; transform: scale(1.25); } }
+@keyframes lfxShoot { 0% { opacity: 0; transform: translate(0,0) rotate(18deg); } 6% { opacity: 1; } 16% { opacity: 0; transform: translate(120vw,38vh) rotate(18deg); } 100% { opacity: 0; } }
+
+/* Kristal amblem */
+.login-hero { font-size: 128px; line-height: 1; filter: drop-shadow(0 8px 26px rgba(255,79,216,.4)); animation: floatY 4s ease-in-out infinite; }
+.hero-svg { display: block; overflow: visible; }
+.lg-halo { animation: lgHalo 3.6s ease-in-out infinite; transform-box: view-box; transform-origin: 60px 58px; }
+.lg-orbit { transform-box: view-box; transform-origin: 60px 60px; animation: lgSpin 14s linear infinite; }
+.lg-cry { transform-box: view-box; transform-origin: 60px 60px; animation: lgBob 4s ease-in-out infinite; }
+.lg-spark { animation: lfxTwinkle 2.4s ease-in-out infinite; transform-box: view-box; transform-origin: 60px 60px; }
+@keyframes lgHalo { 0%,100% { opacity: .8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.12); } }
+@keyframes lgSpin { to { transform: rotate(360deg); } }
+@keyframes lgBob { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(1.5deg); } }
+
+/* Cam panel + başlık parıltısı */
+.login-box {
+  background: rgba(30,22,64,.5); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(157,107,255,.35); border-radius: 26px; padding: 26px 22px;
+  box-shadow: 0 24px 70px rgba(6,3,20,.55), inset 0 1px 0 rgba(255,255,255,.08);
+}
+.login-title { text-shadow: 0 0 22px rgba(255,79,216,.5); }
+.login-sub { color: var(--ink-dim); }
+
+/* Kartlarda daha zengin derinlik + juice */
+.welcome-card { box-shadow: 0 10px 26px rgba(6,3,20,.5), inset 0 1px 0 rgba(255,255,255,.12); transition: transform .14s ease, box-shadow .14s ease, filter .14s ease; }
+.login-card { transition: transform .14s ease, box-shadow .14s ease, border-color .14s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .welcome-card:hover { transform: translateY(-3px); filter: brightness(1.08); box-shadow: 0 16px 34px rgba(6,3,20,.6), inset 0 1px 0 rgba(255,255,255,.18); }
+  .login-card:hover { box-shadow: 0 12px 28px rgba(6,3,20,.5); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lfx-neb-1, .lfx-neb-2, .lfx-planet, .lfx-star, .lfx-shoot,
+  .login-hero, .lg-halo, .lg-orbit, .lg-cry, .lg-spark { animation: none !important; }
+}
