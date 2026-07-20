@@ -34,6 +34,7 @@ const JS = [
   'src/core/pets.js',
   'src/core/vendors.js',
   'src/core/daily.js',
+  'src/core/review.js',
   'src/core/badges.js',
   'src/core/demo.js',
   'src/core/tour.js',

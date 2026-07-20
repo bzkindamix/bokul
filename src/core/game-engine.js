@@ -23,6 +23,7 @@
       B.Save.init();
       B.Audio.init();
       B.Progress.init();
+      B.Review.init();
       B.Reward.init();
       B.Chest.init();
       B.Quest.init();

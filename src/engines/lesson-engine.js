@@ -150,15 +150,17 @@
       const gens = [];
       list.slice(0, idx + 1).forEach(x => {
         if (typeOf(x.section) !== curType) return; // yalnızca aynı tip
+        const skills = B.Lesson.sectionSkills(x.section); // aralıklı tekrar: bu üreticinin becerileri
         x.section.missions.forEach(m => {
           if (m.generator && (m.type === 'practice' || m.type === 'guided')) {
-            gens.push(B.Lesson.resolveGenerator(x.section.id, m.generator));
+            gens.push({ gen: B.Lesson.resolveGenerator(x.section.id, m.generator), skills });
           }
         });
       });
       if (gens.length) return gens;
       // Yedek: tipe uygun basit varsayılan
-      return [curType === 'arithmetic' ? { op: '+', a: [1, 10], b: [1, 10] } : { divisorRange: [2, 5], dividendDigits: 1 }];
+      const fallback = curType === 'arithmetic' ? { op: '+', a: [1, 10], b: [1, 10] } : { divisorRange: [2, 5], dividendDigits: 1 };
+      return [{ gen: fallback, skills: curSec ? B.Lesson.sectionSkills(curSec) : [] }];
     },
 
     /* Harekâtın ipucu anahtarını getir: hints[stepType][hataSeviyesi] → rastgele anahtar */

@@ -100,8 +100,9 @@
         if (qIndex >= total) return finishMission(starList);
         targetChip.textContent = '🎯 Hedef ' + (qIndex + 1) + '/' + total;
 
+        // Devriye (aralıklı tekrar): VADESİ GELEN beceriyi hedefle (yoksa rastgele); değilse normal üretici.
         let gen = reviewGens
-          ? reviewGens[Math.floor(Math.random() * reviewGens.length)]
+          ? ((B.Review && B.Review.pick(reviewGens)) || B.Lesson.resolveGenerator(params.sectionId, mission.generator))
           : B.Lesson.resolveGenerator(params.sectionId, mission.generator);
         gen = B.Curriculum.forType(itype, gen); // yaş/sınıfa göre zorluk (uzun bölme)
         const q = B.Question.generate(itype, gen, lesson.skills);

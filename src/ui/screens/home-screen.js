@@ -107,6 +107,8 @@
       if (needy.length) reasons.push('🐾 ' + needy.length + ' dostun bakım istiyor');
       const chq = B.Chest.queue ? B.Chest.queue().length : 0;
       if (chq) reasons.push('📦 ' + chq + ' sandık seni bekliyor');
+      const due = (B.Review && B.Review.dueCount) ? B.Review.dueCount() : 0;
+      if (due) reasons.push('🔄 ' + due + ' konu tekrar zamanı (Devriye)');
       if (reasons.length) {
         const rz = document.createElement('div');
         rz.className = 'home-reasons';
