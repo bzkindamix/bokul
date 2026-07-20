@@ -1844,7 +1844,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v1.02 — Craft edilen eşyalar ham maddelerinden bir ÜST nadirliğe çıkar (common→rare→epic→legendary zinciri)</div>
+      <div class="splash-note">v1.03 — Craft & rarity denetimi: satış değerleri nadirlikle uyumlu (epik eşya artık 1 altın değil), yanıltıcı blueprint metinleri düzeltildi, blueprint satışı kalıcı kayıp yapmıyor, yetim/tutarsız eşyalar temizlendi</div>
     </div>
   </div>
 
@@ -2549,7 +2549,7 @@ h1, h2, h3, h4,
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete yıldız deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "kalp",
@@ -2558,7 +2558,7 @@ h1, h2, h3, h4,
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete kalp deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "cicek",
@@ -2567,7 +2567,7 @@ h1, h2, h3, h4,
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete çiçek deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "simsek",
@@ -2576,7 +2576,7 @@ h1, h2, h3, h4,
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete şimşek deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "gokkusagi",
@@ -2585,7 +2585,7 @@ h1, h2, h3, h4,
       "price": 60,
       "cat": "susleme",
       "desc": "Kıyafete gökkuşağı deseni işlemek için (Atölye).",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "kar",
@@ -2594,7 +2594,7 @@ h1, h2, h3, h4,
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete kar deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "elmas",
@@ -2603,7 +2603,7 @@ h1, h2, h3, h4,
       "price": 60,
       "cat": "susleme",
       "desc": "Kıyafete elmas deseni işlemek için (Atölye).",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "kurdele",
@@ -2612,7 +2612,7 @@ h1, h2, h3, h4,
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete kurdele deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "ay",
@@ -2621,7 +2621,7 @@ h1, h2, h3, h4,
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete ay deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "kelebek",
@@ -2630,7 +2630,7 @@ h1, h2, h3, h4,
       "price": 60,
       "cat": "susleme",
       "desc": "Kıyafete kelebek deseni işlemek için (Atölye).",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "tahta",
@@ -2911,15 +2911,6 @@ h1, h2, h3, h4,
       "craftOnly": true,
       "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al.",
       "rarity": "common"
-    },
-    {
-      "id": "akvaryum_cam",
-      "name": "Akvaryum Camı",
-      "icon": "🔲",
-      "price": 120,
-      "cat": "pet",
-      "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)",
-      "rarity": "rare"
     },
     {
       "id": "filtre",
@@ -3296,6 +3287,7 @@ h1, h2, h3, h4,
     }
   ]
 }
+
 </script>
 <script type="application/json" id="bokul-content-recipes">
 {
@@ -3624,7 +3616,7 @@ h1, h2, h3, h4,
 {
   "schema": "blueprints@1",
   "version": 1,
-  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. Blueprint'i ya ilgili Hobi Kursu'nu bitirerek kazanırsın ya da Çarşı'daki Tarifhane'den yüksek bedelle satın alırsın. Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
+  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. Blueprint'ler 💎 NADİR SANDIKLARDAN düşer (boss'ları yenerek kazanırsın); Depom'da tarife dokunup «Öğren» dersin. Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
   "blueprints": [
     {
       "id": "bp_akvaryum",
@@ -4150,10 +4142,9 @@ h1, h2, h3, h4,
       "name": "Demirci Baba",
       "icon": "🔨",
       "color": "#B87333",
-      "tagline": "Ham madde ve atölye ürünleri",
+      "tagline": "Ham madde ve üretim malzemesi",
       "cats": [
-        "malzeme",
-        "craft"
+        "malzeme"
       ],
       "lines": [
         "Tahtayi severim, cunku hic 'hayir' demez, hep 'evet agac' der! Hih.",
@@ -36723,10 +36714,21 @@ h1, h2, h3, h4,
     stockLeft(id) { return Math.max(0, B.Items.stockMax(id) - (B.Items.dailyBox().bought[id] || 0)); },
 
     /* Satış: eşyayı %60 ucuza sat (alış fiyatının %40'ı geri döner) */
+    /* Bir eşyanın SATIŞ değeri (tek kaynak — hem sell hem UI kullanır).
+     * Fiyatlı eşya → alışın %40'ı. Fiyatsız (craft ürünü / junk) → hurda ya da NADİRLİK değeri.
+     * Böylece "epik akvaryum 1 altın" çelişkisi kalkar; değerler craft maliyetinin çok altında
+     * kaldığı için arbitraj (craftla-sat-kâr) yine imkansız. */
+    sellValue(idOrItem) {
+      const it = (idOrItem && typeof idOrItem === 'object') ? idOrItem : B.Items.get(idOrItem);
+      if (!it) return 1;
+      const RV = { common: 5, rare: 20, epic: 50, legendary: 100 };
+      const base = it.price ? Math.round(it.price * 0.4) : (it.scrap || RV[it.rarity] || 1);
+      return Math.max(1, base);
+    },
     sell(id) {
       const it = B.Items.get(id);
       if (!it || B.Items.count(id) <= 0) return { ok: false, err: 'Bu eşya sende yok.' };
-      const price = Math.max(1, Math.round((it.price || 0) * 0.4));
+      const price = B.Items.sellValue(it);
       B.Items.remove(id, 1);
       if (B.Reward && B.Reward.addCoins) B.Reward.addCoins(price, 'sell');
       B.Save.saveSoon();
@@ -36842,7 +36844,7 @@ h1, h2, h3, h4,
       const r = B.Craft.get(id);
       if (!r) return { ok: false, err: 'Tarif bulunamadı.' };
       const bp = B.Craft.lockedBy(r);
-      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" tarifini Depom\'dan öğren (ya da Hobi Kursu).', locked: true, bp };
+      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" tarifini öğren — 💎 nadir sandıktan düşer, Depom\'dan öğrenirsin.', locked: true, bp };
       if (!B.Craft.canCraft(r)) return { ok: false, err: 'Malzemen eksik.' };
       const p = r.produces || {};
       // Depo Rafı üretimi de depo tavanına (karakter seviyesi) tabi
@@ -36878,8 +36880,8 @@ h1, h2, h3, h4,
 /* === src/core/blueprints.js === */
 /* BOKUL — Blueprint'ler (Üretim Tarifleri / Yetenekler)
  * Bir tarifi (recipe) craft edebilmek için onu açan blueprint'i ÖĞRENMİŞ olmak
- * gerekir. Blueprint iki yolla öğrenilir: (1) ilgili Hobi Kursu'nu bitirmek
- * (ücretsiz, kalıcı yetenek), (2) Çarşı → Tarifhane'den yüksek bedelle satın almak.
+ * gerekir. Blueprint'ler 💎 NADİR SANDIKLARDAN düşer (boss ödülü) → Depom'dan "Öğren".
+ * (grantForHobby: gelecekteki Hobi Kursu özelliği için hazır ama HENÜZ bağlı değil.)
  * Öğrenilenler: B.State.data.blueprints = [blueprintId, ...]
  * İçerik: content/blueprints.json */
 (function (B) {
@@ -38074,6 +38076,8 @@ h1, h2, h3, h4,
   B.Chest = {
     meta, tierMeta,
     queue() { return inv().chests; },
+    /* Bir blueprint SATILDIĞINDA "görüldü" defterinden çıkar → tekrar düşebilir (kalıcı kayıp OLMASIN) */
+    forgetBlueprint(id) { const s = seen(); const i = s.blueprints.indexOf(id); if (i >= 0) s.blueprints.splice(i, 1); },
 
     earn(type) {
       if (B.Demo && B.Demo.isDemo()) return; // demo: sandık kazanılamaz
@@ -42150,7 +42154,7 @@ h1, h2, h3, h4,
       function openItemPopup(it) {
         if (!it) return;
         B.Audio.play('tick');
-        const sellPrice = Math.max(1, Math.round((it.price || 0) * 0.4)); // %60 daha ucuz
+        const sellPrice = B.Items.sellValue(it); // gerçek satış değeri (nadirlik/hurda dahil)
         const actions = [];
         // Blueprint ise ÖĞREN seçeneği (yeteneği açar, item'ı tüketir) — satın ALINAMAZ, satılabilir
         if (it.blueprint) {
@@ -42162,8 +42166,13 @@ h1, h2, h3, h4,
           } });
         }
         actions.push({ label: '💰 Sat (' + sellPrice + ')', onClick: () => {
+          const wasBlueprint = it.blueprint, bpId = it.id;
           const r = B.Items.sell(it.id);
-          if (r.ok) { B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın'); }
+          if (r.ok) {
+            // Öğrenilmemiş blueprint satıldıysa "görüldü" defterinden çıkar → tekrar düşebilir (kalıcı kayıp yok)
+            if (wasBlueprint && B.Chest && B.Chest.forgetBlueprint) B.Chest.forgetBlueprint(bpId);
+            B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın');
+          }
           shell();
         } });
         actions.push({ label: 'Kapat', onClick: null });
@@ -43131,7 +43140,7 @@ h1, h2, h3, h4,
         const lockedBp = match && B.Craft.lockedBy ? B.Craft.lockedBy(match) : null;
         let out = '';
         if (match && lockedBp) {
-          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» blueprint\'ini öğren (Çarşı → 📐 Tarifhane ya da Hobi Kursu).</div>';
+          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» blueprint\'ini öğren — 💎 nadir sandıktan düşer, Depom\'dan öğrenirsin.</div>';
         } else if (match) {
           const p = match.produces || {};
           const pic = p.type === 'upgrade' ? '⬆️' : ((B.Items.get(p.id) || {}).icon || match.icon);

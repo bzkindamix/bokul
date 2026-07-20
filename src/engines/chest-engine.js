@@ -88,6 +88,8 @@
   B.Chest = {
     meta, tierMeta,
     queue() { return inv().chests; },
+    /* Bir blueprint SATILDIĞINDA "görüldü" defterinden çıkar → tekrar düşebilir (kalıcı kayıp OLMASIN) */
+    forgetBlueprint(id) { const s = seen(); const i = s.blueprints.indexOf(id); if (i >= 0) s.blueprints.splice(i, 1); },
 
     earn(type) {
       if (B.Demo && B.Demo.isDemo()) return; // demo: sandık kazanılamaz

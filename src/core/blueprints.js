@@ -1,7 +1,7 @@
 /* BOKUL — Blueprint'ler (Üretim Tarifleri / Yetenekler)
  * Bir tarifi (recipe) craft edebilmek için onu açan blueprint'i ÖĞRENMİŞ olmak
- * gerekir. Blueprint iki yolla öğrenilir: (1) ilgili Hobi Kursu'nu bitirmek
- * (ücretsiz, kalıcı yetenek), (2) Çarşı → Tarifhane'den yüksek bedelle satın almak.
+ * gerekir. Blueprint'ler 💎 NADİR SANDIKLARDAN düşer (boss ödülü) → Depom'dan "Öğren".
+ * (grantForHobby: gelecekteki Hobi Kursu özelliği için hazır ama HENÜZ bağlı değil.)
  * Öğrenilenler: B.State.data.blueprints = [blueprintId, ...]
  * İçerik: content/blueprints.json */
 (function (B) {

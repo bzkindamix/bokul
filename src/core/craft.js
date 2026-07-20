@@ -83,7 +83,7 @@
       const r = B.Craft.get(id);
       if (!r) return { ok: false, err: 'Tarif bulunamadı.' };
       const bp = B.Craft.lockedBy(r);
-      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" tarifini Depom\'dan öğren (ya da Hobi Kursu).', locked: true, bp };
+      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" tarifini öğren — 💎 nadir sandıktan düşer, Depom\'dan öğrenirsin.', locked: true, bp };
       if (!B.Craft.canCraft(r)) return { ok: false, err: 'Malzemen eksik.' };
       const p = r.produces || {};
       // Depo Rafı üretimi de depo tavanına (karakter seviyesi) tabi

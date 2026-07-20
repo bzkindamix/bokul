@@ -1,7 +1,7 @@
 {
   "schema": "blueprints@1",
   "version": 1,
-  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. Blueprint'i ya ilgili Hobi Kursu'nu bitirerek kazanırsın ya da Çarşı'daki Tarifhane'den yüksek bedelle satın alırsın. Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
+  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. Blueprint'ler 💎 NADİR SANDIKLARDAN düşer (boss'ları yenerek kazanırsın); Depom'da tarife dokunup «Öğren» dersin. Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
   "blueprints": [
     {
       "id": "bp_akvaryum",

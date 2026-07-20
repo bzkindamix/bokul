@@ -24,7 +24,7 @@
       function openItemPopup(it) {
         if (!it) return;
         B.Audio.play('tick');
-        const sellPrice = Math.max(1, Math.round((it.price || 0) * 0.4)); // %60 daha ucuz
+        const sellPrice = B.Items.sellValue(it); // gerçek satış değeri (nadirlik/hurda dahil)
         const actions = [];
         // Blueprint ise ÖĞREN seçeneği (yeteneği açar, item'ı tüketir) — satın ALINAMAZ, satılabilir
         if (it.blueprint) {
@@ -36,8 +36,13 @@
           } });
         }
         actions.push({ label: '💰 Sat (' + sellPrice + ')', onClick: () => {
+          const wasBlueprint = it.blueprint, bpId = it.id;
           const r = B.Items.sell(it.id);
-          if (r.ok) { B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın'); }
+          if (r.ok) {
+            // Öğrenilmemiş blueprint satıldıysa "görüldü" defterinden çıkar → tekrar düşebilir (kalıcı kayıp yok)
+            if (wasBlueprint && B.Chest && B.Chest.forgetBlueprint) B.Chest.forgetBlueprint(bpId);
+            B.Audio.play('tick'); B.UI.toast('💰 ' + it.name + ' satıldı: +' + r.coins + ' Altın');
+          }
           shell();
         } });
         actions.push({ label: 'Kapat', onClick: null });

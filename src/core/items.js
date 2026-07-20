@@ -184,10 +184,21 @@
     stockLeft(id) { return Math.max(0, B.Items.stockMax(id) - (B.Items.dailyBox().bought[id] || 0)); },
 
     /* Satış: eşyayı %60 ucuza sat (alış fiyatının %40'ı geri döner) */
+    /* Bir eşyanın SATIŞ değeri (tek kaynak — hem sell hem UI kullanır).
+     * Fiyatlı eşya → alışın %40'ı. Fiyatsız (craft ürünü / junk) → hurda ya da NADİRLİK değeri.
+     * Böylece "epik akvaryum 1 altın" çelişkisi kalkar; değerler craft maliyetinin çok altında
+     * kaldığı için arbitraj (craftla-sat-kâr) yine imkansız. */
+    sellValue(idOrItem) {
+      const it = (idOrItem && typeof idOrItem === 'object') ? idOrItem : B.Items.get(idOrItem);
+      if (!it) return 1;
+      const RV = { common: 5, rare: 20, epic: 50, legendary: 100 };
+      const base = it.price ? Math.round(it.price * 0.4) : (it.scrap || RV[it.rarity] || 1);
+      return Math.max(1, base);
+    },
     sell(id) {
       const it = B.Items.get(id);
       if (!it || B.Items.count(id) <= 0) return { ok: false, err: 'Bu eşya sende yok.' };
-      const price = Math.max(1, Math.round((it.price || 0) * 0.4));
+      const price = B.Items.sellValue(it);
       B.Items.remove(id, 1);
       if (B.Reward && B.Reward.addCoins) B.Reward.addCoins(price, 'sell');
       B.Save.saveSoon();

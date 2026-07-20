@@ -46,7 +46,7 @@
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete yıldız deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "kalp",
@@ -55,7 +55,7 @@
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete kalp deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "cicek",
@@ -64,7 +64,7 @@
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete çiçek deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "simsek",
@@ -73,7 +73,7 @@
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete şimşek deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "gokkusagi",
@@ -82,7 +82,7 @@
       "price": 60,
       "cat": "susleme",
       "desc": "Kıyafete gökkuşağı deseni işlemek için (Atölye).",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "kar",
@@ -91,7 +91,7 @@
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete kar deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "elmas",
@@ -100,7 +100,7 @@
       "price": 60,
       "cat": "susleme",
       "desc": "Kıyafete elmas deseni işlemek için (Atölye).",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "kurdele",
@@ -109,7 +109,7 @@
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete kurdele deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "ay",
@@ -118,7 +118,7 @@
       "price": 40,
       "cat": "susleme",
       "desc": "Kıyafete ay deseni işlemek için (Atölye).",
-      "rarity": "rare"
+      "rarity": "common"
     },
     {
       "id": "kelebek",
@@ -127,7 +127,7 @@
       "price": 60,
       "cat": "susleme",
       "desc": "Kıyafete kelebek deseni işlemek için (Atölye).",
-      "rarity": "epic"
+      "rarity": "rare"
     },
     {
       "id": "tahta",
@@ -408,15 +408,6 @@
       "craftOnly": true,
       "desc": "İçi boş eski kutu. Hurdaya sat, yerine güzel eşya al.",
       "rarity": "common"
-    },
-    {
-      "id": "akvaryum_cam",
-      "name": "Akvaryum Camı",
-      "icon": "🔲",
-      "price": 120,
-      "cat": "pet",
-      "desc": "Akvaryum yapmak için cam panel. (2 adet gerekir)",
-      "rarity": "rare"
     },
     {
       "id": "filtre",

@@ -94,7 +94,7 @@
         const lockedBp = match && B.Craft.lockedBy ? B.Craft.lockedBy(match) : null;
         let out = '';
         if (match && lockedBp) {
-          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» blueprint\'ini öğren (Çarşı → 📐 Tarifhane ya da Hobi Kursu).</div>';
+          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» blueprint\'ini öğren — 💎 nadir sandıktan düşer, Depom\'dan öğrenirsin.</div>';
         } else if (match) {
           const p = match.produces || {};
           const pic = p.type === 'upgrade' ? '⬆️' : ((B.Items.get(p.id) || {}).icon || match.icon);
