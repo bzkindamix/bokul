@@ -53,19 +53,24 @@
         html += '<div class="adopt-list">' + B.Pets.types().map(def => {
           const owned = B.Pets.hasType(def.id);
           const miss = B.Pets.missingPrereq(def.id);
-          const ready = !owned && miss.length === 0;
+          const courseOk = B.Pets.courseReady(def.id);
+          const bp = (B.Blueprints && B.Blueprints.forPet) ? B.Blueprints.forPet(def.id) : null;
+          const ready = !owned && courseOk && miss.length === 0;
           const prereqRows = (def.prereq || []).map(r => {
             const it = B.Items.get(r.item) || { name: r.item, icon: '❔' };
             const have = B.Items.count(r.item), ok = have >= r.n;
             return '<span class="adopt-need' + (ok ? ' need-ok' : ' need-no') + '">' + it.icon + ' ' + it.name + ' ' + have + '/' + r.n + '</span>';
           }).join('');
+          let btn;
+          if (owned) btn = '<div class="adopt-tag">✓ Sahiplendin</div>';
+          else if (!courseOk) btn = '<button class="btn adopt-course btn-action" data-type="' + def.id + '">🎓 Önce Bakım Kursu</button>';
+          else btn = '<button class="btn adopt-go' + (ready ? ' btn-action' : ' btn-quiet') + '" data-type="' + def.id + '"' + (ready ? '' : ' disabled') + '>' +
+                  (ready ? '🐾 Sahiplen' : '🔒 Ön koşul eksik') + '</button>';
           return '<div class="adopt-card' + (owned ? ' adopt-owned' : '') + '">' +
             '<div class="pet-head"><span class="pet-face">' + def.icon + '</span><b>' + def.name + '</b></div>' +
+            (!owned && !courseOk && bp ? '<div class="adopt-course-note">🎓 «' + bp.name + '» kursunu geç → sahiplenme izni' + ((bp.grants && bp.grants.length) ? ' + yuva tarifi' : '') + '</div>' : '') +
             '<div class="adopt-needs">' + prereqRows + '</div>' +
-            (owned
-              ? '<div class="adopt-tag">✓ Sahiplendin</div>'
-              : '<button class="btn adopt-go' + (ready ? ' btn-action' : ' btn-quiet') + '" data-type="' + def.id + '"' + (ready ? '' : ' disabled') + '>' +
-                  (ready ? '🐾 Sahiplen' : '🔒 Ön koşul eksik') + '</button>') +
+            btn +
             '</div>';
         }).join('') + '</div>';
 
@@ -86,6 +91,9 @@
           }
           render();
         }; });
+
+        // Bakım kursuna git (sahiplenmeden önce kurs gerekir)
+        wrap.querySelectorAll('.adopt-course').forEach(b => b.onclick = () => { B.Audio.play('tick'); B.UI.show('hobbies', { back: 'pets' }); });
 
         // Sahiplenme
         wrap.querySelectorAll('.adopt-go').forEach(b => { if (!b.disabled) b.onclick = () => {

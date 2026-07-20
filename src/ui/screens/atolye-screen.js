@@ -94,7 +94,7 @@
         const lockedBp = match && B.Craft.lockedBy ? B.Craft.lockedBy(match) : null;
         let out = '';
         if (match && lockedBp) {
-          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» tarifini öğren — 🎓 Hobi Kursları\'ndan geç ya da 💎 nadir sandıktan düşer.</div>';
+          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» taslağını kazan — 🎓 Hobi Kursları\'nda ilgili bakım kursunu geç.</div>';
         } else if (match) {
           const p = match.produces || {};
           const pic = p.type === 'upgrade' ? '⬆️' : ((B.Items.get(p.id) || {}).icon || match.icon);

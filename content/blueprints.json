@@ -1,47 +1,97 @@
 {
   "schema": "blueprints@1",
-  "version": 1,
-  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. İki yol var: 🎓 HOBİ KURSLARI'ndan ilgili kursu geçersin (öğrenerek kazanırsın) ya da 💎 NADİR SANDIKLARDAN düşer (boss ödülü → Depom'dan «Öğren»). Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
+  "version": 2,
+  "intro": "Bir hayvanı sahiplenebilmen için önce onun BAKIMINI öğrenmen gerekir! 🎓 Hobi Kursları'ndan ilgili «... Bakımı» kursunu geç → o hayvanın TASLAĞINI kazan. Taslak sana iki şey verir: o hayvanı sahiplenme izni + (yuvası Atölye'de üretilebiliyorsa) yuvasını üretme tarifi. Önce öğren, sonra dost edin!",
   "blueprints": [
     {
-      "id": "bp_akvaryum",
-      "name": "Akvaryumculuk",
+      "id": "bp_balik",
+      "name": "Balık Bakımı",
       "icon": "🐠",
-      "price": 320,
-      "hobby": "hobi-akvaryum",
-      "skill": "Akvaryumculuk",
-      "grants": ["r_cam_panel", "r_akvaryum"],
-      "desc": "Cam panel ve akvaryum üretmeyi öğrenirsin — balıkların için pırıl pırıl bir cam ev!"
+      "pet": "balik",
+      "hobby": "bakim-balik",
+      "skill": "Balık Bakımı",
+      "grants": ["r_akvaryum"],
+      "desc": "Balık bakmayı öğrenirsin: balığı sahiplenebilir ve akvaryumu Atölye'de üretebilirsin."
     },
     {
-      "id": "bp_barinak",
-      "name": "Barınak Ustalığı",
-      "icon": "🏗️",
-      "price": 320,
-      "hobby": "hobi-barinak",
-      "skill": "Barınak Ustalığı",
-      "grants": ["r_metal_cerceve", "r_kopek_kulubesi", "r_kus_yuvasi"],
-      "desc": "Metal çerçeve, köpek kulübesi ve kuş yuvası üretmeyi öğrenirsin — dostlarına sıcak yuvalar."
+      "id": "bp_kopek",
+      "name": "Köpek Bakımı",
+      "icon": "🐕",
+      "pet": "kopek",
+      "hobby": "bakim-kopek",
+      "skill": "Köpek Bakımı",
+      "grants": ["r_kopek_kulubesi"],
+      "desc": "Köpek bakmayı öğrenirsin: köpeği sahiplenebilir ve köpek kulübesini üretebilirsin."
     },
     {
-      "id": "bp_dekor",
-      "name": "İç Mimarlık",
-      "icon": "🛋️",
-      "price": 420,
-      "hobby": "hobi-dekor",
-      "skill": "İç Mimarlık",
-      "grants": ["r_kumas", "r_pencere", "r_tablo", "r_ahsap_raf", "r_yatak", "r_vitrin"],
-      "desc": "Kumaş, pencere, tablo, raf, yatak ve vitrin üretmeyi öğrenirsin — odanı baştan yarat."
+      "id": "bp_kus",
+      "name": "Kuş Bakımı",
+      "icon": "🐦",
+      "pet": "kus",
+      "hobby": "bakim-kus",
+      "skill": "Kuş Bakımı",
+      "grants": ["r_kus_yuvasi"],
+      "desc": "Kuş bakmayı öğrenirsin: kuşu sahiplenebilir ve kuş yuvasını üretebilirsin."
     },
     {
-      "id": "bp_us",
-      "name": "Üs Mühendisliği",
-      "icon": "🏰",
-      "price": 520,
-      "hobby": "hobi-us",
-      "skill": "Üs Mühendisliği",
-      "grants": ["r_depo_raf", "r_ev_dekor"],
-      "desc": "Depo rafı ve ev geliştirmeleriyle üssünü büyütmeyi öğrenirsin."
+      "id": "bp_kedi",
+      "name": "Kedi Bakımı",
+      "icon": "🐈",
+      "pet": "kedi",
+      "hobby": "bakim-kedi",
+      "skill": "Kedi Bakımı",
+      "grants": [],
+      "desc": "Kedi bakmayı öğrenirsin: kediyi sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_hamster",
+      "name": "Hamster Bakımı",
+      "icon": "🐹",
+      "pet": "hamster",
+      "hobby": "bakim-hamster",
+      "skill": "Hamster Bakımı",
+      "grants": [],
+      "desc": "Hamster bakmayı öğrenirsin: hamsteri sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_tavsan",
+      "name": "Tavşan Bakımı",
+      "icon": "🐰",
+      "pet": "tavsan",
+      "hobby": "bakim-tavsan",
+      "skill": "Tavşan Bakımı",
+      "grants": [],
+      "desc": "Tavşan bakmayı öğrenirsin: tavşanı sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_kaplumbaga",
+      "name": "Kaplumbağa Bakımı",
+      "icon": "🐢",
+      "pet": "kaplumbaga",
+      "hobby": "bakim-kaplumbaga",
+      "skill": "Kaplumbağa Bakımı",
+      "grants": [],
+      "desc": "Kaplumbağa bakmayı öğrenirsin: kaplumbağayı sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_papagan",
+      "name": "Papağan Bakımı",
+      "icon": "🦜",
+      "pet": "papagan",
+      "hobby": "bakim-papagan",
+      "skill": "Papağan Bakımı",
+      "grants": [],
+      "desc": "Papağan bakmayı öğrenirsin: papağanı sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_kirpi",
+      "name": "Kirpi Bakımı",
+      "icon": "🦔",
+      "pet": "kirpi",
+      "hobby": "bakim-kirpi",
+      "skill": "Kirpi Bakımı",
+      "grants": [],
+      "desc": "Kirpi bakmayı öğrenirsin: kirpiyi sahiplenme iznini kazanırsın."
     }
   ]
 }

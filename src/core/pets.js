@@ -61,15 +61,21 @@
       });
       return out;
     },
-    // Sahiplenme ÖN KOŞUL ister: yuva + sarf malzemeleri hazır olmalı. Sarf malzemeleri
-    // (kum/mama/tasma...) HARCANIR; yuva (kafes/akvaryum/kulübe...) KORUNUR ve odaya konulabilir.
-    canAdopt(typeId) { return !B.Pets.hasType(typeId) && B.Pets.missingPrereq(typeId).length === 0; },
+    // Sahiplenme için: (1) BAKIM KURSU geçilmiş olmalı (taslak öğrenilmiş) — "önce bakmayı öğren";
+    // (2) yuva + sarf malzemeleri hazır olmalı. Sarf malzemeleri (kum/mama/tasma...) HARCANIR;
+    // yuva (kafes/akvaryum/kulübe...) KORUNUR ve odaya konulabilir.
+    courseReady(typeId) { return !B.Blueprints || !B.Blueprints.forPet || !B.Blueprints.forPet(typeId) || B.Blueprints.petUnlocked(typeId); },
+    canAdopt(typeId) { return !B.Pets.hasType(typeId) && B.Pets.courseReady(typeId) && B.Pets.missingPrereq(typeId).length === 0; },
 
-    /* Sahiplen: ön koşulları doğrula → sarf malzemelerini harca (yuva korunur) → hayvanı ekle */
+    /* Sahiplen: bakım kursu + ön koşulları doğrula → sarf malzemelerini harca (yuva korunur) → hayvanı ekle */
     adopt(typeId, name) {
       const def = B.Pets.typeDef(typeId);
       if (!def) return { ok: false, err: 'Tür bulunamadı.' };
       if (B.Pets.hasType(typeId)) return { ok: false, err: 'Bu türden zaten var.' };
+      if (!B.Pets.courseReady(typeId)) {
+        const bp = B.Blueprints.forPet(typeId);
+        return { ok: false, err: '🎓 Önce «' + (bp ? bp.name : (def.name + ' Bakımı')) + '» kursunu geç (Hobi Kursları).', needCourse: true };
+      }
       const missing = B.Pets.missingPrereq(typeId);
       if (missing.length) return { ok: false, err: 'Önce eksik ön koşulları tamamla: ' + missing.map(m => m.name).join(', ') };
       // Ön koşulları tüket: yuva eşyaları KORUNUR (hayvanın evi, odaya konulur), sarf malzemeleri harcanır.

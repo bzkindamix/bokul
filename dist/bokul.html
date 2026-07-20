@@ -1880,6 +1880,10 @@ h1, h2, h3, h4,
 .hobby-hint { display: block; color: var(--warn); font-size: 13px; margin-top: 4px; }
 .hobby-next { margin-top: 12px; width: 100%; }
 
+/* Pet sahiplenme: bakım kursu gereği notu (v1.05) */
+.adopt-course-note { font-size: 12px; color: var(--warn); background: rgba(255,179,92,.12); border-radius: 8px; padding: 5px 8px; margin: 6px 0; line-height: 1.3; }
+.adopt-course { width: 100%; }
+
 </style>
 </head>
 <body>
@@ -1889,7 +1893,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v1.04 — YENİ: Hobi Kursları! Kısa bir kurs (Akvaryumculuk/Barınak/İç Mimarlık/Üs Mühendisliği) geç, üretim tarifini (blueprint) öğren — craft artık sandık şansına bağlı değil. Atölye'den giriş.</div>
+      <div class="splash-note">v1.05 — Hobi Kursları artık HAYVAN BAKIMI: 9 hayvanın her biri için bakım kursu. Kursu geç → o dostu sahiplenme izni + (yuvası üretilebiliyorsa) yuva tarifi kazan. "blueprint" → "taslak".</div>
     </div>
   </div>
 
@@ -3660,48 +3664,98 @@ h1, h2, h3, h4,
 <script type="application/json" id="bokul-content-blueprints">
 {
   "schema": "blueprints@1",
-  "version": 1,
-  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. İki yol var: 🎓 HOBİ KURSLARI'ndan ilgili kursu geçersin (öğrenerek kazanırsın) ya da 💎 NADİR SANDIKLARDAN düşer (boss ödülü → Depom'dan «Öğren»). Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
+  "version": 2,
+  "intro": "Bir hayvanı sahiplenebilmen için önce onun BAKIMINI öğrenmen gerekir! 🎓 Hobi Kursları'ndan ilgili «... Bakımı» kursunu geç → o hayvanın TASLAĞINI kazan. Taslak sana iki şey verir: o hayvanı sahiplenme izni + (yuvası Atölye'de üretilebiliyorsa) yuvasını üretme tarifi. Önce öğren, sonra dost edin!",
   "blueprints": [
     {
-      "id": "bp_akvaryum",
-      "name": "Akvaryumculuk",
+      "id": "bp_balik",
+      "name": "Balık Bakımı",
       "icon": "🐠",
-      "price": 320,
-      "hobby": "hobi-akvaryum",
-      "skill": "Akvaryumculuk",
-      "grants": ["r_cam_panel", "r_akvaryum"],
-      "desc": "Cam panel ve akvaryum üretmeyi öğrenirsin — balıkların için pırıl pırıl bir cam ev!"
+      "pet": "balik",
+      "hobby": "bakim-balik",
+      "skill": "Balık Bakımı",
+      "grants": ["r_akvaryum"],
+      "desc": "Balık bakmayı öğrenirsin: balığı sahiplenebilir ve akvaryumu Atölye'de üretebilirsin."
     },
     {
-      "id": "bp_barinak",
-      "name": "Barınak Ustalığı",
-      "icon": "🏗️",
-      "price": 320,
-      "hobby": "hobi-barinak",
-      "skill": "Barınak Ustalığı",
-      "grants": ["r_metal_cerceve", "r_kopek_kulubesi", "r_kus_yuvasi"],
-      "desc": "Metal çerçeve, köpek kulübesi ve kuş yuvası üretmeyi öğrenirsin — dostlarına sıcak yuvalar."
+      "id": "bp_kopek",
+      "name": "Köpek Bakımı",
+      "icon": "🐕",
+      "pet": "kopek",
+      "hobby": "bakim-kopek",
+      "skill": "Köpek Bakımı",
+      "grants": ["r_kopek_kulubesi"],
+      "desc": "Köpek bakmayı öğrenirsin: köpeği sahiplenebilir ve köpek kulübesini üretebilirsin."
     },
     {
-      "id": "bp_dekor",
-      "name": "İç Mimarlık",
-      "icon": "🛋️",
-      "price": 420,
-      "hobby": "hobi-dekor",
-      "skill": "İç Mimarlık",
-      "grants": ["r_kumas", "r_pencere", "r_tablo", "r_ahsap_raf", "r_yatak", "r_vitrin"],
-      "desc": "Kumaş, pencere, tablo, raf, yatak ve vitrin üretmeyi öğrenirsin — odanı baştan yarat."
+      "id": "bp_kus",
+      "name": "Kuş Bakımı",
+      "icon": "🐦",
+      "pet": "kus",
+      "hobby": "bakim-kus",
+      "skill": "Kuş Bakımı",
+      "grants": ["r_kus_yuvasi"],
+      "desc": "Kuş bakmayı öğrenirsin: kuşu sahiplenebilir ve kuş yuvasını üretebilirsin."
     },
     {
-      "id": "bp_us",
-      "name": "Üs Mühendisliği",
-      "icon": "🏰",
-      "price": 520,
-      "hobby": "hobi-us",
-      "skill": "Üs Mühendisliği",
-      "grants": ["r_depo_raf", "r_ev_dekor"],
-      "desc": "Depo rafı ve ev geliştirmeleriyle üssünü büyütmeyi öğrenirsin."
+      "id": "bp_kedi",
+      "name": "Kedi Bakımı",
+      "icon": "🐈",
+      "pet": "kedi",
+      "hobby": "bakim-kedi",
+      "skill": "Kedi Bakımı",
+      "grants": [],
+      "desc": "Kedi bakmayı öğrenirsin: kediyi sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_hamster",
+      "name": "Hamster Bakımı",
+      "icon": "🐹",
+      "pet": "hamster",
+      "hobby": "bakim-hamster",
+      "skill": "Hamster Bakımı",
+      "grants": [],
+      "desc": "Hamster bakmayı öğrenirsin: hamsteri sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_tavsan",
+      "name": "Tavşan Bakımı",
+      "icon": "🐰",
+      "pet": "tavsan",
+      "hobby": "bakim-tavsan",
+      "skill": "Tavşan Bakımı",
+      "grants": [],
+      "desc": "Tavşan bakmayı öğrenirsin: tavşanı sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_kaplumbaga",
+      "name": "Kaplumbağa Bakımı",
+      "icon": "🐢",
+      "pet": "kaplumbaga",
+      "hobby": "bakim-kaplumbaga",
+      "skill": "Kaplumbağa Bakımı",
+      "grants": [],
+      "desc": "Kaplumbağa bakmayı öğrenirsin: kaplumbağayı sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_papagan",
+      "name": "Papağan Bakımı",
+      "icon": "🦜",
+      "pet": "papagan",
+      "hobby": "bakim-papagan",
+      "skill": "Papağan Bakımı",
+      "grants": [],
+      "desc": "Papağan bakmayı öğrenirsin: papağanı sahiplenme iznini kazanırsın."
+    },
+    {
+      "id": "bp_kirpi",
+      "name": "Kirpi Bakımı",
+      "icon": "🦔",
+      "pet": "kirpi",
+      "hobby": "bakim-kirpi",
+      "skill": "Kirpi Bakımı",
+      "grants": [],
+      "desc": "Kirpi bakmayı öğrenirsin: kirpiyi sahiplenme iznini kazanırsın."
     }
   ]
 }
@@ -3710,64 +3764,125 @@ h1, h2, h3, h4,
 <script type="application/json" id="bokul-content-hobbies">
 {
   "schema": "hobbies@1",
-  "version": 1,
-  "intro": "Hobi Kursları'na hoş geldin Komutan! Burada gerçek dünyadan bir hobi öğrenirsin ve karşılığında Atölye'de yeni şeyler üretmeni sağlayan bir TARİF (blueprint) kazanırsın. Bir kursu geç, tarifi kap!",
+  "version": 2,
+  "intro": "Hayvan Bakım Kursları'na hoş geldin Komutan! Bir dostu sahiplenmeden önce ona nasıl bakılacağını öğrenmen gerekir. İlgili kursu geç → o hayvanın TASLAĞINI kazan: onu sahiplenebilir, yuvası üretilebiliyorsa Atölye'de üretebilirsin. Önce öğren, sonra dost edin!",
   "passRatio": 0.6,
   "courses": [
     {
-      "id": "hobi-akvaryum",
-      "name": "Akvaryumculuk",
+      "id": "bakim-balik",
+      "name": "Balık Bakımı",
       "icon": "🐠",
-      "blueprint": "bp_akvaryum",
-      "reward": "Cam panel + Akvaryum tarifi",
-      "intro": "Balıklara güzel bir cam ev kurmayı öğrenelim! Bu kursu geçersen akvaryum üretme tarifini kazanırsın.",
+      "blueprint": "bp_balik",
+      "reward": "Balığı sahiplenme + Akvaryum tarifi",
+      "intro": "Balıklara iyi bakmayı öğren, sonra bir balık sahiplen!",
       "questions": [
-        { "q": "Balıklar suyun içinde nasıl nefes alır?", "options": ["Solungaçlarıyla", "Burnuyla", "Kulaklarıyla"], "correct": 0, "hint": "Balıkların yanındaki yarıklara solungaç denir." },
-        { "q": "Akvaryum suyunu ara ara değiştirmek neden gerekir?", "options": ["Su temiz ve sağlıklı kalsın diye", "Balık sıkılmasın diye", "Su rengi değişsin diye"], "correct": 0, "hint": "Kirli su balığı hasta eder." },
-        { "q": "Balığa çok fazla yem atmak neden zararlıdır?", "options": ["Artan yem suyu kirletir", "Balık çok büyür", "Su ısınır"], "correct": 0, "hint": "Yenmeyen yem çürür ve suyu bozar." },
-        { "q": "Akvaryumun duvarları genellikle neyden yapılır?", "options": ["Camdan", "Tahtadan", "Kumaştan"], "correct": 0, "hint": "İçini görebilmen için saydam olmalı." }
+        { "q": "Balığın akvaryum suyu ne zaman değişmeli?", "options": ["Düzenli olarak, kirlenince", "Hiçbir zaman", "Yılda bir kez"], "correct": 0, "hint": "Temiz su = sağlıklı balık." },
+        { "q": "Balığa ne kadar yem vermek doğrudur?", "options": ["Az miktarda, ölçülü", "Kova dolusu", "Hiç"], "correct": 0, "hint": "Fazla yem suyu kirletir." },
+        { "q": "Akvaryum nasıl bir yerde durmalı?", "options": ["Aşırı sıcak ve güneşten uzak", "Sobanın üstünde", "Buzdolabında"], "correct": 0, "hint": "Balıklar ılık, dengeli su sever." }
       ]
     },
     {
-      "id": "hobi-barinak",
-      "name": "Barınak Ustalığı",
-      "icon": "🏗️",
-      "blueprint": "bp_barinak",
-      "reward": "Metal çerçeve + Köpek kulübesi + Kuş yuvası tarifi",
-      "intro": "Dostlarımıza sıcak yuvalar yapmayı öğrenelim! Bu kursu geçersen barınak tariflerini kazanırsın.",
+      "id": "bakim-kopek",
+      "name": "Köpek Bakımı",
+      "icon": "🐕",
+      "blueprint": "bp_kopek",
+      "reward": "Köpeği sahiplenme + Köpek kulübesi tarifi",
+      "intro": "Köpeklere iyi bakmayı öğren, sonra sadık bir dost sahiplen!",
       "questions": [
-        { "q": "Köpek kulübesi köpeği en çok neyden korur?", "options": ["Soğuk ve yağmurdan", "Karanlıktan", "Sesten"], "correct": 0, "hint": "Bir evin seni neyden koruduğunu düşün." },
-        { "q": "Bir barınaktaki hayvanların en çok ihtiyacı olan şey nedir?", "options": ["Düzenli bakım ve sevgi", "Bol oyuncak", "Büyük televizyon"], "correct": 0, "hint": "Canlılar sevgi ve ilgiyle mutlu olur." },
-        { "q": "Kuş yuvası kuşlar için ne zaman daha da önemlidir?", "options": ["Soğuk kış günlerinde", "Sıcak yaz öğlenlerinde", "Hiçbir zaman"], "correct": 0, "hint": "Üşüdüğünde bir yuva ister misin?" },
-        { "q": "Metal çerçeve neden yuvaları sağlam yapar?", "options": ["Dayanıklı ve kolay eğilmez", "Rengi güzel diye", "Hafif diye"], "correct": 0, "hint": "Metal kolay kırılmaz." }
+        { "q": "Bir köpeğin her gün en çok neye ihtiyacı vardır?", "options": ["Yürüyüş, sevgi ve ilgi", "Bol televizyon", "Yalnız kalmak"], "correct": 0, "hint": "Köpekler hareket ve arkadaşlık ister." },
+        { "q": "Köpeğe su ne sıklıkta verilmeli?", "options": ["Her gün taze ve temiz", "Ayda bir", "Hiç"], "correct": 0, "hint": "Susuz kalmamalı." },
+        { "q": "Köpek üşüdüğünde ya da yorulduğunda nerede dinlenir?", "options": ["Sıcak kulübesinde", "Soğukta dışarıda", "Ağaçta"], "correct": 0, "hint": "Bir yuvaya ihtiyacı var." }
       ]
     },
     {
-      "id": "hobi-dekor",
-      "name": "İç Mimarlık",
-      "icon": "🛋️",
-      "blueprint": "bp_dekor",
-      "reward": "Kumaş, pencere, tablo, raf, yatak, vitrin tarifleri",
-      "intro": "Bir odayı en güzel haline getirmeyi öğrenelim! Bu kursu geçersen dekor tariflerini kazanırsın.",
+      "id": "bakim-kus",
+      "name": "Kuş Bakımı",
+      "icon": "🐦",
+      "blueprint": "bp_kus",
+      "reward": "Kuşu sahiplenme + Kuş yuvası tarifi",
+      "intro": "Kuşlara iyi bakmayı öğren, sonra cıvıl cıvıl bir dost sahiplen!",
       "questions": [
-        { "q": "Bir odayı daha aydınlık göstermek için ne yaparsın?", "options": ["Açık renkler ve pencere kullanırım", "Her yeri siyaha boyarım", "Perdeleri hep kapatırım"], "correct": 0, "hint": "Işık ve açık renkler ferahlık verir." },
-        { "q": "Kitaplık ne işe yarar?", "options": ["Kitapları düzenli saklamaya", "Yemek pişirmeye", "Uyumaya"], "correct": 0, "hint": "Adı ipucu veriyor: kitap-lık." },
-        { "q": "Halı bir odaya ne katar?", "options": ["Sıcaklık ve yumuşaklık", "Gürültü", "Soğukluk"], "correct": 0, "hint": "Üstünde yürüyünce ayağın nasıl hisseder?" },
-        { "q": "Kumaş hangi malzemeden örülür?", "options": ["İpten", "Camdan", "Metalden"], "correct": 0, "hint": "İnce iplikler birleşince kumaş olur." }
+        { "q": "Kuşun kafesi nasıl olmalı?", "options": ["Düzenli temizlenmiş ve temiz", "Hiç temizlenmemiş", "Kapkaranlık"], "correct": 0, "hint": "Temizlik kuşu sağlıklı tutar." },
+        { "q": "Kuşlar genellikle neyle beslenir?", "options": ["Kuş yemi ve tohumlarla", "Çikolatayla", "Taşla"], "correct": 0, "hint": "Küçük tohumları sever." },
+        { "q": "Bir kuşu ne neşelendirir?", "options": ["Şarkı söyletmek ve ilgi", "Bağırmak", "Yalnız bırakmak"], "correct": 0, "hint": "Kuşlar sese ve sevgiye bayılır." }
       ]
     },
     {
-      "id": "hobi-us",
-      "name": "Üs Mühendisliği",
-      "icon": "🏰",
-      "blueprint": "bp_us",
-      "reward": "Depo rafı + Ev geliştirme tarifleri",
-      "intro": "Üssünü büyütüp güçlendirmeyi öğrenelim! Bu kursu geçersen mühendislik tariflerini kazanırsın.",
+      "id": "bakim-kedi",
+      "name": "Kedi Bakımı",
+      "icon": "🐈",
+      "blueprint": "bp_kedi",
+      "reward": "Kediyi sahiplenme izni",
+      "intro": "Kedilere iyi bakmayı öğren, sonra bir kedi sahiplen!",
       "questions": [
-        { "q": "Depo ne işe yarar?", "options": ["Eşyaları düzenli saklamaya", "Uyumaya", "Yemek yemeye"], "correct": 0, "hint": "Topladığın şeyleri nereye koyarsın?" },
-        { "q": "Bir raf eklemek neye yardım eder?", "options": ["Daha çok eşyayı düzenli yerleştirmeye", "Odayı karartmaya", "Sesi artırmaya"], "correct": 0, "hint": "Raflar yer açar." },
-        { "q": "Bir mühendis bir şeyi güçlendirmeden önce ne yapar?", "options": ["Plan yapar ve malzeme hazırlar", "Hemen kırar", "Bekler"], "correct": 0, "hint": "Önce düşünmek, sonra yapmak." },
-        { "q": "Üssünü (deponu/evini) büyütmek neden iyidir?", "options": ["Daha çok şey saklayıp geliştirebilirsin", "Daha az yerin olur", "Hiçbir işe yaramaz"], "correct": 0, "hint": "Büyük yer = daha çok imkân." }
+        { "q": "Kedi tuvaletini nereye yapar?", "options": ["Kedi kumuna", "Yatağa", "Mutfağa"], "correct": 0, "hint": "Kum kabı şart." },
+        { "q": "Kedi tırnaklarını nerede biler?", "options": ["Tırmalama tahtasında", "Duvar kağıdında (istemeyiz!)", "Hiçbir yerde"], "correct": 0, "hint": "Tırmalama tahtası alırsan mobilyan kurtulur." },
+        { "q": "Kedi mutlu ve rahat olduğunda ne yapar?", "options": ["Mırlar", "Havlar", "Ağlar"], "correct": 0, "hint": "O huzurlu mırıltıyı duymuşsundur." }
+      ]
+    },
+    {
+      "id": "bakim-hamster",
+      "name": "Hamster Bakımı",
+      "icon": "🐹",
+      "blueprint": "bp_hamster",
+      "reward": "Hamsteri sahiplenme izni",
+      "intro": "Minik hamsterlara bakmayı öğren, sonra bir hamster sahiplen!",
+      "questions": [
+        { "q": "Hamster kafesinin tabanına ne serilir?", "options": ["Talaş", "Su", "Kum"], "correct": 0, "hint": "Yumuşak ve emici olmalı." },
+        { "q": "Hamster geceleri en çok neyi sever?", "options": ["Koşu tekerinde koşmak", "Uyumak dışarıda", "Yüzmek"], "correct": 0, "hint": "Onlar gece hayvanıdır, enerjiktir." },
+        { "q": "Hamster çok küçük olduğu için nasıl tutulmalı?", "options": ["Nazikçe ve yavaşça", "Sıkıca", "Havaya atarak"], "correct": 0, "hint": "Kırılgan minik bir dost." }
+      ]
+    },
+    {
+      "id": "bakim-tavsan",
+      "name": "Tavşan Bakımı",
+      "icon": "🐰",
+      "blueprint": "bp_tavsan",
+      "reward": "Tavşanı sahiplenme izni",
+      "intro": "Tavşanlara bakmayı öğren, sonra bir tavşan sahiplen!",
+      "questions": [
+        { "q": "Tavşan en çok neyi yemeyi sever?", "options": ["Taze ot ve havuç", "Şeker", "Cips"], "correct": 0, "hint": "Sebze ve ot en sağlıklısı." },
+        { "q": "Tavşanın dişleri sürekli uzar, bu yüzden ne yapar?", "options": ["Kemirir", "Uçar", "Yüzer"], "correct": 0, "hint": "Kemirmek dişlerini kısaltır." },
+        { "q": "Tavşan korktuğunda ne ister?", "options": ["Saklanabileceği güvenli bir yuva", "Yüksek ses", "Kalabalık"], "correct": 0, "hint": "Güvende hissetmeli." }
+      ]
+    },
+    {
+      "id": "bakim-kaplumbaga",
+      "name": "Kaplumbağa Bakımı",
+      "icon": "🐢",
+      "blueprint": "bp_kaplumbaga",
+      "reward": "Kaplumbağayı sahiplenme izni",
+      "intro": "Kaplumbağalara bakmayı öğren, sonra bir kaplumbağa sahiplen!",
+      "questions": [
+        { "q": "Kaplumbağa ısınmak için neye ihtiyaç duyar?", "options": ["Isıtıcı lamba ya da güneş", "Buz", "Karanlık"], "correct": 0, "hint": "Onlar sıcağı sever." },
+        { "q": "Kaplumbağayla ilgilenirken ne gerekir?", "options": ["Sabır — çünkü yavaş hareket eder", "Acele", "Koşturmak"], "correct": 0, "hint": "Ünlü ağırkanlılık!" },
+        { "q": "Kaplumbağa için yapılmaması gereken nedir?", "options": ["Sırtüstü ters çevirmek", "Temiz su vermek", "Nazikçe okşamak"], "correct": 0, "hint": "Ters dönmek onun için tehlikeli." }
+      ]
+    },
+    {
+      "id": "bakim-papagan",
+      "name": "Papağan Bakımı",
+      "icon": "🦜",
+      "blueprint": "bp_papagan",
+      "reward": "Papağanı sahiplenme izni",
+      "intro": "Papağanlara bakmayı öğren, sonra konuşkan bir dost sahiplen!",
+      "questions": [
+        { "q": "Papağanlar neyi taklit edebilir?", "options": ["Kelimeleri ve sesleri", "Uçağı", "Hiçbir şeyi"], "correct": 0, "hint": "Çok iyi taklitçidirler." },
+        { "q": "Papağan sıkılmasın diye ne yaparsın?", "options": ["İlgilenir, oyun oynarsın", "Görmezden gelirsin", "Karanlığa koyarsın"], "correct": 0, "hint": "Zeki kuşlar sosyaldir." },
+        { "q": "Papağanın kafesi nasıl olmalı?", "options": ["Rahatça hareket edebileceği kadar büyük", "Kıpırdayamayacağı kadar küçük", "Hiç kafes olmasın"], "correct": 0, "hint": "Kanatlarını açabilmeli." }
+      ]
+    },
+    {
+      "id": "bakim-kirpi",
+      "name": "Kirpi Bakımı",
+      "icon": "🦔",
+      "blueprint": "bp_kirpi",
+      "reward": "Kirpiyi sahiplenme izni",
+      "intro": "Kirpilere bakmayı öğren, sonra dikenli ama tatlı bir dost sahiplen!",
+      "questions": [
+        { "q": "Kirpinin sırtında dikenler var; ona nasıl dokunulur?", "options": ["Çok nazikçe ve dikkatlice", "Sıkıca sıkarak", "Hiç dokunulmaz"], "correct": 0, "hint": "Nazik ol, o da sana güvensin." },
+        { "q": "Kirpi günün hangi vaktinde daha aktiftir?", "options": ["Geceleri", "Öğle sıcağında", "Hiçbir zaman"], "correct": 0, "hint": "Gece dostudur." },
+        { "q": "Kirpi korktuğunda ne yapar?", "options": ["Top gibi kıvrılır", "Havlar", "Uçar"], "correct": 0, "hint": "Dikenleriyle kendini korur." }
       ]
     }
   ]
@@ -36673,11 +36788,11 @@ h1, h2, h3, h4,
       // Blueprint'ler de depoda "item" gibi durur (satılabilir, öğrenilebilir; satın ALINAMAZ)
       if (B.Blueprints) {
         const bp = B.Blueprints.get(id);
-        if (bp) return { id: bp.id, name: bp.name + ' Tarifi', icon: bp.icon, rarity: 'legendary', cat: 'blueprint', desc: bp.desc, price: bp.price, blueprint: true, unique: true };
+        if (bp) return { id: bp.id, name: bp.name + ' Taslağı', icon: bp.icon, rarity: 'legendary', cat: 'blueprint', desc: bp.desc, price: bp.price, blueprint: true, unique: true };
       }
       return null;
     },
-    catName(cat) { if (cat === 'blueprint') return 'Blueprint'; const c = data().categories.find(x => x.id === cat); return c ? c.name : cat; },
+    catName(cat) { if (cat === 'blueprint') return 'Taslak'; const c = data().categories.find(x => x.id === cat); return c ? c.name : cat; },
     /* Enderlik sırası (sıralama için): efsanevi en üstte */
     rarRank(r) { return { common: 0, rare: 1, epic: 2, legendary: 3 }[r || 'common'] || 0; },
 
@@ -36956,7 +37071,7 @@ h1, h2, h3, h4,
       const r = B.Craft.get(id);
       if (!r) return { ok: false, err: 'Tarif bulunamadı.' };
       const bp = B.Craft.lockedBy(r);
-      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" tarifini öğren — 🎓 Hobi Kursları\'ndan geç ya da 💎 nadir sandıktan düşer.', locked: true, bp };
+      if (bp) return { ok: false, err: '🔒 Önce «' + bp.name + '» taslağını kazan — 🎓 Hobi Kursları\'nda ilgili bakım kursunu geç.', locked: true, bp };
       if (!B.Craft.canCraft(r)) return { ok: false, err: 'Malzemen eksik.' };
       const p = r.produces || {};
       // Depo Rafı üretimi de depo tavanına (karakter seviyesi) tabi
@@ -37008,8 +37123,11 @@ h1, h2, h3, h4,
     learned() { return learnedArr().slice(); },
     isLearned(id) { return learnedArr().indexOf(id) >= 0; },
 
-    /* Bu tarifi açan blueprint (yoksa null = zaten serbest) */
+    /* Bu tarifi açan taslak (yoksa null = zaten serbest) */
     forRecipe(recipeId) { return (data().blueprints || []).find(b => (b.grants || []).indexOf(recipeId) >= 0) || null; },
+    /* Bir hayvanın bakım taslağı (pet alanına göre) + öğrenilmiş mi (sahiplenme izni) */
+    forPet(petType) { return (data().blueprints || []).find(b => b.pet === petType) || null; },
+    petUnlocked(petType) { const b = B.Blueprints.forPet(petType); return !!b && B.Blueprints.isLearned(b.id); },
     /* Tarif craft edilebilir mi? (blueprint yok → serbest; varsa öğrenilmiş olmalı) */
     recipeUnlocked(recipeId) {
       const b = B.Blueprints.forRecipe(recipeId);
@@ -37019,8 +37137,8 @@ h1, h2, h3, h4,
     /* Öğren: opts.free ise bedelsiz (kurs ödülü), değilse altınla satın al */
     learn(id, opts) {
       const b = B.Blueprints.get(id);
-      if (!b) return { ok: false, err: 'Blueprint bulunamadı.' };
-      if (B.Blueprints.isLearned(id)) return { ok: false, err: 'Bu blueprint\'i zaten öğrendin.' };
+      if (!b) return { ok: false, err: 'Taslak bulunamadı.' };
+      if (B.Blueprints.isLearned(id)) return { ok: false, err: 'Bu taslağı zaten öğrendin.' };
       const free = !!(opts && opts.free);
       if (!free) {
         if ((B.State.data.player.coins || 0) < b.price) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };
@@ -37116,15 +37234,21 @@ h1, h2, h3, h4,
       });
       return out;
     },
-    // Sahiplenme ÖN KOŞUL ister: yuva + sarf malzemeleri hazır olmalı. Sarf malzemeleri
-    // (kum/mama/tasma...) HARCANIR; yuva (kafes/akvaryum/kulübe...) KORUNUR ve odaya konulabilir.
-    canAdopt(typeId) { return !B.Pets.hasType(typeId) && B.Pets.missingPrereq(typeId).length === 0; },
+    // Sahiplenme için: (1) BAKIM KURSU geçilmiş olmalı (taslak öğrenilmiş) — "önce bakmayı öğren";
+    // (2) yuva + sarf malzemeleri hazır olmalı. Sarf malzemeleri (kum/mama/tasma...) HARCANIR;
+    // yuva (kafes/akvaryum/kulübe...) KORUNUR ve odaya konulabilir.
+    courseReady(typeId) { return !B.Blueprints || !B.Blueprints.forPet || !B.Blueprints.forPet(typeId) || B.Blueprints.petUnlocked(typeId); },
+    canAdopt(typeId) { return !B.Pets.hasType(typeId) && B.Pets.courseReady(typeId) && B.Pets.missingPrereq(typeId).length === 0; },
 
-    /* Sahiplen: ön koşulları doğrula → sarf malzemelerini harca (yuva korunur) → hayvanı ekle */
+    /* Sahiplen: bakım kursu + ön koşulları doğrula → sarf malzemelerini harca (yuva korunur) → hayvanı ekle */
     adopt(typeId, name) {
       const def = B.Pets.typeDef(typeId);
       if (!def) return { ok: false, err: 'Tür bulunamadı.' };
       if (B.Pets.hasType(typeId)) return { ok: false, err: 'Bu türden zaten var.' };
+      if (!B.Pets.courseReady(typeId)) {
+        const bp = B.Blueprints.forPet(typeId);
+        return { ok: false, err: '🎓 Önce «' + (bp ? bp.name : (def.name + ' Bakımı')) + '» kursunu geç (Hobi Kursları).', needCourse: true };
+      }
       const missing = B.Pets.missingPrereq(typeId);
       if (missing.length) return { ok: false, err: 'Önce eksik ön koşulları tamamla: ' + missing.map(m => m.name).join(', ') };
       // Ön koşulları tüket: yuva eşyaları KORUNUR (hayvanın evi, odaya konulur), sarf malzemeleri harcanır.
@@ -38214,11 +38338,8 @@ h1, h2, h3, h4,
         const boosted = Object.assign({}, cfg.items, { count: [c[0], (c[1] || c[0]) + (t.itemBonus || 0)] });
         out.items = rollItems(boosted);
       }
-      // 📐 Nadir sandık: blueprint'ler SATIN ALINAMAZ — buradan (ve hobi kurslarından) düşer.
-      if (norm(type) === 'nadir' && B.Blueprints) {
-        const avail = B.Blueprints.all().filter(b => !B.Blueprints.isLearned(b.id) && (!B.Items || B.Items.count(b.id) === 0) && seen().blueprints.indexOf(b.id) < 0);
-        if (avail.length && Math.random() < 0.4) out.blueprint = avail[Math.floor(Math.random() * avail.length)].id;
-      }
+      // NOT: Taslaklar (bakım taslakları) artık YALNIZCA Hobi Kursları'ndan kazanılır (sandıktan düşmez) —
+      // "önce bakmayı öğren" eğitici kapısını atlamamak için. Nadir sandık kozmetik + bol altın verir.
       return out;
     },
 
@@ -42517,19 +42638,24 @@ h1, h2, h3, h4,
         html += '<div class="adopt-list">' + B.Pets.types().map(def => {
           const owned = B.Pets.hasType(def.id);
           const miss = B.Pets.missingPrereq(def.id);
-          const ready = !owned && miss.length === 0;
+          const courseOk = B.Pets.courseReady(def.id);
+          const bp = (B.Blueprints && B.Blueprints.forPet) ? B.Blueprints.forPet(def.id) : null;
+          const ready = !owned && courseOk && miss.length === 0;
           const prereqRows = (def.prereq || []).map(r => {
             const it = B.Items.get(r.item) || { name: r.item, icon: '❔' };
             const have = B.Items.count(r.item), ok = have >= r.n;
             return '<span class="adopt-need' + (ok ? ' need-ok' : ' need-no') + '">' + it.icon + ' ' + it.name + ' ' + have + '/' + r.n + '</span>';
           }).join('');
+          let btn;
+          if (owned) btn = '<div class="adopt-tag">✓ Sahiplendin</div>';
+          else if (!courseOk) btn = '<button class="btn adopt-course btn-action" data-type="' + def.id + '">🎓 Önce Bakım Kursu</button>';
+          else btn = '<button class="btn adopt-go' + (ready ? ' btn-action' : ' btn-quiet') + '" data-type="' + def.id + '"' + (ready ? '' : ' disabled') + '>' +
+                  (ready ? '🐾 Sahiplen' : '🔒 Ön koşul eksik') + '</button>';
           return '<div class="adopt-card' + (owned ? ' adopt-owned' : '') + '">' +
             '<div class="pet-head"><span class="pet-face">' + def.icon + '</span><b>' + def.name + '</b></div>' +
+            (!owned && !courseOk && bp ? '<div class="adopt-course-note">🎓 «' + bp.name + '» kursunu geç → sahiplenme izni' + ((bp.grants && bp.grants.length) ? ' + yuva tarifi' : '') + '</div>' : '') +
             '<div class="adopt-needs">' + prereqRows + '</div>' +
-            (owned
-              ? '<div class="adopt-tag">✓ Sahiplendin</div>'
-              : '<button class="btn adopt-go' + (ready ? ' btn-action' : ' btn-quiet') + '" data-type="' + def.id + '"' + (ready ? '' : ' disabled') + '>' +
-                  (ready ? '🐾 Sahiplen' : '🔒 Ön koşul eksik') + '</button>') +
+            btn +
             '</div>';
         }).join('') + '</div>';
 
@@ -42550,6 +42676,9 @@ h1, h2, h3, h4,
           }
           render();
         }; });
+
+        // Bakım kursuna git (sahiplenmeden önce kurs gerekir)
+        wrap.querySelectorAll('.adopt-course').forEach(b => b.onclick = () => { B.Audio.play('tick'); B.UI.show('hobbies', { back: 'pets' }); });
 
         // Sahiplenme
         wrap.querySelectorAll('.adopt-go').forEach(b => { if (!b.disabled) b.onclick = () => {
@@ -43251,7 +43380,7 @@ h1, h2, h3, h4,
         const lockedBp = match && B.Craft.lockedBy ? B.Craft.lockedBy(match) : null;
         let out = '';
         if (match && lockedBp) {
-          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» tarifini öğren — 🎓 Hobi Kursları\'ndan geç ya da 💎 nadir sandıktan düşer.</div>';
+          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» taslağını kazan — 🎓 Hobi Kursları\'nda ilgili bakım kursunu geç.</div>';
         } else if (match) {
           const p = match.produces || {};
           const pic = p.type === 'upgrade' ? '⬆️' : ((B.Items.get(p.id) || {}).icon || match.icon);
@@ -43420,7 +43549,7 @@ h1, h2, h3, h4,
             B.UI.overlay(
               '<div class="ov-big">' + c.icon + '🎓</div><h2>' + c.name + ' — Geçtin!</h2>' +
               '<p class="ov-xp">' + correct + '/' + qs.length + ' doğru</p>' +
-              '<p class="ov-quote">' + (b ? '📐 «' + b.name + '» tarifini ÖĞRENDİN! Artık Atölye\'de üretebilirsin.' : 'Bu tarifi zaten biliyordun.') + '</p>',
+              '<p class="ov-quote">' + (b ? '📐 «' + b.name + '» taslağını KAZANDIN! Artık bu dostu sahiplenebilir' + ((b.grants && b.grants.length) ? ', yuvasını da Atölye\'de üretebilirsin.' : 'sin.') : 'Bunu zaten biliyordun.') + '</p>',
               [{ label: 'Harika!', onClick: () => renderList() }]
             );
           } else {

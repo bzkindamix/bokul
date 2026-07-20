@@ -94,7 +94,7 @@
             B.UI.overlay(
               '<div class="ov-big">' + c.icon + '🎓</div><h2>' + c.name + ' — Geçtin!</h2>' +
               '<p class="ov-xp">' + correct + '/' + qs.length + ' doğru</p>' +
-              '<p class="ov-quote">' + (b ? '📐 «' + b.name + '» tarifini ÖĞRENDİN! Artık Atölye\'de üretebilirsin.' : 'Bu tarifi zaten biliyordun.') + '</p>',
+              '<p class="ov-quote">' + (b ? '📐 «' + b.name + '» taslağını KAZANDIN! Artık bu dostu sahiplenebilir' + ((b.grants && b.grants.length) ? ', yuvasını da Atölye\'de üretebilirsin.' : 'sin.') : 'Bunu zaten biliyordun.') + '</p>',
               [{ label: 'Harika!', onClick: () => renderList() }]
             );
           } else {

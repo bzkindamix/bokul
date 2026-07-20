@@ -16,8 +16,11 @@
     learned() { return learnedArr().slice(); },
     isLearned(id) { return learnedArr().indexOf(id) >= 0; },
 
-    /* Bu tarifi açan blueprint (yoksa null = zaten serbest) */
+    /* Bu tarifi açan taslak (yoksa null = zaten serbest) */
     forRecipe(recipeId) { return (data().blueprints || []).find(b => (b.grants || []).indexOf(recipeId) >= 0) || null; },
+    /* Bir hayvanın bakım taslağı (pet alanına göre) + öğrenilmiş mi (sahiplenme izni) */
+    forPet(petType) { return (data().blueprints || []).find(b => b.pet === petType) || null; },
+    petUnlocked(petType) { const b = B.Blueprints.forPet(petType); return !!b && B.Blueprints.isLearned(b.id); },
     /* Tarif craft edilebilir mi? (blueprint yok → serbest; varsa öğrenilmiş olmalı) */
     recipeUnlocked(recipeId) {
       const b = B.Blueprints.forRecipe(recipeId);
@@ -27,8 +30,8 @@
     /* Öğren: opts.free ise bedelsiz (kurs ödülü), değilse altınla satın al */
     learn(id, opts) {
       const b = B.Blueprints.get(id);
-      if (!b) return { ok: false, err: 'Blueprint bulunamadı.' };
-      if (B.Blueprints.isLearned(id)) return { ok: false, err: 'Bu blueprint\'i zaten öğrendin.' };
+      if (!b) return { ok: false, err: 'Taslak bulunamadı.' };
+      if (B.Blueprints.isLearned(id)) return { ok: false, err: 'Bu taslağı zaten öğrendin.' };
       const free = !!(opts && opts.free);
       if (!free) {
         if ((B.State.data.player.coins || 0) < b.price) return { ok: false, err: 'Altının yetmiyor! Görev ve harekâtlardan kazan.' };

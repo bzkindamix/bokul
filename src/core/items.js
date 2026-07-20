@@ -31,11 +31,11 @@
       // Blueprint'ler de depoda "item" gibi durur (satılabilir, öğrenilebilir; satın ALINAMAZ)
       if (B.Blueprints) {
         const bp = B.Blueprints.get(id);
-        if (bp) return { id: bp.id, name: bp.name + ' Tarifi', icon: bp.icon, rarity: 'legendary', cat: 'blueprint', desc: bp.desc, price: bp.price, blueprint: true, unique: true };
+        if (bp) return { id: bp.id, name: bp.name + ' Taslağı', icon: bp.icon, rarity: 'legendary', cat: 'blueprint', desc: bp.desc, price: bp.price, blueprint: true, unique: true };
       }
       return null;
     },
-    catName(cat) { if (cat === 'blueprint') return 'Blueprint'; const c = data().categories.find(x => x.id === cat); return c ? c.name : cat; },
+    catName(cat) { if (cat === 'blueprint') return 'Taslak'; const c = data().categories.find(x => x.id === cat); return c ? c.name : cat; },
     /* Enderlik sırası (sıralama için): efsanevi en üstte */
     rarRank(r) { return { common: 0, rare: 1, epic: 2, legendary: 3 }[r || 'common'] || 0; },
 

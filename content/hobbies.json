@@ -1,63 +1,124 @@
 {
   "schema": "hobbies@1",
-  "version": 1,
-  "intro": "Hobi Kursları'na hoş geldin Komutan! Burada gerçek dünyadan bir hobi öğrenirsin ve karşılığında Atölye'de yeni şeyler üretmeni sağlayan bir TARİF (blueprint) kazanırsın. Bir kursu geç, tarifi kap!",
+  "version": 2,
+  "intro": "Hayvan Bakım Kursları'na hoş geldin Komutan! Bir dostu sahiplenmeden önce ona nasıl bakılacağını öğrenmen gerekir. İlgili kursu geç → o hayvanın TASLAĞINI kazan: onu sahiplenebilir, yuvası üretilebiliyorsa Atölye'de üretebilirsin. Önce öğren, sonra dost edin!",
   "passRatio": 0.6,
   "courses": [
     {
-      "id": "hobi-akvaryum",
-      "name": "Akvaryumculuk",
+      "id": "bakim-balik",
+      "name": "Balık Bakımı",
       "icon": "🐠",
-      "blueprint": "bp_akvaryum",
-      "reward": "Cam panel + Akvaryum tarifi",
-      "intro": "Balıklara güzel bir cam ev kurmayı öğrenelim! Bu kursu geçersen akvaryum üretme tarifini kazanırsın.",
+      "blueprint": "bp_balik",
+      "reward": "Balığı sahiplenme + Akvaryum tarifi",
+      "intro": "Balıklara iyi bakmayı öğren, sonra bir balık sahiplen!",
       "questions": [
-        { "q": "Balıklar suyun içinde nasıl nefes alır?", "options": ["Solungaçlarıyla", "Burnuyla", "Kulaklarıyla"], "correct": 0, "hint": "Balıkların yanındaki yarıklara solungaç denir." },
-        { "q": "Akvaryum suyunu ara ara değiştirmek neden gerekir?", "options": ["Su temiz ve sağlıklı kalsın diye", "Balık sıkılmasın diye", "Su rengi değişsin diye"], "correct": 0, "hint": "Kirli su balığı hasta eder." },
-        { "q": "Balığa çok fazla yem atmak neden zararlıdır?", "options": ["Artan yem suyu kirletir", "Balık çok büyür", "Su ısınır"], "correct": 0, "hint": "Yenmeyen yem çürür ve suyu bozar." },
-        { "q": "Akvaryumun duvarları genellikle neyden yapılır?", "options": ["Camdan", "Tahtadan", "Kumaştan"], "correct": 0, "hint": "İçini görebilmen için saydam olmalı." }
+        { "q": "Balığın akvaryum suyu ne zaman değişmeli?", "options": ["Düzenli olarak, kirlenince", "Hiçbir zaman", "Yılda bir kez"], "correct": 0, "hint": "Temiz su = sağlıklı balık." },
+        { "q": "Balığa ne kadar yem vermek doğrudur?", "options": ["Az miktarda, ölçülü", "Kova dolusu", "Hiç"], "correct": 0, "hint": "Fazla yem suyu kirletir." },
+        { "q": "Akvaryum nasıl bir yerde durmalı?", "options": ["Aşırı sıcak ve güneşten uzak", "Sobanın üstünde", "Buzdolabında"], "correct": 0, "hint": "Balıklar ılık, dengeli su sever." }
       ]
     },
     {
-      "id": "hobi-barinak",
-      "name": "Barınak Ustalığı",
-      "icon": "🏗️",
-      "blueprint": "bp_barinak",
-      "reward": "Metal çerçeve + Köpek kulübesi + Kuş yuvası tarifi",
-      "intro": "Dostlarımıza sıcak yuvalar yapmayı öğrenelim! Bu kursu geçersen barınak tariflerini kazanırsın.",
+      "id": "bakim-kopek",
+      "name": "Köpek Bakımı",
+      "icon": "🐕",
+      "blueprint": "bp_kopek",
+      "reward": "Köpeği sahiplenme + Köpek kulübesi tarifi",
+      "intro": "Köpeklere iyi bakmayı öğren, sonra sadık bir dost sahiplen!",
       "questions": [
-        { "q": "Köpek kulübesi köpeği en çok neyden korur?", "options": ["Soğuk ve yağmurdan", "Karanlıktan", "Sesten"], "correct": 0, "hint": "Bir evin seni neyden koruduğunu düşün." },
-        { "q": "Bir barınaktaki hayvanların en çok ihtiyacı olan şey nedir?", "options": ["Düzenli bakım ve sevgi", "Bol oyuncak", "Büyük televizyon"], "correct": 0, "hint": "Canlılar sevgi ve ilgiyle mutlu olur." },
-        { "q": "Kuş yuvası kuşlar için ne zaman daha da önemlidir?", "options": ["Soğuk kış günlerinde", "Sıcak yaz öğlenlerinde", "Hiçbir zaman"], "correct": 0, "hint": "Üşüdüğünde bir yuva ister misin?" },
-        { "q": "Metal çerçeve neden yuvaları sağlam yapar?", "options": ["Dayanıklı ve kolay eğilmez", "Rengi güzel diye", "Hafif diye"], "correct": 0, "hint": "Metal kolay kırılmaz." }
+        { "q": "Bir köpeğin her gün en çok neye ihtiyacı vardır?", "options": ["Yürüyüş, sevgi ve ilgi", "Bol televizyon", "Yalnız kalmak"], "correct": 0, "hint": "Köpekler hareket ve arkadaşlık ister." },
+        { "q": "Köpeğe su ne sıklıkta verilmeli?", "options": ["Her gün taze ve temiz", "Ayda bir", "Hiç"], "correct": 0, "hint": "Susuz kalmamalı." },
+        { "q": "Köpek üşüdüğünde ya da yorulduğunda nerede dinlenir?", "options": ["Sıcak kulübesinde", "Soğukta dışarıda", "Ağaçta"], "correct": 0, "hint": "Bir yuvaya ihtiyacı var." }
       ]
     },
     {
-      "id": "hobi-dekor",
-      "name": "İç Mimarlık",
-      "icon": "🛋️",
-      "blueprint": "bp_dekor",
-      "reward": "Kumaş, pencere, tablo, raf, yatak, vitrin tarifleri",
-      "intro": "Bir odayı en güzel haline getirmeyi öğrenelim! Bu kursu geçersen dekor tariflerini kazanırsın.",
+      "id": "bakim-kus",
+      "name": "Kuş Bakımı",
+      "icon": "🐦",
+      "blueprint": "bp_kus",
+      "reward": "Kuşu sahiplenme + Kuş yuvası tarifi",
+      "intro": "Kuşlara iyi bakmayı öğren, sonra cıvıl cıvıl bir dost sahiplen!",
       "questions": [
-        { "q": "Bir odayı daha aydınlık göstermek için ne yaparsın?", "options": ["Açık renkler ve pencere kullanırım", "Her yeri siyaha boyarım", "Perdeleri hep kapatırım"], "correct": 0, "hint": "Işık ve açık renkler ferahlık verir." },
-        { "q": "Kitaplık ne işe yarar?", "options": ["Kitapları düzenli saklamaya", "Yemek pişirmeye", "Uyumaya"], "correct": 0, "hint": "Adı ipucu veriyor: kitap-lık." },
-        { "q": "Halı bir odaya ne katar?", "options": ["Sıcaklık ve yumuşaklık", "Gürültü", "Soğukluk"], "correct": 0, "hint": "Üstünde yürüyünce ayağın nasıl hisseder?" },
-        { "q": "Kumaş hangi malzemeden örülür?", "options": ["İpten", "Camdan", "Metalden"], "correct": 0, "hint": "İnce iplikler birleşince kumaş olur." }
+        { "q": "Kuşun kafesi nasıl olmalı?", "options": ["Düzenli temizlenmiş ve temiz", "Hiç temizlenmemiş", "Kapkaranlık"], "correct": 0, "hint": "Temizlik kuşu sağlıklı tutar." },
+        { "q": "Kuşlar genellikle neyle beslenir?", "options": ["Kuş yemi ve tohumlarla", "Çikolatayla", "Taşla"], "correct": 0, "hint": "Küçük tohumları sever." },
+        { "q": "Bir kuşu ne neşelendirir?", "options": ["Şarkı söyletmek ve ilgi", "Bağırmak", "Yalnız bırakmak"], "correct": 0, "hint": "Kuşlar sese ve sevgiye bayılır." }
       ]
     },
     {
-      "id": "hobi-us",
-      "name": "Üs Mühendisliği",
-      "icon": "🏰",
-      "blueprint": "bp_us",
-      "reward": "Depo rafı + Ev geliştirme tarifleri",
-      "intro": "Üssünü büyütüp güçlendirmeyi öğrenelim! Bu kursu geçersen mühendislik tariflerini kazanırsın.",
+      "id": "bakim-kedi",
+      "name": "Kedi Bakımı",
+      "icon": "🐈",
+      "blueprint": "bp_kedi",
+      "reward": "Kediyi sahiplenme izni",
+      "intro": "Kedilere iyi bakmayı öğren, sonra bir kedi sahiplen!",
       "questions": [
-        { "q": "Depo ne işe yarar?", "options": ["Eşyaları düzenli saklamaya", "Uyumaya", "Yemek yemeye"], "correct": 0, "hint": "Topladığın şeyleri nereye koyarsın?" },
-        { "q": "Bir raf eklemek neye yardım eder?", "options": ["Daha çok eşyayı düzenli yerleştirmeye", "Odayı karartmaya", "Sesi artırmaya"], "correct": 0, "hint": "Raflar yer açar." },
-        { "q": "Bir mühendis bir şeyi güçlendirmeden önce ne yapar?", "options": ["Plan yapar ve malzeme hazırlar", "Hemen kırar", "Bekler"], "correct": 0, "hint": "Önce düşünmek, sonra yapmak." },
-        { "q": "Üssünü (deponu/evini) büyütmek neden iyidir?", "options": ["Daha çok şey saklayıp geliştirebilirsin", "Daha az yerin olur", "Hiçbir işe yaramaz"], "correct": 0, "hint": "Büyük yer = daha çok imkân." }
+        { "q": "Kedi tuvaletini nereye yapar?", "options": ["Kedi kumuna", "Yatağa", "Mutfağa"], "correct": 0, "hint": "Kum kabı şart." },
+        { "q": "Kedi tırnaklarını nerede biler?", "options": ["Tırmalama tahtasında", "Duvar kağıdında (istemeyiz!)", "Hiçbir yerde"], "correct": 0, "hint": "Tırmalama tahtası alırsan mobilyan kurtulur." },
+        { "q": "Kedi mutlu ve rahat olduğunda ne yapar?", "options": ["Mırlar", "Havlar", "Ağlar"], "correct": 0, "hint": "O huzurlu mırıltıyı duymuşsundur." }
+      ]
+    },
+    {
+      "id": "bakim-hamster",
+      "name": "Hamster Bakımı",
+      "icon": "🐹",
+      "blueprint": "bp_hamster",
+      "reward": "Hamsteri sahiplenme izni",
+      "intro": "Minik hamsterlara bakmayı öğren, sonra bir hamster sahiplen!",
+      "questions": [
+        { "q": "Hamster kafesinin tabanına ne serilir?", "options": ["Talaş", "Su", "Kum"], "correct": 0, "hint": "Yumuşak ve emici olmalı." },
+        { "q": "Hamster geceleri en çok neyi sever?", "options": ["Koşu tekerinde koşmak", "Uyumak dışarıda", "Yüzmek"], "correct": 0, "hint": "Onlar gece hayvanıdır, enerjiktir." },
+        { "q": "Hamster çok küçük olduğu için nasıl tutulmalı?", "options": ["Nazikçe ve yavaşça", "Sıkıca", "Havaya atarak"], "correct": 0, "hint": "Kırılgan minik bir dost." }
+      ]
+    },
+    {
+      "id": "bakim-tavsan",
+      "name": "Tavşan Bakımı",
+      "icon": "🐰",
+      "blueprint": "bp_tavsan",
+      "reward": "Tavşanı sahiplenme izni",
+      "intro": "Tavşanlara bakmayı öğren, sonra bir tavşan sahiplen!",
+      "questions": [
+        { "q": "Tavşan en çok neyi yemeyi sever?", "options": ["Taze ot ve havuç", "Şeker", "Cips"], "correct": 0, "hint": "Sebze ve ot en sağlıklısı." },
+        { "q": "Tavşanın dişleri sürekli uzar, bu yüzden ne yapar?", "options": ["Kemirir", "Uçar", "Yüzer"], "correct": 0, "hint": "Kemirmek dişlerini kısaltır." },
+        { "q": "Tavşan korktuğunda ne ister?", "options": ["Saklanabileceği güvenli bir yuva", "Yüksek ses", "Kalabalık"], "correct": 0, "hint": "Güvende hissetmeli." }
+      ]
+    },
+    {
+      "id": "bakim-kaplumbaga",
+      "name": "Kaplumbağa Bakımı",
+      "icon": "🐢",
+      "blueprint": "bp_kaplumbaga",
+      "reward": "Kaplumbağayı sahiplenme izni",
+      "intro": "Kaplumbağalara bakmayı öğren, sonra bir kaplumbağa sahiplen!",
+      "questions": [
+        { "q": "Kaplumbağa ısınmak için neye ihtiyaç duyar?", "options": ["Isıtıcı lamba ya da güneş", "Buz", "Karanlık"], "correct": 0, "hint": "Onlar sıcağı sever." },
+        { "q": "Kaplumbağayla ilgilenirken ne gerekir?", "options": ["Sabır — çünkü yavaş hareket eder", "Acele", "Koşturmak"], "correct": 0, "hint": "Ünlü ağırkanlılık!" },
+        { "q": "Kaplumbağa için yapılmaması gereken nedir?", "options": ["Sırtüstü ters çevirmek", "Temiz su vermek", "Nazikçe okşamak"], "correct": 0, "hint": "Ters dönmek onun için tehlikeli." }
+      ]
+    },
+    {
+      "id": "bakim-papagan",
+      "name": "Papağan Bakımı",
+      "icon": "🦜",
+      "blueprint": "bp_papagan",
+      "reward": "Papağanı sahiplenme izni",
+      "intro": "Papağanlara bakmayı öğren, sonra konuşkan bir dost sahiplen!",
+      "questions": [
+        { "q": "Papağanlar neyi taklit edebilir?", "options": ["Kelimeleri ve sesleri", "Uçağı", "Hiçbir şeyi"], "correct": 0, "hint": "Çok iyi taklitçidirler." },
+        { "q": "Papağan sıkılmasın diye ne yaparsın?", "options": ["İlgilenir, oyun oynarsın", "Görmezden gelirsin", "Karanlığa koyarsın"], "correct": 0, "hint": "Zeki kuşlar sosyaldir." },
+        { "q": "Papağanın kafesi nasıl olmalı?", "options": ["Rahatça hareket edebileceği kadar büyük", "Kıpırdayamayacağı kadar küçük", "Hiç kafes olmasın"], "correct": 0, "hint": "Kanatlarını açabilmeli." }
+      ]
+    },
+    {
+      "id": "bakim-kirpi",
+      "name": "Kirpi Bakımı",
+      "icon": "🦔",
+      "blueprint": "bp_kirpi",
+      "reward": "Kirpiyi sahiplenme izni",
+      "intro": "Kirpilere bakmayı öğren, sonra dikenli ama tatlı bir dost sahiplen!",
+      "questions": [
+        { "q": "Kirpinin sırtında dikenler var; ona nasıl dokunulur?", "options": ["Çok nazikçe ve dikkatlice", "Sıkıca sıkarak", "Hiç dokunulmaz"], "correct": 0, "hint": "Nazik ol, o da sana güvensin." },
+        { "q": "Kirpi günün hangi vaktinde daha aktiftir?", "options": ["Geceleri", "Öğle sıcağında", "Hiçbir zaman"], "correct": 0, "hint": "Gece dostudur." },
+        { "q": "Kirpi korktuğunda ne yapar?", "options": ["Top gibi kıvrılır", "Havlar", "Uçar"], "correct": 0, "hint": "Dikenleriyle kendini korur." }
       ]
     }
   ]

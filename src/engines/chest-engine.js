@@ -115,11 +115,8 @@
         const boosted = Object.assign({}, cfg.items, { count: [c[0], (c[1] || c[0]) + (t.itemBonus || 0)] });
         out.items = rollItems(boosted);
       }
-      // 📐 Nadir sandık: blueprint'ler SATIN ALINAMAZ — buradan (ve hobi kurslarından) düşer.
-      if (norm(type) === 'nadir' && B.Blueprints) {
-        const avail = B.Blueprints.all().filter(b => !B.Blueprints.isLearned(b.id) && (!B.Items || B.Items.count(b.id) === 0) && seen().blueprints.indexOf(b.id) < 0);
-        if (avail.length && Math.random() < 0.4) out.blueprint = avail[Math.floor(Math.random() * avail.length)].id;
-      }
+      // NOT: Taslaklar (bakım taslakları) artık YALNIZCA Hobi Kursları'ndan kazanılır (sandıktan düşmez) —
+      // "önce bakmayı öğren" eğitici kapısını atlamamak için. Nadir sandık kozmetik + bol altın verir.
       return out;
     },
 
