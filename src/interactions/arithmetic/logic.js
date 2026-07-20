@@ -28,6 +28,8 @@
 
   const impl = {
     generate,
+    /* Tekrar defteri imzası: işlem + iki terim (aynı işlem aynı sayılarla tekrar etmesin) */
+    sig(q) { return 'ar|' + q.op + '|' + q.a + '|' + q.b; },
     getSteps(q) { return [{ type: SKILL[q.op] || 'add', expected: q.answer }]; },
     validateStep(q, step, ans) { return { correct: Number(ans) === q.answer }; },
   };

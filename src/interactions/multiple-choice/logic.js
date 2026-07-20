@@ -4,37 +4,33 @@
  *               skill: "beceri-adı", hint: "yanlışta gösterilecek ipucu" } */
 (function (B) {
 
-  /* params: { pool: [bankItem...] } — "karıştırılmış torba": havuz karıştırılır ve
-   * sırayla tüketilir; TÜM banka bitmeden aynı soru TEKRAR gelmez (ünitenin farklı
-   * adımları boyunca tekrar önlenir). Torba bitince yeniden karışır. Her havuzun
-   * kendi torbası vardır (imza = uzunluk + ilk sorunun başı). */
-  const bags = new Map();
-  function sig(pool) { return pool.length + '|' + ((pool[0] && pool[0].q) ? pool[0].q.slice(0, 16) : ''); }
-  function shuffled(n) {
-    const a = []; for (let i = 0; i < n; i++) a.push(i);
-    for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; }
-    return a;
+  /* params: { pool: [bankItem...] }. TEKRAR ÖNLEME artık QuestionEngine'in kalıcı
+   * "görülen soru defteri"yle yapılır: motor variants() ile tüm adayları alır ve
+   * EN AZ gösterilen soruyu seçer (kayda yazılır → reload/oturum sonrası da korunur).
+   * Eski modül-içi "torba" kaldırıldı (reload'da sıfırlanıyor, havuz bitince tekrar
+   * ediyordu). generate() yalnızca variants boş kaldığında yedek yoldur. */
+
+  /* Havuzdaki her banka öğesini bir soru adayına çevir (motor en az göründeni seçer) */
+  function variants(params) {
+    return (params.pool || []).map(item => ({ item, params }));
   }
   function generate(params) {
     const pool = params.pool || [];
     if (!pool.length) throw new Error('Çoktan seçmeli havuz boş!');
-    const key = sig(pool);
-    let bag = bags.get(key);
-    if (!bag || bag.pos >= bag.order.length || bag.order.length !== pool.length) {
-      bag = { order: shuffled(pool.length), pos: 0 };
-      bags.set(key, bag);
-    }
-    const item = pool[bag.order[bag.pos++]] || pool[Math.floor(Math.random() * pool.length)];
+    const item = pool[Math.floor(Math.random() * pool.length)];
     return { item, params };
   }
 
   const impl = {
     generate,
+    variants,
+    /* Tekrar defteri imzası: soru metni (aynı soru tekrar sorulmasın) */
+    sig(q) { return 'mc|' + ((q.item && q.item.q) ? q.item.q : ''); },
     /* Tek mikro-adım: cevap seçimi. skill, ustalık takibine gider. */
     getSteps(q) { return [{ type: q.item.skill || 'answer', expected: q.item.correct }]; },
     validateStep(q, step, answer) { return { correct: Number(answer) === q.item.correct }; },
   };
 
   if (B && B.Question) B.Question.registerType('multiple-choice', impl);
-  if (typeof module !== 'undefined' && module.exports) module.exports = { generate, impl };
+  if (typeof module !== 'undefined' && module.exports) module.exports = { generate, variants, impl };
 })(typeof window !== 'undefined' ? (window.BOKUL = window.BOKUL || {}) : null);

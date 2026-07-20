@@ -29,17 +29,31 @@
     return 3;
   }
 
-  /* Soru bankasını çocuğun yaş bandına göre süz (yeni nesil, kademeli zorluk).
+  /* Çocuğun BULUNDUĞU sınıfa göre hedef soru zorluğu (q.lvl 1/2/3).
+   * 3 kaba bant yerine SINIF-ÇÖZÜNÜRLÜKLÜ: 1. ve 2., 3. ve 4. sınıf artık aynı
+   * hedefe çökmez — her sınıf kendi zorluk karışımını görür (MEB kademesi).
+   *   1 → lvl 1   ·   2 → lvl 1-2   ·   3 → lvl 2   ·   4 → lvl 2-3   ·   5+ → lvl 3
+   * İkinci değer, birincil hedef yetmezse genişleme yönünü belirtir. */
+  function lvlTargetForGrade() {
+    const g = currentGrade(); // bulunduğu sınıf (bitirdiği + 1); bilinmiyorsa 6
+    if (g <= 1) return { primary: 1, spread: [1] };
+    if (g === 2) return { primary: 1, spread: [1, 2] };
+    if (g === 3) return { primary: 2, spread: [2, 1] };
+    if (g === 4) return { primary: 2, spread: [2, 3] };
+    return { primary: 3, spread: [3, 2] }; // 5 ve üzeri
+  }
+
+  /* Soru bankasını çocuğun SINIFINA göre süz (kademeli zorluk).
    * Her soru q.lvl (1=küçük/kolay · 2=orta · 3=büyük/zor) taşır; etiketsiz = 1.
-   * Kural: önce TAM bandın soruları; yeterli değilse (bankada az) o banda KADAR
-   * (daha kolaylar) genişler; yine azsa tüm banka. Böylece büyük yaş daha zor,
-   * küçük yaş daha kolay soru görür — ama hiçbir bölüm boş kalmaz. */
+   * Kural: önce sınıfın BİRİNCİL zorluğu; yeterli değilse (bankada az) spread yönünde
+   * komşu zorluklara genişler; yine azsa tüm banka. Böylece 1. sınıf yalnız kolay,
+   * 5. sınıf yalnız zor soru görür — ama hiçbir bölüm boş kalmaz. */
   function ageFilter(bank) {
     if (!Array.isArray(bank) || bank.length < 5) return bank || [];
-    const band = ageBand();
+    const t = lvlTargetForGrade();
     const lvl = q => q.lvl || 1;
-    let sel = bank.filter(q => lvl(q) === band);
-    if (sel.length < 4) sel = bank.filter(q => lvl(q) <= band); // bu seviye ve daha kolaylar
+    let sel = bank.filter(q => lvl(q) === t.primary);
+    if (sel.length < 4) sel = bank.filter(q => t.spread.indexOf(lvl(q)) >= 0); // komşu zorluklar
     if (sel.length < 4) sel = bank; // son çare: hepsi
     return sel;
   }

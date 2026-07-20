@@ -80,6 +80,8 @@
 
   const impl = {
     generate,
+    /* Tekrar defteri imzası: aynı bölünen/bölen ikilisi tekrar etmesin */
+    sig(q) { return 'ld|' + q.dividend + '|' + q.divisor; },
     getSteps(q) { return q.plan.steps; },
     validateStep(q, step, answer) {
       const val = Number(answer);

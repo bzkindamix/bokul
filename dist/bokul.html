@@ -1844,7 +1844,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.93 — Giris akisi sadelestirildi: 'Hemen Oyna' (hesapsiz/kodsuz) + tek terim 'Aile Kodu' + az adim</div>
+      <div class="splash-note">v0.94 — Soru tekrari bitti (kalici 'gorulen soru' defteri) + MEB mufredatina bagli sinif-cozunurluklu yas farklilasmasi</div>
     </div>
   </div>
 
@@ -4357,53 +4357,63 @@ h1, h2, h3, h4,
   "outcomes": [
     {
       "id": "o-add",
-      "code": "M.1-2.1",
-      "text": "Toplama ve çıkarma işlemlerini yapar."
+      "code": "MAT.1.2.1",
+      "grade": 1,
+      "text": "Günlük yaşamdaki toplama ve çıkarma işlemlerini çözümler (1. sınıf: 20'ye kadar)."
     },
     {
       "id": "o-mul",
-      "code": "M.2-3.2",
-      "text": "Çarpma işlemine giriş: tekrarlı toplama ve çarpım tablosu."
+      "code": "MAT.2.2.4",
+      "grade": 2,
+      "text": "Çarpma ve bölme işlemlerini toplama ve çıkarma ile ilişkilendirerek çözümler (çarpmaya giriş)."
     },
     {
       "id": "o-div",
-      "code": "M.3-4.3",
-      "text": "Bölme işlemine giriş: eşit paylaştırma ve tek basamaklı bölme."
+      "code": "MAT.3.2.1",
+      "grade": 3,
+      "text": "Bölme işlemine giriş: eşit paylaştırma ve tek basamaklı bölenle bölme (3. sınıf)."
     },
     {
       "id": "o-long",
-      "code": "M.4-5.4",
-      "text": "Uzun bölme yöntemiyle çok basamaklı bölme."
+      "code": "MAT.4.2.1",
+      "grade": 4,
+      "text": "Uzun bölme yöntemiyle çok basamaklı sayıları böler (4. sınıf)."
     },
     {
       "id": "o-geo",
-      "code": "M.2-3.5",
-      "text": "Temel geometrik şekilleri, kenar/köşe ve cisimleri tanır."
+      "code": "MAT.2.3.1",
+      "grade": 2,
+      "text": "Nesneleri biçimsel özelliklerine göre geometrik cisim/şekil olarak sınıflandırır; kenar/köşe tanır."
     },
     {
       "id": "o-frac",
-      "code": "M.3-4.6",
-      "text": "Kesir kavramını (yarım, çeyrek, pay/payda) tanır."
+      "code": "MAT.3.1.6",
+      "grade": 3,
+      "text": "Birim kesri tanır; bütün, yarım ve çeyrek arasındaki ilişkiyi çözümler."
     },
     {
       "id": "o-meas",
-      "code": "M.3-4.7",
-      "text": "Zaman, para ve temel ölçü birimlerini tanır."
+      "code": "MAT.2.1.9",
+      "grade": 2,
+      "text": "Zaman ölçü birimlerini okur/yazar; standart uzunluk ve kütle birimlerini tanır."
     },
     {
       "id": "o-pattern",
-      "code": "MAT.PAT",
-      "text": "Sayı ve şekil örüntülerini tanır, devam ettirir."
+      "code": "MAT.2.1.5",
+      "grade": 2,
+      "text": "Sayı ve şekil örüntülerine dayalı çıkarım yapar, örüntüyü devam ettirir."
     },
     {
       "id": "o-data",
-      "code": "MAT.DATA",
-      "text": "Basit tablo ve grafiklerdeki veriyi okur, karşılaştırır."
+      "code": "MAT.2.4.1",
+      "grade": 2,
+      "text": "Kategorik veriyle çalışır (en çok iki grup), tablo/grafiği okur ve karar verir."
     },
     {
       "id": "o-money",
-      "code": "MAT.MONEY",
-      "text": "Parayı tanır, basit alışveriş ve bütçe hesabı yapar."
+      "code": "MAT.2.1.8",
+      "grade": 2,
+      "text": "Paraları değerlerine göre ilişkilendirir; basit alışveriş ve bütçe hesabı yapar."
     }
   ],
   "skills": [
@@ -35364,7 +35374,7 @@ h1, h2, h3, h4,
                 room: { wall: 0, floor: 0, placed: [] },
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
-      stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {} },
+      stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {}, qSeen: {} }, // qSeen: görülen soru defteri (tekrar önleme)
       progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
       inventory: { cosmetics: [], badges: [], titles: [], items: {} }, // items: { itemId: adet }
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },
@@ -35560,17 +35570,31 @@ h1, h2, h3, h4,
     return 3;
   }
 
-  /* Soru bankasını çocuğun yaş bandına göre süz (yeni nesil, kademeli zorluk).
+  /* Çocuğun BULUNDUĞU sınıfa göre hedef soru zorluğu (q.lvl 1/2/3).
+   * 3 kaba bant yerine SINIF-ÇÖZÜNÜRLÜKLÜ: 1. ve 2., 3. ve 4. sınıf artık aynı
+   * hedefe çökmez — her sınıf kendi zorluk karışımını görür (MEB kademesi).
+   *   1 → lvl 1   ·   2 → lvl 1-2   ·   3 → lvl 2   ·   4 → lvl 2-3   ·   5+ → lvl 3
+   * İkinci değer, birincil hedef yetmezse genişleme yönünü belirtir. */
+  function lvlTargetForGrade() {
+    const g = currentGrade(); // bulunduğu sınıf (bitirdiği + 1); bilinmiyorsa 6
+    if (g <= 1) return { primary: 1, spread: [1] };
+    if (g === 2) return { primary: 1, spread: [1, 2] };
+    if (g === 3) return { primary: 2, spread: [2, 1] };
+    if (g === 4) return { primary: 2, spread: [2, 3] };
+    return { primary: 3, spread: [3, 2] }; // 5 ve üzeri
+  }
+
+  /* Soru bankasını çocuğun SINIFINA göre süz (kademeli zorluk).
    * Her soru q.lvl (1=küçük/kolay · 2=orta · 3=büyük/zor) taşır; etiketsiz = 1.
-   * Kural: önce TAM bandın soruları; yeterli değilse (bankada az) o banda KADAR
-   * (daha kolaylar) genişler; yine azsa tüm banka. Böylece büyük yaş daha zor,
-   * küçük yaş daha kolay soru görür — ama hiçbir bölüm boş kalmaz. */
+   * Kural: önce sınıfın BİRİNCİL zorluğu; yeterli değilse (bankada az) spread yönünde
+   * komşu zorluklara genişler; yine azsa tüm banka. Böylece 1. sınıf yalnız kolay,
+   * 5. sınıf yalnız zor soru görür — ama hiçbir bölüm boş kalmaz. */
   function ageFilter(bank) {
     if (!Array.isArray(bank) || bank.length < 5) return bank || [];
-    const band = ageBand();
+    const t = lvlTargetForGrade();
     const lvl = q => q.lvl || 1;
-    let sel = bank.filter(q => lvl(q) === band);
-    if (sel.length < 4) sel = bank.filter(q => lvl(q) <= band); // bu seviye ve daha kolaylar
+    let sel = bank.filter(q => lvl(q) === t.primary);
+    if (sel.length < 4) sel = bank.filter(q => t.spread.indexOf(lvl(q)) >= 0); // komşu zorluklar
     if (sel.length < 4) sel = bank; // son çare: hepsi
     return sel;
   }
@@ -37357,11 +37381,47 @@ h1, h2, h3, h4,
   const types = new Map();
   const views = new Map(); // tip adı -> görünüm oluşturucu (container, q, opts) => ctl
 
+  /* ---------- GÖRÜLEN SORU DEFTERİ (kalıcı, oyuncu-bazlı) ----------
+   * "1 soru çocuğun karşısına sadece 1 kez çıksın" kuralı. Her sorunun kararlı
+   * imzası (tip.sig(q)) kaç kez gösterildiğini sayar; seçimde EN AZ gösterilen
+   * aday tercih edilir. Böylece tüm banka/üretim uzayı tükenmeden hiçbir soru
+   * tekrar etmez. Defter B.State.data.stats.qSeen'de tutulur → KAYDA yazılır,
+   * reload/oturum değişse de korunur (eski torba modül-içiydi, reload'da sıfırlanıyordu). */
+  const SEEN_CAP = 4000; // defter şişmesin: aşınca en çok görülenler unutulur
+  function ledger() {
+    const s = B.State && B.State.data && B.State.data.stats;
+    if (!s) return null;
+    if (!s.qSeen || typeof s.qSeen !== 'object') s.qSeen = {};
+    return s.qSeen;
+  }
+  function seenCount(sig) { const l = ledger(); return (l && sig) ? (l[sig] || 0) : 0; }
+  function markSeen(sig) {
+    const l = ledger(); if (!l || !sig) return;
+    l[sig] = (l[sig] || 0) + 1;
+    const keys = Object.keys(l);
+    if (keys.length > SEEN_CAP) {
+      // en çok görülen ~%25'i unut (bunlar zaten en çok çıkmış → tekrar uygunları)
+      keys.sort((a, b) => l[b] - l[a]);
+      keys.slice(0, Math.floor(SEEN_CAP * 0.25)).forEach(k => delete l[k]);
+    }
+  }
+  /* Adaylar arasından en az görüleni seç (eşitlikte rastgele) */
+  function leastSeen(cands, sigOf) {
+    let best = [], bestC = Infinity;
+    for (const c of cands) {
+      const sc = seenCount(sigOf(c));
+      if (sc < bestC) { bestC = sc; best = [c]; }
+      else if (sc === bestC) best.push(c);
+    }
+    return best[Math.floor(Math.random() * best.length)];
+  }
+
   B.Question = {
     registerType(name, impl) {
       ['generate', 'getSteps', 'validateStep'].forEach(k => {
         if (typeof impl[k] !== 'function') throw new Error('Soru tipi eksik metod: ' + name + '.' + k);
       });
+      // Opsiyonel: sig(q)->imza · variants(params,bias)->aday q listesi (banka tipleri)
       types.set(name, impl);
     },
 
@@ -37378,13 +37438,43 @@ h1, h2, h3, h4,
       return t;
     },
 
-    /* Üret: adaptif zorluk çarpanı ProgressManager'dan alınır */
+    /* Bir sorunun kararlı imzası (defter anahtarı). Tip sig tanımlamamışsa null. */
+    sigOf(typeName, q) {
+      const t = types.get(typeName);
+      return (t && typeof t.sig === 'function') ? t.sig(q) : null;
+    },
+
+    /* Üret: adaptif zorluk ProgressManager'dan; TEKRAR ÖNLEME defterle uygulanır.
+     * - Banka tipleri (impl.variants var): tüm adaylar arasından en az görüleni seç.
+     * - Üretici tipleri: birkaç kez üret, en az görüleni al (taze bulunca erken çık). */
     generate(typeName, params, skills) {
+      const impl = B.Question.type(typeName);
       const bias = skills ? B.Progress.difficultyBias(skills) : 0.5;
-      const q = B.Question.type(typeName).generate(params || {}, bias);
+      const sigOf = q => B.Question.sigOf(typeName, q);
+      let q;
+
+      if (typeof impl.variants === 'function') {
+        const cands = impl.variants(params || {}, bias) || [];
+        q = cands.length ? leastSeen(cands, sigOf) : impl.generate(params || {}, bias);
+      } else {
+        const TRIES = 14;
+        let bestQ = null, bestC = Infinity;
+        for (let i = 0; i < TRIES; i++) {
+          const cand = impl.generate(params || {}, bias);
+          const sc = seenCount(sigOf(cand));
+          if (sc < bestC) { bestC = sc; bestQ = cand; }
+          if (bestC === 0) break; // hiç görülmemiş: yeterli
+        }
+        q = bestQ || impl.generate(params || {}, bias);
+      }
+
       q._type = typeName;
+      markSeen(sigOf(q));
       return q;
     },
+
+    /* Test/araç: defteri sıfırla */
+    resetSeen() { const l = ledger(); if (l) Object.keys(l).forEach(k => delete l[k]); },
 
     steps(q) { return B.Question.type(q._type).getSteps(q); },
     validate(q, step, answer) { return B.Question.type(q._type).validateStep(q, step, answer); },
@@ -37988,6 +38078,8 @@ h1, h2, h3, h4,
 
   const impl = {
     generate,
+    /* Tekrar defteri imzası: aynı bölünen/bölen ikilisi tekrar etmesin */
+    sig(q) { return 'ld|' + q.dividend + '|' + q.divisor; },
     getSteps(q) { return q.plan.steps; },
     validateStep(q, step, answer) {
       const val = Number(answer);
@@ -38580,39 +38672,35 @@ h1, h2, h3, h4,
  *               skill: "beceri-adı", hint: "yanlışta gösterilecek ipucu" } */
 (function (B) {
 
-  /* params: { pool: [bankItem...] } — "karıştırılmış torba": havuz karıştırılır ve
-   * sırayla tüketilir; TÜM banka bitmeden aynı soru TEKRAR gelmez (ünitenin farklı
-   * adımları boyunca tekrar önlenir). Torba bitince yeniden karışır. Her havuzun
-   * kendi torbası vardır (imza = uzunluk + ilk sorunun başı). */
-  const bags = new Map();
-  function sig(pool) { return pool.length + '|' + ((pool[0] && pool[0].q) ? pool[0].q.slice(0, 16) : ''); }
-  function shuffled(n) {
-    const a = []; for (let i = 0; i < n; i++) a.push(i);
-    for (let i = n - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; }
-    return a;
+  /* params: { pool: [bankItem...] }. TEKRAR ÖNLEME artık QuestionEngine'in kalıcı
+   * "görülen soru defteri"yle yapılır: motor variants() ile tüm adayları alır ve
+   * EN AZ gösterilen soruyu seçer (kayda yazılır → reload/oturum sonrası da korunur).
+   * Eski modül-içi "torba" kaldırıldı (reload'da sıfırlanıyor, havuz bitince tekrar
+   * ediyordu). generate() yalnızca variants boş kaldığında yedek yoldur. */
+
+  /* Havuzdaki her banka öğesini bir soru adayına çevir (motor en az göründeni seçer) */
+  function variants(params) {
+    return (params.pool || []).map(item => ({ item, params }));
   }
   function generate(params) {
     const pool = params.pool || [];
     if (!pool.length) throw new Error('Çoktan seçmeli havuz boş!');
-    const key = sig(pool);
-    let bag = bags.get(key);
-    if (!bag || bag.pos >= bag.order.length || bag.order.length !== pool.length) {
-      bag = { order: shuffled(pool.length), pos: 0 };
-      bags.set(key, bag);
-    }
-    const item = pool[bag.order[bag.pos++]] || pool[Math.floor(Math.random() * pool.length)];
+    const item = pool[Math.floor(Math.random() * pool.length)];
     return { item, params };
   }
 
   const impl = {
     generate,
+    variants,
+    /* Tekrar defteri imzası: soru metni (aynı soru tekrar sorulmasın) */
+    sig(q) { return 'mc|' + ((q.item && q.item.q) ? q.item.q : ''); },
     /* Tek mikro-adım: cevap seçimi. skill, ustalık takibine gider. */
     getSteps(q) { return [{ type: q.item.skill || 'answer', expected: q.item.correct }]; },
     validateStep(q, step, answer) { return { correct: Number(answer) === q.item.correct }; },
   };
 
   if (B && B.Question) B.Question.registerType('multiple-choice', impl);
-  if (typeof module !== 'undefined' && module.exports) module.exports = { generate, impl };
+  if (typeof module !== 'undefined' && module.exports) module.exports = { generate, variants, impl };
 })(typeof window !== 'undefined' ? (window.BOKUL = window.BOKUL || {}) : null);
 
 /* === src/interactions/multiple-choice/view.js === */
@@ -38716,6 +38804,8 @@ h1, h2, h3, h4,
 
   const impl = {
     generate,
+    /* Tekrar defteri imzası: işlem + iki terim (aynı işlem aynı sayılarla tekrar etmesin) */
+    sig(q) { return 'ar|' + q.op + '|' + q.a + '|' + q.b; },
     getSteps(q) { return [{ type: SKILL[q.op] || 'add', expected: q.answer }]; },
     validateStep(q, step, ans) { return { correct: Number(ans) === q.answer }; },
   };
