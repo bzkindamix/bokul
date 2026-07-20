@@ -24,6 +24,11 @@
       let repairStreak = 0;
       let dealt = maxHp - hp;
       let over = false;
+      // Hasar/zırh SORU başına işlenir (adım başına DEĞİL) → uzun bölme (çok adım) ile MC (tek adım)
+      // boss'ları eşit adaletli olur: eskiden LD'de tek soruda 3 zırh birden kırılabiliyordu.
+      // Tip-bağımsız denge: her boss ~KILL kusursuz soruda düşer (hp'den türetilir).
+      const KILL = (cfg.bossQuestionsToKill) || 5;
+      const qDmg = Math.max(3, Math.ceil(maxHp / KILL));
 
       /* ---- Boss başlığı ---- */
       const head = document.createElement('div');
@@ -95,35 +100,38 @@
 
         view = B.Question.view(itype)(stage, q, {
           say: t => cmd.say(t),
+          // Adımlar yalnız ustalık kaydı + hata sayımı için; HASAR/ZIRH soru sonunda işlenir.
           onAnswer(step, correct, attempt) {
             B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });
-            if (correct) {
-              // Hasar: kalkan varsa önce kalkan kırılır
+            if (!correct) mistakes++;
+          },
+          onComplete() {
+            if (over) return;
+            if (timerCtl) { timerCtl.stop(); timerCtl = null; }
+            const flawless = mistakes === 0;
+            if (flawless) {
+              // Kusursuz SORU: kalkan varsa önce kalkanı kır, yoksa tam hasar ver
               if (shield > 0) { shield--; cmd.sayFrom('boss.shieldBreak'); }
               else {
-                const dmg = 3;
-                hp -= dmg; dealt += dmg;
-                B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: dmg, remaining: hp });
+                hp -= qDmg; dealt += qDmg;
+                B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: qDmg, remaining: hp });
                 head.classList.remove('boss-hit'); void head.offsetWidth;
                 head.classList.add('boss-hit');
-                if (B.Anim.damageFloat) B.Anim.damageFloat(dmg, head);
-                // Baba düşmanla dalga geçer (bazen)
+                if (B.Anim.damageFloat) B.Anim.damageFloat(qDmg, head);
                 if (Math.random() < 0.45) cmd.sayFrom('boss.taunt', { bossName: boss.name });
               }
-              // Zırh onarımı
+              // Zırh onarımı: ardışık kusursuz SORU (adım değil)
               if (isUnit) {
                 repairStreak++;
                 if (repairStreak >= (cfg.unitBoss.repairStreak || 3) && armor < cfg.unitBoss.armor) {
-                  armor++; repairStreak = 0;
-                  cmd.sayFrom('boss.armorRepair');
+                  armor++; repairStreak = 0; cmd.sayFrom('boss.armorRepair');
                 }
               }
               refresh();
               if (hp <= 0) return victory();
             } else {
-              mistakes++;
+              // Hatalı SORU (soru başına BİR kez): ünite boss vurur (1 plaka), konu boss kalkan kurar
               if (isUnit) {
-                // ÜNİTE BOSS'U VURUR: yanlış cevabını sana fırlatır
                 armor--; repairStreak = 0;
                 B.Bus.emit(B.Events.BOSS_ATTACKED, { armorLeft: armor });
                 root.classList.remove('boss-quake'); void root.offsetWidth;
@@ -132,25 +140,8 @@
                 refresh();
                 if (armor <= 0) return retreat();
               } else {
-                shield++;
-                cmd.sayFrom('boss.shieldUp');
-                refresh();
+                shield++; cmd.sayFrom('boss.shieldUp'); refresh();
               }
-            }
-          },
-          onComplete() {
-            if (over) return;
-            if (timerCtl) { timerCtl.stop(); timerCtl = null; }
-            // Hatasız hedef = kritik vuruş bonusu
-            if (mistakes === 0 && hp > 0) {
-              hp -= 6; dealt += 6;
-              B.Bus.emit(B.Events.BOSS_DAMAGED, { amount: 6, remaining: hp });
-              head.classList.remove('boss-hit'); void head.offsetWidth;
-              head.classList.add('boss-hit');
-              if (B.Anim.damageFloat) B.Anim.damageFloat(6, head);
-              cmd.sayFrom('boss.crit');
-              refresh();
-              if (hp <= 0) return victory();
             }
             setTimeout(nextQuestion, 500);
           },

@@ -1452,6 +1452,7 @@
             "o-long"
           ],
           "interactionType": "long-division",
+          "skills": ["select", "estimate", "multiply", "subtract", "bringdown"],
           "unlock": {
             "starsRequired": 0
           },
@@ -3261,6 +3262,7 @@
           "id": "s-math-final",
           "title": "Büyük Sınav",
           "interactionType": "multiple-choice",
+          "skills": ["add-problem", "add-multi", "sub-problem", "sub-multi", "mul-problem", "mul-multi", "div-problem", "div-multi", "fraction", "geometry", "measure", "money", "pattern", "data"],
           "outcomeIds": [
             "o-add"
           ],
