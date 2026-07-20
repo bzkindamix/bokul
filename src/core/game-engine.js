@@ -32,6 +32,7 @@
       B.Anim.init();
       B.Commander.init();
       B.UI.init();
+      if (B.Craft && B.Craft.applyCraftRarities) B.Craft.applyCraftRarities(); // craft çıktıları ham maddeden bir üst nadirliğe
     },
 
     /* Splash'tan giriş: hatırlanan profil varsa devam, yoksa giriş ekranı */

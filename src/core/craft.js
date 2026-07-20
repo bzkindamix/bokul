@@ -12,6 +12,37 @@
     recipes() { return data().recipes || []; },
     get(id) { return data().recipes.find(r => r.id === id) || null; },
 
+    /* NADİRLİK KURALI: craft edilen çıktı, ham maddelerinden BİR ÜST nadirlik seviyesine çıkar.
+     * Tek kaynak = tarif girdileri (elle etiket sürüklemesi yok). Zincir boyunca yayılır
+     * (ham madde common → panel rare → akvaryum epic → …), fixpoint ile birkaç geçişte oturur.
+     * Boot'ta bir kez çağrılır; item.rarity (görsel tier) + outfit kozmetik rarity güncellenir. */
+    applyCraftRarities() {
+      const ORDER = ['common', 'rare', 'epic', 'legendary'];
+      const rank = r => { const i = ORDER.indexOf(r || 'common'); return i < 0 ? 0 : i; };
+      const recs = B.Craft.recipes();
+      const rarOf = id => { // girdinin güncel nadirliği (item ya da outfit kozmetiği)
+        const it = B.Items.get(id);
+        if (it && it.rarity) return it.rarity;
+        return 'common';
+      };
+      for (let pass = 0; pass < 8; pass++) {
+        let changed = false;
+        recs.forEach(r => {
+          const p = r.produces || {};
+          let maxIn = 0;
+          Object.keys(r.needs || {}).forEach(k => { maxIn = Math.max(maxIn, rank(rarOf(k))); });
+          const target = ORDER[Math.min(maxIn + 1, ORDER.length - 1)]; // girdilerin bir üstü
+          if (p.type === 'item') {
+            const out = B.Items.get(p.id);
+            if (out && out.rarity !== target) { out.rarity = target; changed = true; }
+          } else if (p.type === 'cosmetic' && B.Avatar && B.Avatar.setOutfitRarity) {
+            B.Avatar.setOutfitRarity(p.id, target);
+          }
+        });
+        if (!changed) break;
+      }
+    },
+
     /* Bu tarif için eksik malzemeler: [{ id, name, icon, have, need }] */
     missing(r) {
       const out = [];

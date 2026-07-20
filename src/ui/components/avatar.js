@@ -682,6 +682,13 @@
   }
 
   /* Envanterdeki bir id'ye karşılık gelen katalog parçasını bul (satış için) */
+  /* Craft nadirlik kuralı için: bir outfit kozmetiğinin rarity'sini güncelle (id veya cosmeticId ile) */
+  function setOutfitRarity(cosmeticId, rarity) {
+    const o = OUTFITS.find(x => x.cosmeticId === cosmeticId || x.id === cosmeticId);
+    if (o) { o.rarity = rarity; return true; }
+    return false;
+  }
+
   function findByUnlock(key) {
     const groups = [['hair', CATALOG.hairs], ['hairColor', CATALOG.hairColors], ['eyes', CATALOG.eyes],
                     ['mouth', CATALOG.mouths], ['outfit', CATALOG.outfits], ['bottom', CATALOG.bottoms], ['acc', CATALOG.accs], ['ring', CATALOG.rings]];
@@ -740,5 +747,5 @@
 
   B.Avatar = { CATALOG, normalize, svg, el, fullBody, elFull, isUnlocked, preset, partIdFor, unequipCosmetic,
                genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, cosmeticCatalog, turntable,
-               wardrobeUsed, wardrobeCap, wardrobeFull, wardrobeCost, upgradeWardrobe };
+               wardrobeUsed, wardrobeCap, wardrobeFull, wardrobeCost, upgradeWardrobe, setOutfitRarity };
 })(window.BOKUL = window.BOKUL || {});

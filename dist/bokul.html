@@ -1844,7 +1844,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v1.01 — Avatar: kıyafet/saç değişiklikleri ana ekrana ANINDA yansır + geçerli kıyafet artık asla sıfırlanmaz (güvenlik ağı)</div>
+      <div class="splash-note">v1.02 — Craft edilen eşyalar ham maddelerinden bir ÜST nadirliğe çıkar (common→rare→epic→legendary zinciri)</div>
     </div>
   </div>
 
@@ -36771,6 +36771,37 @@ h1, h2, h3, h4,
     recipes() { return data().recipes || []; },
     get(id) { return data().recipes.find(r => r.id === id) || null; },
 
+    /* NADİRLİK KURALI: craft edilen çıktı, ham maddelerinden BİR ÜST nadirlik seviyesine çıkar.
+     * Tek kaynak = tarif girdileri (elle etiket sürüklemesi yok). Zincir boyunca yayılır
+     * (ham madde common → panel rare → akvaryum epic → …), fixpoint ile birkaç geçişte oturur.
+     * Boot'ta bir kez çağrılır; item.rarity (görsel tier) + outfit kozmetik rarity güncellenir. */
+    applyCraftRarities() {
+      const ORDER = ['common', 'rare', 'epic', 'legendary'];
+      const rank = r => { const i = ORDER.indexOf(r || 'common'); return i < 0 ? 0 : i; };
+      const recs = B.Craft.recipes();
+      const rarOf = id => { // girdinin güncel nadirliği (item ya da outfit kozmetiği)
+        const it = B.Items.get(id);
+        if (it && it.rarity) return it.rarity;
+        return 'common';
+      };
+      for (let pass = 0; pass < 8; pass++) {
+        let changed = false;
+        recs.forEach(r => {
+          const p = r.produces || {};
+          let maxIn = 0;
+          Object.keys(r.needs || {}).forEach(k => { maxIn = Math.max(maxIn, rank(rarOf(k))); });
+          const target = ORDER[Math.min(maxIn + 1, ORDER.length - 1)]; // girdilerin bir üstü
+          if (p.type === 'item') {
+            const out = B.Items.get(p.id);
+            if (out && out.rarity !== target) { out.rarity = target; changed = true; }
+          } else if (p.type === 'cosmetic' && B.Avatar && B.Avatar.setOutfitRarity) {
+            B.Avatar.setOutfitRarity(p.id, target);
+          }
+        });
+        if (!changed) break;
+      }
+    },
+
     /* Bu tarif için eksik malzemeler: [{ id, name, icon, have, need }] */
     missing(r) {
       const out = [];
@@ -40114,6 +40145,13 @@ h1, h2, h3, h4,
   }
 
   /* Envanterdeki bir id'ye karşılık gelen katalog parçasını bul (satış için) */
+  /* Craft nadirlik kuralı için: bir outfit kozmetiğinin rarity'sini güncelle (id veya cosmeticId ile) */
+  function setOutfitRarity(cosmeticId, rarity) {
+    const o = OUTFITS.find(x => x.cosmeticId === cosmeticId || x.id === cosmeticId);
+    if (o) { o.rarity = rarity; return true; }
+    return false;
+  }
+
   function findByUnlock(key) {
     const groups = [['hair', CATALOG.hairs], ['hairColor', CATALOG.hairColors], ['eyes', CATALOG.eyes],
                     ['mouth', CATALOG.mouths], ['outfit', CATALOG.outfits], ['bottom', CATALOG.bottoms], ['acc', CATALOG.accs], ['ring', CATALOG.rings]];
@@ -40172,7 +40210,7 @@ h1, h2, h3, h4,
 
   B.Avatar = { CATALOG, normalize, svg, el, fullBody, elFull, isUnlocked, preset, partIdFor, unequipCosmetic,
                genderOk, hairsFor, outfitsFor, bottomsFor, unlockKey, isGated, findByUnlock, cosmeticCatalog, turntable,
-               wardrobeUsed, wardrobeCap, wardrobeFull, wardrobeCost, upgradeWardrobe };
+               wardrobeUsed, wardrobeCap, wardrobeFull, wardrobeCost, upgradeWardrobe, setOutfitRarity };
 })(window.BOKUL = window.BOKUL || {});
 
 /* === src/ui/components/commander.js === */
@@ -44406,6 +44444,7 @@ h1, h2, h3, h4,
       B.Anim.init();
       B.Commander.init();
       B.UI.init();
+      if (B.Craft && B.Craft.applyCraftRarities) B.Craft.applyCraftRarities(); // craft çıktıları ham maddeden bir üst nadirliğe
     },
 
     /* Splash'tan giriş: hatırlanan profil varsa devam, yoksa giriş ekranı */
