@@ -1835,6 +1835,51 @@ h1, h2, h3, h4,
 .store-nostock-tag { color: #FF6B6B; font-weight: 800; }
 .store-stock { color: var(--ink-dim); font-weight: 700; font-size: 11px; }
 
+/* ================= HOBİ KURSLARI (v1.04) ================= */
+.atolye-hobby-btn {
+  width: 100%; margin: 0 0 10px; padding: 11px 14px; border: 0; border-radius: 14px;
+  background: linear-gradient(180deg, #3a2470, var(--bg-raised));
+  color: var(--xp); font-family: var(--display); font-size: 15px; font-weight: 700;
+  cursor: pointer; box-shadow: 0 3px 0 #1c1440, 0 0 0 1px var(--line) inset;
+}
+.atolye-hobby-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #1c1440, 0 0 0 1px var(--line) inset; }
+
+.hobby-wrap { max-width: 620px; margin: 0 auto; padding: 6px 10px 20px; }
+.hobby-head h2 { font-family: var(--display); color: var(--xp); font-size: 22px; margin-bottom: 4px; }
+.hobby-intro { color: var(--ink-dim); font-size: 13.5px; line-height: 1.45; margin-bottom: 14px; }
+.hobby-list { display: flex; flex-direction: column; gap: 10px; }
+.hobby-card {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  padding: 12px 14px; border: 0; border-radius: 16px; cursor: pointer;
+  background: var(--bg-panel); box-shadow: 0 3px 0 #1a1338, 0 0 0 1px var(--line) inset; color: var(--ink);
+}
+.hobby-card:active { transform: translateY(2px); }
+.hobby-done { opacity: .7; }
+.hobby-icon { font-size: 34px; flex: 0 0 auto; }
+.hobby-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.hobby-name { font-family: var(--display); font-weight: 700; font-size: 17px; }
+.hobby-reward { color: var(--ink-dim); font-size: 12px; }
+.hobby-status { font-weight: 700; color: var(--xp); font-size: 13px; flex: 0 0 auto; }
+.hobby-done .hobby-status { color: var(--success); }
+
+.hobby-quiz { background: var(--bg-panel); border-radius: 18px; padding: 16px; box-shadow: 0 0 0 1px var(--line) inset; }
+.hobby-quiz-head { font-family: var(--display); color: var(--accent); font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.hobby-q-count { color: var(--ink-dim); font-size: 12px; font-weight: 600; }
+.hobby-q { font-size: 18px; font-weight: 700; margin: 14px 0 12px; line-height: 1.35; color: var(--ink); }
+.hobby-opts { display: flex; flex-direction: column; gap: 9px; }
+.hobby-opt {
+  padding: 12px 14px; border: 0; border-radius: 12px; cursor: pointer; text-align: left;
+  background: var(--bg-raised); color: var(--ink); font-size: 15px; font-weight: 600;
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+.hobby-opt:active { transform: translateY(1px); }
+.hobby-opt:disabled { cursor: default; opacity: .95; }
+.hobby-right { background: rgba(82,232,140,.22) !important; box-shadow: 0 0 0 2px var(--success) inset !important; color: #d9ffe7; }
+.hobby-wrong { background: rgba(255,79,120,.18) !important; box-shadow: 0 0 0 2px #ff4f78 inset !important; }
+.hobby-fb { margin-top: 14px; font-size: 14px; color: var(--ink); min-height: 10px; }
+.hobby-hint { display: block; color: var(--warn); font-size: 13px; margin-top: 4px; }
+.hobby-next { margin-top: 12px; width: 100%; }
+
 </style>
 </head>
 <body>
@@ -1844,7 +1889,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v1.03 — Craft & rarity denetimi: satış değerleri nadirlikle uyumlu (epik eşya artık 1 altın değil), yanıltıcı blueprint metinleri düzeltildi, blueprint satışı kalıcı kayıp yapmıyor, yetim/tutarsız eşyalar temizlendi</div>
+      <div class="splash-note">v1.04 — YENİ: Hobi Kursları! Kısa bir kurs (Akvaryumculuk/Barınak/İç Mimarlık/Üs Mühendisliği) geç, üretim tarifini (blueprint) öğren — craft artık sandık şansına bağlı değil. Atölye'den giriş.</div>
     </div>
   </div>
 
@@ -3616,7 +3661,7 @@ h1, h2, h3, h4,
 {
   "schema": "blueprints@1",
   "version": 1,
-  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. Blueprint'ler 💎 NADİR SANDIKLARDAN düşer (boss'ları yenerek kazanırsın); Depom'da tarife dokunup «Öğren» dersin. Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
+  "intro": "Bir şeyi üretebilmek için önce onun BLUEPRINT'ini (tarifini) öğrenmen gerekir. İki yol var: 🎓 HOBİ KURSLARI'ndan ilgili kursu geçersin (öğrenerek kazanırsın) ya da 💎 NADİR SANDIKLARDAN düşer (boss ödülü → Depom'dan «Öğren»). Öğrendiğin her blueprint sana yeni bir üretim yeteneği kazandırır!",
   "blueprints": [
     {
       "id": "bp_akvaryum",
@@ -3657,6 +3702,73 @@ h1, h2, h3, h4,
       "skill": "Üs Mühendisliği",
       "grants": ["r_depo_raf", "r_ev_dekor"],
       "desc": "Depo rafı ve ev geliştirmeleriyle üssünü büyütmeyi öğrenirsin."
+    }
+  ]
+}
+
+</script>
+<script type="application/json" id="bokul-content-hobbies">
+{
+  "schema": "hobbies@1",
+  "version": 1,
+  "intro": "Hobi Kursları'na hoş geldin Komutan! Burada gerçek dünyadan bir hobi öğrenirsin ve karşılığında Atölye'de yeni şeyler üretmeni sağlayan bir TARİF (blueprint) kazanırsın. Bir kursu geç, tarifi kap!",
+  "passRatio": 0.6,
+  "courses": [
+    {
+      "id": "hobi-akvaryum",
+      "name": "Akvaryumculuk",
+      "icon": "🐠",
+      "blueprint": "bp_akvaryum",
+      "reward": "Cam panel + Akvaryum tarifi",
+      "intro": "Balıklara güzel bir cam ev kurmayı öğrenelim! Bu kursu geçersen akvaryum üretme tarifini kazanırsın.",
+      "questions": [
+        { "q": "Balıklar suyun içinde nasıl nefes alır?", "options": ["Solungaçlarıyla", "Burnuyla", "Kulaklarıyla"], "correct": 0, "hint": "Balıkların yanındaki yarıklara solungaç denir." },
+        { "q": "Akvaryum suyunu ara ara değiştirmek neden gerekir?", "options": ["Su temiz ve sağlıklı kalsın diye", "Balık sıkılmasın diye", "Su rengi değişsin diye"], "correct": 0, "hint": "Kirli su balığı hasta eder." },
+        { "q": "Balığa çok fazla yem atmak neden zararlıdır?", "options": ["Artan yem suyu kirletir", "Balık çok büyür", "Su ısınır"], "correct": 0, "hint": "Yenmeyen yem çürür ve suyu bozar." },
+        { "q": "Akvaryumun duvarları genellikle neyden yapılır?", "options": ["Camdan", "Tahtadan", "Kumaştan"], "correct": 0, "hint": "İçini görebilmen için saydam olmalı." }
+      ]
+    },
+    {
+      "id": "hobi-barinak",
+      "name": "Barınak Ustalığı",
+      "icon": "🏗️",
+      "blueprint": "bp_barinak",
+      "reward": "Metal çerçeve + Köpek kulübesi + Kuş yuvası tarifi",
+      "intro": "Dostlarımıza sıcak yuvalar yapmayı öğrenelim! Bu kursu geçersen barınak tariflerini kazanırsın.",
+      "questions": [
+        { "q": "Köpek kulübesi köpeği en çok neyden korur?", "options": ["Soğuk ve yağmurdan", "Karanlıktan", "Sesten"], "correct": 0, "hint": "Bir evin seni neyden koruduğunu düşün." },
+        { "q": "Bir barınaktaki hayvanların en çok ihtiyacı olan şey nedir?", "options": ["Düzenli bakım ve sevgi", "Bol oyuncak", "Büyük televizyon"], "correct": 0, "hint": "Canlılar sevgi ve ilgiyle mutlu olur." },
+        { "q": "Kuş yuvası kuşlar için ne zaman daha da önemlidir?", "options": ["Soğuk kış günlerinde", "Sıcak yaz öğlenlerinde", "Hiçbir zaman"], "correct": 0, "hint": "Üşüdüğünde bir yuva ister misin?" },
+        { "q": "Metal çerçeve neden yuvaları sağlam yapar?", "options": ["Dayanıklı ve kolay eğilmez", "Rengi güzel diye", "Hafif diye"], "correct": 0, "hint": "Metal kolay kırılmaz." }
+      ]
+    },
+    {
+      "id": "hobi-dekor",
+      "name": "İç Mimarlık",
+      "icon": "🛋️",
+      "blueprint": "bp_dekor",
+      "reward": "Kumaş, pencere, tablo, raf, yatak, vitrin tarifleri",
+      "intro": "Bir odayı en güzel haline getirmeyi öğrenelim! Bu kursu geçersen dekor tariflerini kazanırsın.",
+      "questions": [
+        { "q": "Bir odayı daha aydınlık göstermek için ne yaparsın?", "options": ["Açık renkler ve pencere kullanırım", "Her yeri siyaha boyarım", "Perdeleri hep kapatırım"], "correct": 0, "hint": "Işık ve açık renkler ferahlık verir." },
+        { "q": "Kitaplık ne işe yarar?", "options": ["Kitapları düzenli saklamaya", "Yemek pişirmeye", "Uyumaya"], "correct": 0, "hint": "Adı ipucu veriyor: kitap-lık." },
+        { "q": "Halı bir odaya ne katar?", "options": ["Sıcaklık ve yumuşaklık", "Gürültü", "Soğukluk"], "correct": 0, "hint": "Üstünde yürüyünce ayağın nasıl hisseder?" },
+        { "q": "Kumaş hangi malzemeden örülür?", "options": ["İpten", "Camdan", "Metalden"], "correct": 0, "hint": "İnce iplikler birleşince kumaş olur." }
+      ]
+    },
+    {
+      "id": "hobi-us",
+      "name": "Üs Mühendisliği",
+      "icon": "🏰",
+      "blueprint": "bp_us",
+      "reward": "Depo rafı + Ev geliştirme tarifleri",
+      "intro": "Üssünü büyütüp güçlendirmeyi öğrenelim! Bu kursu geçersen mühendislik tariflerini kazanırsın.",
+      "questions": [
+        { "q": "Depo ne işe yarar?", "options": ["Eşyaları düzenli saklamaya", "Uyumaya", "Yemek yemeye"], "correct": 0, "hint": "Topladığın şeyleri nereye koyarsın?" },
+        { "q": "Bir raf eklemek neye yardım eder?", "options": ["Daha çok eşyayı düzenli yerleştirmeye", "Odayı karartmaya", "Sesi artırmaya"], "correct": 0, "hint": "Raflar yer açar." },
+        { "q": "Bir mühendis bir şeyi güçlendirmeden önce ne yapar?", "options": ["Plan yapar ve malzeme hazırlar", "Hemen kırar", "Bekler"], "correct": 0, "hint": "Önce düşünmek, sonra yapmak." },
+        { "q": "Üssünü (deponu/evini) büyütmek neden iyidir?", "options": ["Daha çok şey saklayıp geliştirebilirsin", "Daha az yerin olur", "Hiçbir işe yaramaz"], "correct": 0, "hint": "Büyük yer = daha çok imkân." }
+      ]
     }
   ]
 }
@@ -36844,7 +36956,7 @@ h1, h2, h3, h4,
       const r = B.Craft.get(id);
       if (!r) return { ok: false, err: 'Tarif bulunamadı.' };
       const bp = B.Craft.lockedBy(r);
-      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" tarifini öğren — 💎 nadir sandıktan düşer, Depom\'dan öğrenirsin.', locked: true, bp };
+      if (bp) return { ok: false, err: '🔒 Önce "' + bp.name + '" tarifini öğren — 🎓 Hobi Kursları\'ndan geç ya da 💎 nadir sandıktan düşer.', locked: true, bp };
       if (!B.Craft.canCraft(r)) return { ok: false, err: 'Malzemen eksik.' };
       const p = r.produces || {};
       // Depo Rafı üretimi de depo tavanına (karakter seviyesi) tabi
@@ -36920,13 +37032,12 @@ h1, h2, h3, h4,
       return { ok: true, bp: b, free };
     },
 
-    /* Bir hobi kursu (lesson id) bitince ilgili blueprint'i DEPOYA düşür (ödül).
-     * Oyuncu sonra Depom'dan "Öğren" ile açar. Zaten öğrenilmişse/eldeyse geç.
-     * Döner: düşen blueprint ya da null. */
+    /* Bir hobi kursu (course id) geçilince ilgili blueprint'i DOĞRUDAN ÖĞRET (yeteneği aç).
+     * Zaten öğrenilmişse null döner. Döner: öğrenilen blueprint ya da null. */
     grantForHobby(hobbyLessonId) {
       const b = (data().blueprints || []).find(x => x.hobby === hobbyLessonId);
-      if (!b || B.Blueprints.isLearned(b.id) || (B.Items && B.Items.count(b.id) > 0)) return null;
-      if (B.Items) B.Items.add(b.id, 1);
+      if (!b || B.Blueprints.isLearned(b.id)) return null;
+      B.Blueprints.learn(b.id, { free: true });
       return b;
     },
 
@@ -43140,7 +43251,7 @@ h1, h2, h3, h4,
         const lockedBp = match && B.Craft.lockedBy ? B.Craft.lockedBy(match) : null;
         let out = '';
         if (match && lockedBp) {
-          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» blueprint\'ini öğren — 💎 nadir sandıktan düşer, Depom\'dan öğrenirsin.</div>';
+          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» tarifini öğren — 🎓 Hobi Kursları\'ndan geç ya da 💎 nadir sandıktan düşer.</div>';
         } else if (match) {
           const p = match.produces || {};
           const pic = p.type === 'upgrade' ? '⬆️' : ((B.Items.get(p.id) || {}).icon || match.icon);
@@ -43193,6 +43304,7 @@ h1, h2, h3, h4,
       wrap.innerHTML =
         '<div class="atolye-head"><div class="atolye-title">🔨 Üretim Atölyesi</div>' +
           '<div class="chip store-gold">💰 ' + (B.State.data.player.coins || 0) + '</div></div>' +
+        '<button class="atolye-hobby-btn">🎓 Hobi Kursları — yeni üretim tarifleri öğren</button>' +
         '<div class="craft-bench" aria-label="Üretim tezgahı"></div>' +
         '<div class="bench-out-wrap"></div>' +
         '<div class="bench-btns"><button class="btn btn-quiet bench-clear">✕ Temizle</button>' +
@@ -43201,11 +43313,133 @@ h1, h2, h3, h4,
           '<div class="atolye-mats-list"></div></div>' +
         recipeRef();
 
+      wrap.querySelector('.atolye-hobby-btn').onclick = () => { B.Audio.play('tick'); B.UI.show('hobbies', { back: 'atolye' }); };
       wrap.querySelector('.bench-clear').onclick = () => { bench = {}; B.Audio.play('tick'); renderBench(); renderMats(); };
       wrap.querySelector('.craft-do-btn').onclick = craftNow;
       renderMats();
       renderBench();
     },
+    exit() { if (this._hud) this._hud.dispose(); },
+  });
+})(window.BOKUL = window.BOKUL || {});
+
+/* === src/ui/screens/hobbies-screen.js === */
+/* BOKUL — Hobi Kursları Ekranı
+ * Gerçek dünyadan bir hobi öğren (kısa quiz) → geçince ilgili blueprint'i (üretim tarifi) KAZAN.
+ * Blueprint'in ikinci (öğrenerek açılan) yolu; nadir sandık şansına alternatif.
+ * İçerik: content/hobbies.json (course.id = blueprints.json'daki blueprint.hobby ile eşleşir). */
+(function (B) {
+  B.UI.registerScreen('hobbies', {
+    enter(root, params) {
+      const data = B.Content.get('hobbies') || { courses: [], passRatio: 0.6 };
+      const back = (params && params.back) || 'atolye';
+      const hud = B.UI.buildHud(root, { backTo: back });
+      this._hud = hud;
+
+      const wrap = document.createElement('div');
+      wrap.className = 'hobby-wrap';
+      root.appendChild(wrap);
+
+      const done = c => B.Blueprints && B.Blueprints.isLearned(c.blueprint);
+
+      /* ---- Kurs listesi ---- */
+      function renderList() {
+        wrap.innerHTML =
+          '<div class="hobby-head"><h2>🎓 Hobi Kursları</h2>' +
+          '<p class="hobby-intro">' + (data.intro || '') + '</p></div>' +
+          '<div class="hobby-list"></div>';
+        const list = wrap.querySelector('.hobby-list');
+        (data.courses || []).forEach(c => {
+          const finished = done(c);
+          const card = document.createElement('button');
+          card.className = 'hobby-card' + (finished ? ' hobby-done' : '');
+          card.innerHTML =
+            '<span class="hobby-icon">' + c.icon + '</span>' +
+            '<span class="hobby-info"><span class="hobby-name">' + c.name + '</span>' +
+            '<span class="hobby-reward">🎁 ' + (c.reward || 'Tarif') + '</span></span>' +
+            '<span class="hobby-status">' + (finished ? '✓ Öğrenildi' : '▶ Başla') + '</span>';
+          card.onclick = () => {
+            B.Audio.play('tick');
+            if (finished) { B.UI.toast('✓ Bu tarifi zaten öğrendin — Atölye\'de üretebilirsin.'); return; }
+            startCourse(c);
+          };
+          list.appendChild(card);
+        });
+      }
+
+      /* ---- Kurs quiz'i ---- */
+      function startCourse(c) {
+        const qs = c.questions || [];
+        let idx = 0, correct = 0;
+
+        function draw() {
+          if (idx >= qs.length) return finish();
+          const q = qs[idx];
+          wrap.innerHTML =
+            '<div class="hobby-quiz">' +
+              '<div class="hobby-quiz-head">' + c.icon + ' ' + c.name +
+                '<span class="hobby-q-count">Soru ' + (idx + 1) + '/' + qs.length + '</span></div>' +
+              '<div class="hobby-q">' + q.q + '</div>' +
+              '<div class="hobby-opts"></div>' +
+              '<div class="hobby-fb"></div>' +
+            '</div>';
+          const opts = wrap.querySelector('.hobby-opts');
+          const fb = wrap.querySelector('.hobby-fb');
+          q.options.forEach((opt, i) => {
+            const b = document.createElement('button');
+            b.className = 'hobby-opt';
+            b.textContent = opt;
+            b.onclick = () => {
+              // tek deneme: cevap kesin
+              opts.querySelectorAll('.hobby-opt').forEach(x => { x.disabled = true; });
+              const right = i === q.correct;
+              if (right) { correct++; b.classList.add('hobby-right'); B.Audio.play('correct'); }
+              else {
+                b.classList.add('hobby-wrong');
+                opts.querySelectorAll('.hobby-opt')[q.correct].classList.add('hobby-right');
+                B.Audio.play('wrong');
+              }
+              fb.innerHTML = (right ? '✅ Doğru!' : '❌ Doğru cevap işaretli.') +
+                (q.hint ? ' <span class="hobby-hint">💡 ' + q.hint + '</span>' : '');
+              const next = document.createElement('button');
+              next.className = 'btn btn-action hobby-next';
+              next.textContent = (idx + 1 >= qs.length) ? 'BİTİR ▶' : 'DEVAM ▶';
+              next.onclick = () => { idx++; draw(); };
+              fb.appendChild(next);
+            };
+            opts.appendChild(b);
+          });
+        }
+
+        function finish() {
+          const ratio = qs.length ? correct / qs.length : 0;
+          const passed = ratio >= (data.passRatio || 0.6);
+          if (passed) {
+            const b = B.Blueprints.grantForHobby(c.id); // tarifi ÖĞRET
+            B.Audio.play('fanfare'); if (B.Anim.confetti) B.Anim.confetti(50);
+            B.UI.overlay(
+              '<div class="ov-big">' + c.icon + '🎓</div><h2>' + c.name + ' — Geçtin!</h2>' +
+              '<p class="ov-xp">' + correct + '/' + qs.length + ' doğru</p>' +
+              '<p class="ov-quote">' + (b ? '📐 «' + b.name + '» tarifini ÖĞRENDİN! Artık Atölye\'de üretebilirsin.' : 'Bu tarifi zaten biliyordun.') + '</p>',
+              [{ label: 'Harika!', onClick: () => renderList() }]
+            );
+          } else {
+            B.Audio.play('wrong');
+            B.UI.overlay(
+              '<div class="ov-big">📚</div><h2>Az kaldı!</h2>' +
+              '<p class="ov-xp">' + correct + '/' + qs.length + ' doğru</p>' +
+              '<p class="ov-quote">Geçmek için biraz daha çalış — tekrar dene, bu sefer olacak!</p>',
+              [{ label: '🔄 Tekrar dene', onClick: () => startCourse(c) }, { label: 'Sonra', cls: 'btn-quiet', onClick: () => renderList() }]
+            );
+          }
+        }
+
+        draw();
+      }
+
+      renderList();
+    },
+
     exit() { if (this._hud) this._hud.dispose(); },
   });
 })(window.BOKUL = window.BOKUL || {});
@@ -44436,7 +44670,7 @@ h1, h2, h3, h4,
         'lessons/sanat-101',
         'lessons/bilim-101',
       ];
-      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'blueprints', 'pets', 'vendors', ...LESSONS]);
+      await B.Content.loadAll(['config', 'dialogues', 'rewards', 'story', 'quests', 'legal', 'items', 'recipes', 'blueprints', 'hobbies', 'pets', 'vendors', ...LESSONS]);
       LESSONS.forEach(l => B.Lesson.register(B.Content.get(l)));
       B.Lesson.setActive(B.Content.get('lessons/math-core'));
 

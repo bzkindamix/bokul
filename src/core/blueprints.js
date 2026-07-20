@@ -40,13 +40,12 @@
       return { ok: true, bp: b, free };
     },
 
-    /* Bir hobi kursu (lesson id) bitince ilgili blueprint'i DEPOYA düşür (ödül).
-     * Oyuncu sonra Depom'dan "Öğren" ile açar. Zaten öğrenilmişse/eldeyse geç.
-     * Döner: düşen blueprint ya da null. */
+    /* Bir hobi kursu (course id) geçilince ilgili blueprint'i DOĞRUDAN ÖĞRET (yeteneği aç).
+     * Zaten öğrenilmişse null döner. Döner: öğrenilen blueprint ya da null. */
     grantForHobby(hobbyLessonId) {
       const b = (data().blueprints || []).find(x => x.hobby === hobbyLessonId);
-      if (!b || B.Blueprints.isLearned(b.id) || (B.Items && B.Items.count(b.id) > 0)) return null;
-      if (B.Items) B.Items.add(b.id, 1);
+      if (!b || B.Blueprints.isLearned(b.id)) return null;
+      B.Blueprints.learn(b.id, { free: true });
       return b;
     },
 

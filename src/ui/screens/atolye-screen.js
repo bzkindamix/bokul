@@ -94,7 +94,7 @@
         const lockedBp = match && B.Craft.lockedBy ? B.Craft.lockedBy(match) : null;
         let out = '';
         if (match && lockedBp) {
-          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» blueprint\'ini öğren — 💎 nadir sandıktan düşer, Depom\'dan öğrenirsin.</div>';
+          out = '<div class="bench-out no">🔒 <b>' + match.name + '</b> için önce «' + lockedBp.name + '» tarifini öğren — 🎓 Hobi Kursları\'ndan geç ya da 💎 nadir sandıktan düşer.</div>';
         } else if (match) {
           const p = match.produces || {};
           const pic = p.type === 'upgrade' ? '⬆️' : ((B.Items.get(p.id) || {}).icon || match.icon);
@@ -147,6 +147,7 @@
       wrap.innerHTML =
         '<div class="atolye-head"><div class="atolye-title">🔨 Üretim Atölyesi</div>' +
           '<div class="chip store-gold">💰 ' + (B.State.data.player.coins || 0) + '</div></div>' +
+        '<button class="atolye-hobby-btn">🎓 Hobi Kursları — yeni üretim tarifleri öğren</button>' +
         '<div class="craft-bench" aria-label="Üretim tezgahı"></div>' +
         '<div class="bench-out-wrap"></div>' +
         '<div class="bench-btns"><button class="btn btn-quiet bench-clear">✕ Temizle</button>' +
@@ -155,6 +156,7 @@
           '<div class="atolye-mats-list"></div></div>' +
         recipeRef();
 
+      wrap.querySelector('.atolye-hobby-btn').onclick = () => { B.Audio.play('tick'); B.UI.show('hobbies', { back: 'atolye' }); };
       wrap.querySelector('.bench-clear').onclick = () => { bench = {}; B.Audio.play('tick'); renderBench(); renderMats(); };
       wrap.querySelector('.craft-do-btn').onclick = craftNow;
       renderMats();

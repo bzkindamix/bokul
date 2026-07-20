@@ -1450,3 +1450,48 @@
 .store-card.store-nostock { opacity: .5; }
 .store-nostock-tag { color: #FF6B6B; font-weight: 800; }
 .store-stock { color: var(--ink-dim); font-weight: 700; font-size: 11px; }
+
+/* ================= HOBİ KURSLARI (v1.04) ================= */
+.atolye-hobby-btn {
+  width: 100%; margin: 0 0 10px; padding: 11px 14px; border: 0; border-radius: 14px;
+  background: linear-gradient(180deg, #3a2470, var(--bg-raised));
+  color: var(--xp); font-family: var(--display); font-size: 15px; font-weight: 700;
+  cursor: pointer; box-shadow: 0 3px 0 #1c1440, 0 0 0 1px var(--line) inset;
+}
+.atolye-hobby-btn:active { transform: translateY(2px); box-shadow: 0 1px 0 #1c1440, 0 0 0 1px var(--line) inset; }
+
+.hobby-wrap { max-width: 620px; margin: 0 auto; padding: 6px 10px 20px; }
+.hobby-head h2 { font-family: var(--display); color: var(--xp); font-size: 22px; margin-bottom: 4px; }
+.hobby-intro { color: var(--ink-dim); font-size: 13.5px; line-height: 1.45; margin-bottom: 14px; }
+.hobby-list { display: flex; flex-direction: column; gap: 10px; }
+.hobby-card {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  padding: 12px 14px; border: 0; border-radius: 16px; cursor: pointer;
+  background: var(--bg-panel); box-shadow: 0 3px 0 #1a1338, 0 0 0 1px var(--line) inset; color: var(--ink);
+}
+.hobby-card:active { transform: translateY(2px); }
+.hobby-done { opacity: .7; }
+.hobby-icon { font-size: 34px; flex: 0 0 auto; }
+.hobby-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.hobby-name { font-family: var(--display); font-weight: 700; font-size: 17px; }
+.hobby-reward { color: var(--ink-dim); font-size: 12px; }
+.hobby-status { font-weight: 700; color: var(--xp); font-size: 13px; flex: 0 0 auto; }
+.hobby-done .hobby-status { color: var(--success); }
+
+.hobby-quiz { background: var(--bg-panel); border-radius: 18px; padding: 16px; box-shadow: 0 0 0 1px var(--line) inset; }
+.hobby-quiz-head { font-family: var(--display); color: var(--accent); font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.hobby-q-count { color: var(--ink-dim); font-size: 12px; font-weight: 600; }
+.hobby-q { font-size: 18px; font-weight: 700; margin: 14px 0 12px; line-height: 1.35; color: var(--ink); }
+.hobby-opts { display: flex; flex-direction: column; gap: 9px; }
+.hobby-opt {
+  padding: 12px 14px; border: 0; border-radius: 12px; cursor: pointer; text-align: left;
+  background: var(--bg-raised); color: var(--ink); font-size: 15px; font-weight: 600;
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+.hobby-opt:active { transform: translateY(1px); }
+.hobby-opt:disabled { cursor: default; opacity: .95; }
+.hobby-right { background: rgba(82,232,140,.22) !important; box-shadow: 0 0 0 2px var(--success) inset !important; color: #d9ffe7; }
+.hobby-wrong { background: rgba(255,79,120,.18) !important; box-shadow: 0 0 0 2px #ff4f78 inset !important; }
+.hobby-fb { margin-top: 14px; font-size: 14px; color: var(--ink); min-height: 10px; }
+.hobby-hint { display: block; color: var(--warn); font-size: 13px; margin-top: 4px; }
+.hobby-next { margin-top: 12px; width: 100%; }
