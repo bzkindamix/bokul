@@ -1844,7 +1844,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.95 — Mekanik doğruluğu: tekrar oynanan görev/boss artık ödül vermiyor (sınırsız altın/sandık açığı kapandı) + günlük seri saat dilimi fix + bilinmeyen sınıf soru filtresi</div>
+      <div class="splash-note">v0.96 — Evcil hayvan: sahiplenmede sarf malzemeleri harcanır, yuva (kafes/akvaryum/kulübe) sende kalır ve Odam'a konulabilir; ön koşul artık zorunlu</div>
     </div>
   </div>
 
@@ -36369,10 +36369,20 @@ h1, h2, h3, h4,
   }
   function data() { return B.Content.get('items') || { categories: [], items: [] }; }
 
+  /* YUVA eşyaları: hayvanın "evi" (kafes/akvaryum/kulübe/yuva/teraryum...). Bunlar
+   * sahiplenmede HARCANMAZ (hayvan içinde yaşar) ve ODAYA KONULABİLİR (room item).
+   * Sarf malzemeleri (kum/mama/tasma/talaş/lamba/tırmalama) ise sahiplenmede harcanır. */
+  const HABITATS = ['kafes', 'akvaryum', 'kopek_kulubesi', 'kus_yuvasi', 'hamster_kafesi',
+                    'tavsan_yuvasi', 'teraryum', 'buyuk_kafes', 'kirpi_yuvasi'];
+
   B.Items = {
     ensure() { inv(); },
     catalog() { return data().items; },
     categories() { return data().categories; },
+    /* Yuva mı? (sahiplenmede korunur + odaya konulabilir) */
+    isHabitat(id) { return HABITATS.indexOf(id) >= 0; },
+    /* Odaya yerleştirilebilir mi? ('oda' kategorisi VEYA yuva eşyası) */
+    isRoomItem(id) { const it = B.Items.get(id); return !!it && (it.cat === 'oda' || B.Items.isHabitat(id)); },
     get(id) {
       const it = data().items.find(x => x.id === id);
       if (it) return it;
@@ -36769,14 +36779,19 @@ h1, h2, h3, h4,
       });
       return out;
     },
-    // Barınaktan sahiplenme ÜCRETSİZ (ön koşul aranmaz) — bakım/besleme sorumluluk gerektirir.
-    canAdopt(typeId) { return !B.Pets.hasType(typeId); },
+    // Sahiplenme ÖN KOŞUL ister: yuva + sarf malzemeleri hazır olmalı. Sarf malzemeleri
+    // (kum/mama/tasma...) HARCANIR; yuva (kafes/akvaryum/kulübe...) KORUNUR ve odaya konulabilir.
+    canAdopt(typeId) { return !B.Pets.hasType(typeId) && B.Pets.missingPrereq(typeId).length === 0; },
 
-    /* Sahiplen: barınaktan ÜCRETSİZ; hayvanı ekle (ön koşul/harcama yok) */
+    /* Sahiplen: ön koşulları doğrula → sarf malzemelerini harca (yuva korunur) → hayvanı ekle */
     adopt(typeId, name) {
       const def = B.Pets.typeDef(typeId);
       if (!def) return { ok: false, err: 'Tür bulunamadı.' };
       if (B.Pets.hasType(typeId)) return { ok: false, err: 'Bu türden zaten var.' };
+      const missing = B.Pets.missingPrereq(typeId);
+      if (missing.length) return { ok: false, err: 'Önce eksik ön koşulları tamamla: ' + missing.map(m => m.name).join(', ') };
+      // Ön koşulları tüket: yuva eşyaları KORUNUR (hayvanın evi, odaya konulur), sarf malzemeleri harcanır.
+      (def.prereq || []).forEach(r => { if (!B.Items.isHabitat(r.item)) B.Items.remove(r.item, r.n); });
       const pet = {
         uid: 'p' + now().toString(36) + (uidSeq++), type: typeId,
         name: (name || def.name).trim().slice(0, 14) || def.name,
@@ -42056,7 +42071,7 @@ h1, h2, h3, h4,
         wrap.querySelectorAll('.adopt-go').forEach(b => { if (!b.disabled) b.onclick = () => {
           const def = B.Pets.typeDef(b.dataset.type);
           const ov = B.UI.overlay('<div class="ov-baba">' + def.icon + '</div><h2>' + def.name + ' sahiplen</h2>' +
-            '<p class="ov-quote">Ön koşul eşyaların bu hayvanın kurulumu için harcanacak. Ona bir isim ver:</p>' +
+            '<p class="ov-quote">Sarf malzemeleri (mama, kum, tasma…) harcanır; yuvası (kafes/akvaryum/kulübe) sende kalır ve Odam\'a koyabilirsin — dostun orada yaşar. Ona bir isim ver:</p>' +
             '<input id="pet-name" class="name-input" maxlength="14" placeholder="' + def.name + ' adı" value="' + def.name + '">',
             [{ label: 'Sahiplen 🐾', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: null }]);
           const btns = ov.querySelectorAll('.overlay-btns .btn');
@@ -42483,7 +42498,7 @@ h1, h2, h3, h4,
 
       const save = () => B.Save.saveSoon();
       const itemDef = id => B.Items.get(id) || { icon: '📦', name: id };
-      const ownedRoom = () => { const inv = B.State.data.inventory.items || {}; return B.Items.catalog().filter(it => it.cat === 'oda' && (inv[it.id] || 0) > 0); };
+      const ownedRoom = () => { const inv = B.State.data.inventory.items || {}; return B.Items.catalog().filter(it => B.Items.isRoomItem(it.id) && (inv[it.id] || 0) > 0); };
       const isPlaced = id => room.placed.some(pp => pp.id === id);
 
       const wrap = document.createElement('div'); wrap.className = 'room-wrap'; root.appendChild(wrap);

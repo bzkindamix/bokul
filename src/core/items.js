@@ -11,10 +11,20 @@
   }
   function data() { return B.Content.get('items') || { categories: [], items: [] }; }
 
+  /* YUVA eşyaları: hayvanın "evi" (kafes/akvaryum/kulübe/yuva/teraryum...). Bunlar
+   * sahiplenmede HARCANMAZ (hayvan içinde yaşar) ve ODAYA KONULABİLİR (room item).
+   * Sarf malzemeleri (kum/mama/tasma/talaş/lamba/tırmalama) ise sahiplenmede harcanır. */
+  const HABITATS = ['kafes', 'akvaryum', 'kopek_kulubesi', 'kus_yuvasi', 'hamster_kafesi',
+                    'tavsan_yuvasi', 'teraryum', 'buyuk_kafes', 'kirpi_yuvasi'];
+
   B.Items = {
     ensure() { inv(); },
     catalog() { return data().items; },
     categories() { return data().categories; },
+    /* Yuva mı? (sahiplenmede korunur + odaya konulabilir) */
+    isHabitat(id) { return HABITATS.indexOf(id) >= 0; },
+    /* Odaya yerleştirilebilir mi? ('oda' kategorisi VEYA yuva eşyası) */
+    isRoomItem(id) { const it = B.Items.get(id); return !!it && (it.cat === 'oda' || B.Items.isHabitat(id)); },
     get(id) {
       const it = data().items.find(x => x.id === id);
       if (it) return it;

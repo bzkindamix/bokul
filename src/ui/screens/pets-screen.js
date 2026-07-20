@@ -91,7 +91,7 @@
         wrap.querySelectorAll('.adopt-go').forEach(b => { if (!b.disabled) b.onclick = () => {
           const def = B.Pets.typeDef(b.dataset.type);
           const ov = B.UI.overlay('<div class="ov-baba">' + def.icon + '</div><h2>' + def.name + ' sahiplen</h2>' +
-            '<p class="ov-quote">Ön koşul eşyaların bu hayvanın kurulumu için harcanacak. Ona bir isim ver:</p>' +
+            '<p class="ov-quote">Sarf malzemeleri (mama, kum, tasma…) harcanır; yuvası (kafes/akvaryum/kulübe) sende kalır ve Odam\'a koyabilirsin — dostun orada yaşar. Ona bir isim ver:</p>' +
             '<input id="pet-name" class="name-input" maxlength="14" placeholder="' + def.name + ' adı" value="' + def.name + '">',
             [{ label: 'Sahiplen 🐾', onClick: null }, { label: 'Vazgeç', cls: 'btn-quiet', onClick: null }]);
           const btns = ov.querySelectorAll('.overlay-btns .btn');

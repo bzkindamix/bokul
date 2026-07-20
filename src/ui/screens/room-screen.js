@@ -39,7 +39,7 @@
 
       const save = () => B.Save.saveSoon();
       const itemDef = id => B.Items.get(id) || { icon: '📦', name: id };
-      const ownedRoom = () => { const inv = B.State.data.inventory.items || {}; return B.Items.catalog().filter(it => it.cat === 'oda' && (inv[it.id] || 0) > 0); };
+      const ownedRoom = () => { const inv = B.State.data.inventory.items || {}; return B.Items.catalog().filter(it => B.Items.isRoomItem(it.id) && (inv[it.id] || 0) > 0); };
       const isPlaced = id => room.placed.some(pp => pp.id === id);
 
       const wrap = document.createElement('div'); wrap.className = 'room-wrap'; root.appendChild(wrap);

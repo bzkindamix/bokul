@@ -61,14 +61,19 @@
       });
       return out;
     },
-    // Barınaktan sahiplenme ÜCRETSİZ (ön koşul aranmaz) — bakım/besleme sorumluluk gerektirir.
-    canAdopt(typeId) { return !B.Pets.hasType(typeId); },
+    // Sahiplenme ÖN KOŞUL ister: yuva + sarf malzemeleri hazır olmalı. Sarf malzemeleri
+    // (kum/mama/tasma...) HARCANIR; yuva (kafes/akvaryum/kulübe...) KORUNUR ve odaya konulabilir.
+    canAdopt(typeId) { return !B.Pets.hasType(typeId) && B.Pets.missingPrereq(typeId).length === 0; },
 
-    /* Sahiplen: barınaktan ÜCRETSİZ; hayvanı ekle (ön koşul/harcama yok) */
+    /* Sahiplen: ön koşulları doğrula → sarf malzemelerini harca (yuva korunur) → hayvanı ekle */
     adopt(typeId, name) {
       const def = B.Pets.typeDef(typeId);
       if (!def) return { ok: false, err: 'Tür bulunamadı.' };
       if (B.Pets.hasType(typeId)) return { ok: false, err: 'Bu türden zaten var.' };
+      const missing = B.Pets.missingPrereq(typeId);
+      if (missing.length) return { ok: false, err: 'Önce eksik ön koşulları tamamla: ' + missing.map(m => m.name).join(', ') };
+      // Ön koşulları tüket: yuva eşyaları KORUNUR (hayvanın evi, odaya konulur), sarf malzemeleri harcanır.
+      (def.prereq || []).forEach(r => { if (!B.Items.isHabitat(r.item)) B.Items.remove(r.item, r.n); });
       const pet = {
         uid: 'p' + now().toString(36) + (uidSeq++), type: typeId,
         name: (name || def.name).trim().slice(0, 14) || def.name,
