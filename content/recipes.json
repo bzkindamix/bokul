@@ -235,6 +235,87 @@
         "cam": 1
       },
       "teach": "İki tahta + bir metal çerçeve + bir cam ile başarı vitrini yap! Odana koy — kazandığın TÜM rozetler burada sergilenir. Ne kadar çok boss yenersen o kadar dolar!"
+    },
+    {
+      "id": "r_desen_yildiz",
+      "tier": "t3",
+      "icon": "⭐",
+      "name": "Yıldız Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-yildiz-desen" },
+      "needs": { "kumas": 2, "yildiz": 3 },
+      "teach": "Yeni bir şey öğreniyoruz Komutan: KIYAFET SÜSLEME! Kumaş (İp'ten örersin) + süsleme malzemesi (Terzi'den al) = kendi DESENLİ kıyafetin. İki kumaş + üç yıldız → yıldız desenli kıyafet. Dolabına düşer, giyebilirsin!"
+    },
+    {
+      "id": "r_desen_kalp",
+      "tier": "t3",
+      "icon": "❤️",
+      "name": "Kalp Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-kalp-desen" },
+      "needs": { "kumas": 2, "kalp": 3 }
+    },
+    {
+      "id": "r_desen_cicek",
+      "tier": "t3",
+      "icon": "🌸",
+      "name": "Çiçek Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-cicek-desen" },
+      "needs": { "kumas": 2, "cicek": 3 }
+    },
+    {
+      "id": "r_desen_simsek",
+      "tier": "t3",
+      "icon": "⚡",
+      "name": "Şimşek Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-simsek-desen" },
+      "needs": { "kumas": 2, "simsek": 3 }
+    },
+    {
+      "id": "r_desen_gokkusagi",
+      "tier": "t3",
+      "icon": "🌈",
+      "name": "Gökkuşağı Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-gokkusagi-desen" },
+      "needs": { "kumas": 3, "gokkusagi": 3 }
+    },
+    {
+      "id": "r_desen_kar",
+      "tier": "t3",
+      "icon": "❄️",
+      "name": "Kar Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-kar-desen" },
+      "needs": { "kumas": 2, "kar": 3 }
+    },
+    {
+      "id": "r_desen_elmas",
+      "tier": "t3",
+      "icon": "💎",
+      "name": "Elmas Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-elmas-desen" },
+      "needs": { "kumas": 3, "elmas": 3 }
+    },
+    {
+      "id": "r_desen_kurdele",
+      "tier": "t3",
+      "icon": "🎀",
+      "name": "Kurdele Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-kurdele-desen" },
+      "needs": { "kumas": 2, "kurdele": 3 }
+    },
+    {
+      "id": "r_desen_ay",
+      "tier": "t3",
+      "icon": "🌙",
+      "name": "Ay Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-ay-desen" },
+      "needs": { "kumas": 2, "ay": 3 }
+    },
+    {
+      "id": "r_desen_kelebek",
+      "tier": "t3",
+      "icon": "🦋",
+      "name": "Kelebek Desenli Kıyafet",
+      "produces": { "type": "cosmetic", "id": "of-kelebek-desen" },
+      "needs": { "kumas": 3, "kelebek": 3 }
     }
   ]
 }

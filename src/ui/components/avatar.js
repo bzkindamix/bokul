@@ -112,7 +112,19 @@
       { id: 'basket-sb', name: 'Siyah-Beyaz Basket',   shape: 'basketforma', c1: '#151515', c2: '#FFFFFF', gender: 'both', rarity: 'common', cosmeticId: 'of-basket-sb' },
       { id: 'basket-bm', name: 'Bordo-Mavi Basket',    shape: 'basketforma', c1: '#6D1F2E', c2: '#2A6CC9', gender: 'both', rarity: 'common', cosmeticId: 'of-basket-bm' },
       // Kamuflaj üst
-      { id: 'kamuflaj-ust', name: 'Kamuflaj Tişört', shape: 'kamuflaj', c1: '#4B5320', c2: '#79865C', gender: 'both', rarity: 'rare', cosmeticId: 'of-kamuflaj-ust' }
+      { id: 'kamuflaj-ust', name: 'Kamuflaj Tişört', shape: 'kamuflaj', c1: '#4B5320', c2: '#79865C', gender: 'both', rarity: 'rare', cosmeticId: 'of-kamuflaj-ust' },
+      // DESENLİ KIYAFETLER — yalnız Atölye'de craft edilir (craftOnly: sandıktan düşmez).
+      // Taban tişört + emoji desen overlay'i. Tarif: kumaş + [desen malzemesi] → bu kozmetik.
+      { id: 'yildiz-desen',    name: 'Yıldız Desenli Kıyafet',    shape: 'tee', c1: '#2A1F55', c2: '#FFD52E', gender: 'both', rarity: 'rare', cosmeticId: 'of-yildiz-desen',    pattern: '⭐', craftOnly: true },
+      { id: 'kalp-desen',      name: 'Kalp Desenli Kıyafet',      shape: 'tee', c1: '#E8443B', c2: '#FF7FC4', gender: 'both', rarity: 'rare', cosmeticId: 'of-kalp-desen',      pattern: '❤️', craftOnly: true },
+      { id: 'cicek-desen',     name: 'Çiçek Desenli Kıyafet',     shape: 'tee', c1: '#FF7FC4', c2: '#FFFFFF', gender: 'both', rarity: 'rare', cosmeticId: 'of-cicek-desen',     pattern: '🌸', craftOnly: true },
+      { id: 'simsek-desen',    name: 'Şimşek Desenli Kıyafet',    shape: 'tee', c1: '#231A48', c2: '#FFD52E', gender: 'both', rarity: 'rare', cosmeticId: 'of-simsek-desen',    pattern: '⚡', craftOnly: true },
+      { id: 'gokkusagi-desen', name: 'Gökkuşağı Desenli Kıyafet', shape: 'tee', c1: '#3DF2D2', c2: '#FF4FD8', gender: 'both', rarity: 'epic', cosmeticId: 'of-gokkusagi-desen', pattern: '🌈', craftOnly: true },
+      { id: 'kar-desen',       name: 'Kar Desenli Kıyafet',       shape: 'tee', c1: '#2A6CC9', c2: '#FFFFFF', gender: 'both', rarity: 'rare', cosmeticId: 'of-kar-desen',       pattern: '❄️', craftOnly: true },
+      { id: 'elmas-desen',     name: 'Elmas Desenli Kıyafet',     shape: 'tee', c1: '#4A3690', c2: '#3DF2D2', gender: 'both', rarity: 'epic', cosmeticId: 'of-elmas-desen',     pattern: '💎', craftOnly: true },
+      { id: 'kurdele-desen',   name: 'Kurdele Desenli Kıyafet',   shape: 'tee', c1: '#FF4FD8', c2: '#FFD52E', gender: 'both', rarity: 'rare', cosmeticId: 'of-kurdele-desen',   pattern: '🎀', craftOnly: true },
+      { id: 'ay-desen',        name: 'Ay Desenli Kıyafet',        shape: 'tee', c1: '#1B2F5E', c2: '#FFED00', gender: 'both', rarity: 'rare', cosmeticId: 'of-ay-desen',        pattern: '🌙', craftOnly: true },
+      { id: 'kelebek-desen',   name: 'Kelebek Desenli Kıyafet',   shape: 'tee', c1: '#5B3FA8', c2: '#3DF2D2', gender: 'both', rarity: 'epic', cosmeticId: 'of-kelebek-desen',   pattern: '🦋', craftOnly: true }
     );
     return out;
   }
@@ -260,6 +272,7 @@
     s += '<path d="M53 86 L53 97 Q60 101 67 97 L67 86 Z" fill="' + skin + '"/>';
     // Biçime göre yaka / amblem
     s += detail(shape, c1, c2, skin);
+    if (o.pattern) s += patternMini(o.pattern); // desenli kıyafet: küçük motif
     return s;
   }
 
@@ -497,6 +510,16 @@
   }
 
   /* ---------- TAM VÜCUT (ayakta figür) — büyük önizlemeler için ---------- */
+  /* Desen overlay'leri (craft'lanan desenli kıyafetler): tabana emoji motifi serpiştirir. */
+  function patternFull(em) { // tam vücut tişört üstü (gövde y94-150)
+    return [[50, 114, 11], [70, 114, 11], [60, 128, 12], [47, 140, 10], [73, 140, 10]]
+      .map(p => '<text x="' + p[0] + '" y="' + p[1] + '" font-size="' + p[2] + '" text-anchor="middle">' + em + '</text>').join('');
+  }
+  function patternMini(em) { // küçük dairesel avatar (omuz/göğüs)
+    return [[44, 111, 10], [60, 117, 11], [76, 111, 10]]
+      .map(p => '<text x="' + p[0] + '" y="' + p[1] + '" font-size="' + p[2] + '" text-anchor="middle">' + em + '</text>').join('');
+  }
+
   function fullBody(a) {
     a = normalize(a);
     const skin = CATALOG.skins[a.skin].color;
@@ -535,9 +558,9 @@
     if (longTop) {
       torso = '<path d="M40 94 Q60 86 80 94 L92 200 Q60 210 28 200 Z" fill="' + shirt + '"/>' +
               '<path d="M40 94 Q60 88 80 94 L82 118 Q60 124 38 118 Z" fill="' + accent + '" opacity=".55"/>';
-    } else if (SHORT_TOP.test(shp)) { // crop — göbek görünür
-      torso = '<path d="M44 113 L76 113 L74 152 Q60 156 46 152 Z" fill="' + skin + '"/>' + // göbek (ten)
-              '<path d="M40 94 Q60 86 80 94 L83 121 Q60 127 37 121 Z" fill="' + shirt + '"/>' +
+    } else if (SHORT_TOP.test(shp)) { // crop — gövdenin ÇOĞU kapalı, yalnız küçük bir göbek şeridi görünür
+      torso = '<path d="M45 140 L75 140 L74 150 Q60 154 46 150 Z" fill="' + skin + '"/>' + // küçük göbek şeridi (ten)
+              '<path d="M40 94 Q60 86 80 94 L82 141 Q60 146 38 141 Z" fill="' + shirt + '"/>' + // uzun crop (gövdenin ~%80'i)
               '<path d="M49 95 Q60 92 71 95 L70 100 Q60 103 50 100 Z" fill="' + accent + '"/>';
     } else {
       torso = '<path d="M40 94 Q60 86 80 94 L83 150 Q60 156 37 150 Z" fill="' + shirt + '"/>';
@@ -549,6 +572,7 @@
         torso += bl(49, 108, 7, accent) + bl(70, 119, 8, accent) + bl(54, 133, 6, '#9caf88') + bl(72, 103, 5, '#9caf88') + bl(66, 141, 7, '#3a4718') + bl(50, 124, 5, '#3a4718'); }
       else torso += '<path d="M49 95 Q60 92 71 95 L70 100 Q60 103 50 100 Z" fill="' + accent + '"/>'; // normal yaka
     }
+    if (o.pattern) torso += patternFull(o.pattern); // desenli kıyafet: motif serpiştir
     const armC = sleeveless ? skin : shirt; // kolsuz üstlerde kollar ten rengi
     return '<svg viewBox="0 0 120 214" xmlns="http://www.w3.org/2000/svg">' + defs +
       '<rect x="0" y="0" width="120" height="214" rx="16" fill="url(#fb' + id + ')"/>' +
@@ -642,7 +666,7 @@
     ];
     const out = [];
     groups.forEach(([type, typeLabel, list]) => list.forEach(p => {
-      if (isGated(p)) out.push({ type, typeLabel, part: p, id: unlockKey(p), name: p.name, rarity: p.rarity || 'common', gender: p.gender || 'both' });
+      if (isGated(p) && !p.craftOnly) out.push({ type, typeLabel, part: p, id: unlockKey(p), name: p.name, rarity: p.rarity || 'common', gender: p.gender || 'both' }); // craftOnly desenli kıyafetler sandıktan düşmez
     }));
     return out;
   }

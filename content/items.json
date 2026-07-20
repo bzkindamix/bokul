@@ -31,9 +31,104 @@
       "id": "koleksiyon",
       "name": "Koleksiyon",
       "icon": "🏆"
+    },
+    {
+      "id": "susleme",
+      "name": "Kıyafet Süslemesi",
+      "icon": "✨"
     }
   ],
   "items": [
+    {
+      "id": "yildiz",
+      "name": "Yıldız",
+      "icon": "⭐",
+      "price": 40,
+      "cat": "susleme",
+      "desc": "Kıyafete yıldız deseni işlemek için (Atölye).",
+      "rarity": "rare"
+    },
+    {
+      "id": "kalp",
+      "name": "Kalp",
+      "icon": "❤️",
+      "price": 40,
+      "cat": "susleme",
+      "desc": "Kıyafete kalp deseni işlemek için (Atölye).",
+      "rarity": "rare"
+    },
+    {
+      "id": "cicek",
+      "name": "Çiçek",
+      "icon": "🌸",
+      "price": 40,
+      "cat": "susleme",
+      "desc": "Kıyafete çiçek deseni işlemek için (Atölye).",
+      "rarity": "rare"
+    },
+    {
+      "id": "simsek",
+      "name": "Şimşek",
+      "icon": "⚡",
+      "price": 40,
+      "cat": "susleme",
+      "desc": "Kıyafete şimşek deseni işlemek için (Atölye).",
+      "rarity": "rare"
+    },
+    {
+      "id": "gokkusagi",
+      "name": "Gökkuşağı",
+      "icon": "🌈",
+      "price": 60,
+      "cat": "susleme",
+      "desc": "Kıyafete gökkuşağı deseni işlemek için (Atölye).",
+      "rarity": "epic"
+    },
+    {
+      "id": "kar",
+      "name": "Kar Tanesi",
+      "icon": "❄️",
+      "price": 40,
+      "cat": "susleme",
+      "desc": "Kıyafete kar deseni işlemek için (Atölye).",
+      "rarity": "rare"
+    },
+    {
+      "id": "elmas",
+      "name": "Elmas",
+      "icon": "💎",
+      "price": 60,
+      "cat": "susleme",
+      "desc": "Kıyafete elmas deseni işlemek için (Atölye).",
+      "rarity": "epic"
+    },
+    {
+      "id": "kurdele",
+      "name": "Kurdele",
+      "icon": "🎀",
+      "price": 40,
+      "cat": "susleme",
+      "desc": "Kıyafete kurdele deseni işlemek için (Atölye).",
+      "rarity": "rare"
+    },
+    {
+      "id": "ay",
+      "name": "Ay",
+      "icon": "🌙",
+      "price": 40,
+      "cat": "susleme",
+      "desc": "Kıyafete ay deseni işlemek için (Atölye).",
+      "rarity": "rare"
+    },
+    {
+      "id": "kelebek",
+      "name": "Kelebek",
+      "icon": "🦋",
+      "price": 60,
+      "cat": "susleme",
+      "desc": "Kıyafete kelebek deseni işlemek için (Atölye).",
+      "rarity": "epic"
+    },
     {
       "id": "tahta",
       "name": "Tahta",

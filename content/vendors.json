@@ -295,9 +295,10 @@
       "name": "Terzi Moda",
       "icon": "✂️",
       "color": "#EC407A",
-      "tagline": "Kıyafet ve stil",
+      "tagline": "Kıyafet, stil ve süsleme",
       "cats": [
-        "kiyafet"
+        "kiyafet",
+        "susleme"
       ],
       "lines": [
         "Bir çorap kayboldu, diğeri hâlâ onu arıyor; moda dünyası acımasız canım!",
@@ -370,6 +371,7 @@
     "koleksiyon": "robotcu",
     "oda": "marangoz",
     "pet": "barinak",
-    "kiyafet": "terzi"
+    "kiyafet": "terzi",
+    "susleme": "terzi"
   }
 }

@@ -59,12 +59,24 @@
       if (p.type === 'upgrade' && p.id === 'depoLevel' && B.Items.canUpgradeDepo && !B.Items.canUpgradeDepo()) {
         return { ok: false, err: 'Depo bu karakter seviyesi için maks. — önce seviye atla!', maxed: true };
       }
+      // Kıyafet craft'ı bir KOZMETİK açar → dolap doluysa (kapasite) engelle (malzeme harcanmadan)
+      if (p.type === 'cosmetic') {
+        const cos0 = B.State.data.inventory.cosmetics || [];
+        if (cos0.indexOf(p.id) >= 0) return { ok: false, err: 'Bu kıyafet zaten dolabında.', owned: true };
+        if (B.Avatar && B.Avatar.wardrobeFull && B.Avatar.wardrobeFull()) {
+          return { ok: false, err: 'Dolabın dolu — önce genişlet ya da bir kıyafet sat.', wardrobeFull: true };
+        }
+      }
       Object.keys(r.needs).forEach(k => B.Items.remove(k, r.needs[k]));
       if (p.type === 'item') B.Items.add(p.id, p.qty || 1);
       else if (p.type === 'upgrade') {
         const pl = B.State.data.player;
         const base = (p.id === 'depoLevel') ? 0 : 1; // depoLevel 0'dan başlar (coin yoluyla tutarlı)
         pl[p.id] = (pl[p.id] || base) + (p.qty || 1);
+      } else if (p.type === 'cosmetic') { // kıyafet: dolaba (kozmetik) ekle
+        const cos = B.State.data.inventory.cosmetics = B.State.data.inventory.cosmetics || [];
+        if (cos.indexOf(p.id) < 0) cos.push(p.id);
+        B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: p.id });
       }
       B.Bus.emit(B.Events.ITEM_CRAFTED, { recipeId: id });
       B.Save.saveSoon();
