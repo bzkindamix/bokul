@@ -132,8 +132,10 @@
     },
 
     init() {
-      // 💰 Altın: toplanan her N yıldız
+      // 💰 Altın: toplanan her N yıldız — YALNIZ ödüllü (ilk-tamamlama) sorular sayılır;
+      // tekrar oynanan harekâtlar reward:false ile yıldız bankasına katkı YAPMAZ (grind engeli).
       B.Bus.on(B.Events.QUESTION_COMPLETED, p => {
+        if (p && p.reward === false) return;
         const i = inv();
         i.starBank += p.stars;
         const every = R().chestStarEvery || 10;
@@ -141,8 +143,9 @@
       });
       // 👕 Kıyafet: level atlama (yeni görünüm ödülü)
       B.Bus.on(B.Events.LEVEL_UP, () => B.Chest.earn('kiyafet'));
-      // 📦 Eşya (konu boss'u) / 💎 Nadir (ünite boss'u)
-      B.Bus.on(B.Events.BOSS_DEFEATED, p => B.Chest.earn(p.tier === 'unit' ? 'nadir' : 'esya'));
+      // NOT: Boss sandıkları boss-screen'de firstKill korumasıyla dağıtılır (konu 1 · ünite 2 · final 3).
+      // Buradaki eski BOSS_DEFEATED dinleyicisi KALDIRILDI: her yenişte bedava sandık veriyordu
+      // (tekrar grind) + ilk yenişte boss-screen ile ÇİFT sandık üretiyordu.
     },
   };
 })(window.BOKUL = window.BOKUL || {});

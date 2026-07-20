@@ -44,10 +44,11 @@
     maxDepoLevel() { return (B.State.data.player && B.State.data.player.level) || 1; },
     canUpgradeDepo() { return B.Items.depoLevel() < B.Items.maxDepoLevel(); },
 
-    /* İki yükseltme yolu:
-     *  1) ALTIN — çok pahalı (kolay ama masraflı).
-     *  2) HAM MADDE toplayarak — toplam değeri altın maliyetinin %70'i (yani %30 DAHA UCUZ),
-     *     ama malzeme biriktirmek emek ister. Altın maliyeti, ham madde paketinin değerinden türetilir. */
+    /* İki yükseltme yolu (v0.92 dengesi — "satın al ya da topla"):
+     *  1) ALTIN — maliyet = ham madde paketinin ADİL DEĞERİ (aşağıdaki depoUpgradeCost).
+     *  2) HAM MADDE toplayarak — altını HİÇ harcamaz (emek = indirim).
+     * Böylece altınla yapmak toplamaktan HEP pahalıdır ve arbitraj açığı yoktur.
+     * (NOT: eski v0.90 "%30 ucuz" /0.7 çarpanı v0.92'de KALDIRILDI — artık eşit fiyat, indirim emekle gelir.) */
     depoMaterials() {
       const L = B.Items.depoLevel();
       return { tahta: 8 + L * 6, metal: 5 + L * 4, cam: 4 + L * 3, vida: 10 + L * 8, boya: 3 + L * 2 };

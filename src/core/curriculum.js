@@ -35,7 +35,11 @@
    *   1 → lvl 1   ·   2 → lvl 1-2   ·   3 → lvl 2   ·   4 → lvl 2-3   ·   5+ → lvl 3
    * İkinci değer, birincil hedef yetmezse genişleme yönünü belirtir. */
   function lvlTargetForGrade() {
-    const g = currentGrade(); // bulunduğu sınıf (bitirdiği + 1); bilinmiyorsa 6
+    const p = B.State.data.player || {};
+    // Sınıf/yaş BİLİNMİYORSA kısıtlama yok (ageBand ile tutarlı) — primary 0 → ageFilter tüm
+    // seviyelere düşer. (Aksi halde currentGrade null→6 idi ve çocuk yalnız EN ZOR soruları görürdü.)
+    if (p.grade == null && p.age == null) return { primary: 0, spread: [1, 2, 3] };
+    const g = currentGrade(); // bulunduğu sınıf (bitirdiği + 1)
     if (g <= 1) return { primary: 1, spread: [1] };
     if (g === 2) return { primary: 1, spread: [1, 2] };
     if (g === 3) return { primary: 2, spread: [2, 1] };

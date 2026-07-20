@@ -15,6 +15,11 @@
       const cfg = B.Content.get('config');
       const self = this;
 
+      // İLK TAMAMLAMA mı? Tekrar oynanan harekât ödül VERMEZ (grind ile sınırsız altın/XP/sandık
+      // önlenir) — yalnız alıştırma olur. Progress/ustalık takibi tekrarda da işler (QUESTION_COMPLETED
+      // yayılır) ama reward:false ile ekonomi katkısı kapanır.
+      const firstClear = !B.State.sectionProgress(lesson.id, params.sectionId).missions[params.missionId];
+
       const hud = B.UI.buildHud(root, {
         backTo: 'map',
         extra: '<div class="chip hud-target"></div><div class="chip hud-streak"></div>',
@@ -135,10 +140,12 @@
             : (mistakes <= th.three ? 3 : mistakes <= th.two ? 2 : 1);
           starList.push(stars);
           B.Reward.onQuestionDone(stars === 3);
-          B.Reward.addCoins(stars * 2, 'question');
-          const xp = B.Reward.addXp(B.Reward.questionXp(stars), 'question', { applyStreak: true });
+          // Ödül YALNIZ ilk tamamlamada (tekrar = ödülsüz alıştırma)
+          if (firstClear) B.Reward.addCoins(stars * 2, 'question');
+          const xp = firstClear ? B.Reward.addXp(B.Reward.questionXp(stars), 'question', { applyStreak: true }) : 0;
           B.Bus.emit(B.Events.QUESTION_COMPLETED, {
             stars, mistakes, ms: Date.now() - qStart, firstTry: !timedOut && mistakes === 0,
+            reward: firstClear, // sandık yıldız-bankası buna saygı gösterir
           });
           if (timedOut) cmd.sayFrom('timeUp');
           showStars(stars, xp, () => { qIndex++; nextQuestion(); });
@@ -178,8 +185,9 @@
         const best = starsArr.length ? Math.round(starsArr.reduce((a, b) => a + b, 0) / starsArr.length) : 3;
         const stars = Math.max(1, Math.min(3, best));
         B.Lesson.completeMission(params.sectionId, params.missionId, stars);
-        const bonus = B.Reward.addXp(B.Reward.missionBonus(), 'mission');
-        const coins = B.Reward.addCoins(10, 'mission');
+        // Görev bonusu YALNIZ ilk tamamlamada (tekrar = ödülsüz alıştırma)
+        const bonus = firstClear ? B.Reward.addXp(B.Reward.missionBonus(), 'mission') : 0;
+        const coins = firstClear ? B.Reward.addCoins(10, 'mission') : 0;
         // NOT: Görevler artık SANDIK VERMEZ (v0.76 denge). Sandık yalnızca boss'u İLK KEZ
         // yenince gelir → eşya kazanmak anlamlı/zor kalır (grind ile bedava sandık yok).
         B.Bus.emit(B.Events.MISSION_COMPLETED, { missionId: params.missionId, stars, xp: bonus });
@@ -189,7 +197,7 @@
           '<div class="ov-big">🎖️</div><h2>HAREKÂT TAMAM!</h2>' +
           '<div class="ov-stars">' +
             [1, 2, 3].map(i => '<span class="ov-star' + (i <= stars ? ' lit' : '') + '">★</span>').join('') +
-          '</div><p class="ov-xp">Görev bonusu: +' + bonus + ' XP · +' + coins + ' 💰</p>' +
+          '</div><p class="ov-xp">' + (firstClear ? ('Görev bonusu: +' + bonus + ' XP · +' + coins + ' 💰') : '🔁 Alıştırma turu — bu harekâtı zaten tamamladın (ödül yok)') + '</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('mission.done') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
         );

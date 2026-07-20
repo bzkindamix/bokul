@@ -74,11 +74,16 @@
 
     registerDailyPlay() {
       const st = B.State.data.streaks;
-      const today = new Date(); today.setHours(0, 0, 0, 0);
-      const todayStr = today.toISOString().slice(0, 10);
+      // YEREL takvim gününü tek tabanda kullan (eski kod yerel gece yarısı + toISOString/UTC
+      // karıştırıyordu → UTC+3'te (Türkiye) gün anahtarı 1 gün geri kayıyor, ardışık oynayışta
+      // diff=2 çıkıp seri hiç ilerlemiyordu). Şimdi hem anahtar hem diff yerel Y/M/G üzerinden.
+      const d = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      const todayStr = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
       if (st.lastPlayDate === todayStr) return;
       if (st.lastPlayDate) {
-        const diff = Math.round((today - new Date(st.lastPlayDate)) / 86400000);
+        const [y, m, day] = st.lastPlayDate.split('-').map(Number);
+        const diff = Math.round((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(y, m - 1, day)) / 86400000);
         if (diff === 1) st.dailyDays++;
         else if (diff > 1) st.dailyDays = Math.max(0, st.dailyDays - 2); // kırılınca sıfırlama YOK: 2 kademe düşer
       } else st.dailyDays = 1;

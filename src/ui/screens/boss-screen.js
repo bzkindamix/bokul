@@ -178,8 +178,9 @@
             lesson: lesson.title, lessonId: lesson.id, section: section.title });
         }
         const isFinal = boss.tier === 'final';
-        const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
-        const coins = B.Reward.addCoins(isFinal ? 250 : isUnit ? 100 : 50, 'boss');
+        // Altın/XP de SADECE ilk yenişte (tekrar boss = ödülsüz alıştırma; sandıklar zaten firstKill'de)
+        const xp = firstKill ? B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss') : 0;
+        const coins = firstKill ? B.Reward.addCoins(isFinal ? 250 : isUnit ? 100 : 50, 'boss') : 0;
         // Sandıklar SADECE İLK yenişte + az adet (denge): konu boss'u 1 · ünite boss'u 2 · FINAL 3
         let chestCount = 0;
         if (firstKill && B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
@@ -195,7 +196,7 @@
         // Zafer kartını biraz geciktir: önce boss'un patlaması + konfeti görünsün
         setTimeout(() => B.UI.overlay(
           '<div class="ov-big">' + boss.icon + '💥</div><h2>' + boss.name.toUpperCase() + ' DEVRİLDİ!</h2>' +
-          '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (chestCount ? ' · 🎁 ' + chestCount + ' sandık' : '') + (isFinal ? ' · 🐉 DERS USTASI OLDUN!' : isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
+          '<p class="ov-xp">' + (firstKill ? ('+' + xp + ' XP · +' + coins + ' 💰' + (chestCount ? ' · 🎁 ' + chestCount + ' sandık' : '')) : '🔁 Alıştırma — bu boss zaten yenildi (ödül yok)') + (isFinal ? ' · 🐉 DERS USTASI OLDUN!' : isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
           '<p class="ov-crystal">💠 Bir Sayı Kristali parçası daha kurtarıldı!</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('boss.win') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]

@@ -1844,7 +1844,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.94 — Soru tekrari bitti (kalici 'gorulen soru' defteri) + MEB mufredatina bagli sinif-cozunurluklu yas farklilasmasi</div>
+      <div class="splash-note">v0.95 — Mekanik doğruluğu: tekrar oynanan görev/boss artık ödül vermiyor (sınırsız altın/sandık açığı kapandı) + günlük seri saat dilimi fix + bilinmeyen sınıf soru filtresi</div>
     </div>
   </div>
 
@@ -35576,7 +35576,11 @@ h1, h2, h3, h4,
    *   1 → lvl 1   ·   2 → lvl 1-2   ·   3 → lvl 2   ·   4 → lvl 2-3   ·   5+ → lvl 3
    * İkinci değer, birincil hedef yetmezse genişleme yönünü belirtir. */
   function lvlTargetForGrade() {
-    const g = currentGrade(); // bulunduğu sınıf (bitirdiği + 1); bilinmiyorsa 6
+    const p = B.State.data.player || {};
+    // Sınıf/yaş BİLİNMİYORSA kısıtlama yok (ageBand ile tutarlı) — primary 0 → ageFilter tüm
+    // seviyelere düşer. (Aksi halde currentGrade null→6 idi ve çocuk yalnız EN ZOR soruları görürdü.)
+    if (p.grade == null && p.age == null) return { primary: 0, spread: [1, 2, 3] };
+    const g = currentGrade(); // bulunduğu sınıf (bitirdiği + 1)
     if (g <= 1) return { primary: 1, spread: [1] };
     if (g === 2) return { primary: 1, spread: [1, 2] };
     if (g === 3) return { primary: 2, spread: [2, 1] };
@@ -36398,10 +36402,11 @@ h1, h2, h3, h4,
     maxDepoLevel() { return (B.State.data.player && B.State.data.player.level) || 1; },
     canUpgradeDepo() { return B.Items.depoLevel() < B.Items.maxDepoLevel(); },
 
-    /* İki yükseltme yolu:
-     *  1) ALTIN — çok pahalı (kolay ama masraflı).
-     *  2) HAM MADDE toplayarak — toplam değeri altın maliyetinin %70'i (yani %30 DAHA UCUZ),
-     *     ama malzeme biriktirmek emek ister. Altın maliyeti, ham madde paketinin değerinden türetilir. */
+    /* İki yükseltme yolu (v0.92 dengesi — "satın al ya da topla"):
+     *  1) ALTIN — maliyet = ham madde paketinin ADİL DEĞERİ (aşağıdaki depoUpgradeCost).
+     *  2) HAM MADDE toplayarak — altını HİÇ harcamaz (emek = indirim).
+     * Böylece altınla yapmak toplamaktan HEP pahalıdır ve arbitraj açığı yoktur.
+     * (NOT: eski v0.90 "%30 ucuz" /0.7 çarpanı v0.92'de KALDIRILDI — artık eşit fiyat, indirim emekle gelir.) */
     depoMaterials() {
       const L = B.Items.depoLevel();
       return { tahta: 8 + L * 6, metal: 5 + L * 4, cam: 4 + L * 3, vida: 10 + L * 8, boya: 3 + L * 2 };
@@ -37331,11 +37336,16 @@ h1, h2, h3, h4,
 
     registerDailyPlay() {
       const st = B.State.data.streaks;
-      const today = new Date(); today.setHours(0, 0, 0, 0);
-      const todayStr = today.toISOString().slice(0, 10);
+      // YEREL takvim gününü tek tabanda kullan (eski kod yerel gece yarısı + toISOString/UTC
+      // karıştırıyordu → UTC+3'te (Türkiye) gün anahtarı 1 gün geri kayıyor, ardışık oynayışta
+      // diff=2 çıkıp seri hiç ilerlemiyordu). Şimdi hem anahtar hem diff yerel Y/M/G üzerinden.
+      const d = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      const todayStr = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
       if (st.lastPlayDate === todayStr) return;
       if (st.lastPlayDate) {
-        const diff = Math.round((today - new Date(st.lastPlayDate)) / 86400000);
+        const [y, m, day] = st.lastPlayDate.split('-').map(Number);
+        const diff = Math.round((Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) - Date.UTC(y, m - 1, day)) / 86400000);
         if (diff === 1) st.dailyDays++;
         else if (diff > 1) st.dailyDays = Math.max(0, st.dailyDays - 2); // kırılınca sıfırlama YOK: 2 kademe düşer
       } else st.dailyDays = 1;
@@ -37791,8 +37801,10 @@ h1, h2, h3, h4,
     },
 
     init() {
-      // 💰 Altın: toplanan her N yıldız
+      // 💰 Altın: toplanan her N yıldız — YALNIZ ödüllü (ilk-tamamlama) sorular sayılır;
+      // tekrar oynanan harekâtlar reward:false ile yıldız bankasına katkı YAPMAZ (grind engeli).
       B.Bus.on(B.Events.QUESTION_COMPLETED, p => {
+        if (p && p.reward === false) return;
         const i = inv();
         i.starBank += p.stars;
         const every = R().chestStarEvery || 10;
@@ -37800,8 +37812,9 @@ h1, h2, h3, h4,
       });
       // 👕 Kıyafet: level atlama (yeni görünüm ödülü)
       B.Bus.on(B.Events.LEVEL_UP, () => B.Chest.earn('kiyafet'));
-      // 📦 Eşya (konu boss'u) / 💎 Nadir (ünite boss'u)
-      B.Bus.on(B.Events.BOSS_DEFEATED, p => B.Chest.earn(p.tier === 'unit' ? 'nadir' : 'esya'));
+      // NOT: Boss sandıkları boss-screen'de firstKill korumasıyla dağıtılır (konu 1 · ünite 2 · final 3).
+      // Buradaki eski BOSS_DEFEATED dinleyicisi KALDIRILDI: her yenişte bedava sandık veriyordu
+      // (tekrar grind) + ilk yenişte boss-screen ile ÇİFT sandık üretiyordu.
     },
   };
 })(window.BOKUL = window.BOKUL || {});
@@ -40717,6 +40730,11 @@ h1, h2, h3, h4,
       const cfg = B.Content.get('config');
       const self = this;
 
+      // İLK TAMAMLAMA mı? Tekrar oynanan harekât ödül VERMEZ (grind ile sınırsız altın/XP/sandık
+      // önlenir) — yalnız alıştırma olur. Progress/ustalık takibi tekrarda da işler (QUESTION_COMPLETED
+      // yayılır) ama reward:false ile ekonomi katkısı kapanır.
+      const firstClear = !B.State.sectionProgress(lesson.id, params.sectionId).missions[params.missionId];
+
       const hud = B.UI.buildHud(root, {
         backTo: 'map',
         extra: '<div class="chip hud-target"></div><div class="chip hud-streak"></div>',
@@ -40837,10 +40855,12 @@ h1, h2, h3, h4,
             : (mistakes <= th.three ? 3 : mistakes <= th.two ? 2 : 1);
           starList.push(stars);
           B.Reward.onQuestionDone(stars === 3);
-          B.Reward.addCoins(stars * 2, 'question');
-          const xp = B.Reward.addXp(B.Reward.questionXp(stars), 'question', { applyStreak: true });
+          // Ödül YALNIZ ilk tamamlamada (tekrar = ödülsüz alıştırma)
+          if (firstClear) B.Reward.addCoins(stars * 2, 'question');
+          const xp = firstClear ? B.Reward.addXp(B.Reward.questionXp(stars), 'question', { applyStreak: true }) : 0;
           B.Bus.emit(B.Events.QUESTION_COMPLETED, {
             stars, mistakes, ms: Date.now() - qStart, firstTry: !timedOut && mistakes === 0,
+            reward: firstClear, // sandık yıldız-bankası buna saygı gösterir
           });
           if (timedOut) cmd.sayFrom('timeUp');
           showStars(stars, xp, () => { qIndex++; nextQuestion(); });
@@ -40880,8 +40900,9 @@ h1, h2, h3, h4,
         const best = starsArr.length ? Math.round(starsArr.reduce((a, b) => a + b, 0) / starsArr.length) : 3;
         const stars = Math.max(1, Math.min(3, best));
         B.Lesson.completeMission(params.sectionId, params.missionId, stars);
-        const bonus = B.Reward.addXp(B.Reward.missionBonus(), 'mission');
-        const coins = B.Reward.addCoins(10, 'mission');
+        // Görev bonusu YALNIZ ilk tamamlamada (tekrar = ödülsüz alıştırma)
+        const bonus = firstClear ? B.Reward.addXp(B.Reward.missionBonus(), 'mission') : 0;
+        const coins = firstClear ? B.Reward.addCoins(10, 'mission') : 0;
         // NOT: Görevler artık SANDIK VERMEZ (v0.76 denge). Sandık yalnızca boss'u İLK KEZ
         // yenince gelir → eşya kazanmak anlamlı/zor kalır (grind ile bedava sandık yok).
         B.Bus.emit(B.Events.MISSION_COMPLETED, { missionId: params.missionId, stars, xp: bonus });
@@ -40891,7 +40912,7 @@ h1, h2, h3, h4,
           '<div class="ov-big">🎖️</div><h2>HAREKÂT TAMAM!</h2>' +
           '<div class="ov-stars">' +
             [1, 2, 3].map(i => '<span class="ov-star' + (i <= stars ? ' lit' : '') + '">★</span>').join('') +
-          '</div><p class="ov-xp">Görev bonusu: +' + bonus + ' XP · +' + coins + ' 💰</p>' +
+          '</div><p class="ov-xp">' + (firstClear ? ('Görev bonusu: +' + bonus + ' XP · +' + coins + ' 💰') : '🔁 Alıştırma turu — bu harekâtı zaten tamamladın (ödül yok)') + '</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('mission.done') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
         );
@@ -41093,8 +41114,9 @@ h1, h2, h3, h4,
             lesson: lesson.title, lessonId: lesson.id, section: section.title });
         }
         const isFinal = boss.tier === 'final';
-        const xp = B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss');
-        const coins = B.Reward.addCoins(isFinal ? 250 : isUnit ? 100 : 50, 'boss');
+        // Altın/XP de SADECE ilk yenişte (tekrar boss = ödülsüz alıştırma; sandıklar zaten firstKill'de)
+        const xp = firstKill ? B.Reward.addXp(B.Reward.bossXp(boss.tier), 'boss') : 0;
+        const coins = firstKill ? B.Reward.addCoins(isFinal ? 250 : isUnit ? 100 : 50, 'boss') : 0;
         // Sandıklar SADECE İLK yenişte + az adet (denge): konu boss'u 1 · ünite boss'u 2 · FINAL 3
         let chestCount = 0;
         if (firstKill && B.Chest && B.Chest.earn && !(B.Demo && B.Demo.isDemo())) {
@@ -41110,7 +41132,7 @@ h1, h2, h3, h4,
         // Zafer kartını biraz geciktir: önce boss'un patlaması + konfeti görünsün
         setTimeout(() => B.UI.overlay(
           '<div class="ov-big">' + boss.icon + '💥</div><h2>' + boss.name.toUpperCase() + ' DEVRİLDİ!</h2>' +
-          '<p class="ov-xp">+' + xp + ' XP · +' + coins + ' 💰' + (chestCount ? ' · 🎁 ' + chestCount + ' sandık' : '') + (isFinal ? ' · 🐉 DERS USTASI OLDUN!' : isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
+          '<p class="ov-xp">' + (firstKill ? ('+' + xp + ' XP · +' + coins + ' 💰' + (chestCount ? ' · 🎁 ' + chestCount + ' sandık' : '')) : '🔁 Alıştırma — bu boss zaten yenildi (ödül yok)') + (isFinal ? ' · 🐉 DERS USTASI OLDUN!' : isUnit ? ' · 🏆 Efsanevi zafer!' : ' · 💎 Epik zafer!') + '</p>' +
           '<p class="ov-crystal">💠 Bir Sayı Kristali parçası daha kurtarıldı!</p>' +
           '<p class="ov-quote">' + (B.Dialogue.pick('boss.win') || '') + '</p>',
           [{ label: 'HARİTAYA DÖN', onClick: () => B.UI.show('map') }]
