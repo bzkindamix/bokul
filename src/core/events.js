@@ -17,6 +17,7 @@
     CHEST_OPENED:   'chest:opened',    // { chestType, item }
     COSMETIC_UNLOCKED: 'cosmetic:unlocked', // { itemId }
     COSMETIC_SOLD:  'cosmetic:sold',   // { itemId, coins }
+    AVATAR_CHANGED: 'avatar:changed',  // avatar (kıyafet/saç/aksesuar) değişti → canlı ekranlar tazelenir
     COINS_CHANGED:  'coins:changed',   // { total, delta }
 
     // Eşya / craft / evcil hayvan

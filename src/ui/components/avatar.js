@@ -215,13 +215,23 @@
     ],
   };
 
+  /* Outfit'i güvenle çöz: geçerli id ise aynen; yanlışlıkla cosmeticId saklanmışsa (of-*)
+   * gerçek outfit id'sine çöz; YALNIZ gerçekten bilinmeyen id default'a düşer. Böylece
+   * sahip olunan/geçerli bir kıyafet ASLA sıfırlanmaz ("kıyafet resetlenme" güvenlik ağı). */
+  function resolveOutfit(id) {
+    if (OUTFIT_BY_ID[id]) return id;
+    const byUnlock = id ? findByUnlock(id) : null;
+    if (byUnlock && byUnlock.type === 'outfit' && byUnlock.part) return byUnlock.part.id;
+    return DEFAULT_OUTFIT;
+  }
+
   function normalize(a) {
     a = a || {};
     return {
       gender: a.gender || null,
       skin: a.skin ?? 2, hair: a.hair ?? 0, hairColor: a.hairColor ?? 0, eyeColor: a.eyeColor ?? 0,
       eyes: a.eyes ?? 0, mouth: a.mouth ?? 0, nose: a.nose ?? 0, ear: a.ear ?? 0,
-      outfit: OUTFIT_BY_ID[a.outfit] ? a.outfit : DEFAULT_OUTFIT,
+      outfit: resolveOutfit(a.outfit),
       bottom: BOTTOM_BY_ID[a.bottom] ? a.bottom : DEFAULT_BOTTOM,
       acc: a.acc || 'none', ring: a.ring || 'none',
       // Fotoğraf özelliği KVKK gereği kaldırıldı — avatar her zaman çizimdir.

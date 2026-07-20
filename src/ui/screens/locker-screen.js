@@ -47,7 +47,7 @@
       const right = document.createElement('div'); right.className = 'locker-right'; layout.appendChild(right);
 
       const av = () => B.Avatar.normalize(B.State.data.player.avatar);
-      function commit(a) { B.State.data.player.avatar = a; B.Save.saveSoon(); render(); }
+      function commit(a) { B.State.data.player.avatar = a; B.Save.saveSoon(); B.Bus.emit(B.Events.AVATAR_CHANGED, {}); render(); }
 
       const priceOf = part => prices[part.rarity] || 50;
 
@@ -60,6 +60,7 @@
         if (i < 0) return;
         inv.cosmetics.splice(i, 1);
         B.State.data.player.avatar = B.Avatar.unequipCosmetic(B.State.data.player.avatar, { id: key, type: part.type });
+        B.Bus.emit(B.Events.AVATAR_CHANGED, {});
         B.Reward.addCoins(price, 'sell');
         B.Bus.emit(B.Events.COSMETIC_SOLD, { itemId: key, coins: price });
         B.Audio.play('tick');

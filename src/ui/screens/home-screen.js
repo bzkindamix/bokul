@@ -136,8 +136,17 @@
         '</div>' +
         '<div class="home-figure-name">🧍 ' + (p.name || 'Asker') + '</div>';
       root.appendChild(figure); // kaydırma alanının DIŞINDA — kapıların üstünde sabit bant (hep tam görünür)
-      const figHold = figure.querySelector('.home-figure-char .avatar-holder');
-      if (figHold && B.Avatar.turntable) B.Avatar.turntable(figHold); // parmakla döndür (pseudo-3D)
+      const charHost = figure.querySelector('.home-figure-char');
+      let figTurn = null;
+      function mountFigure() {
+        if (figTurn && figTurn.dispose) figTurn.dispose();
+        charHost.innerHTML = B.Avatar.elFull(B.State.data.player.avatar, 'avatar-home'); // GÜNCEL avatar
+        const h = charHost.querySelector('.avatar-holder');
+        if (h && B.Avatar.turntable) figTurn = B.Avatar.turntable(h);
+      }
+      if (charHost && B.Avatar.turntable) { const h0 = charHost.querySelector('.avatar-holder'); if (h0) figTurn = B.Avatar.turntable(h0); }
+      // Kıyafet/saç değişince (Görünüşüm'de) ana ekran avatarı ANINDA tazelensin — reset değil, canlı yansıma.
+      this._offAvatar = B.Bus.on(B.Events.AVATAR_CHANGED, mountFigure);
       figure.querySelectorAll('.home-pet').forEach(b => b.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
 
       // Toplanmayı bekleyen görev sayısı (kapıda rozet)
@@ -252,6 +261,6 @@
 
       this._hud = hud;
     },
-    exit() { if (this._babaTimer) { clearInterval(this._babaTimer); this._babaTimer = null; } if (this._hud) this._hud.dispose(); },
+    exit() { if (this._babaTimer) { clearInterval(this._babaTimer); this._babaTimer = null; } if (this._offAvatar) { this._offAvatar(); this._offAvatar = null; } if (this._hud) this._hud.dispose(); },
   });
 })(window.BOKUL = window.BOKUL || {});

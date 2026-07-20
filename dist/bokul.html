@@ -1844,7 +1844,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v1.0 — Crop kıyafetler uzatıldı (gövdenin çoğu kapalı) + YENİ: Kıyafet Süsleme! Kumaş + süsleme (10 çeşit: ⭐❤️🌸⚡🌈❄️💎🎀🌙🦋) = kendi desenli kıyafetini Atölye'de craftla</div>
+      <div class="splash-note">v1.01 — Avatar: kıyafet/saç değişiklikleri ana ekrana ANINDA yansır + geçerli kıyafet artık asla sıfırlanmaz (güvenlik ağı)</div>
     </div>
   </div>
 
@@ -35468,6 +35468,7 @@ h1, h2, h3, h4,
     CHEST_OPENED:   'chest:opened',    // { chestType, item }
     COSMETIC_UNLOCKED: 'cosmetic:unlocked', // { itemId }
     COSMETIC_SOLD:  'cosmetic:sold',   // { itemId, coins }
+    AVATAR_CHANGED: 'avatar:changed',  // avatar (kıyafet/saç/aksesuar) değişti → canlı ekranlar tazelenir
     COINS_CHANGED:  'coins:changed',   // { total, delta }
 
     // Eşya / craft / evcil hayvan
@@ -39646,13 +39647,23 @@ h1, h2, h3, h4,
     ],
   };
 
+  /* Outfit'i güvenle çöz: geçerli id ise aynen; yanlışlıkla cosmeticId saklanmışsa (of-*)
+   * gerçek outfit id'sine çöz; YALNIZ gerçekten bilinmeyen id default'a düşer. Böylece
+   * sahip olunan/geçerli bir kıyafet ASLA sıfırlanmaz ("kıyafet resetlenme" güvenlik ağı). */
+  function resolveOutfit(id) {
+    if (OUTFIT_BY_ID[id]) return id;
+    const byUnlock = id ? findByUnlock(id) : null;
+    if (byUnlock && byUnlock.type === 'outfit' && byUnlock.part) return byUnlock.part.id;
+    return DEFAULT_OUTFIT;
+  }
+
   function normalize(a) {
     a = a || {};
     return {
       gender: a.gender || null,
       skin: a.skin ?? 2, hair: a.hair ?? 0, hairColor: a.hairColor ?? 0, eyeColor: a.eyeColor ?? 0,
       eyes: a.eyes ?? 0, mouth: a.mouth ?? 0, nose: a.nose ?? 0, ear: a.ear ?? 0,
-      outfit: OUTFIT_BY_ID[a.outfit] ? a.outfit : DEFAULT_OUTFIT,
+      outfit: resolveOutfit(a.outfit),
       bottom: BOTTOM_BY_ID[a.bottom] ? a.bottom : DEFAULT_BOTTOM,
       acc: a.acc || 'none', ring: a.ring || 'none',
       // Fotoğraf özelliği KVKK gereği kaldırıldı — avatar her zaman çizimdir.
@@ -40741,8 +40752,17 @@ h1, h2, h3, h4,
         '</div>' +
         '<div class="home-figure-name">🧍 ' + (p.name || 'Asker') + '</div>';
       root.appendChild(figure); // kaydırma alanının DIŞINDA — kapıların üstünde sabit bant (hep tam görünür)
-      const figHold = figure.querySelector('.home-figure-char .avatar-holder');
-      if (figHold && B.Avatar.turntable) B.Avatar.turntable(figHold); // parmakla döndür (pseudo-3D)
+      const charHost = figure.querySelector('.home-figure-char');
+      let figTurn = null;
+      function mountFigure() {
+        if (figTurn && figTurn.dispose) figTurn.dispose();
+        charHost.innerHTML = B.Avatar.elFull(B.State.data.player.avatar, 'avatar-home'); // GÜNCEL avatar
+        const h = charHost.querySelector('.avatar-holder');
+        if (h && B.Avatar.turntable) figTurn = B.Avatar.turntable(h);
+      }
+      if (charHost && B.Avatar.turntable) { const h0 = charHost.querySelector('.avatar-holder'); if (h0) figTurn = B.Avatar.turntable(h0); }
+      // Kıyafet/saç değişince (Görünüşüm'de) ana ekran avatarı ANINDA tazelensin — reset değil, canlı yansıma.
+      this._offAvatar = B.Bus.on(B.Events.AVATAR_CHANGED, mountFigure);
       figure.querySelectorAll('.home-pet').forEach(b => b.onclick = () => { B.Audio.play('tick'); B.UI.show('pets', {}); });
 
       // Toplanmayı bekleyen görev sayısı (kapıda rozet)
@@ -40857,7 +40877,7 @@ h1, h2, h3, h4,
 
       this._hud = hud;
     },
-    exit() { if (this._babaTimer) { clearInterval(this._babaTimer); this._babaTimer = null; } if (this._hud) this._hud.dispose(); },
+    exit() { if (this._babaTimer) { clearInterval(this._babaTimer); this._babaTimer = null; } if (this._offAvatar) { this._offAvatar(); this._offAvatar = null; } if (this._hud) this._hud.dispose(); },
   });
 })(window.BOKUL = window.BOKUL || {});
 
@@ -41540,7 +41560,7 @@ h1, h2, h3, h4,
       const right = document.createElement('div'); right.className = 'locker-right'; layout.appendChild(right);
 
       const av = () => B.Avatar.normalize(B.State.data.player.avatar);
-      function commit(a) { B.State.data.player.avatar = a; B.Save.saveSoon(); render(); }
+      function commit(a) { B.State.data.player.avatar = a; B.Save.saveSoon(); B.Bus.emit(B.Events.AVATAR_CHANGED, {}); render(); }
 
       const priceOf = part => prices[part.rarity] || 50;
 
@@ -41553,6 +41573,7 @@ h1, h2, h3, h4,
         if (i < 0) return;
         inv.cosmetics.splice(i, 1);
         B.State.data.player.avatar = B.Avatar.unequipCosmetic(B.State.data.player.avatar, { id: key, type: part.type });
+        B.Bus.emit(B.Events.AVATAR_CHANGED, {});
         B.Reward.addCoins(price, 'sell');
         B.Bus.emit(B.Events.COSMETIC_SOLD, { itemId: key, coins: price });
         B.Audio.play('tick');
