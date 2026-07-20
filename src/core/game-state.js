@@ -12,7 +12,7 @@
         lastPlayedAt: new Date().toISOString(),
         introSeen: false,          // giriş sinematiği bu profilde izlendi mi
       },
-      player: { name: '', age: null, grade: null, profile: {}, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0, homeLevel: 1, depoLevel: 1,
+      player: { name: '', age: null, grade: null, profile: {}, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0, homeLevel: 1, depoLevel: 0,
                 room: { wall: 0, floor: 0, placed: [] },
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },

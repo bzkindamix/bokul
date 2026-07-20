@@ -156,6 +156,9 @@
           prefilled, problemText,
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {
+            // ⑥ Tek-deneme tipinde cevap kesindir: timer'ı HEMEN durdur ki cevap-sonrası reveal
+            // gecikmesinde (650ms) süre dolup doğru cevaba yanlışlıkla 1★ verilmesin.
+            if (singleAttempt && timerCtl) { timerCtl.stop(); timerCtl = null; }
             B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });
             if (correct) {
               B.Reward.addXp(B.Reward.stepXp(), 'step');

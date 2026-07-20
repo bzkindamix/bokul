@@ -1844,7 +1844,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v0.98 — Aralıklı tekrar (spaced repetition): öğrenilen konu 1-3-7-14 gün ritmiyle Devriye'de hatırlatılır; ana ekranda "tekrar zamanı" bildirimi</div>
+      <div class="splash-note">v0.99 — Denetim kapanışı: sandık ödülü sat→tekrar-düş döngüsü kapatıldı + tek-deneme timer yarışı düzeltildi + depo başlangıç seviyesi tutarlılığı</div>
     </div>
   </div>
 
@@ -35372,7 +35372,7 @@ h1, h2, h3, h4,
         lastPlayedAt: new Date().toISOString(),
         introSeen: false,          // giriş sinematiği bu profilde izlendi mi
       },
-      player: { name: '', age: null, grade: null, profile: {}, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0, homeLevel: 1, depoLevel: 1,
+      player: { name: '', age: null, grade: null, profile: {}, xp: 0, level: 1, rank: 'rank1', title: '', coins: 0, homeLevel: 1, depoLevel: 0,
                 room: { wall: 0, floor: 0, placed: [] },
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
@@ -37806,6 +37806,16 @@ h1, h2, h3, h4,
     return i;
   }
 
+  /* "Bir kez düşen tekrar düşmesin" defteri (kalıcı). Bedava sandık kozmetiği/blueprint'i
+   * SATIP tekrar düşürtme döngüsünü kapatır (⑤): bir kez düşen id bir daha havuza girmez. */
+  function seen() {
+    const s = B.State.data.stats;
+    if (!s.chestSeen || typeof s.chestSeen !== 'object') s.chestSeen = { cosmetics: [], blueprints: [] };
+    if (!Array.isArray(s.chestSeen.cosmetics)) s.chestSeen.cosmetics = [];
+    if (!Array.isArray(s.chestSeen.blueprints)) s.chestSeen.blueprints = [];
+    return s.chestSeen;
+  }
+
   /* Nadirlik dağılımından açılmamış bir kozmetik çek (yoksa alta düş).
    * Kaynak: B.Avatar.cosmeticCatalog() — kilitli GİYİLEBİLİR parçalar (görünüm hariç,
    * çünkü saç/göz rengi vb. artık ücretsiz). Cinsiyete uygun olanlardan seçilir. */
@@ -37819,7 +37829,7 @@ h1, h2, h3, h4,
     const cat = (B.Avatar && B.Avatar.cosmeticCatalog) ? B.Avatar.cosmeticCatalog() : [];
     let idx = order.indexOf(rarity); if (idx < 0) idx = order.length - 1;
     for (let i = idx; i < order.length; i++) {
-      const pool = cat.filter(c => c.rarity === order[i] && !owned.includes(c.id) && B.Avatar.genderOk(c.part, gender));
+      const pool = cat.filter(c => c.rarity === order[i] && !owned.includes(c.id) && seen().cosmetics.indexOf(c.id) < 0 && B.Avatar.genderOk(c.part, gender));
       if (pool.length) { const p = pool[Math.floor(Math.random() * pool.length)]; return { id: p.id, type: p.type, rarity: p.rarity, name: p.name }; }
     }
     return null; // her şey açık
@@ -37869,7 +37879,7 @@ h1, h2, h3, h4,
       }
       // 📐 Nadir sandık: blueprint'ler SATIN ALINAMAZ — buradan (ve hobi kurslarından) düşer.
       if (norm(type) === 'nadir' && B.Blueprints) {
-        const avail = B.Blueprints.all().filter(b => !B.Blueprints.isLearned(b.id) && (!B.Items || B.Items.count(b.id) === 0));
+        const avail = B.Blueprints.all().filter(b => !B.Blueprints.isLearned(b.id) && (!B.Items || B.Items.count(b.id) === 0) && seen().blueprints.indexOf(b.id) < 0);
         if (avail.length && Math.random() < 0.4) out.blueprint = avail[Math.floor(Math.random() * avail.length)].id;
       }
       return out;
@@ -37885,10 +37895,14 @@ h1, h2, h3, h4,
       B.Reward.addCoins(result.coins, 'chest');
       if (result.item) {
         B.State.data.inventory.cosmetics.push(result.item.id);
+        if (seen().cosmetics.indexOf(result.item.id) < 0) seen().cosmetics.push(result.item.id); // ⑤ bir daha düşmesin
         B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: result.item.id });
       }
       if (result.items) result.items.forEach(it => { if (B.Items) B.Items.add(it.id, it.n); });
-      if (result.blueprint && B.Items) B.Items.add(result.blueprint, 1); // depoya düşer, oyuncu "Öğren" ile açar
+      if (result.blueprint && B.Items) {
+        B.Items.add(result.blueprint, 1); // depoya düşer, oyuncu "Öğren" ile açar
+        if (seen().blueprints.indexOf(result.blueprint) < 0) seen().blueprints.push(result.blueprint); // ⑤ bir daha düşmesin
+      }
       if (result.xpPack) B.Reward.addXp(result.xpPack, 'chest');
       B.Bus.emit(B.Events.CHEST_OPENED, { chestType: type, tier: tier, item: result.item || null });
       B.Save.saveSoon();
@@ -40968,6 +40982,9 @@ h1, h2, h3, h4,
           prefilled, problemText,
           say: t => cmd.say(t),
           onAnswer(step, correct, attempt) {
+            // ⑥ Tek-deneme tipinde cevap kesindir: timer'ı HEMEN durdur ki cevap-sonrası reveal
+            // gecikmesinde (650ms) süre dolup doğru cevaba yanlışlıkla 1★ verilmesin.
+            if (singleAttempt && timerCtl) { timerCtl.stop(); timerCtl = null; }
             B.Bus.emit(B.Events.STEP_ANSWERED, { stepType: step.type, correct, attempt, value: null });
             if (correct) {
               B.Reward.addXp(B.Reward.stepXp(), 'step');
@@ -44176,7 +44193,7 @@ h1, h2, h3, h4,
       const p = B.State.data.player;
       if (p.coins == null) p.coins = 0;
       if (p.homeLevel == null) p.homeLevel = 1;
-      if (p.depoLevel == null) p.depoLevel = 1;
+      if (p.depoLevel == null) p.depoLevel = 0; // ⑦ 0 taban: kapasite 16, level 1'de 1 yükseltme hakkı (items/craft 0 varsayar)
       p.avatar = B.Avatar.normalize(p.avatar);
       if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
       if (!B.State.data.wishes) B.State.data.wishes = [];

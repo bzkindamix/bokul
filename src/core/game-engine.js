@@ -54,7 +54,7 @@
       const p = B.State.data.player;
       if (p.coins == null) p.coins = 0;
       if (p.homeLevel == null) p.homeLevel = 1;
-      if (p.depoLevel == null) p.depoLevel = 1;
+      if (p.depoLevel == null) p.depoLevel = 0; // ⑦ 0 taban: kapasite 16, level 1'de 1 yükseltme hakkı (items/craft 0 varsayar)
       p.avatar = B.Avatar.normalize(p.avatar);
       if (!B.State.data.quests) B.State.data.quests = { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' };
       if (!B.State.data.wishes) B.State.data.wishes = [];

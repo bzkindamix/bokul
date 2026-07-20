@@ -42,6 +42,16 @@
     return i;
   }
 
+  /* "Bir kez düşen tekrar düşmesin" defteri (kalıcı). Bedava sandık kozmetiği/blueprint'i
+   * SATIP tekrar düşürtme döngüsünü kapatır (⑤): bir kez düşen id bir daha havuza girmez. */
+  function seen() {
+    const s = B.State.data.stats;
+    if (!s.chestSeen || typeof s.chestSeen !== 'object') s.chestSeen = { cosmetics: [], blueprints: [] };
+    if (!Array.isArray(s.chestSeen.cosmetics)) s.chestSeen.cosmetics = [];
+    if (!Array.isArray(s.chestSeen.blueprints)) s.chestSeen.blueprints = [];
+    return s.chestSeen;
+  }
+
   /* Nadirlik dağılımından açılmamış bir kozmetik çek (yoksa alta düş).
    * Kaynak: B.Avatar.cosmeticCatalog() — kilitli GİYİLEBİLİR parçalar (görünüm hariç,
    * çünkü saç/göz rengi vb. artık ücretsiz). Cinsiyete uygun olanlardan seçilir. */
@@ -55,7 +65,7 @@
     const cat = (B.Avatar && B.Avatar.cosmeticCatalog) ? B.Avatar.cosmeticCatalog() : [];
     let idx = order.indexOf(rarity); if (idx < 0) idx = order.length - 1;
     for (let i = idx; i < order.length; i++) {
-      const pool = cat.filter(c => c.rarity === order[i] && !owned.includes(c.id) && B.Avatar.genderOk(c.part, gender));
+      const pool = cat.filter(c => c.rarity === order[i] && !owned.includes(c.id) && seen().cosmetics.indexOf(c.id) < 0 && B.Avatar.genderOk(c.part, gender));
       if (pool.length) { const p = pool[Math.floor(Math.random() * pool.length)]; return { id: p.id, type: p.type, rarity: p.rarity, name: p.name }; }
     }
     return null; // her şey açık
@@ -105,7 +115,7 @@
       }
       // 📐 Nadir sandık: blueprint'ler SATIN ALINAMAZ — buradan (ve hobi kurslarından) düşer.
       if (norm(type) === 'nadir' && B.Blueprints) {
-        const avail = B.Blueprints.all().filter(b => !B.Blueprints.isLearned(b.id) && (!B.Items || B.Items.count(b.id) === 0));
+        const avail = B.Blueprints.all().filter(b => !B.Blueprints.isLearned(b.id) && (!B.Items || B.Items.count(b.id) === 0) && seen().blueprints.indexOf(b.id) < 0);
         if (avail.length && Math.random() < 0.4) out.blueprint = avail[Math.floor(Math.random() * avail.length)].id;
       }
       return out;
@@ -121,10 +131,14 @@
       B.Reward.addCoins(result.coins, 'chest');
       if (result.item) {
         B.State.data.inventory.cosmetics.push(result.item.id);
+        if (seen().cosmetics.indexOf(result.item.id) < 0) seen().cosmetics.push(result.item.id); // ⑤ bir daha düşmesin
         B.Bus.emit(B.Events.COSMETIC_UNLOCKED, { itemId: result.item.id });
       }
       if (result.items) result.items.forEach(it => { if (B.Items) B.Items.add(it.id, it.n); });
-      if (result.blueprint && B.Items) B.Items.add(result.blueprint, 1); // depoya düşer, oyuncu "Öğren" ile açar
+      if (result.blueprint && B.Items) {
+        B.Items.add(result.blueprint, 1); // depoya düşer, oyuncu "Öğren" ile açar
+        if (seen().blueprints.indexOf(result.blueprint) < 0) seen().blueprints.push(result.blueprint); // ⑤ bir daha düşmesin
+      }
       if (result.xpPack) B.Reward.addXp(result.xpPack, 'chest');
       B.Bus.emit(B.Events.CHEST_OPENED, { chestType: type, tier: tier, item: result.item || null });
       B.Save.saveSoon();
