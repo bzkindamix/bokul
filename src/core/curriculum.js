@@ -47,17 +47,23 @@
     return { primary: 3, spread: [3, 2] }; // 5 ve üzeri
   }
 
-  /* Soru bankasını çocuğun SINIFINA göre süz (kademeli zorluk).
-   * Her soru q.lvl (1=küçük/kolay · 2=orta · 3=büyük/zor) taşır; etiketsiz = 1.
-   * Kural: önce sınıfın BİRİNCİL zorluğu; yeterli değilse (bankada az) spread yönünde
-   * komşu zorluklara genişler; yine azsa tüm banka. Böylece 1. sınıf yalnız kolay,
-   * 5. sınıf yalnız zor soru görür — ama hiçbir bölüm boş kalmaz. */
+  /* Havuz genişliği: birincil zorluk + KOMŞU zorluklar (yalnız uzak uç dışlanır).
+   *   1→[1,2]  2→[1,2,3]  3→[2,3]  (bilinmiyorsa hepsi)
+   * Bu KRİTİK: tek lvl'e daraltmak havuzu 5'e düşürüp aynı soruların tekrarına yol açıyordu.
+   * Geniş havuz + "görülen soru defteri" (QuestionEngine) = konu başına çok daha fazla farklı soru. */
+  function allowedLvls() {
+    const p = lvlTargetForGrade().primary;
+    return { 0: [1, 2, 3], 1: [1, 2], 2: [1, 2, 3], 3: [2, 3] }[p] || [1, 2, 3];
+  }
+
+  /* Soru bankasını çocuğun SINIFINA göre süz — GENİŞ havuz (birincil + komşu zorluklar).
+   * Yaş ayrımı yalnız uzak ucu dışlar (1. sınıf en zoru görmez, 5. sınıf en kolayı görmez);
+   * geri kalanı tekrar önlemek için havuzda tutulur. Hiçbir bölüm boş kalmaz. */
   function ageFilter(bank) {
     if (!Array.isArray(bank) || bank.length < 5) return bank || [];
-    const t = lvlTargetForGrade();
     const lvl = q => q.lvl || 1;
-    let sel = bank.filter(q => lvl(q) === t.primary);
-    if (sel.length < 4) sel = bank.filter(q => t.spread.indexOf(lvl(q)) >= 0); // komşu zorluklar
+    const allow = allowedLvls();
+    let sel = bank.filter(q => allow.indexOf(lvl(q)) >= 0);
     if (sel.length < 4) sel = bank; // son çare: hepsi
     return sel;
   }
