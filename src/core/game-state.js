@@ -16,7 +16,7 @@
                 room: { wall: 0, floor: 0, placed: [] },
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
-      stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {}, qSeen: {}, review: {} }, // qSeen: görülen soru defteri · review: aralıklı tekrar takvimi
+      stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {}, qSeen: {}, qDay: { date: '', seen: {} }, review: {} }, // qSeen: tüm-zaman görülen · qDay: bugün görülen (aynı gün tekrar engeli) · review: aralıklı tekrar
       progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
       inventory: { cosmetics: [], badges: [], titles: [], items: {} }, // items: { itemId: adet }
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },

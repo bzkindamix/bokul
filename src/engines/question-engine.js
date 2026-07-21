@@ -30,10 +30,32 @@
       keys.slice(0, Math.floor(SEEN_CAP * 0.25)).forEach(k => delete l[k]);
     }
   }
-  /* Adaylar arasından en az görüleni seç (eşitlikte rastgele) */
-  function leastSeen(cands, sigOf) {
+  /* ---------- GÜNLÜK DEFTER (aynı gün aynı soru ÇIKMASIN) ----------
+   * O gün gösterilen soruların imzaları; her yeni günde sıfırlanır. Seçimde BUGÜN
+   * görülenler HARİÇ tutulur (havuzda görülmemiş başka soru olduğu sürece). Böylece
+   * "aynı günde aynı soruyla karşılaşma" GARANTİ (havuz o gün tükenene kadar). */
+  function dayKey() {
+    const d = new Date(); const p = n => String(n).padStart(2, '0');
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+  }
+  function dayLedger() {
+    const s = B.State && B.State.data && B.State.data.stats;
+    if (!s) return null;
+    const today = dayKey();
+    if (!s.qDay || typeof s.qDay !== 'object' || s.qDay.date !== today) s.qDay = { date: today, seen: {} };
+    return s.qDay;
+  }
+  function seenToday(sig) { const d = dayLedger(); return !!(d && sig && d.seen[sig]); }
+  function markToday(sig) { const d = dayLedger(); if (d && sig) d.seen[sig] = 1; }
+
+  /* Aday seç: ÖNCE bugün görülmemişler (varsa); o küme içinde tüm-zaman EN AZ görülen
+   * (eşitlikte rastgele). Gün havuzu tükendiyse tüm adaylara düşer (kaçınılmaz tekrar). */
+  function pick(cands, sigOf) {
+    if (!cands || !cands.length) return null;
+    const fresh = cands.filter(c => !seenToday(sigOf(c)));
+    const pool = fresh.length ? fresh : cands;
     let best = [], bestC = Infinity;
-    for (const c of cands) {
+    for (const c of pool) {
       const sc = seenCount(sigOf(c));
       if (sc < bestC) { bestC = sc; best = [c]; }
       else if (sc === bestC) best.push(c);
@@ -80,26 +102,28 @@
 
       if (typeof impl.variants === 'function') {
         const cands = impl.variants(params || {}, bias) || [];
-        q = cands.length ? leastSeen(cands, sigOf) : impl.generate(params || {}, bias);
+        q = cands.length ? pick(cands, sigOf) : impl.generate(params || {}, bias);
       } else {
-        const TRIES = 14;
-        let bestQ = null, bestC = Infinity;
+        const TRIES = 16;
+        const cands = [];
         for (let i = 0; i < TRIES; i++) {
-          const cand = impl.generate(params || {}, bias);
-          const sc = seenCount(sigOf(cand));
-          if (sc < bestC) { bestC = sc; bestQ = cand; }
-          if (bestC === 0) break; // hiç görülmemiş: yeterli
+          const c = impl.generate(params || {}, bias);
+          cands.push(c);
+          // İdeal aday: bugün görülmemiş VE tüm-zaman hiç görülmemiş → hemen al
+          if (!seenToday(sigOf(c)) && seenCount(sigOf(c)) === 0) { q = c; break; }
         }
-        q = bestQ || impl.generate(params || {}, bias);
+        if (!q) q = pick(cands, sigOf) || impl.generate(params || {}, bias);
       }
 
       q._type = typeName;
-      markSeen(sigOf(q));
+      const sig = sigOf(q);
+      markSeen(sig);   // tüm-zaman (uzun vadeli çeşitlilik)
+      markToday(sig);  // bugün (aynı gün tekrar engeli)
       return q;
     },
 
-    /* Test/araç: defteri sıfırla */
-    resetSeen() { const l = ledger(); if (l) Object.keys(l).forEach(k => delete l[k]); },
+    /* Test/araç: defterleri sıfırla */
+    resetSeen() { const l = ledger(); if (l) Object.keys(l).forEach(k => delete l[k]); const d = dayLedger(); if (d) d.seen = {}; },
 
     steps(q) { return B.Question.type(q._type).getSteps(q); },
     validate(q, step, answer) { return B.Question.type(q._type).validateStep(q, step, answer); },

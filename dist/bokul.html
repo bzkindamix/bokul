@@ -1898,7 +1898,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v1.07 — Soru tekrarı: yaş filtresi havuzu 5 soruya daraltıyordu (asıl neden). Havuz genişletildi (10-15 farklı soru) → aynı konuda çok daha az tekrar. (Bankalar da büyütülecek.)</div>
+      <div class="splash-note">v1.08 — AYNI GÜN AYNI SORU ÇIKMAZ: günlük defter eklendi — bir gün içinde görülen soru, havuzda başka soru varken bir daha çıkmaz (yeni günde tazelenir). (Bankalar da büyütülüyor.)</div>
     </div>
   </div>
 
@@ -36083,7 +36083,7 @@ h1, h2, h3, h4,
                 room: { wall: 0, floor: 0, placed: [] },
                 avatar: { skin: 1, hair: 0, hairColor: 0, eyes: 0, mouth: 0, acc: 'none', ring: 'none', photo: null, usePhoto: false } },
       streaks: { current: 0, best: 0, dailyDays: 0, lastPlayDate: '' },
-      stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {}, qSeen: {}, review: {} }, // qSeen: görülen soru defteri · review: aralıklı tekrar takvimi
+      stats: { correct: 0, wrong: 0, questionsDone: 0, firstTryCorrect: 0, timeSumMs: 0, perSkill: {}, qSeen: {}, qDay: { date: '', seen: {} }, review: {} }, // qSeen: tüm-zaman görülen · qDay: bugün görülen (aynı gün tekrar engeli) · review: aralıklı tekrar
       progress: { lessons: {} }, // lessons[dersId].sections[sectionId] = { missions:{id:{stars}}, bossDefeated, bossHpCarry }
       inventory: { cosmetics: [], badges: [], titles: [], items: {} }, // items: { itemId: adet }
       quests: { daily: [], weekly: [], lastDailyReset: '', lastWeeklyReset: '' },
@@ -38283,10 +38283,32 @@ h1, h2, h3, h4,
       keys.slice(0, Math.floor(SEEN_CAP * 0.25)).forEach(k => delete l[k]);
     }
   }
-  /* Adaylar arasından en az görüleni seç (eşitlikte rastgele) */
-  function leastSeen(cands, sigOf) {
+  /* ---------- GÜNLÜK DEFTER (aynı gün aynı soru ÇIKMASIN) ----------
+   * O gün gösterilen soruların imzaları; her yeni günde sıfırlanır. Seçimde BUGÜN
+   * görülenler HARİÇ tutulur (havuzda görülmemiş başka soru olduğu sürece). Böylece
+   * "aynı günde aynı soruyla karşılaşma" GARANTİ (havuz o gün tükenene kadar). */
+  function dayKey() {
+    const d = new Date(); const p = n => String(n).padStart(2, '0');
+    return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+  }
+  function dayLedger() {
+    const s = B.State && B.State.data && B.State.data.stats;
+    if (!s) return null;
+    const today = dayKey();
+    if (!s.qDay || typeof s.qDay !== 'object' || s.qDay.date !== today) s.qDay = { date: today, seen: {} };
+    return s.qDay;
+  }
+  function seenToday(sig) { const d = dayLedger(); return !!(d && sig && d.seen[sig]); }
+  function markToday(sig) { const d = dayLedger(); if (d && sig) d.seen[sig] = 1; }
+
+  /* Aday seç: ÖNCE bugün görülmemişler (varsa); o küme içinde tüm-zaman EN AZ görülen
+   * (eşitlikte rastgele). Gün havuzu tükendiyse tüm adaylara düşer (kaçınılmaz tekrar). */
+  function pick(cands, sigOf) {
+    if (!cands || !cands.length) return null;
+    const fresh = cands.filter(c => !seenToday(sigOf(c)));
+    const pool = fresh.length ? fresh : cands;
     let best = [], bestC = Infinity;
-    for (const c of cands) {
+    for (const c of pool) {
       const sc = seenCount(sigOf(c));
       if (sc < bestC) { bestC = sc; best = [c]; }
       else if (sc === bestC) best.push(c);
@@ -38333,26 +38355,28 @@ h1, h2, h3, h4,
 
       if (typeof impl.variants === 'function') {
         const cands = impl.variants(params || {}, bias) || [];
-        q = cands.length ? leastSeen(cands, sigOf) : impl.generate(params || {}, bias);
+        q = cands.length ? pick(cands, sigOf) : impl.generate(params || {}, bias);
       } else {
-        const TRIES = 14;
-        let bestQ = null, bestC = Infinity;
+        const TRIES = 16;
+        const cands = [];
         for (let i = 0; i < TRIES; i++) {
-          const cand = impl.generate(params || {}, bias);
-          const sc = seenCount(sigOf(cand));
-          if (sc < bestC) { bestC = sc; bestQ = cand; }
-          if (bestC === 0) break; // hiç görülmemiş: yeterli
+          const c = impl.generate(params || {}, bias);
+          cands.push(c);
+          // İdeal aday: bugün görülmemiş VE tüm-zaman hiç görülmemiş → hemen al
+          if (!seenToday(sigOf(c)) && seenCount(sigOf(c)) === 0) { q = c; break; }
         }
-        q = bestQ || impl.generate(params || {}, bias);
+        if (!q) q = pick(cands, sigOf) || impl.generate(params || {}, bias);
       }
 
       q._type = typeName;
-      markSeen(sigOf(q));
+      const sig = sigOf(q);
+      markSeen(sig);   // tüm-zaman (uzun vadeli çeşitlilik)
+      markToday(sig);  // bugün (aynı gün tekrar engeli)
       return q;
     },
 
-    /* Test/araç: defteri sıfırla */
-    resetSeen() { const l = ledger(); if (l) Object.keys(l).forEach(k => delete l[k]); },
+    /* Test/araç: defterleri sıfırla */
+    resetSeen() { const l = ledger(); if (l) Object.keys(l).forEach(k => delete l[k]); const d = dayLedger(); if (d) d.seen = {}; },
 
     steps(q) { return B.Question.type(q._type).getSteps(q); },
     validate(q, step, answer) { return B.Question.type(q._type).validateStep(q, step, answer); },
