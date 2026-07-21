@@ -12,9 +12,36 @@
       "reward": "Balığı sahiplenme + Akvaryum tarifi",
       "intro": "Balıklara iyi bakmayı öğren, sonra bir balık sahiplen!",
       "questions": [
-        { "q": "Balığın akvaryum suyu ne zaman değişmeli?", "options": ["Düzenli olarak, kirlenince", "Hiçbir zaman", "Yılda bir kez"], "correct": 0, "hint": "Temiz su = sağlıklı balık." },
-        { "q": "Balığa ne kadar yem vermek doğrudur?", "options": ["Az miktarda, ölçülü", "Kova dolusu", "Hiç"], "correct": 0, "hint": "Fazla yem suyu kirletir." },
-        { "q": "Akvaryum nasıl bir yerde durmalı?", "options": ["Aşırı sıcak ve güneşten uzak", "Sobanın üstünde", "Buzdolabında"], "correct": 0, "hint": "Balıklar ılık, dengeli su sever." }
+        {
+          "q": "Balığın akvaryum suyu ne zaman değişmeli?",
+          "options": [
+            "Düzenli olarak, kirlenince",
+            "Hiçbir zaman",
+            "Yılda bir kez"
+          ],
+          "correct": 0,
+          "hint": "Temiz su = sağlıklı balık."
+        },
+        {
+          "q": "Balığa ne kadar yem vermek doğrudur?",
+          "options": [
+            "Az miktarda, ölçülü",
+            "Kova dolusu",
+            "Hiç"
+          ],
+          "correct": 0,
+          "hint": "Fazla yem suyu kirletir."
+        },
+        {
+          "q": "Akvaryum nasıl bir yerde durmalı?",
+          "options": [
+            "Aşırı sıcak ve güneşten uzak",
+            "Sobanın üstünde",
+            "Buzdolabında"
+          ],
+          "correct": 0,
+          "hint": "Balıklar ılık, dengeli su sever."
+        }
       ]
     },
     {
@@ -25,9 +52,36 @@
       "reward": "Köpeği sahiplenme + Köpek kulübesi tarifi",
       "intro": "Köpeklere iyi bakmayı öğren, sonra sadık bir dost sahiplen!",
       "questions": [
-        { "q": "Bir köpeğin her gün en çok neye ihtiyacı vardır?", "options": ["Yürüyüş, sevgi ve ilgi", "Bol televizyon", "Yalnız kalmak"], "correct": 0, "hint": "Köpekler hareket ve arkadaşlık ister." },
-        { "q": "Köpeğe su ne sıklıkta verilmeli?", "options": ["Her gün taze ve temiz", "Ayda bir", "Hiç"], "correct": 0, "hint": "Susuz kalmamalı." },
-        { "q": "Köpek üşüdüğünde ya da yorulduğunda nerede dinlenir?", "options": ["Sıcak kulübesinde", "Soğukta dışarıda", "Ağaçta"], "correct": 0, "hint": "Bir yuvaya ihtiyacı var." }
+        {
+          "q": "Bir köpeğin her gün en çok neye ihtiyacı vardır?",
+          "options": [
+            "Yürüyüş, sevgi ve ilgi",
+            "Bol televizyon",
+            "Yalnız kalmak"
+          ],
+          "correct": 0,
+          "hint": "Köpekler hareket ve arkadaşlık ister."
+        },
+        {
+          "q": "Köpeğe su ne sıklıkta verilmeli?",
+          "options": [
+            "Her gün taze ve temiz",
+            "Ayda bir",
+            "Hiç"
+          ],
+          "correct": 0,
+          "hint": "Susuz kalmamalı."
+        },
+        {
+          "q": "Köpek üşüdüğünde ya da yorulduğunda nerede dinlenir?",
+          "options": [
+            "Sıcak kulübesinde",
+            "Soğukta dışarıda",
+            "Ağaçta"
+          ],
+          "correct": 0,
+          "hint": "Bir yuvaya ihtiyacı var."
+        }
       ]
     },
     {
@@ -38,9 +92,36 @@
       "reward": "Kuşu sahiplenme + Kuş yuvası tarifi",
       "intro": "Kuşlara iyi bakmayı öğren, sonra cıvıl cıvıl bir dost sahiplen!",
       "questions": [
-        { "q": "Kuşun kafesi nasıl olmalı?", "options": ["Düzenli temizlenmiş ve temiz", "Hiç temizlenmemiş", "Kapkaranlık"], "correct": 0, "hint": "Temizlik kuşu sağlıklı tutar." },
-        { "q": "Kuşlar genellikle neyle beslenir?", "options": ["Kuş yemi ve tohumlarla", "Çikolatayla", "Taşla"], "correct": 0, "hint": "Küçük tohumları sever." },
-        { "q": "Bir kuşu ne neşelendirir?", "options": ["Şarkı söyletmek ve ilgi", "Bağırmak", "Yalnız bırakmak"], "correct": 0, "hint": "Kuşlar sese ve sevgiye bayılır." }
+        {
+          "q": "Kuşun kafesi nasıl olmalı?",
+          "options": [
+            "Düzenli temizlenmiş ve temiz",
+            "Hiç temizlenmemiş",
+            "Kapkaranlık"
+          ],
+          "correct": 0,
+          "hint": "Temizlik kuşu sağlıklı tutar."
+        },
+        {
+          "q": "Kuşlar genellikle neyle beslenir?",
+          "options": [
+            "Kuş yemi ve tohumlarla",
+            "Çikolatayla",
+            "Taşla"
+          ],
+          "correct": 0,
+          "hint": "Küçük tohumları sever."
+        },
+        {
+          "q": "Bir kuşu ne neşelendirir?",
+          "options": [
+            "Şarkı söyletmek ve ilgi",
+            "Bağırmak",
+            "Yalnız bırakmak"
+          ],
+          "correct": 0,
+          "hint": "Kuşlar sese ve sevgiye bayılır."
+        }
       ]
     },
     {
@@ -48,12 +129,39 @@
       "name": "Kedi Bakımı",
       "icon": "🐈",
       "blueprint": "bp_kedi",
-      "reward": "Kediyi sahiplenme izni",
+      "reward": "Kediyi sahiplenme + Kedi evi tarifi",
       "intro": "Kedilere iyi bakmayı öğren, sonra bir kedi sahiplen!",
       "questions": [
-        { "q": "Kedi tuvaletini nereye yapar?", "options": ["Kedi kumuna", "Yatağa", "Mutfağa"], "correct": 0, "hint": "Kum kabı şart." },
-        { "q": "Kedi tırnaklarını nerede biler?", "options": ["Tırmalama tahtasında", "Duvar kağıdında (istemeyiz!)", "Hiçbir yerde"], "correct": 0, "hint": "Tırmalama tahtası alırsan mobilyan kurtulur." },
-        { "q": "Kedi mutlu ve rahat olduğunda ne yapar?", "options": ["Mırlar", "Havlar", "Ağlar"], "correct": 0, "hint": "O huzurlu mırıltıyı duymuşsundur." }
+        {
+          "q": "Kedi tuvaletini nereye yapar?",
+          "options": [
+            "Kedi kumuna",
+            "Yatağa",
+            "Mutfağa"
+          ],
+          "correct": 0,
+          "hint": "Kum kabı şart."
+        },
+        {
+          "q": "Kedi tırnaklarını nerede biler?",
+          "options": [
+            "Tırmalama tahtasında",
+            "Duvar kağıdında (istemeyiz!)",
+            "Hiçbir yerde"
+          ],
+          "correct": 0,
+          "hint": "Tırmalama tahtası alırsan mobilyan kurtulur."
+        },
+        {
+          "q": "Kedi mutlu ve rahat olduğunda ne yapar?",
+          "options": [
+            "Mırlar",
+            "Havlar",
+            "Ağlar"
+          ],
+          "correct": 0,
+          "hint": "O huzurlu mırıltıyı duymuşsundur."
+        }
       ]
     },
     {
@@ -61,12 +169,39 @@
       "name": "Hamster Bakımı",
       "icon": "🐹",
       "blueprint": "bp_hamster",
-      "reward": "Hamsteri sahiplenme izni",
+      "reward": "Hamsteri sahiplenme + Hamster kafesi tarifi",
       "intro": "Minik hamsterlara bakmayı öğren, sonra bir hamster sahiplen!",
       "questions": [
-        { "q": "Hamster kafesinin tabanına ne serilir?", "options": ["Talaş", "Su", "Kum"], "correct": 0, "hint": "Yumuşak ve emici olmalı." },
-        { "q": "Hamster geceleri en çok neyi sever?", "options": ["Koşu tekerinde koşmak", "Uyumak dışarıda", "Yüzmek"], "correct": 0, "hint": "Onlar gece hayvanıdır, enerjiktir." },
-        { "q": "Hamster çok küçük olduğu için nasıl tutulmalı?", "options": ["Nazikçe ve yavaşça", "Sıkıca", "Havaya atarak"], "correct": 0, "hint": "Kırılgan minik bir dost." }
+        {
+          "q": "Hamster kafesinin tabanına ne serilir?",
+          "options": [
+            "Talaş",
+            "Su",
+            "Kum"
+          ],
+          "correct": 0,
+          "hint": "Yumuşak ve emici olmalı."
+        },
+        {
+          "q": "Hamster geceleri en çok neyi sever?",
+          "options": [
+            "Koşu tekerinde koşmak",
+            "Uyumak dışarıda",
+            "Yüzmek"
+          ],
+          "correct": 0,
+          "hint": "Onlar gece hayvanıdır, enerjiktir."
+        },
+        {
+          "q": "Hamster çok küçük olduğu için nasıl tutulmalı?",
+          "options": [
+            "Nazikçe ve yavaşça",
+            "Sıkıca",
+            "Havaya atarak"
+          ],
+          "correct": 0,
+          "hint": "Kırılgan minik bir dost."
+        }
       ]
     },
     {
@@ -74,12 +209,39 @@
       "name": "Tavşan Bakımı",
       "icon": "🐰",
       "blueprint": "bp_tavsan",
-      "reward": "Tavşanı sahiplenme izni",
+      "reward": "Tavşanı sahiplenme + Tavşan yuvası tarifi",
       "intro": "Tavşanlara bakmayı öğren, sonra bir tavşan sahiplen!",
       "questions": [
-        { "q": "Tavşan en çok neyi yemeyi sever?", "options": ["Taze ot ve havuç", "Şeker", "Cips"], "correct": 0, "hint": "Sebze ve ot en sağlıklısı." },
-        { "q": "Tavşanın dişleri sürekli uzar, bu yüzden ne yapar?", "options": ["Kemirir", "Uçar", "Yüzer"], "correct": 0, "hint": "Kemirmek dişlerini kısaltır." },
-        { "q": "Tavşan korktuğunda ne ister?", "options": ["Saklanabileceği güvenli bir yuva", "Yüksek ses", "Kalabalık"], "correct": 0, "hint": "Güvende hissetmeli." }
+        {
+          "q": "Tavşan en çok neyi yemeyi sever?",
+          "options": [
+            "Taze ot ve havuç",
+            "Şeker",
+            "Cips"
+          ],
+          "correct": 0,
+          "hint": "Sebze ve ot en sağlıklısı."
+        },
+        {
+          "q": "Tavşanın dişleri sürekli uzar, bu yüzden ne yapar?",
+          "options": [
+            "Kemirir",
+            "Uçar",
+            "Yüzer"
+          ],
+          "correct": 0,
+          "hint": "Kemirmek dişlerini kısaltır."
+        },
+        {
+          "q": "Tavşan korktuğunda ne ister?",
+          "options": [
+            "Saklanabileceği güvenli bir yuva",
+            "Yüksek ses",
+            "Kalabalık"
+          ],
+          "correct": 0,
+          "hint": "Güvende hissetmeli."
+        }
       ]
     },
     {
@@ -87,12 +249,39 @@
       "name": "Kaplumbağa Bakımı",
       "icon": "🐢",
       "blueprint": "bp_kaplumbaga",
-      "reward": "Kaplumbağayı sahiplenme izni",
+      "reward": "Kaplumbağayı sahiplenme + Teraryum tarifi",
       "intro": "Kaplumbağalara bakmayı öğren, sonra bir kaplumbağa sahiplen!",
       "questions": [
-        { "q": "Kaplumbağa ısınmak için neye ihtiyaç duyar?", "options": ["Isıtıcı lamba ya da güneş", "Buz", "Karanlık"], "correct": 0, "hint": "Onlar sıcağı sever." },
-        { "q": "Kaplumbağayla ilgilenirken ne gerekir?", "options": ["Sabır — çünkü yavaş hareket eder", "Acele", "Koşturmak"], "correct": 0, "hint": "Ünlü ağırkanlılık!" },
-        { "q": "Kaplumbağa için yapılmaması gereken nedir?", "options": ["Sırtüstü ters çevirmek", "Temiz su vermek", "Nazikçe okşamak"], "correct": 0, "hint": "Ters dönmek onun için tehlikeli." }
+        {
+          "q": "Kaplumbağa ısınmak için neye ihtiyaç duyar?",
+          "options": [
+            "Isıtıcı lamba ya da güneş",
+            "Buz",
+            "Karanlık"
+          ],
+          "correct": 0,
+          "hint": "Onlar sıcağı sever."
+        },
+        {
+          "q": "Kaplumbağayla ilgilenirken ne gerekir?",
+          "options": [
+            "Sabır — çünkü yavaş hareket eder",
+            "Acele",
+            "Koşturmak"
+          ],
+          "correct": 0,
+          "hint": "Ünlü ağırkanlılık!"
+        },
+        {
+          "q": "Kaplumbağa için yapılmaması gereken nedir?",
+          "options": [
+            "Sırtüstü ters çevirmek",
+            "Temiz su vermek",
+            "Nazikçe okşamak"
+          ],
+          "correct": 0,
+          "hint": "Ters dönmek onun için tehlikeli."
+        }
       ]
     },
     {
@@ -100,12 +289,39 @@
       "name": "Papağan Bakımı",
       "icon": "🦜",
       "blueprint": "bp_papagan",
-      "reward": "Papağanı sahiplenme izni",
+      "reward": "Papağanı sahiplenme + Büyük kafes tarifi",
       "intro": "Papağanlara bakmayı öğren, sonra konuşkan bir dost sahiplen!",
       "questions": [
-        { "q": "Papağanlar neyi taklit edebilir?", "options": ["Kelimeleri ve sesleri", "Uçağı", "Hiçbir şeyi"], "correct": 0, "hint": "Çok iyi taklitçidirler." },
-        { "q": "Papağan sıkılmasın diye ne yaparsın?", "options": ["İlgilenir, oyun oynarsın", "Görmezden gelirsin", "Karanlığa koyarsın"], "correct": 0, "hint": "Zeki kuşlar sosyaldir." },
-        { "q": "Papağanın kafesi nasıl olmalı?", "options": ["Rahatça hareket edebileceği kadar büyük", "Kıpırdayamayacağı kadar küçük", "Hiç kafes olmasın"], "correct": 0, "hint": "Kanatlarını açabilmeli." }
+        {
+          "q": "Papağanlar neyi taklit edebilir?",
+          "options": [
+            "Kelimeleri ve sesleri",
+            "Uçağı",
+            "Hiçbir şeyi"
+          ],
+          "correct": 0,
+          "hint": "Çok iyi taklitçidirler."
+        },
+        {
+          "q": "Papağan sıkılmasın diye ne yaparsın?",
+          "options": [
+            "İlgilenir, oyun oynarsın",
+            "Görmezden gelirsin",
+            "Karanlığa koyarsın"
+          ],
+          "correct": 0,
+          "hint": "Zeki kuşlar sosyaldir."
+        },
+        {
+          "q": "Papağanın kafesi nasıl olmalı?",
+          "options": [
+            "Rahatça hareket edebileceği kadar büyük",
+            "Kıpırdayamayacağı kadar küçük",
+            "Hiç kafes olmasın"
+          ],
+          "correct": 0,
+          "hint": "Kanatlarını açabilmeli."
+        }
       ]
     },
     {
@@ -113,12 +329,39 @@
       "name": "Kirpi Bakımı",
       "icon": "🦔",
       "blueprint": "bp_kirpi",
-      "reward": "Kirpiyi sahiplenme izni",
+      "reward": "Kirpiyi sahiplenme + Kirpi yuvası tarifi",
       "intro": "Kirpilere bakmayı öğren, sonra dikenli ama tatlı bir dost sahiplen!",
       "questions": [
-        { "q": "Kirpinin sırtında dikenler var; ona nasıl dokunulur?", "options": ["Çok nazikçe ve dikkatlice", "Sıkıca sıkarak", "Hiç dokunulmaz"], "correct": 0, "hint": "Nazik ol, o da sana güvensin." },
-        { "q": "Kirpi günün hangi vaktinde daha aktiftir?", "options": ["Geceleri", "Öğle sıcağında", "Hiçbir zaman"], "correct": 0, "hint": "Gece dostudur." },
-        { "q": "Kirpi korktuğunda ne yapar?", "options": ["Top gibi kıvrılır", "Havlar", "Uçar"], "correct": 0, "hint": "Dikenleriyle kendini korur." }
+        {
+          "q": "Kirpinin sırtında dikenler var; ona nasıl dokunulur?",
+          "options": [
+            "Çok nazikçe ve dikkatlice",
+            "Sıkıca sıkarak",
+            "Hiç dokunulmaz"
+          ],
+          "correct": 0,
+          "hint": "Nazik ol, o da sana güvensin."
+        },
+        {
+          "q": "Kirpi günün hangi vaktinde daha aktiftir?",
+          "options": [
+            "Geceleri",
+            "Öğle sıcağında",
+            "Hiçbir zaman"
+          ],
+          "correct": 0,
+          "hint": "Gece dostudur."
+        },
+        {
+          "q": "Kirpi korktuğunda ne yapar?",
+          "options": [
+            "Top gibi kıvrılır",
+            "Havlar",
+            "Uçar"
+          ],
+          "correct": 0,
+          "hint": "Dikenleriyle kendini korur."
+        }
       ]
     }
   ]

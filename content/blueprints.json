@@ -1,7 +1,7 @@
 {
   "schema": "blueprints@1",
-  "version": 2,
-  "intro": "Bir hayvanı sahiplenebilmen için önce onun BAKIMINI öğrenmen gerekir! 🎓 Hobi Kursları'ndan ilgili «... Bakımı» kursunu geç → o hayvanın TASLAĞINI kazan. Taslak sana iki şey verir: o hayvanı sahiplenme izni + (yuvası Atölye'de üretilebiliyorsa) yuvasını üretme tarifi. Önce öğren, sonra dost edin!",
+  "version": 3,
+  "intro": "Bir hayvanı sahiplenebilmen için önce onun BAKIMINI öğrenmen gerekir! 🎓 Hobi Kursları'ndan ilgili «... Bakımı» kursunu geç → o hayvanın TASLAĞINI kazan. Taslak sana iki şey verir: o hayvanı sahiplenme izni + yuvasını Atölye'de üretme tarifi. Önce öğren, sonra dost edin!",
   "blueprints": [
     {
       "id": "bp_balik",
@@ -40,8 +40,8 @@
       "pet": "kedi",
       "hobby": "bakim-kedi",
       "skill": "Kedi Bakımı",
-      "grants": [],
-      "desc": "Kedi bakmayı öğrenirsin: kediyi sahiplenme iznini kazanırsın."
+      "grants": ["r_kedi_evi"],
+      "desc": "Kedi bakmayı öğrenirsin: kediyi sahiplenebilir ve kedi evini üretebilirsin."
     },
     {
       "id": "bp_hamster",
@@ -50,8 +50,8 @@
       "pet": "hamster",
       "hobby": "bakim-hamster",
       "skill": "Hamster Bakımı",
-      "grants": [],
-      "desc": "Hamster bakmayı öğrenirsin: hamsteri sahiplenme iznini kazanırsın."
+      "grants": ["r_hamster_kafesi"],
+      "desc": "Hamster bakmayı öğrenirsin: hamsteri sahiplenebilir ve hamster kafesini üretebilirsin."
     },
     {
       "id": "bp_tavsan",
@@ -60,8 +60,8 @@
       "pet": "tavsan",
       "hobby": "bakim-tavsan",
       "skill": "Tavşan Bakımı",
-      "grants": [],
-      "desc": "Tavşan bakmayı öğrenirsin: tavşanı sahiplenme iznini kazanırsın."
+      "grants": ["r_tavsan_yuvasi"],
+      "desc": "Tavşan bakmayı öğrenirsin: tavşanı sahiplenebilir ve tavşan yuvasını üretebilirsin."
     },
     {
       "id": "bp_kaplumbaga",
@@ -70,8 +70,8 @@
       "pet": "kaplumbaga",
       "hobby": "bakim-kaplumbaga",
       "skill": "Kaplumbağa Bakımı",
-      "grants": [],
-      "desc": "Kaplumbağa bakmayı öğrenirsin: kaplumbağayı sahiplenme iznini kazanırsın."
+      "grants": ["r_teraryum"],
+      "desc": "Kaplumbağa bakmayı öğrenirsin: kaplumbağayı sahiplenebilir ve teraryumu üretebilirsin."
     },
     {
       "id": "bp_papagan",
@@ -80,8 +80,8 @@
       "pet": "papagan",
       "hobby": "bakim-papagan",
       "skill": "Papağan Bakımı",
-      "grants": [],
-      "desc": "Papağan bakmayı öğrenirsin: papağanı sahiplenme iznini kazanırsın."
+      "grants": ["r_buyuk_kafes"],
+      "desc": "Papağan bakmayı öğrenirsin: papağanı sahiplenebilir ve büyük kafesi üretebilirsin."
     },
     {
       "id": "bp_kirpi",
@@ -90,8 +90,8 @@
       "pet": "kirpi",
       "hobby": "bakim-kirpi",
       "skill": "Kirpi Bakımı",
-      "grants": [],
-      "desc": "Kirpi bakmayı öğrenirsin: kirpiyi sahiplenme iznini kazanırsın."
+      "grants": ["r_kirpi_yuvasi"],
+      "desc": "Kirpi bakmayı öğrenirsin: kirpiyi sahiplenebilir ve kirpi yuvasını üretebilirsin."
     }
   ]
 }

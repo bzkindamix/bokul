@@ -1884,6 +1884,11 @@ h1, h2, h3, h4,
 .adopt-course-note { font-size: 12px; color: var(--warn); background: rgba(255,179,92,.12); border-radius: 8px; padding: 5px 8px; margin: 6px 0; line-height: 1.3; }
 .adopt-course { width: 100%; }
 
+/* Aile Kodu overlay — kopyala satırı (v1.06) */
+.fam-code-row { display: flex; gap: 8px; align-items: stretch; }
+.fam-code-row .name-input { flex: 1; margin: 0; }
+.fam-copy-btn { flex: 0 0 auto; white-space: nowrap; padding: 0 12px; }
+
 </style>
 </head>
 <body>
@@ -1893,7 +1898,7 @@ h1, h2, h3, h4,
       <div class="splash-title">BO<span>KUL</span></div>
       <div class="splash-sub">Baba Okulu Eğitim Üssü</div>
       <button id="splash-start" class="btn btn-action">GÖREVE BAŞLA</button>
-      <div class="splash-note">v1.05 — Hobi Kursları artık HAYVAN BAKIMI: 9 hayvanın her biri için bakım kursu. Kursu geç → o dostu sahiplenme izni + (yuvası üretilebiliyorsa) yuva tarifi kazan. "blueprint" → "taslak".</div>
+      <div class="splash-note">v1.06 — Artık HER hayvanın craft'lanabilir bir yuvası var (kedi evi/teraryum/büyük kafes vs.); her bakım kursu o yuvanın tarifini verir. Aile Kodu ekranına 📋 Kopyala butonu eklendi.</div>
     </div>
   </div>
 
@@ -3061,6 +3066,15 @@ h1, h2, h3, h4,
       "rarity": "rare"
     },
     {
+      "id": "kedi_evi",
+      "name": "Kedi Evi",
+      "icon": "🛖",
+      "price": 130,
+      "cat": "pet",
+      "desc": "Kedinin sıcak, yumuşak yuvası.",
+      "rarity": "rare"
+    },
+    {
       "id": "kafes",
       "name": "Kuş Kafesi",
       "icon": "🪺",
@@ -3657,6 +3671,55 @@ h1, h2, h3, h4,
       "name": "Kelebek Desenli Kıyafet",
       "produces": { "type": "cosmetic", "id": "of-kelebek-desen" },
       "needs": { "kumas": 3, "kelebek": 3 }
+    },
+    {
+      "id": "r_kedi_evi",
+      "tier": "t2",
+      "icon": "🛖",
+      "name": "Kedi Evi",
+      "produces": { "type": "item", "id": "kedi_evi", "qty": 1 },
+      "needs": { "tahta": 3, "kumas": 2 },
+      "teach": "Kediler sıcak, yumuşak bir köşe sever. Üç tahta + iki kumaş → rahat bir kedi evi. Kedi Bakımı kursunu geçince bu tarifi kazanırsın!"
+    },
+    {
+      "id": "r_hamster_kafesi",
+      "tier": "t2",
+      "icon": "🏠",
+      "name": "Hamster Kafesi",
+      "produces": { "type": "item", "id": "hamster_kafesi", "qty": 1 },
+      "needs": { "metal_cerceve": 1, "tahta": 2 }
+    },
+    {
+      "id": "r_tavsan_yuvasi",
+      "tier": "t2",
+      "icon": "🏡",
+      "name": "Tavşan Yuvası",
+      "produces": { "type": "item", "id": "tavsan_yuvasi", "qty": 1 },
+      "needs": { "tahta": 3, "ip": 2 }
+    },
+    {
+      "id": "r_teraryum",
+      "tier": "t2",
+      "icon": "🪴",
+      "name": "Teraryum",
+      "produces": { "type": "item", "id": "teraryum", "qty": 1 },
+      "needs": { "cam_panel": 1, "cam": 2, "tahta": 1 }
+    },
+    {
+      "id": "r_buyuk_kafes",
+      "tier": "t2",
+      "icon": "🏛️",
+      "name": "Büyük Kafes",
+      "produces": { "type": "item", "id": "buyuk_kafes", "qty": 1 },
+      "needs": { "metal_cerceve": 2, "tahta": 1 }
+    },
+    {
+      "id": "r_kirpi_yuvasi",
+      "tier": "t2",
+      "icon": "🌿",
+      "name": "Kirpi Yuvası",
+      "produces": { "type": "item", "id": "kirpi_yuvasi", "qty": 1 },
+      "needs": { "tahta": 2, "kumas": 1 }
     }
   ]
 }
@@ -3664,8 +3727,8 @@ h1, h2, h3, h4,
 <script type="application/json" id="bokul-content-blueprints">
 {
   "schema": "blueprints@1",
-  "version": 2,
-  "intro": "Bir hayvanı sahiplenebilmen için önce onun BAKIMINI öğrenmen gerekir! 🎓 Hobi Kursları'ndan ilgili «... Bakımı» kursunu geç → o hayvanın TASLAĞINI kazan. Taslak sana iki şey verir: o hayvanı sahiplenme izni + (yuvası Atölye'de üretilebiliyorsa) yuvasını üretme tarifi. Önce öğren, sonra dost edin!",
+  "version": 3,
+  "intro": "Bir hayvanı sahiplenebilmen için önce onun BAKIMINI öğrenmen gerekir! 🎓 Hobi Kursları'ndan ilgili «... Bakımı» kursunu geç → o hayvanın TASLAĞINI kazan. Taslak sana iki şey verir: o hayvanı sahiplenme izni + yuvasını Atölye'de üretme tarifi. Önce öğren, sonra dost edin!",
   "blueprints": [
     {
       "id": "bp_balik",
@@ -3704,8 +3767,8 @@ h1, h2, h3, h4,
       "pet": "kedi",
       "hobby": "bakim-kedi",
       "skill": "Kedi Bakımı",
-      "grants": [],
-      "desc": "Kedi bakmayı öğrenirsin: kediyi sahiplenme iznini kazanırsın."
+      "grants": ["r_kedi_evi"],
+      "desc": "Kedi bakmayı öğrenirsin: kediyi sahiplenebilir ve kedi evini üretebilirsin."
     },
     {
       "id": "bp_hamster",
@@ -3714,8 +3777,8 @@ h1, h2, h3, h4,
       "pet": "hamster",
       "hobby": "bakim-hamster",
       "skill": "Hamster Bakımı",
-      "grants": [],
-      "desc": "Hamster bakmayı öğrenirsin: hamsteri sahiplenme iznini kazanırsın."
+      "grants": ["r_hamster_kafesi"],
+      "desc": "Hamster bakmayı öğrenirsin: hamsteri sahiplenebilir ve hamster kafesini üretebilirsin."
     },
     {
       "id": "bp_tavsan",
@@ -3724,8 +3787,8 @@ h1, h2, h3, h4,
       "pet": "tavsan",
       "hobby": "bakim-tavsan",
       "skill": "Tavşan Bakımı",
-      "grants": [],
-      "desc": "Tavşan bakmayı öğrenirsin: tavşanı sahiplenme iznini kazanırsın."
+      "grants": ["r_tavsan_yuvasi"],
+      "desc": "Tavşan bakmayı öğrenirsin: tavşanı sahiplenebilir ve tavşan yuvasını üretebilirsin."
     },
     {
       "id": "bp_kaplumbaga",
@@ -3734,8 +3797,8 @@ h1, h2, h3, h4,
       "pet": "kaplumbaga",
       "hobby": "bakim-kaplumbaga",
       "skill": "Kaplumbağa Bakımı",
-      "grants": [],
-      "desc": "Kaplumbağa bakmayı öğrenirsin: kaplumbağayı sahiplenme iznini kazanırsın."
+      "grants": ["r_teraryum"],
+      "desc": "Kaplumbağa bakmayı öğrenirsin: kaplumbağayı sahiplenebilir ve teraryumu üretebilirsin."
     },
     {
       "id": "bp_papagan",
@@ -3744,8 +3807,8 @@ h1, h2, h3, h4,
       "pet": "papagan",
       "hobby": "bakim-papagan",
       "skill": "Papağan Bakımı",
-      "grants": [],
-      "desc": "Papağan bakmayı öğrenirsin: papağanı sahiplenme iznini kazanırsın."
+      "grants": ["r_buyuk_kafes"],
+      "desc": "Papağan bakmayı öğrenirsin: papağanı sahiplenebilir ve büyük kafesi üretebilirsin."
     },
     {
       "id": "bp_kirpi",
@@ -3754,8 +3817,8 @@ h1, h2, h3, h4,
       "pet": "kirpi",
       "hobby": "bakim-kirpi",
       "skill": "Kirpi Bakımı",
-      "grants": [],
-      "desc": "Kirpi bakmayı öğrenirsin: kirpiyi sahiplenme iznini kazanırsın."
+      "grants": ["r_kirpi_yuvasi"],
+      "desc": "Kirpi bakmayı öğrenirsin: kirpiyi sahiplenebilir ve kirpi yuvasını üretebilirsin."
     }
   ]
 }
@@ -3776,9 +3839,36 @@ h1, h2, h3, h4,
       "reward": "Balığı sahiplenme + Akvaryum tarifi",
       "intro": "Balıklara iyi bakmayı öğren, sonra bir balık sahiplen!",
       "questions": [
-        { "q": "Balığın akvaryum suyu ne zaman değişmeli?", "options": ["Düzenli olarak, kirlenince", "Hiçbir zaman", "Yılda bir kez"], "correct": 0, "hint": "Temiz su = sağlıklı balık." },
-        { "q": "Balığa ne kadar yem vermek doğrudur?", "options": ["Az miktarda, ölçülü", "Kova dolusu", "Hiç"], "correct": 0, "hint": "Fazla yem suyu kirletir." },
-        { "q": "Akvaryum nasıl bir yerde durmalı?", "options": ["Aşırı sıcak ve güneşten uzak", "Sobanın üstünde", "Buzdolabında"], "correct": 0, "hint": "Balıklar ılık, dengeli su sever." }
+        {
+          "q": "Balığın akvaryum suyu ne zaman değişmeli?",
+          "options": [
+            "Düzenli olarak, kirlenince",
+            "Hiçbir zaman",
+            "Yılda bir kez"
+          ],
+          "correct": 0,
+          "hint": "Temiz su = sağlıklı balık."
+        },
+        {
+          "q": "Balığa ne kadar yem vermek doğrudur?",
+          "options": [
+            "Az miktarda, ölçülü",
+            "Kova dolusu",
+            "Hiç"
+          ],
+          "correct": 0,
+          "hint": "Fazla yem suyu kirletir."
+        },
+        {
+          "q": "Akvaryum nasıl bir yerde durmalı?",
+          "options": [
+            "Aşırı sıcak ve güneşten uzak",
+            "Sobanın üstünde",
+            "Buzdolabında"
+          ],
+          "correct": 0,
+          "hint": "Balıklar ılık, dengeli su sever."
+        }
       ]
     },
     {
@@ -3789,9 +3879,36 @@ h1, h2, h3, h4,
       "reward": "Köpeği sahiplenme + Köpek kulübesi tarifi",
       "intro": "Köpeklere iyi bakmayı öğren, sonra sadık bir dost sahiplen!",
       "questions": [
-        { "q": "Bir köpeğin her gün en çok neye ihtiyacı vardır?", "options": ["Yürüyüş, sevgi ve ilgi", "Bol televizyon", "Yalnız kalmak"], "correct": 0, "hint": "Köpekler hareket ve arkadaşlık ister." },
-        { "q": "Köpeğe su ne sıklıkta verilmeli?", "options": ["Her gün taze ve temiz", "Ayda bir", "Hiç"], "correct": 0, "hint": "Susuz kalmamalı." },
-        { "q": "Köpek üşüdüğünde ya da yorulduğunda nerede dinlenir?", "options": ["Sıcak kulübesinde", "Soğukta dışarıda", "Ağaçta"], "correct": 0, "hint": "Bir yuvaya ihtiyacı var." }
+        {
+          "q": "Bir köpeğin her gün en çok neye ihtiyacı vardır?",
+          "options": [
+            "Yürüyüş, sevgi ve ilgi",
+            "Bol televizyon",
+            "Yalnız kalmak"
+          ],
+          "correct": 0,
+          "hint": "Köpekler hareket ve arkadaşlık ister."
+        },
+        {
+          "q": "Köpeğe su ne sıklıkta verilmeli?",
+          "options": [
+            "Her gün taze ve temiz",
+            "Ayda bir",
+            "Hiç"
+          ],
+          "correct": 0,
+          "hint": "Susuz kalmamalı."
+        },
+        {
+          "q": "Köpek üşüdüğünde ya da yorulduğunda nerede dinlenir?",
+          "options": [
+            "Sıcak kulübesinde",
+            "Soğukta dışarıda",
+            "Ağaçta"
+          ],
+          "correct": 0,
+          "hint": "Bir yuvaya ihtiyacı var."
+        }
       ]
     },
     {
@@ -3802,9 +3919,36 @@ h1, h2, h3, h4,
       "reward": "Kuşu sahiplenme + Kuş yuvası tarifi",
       "intro": "Kuşlara iyi bakmayı öğren, sonra cıvıl cıvıl bir dost sahiplen!",
       "questions": [
-        { "q": "Kuşun kafesi nasıl olmalı?", "options": ["Düzenli temizlenmiş ve temiz", "Hiç temizlenmemiş", "Kapkaranlık"], "correct": 0, "hint": "Temizlik kuşu sağlıklı tutar." },
-        { "q": "Kuşlar genellikle neyle beslenir?", "options": ["Kuş yemi ve tohumlarla", "Çikolatayla", "Taşla"], "correct": 0, "hint": "Küçük tohumları sever." },
-        { "q": "Bir kuşu ne neşelendirir?", "options": ["Şarkı söyletmek ve ilgi", "Bağırmak", "Yalnız bırakmak"], "correct": 0, "hint": "Kuşlar sese ve sevgiye bayılır." }
+        {
+          "q": "Kuşun kafesi nasıl olmalı?",
+          "options": [
+            "Düzenli temizlenmiş ve temiz",
+            "Hiç temizlenmemiş",
+            "Kapkaranlık"
+          ],
+          "correct": 0,
+          "hint": "Temizlik kuşu sağlıklı tutar."
+        },
+        {
+          "q": "Kuşlar genellikle neyle beslenir?",
+          "options": [
+            "Kuş yemi ve tohumlarla",
+            "Çikolatayla",
+            "Taşla"
+          ],
+          "correct": 0,
+          "hint": "Küçük tohumları sever."
+        },
+        {
+          "q": "Bir kuşu ne neşelendirir?",
+          "options": [
+            "Şarkı söyletmek ve ilgi",
+            "Bağırmak",
+            "Yalnız bırakmak"
+          ],
+          "correct": 0,
+          "hint": "Kuşlar sese ve sevgiye bayılır."
+        }
       ]
     },
     {
@@ -3812,12 +3956,39 @@ h1, h2, h3, h4,
       "name": "Kedi Bakımı",
       "icon": "🐈",
       "blueprint": "bp_kedi",
-      "reward": "Kediyi sahiplenme izni",
+      "reward": "Kediyi sahiplenme + Kedi evi tarifi",
       "intro": "Kedilere iyi bakmayı öğren, sonra bir kedi sahiplen!",
       "questions": [
-        { "q": "Kedi tuvaletini nereye yapar?", "options": ["Kedi kumuna", "Yatağa", "Mutfağa"], "correct": 0, "hint": "Kum kabı şart." },
-        { "q": "Kedi tırnaklarını nerede biler?", "options": ["Tırmalama tahtasında", "Duvar kağıdında (istemeyiz!)", "Hiçbir yerde"], "correct": 0, "hint": "Tırmalama tahtası alırsan mobilyan kurtulur." },
-        { "q": "Kedi mutlu ve rahat olduğunda ne yapar?", "options": ["Mırlar", "Havlar", "Ağlar"], "correct": 0, "hint": "O huzurlu mırıltıyı duymuşsundur." }
+        {
+          "q": "Kedi tuvaletini nereye yapar?",
+          "options": [
+            "Kedi kumuna",
+            "Yatağa",
+            "Mutfağa"
+          ],
+          "correct": 0,
+          "hint": "Kum kabı şart."
+        },
+        {
+          "q": "Kedi tırnaklarını nerede biler?",
+          "options": [
+            "Tırmalama tahtasında",
+            "Duvar kağıdında (istemeyiz!)",
+            "Hiçbir yerde"
+          ],
+          "correct": 0,
+          "hint": "Tırmalama tahtası alırsan mobilyan kurtulur."
+        },
+        {
+          "q": "Kedi mutlu ve rahat olduğunda ne yapar?",
+          "options": [
+            "Mırlar",
+            "Havlar",
+            "Ağlar"
+          ],
+          "correct": 0,
+          "hint": "O huzurlu mırıltıyı duymuşsundur."
+        }
       ]
     },
     {
@@ -3825,12 +3996,39 @@ h1, h2, h3, h4,
       "name": "Hamster Bakımı",
       "icon": "🐹",
       "blueprint": "bp_hamster",
-      "reward": "Hamsteri sahiplenme izni",
+      "reward": "Hamsteri sahiplenme + Hamster kafesi tarifi",
       "intro": "Minik hamsterlara bakmayı öğren, sonra bir hamster sahiplen!",
       "questions": [
-        { "q": "Hamster kafesinin tabanına ne serilir?", "options": ["Talaş", "Su", "Kum"], "correct": 0, "hint": "Yumuşak ve emici olmalı." },
-        { "q": "Hamster geceleri en çok neyi sever?", "options": ["Koşu tekerinde koşmak", "Uyumak dışarıda", "Yüzmek"], "correct": 0, "hint": "Onlar gece hayvanıdır, enerjiktir." },
-        { "q": "Hamster çok küçük olduğu için nasıl tutulmalı?", "options": ["Nazikçe ve yavaşça", "Sıkıca", "Havaya atarak"], "correct": 0, "hint": "Kırılgan minik bir dost." }
+        {
+          "q": "Hamster kafesinin tabanına ne serilir?",
+          "options": [
+            "Talaş",
+            "Su",
+            "Kum"
+          ],
+          "correct": 0,
+          "hint": "Yumuşak ve emici olmalı."
+        },
+        {
+          "q": "Hamster geceleri en çok neyi sever?",
+          "options": [
+            "Koşu tekerinde koşmak",
+            "Uyumak dışarıda",
+            "Yüzmek"
+          ],
+          "correct": 0,
+          "hint": "Onlar gece hayvanıdır, enerjiktir."
+        },
+        {
+          "q": "Hamster çok küçük olduğu için nasıl tutulmalı?",
+          "options": [
+            "Nazikçe ve yavaşça",
+            "Sıkıca",
+            "Havaya atarak"
+          ],
+          "correct": 0,
+          "hint": "Kırılgan minik bir dost."
+        }
       ]
     },
     {
@@ -3838,12 +4036,39 @@ h1, h2, h3, h4,
       "name": "Tavşan Bakımı",
       "icon": "🐰",
       "blueprint": "bp_tavsan",
-      "reward": "Tavşanı sahiplenme izni",
+      "reward": "Tavşanı sahiplenme + Tavşan yuvası tarifi",
       "intro": "Tavşanlara bakmayı öğren, sonra bir tavşan sahiplen!",
       "questions": [
-        { "q": "Tavşan en çok neyi yemeyi sever?", "options": ["Taze ot ve havuç", "Şeker", "Cips"], "correct": 0, "hint": "Sebze ve ot en sağlıklısı." },
-        { "q": "Tavşanın dişleri sürekli uzar, bu yüzden ne yapar?", "options": ["Kemirir", "Uçar", "Yüzer"], "correct": 0, "hint": "Kemirmek dişlerini kısaltır." },
-        { "q": "Tavşan korktuğunda ne ister?", "options": ["Saklanabileceği güvenli bir yuva", "Yüksek ses", "Kalabalık"], "correct": 0, "hint": "Güvende hissetmeli." }
+        {
+          "q": "Tavşan en çok neyi yemeyi sever?",
+          "options": [
+            "Taze ot ve havuç",
+            "Şeker",
+            "Cips"
+          ],
+          "correct": 0,
+          "hint": "Sebze ve ot en sağlıklısı."
+        },
+        {
+          "q": "Tavşanın dişleri sürekli uzar, bu yüzden ne yapar?",
+          "options": [
+            "Kemirir",
+            "Uçar",
+            "Yüzer"
+          ],
+          "correct": 0,
+          "hint": "Kemirmek dişlerini kısaltır."
+        },
+        {
+          "q": "Tavşan korktuğunda ne ister?",
+          "options": [
+            "Saklanabileceği güvenli bir yuva",
+            "Yüksek ses",
+            "Kalabalık"
+          ],
+          "correct": 0,
+          "hint": "Güvende hissetmeli."
+        }
       ]
     },
     {
@@ -3851,12 +4076,39 @@ h1, h2, h3, h4,
       "name": "Kaplumbağa Bakımı",
       "icon": "🐢",
       "blueprint": "bp_kaplumbaga",
-      "reward": "Kaplumbağayı sahiplenme izni",
+      "reward": "Kaplumbağayı sahiplenme + Teraryum tarifi",
       "intro": "Kaplumbağalara bakmayı öğren, sonra bir kaplumbağa sahiplen!",
       "questions": [
-        { "q": "Kaplumbağa ısınmak için neye ihtiyaç duyar?", "options": ["Isıtıcı lamba ya da güneş", "Buz", "Karanlık"], "correct": 0, "hint": "Onlar sıcağı sever." },
-        { "q": "Kaplumbağayla ilgilenirken ne gerekir?", "options": ["Sabır — çünkü yavaş hareket eder", "Acele", "Koşturmak"], "correct": 0, "hint": "Ünlü ağırkanlılık!" },
-        { "q": "Kaplumbağa için yapılmaması gereken nedir?", "options": ["Sırtüstü ters çevirmek", "Temiz su vermek", "Nazikçe okşamak"], "correct": 0, "hint": "Ters dönmek onun için tehlikeli." }
+        {
+          "q": "Kaplumbağa ısınmak için neye ihtiyaç duyar?",
+          "options": [
+            "Isıtıcı lamba ya da güneş",
+            "Buz",
+            "Karanlık"
+          ],
+          "correct": 0,
+          "hint": "Onlar sıcağı sever."
+        },
+        {
+          "q": "Kaplumbağayla ilgilenirken ne gerekir?",
+          "options": [
+            "Sabır — çünkü yavaş hareket eder",
+            "Acele",
+            "Koşturmak"
+          ],
+          "correct": 0,
+          "hint": "Ünlü ağırkanlılık!"
+        },
+        {
+          "q": "Kaplumbağa için yapılmaması gereken nedir?",
+          "options": [
+            "Sırtüstü ters çevirmek",
+            "Temiz su vermek",
+            "Nazikçe okşamak"
+          ],
+          "correct": 0,
+          "hint": "Ters dönmek onun için tehlikeli."
+        }
       ]
     },
     {
@@ -3864,12 +4116,39 @@ h1, h2, h3, h4,
       "name": "Papağan Bakımı",
       "icon": "🦜",
       "blueprint": "bp_papagan",
-      "reward": "Papağanı sahiplenme izni",
+      "reward": "Papağanı sahiplenme + Büyük kafes tarifi",
       "intro": "Papağanlara bakmayı öğren, sonra konuşkan bir dost sahiplen!",
       "questions": [
-        { "q": "Papağanlar neyi taklit edebilir?", "options": ["Kelimeleri ve sesleri", "Uçağı", "Hiçbir şeyi"], "correct": 0, "hint": "Çok iyi taklitçidirler." },
-        { "q": "Papağan sıkılmasın diye ne yaparsın?", "options": ["İlgilenir, oyun oynarsın", "Görmezden gelirsin", "Karanlığa koyarsın"], "correct": 0, "hint": "Zeki kuşlar sosyaldir." },
-        { "q": "Papağanın kafesi nasıl olmalı?", "options": ["Rahatça hareket edebileceği kadar büyük", "Kıpırdayamayacağı kadar küçük", "Hiç kafes olmasın"], "correct": 0, "hint": "Kanatlarını açabilmeli." }
+        {
+          "q": "Papağanlar neyi taklit edebilir?",
+          "options": [
+            "Kelimeleri ve sesleri",
+            "Uçağı",
+            "Hiçbir şeyi"
+          ],
+          "correct": 0,
+          "hint": "Çok iyi taklitçidirler."
+        },
+        {
+          "q": "Papağan sıkılmasın diye ne yaparsın?",
+          "options": [
+            "İlgilenir, oyun oynarsın",
+            "Görmezden gelirsin",
+            "Karanlığa koyarsın"
+          ],
+          "correct": 0,
+          "hint": "Zeki kuşlar sosyaldir."
+        },
+        {
+          "q": "Papağanın kafesi nasıl olmalı?",
+          "options": [
+            "Rahatça hareket edebileceği kadar büyük",
+            "Kıpırdayamayacağı kadar küçük",
+            "Hiç kafes olmasın"
+          ],
+          "correct": 0,
+          "hint": "Kanatlarını açabilmeli."
+        }
       ]
     },
     {
@@ -3877,12 +4156,39 @@ h1, h2, h3, h4,
       "name": "Kirpi Bakımı",
       "icon": "🦔",
       "blueprint": "bp_kirpi",
-      "reward": "Kirpiyi sahiplenme izni",
+      "reward": "Kirpiyi sahiplenme + Kirpi yuvası tarifi",
       "intro": "Kirpilere bakmayı öğren, sonra dikenli ama tatlı bir dost sahiplen!",
       "questions": [
-        { "q": "Kirpinin sırtında dikenler var; ona nasıl dokunulur?", "options": ["Çok nazikçe ve dikkatlice", "Sıkıca sıkarak", "Hiç dokunulmaz"], "correct": 0, "hint": "Nazik ol, o da sana güvensin." },
-        { "q": "Kirpi günün hangi vaktinde daha aktiftir?", "options": ["Geceleri", "Öğle sıcağında", "Hiçbir zaman"], "correct": 0, "hint": "Gece dostudur." },
-        { "q": "Kirpi korktuğunda ne yapar?", "options": ["Top gibi kıvrılır", "Havlar", "Uçar"], "correct": 0, "hint": "Dikenleriyle kendini korur." }
+        {
+          "q": "Kirpinin sırtında dikenler var; ona nasıl dokunulur?",
+          "options": [
+            "Çok nazikçe ve dikkatlice",
+            "Sıkıca sıkarak",
+            "Hiç dokunulmaz"
+          ],
+          "correct": 0,
+          "hint": "Nazik ol, o da sana güvensin."
+        },
+        {
+          "q": "Kirpi günün hangi vaktinde daha aktiftir?",
+          "options": [
+            "Geceleri",
+            "Öğle sıcağında",
+            "Hiçbir zaman"
+          ],
+          "correct": 0,
+          "hint": "Gece dostudur."
+        },
+        {
+          "q": "Kirpi korktuğunda ne yapar?",
+          "options": [
+            "Top gibi kıvrılır",
+            "Havlar",
+            "Uçar"
+          ],
+          "correct": 0,
+          "hint": "Dikenleriyle kendini korur."
+        }
       ]
     }
   ]
@@ -3910,11 +4216,11 @@ h1, h2, h3, h4,
       "icon": "🐦",
       "prereq": [
         {
-          "item": "kafes",
+          "item": "kus_yuvasi",
           "n": 1
         }
       ],
-      "teach": "Kafesin hazır, kuşun içine kondu! Kuşlar küçük ama bakım ister: yemini eksik etme, ara sıra şarkı söyleterek neşelendir.",
+      "teach": "Yuvan hazır, kuşun içine kondu! Kuşlar küçük ama bakım ister: yemini eksik etme, ara sıra şarkı söyleterek neşelendir.",
       "care": [
         {
           "id": "besle",
@@ -3947,6 +4253,10 @@ h1, h2, h3, h4,
       "name": "Kedi",
       "icon": "🐈",
       "prereq": [
+        {
+          "item": "kedi_evi",
+          "n": 1
+        },
         {
           "item": "kedi_kumu",
           "n": 1
@@ -36772,7 +37082,7 @@ h1, h2, h3, h4,
    * sahiplenmede HARCANMAZ (hayvan içinde yaşar) ve ODAYA KONULABİLİR (room item).
    * Sarf malzemeleri (kum/mama/tasma/talaş/lamba/tırmalama) ise sahiplenmede harcanır. */
   const HABITATS = ['kafes', 'akvaryum', 'kopek_kulubesi', 'kus_yuvasi', 'hamster_kafesi',
-                    'tavsan_yuvasi', 'teraryum', 'buyuk_kafes', 'kirpi_yuvasi'];
+                    'tavsan_yuvasi', 'teraryum', 'buyuk_kafes', 'kirpi_yuvasi', 'kedi_evi'];
 
   B.Items = {
     ensure() { inv(); },
@@ -43774,9 +44084,23 @@ h1, h2, h3, h4,
     const ov = B.UI.overlay(
       '<div class="ov-big">🎟️</div><h2>Aile Kodu</h2>' +
       '<p class="ov-quote">Ebeveyninin verdiği Aile Kodu\'nu gir. İlerlemen buluta bu aileye kaydolur.</p>' +
-      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Aile kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
+      '<div class="fam-code-row">' +
+        '<input id="fam-in" class="name-input" maxlength="14" placeholder="Aile kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
+        '<button id="fam-copy" class="btn btn-quiet fam-copy-btn" title="Kodu kopyala">📋 Kopyala</button>' +
+      '</div>' +
       '<div class="login-err" id="fam-msg">' + (cur ? '✓ Bağlı: ' + cur : '') + '</div>',
       [{ label: 'KAYDET', onClick: null }, { label: 'Bağlantıyı kaldır', cls: 'btn-quiet', onClick: () => { B.Cloud.setCode(''); B.UI.toast('Bağlantı kaldırıldı'); } }]);
+    // 📋 Kodu panoya kopyala (Ctrl+C alternatifi)
+    const copyBtn = ov.querySelector('#fam-copy');
+    if (copyBtn) copyBtn.onclick = () => {
+      const inp = ov.querySelector('#fam-in');
+      const code = (inp.value || '').trim().toUpperCase();
+      if (!code) { B.UI.toast('Önce bir kod olmalı.'); return; }
+      const done = () => { B.Audio.play('tick'); B.UI.toast('📋 Kod kopyalandı: ' + code); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(done, () => { inp.select(); document.execCommand && document.execCommand('copy'); done(); });
+      } else { inp.select(); document.execCommand && document.execCommand('copy'); done(); }
+    };
     const btn = ov.querySelector('.overlay-btns .btn');
     btn.onclick = () => {
       const v = (ov.querySelector('#fam-in').value || '').trim().toUpperCase();

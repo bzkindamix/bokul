@@ -198,9 +198,23 @@
     const ov = B.UI.overlay(
       '<div class="ov-big">🎟️</div><h2>Aile Kodu</h2>' +
       '<p class="ov-quote">Ebeveyninin verdiği Aile Kodu\'nu gir. İlerlemen buluta bu aileye kaydolur.</p>' +
-      '<input id="fam-in" class="name-input" maxlength="14" placeholder="Aile kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
+      '<div class="fam-code-row">' +
+        '<input id="fam-in" class="name-input" maxlength="14" placeholder="Aile kodu" value="' + (cur || '') + '" style="text-transform:uppercase">' +
+        '<button id="fam-copy" class="btn btn-quiet fam-copy-btn" title="Kodu kopyala">📋 Kopyala</button>' +
+      '</div>' +
       '<div class="login-err" id="fam-msg">' + (cur ? '✓ Bağlı: ' + cur : '') + '</div>',
       [{ label: 'KAYDET', onClick: null }, { label: 'Bağlantıyı kaldır', cls: 'btn-quiet', onClick: () => { B.Cloud.setCode(''); B.UI.toast('Bağlantı kaldırıldı'); } }]);
+    // 📋 Kodu panoya kopyala (Ctrl+C alternatifi)
+    const copyBtn = ov.querySelector('#fam-copy');
+    if (copyBtn) copyBtn.onclick = () => {
+      const inp = ov.querySelector('#fam-in');
+      const code = (inp.value || '').trim().toUpperCase();
+      if (!code) { B.UI.toast('Önce bir kod olmalı.'); return; }
+      const done = () => { B.Audio.play('tick'); B.UI.toast('📋 Kod kopyalandı: ' + code); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(done, () => { inp.select(); document.execCommand && document.execCommand('copy'); done(); });
+      } else { inp.select(); document.execCommand && document.execCommand('copy'); done(); }
+    };
     const btn = ov.querySelector('.overlay-btns .btn');
     btn.onclick = () => {
       const v = (ov.querySelector('#fam-in').value || '').trim().toUpperCase();

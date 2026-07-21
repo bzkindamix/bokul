@@ -18,11 +18,11 @@
       "icon": "🐦",
       "prereq": [
         {
-          "item": "kafes",
+          "item": "kus_yuvasi",
           "n": 1
         }
       ],
-      "teach": "Kafesin hazır, kuşun içine kondu! Kuşlar küçük ama bakım ister: yemini eksik etme, ara sıra şarkı söyleterek neşelendir.",
+      "teach": "Yuvan hazır, kuşun içine kondu! Kuşlar küçük ama bakım ister: yemini eksik etme, ara sıra şarkı söyleterek neşelendir.",
       "care": [
         {
           "id": "besle",
@@ -55,6 +55,10 @@
       "name": "Kedi",
       "icon": "🐈",
       "prereq": [
+        {
+          "item": "kedi_evi",
+          "n": 1
+        },
         {
           "item": "kedi_kumu",
           "n": 1

@@ -316,6 +316,55 @@
       "name": "Kelebek Desenli Kıyafet",
       "produces": { "type": "cosmetic", "id": "of-kelebek-desen" },
       "needs": { "kumas": 3, "kelebek": 3 }
+    },
+    {
+      "id": "r_kedi_evi",
+      "tier": "t2",
+      "icon": "🛖",
+      "name": "Kedi Evi",
+      "produces": { "type": "item", "id": "kedi_evi", "qty": 1 },
+      "needs": { "tahta": 3, "kumas": 2 },
+      "teach": "Kediler sıcak, yumuşak bir köşe sever. Üç tahta + iki kumaş → rahat bir kedi evi. Kedi Bakımı kursunu geçince bu tarifi kazanırsın!"
+    },
+    {
+      "id": "r_hamster_kafesi",
+      "tier": "t2",
+      "icon": "🏠",
+      "name": "Hamster Kafesi",
+      "produces": { "type": "item", "id": "hamster_kafesi", "qty": 1 },
+      "needs": { "metal_cerceve": 1, "tahta": 2 }
+    },
+    {
+      "id": "r_tavsan_yuvasi",
+      "tier": "t2",
+      "icon": "🏡",
+      "name": "Tavşan Yuvası",
+      "produces": { "type": "item", "id": "tavsan_yuvasi", "qty": 1 },
+      "needs": { "tahta": 3, "ip": 2 }
+    },
+    {
+      "id": "r_teraryum",
+      "tier": "t2",
+      "icon": "🪴",
+      "name": "Teraryum",
+      "produces": { "type": "item", "id": "teraryum", "qty": 1 },
+      "needs": { "cam_panel": 1, "cam": 2, "tahta": 1 }
+    },
+    {
+      "id": "r_buyuk_kafes",
+      "tier": "t2",
+      "icon": "🏛️",
+      "name": "Büyük Kafes",
+      "produces": { "type": "item", "id": "buyuk_kafes", "qty": 1 },
+      "needs": { "metal_cerceve": 2, "tahta": 1 }
+    },
+    {
+      "id": "r_kirpi_yuvasi",
+      "tier": "t2",
+      "icon": "🌿",
+      "name": "Kirpi Yuvası",
+      "produces": { "type": "item", "id": "kirpi_yuvasi", "qty": 1 },
+      "needs": { "tahta": 2, "kumas": 1 }
     }
   ]
 }

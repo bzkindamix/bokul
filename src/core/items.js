@@ -15,7 +15,7 @@
    * sahiplenmede HARCANMAZ (hayvan içinde yaşar) ve ODAYA KONULABİLİR (room item).
    * Sarf malzemeleri (kum/mama/tasma/talaş/lamba/tırmalama) ise sahiplenmede harcanır. */
   const HABITATS = ['kafes', 'akvaryum', 'kopek_kulubesi', 'kus_yuvasi', 'hamster_kafesi',
-                    'tavsan_yuvasi', 'teraryum', 'buyuk_kafes', 'kirpi_yuvasi'];
+                    'tavsan_yuvasi', 'teraryum', 'buyuk_kafes', 'kirpi_yuvasi', 'kedi_evi'];
 
   B.Items = {
     ensure() { inv(); },

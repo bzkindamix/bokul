@@ -509,6 +509,15 @@
       "rarity": "rare"
     },
     {
+      "id": "kedi_evi",
+      "name": "Kedi Evi",
+      "icon": "🛖",
+      "price": 130,
+      "cat": "pet",
+      "desc": "Kedinin sıcak, yumuşak yuvası.",
+      "rarity": "rare"
+    },
+    {
       "id": "kafes",
       "name": "Kuş Kafesi",
       "icon": "🪺",
