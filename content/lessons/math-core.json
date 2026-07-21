@@ -610,6 +610,201 @@
               "correct": 0,
               "hint": "Önce erkek sayısını bul (9+4), sonra kızlarla topla.",
               "lvl": 3
+            },
+            {
+              "q": "Baba Komutan'ın çadırında 5 el feneri vardı, keşif ekibi 3 tane daha getirdi. Toplam kaç el feneri oldu?",
+              "options": [
+                "6",
+                "8",
+                "7",
+                "9"
+              ],
+              "correct": 1,
+              "skill": "add-problem",
+              "hint": "'Daha getirdi' → topla: 5 ile 3'ü birleştir.",
+              "lvl": 1
+            },
+            {
+              "q": "Minik asker sabah 4 madalya kazandı, öğlen 2 madalya daha aldı. Kaç madalyası oldu?",
+              "options": [
+                "6",
+                "5",
+                "7",
+                "8"
+              ],
+              "correct": 0,
+              "skill": "add-problem",
+              "hint": "İki kazanımı birleştir: 4 + 2.",
+              "lvl": 1
+            },
+            {
+              "q": "Kampta 7 çadır kuruldu, akşam 2 çadır daha kuruldu. Toplam kaç çadır var?",
+              "options": [
+                "8",
+                "9",
+                "10",
+                "7"
+              ],
+              "correct": 1,
+              "skill": "add-problem",
+              "hint": "Yeni kurulanları ekle: 7 + 2.",
+              "lvl": 1
+            },
+            {
+              "q": "Komutan'ın çantasında 6 elma, 4 armut var. Çantada toplam kaç meyve var?",
+              "options": [
+                "9",
+                "10",
+                "11",
+                "8"
+              ],
+              "correct": 1,
+              "skill": "add-problem",
+              "hint": "İki meyveyi bir araya say: 6 + 4.",
+              "lvl": 1
+            },
+            {
+              "q": "Küçük nöbetçi 3 düdük ve 5 bayrak saydı. Toplam kaç eşya saydı?",
+              "options": [
+                "7",
+                "8",
+                "9",
+                "6"
+              ],
+              "correct": 1,
+              "skill": "add-problem",
+              "hint": "İki grubu topla: 3 + 5.",
+              "lvl": 1
+            },
+            {
+              "q": "Karargâhta 24 mavi, 18 kırmızı kutu var. Karargâhta toplam kaç kutu vardır?",
+              "options": [
+                "42",
+                "40",
+                "44",
+                "32"
+              ],
+              "correct": 0,
+              "skill": "add-problem",
+              "hint": "İki rengi topla: 24 + 18.",
+              "lvl": 2
+            },
+            {
+              "q": "Baba Komutan sabah 35, akşam 27 şınav çekti. Toplam kaç şınav çekti?",
+              "options": [
+                "52",
+                "62",
+                "61",
+                "72"
+              ],
+              "correct": 1,
+              "skill": "add-problem",
+              "hint": "İki bölümü topla: 35 + 27.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir depoda 46 çuval un, 38 çuval pirinç var. Depoda toplam kaç çuval vardır?",
+              "options": [
+                "74",
+                "84",
+                "82",
+                "86"
+              ],
+              "correct": 1,
+              "skill": "add-problem",
+              "hint": "İki çuval türünü topla: 46 + 38.",
+              "lvl": 2
+            },
+            {
+              "q": "Kamp bütçesine annen 55 TL, baban 40 TL koydu. Bütçede toplam kaç TL oldu?",
+              "options": [
+                "85",
+                "95",
+                "90",
+                "105"
+              ],
+              "correct": 1,
+              "skill": "add-problem",
+              "hint": "İki tutarı topla: 55 + 40.",
+              "lvl": 2
+            },
+            {
+              "q": "İlk gün 29, ikinci gün 34 gönüllü katıldı. İki günde toplam kaç gönüllü katıldı?",
+              "options": [
+                "53",
+                "63",
+                "62",
+                "64"
+              ],
+              "correct": 1,
+              "skill": "add-problem",
+              "hint": "İki günü topla: 29 + 34.",
+              "lvl": 2
+            },
+            {
+              "q": "Baba Komutan 3 günde sırasıyla 12, 15 ve 20 çadır kurdu. Hedefi 50 çadırdı. Sonuç nedir?",
+              "options": [
+                "Ulaştı, 3 fazla kurdu",
+                "Ulaşamadı, 3 çadır eksik",
+                "Tam 50 kurdu",
+                "Ulaşamadı, 5 eksik"
+              ],
+              "correct": 1,
+              "skill": "add-multi",
+              "hint": "Önce 12+15+20'yi topla, sonra 50 ile karşılaştır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir kalede 40 asker vardı. Sabah 18, öğlen 12 asker daha katıldı. Kalede kaç asker oldu?",
+              "options": [
+                "70",
+                "60",
+                "72",
+                "58"
+              ],
+              "correct": 0,
+              "skill": "add-multi",
+              "hint": "Önce iki katılımı topla, sonra 40'a ekle.",
+              "lvl": 3
+            },
+            {
+              "q": "Kumbarada 45 TL vardı. Baba Komutan her hafta 20 TL ekliyor. 3 hafta sonra kumbarada kaç TL olur?",
+              "options": [
+                "105",
+                "85",
+                "125",
+                "95"
+              ],
+              "correct": 0,
+              "skill": "add-multi",
+              "hint": "3 haftada eklenen parayı bul (20×3), sonra 45'e ekle.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir takım ilk maçta 32, ikinci maçta 29 sayı attı. Rakip toplam 55 sayı attı. Hangi takım önde ve kaç sayı?",
+              "options": [
+                "Bizim takım, 6 sayı önde",
+                "Rakip, 6 sayı önde",
+                "Beraber",
+                "Bizim takım, 2 sayı önde"
+              ],
+              "correct": 0,
+              "skill": "add-multi",
+              "hint": "Önce kendi iki maçını topla (32+29), sonra 55 ile karşılaştır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir sınıfta 14 kız, kızlardan 5 fazla erkek var. Sınıfta toplam kaç öğrenci vardır?",
+              "options": [
+                "33",
+                "28",
+                "31",
+                "19"
+              ],
+              "correct": 0,
+              "skill": "add-multi",
+              "hint": "Önce erkek sayısını bul (14+5), sonra kızlarla topla.",
+              "lvl": 3
             }
           ]
         },
@@ -874,6 +1069,201 @@
               ],
               "correct": 0,
               "hint": "İki harcamayı topla, sonra 120'den çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Baba Komutan'ın 9 balonu vardı, 4 tanesi uçtu gitti. Kaç balon kaldı?",
+              "options": [
+                "5",
+                "4",
+                "6",
+                "3"
+              ],
+              "correct": 0,
+              "skill": "sub-problem",
+              "hint": "'Uçtu gitti' → çıkar: 9 − 4.",
+              "lvl": 1
+            },
+            {
+              "q": "Çadırda 8 mum yanıyordu, 3 tanesi söndü. Kaç mum hâlâ yanıyor?",
+              "options": [
+                "6",
+                "5",
+                "4",
+                "11"
+              ],
+              "correct": 1,
+              "skill": "sub-problem",
+              "hint": "Sönenleri çıkar: 8 − 3.",
+              "lvl": 1
+            },
+            {
+              "q": "Sepette 10 ceviz vardı, minik asker 6 tanesini yedi. Kaç ceviz kaldı?",
+              "options": [
+                "4",
+                "5",
+                "3",
+                "16"
+              ],
+              "correct": 0,
+              "skill": "sub-problem",
+              "hint": "Yenenleri çıkar: 10 − 6.",
+              "lvl": 1
+            },
+            {
+              "q": "Nöbette 7 yıldız saydın, 2 tanesi bulutların ardında kayboldu. Kaç yıldız görünüyor?",
+              "options": [
+                "5",
+                "4",
+                "6",
+                "9"
+              ],
+              "correct": 0,
+              "skill": "sub-problem",
+              "hint": "Kaybolanları çıkar: 7 − 2.",
+              "lvl": 1
+            },
+            {
+              "q": "6 oyuncak askerin 2 tanesi kayboldu. Geriye kaç asker kaldı?",
+              "options": [
+                "3",
+                "4",
+                "5",
+                "8"
+              ],
+              "correct": 1,
+              "skill": "sub-problem",
+              "hint": "Kaybolanları çıkar: 6 − 2.",
+              "lvl": 1
+            },
+            {
+              "q": "Kavanozda 40 şeker vardı, çocuklar 15 tanesini aldı. Kaç şeker kaldı?",
+              "options": [
+                "25",
+                "35",
+                "55",
+                "20"
+              ],
+              "correct": 0,
+              "skill": "sub-problem",
+              "hint": "Alınanları çıkar: 40 − 15.",
+              "lvl": 2
+            },
+            {
+              "q": "Baba Komutan'ın 60 lirası vardı, 38 liraya bot aldı. Kaç lirası kaldı?",
+              "options": [
+                "22",
+                "32",
+                "28",
+                "98"
+              ],
+              "correct": 0,
+              "skill": "sub-problem",
+              "hint": "Harcadığını çıkar: 60 − 38.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir kitabın 90 sayfası var. Zeynep 52 sayfa okudu. Kaç sayfası kaldı?",
+              "options": [
+                "38",
+                "48",
+                "42",
+                "142"
+              ],
+              "correct": 0,
+              "skill": "sub-problem",
+              "hint": "Okunanı çıkar: 90 − 52.",
+              "lvl": 2
+            },
+            {
+              "q": "Otoparkta 55 araç vardı, 27 tanesi çıktı. Kaç araç kaldı?",
+              "options": [
+                "28",
+                "38",
+                "32",
+                "82"
+              ],
+              "correct": 0,
+              "skill": "sub-problem",
+              "hint": "Çıkanları çıkar: 55 − 27.",
+              "lvl": 2
+            },
+            {
+              "q": "Depoda 72 kutu vardı, 45 tanesi taşındı. Kaç kutu kaldı?",
+              "options": [
+                "27",
+                "37",
+                "33",
+                "117"
+              ],
+              "correct": 0,
+              "skill": "sub-problem",
+              "hint": "Taşınanı çıkar: 72 − 45.",
+              "lvl": 2
+            },
+            {
+              "q": "Komutan'ın 100 lirası vardı. 42 TL'ye harita, 23 TL'ye pusula aldı. Kaç lirası kaldı?",
+              "options": [
+                "35",
+                "45",
+                "58",
+                "25"
+              ],
+              "correct": 0,
+              "skill": "sub-multi",
+              "hint": "Önce iki harcamayı topla (42+23), sonra 100'den çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir depoda 80 çuval vardı. Sabah 25, öğlen 18 çuval gönderildi. Depoda kaç çuval kaldı?",
+              "options": [
+                "37",
+                "47",
+                "43",
+                "33"
+              ],
+              "correct": 0,
+              "skill": "sub-multi",
+              "hint": "İki gönderimi topla (25+18), sonra 80'den çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir otobüste 50 yolcu vardı. Bir durakta 16 kişi indi, 9 kişi bindi. Otobüste kaç yolcu var?",
+              "options": [
+                "43",
+                "33",
+                "57",
+                "41"
+              ],
+              "correct": 0,
+              "skill": "sub-multi",
+              "hint": "Önce inenleri çıkar (50−16), sonra bineni ekle.",
+              "lvl": 3
+            },
+            {
+              "q": "Ayşe 120 sayfalık kitabı okuyor. İlk gün 35, ikinci gün 40 sayfa okudu. Kaç sayfası kaldı?",
+              "options": [
+                "45",
+                "55",
+                "35",
+                "50"
+              ],
+              "correct": 0,
+              "skill": "sub-multi",
+              "hint": "İki günü topla (35+40), sonra 120'den çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Kumbarada 150 TL vardı. Çocuk 55 TL'lik hediye aldı, sonra 30 TL daha harcadı. Kumbarada kaç TL kaldı?",
+              "options": [
+                "65",
+                "85",
+                "95",
+                "70"
+              ],
+              "correct": 0,
+              "skill": "sub-multi",
+              "hint": "İki harcamayı topla (55+30), sonra 150'den çıkar.",
               "lvl": 3
             }
           ]
@@ -1155,6 +1545,201 @@
               "correct": 0,
               "hint": "Önce 5 paketi çarp, sonra yenenleri çıkar.",
               "lvl": 3
+            },
+            {
+              "q": "Baba Komutan'ın her cebinde 3 madeni para var. 2 cepte toplam kaç para vardır?",
+              "options": [
+                "5",
+                "6",
+                "4",
+                "9"
+              ],
+              "correct": 1,
+              "skill": "mul-problem",
+              "hint": "2 grup, her grupta 3: 2 × 3.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir rafta 5 kitap var. 2 rafta toplam kaç kitap olur?",
+              "options": [
+                "10",
+                "7",
+                "12",
+                "5"
+              ],
+              "correct": 0,
+              "skill": "mul-problem",
+              "hint": "5'i iki kere say ya da çarp: 5 × 2.",
+              "lvl": 1
+            },
+            {
+              "q": "Her çadırda 2 nöbetçi var. 4 çadırda toplam kaç nöbetçi olur?",
+              "options": [
+                "6",
+                "8",
+                "4",
+                "10"
+              ],
+              "correct": 1,
+              "skill": "mul-problem",
+              "hint": "4 grup, her grupta 2: 4 × 2.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir tabakta 4 köfte var. 2 tabakta toplam kaç köfte olur?",
+              "options": [
+                "8",
+                "6",
+                "10",
+                "4"
+              ],
+              "correct": 0,
+              "skill": "mul-problem",
+              "hint": "4'ü iki kere: 4 × 2.",
+              "lvl": 1
+            },
+            {
+              "q": "3 kutunun her birinde 3 bilye var. Toplam kaç bilye vardır?",
+              "options": [
+                "6",
+                "9",
+                "12",
+                "3"
+              ],
+              "correct": 1,
+              "skill": "mul-problem",
+              "hint": "3 grup, her grupta 3: 3 × 3.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir sırada 6 asker var. 5 sırada toplam kaç asker vardır?",
+              "options": [
+                "30",
+                "11",
+                "25",
+                "35"
+              ],
+              "correct": 0,
+              "skill": "mul-problem",
+              "hint": "Sıra sayısı ile her sıradakini çarp: 5 × 6.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir defter 7 TL. 4 defter kaç TL eder?",
+              "options": [
+                "28",
+                "21",
+                "32",
+                "24"
+              ],
+              "correct": 0,
+              "skill": "mul-problem",
+              "hint": "Fiyatı adetle çarp: 7 × 4.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir haftada 7 gün vardır. 6 haftada toplam kaç gün olur?",
+              "options": [
+                "42",
+                "13",
+                "36",
+                "48"
+              ],
+              "correct": 0,
+              "skill": "mul-problem",
+              "hint": "7'yi hafta sayısıyla çarp: 7 × 6.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir askı çubuğunda 8 rozet var. 5 çubukta toplam kaç rozet olur?",
+              "options": [
+                "40",
+                "13",
+                "45",
+                "32"
+              ],
+              "correct": 0,
+              "skill": "mul-problem",
+              "hint": "8'i çubuk sayısıyla çarp: 8 × 5.",
+              "lvl": 2
+            },
+            {
+              "q": "Her masada 9 tabak var. 3 masada toplam kaç tabak vardır?",
+              "options": [
+                "27",
+                "12",
+                "24",
+                "30"
+              ],
+              "correct": 0,
+              "skill": "mul-problem",
+              "hint": "Masa sayısı × tabak: 3 × 9.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir kutuda 10 elma var. 4 kutu aldın, 7 elma çürüktü. Kaç sağlam elma kaldı?",
+              "options": [
+                "33",
+                "40",
+                "27",
+                "43"
+              ],
+              "correct": 0,
+              "skill": "mul-multi",
+              "hint": "Önce 4 kutuyu çarp (10×4), sonra çürükleri çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir bilet 12 TL. 5 kişilik takıma bilet alacaksın. 50 TL'n var, yeter mi?",
+              "options": [
+                "Yetmez, 10 TL eksik",
+                "Yeter, 10 TL kalır",
+                "Tam yeter",
+                "Yetmez, 5 TL eksik"
+              ],
+              "correct": 0,
+              "skill": "mul-multi",
+              "hint": "Önce 5 bileti çarp (12×5), sonra 50 ile karşılaştır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir bahçede 7 sıra var, her sırada 6 fide dikildi. 9 fide kurudu. Kaç sağlam fide kaldı?",
+              "options": [
+                "33",
+                "42",
+                "30",
+                "24"
+              ],
+              "correct": 0,
+              "skill": "mul-multi",
+              "hint": "Önce toplam fideyi çarp (7×6), sonra kuruyanı çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir kolide 8 şişe su var. 4 koli aldın, 6 şişe içtin. Kaç şişe kaldı?",
+              "options": [
+                "26",
+                "32",
+                "20",
+                "38"
+              ],
+              "correct": 0,
+              "skill": "mul-multi",
+              "hint": "Önce toplam şişeyi bul (8×4), sonra içileni çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Her paket 5 kurabiye içeriyor. Baba Komutan 6 paket aldı ve 4 kurabiye yedi. Kaç kurabiyesi kaldı?",
+              "options": [
+                "26",
+                "30",
+                "24",
+                "34"
+              ],
+              "correct": 0,
+              "skill": "mul-multi",
+              "hint": "Önce 6 paketi çarp (5×6), sonra yenenleri çıkar.",
+              "lvl": 3
             }
           ]
         }
@@ -1435,6 +2020,201 @@
               "correct": 0,
               "hint": "Önce gelmeyeni çıkar (25-5), sonra 5'e böl.",
               "lvl": 3
+            },
+            {
+              "q": "Baba Komutan 8 madalyayı 2 askere eşit paylaştırdı. Her asker kaç madalya aldı?",
+              "options": [
+                "4",
+                "3",
+                "2",
+                "8"
+              ],
+              "correct": 0,
+              "skill": "div-problem",
+              "hint": "8'i 2 gruba böl: 8 ÷ 2.",
+              "lvl": 1
+            },
+            {
+              "q": "6 elmayı 3 tabağa eşit koydun. Her tabakta kaç elma olur?",
+              "options": [
+                "3",
+                "2",
+                "1",
+                "6"
+              ],
+              "correct": 1,
+              "skill": "div-problem",
+              "hint": "6'yı 3'e böl: 6 ÷ 3.",
+              "lvl": 1
+            },
+            {
+              "q": "10 bilyeyi 5 çocuğa eşit dağıttın. Her çocuk kaç bilye aldı?",
+              "options": [
+                "2",
+                "5",
+                "3",
+                "1"
+              ],
+              "correct": 0,
+              "skill": "div-problem",
+              "hint": "10'u 5'e böl: 10 ÷ 5.",
+              "lvl": 1
+            },
+            {
+              "q": "12 kurabiyeyi 4 tabağa eşit böldün. Her tabakta kaç kurabiye olur?",
+              "options": [
+                "4",
+                "3",
+                "2",
+                "6"
+              ],
+              "correct": 1,
+              "skill": "div-problem",
+              "hint": "12'yi 4'e böl: 12 ÷ 4.",
+              "lvl": 1
+            },
+            {
+              "q": "9 kalemi 3 kutuya eşit koydun. Her kutuda kaç kalem olur?",
+              "options": [
+                "3",
+                "2",
+                "4",
+                "6"
+              ],
+              "correct": 0,
+              "skill": "div-problem",
+              "hint": "9'u 3'e böl: 9 ÷ 3.",
+              "lvl": 1
+            },
+            {
+              "q": "24 asker 4 gruba eşit ayrıldı. Her grupta kaç asker olur?",
+              "options": [
+                "6",
+                "5",
+                "8",
+                "4"
+              ],
+              "correct": 0,
+              "skill": "div-problem",
+              "hint": "24'ü 4'e böl.",
+              "lvl": 2
+            },
+            {
+              "q": "30 kurabiye 5 tabağa eşit dağıtıldı. Her tabakta kaç kurabiye olur?",
+              "options": [
+                "6",
+                "5",
+                "7",
+                "25"
+              ],
+              "correct": 0,
+              "skill": "div-problem",
+              "hint": "30'u 5'e böl.",
+              "lvl": 2
+            },
+            {
+              "q": "35 TL 5 kardeşe eşit paylaştırıldı. Her biri kaç TL aldı?",
+              "options": [
+                "7",
+                "6",
+                "5",
+                "30"
+              ],
+              "correct": 0,
+              "skill": "div-problem",
+              "hint": "35'i 5'e böl.",
+              "lvl": 2
+            },
+            {
+              "q": "28 kalem 4 öğrenciye eşit veriliyor. Her öğrenci kaç kalem alır?",
+              "options": [
+                "7",
+                "8",
+                "6",
+                "24"
+              ],
+              "correct": 0,
+              "skill": "div-problem",
+              "hint": "28'i 4'e böl.",
+              "lvl": 2
+            },
+            {
+              "q": "45 topu 5 fileye eşit koyarsak her filede kaç top olur?",
+              "options": [
+                "9",
+                "8",
+                "7",
+                "40"
+              ],
+              "correct": 0,
+              "skill": "div-problem",
+              "hint": "45'i 5'e böl.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir kampta 32 çocuk var. 4 kişilik çadırlara yerleşecekler. Kaç çadır gerekir?",
+              "options": [
+                "8",
+                "7",
+                "28",
+                "6"
+              ],
+              "correct": 0,
+              "skill": "div-multi",
+              "hint": "Kaç grup? 32'yi 4'e böl.",
+              "lvl": 3
+            },
+            {
+              "q": "48 kalemi önce 2 kutuya eşit böldük, sonra bir kutuyu 4 öğrenciye eşit dağıttık. Bir öğrenci kaç kalem aldı?",
+              "options": [
+                "6",
+                "12",
+                "8",
+                "24"
+              ],
+              "correct": 0,
+              "skill": "div-multi",
+              "hint": "Önce 48'i 2'ye böl, sonra çıkanı 4'e böl.",
+              "lvl": 3
+            },
+            {
+              "q": "54 sandalye salona 6 sıra halinde eşit diziliyor. Her sırada kaç sandalye olur?",
+              "options": [
+                "9",
+                "8",
+                "7",
+                "48"
+              ],
+              "correct": 0,
+              "skill": "div-multi",
+              "hint": "54'ü 6'ya böl.",
+              "lvl": 3
+            },
+            {
+              "q": "56 çikolata 8'li paketlere konuyor. Toplam kaç paket olur?",
+              "options": [
+                "7",
+                "8",
+                "6",
+                "48"
+              ],
+              "correct": 0,
+              "skill": "div-multi",
+              "hint": "56'yı 8'e böl: kaç paket.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir grupta 30 çocuk var. 6 kişilik takımlara bölünecekler ama 6 çocuk gelmedi. Kaç tam takım kurulur?",
+              "options": [
+                "4",
+                "5",
+                "3",
+                "6"
+              ],
+              "correct": 0,
+              "skill": "div-multi",
+              "hint": "Önce gelmeyeni çıkar (30−6), sonra 6'ya böl.",
+              "lvl": 3
             }
           ]
         }
@@ -1452,7 +2232,13 @@
             "o-long"
           ],
           "interactionType": "long-division",
-          "skills": ["select", "estimate", "multiply", "subtract", "bringdown"],
+          "skills": [
+            "select",
+            "estimate",
+            "multiply",
+            "subtract",
+            "bringdown"
+          ],
           "unlock": {
             "starsRequired": 0
           },
@@ -1849,6 +2635,201 @@
               "correct": 0,
               "hint": "Her küpte 6 yüz, iki küp.",
               "lvl": 3
+            },
+            {
+              "q": "Baba Komutan sana kare bir harita masası gösterdi. Bu masanın kaç kenarı vardır?",
+              "options": [
+                "3",
+                "4",
+                "5",
+                "6"
+              ],
+              "correct": 1,
+              "skill": "geometry",
+              "hint": "Kare dört kenarlıdır.",
+              "lvl": 1
+            },
+            {
+              "q": "Dikdörtgen bir çadır kapısının kaç köşesi vardır?",
+              "options": [
+                "4",
+                "3",
+                "2",
+                "6"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Dikdörtgende kenar kadar köşe vardır: 4.",
+              "lvl": 1
+            },
+            {
+              "q": "Yuvarlak bir madalyanın kaç köşesi vardır?",
+              "options": [
+                "Hiç yok",
+                "3",
+                "4",
+                "1"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Yuvarlak çizginin köşesi olmaz.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir portakal her yönden yuvarlaktır. Portakal hangi cisme benzer?",
+              "options": [
+                "Küre",
+                "Küp",
+                "Silindir",
+                "Koni"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Her yönü aynı, yuvarlak cisim.",
+              "lvl": 1
+            },
+            {
+              "q": "Üçgen bir bayrağın kaç köşesi vardır?",
+              "options": [
+                "3",
+                "4",
+                "2",
+                "5"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Üç-gen adında ipucu var.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir kapının 4 kenarı var; karşılıklı kenarları eşit ama komşu kenarları farklı. Bu kapı hangi şekle benzer?",
+              "options": [
+                "Dikdörtgen",
+                "Kare",
+                "Üçgen",
+                "Daire"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Karşılıklı kenarlar eşit ama hepsi değil.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir karenin kenar sayısı ile köşe sayısını toplarsan kaç eder?",
+              "options": [
+                "8",
+                "4",
+                "6",
+                "16"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "4 kenar + 4 köşe.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir pilin gövdesi uzun, iki ucu daire biçiminde. Bu cisim hangisidir?",
+              "options": [
+                "Silindir",
+                "Küp",
+                "Küre",
+                "Piramit"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "İki daire taban, yuvarlak gövde.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir dikdörtgenin köşe sayısı ile bir üçgenin köşe sayısı arasındaki fark kaçtır?",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "7"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Dikdörtgen 4 köşe, üçgen 3 köşe: farkı bul.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir kalp resmini tam ortadan katladığında iki yarısı üst üste tam oturuyor. Bu resimde ne vardır?",
+              "options": [
+                "Simetri",
+                "Sadece bir köşe",
+                "Hiç kenar",
+                "Üç boyut"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Kelebek kanadı gibi eşit yarılar.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir üçgenin 3 kenarı vardır. 6 üçgenin toplam kenar sayısı kaçtır?",
+              "options": [
+                "18",
+                "12",
+                "15",
+                "9"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Her üçgende 3 kenar, 6 kere: 3 × 6.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir küpün 6 yüzü vardır. 3 küpün toplam yüz sayısı kaçtır?",
+              "options": [
+                "18",
+                "12",
+                "6",
+                "9"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Her küpte 6 yüz, 3 küp: 6 × 3.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir cismin 6 eşit kare yüzü var. Bu cisim kesinlikle hangisi OLAMAZ?",
+              "options": [
+                "Küre",
+                "Küp",
+                "Zar şeklinde cisim",
+                "Kutu şeklinde cisim"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Kürenin hiç düz kare yüzü var mı?",
+              "lvl": 3
+            },
+            {
+              "q": "Baba Komutan kutudan bir cisim çıkardı: hiç düz yüzü yok, her yönü aynı, yuvarlanabiliyor. Bu cisim hangisidir?",
+              "options": [
+                "Küre",
+                "Küp",
+                "Silindir",
+                "Piramit"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Düz yüzü olmayan, her yandan yuvarlak.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir karenin 4 kenarı vardır. 5 karenin toplam kenar sayısı kaçtır?",
+              "options": [
+                "20",
+                "16",
+                "25",
+                "15"
+              ],
+              "correct": 0,
+              "skill": "geometry",
+              "hint": "Her karede 4 kenar, 5 kere: 4 × 5.",
+              "lvl": 3
             }
           ]
         }
@@ -2128,6 +3109,201 @@
               ],
               "correct": 0,
               "hint": "Çeyreklerle düşün: 2/4 + 1/4.",
+              "lvl": 3
+            },
+            {
+              "q": "Baba Komutan bir pideyi iki eşit parçaya böldü. Her parçaya ne denir?",
+              "options": [
+                "Yarım (1/2)",
+                "Çeyrek (1/4)",
+                "Bütün",
+                "Üçte bir"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "İki eşit parçadan biri.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir pasta 4 eşit dilime bölündü, sen 1 dilim aldın. Aldığın kısım nedir?",
+              "options": [
+                "Çeyrek (1/4)",
+                "Yarım (1/2)",
+                "Bütün",
+                "3/4"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "Dörtte bir dilim.",
+              "lvl": 1
+            },
+            {
+              "q": "Yarım elmayı kesir olarak nasıl yazarız?",
+              "options": [
+                "1/2",
+                "1/4",
+                "2/1",
+                "3/4"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "İki eşit parçadan biri.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir simit 2 eşit parçaya bölündü, birini arkadaşına verdin. Sende ne kadar kaldı?",
+              "options": [
+                "Yarım (1/2)",
+                "Bütün",
+                "Çeyrek",
+                "Hiç"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "İkiden biri gitti, biri kaldı.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir karpuz 4 eşit parçaya bölündü, dört parçayı da bir araya koydun. Bu ne kadar eder?",
+              "options": [
+                "Bir bütün",
+                "Yarım",
+                "Çeyrek",
+                "Sıfır"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "Parçaların hepsi bütünü verir.",
+              "lvl": 1
+            },
+            {
+              "q": "Baba Komutan pizzanın yarısını (1/2), sen çeyreğini (1/4) yedin. Kim daha çok yedi?",
+              "options": [
+                "Baba Komutan",
+                "Sen",
+                "Eşit",
+                "Belli olmaz"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "Yarım mı büyük, çeyrek mi?",
+              "lvl": 2
+            },
+            {
+              "q": "6 eşit dilimli pastadan 5 dilim aldın. Aldığın kısım kesir olarak nedir?",
+              "options": [
+                "5/6",
+                "1/6",
+                "6/5",
+                "1/2"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "Altıda beş.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çikolata 6 kareye bölündü. Sen 3 kare yedin. Çikolatanın ne kadarını yedin?",
+              "options": [
+                "Yarısını",
+                "Çeyreğini",
+                "Tamamını",
+                "Üçte birini"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "6'nın 3'ü, yani yarısı.",
+              "lvl": 2
+            },
+            {
+              "q": "2/6 kesrinde payda (alttaki sayı) neyi gösterir?",
+              "options": [
+                "Bütünün 6 eşit parçaya bölündüğünü",
+                "Kaç parça aldığımızı",
+                "Toplamı",
+                "Rengini"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "Alttaki sayı = toplam eşit parça.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ekmeği ne kadar çok eşit parçaya bölersen her parça nasıl olur?",
+              "options": [
+                "Daha küçük olur",
+                "Daha büyük olur",
+                "Aynı kalır",
+                "Kaybolur"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "Çok bölünce her dilim küçülür.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir keki 4 eşit dilime böldük. Baba Komutan 1, sen 1 dilim yediniz. Kekin ne kadarı kaldı?",
+              "options": [
+                "Yarısı (2/4)",
+                "Çeyreği",
+                "Tamamı",
+                "3/4'ü"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "4 dilimden 2'si yendi, 2'si kaldı.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çikolata 8 eşit parça. Kardeşine yarısını verdin. Kaç parça verdin?",
+              "options": [
+                "4",
+                "3",
+                "8",
+                "2"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "8'in yarısı.",
+              "lvl": 3
+            },
+            {
+              "q": "Kesirlerle ilgili aşağıdakilerden hangisi DOĞRUDUR?",
+              "options": [
+                "1/2, 1/4'ten büyüktür",
+                "1/4, 1/2'den büyüktür",
+                "1/2 bir bütün eder",
+                "1/4 yarım demektir"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "Yarım mı büyük, çeyrek mi?",
+              "lvl": 3
+            },
+            {
+              "q": "İki pizza da 4 dilim. Birinden 3/4, diğerinden 1/4 yendi. Toplam kaç dilim yendi?",
+              "options": [
+                "4",
+                "3",
+                "5",
+                "2"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "3 dilim + 1 dilim.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir bardağın yarısı, diğer bardağın yarısı su dolu. İki bardağın suyunu birleştirsen ne eder?",
+              "options": [
+                "1 tam bardak",
+                "3/4 bardak",
+                "1/2 bardak",
+                "1/4 bardak"
+              ],
+              "correct": 0,
+              "skill": "fraction",
+              "hint": "İki yarım bir bütün eder: 1/2 + 1/2.",
               "lvl": 3
             }
           ]
@@ -2409,6 +3585,201 @@
               "correct": 0,
               "hint": "2 saat = 120 dk, üstüne 30 ekle.",
               "lvl": 3
+            },
+            {
+              "q": "Baba Komutan'ın nöbeti 1 saat sürdü. Bu kaç dakikadır?",
+              "options": [
+                "60",
+                "100",
+                "30",
+                "24"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "1 saat = 60 dakika.",
+              "lvl": 1
+            },
+            {
+              "q": "'Yarım saat sonra hücum!' dedi Baba Komutan. Bu kaç dakikadır?",
+              "options": [
+                "30",
+                "60",
+                "15",
+                "45"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "60'ın yarısı.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir sopa 1 metre uzunluğunda. Bu kaç santimetredir?",
+              "options": [
+                "100",
+                "10",
+                "1000",
+                "50"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "1 m = 100 cm.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir günde kaç saat vardır?",
+              "options": [
+                "24",
+                "12",
+                "60",
+                "100"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "Gece ve gündüz birlikte 24 saat.",
+              "lvl": 1
+            },
+            {
+              "q": "Suyun miktarını ölçmek için hangi birimi kullanırız?",
+              "options": [
+                "Litre",
+                "Metre",
+                "Kilogram",
+                "Saat"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "Sıvılar litreyle ölçülür.",
+              "lvl": 1
+            },
+            {
+              "q": "Antrenman saat 8'de başladı ve 1 saat sürdü. Kaçta biter?",
+              "options": [
+                "9",
+                "10",
+                "7",
+                "8 buçuk"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "8 + 1 saat.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ip 3 metre. Kaç santimetre eder?",
+              "options": [
+                "300",
+                "30",
+                "3000",
+                "103"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "Her metre 100 cm: 3 × 100.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir şişede 4 litre su var. Yarısını içtin. Kaç litre kaldı?",
+              "options": [
+                "2",
+                "1",
+                "3",
+                "4"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "4'ün yarısı.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir film 120 dakika sürüyor. Bu kaç saattir?",
+              "options": [
+                "2 saat",
+                "1 saat",
+                "3 saat",
+                "120 saat"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "60 dakika 1 saat: 120'yi 60'a böl.",
+              "lvl": 2
+            },
+            {
+              "q": "3 kilogram elma kaç gram eder?",
+              "options": [
+                "3000",
+                "300",
+                "30",
+                "3100"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "1 kg = 1000 g: 3 × 1000.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir yürüyüş saat 13:00'te başladı ve 4 saat sürdü. Saat kaçta bitti?",
+              "options": [
+                "17:00",
+                "16:00",
+                "9:00",
+                "18:00"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "13 + 4.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir depoda 6 kg un var. 3000 gram kullanıldı. Kaç kilogram un kaldı?",
+              "options": [
+                "3",
+                "2",
+                "3000",
+                "3.5"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "3000 g = 3 kg, sonra 6'dan çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Baba Komutan karargâha 2 km yürüyor. Yolun yarısını gitti. Kaç metre yürüdü?",
+              "options": [
+                "1000",
+                "500",
+                "2000",
+                "250"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "2 km = 2000 m, yarısını al.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir maç 45 dakikalık 2 devre ve 15 dakika aradan oluşur. Sahada toplam kaç dakika geçer (ara dahil)?",
+              "options": [
+                "105",
+                "90",
+                "100",
+                "120"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "İki devreyi ve arayı topla: 45 + 45 + 15.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir görev 3 saat 20 dakika sürdü. Bu toplam kaç dakikadır?",
+              "options": [
+                "200",
+                "320",
+                "180",
+                "230"
+              ],
+              "correct": 0,
+              "skill": "measure",
+              "hint": "3 saat = 180 dk, üstüne 20 ekle.",
+              "lvl": 3
             }
           ]
         }
@@ -2688,6 +4059,201 @@
               ],
               "correct": 0,
               "hint": "8'in 2 katı 16; 10 kurala uyar mı?",
+              "lvl": 3
+            },
+            {
+              "q": "6, 9, 12, 15, ... Sıradaki sayı kaç?",
+              "options": [
+                "18",
+                "16",
+                "20",
+                "17"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Her adımda 3 ekleniyor.",
+              "lvl": 1
+            },
+            {
+              "q": "⭐🔺⭐🔺⭐... Sıradaki şekil ne?",
+              "options": [
+                "🔺",
+                "⭐",
+                "🔵",
+                "🟢"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Yıldız-üçgen tekrar ediyor.",
+              "lvl": 1
+            },
+            {
+              "q": "10, 20, 30, 40, ... Sıradaki sayı kaç?",
+              "options": [
+                "50",
+                "45",
+                "60",
+                "41"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Onar onar sayıyoruz.",
+              "lvl": 1
+            },
+            {
+              "q": "4, 6, 8, 10, ... Sıradaki sayı kaç?",
+              "options": [
+                "12",
+                "11",
+                "14",
+                "9"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "İkişer artıyor.",
+              "lvl": 1
+            },
+            {
+              "q": "🟥🟦🟥🟦🟥... Sıradaki renk ne?",
+              "options": [
+                "🟦",
+                "🟥",
+                "🟩",
+                "⭐"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Kırmızı-mavi sırayla tekrar ediyor.",
+              "lvl": 1
+            },
+            {
+              "q": "25, 20, 15, ... Sıradaki sayı kaç?",
+              "options": [
+                "10",
+                "5",
+                "12",
+                "11"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Beşer beşer azalıyor.",
+              "lvl": 2
+            },
+            {
+              "q": "4, 8, 12, 16, ... Sıradaki sayı kaç?",
+              "options": [
+                "20",
+                "18",
+                "24",
+                "14"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Dörder artıyor.",
+              "lvl": 2
+            },
+            {
+              "q": "3, 6, 12, 24, ... Sıradaki sayı kaç?",
+              "options": [
+                "48",
+                "36",
+                "30",
+                "28"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Her sayı bir öncekinin 2 katı.",
+              "lvl": 2
+            },
+            {
+              "q": "50, 40, 30, ... Sıradaki sayı kaç?",
+              "options": [
+                "20",
+                "25",
+                "10",
+                "35"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Onar onar azalıyor.",
+              "lvl": 2
+            },
+            {
+              "q": "1, 4, 7, 10, ... Sıradaki sayı kaç?",
+              "options": [
+                "13",
+                "12",
+                "14",
+                "11"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Her adımda 3 ekleniyor.",
+              "lvl": 2
+            },
+            {
+              "q": "1, 4, 9, 16, 25, ... Sıradaki sayı kaç? (1×1, 2×2, 3×3...)",
+              "options": [
+                "36",
+                "30",
+                "35",
+                "49"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "6×6 kaç eder?",
+              "lvl": 3
+            },
+            {
+              "q": "2, 3, 5, 8, 13, ... Sıradaki sayı kaç? (son iki sayıyı topla)",
+              "options": [
+                "21",
+                "20",
+                "18",
+                "16"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "8 + 13.",
+              "lvl": 3
+            },
+            {
+              "q": "Kural: 'her sayı 2 katı eksi 1'. Dizi 3, 5, 9, 17, ... Sıradaki sayı kaç?",
+              "options": [
+                "33",
+                "34",
+                "32",
+                "35"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "17 × 2 − 1.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir örüntüde her adımda 5 ekleniyor. 3. terim 18 ise 1. terim kaçtır?",
+              "options": [
+                "8",
+                "13",
+                "3",
+                "10"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "Geriye doğru iki kez 5 çıkar: 18 − 5 − 5.",
+              "lvl": 3
+            },
+            {
+              "q": "3, 6, 9, 12, ... örüntüsünde kural '3'er artıyor'. Sıradaki sayı hangisi OLAMAZ?",
+              "options": [
+                "16",
+                "15",
+                "18",
+                "21"
+              ],
+              "correct": 0,
+              "skill": "pattern",
+              "hint": "12'nin devamı 15; 16 kurala uyar mı?",
               "lvl": 3
             }
           ]
@@ -2969,6 +4535,201 @@
               "correct": 0,
               "hint": "Basketbol = 20-12 = 8; 12 ile karşılaştır.",
               "lvl": 3
+            },
+            {
+              "q": "Grafikte 🍎🍎🍎🍎 elma, 🍌🍌 muz var. Hangisi daha çok?",
+              "options": [
+                "Elma",
+                "Muz",
+                "Eşit",
+                "Hiçbiri"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "Say: 4 elma, 2 muz.",
+              "lvl": 1
+            },
+            {
+              "q": "Tabloda 4 kedi, 4 köpek var. Hangisi daha çok?",
+              "options": [
+                "Eşit",
+                "Kedi",
+                "Köpek",
+                "Kuş"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "İkisi de 4.",
+              "lvl": 1
+            },
+            {
+              "q": "6 kırmızı, 6 sarı, 3 yeşil top var. En AZ olan renk hangisi?",
+              "options": [
+                "Yeşil",
+                "Kırmızı",
+                "Sarı",
+                "Mavi"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "En küçük sayı: 3.",
+              "lvl": 1
+            },
+            {
+              "q": "Grafikte en KISA sütun neyi gösterir?",
+              "options": [
+                "En az olanı",
+                "En çok olanı",
+                "Ortalamayı",
+                "Hiçbir şeyi"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "Sütun kısaysa azdır.",
+              "lvl": 1
+            },
+            {
+              "q": "Sınıfta 5 mavi, 4 yeşil kalem var. Toplam kaç kalem?",
+              "options": [
+                "9",
+                "8",
+                "10",
+                "7"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "5 + 4.",
+              "lvl": 1
+            },
+            {
+              "q": "Tabloda Pazartesi 4, Salı 7 yıldız var. Salı kaç yıldız fazla?",
+              "options": [
+                "3",
+                "2",
+                "4",
+                "7"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "7 − 4.",
+              "lvl": 2
+            },
+            {
+              "q": "Pazartesi 8, Salı 8, Çarşamba 3 kitap okundu. En az hangi gün okundu?",
+              "options": [
+                "Çarşamba",
+                "Pazartesi",
+                "Salı",
+                "Hiçbiri"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "En küçük sayı hangi gün?",
+              "lvl": 2
+            },
+            {
+              "q": "Bir haftada 3 + 4 + 2 madalya kazanıldı. Toplam kaç madalya?",
+              "options": [
+                "9",
+                "8",
+                "10",
+                "7"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "Üç günü topla.",
+              "lvl": 2
+            },
+            {
+              "q": "Anket: 8 çocuk yazı, 4 çocuk kışı sevdi. Ankete kaç çocuk katıldı?",
+              "options": [
+                "12",
+                "8",
+                "4",
+                "16"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "8 + 4.",
+              "lvl": 2
+            },
+            {
+              "q": "Çilek 9, çikolata 6 kutu satıldı. Aralarındaki fark kaç?",
+              "options": [
+                "3",
+                "2",
+                "4",
+                "15"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "9 − 6.",
+              "lvl": 2
+            },
+            {
+              "q": "Grafikte Ali 7, Veli 5, Can 10 gol attı. En çok atan ile en az atan arasındaki fark kaç?",
+              "options": [
+                "5",
+                "3",
+                "10",
+                "7"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "En çok 10, en az 5; çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Tabloda Pazartesi 14, Salı 9, Çarşamba 12 bilet satıldı. Üç günde toplam kaç bilet?",
+              "options": [
+                "35",
+                "33",
+                "37",
+                "30"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "Üç günü topla: 14 + 9 + 12.",
+              "lvl": 3
+            },
+            {
+              "q": "Sınıfta 18 öğrenci ankete katıldı. 11'i çikolata sevdi, kalanı vanilya. Kaç kişi vanilya sevdi?",
+              "options": [
+                "7",
+                "11",
+                "6",
+                "29"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "Toplamdan çikolatayı çıkar: 18 − 11.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir grafikte 5 gün boyunca her gün 6 yıldız kazanıldı. Toplam kaç yıldız?",
+              "options": [
+                "30",
+                "11",
+                "25",
+                "35"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "Her gün 6, 5 gün: çarp.",
+              "lvl": 3
+            },
+            {
+              "q": "25 çocuktan 15'i futbolu, kalanı basketbolu seçti. Hangi spor daha çok seçildi, kaç kişi fazla?",
+              "options": [
+                "Futbol, 5 kişi fazla",
+                "Basketbol, 5 kişi fazla",
+                "Eşit",
+                "Futbol, 10 kişi fazla"
+              ],
+              "correct": 0,
+              "skill": "data",
+              "hint": "Basketbol = 25 − 15 = 10; 15 ile karşılaştır.",
+              "lvl": 3
             }
           ]
         }
@@ -3249,6 +5010,201 @@
               "correct": 0,
               "hint": "İhtiyaç mı istek mi diye düşün.",
               "lvl": 3
+            },
+            {
+              "q": "2 TL kaç kuruştur?",
+              "options": [
+                "200",
+                "20",
+                "2000",
+                "100"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "1 TL = 100 kuruş, iki katını al.",
+              "lvl": 1
+            },
+            {
+              "q": "4 TL + 3 TL kaç TL eder?",
+              "options": [
+                "7 TL",
+                "6 TL",
+                "8 TL",
+                "5 TL"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "Paraları topla: 4 + 3.",
+              "lvl": 1
+            },
+            {
+              "q": "6 TL'lik kalem aldın, 10 TL verdin. Para üstün kaç TL?",
+              "options": [
+                "4 TL",
+                "3 TL",
+                "6 TL",
+                "16 TL"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "10 − 6.",
+              "lvl": 1
+            },
+            {
+              "q": "İki tane 10 TL kaç TL eder?",
+              "options": [
+                "20 TL",
+                "10 TL",
+                "15 TL",
+                "2 TL"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "10 + 10.",
+              "lvl": 1
+            },
+            {
+              "q": "25 kuruş + 75 kuruş kaç TL eder?",
+              "options": [
+                "1 TL",
+                "2 TL",
+                "75 kuruş",
+                "5 TL"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "25 + 75 = 100 kuruş, o da 1 TL.",
+              "lvl": 1
+            },
+            {
+              "q": "Defter 5 TL, silgi 3 TL. İkisini alırsan kaç TL ödersin?",
+              "options": [
+                "8 TL",
+                "2 TL",
+                "7 TL",
+                "9 TL"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "5 + 3.",
+              "lvl": 2
+            },
+            {
+              "q": "30 TL'n var, 12 TL harcadın. Kaç TL kaldı?",
+              "options": [
+                "18 TL",
+                "22 TL",
+                "42 TL",
+                "20 TL"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "30 − 12.",
+              "lvl": 2
+            },
+            {
+              "q": "3 TL'lik 4 kalem kaç TL eder?",
+              "options": [
+                "12 TL",
+                "7 TL",
+                "9 TL",
+                "16 TL"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "3 × 4.",
+              "lvl": 2
+            },
+            {
+              "q": "15 TL'n var, 9 TL'lik bilet alabilir misin?",
+              "options": [
+                "Evet, 6 TL kalır",
+                "Hayır, yetmez",
+                "Sadece yarısı alınır",
+                "Bilinmez"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "15, 9'dan büyük; farkı da bul.",
+              "lvl": 2
+            },
+            {
+              "q": "Parayı harcamayıp kumbarada ileride kullanmak için saklamaya ne denir?",
+              "options": [
+                "Biriktirmek",
+                "Kaybetmek",
+                "Harcamak",
+                "Vermek"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "Kumbara mantığı.",
+              "lvl": 2
+            },
+            {
+              "q": "Dondurma 9 TL. 3 arkadaşına birer dondurma alacaksın. 30 TL'n var, yeter mi?",
+              "options": [
+                "Yeter, 3 TL kalır",
+                "Yetmez, 3 TL eksik",
+                "Tam yeter",
+                "Yeter, 6 TL kalır"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "Önce 3 dondurmayı çarp (9×3), sonra 30 ile karşılaştır.",
+              "lvl": 3
+            },
+            {
+              "q": "Baba Komutan 60 TL ile markete gitti. 22 TL süt, 15 TL ekmek aldı. Kaç TL para üstü alır?",
+              "options": [
+                "23 TL",
+                "33 TL",
+                "37 TL",
+                "20 TL"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "İki alışverişi topla (22+15), sonra 60'tan çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir oyuncak 50 TL. Haftada 10 TL biriktiriyorsun. Kaç haftada alabilirsin?",
+              "options": [
+                "5",
+                "4",
+                "6",
+                "50"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "50'yi 10'a böl.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir defter 7 TL, kalem 5 TL. 3 defter ve 2 kalem alırsan kaç TL ödersin?",
+              "options": [
+                "31 TL",
+                "22 TL",
+                "36 TL",
+                "25 TL"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "Önce defterleri (7×3), sonra kalemleri (5×2) çarp, sonra topla.",
+              "lvl": 3
+            },
+            {
+              "q": "Kumbaranı büyütmek için en doğru para alışkanlığı hangisidir?",
+              "options": [
+                "Her hafta bir miktar para biriktirmek",
+                "Tüm parayı hemen harcamak",
+                "Parayı bir kenarda unutmak",
+                "Hiç para almamak"
+              ],
+              "correct": 0,
+              "skill": "money",
+              "hint": "Düzenli biriktirmek kumbarayı büyütür.",
+              "lvl": 3
             }
           ]
         }
@@ -3262,7 +5218,22 @@
           "id": "s-math-final",
           "title": "Büyük Sınav",
           "interactionType": "multiple-choice",
-          "skills": ["add-problem", "add-multi", "sub-problem", "sub-multi", "mul-problem", "mul-multi", "div-problem", "div-multi", "fraction", "geometry", "measure", "money", "pattern", "data"],
+          "skills": [
+            "add-problem",
+            "add-multi",
+            "sub-problem",
+            "sub-multi",
+            "mul-problem",
+            "mul-multi",
+            "div-problem",
+            "div-multi",
+            "fraction",
+            "geometry",
+            "measure",
+            "money",
+            "pattern",
+            "data"
+          ],
           "outcomeIds": [
             "o-add"
           ],

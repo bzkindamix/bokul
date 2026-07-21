@@ -442,6 +442,186 @@
               "correct": 0,
               "hint": "El yıkamanın iki altın anı: tuvalet sonrası ve yemek öncesi.",
               "lvl": 3
+            },
+            {
+              "q": "Tırnakları uzamış ve altı kir dolu bir komutan adayına en doğru öneri hangisi?",
+              "options": [
+                "Kirin altında öylece bırakmak",
+                "Tırnakları kesip temiz tutmak",
+                "Uzatıp üstüne boya sürmek"
+              ],
+              "correct": 1,
+              "skill": "hijyen",
+              "hint": "Uzun tırnağın altı mikropların gizli üssüdür.",
+              "lvl": 1
+            },
+            {
+              "q": "Elini sadece suyla ıslatıp bırakan bir çocuğa mutlaka ne eklemesini söylersin?",
+              "options": [
+                "Bir avuç toz",
+                "Biraz kum",
+                "Sabun"
+              ],
+              "correct": 2,
+              "skill": "hijyen",
+              "hint": "Su tek başına yetmez; asıl silah sabundur.",
+              "lvl": 1
+            },
+            {
+              "q": "Fırçalama bitince diş fırçası nasıl saklanmalı Komutan?",
+              "options": [
+                "Kılları yukarı, havalanıp kuruyacak şekilde",
+                "Islak kutuya sıkıca kapatarak",
+                "Yerde bir köşede"
+              ],
+              "correct": 0,
+              "skill": "dis-bakim",
+              "hint": "Nemli fırça mikrop sever; kuruması gerekir.",
+              "lvl": 1
+            },
+            {
+              "q": "Okuldan yeni gelen bir çocuğun ilk görevi ne olmalı?",
+              "options": [
+                "Elini yüzüne sürmek",
+                "Ellerini sabunla yıkamak",
+                "Çantasıyla yatağa uzanmak"
+              ],
+              "correct": 1,
+              "skill": "hijyen",
+              "hint": "Dışarının mikropları ellere otostop yapar.",
+              "lvl": 1
+            },
+            {
+              "q": "Yere düşen oyuncağı hemen ağzına atmak isteyen küçük kardeşine ne dersin?",
+              "options": [
+                "Hemen ağzına atsın",
+                "Yalayarak temizlesin",
+                "Önce temizlensin, ağza gitmesin"
+              ],
+              "correct": 2,
+              "skill": "care-mikrop",
+              "hint": "Yerdeki görünmez mikroplar ağza gitmemeli.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir çocuk elini yıkadıktan sonra ıslak eliyle kirli çöp kovasına dokunup öyle sofraya oturuyor. Hatası ne?",
+              "options": [
+                "Hiç hata yok, eli temizdi",
+                "Temiz eline yeniden mikrop bulaştırdı",
+                "Su elini zayıflatır"
+              ],
+              "correct": 1,
+              "skill": "hijyen",
+              "hint": "Temiz el kirli yüzeye değince yeniden kirlenir.",
+              "lvl": 2
+            },
+            {
+              "q": "Dişini fırçalarken saati hiç takmayıp beş saniyede bitiren bir çocuğa ne önerirsin?",
+              "options": [
+                "İki dakika fırçalamalı ki tüm dişlere sıra gelsin",
+                "On saniye fazlasıyla yeterli",
+                "Hiç fırçalamasa da olur"
+              ],
+              "correct": 0,
+              "skill": "dis-bakim",
+              "hint": "İki dakika bütün dişlere ulaşmaya yeter.",
+              "lvl": 2
+            },
+            {
+              "q": "Sınıfta ortak kullanılan kalemi sürekli ağzına götüren bir çocuğun riski ne?",
+              "options": [
+                "Kalem daha temiz olur",
+                "Hiçbir risk yok",
+                "Ortak eşyadaki mikroplar ağzına geçebilir"
+              ],
+              "correct": 2,
+              "skill": "care-mikrop",
+              "hint": "Ağza giden ortak eşya mikrop taşıyabilir.",
+              "lvl": 2
+            },
+            {
+              "q": "Kirli tırnaklarını dişiyle ısırıp yiyen bir çocuğa neden bunu yapmamasını söylersin?",
+              "options": [
+                "Tırnağı güçlendirir",
+                "Tırnak altındaki mikropları ağzına alabilir",
+                "Hiçbir şey olmaz"
+              ],
+              "correct": 1,
+              "skill": "hijyen",
+              "hint": "Tırnak altı mikrop doludur.",
+              "lvl": 2
+            },
+            {
+              "q": "Islak havlusunu topak yapıp dolaba tıkan bir çocuğa en doğru öneri hangisi?",
+              "options": [
+                "Havlu açılıp kurutulmalı, nemli havlu mikrop üretir",
+                "Islak katlanıp kalsın",
+                "Bir daha hiç yıkanmasın"
+              ],
+              "correct": 0,
+              "skill": "hijyen",
+              "hint": "Nemli ortam mikrobun en sevdiği yerdir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çocuk 'ellerim gözle temiz görünüyor, yıkamama gerek yok' diyor. Bu düşüncenin yanlışı ne?",
+              "options": [
+                "Doğru, temiz görünüyorsa yıkamaya gerek yok",
+                "Su ele mikrop ekler",
+                "Temiz görünse de görünmez mikrop olabilir, yıkamalı"
+              ],
+              "correct": 2,
+              "skill": "hijyen",
+              "hint": "Mikroplar gözle görülmez, temiz görünmek yeterli değildir.",
+              "lvl": 3
+            },
+            {
+              "q": "Şekerli bir şey yiyen ama o an fırçası yanında olmayan bir çocuğa hangi ara çözümü önerirsin?",
+              "options": [
+                "Ağzını suyla çalkalayıp fırsat bulunca fırçalamak",
+                "Üstüne bol şeker daha yemek",
+                "Hiçbir şey yapmamak"
+              ],
+              "correct": 0,
+              "skill": "dis-bakim",
+              "hint": "Su şeker artığını bir miktar azaltır; asıl çözüm yine fırçalamaktır.",
+              "lvl": 3
+            },
+            {
+              "q": "Yanında sürekli öksüren hasta bir arkadaşı olan sağlıklı bir çocuk kendini nasıl korur?",
+              "options": [
+                "Onun bardağından su içerek",
+                "Elini sık yıkayıp yüzüne dokunmayarak",
+                "Aynı mendili paylaşarak"
+              ],
+              "correct": 1,
+              "skill": "care-mikrop",
+              "hint": "Damlacık ve el teması mikrobu taşır.",
+              "lvl": 3
+            },
+            {
+              "q": "İki saniyede yapılan bir el yıkamanın neden yetersiz olduğunu en iyi açıklayan hangisi?",
+              "options": [
+                "Su çok güçlü olduğu için fazlası zararlıdır",
+                "Sabun zaten gereksizdir",
+                "Sabunun mikrobu sökmesi için en az yirmi saniye ovmak gerekir"
+              ],
+              "correct": 2,
+              "skill": "hijyen",
+              "hint": "Sabunla yaklaşık yirmi saniye ovmak şarttır.",
+              "lvl": 3
+            },
+            {
+              "q": "Diş fırçasının üç-dört ayda bir yenilenmesi neden akıllıcadır?",
+              "options": [
+                "Zamanla kıllar aşınıp dişi iyi temizleyemez olur",
+                "Eski fırça her zaman daha iyi temizler",
+                "Fırçanın hiç değişmesine gerek yoktur"
+              ],
+              "correct": 0,
+              "skill": "dis-bakim",
+              "hint": "Aşınmış kıl, diş yüzeyine tam değmez.",
+              "lvl": 3
             }
           ]
         },
@@ -713,6 +893,186 @@
               ],
               "correct": 0,
               "hint": "Dengeli tabak enerjiyi uzun tutar.",
+              "lvl": 3
+            },
+            {
+              "q": "Kıyafetlerini her gün yere fırlatan bir çocuğa en doğru öneri hangisi?",
+              "options": [
+                "Yerde bıraksın, sonra bakar",
+                "Katlayıp dolabına ya da askıya koysun",
+                "Üstüne basıp geçsin"
+              ],
+              "correct": 1,
+              "skill": "bakim-duzen",
+              "hint": "Her eşyanın bir yeri vardır.",
+              "lvl": 1
+            },
+            {
+              "q": "Saçları her gün dağınık olan bir çocuk bakımlı görünmek için ne yapmalı?",
+              "options": [
+                "Her sabah saçını taramalı",
+                "Hiç taramamalı",
+                "Islak halde günlerce bırakmalı"
+              ],
+              "correct": 0,
+              "skill": "bakim-duzen",
+              "hint": "Taralı, düzgün saç bakımlı görünür.",
+              "lvl": 1
+            },
+            {
+              "q": "Gün boyu hiç su içmeyen bir çocuğa en sağlıklı öneri hangisi?",
+              "options": [
+                "Sadece gazoz içmek",
+                "Hiç sıvı almamak",
+                "Gün içinde düzenli su içmek"
+              ],
+              "correct": 2,
+              "skill": "uyku-saglik",
+              "hint": "Vücudun büyük bölümü sudur, su ister.",
+              "lvl": 1
+            },
+            {
+              "q": "Bedenini temiz ve sağlıklı tutmak isteyen bir çocuk için hangisi doğru?",
+              "options": [
+                "Ayda bir yıkanmak",
+                "Düzenli duş alıp temiz kalmak",
+                "Hiç yıkanmamak"
+              ],
+              "correct": 1,
+              "skill": "bakim-duzen",
+              "hint": "Düzenli duş cildi temiz ve kokusuz tutar.",
+              "lvl": 1
+            },
+            {
+              "q": "Akşamdan okul çantasını hazırlayan bir çocuk sabah ne kazanır?",
+              "options": [
+                "Telaşsız ve rahat bir sabah",
+                "Daha çok yorgunluk",
+                "Hiçbir şey"
+              ],
+              "correct": 0,
+              "skill": "bakim-duzen",
+              "hint": "Akşamki küçük hazırlık sabah zaman kazandırır.",
+              "lvl": 1
+            },
+            {
+              "q": "Masası kâğıt ve eşya dolu olan bir çocuk ödev yaparken dikkatini toplayamıyor. En mantıklı çözüm?",
+              "options": [
+                "Dağınık masada çalışmaya devam etmek",
+                "Masayı toplayıp düzenli tutmak",
+                "Masanın hiç önemi yoktur"
+              ],
+              "correct": 1,
+              "skill": "bakim-duzen",
+              "hint": "Düzenli masa odaklanmayı kolaylaştırır.",
+              "lvl": 2
+            },
+            {
+              "q": "Gün boyu ekran başında oturup su içmeyi unutan bir çocuğun öğleden sonra başı ağrıyor. En olası sebep?",
+              "options": [
+                "Susuz kaldığı için baş ağrısı olabilir, su içmeli",
+                "Su içmek zararlı olduğu için",
+                "Bunun hiçbir sebebi yok"
+              ],
+              "correct": 0,
+              "skill": "uyku-saglik",
+              "hint": "Su eksikliği baş ağrısı ve halsizlik yapabilir.",
+              "lvl": 2
+            },
+            {
+              "q": "Aynı çorabı üst üste günlerce giymek yerine neden her gün temizini giymek daha iyidir?",
+              "options": [
+                "Haftada bir değişim yeterlidir",
+                "Hiç değiştirmese de olur",
+                "Ter ve mikrop birikir; temizi koku ve mikrobu önler"
+              ],
+              "correct": 2,
+              "skill": "bakim-duzen",
+              "hint": "Ayaklar terler, mikrop ve koku birikir.",
+              "lvl": 2
+            },
+            {
+              "q": "Sürekli geç yatıp az uyuyan bir çocuğun ertesi günkü hali nasıl olur?",
+              "options": [
+                "Dikkati dağınık ve huysuz olur",
+                "Her zamankinden daha zinde olur",
+                "Hiç etkilenmez"
+              ],
+              "correct": 0,
+              "skill": "uyku-saglik",
+              "hint": "Uyku beyni dinlendirir; eksikse zorlanır.",
+              "lvl": 2
+            },
+            {
+              "q": "Kullandığı her eşyayı hemen yerine koyan bir çocuk ne kazanır?",
+              "options": [
+                "Hiçbir şey kazanmaz",
+                "Aradığını sonradan hemen bulur",
+                "Daha çok eşya kaybeder"
+              ],
+              "correct": 1,
+              "skill": "bakim-duzen",
+              "hint": "Yerine koymak, sonraki aramayı bitirir.",
+              "lvl": 2
+            },
+            {
+              "q": "Hafta içi az uyuyup hafta sonu öğlene kadar uyuyarak açığı kapatmaya çalışan bir çocuk için en doğru bilgi hangisi?",
+              "options": [
+                "Bu, açığı kapatmanın en iyi yoludur",
+                "Uykunun ne zaman alındığının önemi yoktur",
+                "Her gün düzenli uyku, tek seferlik uzun uykudan daha sağlıklıdır"
+              ],
+              "correct": 2,
+              "skill": "uyku-saglik",
+              "hint": "Vücut düzensiz saatlerle şaşırır, düzeni sever.",
+              "lvl": 3
+            },
+            {
+              "q": "'Toplanmak vakit kaybı' deyip hiç toplanmayan ama her sabah eşya ararken geç kalan bir çocuk bize ne öğretir?",
+              "options": [
+                "Kısa bir toplanma, sabah çok daha fazla zaman kazandırır",
+                "Toplanmak gerçekten gereksizdir",
+                "Geç kalmak tamamen normaldir"
+              ],
+              "correct": 0,
+              "skill": "bakim-duzen",
+              "hint": "Akşamki beş dakika, sabah on beş dakika kazandırır.",
+              "lvl": 3
+            },
+            {
+              "q": "Yatağa çok tok giden ve bu yüzden zor uyuyan bir çocuğa en dengeli öneri hangisi?",
+              "options": [
+                "Yatmadan hemen önce daha çok yesin",
+                "Yatmadan makul süre önce hafif bir şey yesin",
+                "Akşam hiçbir şey yemesin"
+              ],
+              "correct": 1,
+              "skill": "uyku-saglik",
+              "hint": "Ne çok tok ne çok aç; denge en iyisidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Temiz ve kirli kıyafetlerini tek bir yığında karıştıran bir çocuğa ne önerirsin?",
+              "options": [
+                "Hepsi bir arada dursun",
+                "Kirliyi tekrar giysin",
+                "Kirli ile temizi ayırıp kirliyi sepete koysun"
+              ],
+              "correct": 2,
+              "skill": "bakim-duzen",
+              "hint": "Temiz-kirli karışırsa kirin mikrobu temize geçer.",
+              "lvl": 3
+            },
+            {
+              "q": "Her sabah zor uyanan bir çocuk uyandırmasını kolaylaştırmak için ne yapmalı?",
+              "options": [
+                "Her gece aynı saatte yatıp vücut saatini düzenlemeli",
+                "Gece hiç uyumamalı",
+                "Her gece daha da geç yatmalı"
+              ],
+              "correct": 0,
+              "skill": "uyku-saglik",
+              "hint": "Düzenli uyku saati kolay uyanmayı sağlar.",
               "lvl": 3
             }
           ]
@@ -992,6 +1352,186 @@
               "correct": 0,
               "hint": "Fırça 3-4 ayda bir yenilenir.",
               "lvl": 3
+            },
+            {
+              "q": "Bir çocuk dişini kaç dakika fırçalamalı?",
+              "options": [
+                "İki dakika",
+                "Beş saniye",
+                "Yarım saniye"
+              ],
+              "correct": 0,
+              "skill": "care-dis",
+              "hint": "İki dakika tüm dişlere sıra gelmesi içindir.",
+              "lvl": 1
+            },
+            {
+              "q": "Diş fırçalamanın en önemli anı günün hangi vakti?",
+              "options": [
+                "Öğle molasında",
+                "Hiç önemli değil",
+                "Gece yatmadan önce"
+              ],
+              "correct": 2,
+              "skill": "care-dis",
+              "hint": "Gece ağızda kalan şeker artığı çürük yapar.",
+              "lvl": 1
+            },
+            {
+              "q": "Dişlerini korumak isteyen bir çocuk için en iyi içecek hangisi?",
+              "options": [
+                "Şekerli gazoz",
+                "Su ya da süt",
+                "Bol tatlı soda"
+              ],
+              "correct": 1,
+              "skill": "care-dis",
+              "hint": "Şekersiz içecekler dişi korur.",
+              "lvl": 1
+            },
+            {
+              "q": "Fırçaya ne kadar diş macunu koymak doğrudur?",
+              "options": [
+                "Bezelye tanesi kadar",
+                "Bütün fırçayı dolduracak kadar",
+                "Bir avuç"
+              ],
+              "correct": 0,
+              "skill": "care-dis",
+              "hint": "Küçük bir bezelye kadarı yeterlidir.",
+              "lvl": 1
+            },
+            {
+              "q": "Dişlerin sağlığı için diş hekimine ne sıklıkla kontrole gidilmeli?",
+              "options": [
+                "Hiç gitmemeli",
+                "On yılda bir",
+                "Yılda bir-iki kez"
+              ],
+              "correct": 2,
+              "skill": "care-dis",
+              "hint": "Kontrol, sorunları küçükken yakalar.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir çocuk dişlerini iyi fırçalıyor ama diş aralarını hiç temizlemiyor. Ne önerirsin?",
+              "options": [
+                "Fırça zaten her yere ulaşır, gerek yok",
+                "Diş aralarını diş ipiyle temizlemeli",
+                "Sert bir cisimle karıştırmalı"
+              ],
+              "correct": 1,
+              "skill": "care-dis",
+              "hint": "Fırça, dişlerin arasına giremez.",
+              "lvl": 2
+            },
+            {
+              "q": "Dişini çok sert fırçayla, olabildiğince bastırarak fırçalayan bir çocuğun sorunu ne olabilir?",
+              "options": [
+                "Ne kadar sert bastırırsa o kadar iyidir",
+                "Bunun hiçbir zararı yoktur",
+                "Diş etini zedeleyebilir; yumuşak fırçayla nazik fırçalamak daha iyidir"
+              ],
+              "correct": 2,
+              "skill": "care-dis",
+              "hint": "Sert baskı diş etine zarar verir.",
+              "lvl": 2
+            },
+            {
+              "q": "Sadece ön dişlerini fırçalayıp arka azı dişlerini atlayan bir çocuğun olası sonucu ne?",
+              "options": [
+                "Ulaşması zor arka dişlerde çürük başlayabilir",
+                "Kesinlikle hiçbir şey olmaz",
+                "Sadece ön dişleri bozulur"
+              ],
+              "correct": 0,
+              "skill": "care-dis",
+              "hint": "Bütün dişler fırça ister.",
+              "lvl": 2
+            },
+            {
+              "q": "Yeni bir diş fırçası seçen bir çocuk için en uygun olan hangisi?",
+              "options": [
+                "En sert kıllı olan",
+                "Yumuşak kıllı ve ağzına uygun boyda olan",
+                "Kılları dökülmüş eski bir fırça"
+              ],
+              "correct": 1,
+              "skill": "care-dis",
+              "hint": "Yumuşak kıl diş etini korur.",
+              "lvl": 2
+            },
+            {
+              "q": "Fırçaladıktan sonra ağzındaki macunu bir çocuk ne yapmalı?",
+              "options": [
+                "Tükürmeli, macun yutulmaz",
+                "Hepsini yutmalı",
+                "Bir bardak macunu içmeli"
+              ],
+              "correct": 0,
+              "skill": "care-dis",
+              "hint": "Diş macunu tükürülür, yutulmaz.",
+              "lvl": 2
+            },
+            {
+              "q": "Gece dişini fırçalamadan uyuyan bir çocukta ağızdaki şeker artıkları neye yol açar?",
+              "options": [
+                "Hiçbir şeye, sabah geçer",
+                "Dişler kendini gece onarır",
+                "Mikroplar şekerden asit üretip dişi çürütmeye başlar"
+              ],
+              "correct": 2,
+              "skill": "care-dis",
+              "hint": "Gece fırçalamak tam da bu yüzden şarttır.",
+              "lvl": 3
+            },
+            {
+              "q": "Dişi ağrıyan ama 'nasılsa geçer' deyip hekime gitmeyen bir çocuğun kararı neden riskli?",
+              "options": [
+                "Küçük çürük büyüyüp daha çok ağrı ve soruna yol açabilir",
+                "Ağrı zamanla dişi güçlendirir",
+                "Diş kendi kendini tamir eder"
+              ],
+              "correct": 0,
+              "skill": "care-dis",
+              "hint": "Erken kontrol, sorunu küçükken çözer.",
+              "lvl": 3
+            },
+            {
+              "q": "'Süt dişleri nasılsa düşecek, bakmaya gerek yok' diyen bir çocuğa neden katılmazsın?",
+              "options": [
+                "Doğru söylüyor, süt dişine bakılmaz",
+                "Çürük süt dişi ağrı yapar ve alttaki yeni dişi etkileyebilir",
+                "Süt dişleri hiç çürümez"
+              ],
+              "correct": 1,
+              "skill": "care-dis",
+              "hint": "Süt dişleri de sağlıklı kalmalıdır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk 'sakız çiğnersem fırçalamama gerek kalmaz' diyor. Bu neden yanlış?",
+              "options": [
+                "Doğru, sakız fırçanın yerini tutar",
+                "Şekerli sakız dişi temizler",
+                "Hiçbir şey fırçanın yerini tutmaz, şekerli sakız çürük bile yapabilir"
+              ],
+              "correct": 2,
+              "skill": "care-dis",
+              "hint": "Sakız fırçalamayı değil, en fazla nefesi tazeler.",
+              "lvl": 3
+            },
+            {
+              "q": "Kılları dağılmış fırçasını 'idare eder' deyip aylarca kullanan bir çocuğun dişleri neden tam temizlenmez?",
+              "options": [
+                "Dağınık kıllar diş yüzeyine tam değmez, fırça yenilenmeli",
+                "Eski fırça daha iyi temizler",
+                "Fırçanın durumu hiç önemli değildir"
+              ],
+              "correct": 0,
+              "skill": "care-dis",
+              "hint": "Fırça üç-dört ayda bir yenilenir.",
+              "lvl": 3
             }
           ]
         }
@@ -1269,6 +1809,150 @@
               ],
               "correct": 0,
               "hint": "Düzenli öğünler enerjiyi dengeler.",
+              "lvl": 3
+            },
+            {
+              "q": "Güne güçlü başlamak isteyen bir çocuk için en iyi kahvaltı hangisi?",
+              "options": [
+                "Yumurta, peynir, ekmek gibi dengeli bir kahvaltı",
+                "Sadece şekerli gevrek",
+                "Bir bardak kola"
+              ],
+              "correct": 0,
+              "skill": "care-beslenme",
+              "hint": "Dengeli kahvaltı uzun süre güç verir.",
+              "lvl": 1
+            },
+            {
+              "q": "Vücuduna vitamin depolamak isteyen bir çocuk hangisini seçmeli?",
+              "options": [
+                "Bir paket cips",
+                "Meyve ve sebze",
+                "Bir avuç şekerleme"
+              ],
+              "correct": 1,
+              "skill": "care-beslenme",
+              "hint": "Renkli tabak vitamin deposudur.",
+              "lvl": 1
+            },
+            {
+              "q": "Acıkan bir çocuğa en sağlıklı ara öğün hangisi?",
+              "options": [
+                "Yoğurt ya da bir meyve",
+                "Bir paket cips",
+                "Kocaman bir çikolata"
+              ],
+              "correct": 0,
+              "skill": "care-beslenme",
+              "hint": "Doğal atıştırmalık hem doyurur hem güç verir.",
+              "lvl": 1
+            },
+            {
+              "q": "Yemeğini çiğnemeden yutan bir çocuğa neden yavaş çiğnemesini önerirsin?",
+              "options": [
+                "İyi çiğnemek sindirime yardım eder ve tıkanmayı önler",
+                "Sadece yemek soğusun diye",
+                "Hiçbir sebep yok"
+              ],
+              "correct": 0,
+              "skill": "care-beslenme",
+              "hint": "İyi çiğnenen lokma mideyi yormaz.",
+              "lvl": 2
+            },
+            {
+              "q": "Kahvaltıda sadece bisküvi yiyen bir çocuk, dengeli kahvaltı yapana göre öğlene kadar nasıl olur?",
+              "options": [
+                "Daha uzun tok kalır",
+                "Daha çabuk acıkır",
+                "İkisi tamamen aynıdır"
+              ],
+              "correct": 1,
+              "skill": "care-beslenme",
+              "hint": "Dengeli tabak daha uzun tok tutar.",
+              "lvl": 2
+            },
+            {
+              "q": "Her gün sadece tuzlu abur cubur yiyip sebze-meyveye hiç yer vermeyen bir çocuğun olası sonucu?",
+              "options": [
+                "Vücudu ihtiyacı olan besinleri alamaz",
+                "Çok daha hızlı büyür",
+                "Kesinlikle daha güçlü olur"
+              ],
+              "correct": 0,
+              "skill": "care-beslenme",
+              "hint": "Çeşitli besin, çeşitli fayda demektir.",
+              "lvl": 2
+            },
+            {
+              "q": "Öğün atlayıp sonra çok acıkan bir çocuğa neden düzenli öğün önerirsin?",
+              "options": [
+                "Öğün atlamak enerji verir",
+                "Düzenli öğün enerjiyi gün boyu dengede tutar",
+                "Aç kalmak güç kazandırır"
+              ],
+              "correct": 1,
+              "skill": "care-beslenme",
+              "hint": "Düzenli öğün, düzenli enerji sağlar.",
+              "lvl": 2
+            },
+            {
+              "q": "Her teneffüs şekerli bir şey yiyip kısa süre neşelenen sonra yorulan bir çocuğun durumunu en iyi açıklayan hangisi?",
+              "options": [
+                "Şeker uzun süreli enerji verir",
+                "Yorgunluğun şekerle ilgisi yoktur",
+                "Şeker hızlı enerji verip sonra ani düşüşe yol açar"
+              ],
+              "correct": 2,
+              "skill": "care-beslenme",
+              "hint": "Şeker önce zıplatır, sonra yorar.",
+              "lvl": 3
+            },
+            {
+              "q": "'Hazır meyve suyu meyveyle aynıdır, istediğim kadar içerim' diyen bir çocuğun eksiği ne?",
+              "options": [
+                "Tam meyve lif de verir ve şekeri dengeler; su ve tam meyve daha iyidir",
+                "Doğru, sınırsız içebilir",
+                "Su, meyve suyundan daha kötüdür"
+              ],
+              "correct": 0,
+              "skill": "care-beslenme",
+              "hint": "Hazır sularda çok şeker olabilir, lif azdır.",
+              "lvl": 3
+            },
+            {
+              "q": "Tabağının yarısını sebze-meyve, kalanını tahıl ve protein yapan bir çocuk neyi doğru yapıyor?",
+              "options": [
+                "Sadece şekere yer açmayı",
+                "Dengeli ve çeşitli beslenmeyi",
+                "Tek besinle beslenmeyi"
+              ],
+              "correct": 1,
+              "skill": "care-beslenme",
+              "hint": "Renkli ve dengeli tabak en iyisidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Spora başlamadan önce beslenmesini planlayan bir çocuk için en uygun seçim hangisi?",
+              "options": [
+                "Spordan hemen önce çok ağır ve yağlı yemek",
+                "Hiçbir şey yememek",
+                "Biraz önceden, hafif ve dengeli bir şey yemek"
+              ],
+              "correct": 2,
+              "skill": "care-beslenme",
+              "hint": "Ağır yemek sporu zorlaştırır; hafif ve zamanında iyidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bütün gün aç durup akşam tek bir dev öğün yiyen bir çocuğun beslenmesi neden dengeli değil?",
+              "options": [
+                "Vücut gün boyu düzenli enerjiye ihtiyaç duyar",
+                "Tek öğün en sağlıklısıdır",
+                "Öğün atlamak güç verir"
+              ],
+              "correct": 0,
+              "skill": "care-beslenme",
+              "hint": "Düzenli öğünler enerjiyi güne yayar.",
               "lvl": 3
             }
           ]
@@ -1548,6 +2232,150 @@
               "correct": 0,
               "hint": "Gündüz hareketi, gece güzel uyku.",
               "lvl": 3
+            },
+            {
+              "q": "Senin yaşındaki bir çocuk gecede kaç saat uyumalı?",
+              "options": [
+                "3 saat",
+                "9-11 saat",
+                "30 dakika"
+              ],
+              "correct": 1,
+              "skill": "care-uyku",
+              "hint": "Beyin, uykuda öğrendiklerini kaydeder.",
+              "lvl": 1
+            },
+            {
+              "q": "Yatmadan önce hangisi bir çocuğu uykuya en iyi hazırlar?",
+              "options": [
+                "Heyecanlı bir koşma oyunu",
+                "Bol şekerli içecek",
+                "Kitap okumak ya da sakin müzik"
+              ],
+              "correct": 2,
+              "skill": "care-uyku",
+              "hint": "Sakin aktiviteler beyni yavaşlatır.",
+              "lvl": 1
+            },
+            {
+              "q": "Uyku bir çocuğa ne kazandırır?",
+              "options": [
+                "Beyin dinlenir ve öğrendiklerini pekiştirir",
+                "Sadece zaman kaybettirir",
+                "Hiçbir işe yaramaz"
+              ],
+              "correct": 0,
+              "skill": "care-uyku",
+              "hint": "Uyumak da bir çeşit ders çalışmaktır.",
+              "lvl": 1
+            },
+            {
+              "q": "Her gece aynı saatte yatmak bir çocuğa nasıl yardımcı olur?",
+              "options": [
+                "Kötü bir alışkanlıktır",
+                "Vücut saatini düzenler, kolay uyumayı sağlar",
+                "Hiçbir etkisi yoktur"
+              ],
+              "correct": 1,
+              "skill": "care-uyku",
+              "hint": "Düzen, uykuyu kolaylaştırır.",
+              "lvl": 1
+            },
+            {
+              "q": "Sürekli geç yatıp az uyuyan bir çocuk ertesi gün nasıl olur?",
+              "options": [
+                "Dikkati dağınık ve sinirli olur",
+                "Her zamankinden daha zinde olur",
+                "Hiç etkilenmez"
+              ],
+              "correct": 0,
+              "skill": "care-uyku",
+              "hint": "Yorgun beyin iyi çalışmaz.",
+              "lvl": 2
+            },
+            {
+              "q": "Yatmadan hemen önce büyük bir bardak dolusu su içip gece sık sık uyanan bir çocuğa ne önerirsin?",
+              "options": [
+                "Yatmadan hemen önce çok içmeyip makul kalmalı",
+                "Yatmadan bir litre su içmeli",
+                "Bütün gün hiç su içmemeli"
+              ],
+              "correct": 0,
+              "skill": "care-uyku",
+              "hint": "Yatmadan çok sıvı, geceyi bölebilir.",
+              "lvl": 2
+            },
+            {
+              "q": "Uyumadan hemen önce parlak ekrana bakan bir çocuk neden geç uyur?",
+              "options": [
+                "Ekran uykuyu hemen getirir",
+                "Bunun hiçbir etkisi yoktur",
+                "Ekran ışığı beyni uyanık tutar, önceden kapatmalı"
+              ],
+              "correct": 2,
+              "skill": "care-uyku",
+              "hint": "Ekran beyne 'gündüz devam ediyor' der.",
+              "lvl": 2
+            },
+            {
+              "q": "Hafta içi geç yatıp hafta sonu öğlene kadar uyuyan bir çocuğun uyku düzeni neden bozulur?",
+              "options": [
+                "Düzensiz saatler vücut saatini şaşırtır",
+                "Bu en sağlıklı düzendir",
+                "Uyku saatinin hiçbir önemi yoktur"
+              ],
+              "correct": 0,
+              "skill": "care-uyku",
+              "hint": "Vücut düzenli saat sever.",
+              "lvl": 3
+            },
+            {
+              "q": "'Uyku zaman kaybı, o sürede oyun oynarım' diyen bir çocuğun düşüncesindeki yanlış nedir?",
+              "options": [
+                "Doğru, uyku gereksizdir",
+                "Uyku beyni dinlendirir ve öğrenmeyi pekiştirir; kayıp zaman değildir",
+                "Uyku sadece küçükler için gereklidir"
+              ],
+              "correct": 1,
+              "skill": "care-uyku",
+              "hint": "Uyumak da bir çeşit ders çalışmaktır.",
+              "lvl": 3
+            },
+            {
+              "q": "Sınav gecesi sabaha kadar çalışmak yerine bir çocuğa daha iyi bir plan hangisi olurdu?",
+              "options": [
+                "Sabaha kadar hiç durmadan çalışmak en iyisidir",
+                "Uyku yerine oyun oynamak",
+                "Erkenden çalışıp gece iyi uyumak; uyku bilgiyi pekiştirir"
+              ],
+              "correct": 2,
+              "skill": "care-uyku",
+              "hint": "Yorgun beyin sınavda zorlanır.",
+              "lvl": 3
+            },
+            {
+              "q": "Gün içinde hiç hareket etmeyen bir çocuk gece kolay uyuyamıyor. Buradaki bağlantı nedir?",
+              "options": [
+                "Gündüz harcanan enerji geceleri daha rahat uyku getirir",
+                "Hareket uykuyu bozar",
+                "İkisi tamamen ilgisizdir"
+              ],
+              "correct": 0,
+              "skill": "care-uyku",
+              "hint": "Gündüz hareketi, gece güzel uyku.",
+              "lvl": 3
+            },
+            {
+              "q": "Yatağa yattığında ertesi günü düşünüp kaygılanan ve uyuyamayan bir çocuğa ne önerirsin?",
+              "options": [
+                "Işığı açıp koşması",
+                "Sakin bir rutin kurup gerekiyorsa güvendiği birine derdini anlatması",
+                "Sabaha kadar düşünmeye devam etmesi"
+              ],
+              "correct": 1,
+              "skill": "care-uyku",
+              "hint": "Sakinleşmek uykuyu getirir.",
+              "lvl": 3
             }
           ]
         }
@@ -1825,6 +2653,114 @@
               ],
               "correct": 0,
               "hint": "Harcanan enerji derin uyku getirir.",
+              "lvl": 3
+            },
+            {
+              "q": "Sağlıklı olmak için bir çocuk günde ne kadar hareket etmeli?",
+              "options": [
+                "10 saniye",
+                "En az 1 saat oyun ya da spor",
+                "Yılda bir gün"
+              ],
+              "correct": 1,
+              "skill": "care-egzersiz",
+              "hint": "Koş, zıpla, oyna.",
+              "lvl": 1
+            },
+            {
+              "q": "Koşmaya başlamadan önce hangisini yapmak sakatlanmayı azaltır?",
+              "options": [
+                "Bol şeker yemek",
+                "Hemen sprint atmak",
+                "Isınma hareketleri yapmak"
+              ],
+              "correct": 2,
+              "skill": "care-egzersiz",
+              "hint": "Isınma, kasları göreve hazırlar.",
+              "lvl": 1
+            },
+            {
+              "q": "Uzun süre hiç kalkmadan oturan bir çocuğa en iyi öneri?",
+              "options": [
+                "Arada kalkıp gerinip biraz yürümek",
+                "Daha uzun oturmak",
+                "Hiç kıpırdamamak"
+              ],
+              "correct": 0,
+              "skill": "care-egzersiz",
+              "hint": "Uzun hareketsizlik iyi değildir.",
+              "lvl": 1
+            },
+            {
+              "q": "Spor bittikten hemen sonra bir çocuk için en doğru davranış hangisi?",
+              "options": [
+                "Aniden durup oturmak",
+                "Hemen çok yemek yemek",
+                "Yavaşça soğuyup esnemek ve su içmek"
+              ],
+              "correct": 2,
+              "skill": "care-egzersiz",
+              "hint": "Yavaş soğumak kasları rahatlatır.",
+              "lvl": 2
+            },
+            {
+              "q": "Her gün oynayan bir çocukla hep oturan bir çocuğu karşılaştırırsak uzun vadede kim daha zinde olur?",
+              "options": [
+                "Hep oturan",
+                "Her gün hareket eden",
+                "İkisi tamamen aynı"
+              ],
+              "correct": 1,
+              "skill": "care-egzersiz",
+              "hint": "Düzenli hareket kalbi ve kasları güçlendirir.",
+              "lvl": 2
+            },
+            {
+              "q": "'Bir gün çok spor yapıp sonra günlerce hiç yapmasam olur' diyen bir çocuğa neden katılmazsın?",
+              "options": [
+                "Her gün biraz düzenli hareket vücuda daha çok yarar",
+                "Doğru, tek gün yeterli",
+                "Hareket zaten zararlıdır"
+              ],
+              "correct": 0,
+              "skill": "care-egzersiz",
+              "hint": "Süreklilik, tek seferlik yüklenmeden iyidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Gün boyu ekran başında oturup sürekli halsiz ve keyifsiz olan bir çocuğa en mantıklı çözüm?",
+              "options": [
+                "Daha uzun oturmak",
+                "Her gün programına biraz hareket ekleyip enerji ve keyfini artırmak",
+                "Daha da çok ekran"
+              ],
+              "correct": 1,
+              "skill": "care-egzersiz",
+              "hint": "Hareket, enerji ve moral verir.",
+              "lvl": 3
+            },
+            {
+              "q": "Spor yaparken hiç su içmeyen bir çocuğun başı dönüp yoruluyor. Sebep ve çözüm nedir?",
+              "options": [
+                "Terle su kaybetti; ara ara su içmeli",
+                "Çok su içti; tamamen kesmeli",
+                "Su zararlıdır, hiç içmemeli"
+              ],
+              "correct": 0,
+              "skill": "care-egzersiz",
+              "hint": "Terleyen vücut kaybettiği suyu yerine koymalı.",
+              "lvl": 3
+            },
+            {
+              "q": "Geceleri iyi uyuyamayan bir çocuğa gün içine ne eklemek uykusuna yardımcı olabilir?",
+              "options": [
+                "Daha çok oturmak",
+                "Düzenli hareket ve oyun",
+                "Daha çok ekran süresi"
+              ],
+              "correct": 1,
+              "skill": "care-egzersiz",
+              "hint": "Gündüz harcanan enerji derin uyku getirir.",
               "lvl": 3
             }
           ]
@@ -2104,6 +3040,126 @@
               "correct": 0,
               "hint": "Yer ve durum bilgisi yardımı hızlandırır.",
               "lvl": 3
+            },
+            {
+              "q": "Evdeki elektrik prizi konusunda bir çocuk ne yapmalı?",
+              "options": [
+                "Parmağını sokup denemeli",
+                "İçine bir cisim tıkmalı",
+                "Dokunmamalı, uzak durmalı"
+              ],
+              "correct": 2,
+              "skill": "care-guvenlik",
+              "hint": "Elektrik tehlikelidir.",
+              "lvl": 1
+            },
+            {
+              "q": "Kibrit ya da çakmak gören bir çocuk ne yapmalı?",
+              "options": [
+                "Yakıp denemeli",
+                "Saklayıp onunla oynamalı",
+                "Dokunmamalı; onlar oyuncak değildir"
+              ],
+              "correct": 2,
+              "skill": "care-guvenlik",
+              "hint": "Ateşle oynamak çok tehlikelidir.",
+              "lvl": 1
+            },
+            {
+              "q": "Yolda yürürken telefonla oyun oynayıp etrafına bakmayan bir çocuğun asıl tehlikesi ne?",
+              "options": [
+                "Dikkati dağıldığı için gelen aracı fark etmeyebilir",
+                "Sadece telefonun pili biter",
+                "Daha hızlı yürür"
+              ],
+              "correct": 0,
+              "skill": "care-guvenlik",
+              "hint": "Yolda dikkat hayat kurtarır.",
+              "lvl": 2
+            },
+            {
+              "q": "Mutfakta ocakta sıcak bir tencere kaynıyor. Bir çocuk ne yapmalı?",
+              "options": [
+                "Tencereyi tutmalı",
+                "Ocakla oynamalı",
+                "Uzak durup büyükten yardım istemeli"
+              ],
+              "correct": 2,
+              "skill": "care-guvenlik",
+              "hint": "Sıcak yüzeyler yakar.",
+              "lvl": 2
+            },
+            {
+              "q": "Merdivenden koşarak inmek isteyen bir çocuğa neden yavaş inmesini söylersin?",
+              "options": [
+                "Koşmak düşme ve yaralanmaya yol açar; tırabzana tutunmalı",
+                "Yavaş inmek yasaktır",
+                "Koşmak daha güvenlidir"
+              ],
+              "correct": 0,
+              "skill": "care-guvenlik",
+              "hint": "Yavaş ve tutunarak inmek güvenlidir.",
+              "lvl": 2
+            },
+            {
+              "q": "Renkli şişedeki temizlik ürününü meyve suyu sanan bir çocuğa ne dersin?",
+              "options": [
+                "Meyve suyu gibi içebilirsin",
+                "Bunlar tehlikelidir, içilmez; sadece büyükler kullanır",
+                "Tadına bir baksan olur"
+              ],
+              "correct": 1,
+              "skill": "care-guvenlik",
+              "hint": "Temizlik ürünü ve ilaç oyuncak değildir.",
+              "lvl": 2
+            },
+            {
+              "q": "Küçük kardeşinin prize doğru yaklaştığını gören bir çocuk ne yapmalı?",
+              "options": [
+                "Kardeşini uzaklaştırıp hemen bir büyüğe haber vermeli",
+                "Birlikte prizle oynamalı",
+                "Görmezden gelmeli"
+              ],
+              "correct": 0,
+              "skill": "care-guvenlik",
+              "hint": "Tehlikeyi büyüğe bildirmek doğru davranıştır.",
+              "lvl": 3
+            },
+            {
+              "q": "Evde küçük bir yangın gören bir çocuğun en doğru davranış sırası hangisi?",
+              "options": [
+                "Saklanıp beklemek",
+                "Kendi başına söndürmeye çalışmak",
+                "Uzaklaşıp büyüğe haber vermek ve 112'yi aratmak"
+              ],
+              "correct": 2,
+              "skill": "care-guvenlik",
+              "hint": "Önce güvenlik, sonra yardım çağırmak.",
+              "lvl": 3
+            },
+            {
+              "q": "İnternette yeni tanıştığı biri bir çocuğa ev adresini soruyor. Neden vermemeli?",
+              "options": [
+                "Tanımadığı kişiye kişisel bilgi vermek tehlikeli olabilir",
+                "Adres vermek tamamen zararsızdır",
+                "Herkese adres verilir"
+              ],
+              "correct": 0,
+              "skill": "care-guvenlik",
+              "hint": "Kişisel bilgiler yabancılarla paylaşılmaz.",
+              "lvl": 3
+            },
+            {
+              "q": "Okulda deprem tatbikatı sırasında bir çocuğun en doğru davranışı hangisi?",
+              "options": [
+                "Panikleyip koridorda koşmak",
+                "Sakin kalıp büyüklerin verdiği yönergelere uymak",
+                "Bağırıp arkadaşlarını itmek"
+              ],
+              "correct": 1,
+              "skill": "care-guvenlik",
+              "hint": "Sakinlik doğru kararı getirir.",
+              "lvl": 3
             }
           ]
         }
@@ -2381,6 +3437,90 @@
               ],
               "correct": 0,
               "hint": "Güzel şeyleri fark etmek moral verir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir hata yapan çocuk için en sağlıklı düşünce hangisi?",
+              "options": [
+                "Bir daha asla denemem",
+                "Hatadan öğrenip tekrar denemek",
+                "Herkes benden nefret ediyor"
+              ],
+              "correct": 1,
+              "skill": "care-duygular",
+              "hint": "Hata, öğrenmenin bir parçasıdır.",
+              "lvl": 1
+            },
+            {
+              "q": "Oyunu kaybedip çok sinirlenen ve arkadaşına bağırmak üzere olan bir çocuk için en iyi seçim hangisi?",
+              "options": [
+                "Derin nefes alıp sakinleşmek, sonra konuşmak",
+                "Arkadaşına bağırmak",
+                "Oyunu bozmak"
+              ],
+              "correct": 0,
+              "skill": "care-duygular",
+              "hint": "Önce sakinleş, sonra konuş.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir arkadaşına sürekli kötü davranıp onu üzen birini gören çocuk ne yapmalı?",
+              "options": [
+                "Güvendiği bir büyüğe durumu anlatmalı",
+                "Susup öylece katlanmalı",
+                "O da herkese kötü davranmalı"
+              ],
+              "correct": 0,
+              "skill": "care-duygular",
+              "hint": "Zorbalıkla mücadelede büyükten destek al.",
+              "lvl": 2
+            },
+            {
+              "q": "Canı sıkılan bir çocuğun ruhunu dinlendirmek için hangisi iyi gelir?",
+              "options": [
+                "Sürekli üzülmek",
+                "Kimseyle konuşmamak",
+                "Sevdiği bir uğraşla ilgilenmek"
+              ],
+              "correct": 2,
+              "skill": "care-duygular",
+              "hint": "Sevdiğin uğraşlar moral verir.",
+              "lvl": 2
+            },
+            {
+              "q": "Üzüntüsünü kimseye söylemeyip günlerce içine atan bir çocuğun olası durumu ve daha iyi yolu nedir?",
+              "options": [
+                "Üzüntü büyüyebilir; güvendiği birine anlatmak rahatlatır",
+                "Saklamak her zaman en iyisidir",
+                "Konuşmak durumu daha da kötüleştirir"
+              ],
+              "correct": 0,
+              "skill": "care-duygular",
+              "hint": "Paylaşılan üzüntü hafifler.",
+              "lvl": 3
+            },
+            {
+              "q": "Her gece yatmadan o gün yaşadığı güzel bir şeyi düşünen bir çocuk zamanla ne hisseder?",
+              "options": [
+                "Daha mutlu ve umutlu",
+                "Daha üzgün",
+                "Hiçbir şey değişmez"
+              ],
+              "correct": 0,
+              "skill": "care-duygular",
+              "hint": "Güzel şeyleri fark etmek moral verir.",
+              "lvl": 3
+            },
+            {
+              "q": "Uzun süredir kendini sürekli mutsuz ve isteksiz hisseden bir çocuk için en doğru adım nedir?",
+              "options": [
+                "Kimseye söylememek",
+                "Güvendiği bir yetişkine ya da öğretmenine açılıp destek istemek",
+                "Bütün suçu kendinde bulmak"
+              ],
+              "correct": 1,
+              "skill": "care-duygular",
+              "hint": "Uzun süren sıkıntıda yardım istemek güçlü olmaktır.",
               "lvl": 3
             }
           ]
@@ -2660,6 +3800,90 @@
               "correct": 0,
               "hint": "Temiz görünmek, mikropsuz demek değildir.",
               "lvl": 3
+            },
+            {
+              "q": "Mendili olmayan bir çocuk hapşıracak. Mikropları etrafa yaymamak için ne yapmalı?",
+              "options": [
+                "Etrafa doğru hapşırmalı",
+                "Avucuna hapşırıp kapı koluna dokunmalı",
+                "Dirseğinin içine hapşırmalı"
+              ],
+              "correct": 2,
+              "skill": "care-mikrop",
+              "hint": "Avuç, mikropları her dokunduğuna taşır.",
+              "lvl": 2
+            },
+            {
+              "q": "Hasta olan bir çocuk okulda bardağını arkadaşıyla paylaşırsa ne olur?",
+              "options": [
+                "Mikroplar arkadaşına da bulaşabilir",
+                "Kesinlikle hiçbir şey olmaz",
+                "Arkadaşı daha da güçlenir"
+              ],
+              "correct": 0,
+              "skill": "care-mikrop",
+              "hint": "Ağza değen eşyalar mikrop taşır.",
+              "lvl": 2
+            },
+            {
+              "q": "Kapı kolu ve korkuluk gibi ortak yüzeylere dokunan bir çocuk sonra ne yapmaya dikkat etmeli?",
+              "options": [
+                "Hemen gözünü ovmaya",
+                "Elini yıkamaya ve yüzüne dokunmamaya",
+                "Elini ağzına götürmeye"
+              ],
+              "correct": 1,
+              "skill": "care-mikrop",
+              "hint": "Mikroplar ellerle taşınır.",
+              "lvl": 2
+            },
+            {
+              "q": "İyi uyuyup dengeli beslenen bir çocukla bunları yapmayanı karşılaştırırsak kimin bağışıklığı daha güçlü olur?",
+              "options": [
+                "Uykusuz olan",
+                "İkisi de aynı",
+                "İyi uyuyup dengeli beslenen"
+              ],
+              "correct": 2,
+              "skill": "care-mikrop",
+              "hint": "Sağlıklı alışkanlıklar orduyu güçlendirir.",
+              "lvl": 2
+            },
+            {
+              "q": "Avucuna hapşırıp hemen arkadaşıyla el sıkışan bir çocuğun sorunu ne?",
+              "options": [
+                "Mikroplar avuçtan arkadaşının eline geçer; dirseğe hapşırmak daha iyidir",
+                "Hiçbir sorun yok",
+                "El sıkışmak mikrobu öldürür"
+              ],
+              "correct": 0,
+              "skill": "care-mikrop",
+              "hint": "Dirsek kapağı, mikrobu ele bulaştırmaz.",
+              "lvl": 3
+            },
+            {
+              "q": "'Sağlıklı görünüyorum, o yüzden mikrop taşımam' diyen bir çocuk neden yanılıyor olabilir?",
+              "options": [
+                "Doğru, sağlıklıysan mikrop taşımazsın",
+                "Mikroplar sadece hastalarda olur",
+                "İyi hissetse de elinde mikrop taşıyıp başkasına bulaştırabilir"
+              ],
+              "correct": 2,
+              "skill": "care-mikrop",
+              "hint": "El yıkamak herkes için gereklidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Elleri gözle görülür şekilde kirlenmiş bir çocuk 'jel sürerim yeter' diyor. En doğru bilgi hangisi?",
+              "options": [
+                "Kirli elde jel her zaman yeterlidir",
+                "Eller gözle kirliyse su ve sabunla yıkamak daha iyidir",
+                "Sabun hiç gerekmez"
+              ],
+              "correct": 1,
+              "skill": "care-mikrop",
+              "hint": "Görünür kirde su ve sabun şarttır.",
+              "lvl": 3
             }
           ]
         }
@@ -2937,6 +4161,78 @@
               ],
               "correct": 0,
               "hint": "Asıl işi büyükler yapar; sen yardım çağırırsın.",
+              "lvl": 3
+            },
+            {
+              "q": "Küçük bir kesik olduğunda bir çocuk ilk ne yapmalı?",
+              "options": [
+                "Görmezden gelmek",
+                "Büyüğe söyleyip yarayı temiz tutmak",
+                "Yaraya kir bulaştırmak"
+              ],
+              "correct": 1,
+              "skill": "care-ilkyardim",
+              "hint": "Temiz yara daha hızlı iyileşir.",
+              "lvl": 1
+            },
+            {
+              "q": "Birinin aniden bayıldığını gören bir çocuk ne yapmalı?",
+              "options": [
+                "Üstünden atlamak",
+                "Görmezden gelmek",
+                "Hemen bir büyüğe ya da 112'ye haber vermek"
+              ],
+              "correct": 2,
+              "skill": "care-ilkyardim",
+              "hint": "Vakit kaybetmeden yardım çağır.",
+              "lvl": 2
+            },
+            {
+              "q": "Dizini hafifçe sıyıran bir çocuk için en uygun davranış hangisi?",
+              "options": [
+                "Yarayı temizleyip üstüne yara bandı yapmak",
+                "Üstüne toprak sürmek",
+                "Açıkta kirlenmeye bırakmak"
+              ],
+              "correct": 0,
+              "skill": "care-ilkyardim",
+              "hint": "Temiz yara bandı yarayı korur.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir kaza anında paniğe kapılan bir çocuğun önce sakinleşmesi neden önemli?",
+              "options": [
+                "Sakin kalınca doğru düşünüp yardım çağırabilir",
+                "Panik daha faydalıdır",
+                "Sakinlik boşa zaman kaybettirir"
+              ],
+              "correct": 0,
+              "skill": "care-ilkyardim",
+              "hint": "Sakin komutan doğru kararı verir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk arkadaşının reçeteli ilacını 'iyi gelir' diye ona vermek istiyor. Neden yapmamalı?",
+              "options": [
+                "Yanlış ilaç zarar verebilir; ilaç kararı büyüklerin ve doktorundur",
+                "İlaç herkese iyi gelir",
+                "Arkadaşlar ilaç paylaşabilir"
+              ],
+              "correct": 0,
+              "skill": "care-ilkyardim",
+              "hint": "İlaç kararı doktora aittir.",
+              "lvl": 3
+            },
+            {
+              "q": "Yanan bir yere diş macunu ya da toz sürmek isteyen bir çocuğa neden 'onun yerine soğuk su' dersin?",
+              "options": [
+                "Diş macunu en iyi çözümdür",
+                "Soğuk akan su güvenlidir; diğerleri yarayı kötüleştirebilir",
+                "Toz yanığı iyileştirir"
+              ],
+              "correct": 1,
+              "skill": "care-ilkyardim",
+              "hint": "Basit ve güvenli olan: soğuk akan su.",
               "lvl": 3
             }
           ]
@@ -3216,6 +4512,90 @@
               "correct": 0,
               "hint": "20-20 kuralı gözü dinlendirir.",
               "lvl": 3
+            },
+            {
+              "q": "Ekrana çok yakından bakmak en çok neye zarar verir?",
+              "options": [
+                "Gözlere",
+                "Ayaklara",
+                "Kulaklara"
+              ],
+              "correct": 0,
+              "skill": "care-ekran",
+              "hint": "Gözler uygun mesafe ve ışık ister.",
+              "lvl": 1
+            },
+            {
+              "q": "Bilgisayarda oyun oynarken doğru duruş nasıldır?",
+              "options": [
+                "İki büklüm yatmak",
+                "Dik oturup arada gerinmek",
+                "Yüzü ekrana yapıştırmak"
+              ],
+              "correct": 1,
+              "skill": "care-ekran",
+              "hint": "Dik duruş sırtını korur.",
+              "lvl": 1
+            },
+            {
+              "q": "İki çocuktan biri ödevini bitirip sonra oyun oynuyor, diğeri önce oyuna başlayıp ödevi unutuyor. Hangi düzen daha sağlıklı?",
+              "options": [
+                "Önce ekran, sonra hiçbir şey",
+                "Önce görevler, sonra dengeli ekran",
+                "Sürekli ekranda kalmak"
+              ],
+              "correct": 1,
+              "skill": "care-ekran",
+              "hint": "Önce iş, sonra dengeli keyif.",
+              "lvl": 2
+            },
+            {
+              "q": "İnternette korkutucu ya da rahatsız edici bir videoyla karşılaşan bir çocuk ne yapmalı?",
+              "options": [
+                "İzlemeye devam etmek",
+                "Herkese yollamak",
+                "Kapatıp büyüğüne anlatmak"
+              ],
+              "correct": 2,
+              "skill": "care-ekran",
+              "hint": "Rahatsız eden içeriği büyüğüne söyle.",
+              "lvl": 2
+            },
+            {
+              "q": "Uyku ve ödev yerine sürekli ekranda kalan, notları ve enerjisi düşen bir çocuğa en mantıklı çözüm?",
+              "options": [
+                "Daha çok ekranda kalmak",
+                "Ekranı görevlerden sonraya bırakıp dengeli kullanmak",
+                "Uykuyu tamamen bırakmak"
+              ],
+              "correct": 1,
+              "skill": "care-ekran",
+              "hint": "Denge her şeyi yerine koyar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk ekranda 'hediyeni almak için şifreni yaz' diyen bir mesaj aldı. Ne yapmalı?",
+              "options": [
+                "Şifresini hemen yazmalı",
+                "Yazmayıp hemen büyüğüne göstermeli",
+                "Arkadaşlarına şifreyi sormalı"
+              ],
+              "correct": 1,
+              "skill": "care-ekran",
+              "hint": "Şifre ve kişisel bilgi kimseyle paylaşılmaz.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk arkadaşının utanacağı bir fotoğrafını herkese yollamak istiyor. En doğru davranış hangisi?",
+              "options": [
+                "Hemen herkese yollamak",
+                "İzinsiz paylaşmamak; başkasının özeline saygı göstermek",
+                "Etiketleyip herkese göndermek"
+              ],
+              "correct": 1,
+              "skill": "care-ekran",
+              "hint": "İzinsiz paylaşım hem yanlış hem kırıcıdır.",
+              "lvl": 3
             }
           ]
         }
@@ -3485,6 +4865,90 @@
               ],
               "correct": 0,
               "hint": "Ekran beyne 'gündüz devam ediyor' der.",
+              "lvl": 3
+            },
+            {
+              "q": "Senin yaşındaki bir çocuk gecede kaç saat uyumalı?",
+              "options": [
+                "2 saat",
+                "9-11 saat",
+                "30 dakika"
+              ],
+              "correct": 1,
+              "skill": "care-uyku",
+              "hint": "Beyin, uykuda öğrenir.",
+              "lvl": 1
+            },
+            {
+              "q": "Mendili olmayan bir çocuk hapşırırken mikropları yaymamak için nereye hapşırmalı?",
+              "options": [
+                "Avucuna",
+                "Etrafa doğru",
+                "Dirseğinin içine"
+              ],
+              "correct": 2,
+              "skill": "care-mikrop",
+              "hint": "Avuç, mikropları her dokunduğuna taşır.",
+              "lvl": 2
+            },
+            {
+              "q": "Çok sinirlenen bir çocuk sakinleşmek için ne yapabilir?",
+              "options": [
+                "Bir şeyler kırmak",
+                "Derin nefes alıp yavaşça saymak",
+                "Bağırıp vurmak"
+              ],
+              "correct": 1,
+              "skill": "care-duygular",
+              "hint": "Nefes, öfkenin frenidir.",
+              "lvl": 2
+            },
+            {
+              "q": "Tanımadığı biri 'gel sana oyuncak vereyim' diyen bir çocuğa ne yapmalı?",
+              "options": [
+                "Peşinden gitmeli",
+                "Oyuncağı alıp gitmeli",
+                "Gitmeyip güvendiği bir büyüğe söylemeli"
+              ],
+              "correct": 2,
+              "skill": "care-guvenlik",
+              "hint": "Yabancıyla hiçbir yere gidilmez.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir sınıfta birçok çocuk grip oldu. Yayılmayı azaltmak için en etkili ortak davranış hangisi?",
+              "options": [
+                "Düzenli el yıkamak ve hapşırırken dirseği kullanmak",
+                "Pencereleri sürekli kapatmak",
+                "Hiç su içmemek"
+              ],
+              "correct": 0,
+              "skill": "care-mikrop",
+              "hint": "Mikroplar el ve damlacıkla yayılır.",
+              "lvl": 3
+            },
+            {
+              "q": "Her teneffüs şekerli bir şey yiyip kısa süre neşelenen sonra yorulan bir çocuğun durumunu en iyi açıklayan hangisi?",
+              "options": [
+                "Şeker hızlı enerji verip sonra ani düşüşe yol açar",
+                "Şeker uzun süreli enerji verir",
+                "Yorgunluğun şekerle ilgisi yoktur"
+              ],
+              "correct": 0,
+              "skill": "care-beslenme",
+              "hint": "Şeker önce zıplatır, sonra yorar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk ekranda 'hediyeni almak için şifreni yaz' diyen bir mesaj aldı. Ne yapmalı?",
+              "options": [
+                "Şifresini hemen yazmalı",
+                "Yazmayıp büyüğüne göstermeli",
+                "Hediyeyi beklemeli"
+              ],
+              "correct": 1,
+              "skill": "care-ekran",
+              "hint": "Şifre ve kişisel bilgi kimseyle paylaşılmaz.",
               "lvl": 3
             }
           ]

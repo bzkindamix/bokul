@@ -450,6 +450,186 @@
               "correct": 0,
               "hint": "Doğada tek düz renk yoktur, ton vardır.",
               "lvl": 3
+            },
+            {
+              "q": "Ana renkler kaç tanedir Komutan?",
+              "options": [
+                "Üç",
+                "İki",
+                "Yedi"
+              ],
+              "correct": 0,
+              "skill": "san-renk",
+              "hint": "Kırmızı, sarı, mavi.",
+              "lvl": 1
+            },
+            {
+              "q": "Aşağıdakilerden hangisi bir ana renktir?",
+              "options": [
+                "Yeşil",
+                "Sarı",
+                "Turuncu"
+              ],
+              "correct": 1,
+              "skill": "san-renk",
+              "hint": "Karışımla elde edilemeyeni seç.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir ara renk elde etmek için kaç ana rengi karıştırmak gerekir?",
+              "options": [
+                "Hiç",
+                "Beş renk",
+                "İki ana renk"
+              ],
+              "correct": 2,
+              "skill": "san-renk",
+              "hint": "İki ana renk buluşur.",
+              "lvl": 1
+            },
+            {
+              "q": "Turuncu bir renk için ne söylenir; ana mı ara renk mi?",
+              "options": [
+                "Ara renk",
+                "Ana renk",
+                "Renk değil"
+              ],
+              "correct": 0,
+              "skill": "san-renk",
+              "hint": "Kırmızı ve sarıdan yapılır.",
+              "lvl": 1
+            },
+            {
+              "q": "Sarıya biraz beyaz katan çocuk ne elde eder?",
+              "options": [
+                "Mavi",
+                "Daha açık, soluk bir sarı",
+                "Mor"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Beyaz rengi açar.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir ressam yeşilini biraz daha sıcak (sarıya yakın) yapmak istiyor. Ne katmalı?",
+              "options": [
+                "Biraz mavi",
+                "Biraz siyah",
+                "Biraz sarı"
+              ],
+              "correct": 2,
+              "skill": "san-renk",
+              "hint": "Sarı, yeşili ısıtır.",
+              "lvl": 2
+            },
+            {
+              "q": "Kırmızı ile karşıtı olan yeşil yan yana konunca ne olur?",
+              "options": [
+                "İkisi de daha canlı ve göze çarpar",
+                "İkisi de kaybolur",
+                "İkisi de griye döner"
+              ],
+              "correct": 0,
+              "skill": "san-renk",
+              "hint": "Zıt renkler birbirini parlatır.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam moru açıp leylak rengi yapmak istiyor. Ne katar?",
+              "options": [
+                "Siyah",
+                "Beyaz",
+                "Sarı"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Rengi açan renk hangisi?",
+              "lvl": 2
+            },
+            {
+              "q": "Üç ana renk bol bol karıştırılınca kabaca hangi renk çıkar?",
+              "options": [
+                "Parlak beyaz",
+                "Neon yeşil",
+                "Kahverengi gibi donuk bir renk"
+              ],
+              "correct": 2,
+              "skill": "san-ton",
+              "hint": "Renkler çok karışınca toprak rengi olur.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam sarı bir çiçeği öne çıkarmak istiyor. Arka planı hangi renk yaparsa çiçek daha çok parlar?",
+              "options": [
+                "Mor (karşıt renk)",
+                "Sarı",
+                "Beyaz"
+              ],
+              "correct": 0,
+              "skill": "san-renk",
+              "hint": "Sarının karşıtı morudur.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam gün doğumunda gökyüzünü pembeden turuncuya yumuşakça geçiriyor. Bu geçişe ne ad verilir?",
+              "options": [
+                "Kolaj",
+                "Renk geçişi (degrade)",
+                "Frotaj"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Bir rengin diğerine yumuşakça karışması.",
+              "lvl": 3
+            },
+            {
+              "q": "İki ressam aynı sarıyı kullandı; biri yanına mor, biri sarımsı yeşil koydu. Hangi sarı daha çok parlar?",
+              "options": [
+                "Yeşilin yanındaki",
+                "İkisi de aynı",
+                "Morun yanındaki"
+              ],
+              "correct": 2,
+              "skill": "san-renk",
+              "hint": "Karşıt renk yanında renk canlanır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk resimde uzaktaki tepeleri geriye itmek istiyor. Nasıl renkler seçmeli?",
+              "options": [
+                "Soğuk ve soluk tonlar",
+                "Sıcak ve canlı tonlar",
+                "Parlak kırmızı"
+              ],
+              "correct": 0,
+              "skill": "san-sicak-soguk",
+              "hint": "Uzaktakiler soğuk ve soluk durur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir ressam yalnızca kırmızı, sarı, mavi ve beyaz-siyahla neredeyse tüm renkleri yapabiliyor. Bunun sebebi nedir?",
+              "options": [
+                "Renkler sihirlidir",
+                "Ana renklerden bütün ara renkler ve tonlar türetilebilir",
+                "Beyaz her rengi yapar"
+              ],
+              "correct": 1,
+              "skill": "san-renk",
+              "hint": "Ana renkler her şeyin başlangıcıdır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir manzarada aynı yeşil her yerde birebir aynı kullanılırsa ne olur?",
+              "options": [
+                "Daha gerçekçi olur",
+                "Renkler parlar",
+                "Resim yapay ve düz durur"
+              ],
+              "correct": 2,
+              "skill": "san-ton",
+              "hint": "Doğada tek düz renk yoktur, tonlar vardır.",
+              "lvl": 3
             }
           ]
         },
@@ -721,6 +901,186 @@
               ],
               "correct": 1,
               "hint": "Su miktarı saydamlığı belirler.",
+              "lvl": 3
+            },
+            {
+              "q": "Fırça ne işe yarar Komutan?",
+              "options": [
+                "Boyayı kağıda sürmeye",
+                "Kağıdı kesmeye",
+                "Kili pişirmeye"
+              ],
+              "correct": 0,
+              "skill": "san-arac",
+              "hint": "Boyacının en yakın dostu.",
+              "lvl": 1
+            },
+            {
+              "q": "Ressamların üzerine resim yaptığı gerilmiş beze ne denir?",
+              "options": [
+                "Palet",
+                "Tuval",
+                "Şövale"
+              ],
+              "correct": 1,
+              "skill": "san-arac",
+              "hint": "Resmin üstüne çizildiği yüzey.",
+              "lvl": 1
+            },
+            {
+              "q": "Silgi hangi iş için kullanılır?",
+              "options": [
+                "Renk katmak",
+                "Kağıt kesmek",
+                "Kurşun kalem izini silmek"
+              ],
+              "correct": 2,
+              "skill": "san-arac",
+              "hint": "Hataları temizler.",
+              "lvl": 1
+            },
+            {
+              "q": "Kalın uçlu, canlı renkli ve mumsu çizim aracı hangisidir?",
+              "options": [
+                "Mum boya",
+                "Su",
+                "Makas"
+              ],
+              "correct": 0,
+              "skill": "san-arac",
+              "hint": "Çocukların en sevdiği renkli çubuklar.",
+              "lvl": 1
+            },
+            {
+              "q": "Resmi dik tutmak için kullanılan ayaklı sehpaya ne denir?",
+              "options": [
+                "Palet",
+                "Şövale",
+                "Tuval"
+              ],
+              "correct": 1,
+              "skill": "san-arac",
+              "hint": "Ressamın ayaklı yardımcısı.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir çocuk çok ince, detaylı bir çizgi çizmek istiyor. Hangi fırçayı seçer?",
+              "options": [
+                "En kalın fırça",
+                "Sünger",
+                "İnce uçlu fırça"
+              ],
+              "correct": 2,
+              "skill": "san-arac",
+              "hint": "İnce iş için ince uç.",
+              "lvl": 2
+            },
+            {
+              "q": "Sulu boya ile guaj boyanın farkı en doğru nasıl anlatılır?",
+              "options": [
+                "Guaj daha örtücü ve mattır",
+                "İkisi tıpatıp aynıdır",
+                "Guaj sadece siyah olur"
+              ],
+              "correct": 0,
+              "skill": "san-arac",
+              "hint": "Biri saydam, biri kapatıcı.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çocuk kilden yaptığı figür kalıcı ve sert olsun istiyor. Ne yapmalı?",
+              "options": [
+                "Suya atmak",
+                "Fırında ya da güneşte kurutup sertleştirmek",
+                "Buzdolabına koymak"
+              ],
+              "correct": 1,
+              "skill": "san-genel",
+              "hint": "Kuruyup sertleşince kalıcı olur.",
+              "lvl": 2
+            },
+            {
+              "q": "Hem kalemle çizilip hem de sonradan suyla dağıtılabilen araç hangisidir?",
+              "options": [
+                "Çekiç",
+                "Makas",
+                "Suluboya (aquarel) kalemi"
+              ],
+              "correct": 2,
+              "skill": "san-arac",
+              "hint": "Önce çiz, sonra suyla yay.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam parmakla dağıtılabilen, yumuşak ve kadifemsi bir iz istiyor. Hangi araç uygundur?",
+              "options": [
+                "Kuru pastel",
+                "Cam boyası",
+                "Sadece su"
+              ],
+              "correct": 0,
+              "skill": "san-arac",
+              "hint": "Parmakla yumuşatılabilir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir sanatçı çabuk kuruyan, üst üste sürülebilen, canlı ve örtücü bir boya istiyor. Akrilik boyanın hangi özelliği işine yarar?",
+              "options": [
+                "Hiç kurumaz",
+                "Hızlı kurur ve örtücüdür",
+                "Sadece suda erimiş kalır"
+              ],
+              "correct": 1,
+              "skill": "san-arac",
+              "hint": "Kuruyunca üstüne yeni katman gelebilir.",
+              "lvl": 3
+            },
+            {
+              "q": "Karakalemde yumuşak (2B) kalem ile sert (2H) kalemin farkı nedir?",
+              "options": [
+                "İkisi tıpatıp aynıdır",
+                "Sert kalem renkli çizer",
+                "Yumuşak daha koyu, sert daha açık iz bırakır"
+              ],
+              "correct": 2,
+              "skill": "san-arac",
+              "hint": "Yumuşak kalem koyu gölge sever.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir sanatçı büyük bir işe başlarken malzeme seçerken neyi düşünmeli?",
+              "options": [
+                "İstediği doku ve etkiye uygun aracı seçmeyi",
+                "Sadece en pahalıyı almayı",
+                "Rastgele seçmeyi"
+              ],
+              "correct": 0,
+              "skill": "san-genel",
+              "hint": "Araç, ulaşmak istediğin sonuca göre seçilir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir eser hem boyayı hem yapıştırılmış gerçek nesneleri (karışık teknik) birlikte kullanıyor. Bu neyi gösterir?",
+              "options": [
+                "Bunun yasak olduğunu",
+                "Farklı malzeme ve teknikler bir arada kullanılabilir",
+                "Sadece tek teknik olması gerektiğini"
+              ],
+              "correct": 1,
+              "skill": "san-genel",
+              "hint": "Sanatta kurallar esnektir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir sanatçı hem karakalem çizim hem kilden heykel yapabiliyor. Bu ne gösterir?",
+              "options": [
+                "Birinin yanlış olduğunu",
+                "Sadece birini seçmesi gerektiğini",
+                "Bir sanatçının birçok araç ve türü kullanabildiğini"
+              ],
+              "correct": 2,
+              "skill": "san-genel",
+              "hint": "Usta birçok kapıyı birden açar.",
               "lvl": 3
             }
           ]
@@ -1000,6 +1360,186 @@
               "correct": 1,
               "hint": "Karmaşık şeyler basit şekillerden kurulur.",
               "lvl": 3
+            },
+            {
+              "q": "Yukarıdan aşağıya dümdüz inen çizgiye ne denir?",
+              "options": [
+                "Dikey (dik) çizgi",
+                "Yatay çizgi",
+                "Dalgalı çizgi"
+              ],
+              "correct": 0,
+              "skill": "san-cizgi",
+              "hint": "Ayakta duran çizgi gibi.",
+              "lvl": 1
+            },
+            {
+              "q": "Soldan sağa dümdüz giden çizgiye ne denir?",
+              "options": [
+                "Zikzak",
+                "Yatay çizgi",
+                "Dikey çizgi"
+              ],
+              "correct": 1,
+              "skill": "san-cizgi",
+              "hint": "Yere uzanmış çizgi gibi.",
+              "lvl": 1
+            },
+            {
+              "q": "İki kenarı uzun, iki kenarı kısa olan dört kenarlı şekle ne denir?",
+              "options": [
+                "Kare",
+                "Üçgen",
+                "Dikdörtgen"
+              ],
+              "correct": 2,
+              "skill": "san-sekil",
+              "hint": "Kapı ya da defter gibi.",
+              "lvl": 1
+            },
+            {
+              "q": "Beş köşeli, gökyüzünde parlayana benzeyen şekle ne denir?",
+              "options": [
+                "Yıldız",
+                "Daire",
+                "Kare"
+              ],
+              "correct": 0,
+              "skill": "san-sekil",
+              "hint": "Geceleri gökte parlar.",
+              "lvl": 1
+            },
+            {
+              "q": "Deniz dalgası gibi inip çıkan yumuşak çizgiye ne denir?",
+              "options": [
+                "Düz çizgi",
+                "Dalgalı çizgi",
+                "Zikzak"
+              ],
+              "correct": 1,
+              "skill": "san-cizgi",
+              "hint": "Yumuşak inişli çıkışlı.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir çocuk hafif, açık ve soluk bir çizgi istiyor. Ne yapmalı?",
+              "options": [
+                "Kaleme çok bastırmak",
+                "İki kalem birden tutmak",
+                "Kaleme az bastırmak"
+              ],
+              "correct": 2,
+              "skill": "san-cizgi",
+              "hint": "Baskı azaldıkça çizgi açılır.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir daire ile bir üçgeni birleştirerek en kolay hangi nesne çizilir?",
+              "options": [
+                "Dondurma külahı",
+                "Uçan araba",
+                "Kapı anahtarı"
+              ],
+              "correct": 0,
+              "skill": "san-sekil",
+              "hint": "Üçgen külah, daire top.",
+              "lvl": 2
+            },
+            {
+              "q": "Kesik kesik (nokta nokta) çizgi çoğunlukla neyi anlatır?",
+              "options": [
+                "Kalın sağlam bir duvarı",
+                "Görünmeyen ya da hayali bir sınırı",
+                "En koyu gölgeyi"
+              ],
+              "correct": 1,
+              "skill": "san-cizgi",
+              "hint": "Var ama tam görünmeyen çizgi.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çocuk kar tanesi çizecek. Hangi çizgiler işine yarar?",
+              "options": [
+                "Sadece dalgalı çizgiler",
+                "Sadece nokta",
+                "Simetrik, ışın gibi yayılan düz çizgiler"
+              ],
+              "correct": 2,
+              "skill": "san-cizgi",
+              "hint": "Kar tanesi ortadan dışa doğru düzenlidir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir robot çizerken hangi şekiller daha uygundur?",
+              "options": [
+                "Kare, dikdörtgen gibi köşeli şekiller",
+                "Sadece daireler",
+                "Hiç şekil kullanmamak"
+              ],
+              "correct": 0,
+              "skill": "san-sekil",
+              "hint": "Robotlar sert ve köşelidir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir sanatçı suda yansıyan sakin bir manzara çizecek. Su yüzeyi için hangi çizgiler uygundur?",
+              "options": [
+                "Keskin dikey çizgiler",
+                "Uzun, yatay ve yumuşak çizgiler",
+                "Sivri zikzaklar"
+              ],
+              "correct": 1,
+              "skill": "san-cizgi",
+              "hint": "Sakinlik yatay ve yumuşak durur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çizer bir figürü heyecanlı ve hareketli göstermek istiyor. Çizgilerini nasıl kullanır?",
+              "options": [
+                "Sadece düz yatay çizgilerle",
+                "Hiç çizgi kullanmadan",
+                "Eğik ve enerjik çizgilerle"
+              ],
+              "correct": 2,
+              "skill": "san-cizgi",
+              "hint": "Hareket eğik çizgilerle anlatılır.",
+              "lvl": 3
+            },
+            {
+              "q": "Karmaşık bir el çizmek isteyen öğrenci nasıl başlamalı?",
+              "options": [
+                "Önce basit şekillerle (avuç oval, parmaklar silindir) kurmak",
+                "Önce tırnaktan başlamak",
+                "Rastgele çizmek"
+              ],
+              "correct": 0,
+              "skill": "san-sekil",
+              "hint": "Karmaşık şey basit şekillerden kurulur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çember, bir kare ve bir üçgenle palyaço yüzü çizilebilmesi neyi gösterir?",
+              "options": [
+                "Şekillerin gereksiz olduğunu",
+                "Karmaşık figürlerin temel şekillerden kurulduğunu",
+                "Sadece daire yeteceğini"
+              ],
+              "correct": 1,
+              "skill": "san-sekil",
+              "hint": "Her çizim şekillerden doğar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir sanatçı sadece çizgilerin sıklığını değiştirerek gölge yapıyor (çok sık = koyu). Bu tekniğe ne denir?",
+              "options": [
+                "Kolaj",
+                "Frotaj",
+                "Tarama (çizgi taraması)"
+              ],
+              "correct": 2,
+              "skill": "san-cizgi",
+              "hint": "Sık çizgiler koyuluk verir.",
+              "lvl": 3
             }
           ]
         }
@@ -1277,6 +1817,186 @@
               ],
               "correct": 1,
               "hint": "Gerçek nesnelerde ışık-gölge tonları vardır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir renge çok az beyaz katınca renk nasıl olur?",
+              "options": [
+                "Biraz açılır",
+                "Kapkara olur",
+                "Tamamen kaybolur"
+              ],
+              "correct": 0,
+              "skill": "san-ton",
+              "hint": "Az beyaz, az açar.",
+              "lvl": 1
+            },
+            {
+              "q": "Maviye beyaz katan çocuk hangi rengi elde eder?",
+              "options": [
+                "Kahverengi",
+                "Açık (bebek) mavi",
+                "Kırmızı"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Beyaz maviyi açar.",
+              "lvl": 1
+            },
+            {
+              "q": "Aşağıdakilerden en açık renk hangisidir?",
+              "options": [
+                "Siyah",
+                "Kahverengi",
+                "Beyaz"
+              ],
+              "correct": 2,
+              "skill": "san-ton",
+              "hint": "Karın rengi.",
+              "lvl": 1
+            },
+            {
+              "q": "Aşağıdakilerden en koyu renk hangisidir?",
+              "options": [
+                "Siyah",
+                "Beyaz",
+                "Sarı"
+              ],
+              "correct": 0,
+              "skill": "san-ton",
+              "hint": "Gece gibi.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir renge beyaz katılarak elde edilen açık haline ne denir?",
+              "options": [
+                "Koyu gölge",
+                "Açık ton",
+                "Kaçış noktası"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Beyazla açılan hâli.",
+              "lvl": 1
+            },
+            {
+              "q": "Yeşile biraz beyaz katan çocuk ne elde eder?",
+              "options": [
+                "Kırmızı",
+                "Mor",
+                "Açık (fıstık) yeşil"
+              ],
+              "correct": 2,
+              "skill": "san-ton",
+              "hint": "Beyaz her rengi açar.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam kahverengiyi açıp bej yapmak istiyor. Ne katar?",
+              "options": [
+                "Beyaz",
+                "Siyah",
+                "Mavi"
+              ],
+              "correct": 0,
+              "skill": "san-ton",
+              "hint": "Açan renk hangisi?",
+              "lvl": 2
+            },
+            {
+              "q": "Turuncuya biraz siyah katılırsa ne olur?",
+              "options": [
+                "Parlak sarı",
+                "Koyu, kahvemsi bir turuncu",
+                "Beyaz"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Siyah koyulaştırır.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çocuk gökyüzünü üstte koyu, ufka doğru açık yaptı. Bu ton geçişi neyi verir?",
+              "options": [
+                "Yapay bir düzlük",
+                "Renk kaybı",
+                "Yumuşak, gerçekçi bir gökyüzü"
+              ],
+              "correct": 2,
+              "skill": "san-ton",
+              "hint": "Gerçek gökyüzü de böyle açılır.",
+              "lvl": 2
+            },
+            {
+              "q": "Aynı kırmızının açık ve koyu tonlarını yan yana koymak neyi sağlar?",
+              "options": [
+                "Hacim ve derinlik hissi",
+                "Renk kaybı",
+                "Bulanıklık"
+              ],
+              "correct": 0,
+              "skill": "san-ton",
+              "hint": "Ton farkı yuvarlaklık verir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam parlak bir metal kaşık çiziyor. En açık ton (parlama noktası) nereye konur?",
+              "options": [
+                "En gölgeli tarafa",
+                "Işığın en çok vurduğu yere",
+                "Her yere eşit"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Işık nereye vurursa orası parlar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuğun resmi düz ve cansız duruyor. Ton bilgisiyle ne eklemeli?",
+              "options": [
+                "Daha çok imza",
+                "Daha kalın çerçeve",
+                "Açıktan koyuya ton geçişleri ve gölge"
+              ],
+              "correct": 2,
+              "skill": "san-ton",
+              "hint": "Gölge ve ışık hayat verir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir küreyi (top) gerçekçi göstermek için tonlar nasıl dizilir?",
+              "options": [
+                "Işık noktasından gölgeye yumuşak geçişle",
+                "Her yer aynı ton",
+                "Sadece siyah"
+              ],
+              "correct": 0,
+              "skill": "san-ton",
+              "hint": "Yumuşak geçiş yuvarlaklık verir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir ressam akşam alacakaranlığını çizecek; ne çok parlak ne çok koyu. Hangi tonları seçer?",
+              "options": [
+                "Sadece kar beyazı",
+                "Orta tonları",
+                "Sadece kömür siyahı"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Alacakaranlık orta ışıktadır.",
+              "lvl": 3
+            },
+            {
+              "q": "İki elma çizildi; biri düz kırmızı, diğeri açık-koyu tonlu. Hangisi daha yuvarlak durur ve neden?",
+              "options": [
+                "Düz olan; çünkü sadedir",
+                "İkisi de aynı",
+                "Tonlu olan; ışık-gölge hacim verir"
+              ],
+              "correct": 2,
+              "skill": "san-ton",
+              "hint": "Gerçek nesnelerin ışık-gölgesi olur.",
               "lvl": 3
             }
           ]
@@ -1556,6 +2276,186 @@
               "correct": 0,
               "hint": "Detaylar dokuyu gerçekçi yapar.",
               "lvl": 3
+            },
+            {
+              "q": "Aynı çiçek motifinin tekrar tekrar dizilmesi neye örnektir?",
+              "options": [
+                "Desen",
+                "Gölge",
+                "Perspektif"
+              ],
+              "correct": 0,
+              "skill": "san-desen",
+              "hint": "Tekrar eden motif.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir kirpinin sırtı nasıl bir dokudur?",
+              "options": [
+                "Yumuşak ve tüylü",
+                "Sivri ve batıcı",
+                "Cam gibi düz"
+              ],
+              "correct": 1,
+              "skill": "san-doku",
+              "hint": "Dikenli yüzey.",
+              "lvl": 1
+            },
+            {
+              "q": "Yumuşacık bir kedi tüyü nasıl bir dokudur?",
+              "options": [
+                "Sert ve pürüzlü",
+                "Sivri",
+                "Yumuşak"
+              ],
+              "correct": 2,
+              "skill": "san-doku",
+              "hint": "Okşamak istersin.",
+              "lvl": 1
+            },
+            {
+              "q": "Kumdaki gibi ufak taneli yüzey nasıl bir dokudur?",
+              "options": [
+                "Pürüzlü (taneli)",
+                "Cam gibi düz",
+                "Kaygan"
+              ],
+              "correct": 0,
+              "skill": "san-doku",
+              "hint": "Elini tanecikler gıdıklar.",
+              "lvl": 1
+            },
+            {
+              "q": "Çizgili bir tişört deseni neye örnektir?",
+              "options": [
+                "Doku yokluğu",
+                "Tekrar eden çizgi deseni",
+                "Perspektif"
+              ],
+              "correct": 1,
+              "skill": "san-desen",
+              "hint": "Şeritler sırayla tekrar eder.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir ressam örgü kazak dokusunu göstermek istiyor. Hangi izler uygundur?",
+              "options": [
+                "Cam gibi düz yüzey",
+                "Tek nokta",
+                "İç içe geçen ilmek benzeri tekrar çizgiler"
+              ],
+              "correct": 2,
+              "skill": "san-doku",
+              "hint": "Örgü ilmek ilmek örülür.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çocuk balık pulu çizecek. Hangi desen uygundur?",
+              "options": [
+                "Üst üste binen yarım daireler",
+                "Düz tek çizgi",
+                "Rastgele nokta"
+              ],
+              "correct": 0,
+              "skill": "san-desen",
+              "hint": "Pullar üst üste sıralanır.",
+              "lvl": 2
+            },
+            {
+              "q": "Islak ve parlak bir taş yüzeyi nasıl gösterilir?",
+              "options": [
+                "Baştan aşağı mat ve pürüzlü çizerek",
+                "Parlama (açık) noktaları bırakarak",
+                "Hiç boya sürmeden"
+              ],
+              "correct": 1,
+              "skill": "san-doku",
+              "hint": "Parlak yerde ışık lekesi olur.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir hediye paketi kağıdı tasarlarken en çok neye ihtiyaç var?",
+              "options": [
+                "Tek büyük leke",
+                "Hiç renk",
+                "Tekrar eden hoş bir desen"
+              ],
+              "correct": 2,
+              "skill": "san-desen",
+              "hint": "Paket kağıdı hep tekrar eder.",
+              "lvl": 2
+            },
+            {
+              "q": "Aynı motifi eşit aralıklarla tekrar etmek desene ne katar?",
+              "options": [
+                "Düzen ve ritim",
+                "Karışıklık",
+                "Renk kaybı"
+              ],
+              "correct": 0,
+              "skill": "san-desen",
+              "hint": "Düzenli tekrar göze hoş gelir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam bir yüzeyde hem parlak hem mat bölge çizerek neyi anlatabilir?",
+              "options": [
+                "Yüzeyin renksiz olduğunu",
+                "Işığın bazı yerlere daha çok vurduğunu",
+                "Hiçbir şeyi"
+              ],
+              "correct": 1,
+              "skill": "san-doku",
+              "hint": "Parlaklık ışıkla ilgilidir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir sanatçı boyaya kum karıştırıp yüzeyi kabartıyor. Buna ne denir?",
+              "options": [
+                "Perspektif",
+                "Simetri",
+                "Gerçek (dokunulur) doku yaratmak"
+              ],
+              "correct": 2,
+              "skill": "san-doku",
+              "hint": "Elle hissedilen doku.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir desende motif yavaşça büyüyüp küçülüyor. Bu göze ne hissettirir?",
+              "options": [
+                "Hareket ve ritim",
+                "Durgunluk",
+                "Renk kaybı"
+              ],
+              "correct": 0,
+              "skill": "san-desen",
+              "hint": "Boyut değişimi göze ritim katar.",
+              "lvl": 3
+            },
+            {
+              "q": "Elle dokununca hissedilen dokuya bir ad, sadece göze öyle görünene başka ad verilir. Bunlar nedir?",
+              "options": [
+                "İkisi de aynıdır",
+                "Biri gerçek doku, diğeri görsel (yanıltıcı) doku",
+                "İkisi de sahtedir"
+              ],
+              "correct": 1,
+              "skill": "san-doku",
+              "hint": "Biri parmağa, biri göze hitap eder.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir ressam yün kazak ile ipek eşarbı aynı resimde çizecek. Farkı nasıl verir?",
+              "options": [
+                "İkisini aynı çizerek",
+                "Hiç doku vermeden",
+                "Yünü mat-kabarık, ipeği parlak-akışkan dokuyla"
+              ],
+              "correct": 2,
+              "skill": "san-doku",
+              "hint": "Her kumaşın dokusu farklı çizilir.",
+              "lvl": 3
             }
           ]
         }
@@ -1833,6 +2733,186 @@
               ],
               "correct": 0,
               "hint": "Konu aynı, tarz farklı.",
+              "lvl": 3
+            },
+            {
+              "q": "'Ayçiçekleri' tablosuyla da tanınan, sarıyı çok seven ressam kimdir?",
+              "options": [
+                "Vincent van Gogh",
+                "Picasso",
+                "Michelangelo"
+              ],
+              "correct": 0,
+              "skill": "san-sanatci",
+              "hint": "Yıldızlı Gece'yi de o yaptı.",
+              "lvl": 1
+            },
+            {
+              "q": "Su birikintileri ve nilüferleriyle ünlü, ışığı yakalamaya çalışan ressam kimdir?",
+              "options": [
+                "Picasso",
+                "Claude Monet",
+                "Frida Kahlo"
+              ],
+              "correct": 1,
+              "skill": "san-sanatci",
+              "hint": "İzlenimci Fransız ressam.",
+              "lvl": 1
+            },
+            {
+              "q": "Gökyüzü, ağaç ve tepelerin çizildiği doğa resmine ne ad verilir?",
+              "options": [
+                "Portre",
+                "Otoportre",
+                "Manzara"
+              ],
+              "correct": 2,
+              "skill": "san-eser",
+              "hint": "Doğayı gösteren resim.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir vazo dolusu çiçeğin durağan resmi hangi türdür?",
+              "options": [
+                "Natürmort",
+                "Portre",
+                "Manzara"
+              ],
+              "correct": 0,
+              "skill": "san-eser",
+              "hint": "Cansız nesne resmi.",
+              "lvl": 1
+            },
+            {
+              "q": "Frida Kahlo çoğunlukla kimin resmini yaptı?",
+              "options": [
+                "Kralların",
+                "Kendisinin (otoportre)",
+                "Dağların"
+              ],
+              "correct": 1,
+              "skill": "san-sanatci",
+              "hint": "Kendi yüzünü çok çizen ressam.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir tabloda ışık ve renk lekeleri titreşir gibi, fırça izleri bellidir. Bu hangi akıma benzer?",
+              "options": [
+                "Kübizm",
+                "Origami",
+                "İzlenimcilik (empresyonizm)"
+              ],
+              "correct": 2,
+              "skill": "san-akim",
+              "hint": "Monet'nin akımını düşün.",
+              "lvl": 2
+            },
+            {
+              "q": "Mona Lisa'yı bu kadar özel kılan nedir?",
+              "options": [
+                "Gizemli gülümsemesi ve yumuşak ışık geçişleri",
+                "Çok büyük olması",
+                "Sadece siyah olması"
+              ],
+              "correct": 0,
+              "skill": "san-eser",
+              "hint": "Gülümsemesi hâlâ konuşulur.",
+              "lvl": 2
+            },
+            {
+              "q": "Picasso yüzleri neden çoğu zaman parçalı, farklı açılardan çizerdi?",
+              "options": [
+                "Çizmeyi bilmediği için",
+                "Bir yüzü aynı anda birçok yönden göstermek için",
+                "Şaka olsun diye"
+              ],
+              "correct": 1,
+              "skill": "san-akim",
+              "hint": "Kübizmin amacı.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam gerçek gibi, ışığı ve gölgeyi ustaca kullanıyor. Bu Leonardo da Vinci'nin hangi yönünü hatırlatır?",
+              "options": [
+                "Kolaj yapmasını",
+                "Origami sevmesini",
+                "Yumuşak ışık-gölge ustalığını"
+              ],
+              "correct": 2,
+              "skill": "san-sanatci",
+              "hint": "Da Vinci ışık-gölge dehasıydı.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir müzede bir kral ailesinin resmini gördün. Bu tür nedir?",
+              "options": [
+                "Portre",
+                "Manzara",
+                "Natürmort"
+              ],
+              "correct": 0,
+              "skill": "san-eser",
+              "hint": "İnsanları konu alan resim.",
+              "lvl": 2
+            },
+            {
+              "q": "Van Gogh yaşarken çok az tablo sattı, değeri sonradan anlaşıldı. Bu bize ne öğretir?",
+              "options": [
+                "Sanatın işe yaramadığını",
+                "Bir sanatçının değeri zamanla anlaşılabilir; vazgeçmemek gerekir",
+                "Sadece ünlülerin çizebileceğini"
+              ],
+              "correct": 1,
+              "skill": "san-sanatci",
+              "hint": "Sabır ve inanç önemlidir.",
+              "lvl": 3
+            },
+            {
+              "q": "İzlenimci Monet ile kübist Picasso'yu karşılaştırınca ne söylenir?",
+              "options": [
+                "Biri kesinlikle yanlıştır",
+                "İkisi tıpatıp aynıdır",
+                "Aynı dünyayı çok farklı akımlarla anlatmışlardır"
+              ],
+              "correct": 2,
+              "skill": "san-akim",
+              "hint": "Farklı akım, farklı bakış.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk bir tablonun hangi ressamın olduğunu bakar bakmaz tanıyor. Bunu sağlayan nedir?",
+              "options": [
+                "Ressamın kendine özgü tarzı (imzası)",
+                "Tablonun büyüklüğü",
+                "Çerçevenin rengi"
+              ],
+              "correct": 0,
+              "skill": "san-sanatci",
+              "hint": "Her ustanın bir imzası vardır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir eserin natürmort mu portre mi olduğunu nasıl ayırırız?",
+              "options": [
+                "İkisi de manzaradır",
+                "Portrede insan, natürmortta cansız nesneler konudur",
+                "Sadece renginden anlaşılır"
+              ],
+              "correct": 1,
+              "skill": "san-eser",
+              "hint": "Konusuna bak: insan mı, nesne mi?",
+              "lvl": 3
+            },
+            {
+              "q": "Michelangelo hem mermer heykel hem tavan freski (Sistine Şapeli) yaptı. Bu ne gösterir?",
+              "options": [
+                "Sadece heykel yaptığını",
+                "Resminin kötü olduğunu",
+                "Bir sanatçının birçok alanda usta olabileceğini"
+              ],
+              "correct": 2,
+              "skill": "san-sanatci",
+              "hint": "Usta birçok dalda parlar.",
               "lvl": 3
             }
           ]
@@ -2112,6 +3192,186 @@
               "correct": 0,
               "hint": "İnsan iskeleti gibi taşıyıcıdır.",
               "lvl": 3
+            },
+            {
+              "q": "Aşağıdakilerden hangisi üç boyutlu bir sanattır?",
+              "options": [
+                "Heykel",
+                "Karakalem çizim",
+                "Fotoğraf"
+              ],
+              "correct": 0,
+              "skill": "san-3d",
+              "hint": "Etrafında dönebildiğin.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir küp kaç boyutludur?",
+              "options": [
+                "İki boyutlu",
+                "Üç boyutlu",
+                "Sıfır boyutlu"
+              ],
+              "correct": 1,
+              "skill": "san-3d",
+              "hint": "Eni, boyu ve derinliği var.",
+              "lvl": 1
+            },
+            {
+              "q": "Aşağıdakilerden hangisi heykel malzemesi olamaz?",
+              "options": [
+                "Kil",
+                "Taş",
+                "Işık"
+              ],
+              "correct": 2,
+              "skill": "san-heykel",
+              "hint": "Elle tutulup şekil verilemeyen.",
+              "lvl": 1
+            },
+            {
+              "q": "Kilden şekil verirken kil nasıl olmalı?",
+              "options": [
+                "Yumuşak (nemli)",
+                "Kaskatı kuru",
+                "Sıvı gibi akışkan"
+              ],
+              "correct": 0,
+              "skill": "san-heykel",
+              "hint": "Yumuşakken şekil alır.",
+              "lvl": 1
+            },
+            {
+              "q": "Çömlekçi çarkında genelde ne yapılır?",
+              "options": [
+                "Karakalem çizim",
+                "Kilden kase ve vazo",
+                "Kolaj"
+              ],
+              "correct": 1,
+              "skill": "san-heykel",
+              "hint": "Dönen çarkta kil biçim alır.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir çocuğun yaptığı kardan adam neden bir tür heykel sayılabilir?",
+              "options": [
+                "İki boyutlu olduğu için",
+                "Renkli olduğu için",
+                "Üç boyutlu ve her yönden bakılabilir"
+              ],
+              "correct": 2,
+              "skill": "san-3d",
+              "hint": "Etrafında dönebilirsin.",
+              "lvl": 2
+            },
+            {
+              "q": "Kilden bir kulp yapıştırırken kopmasın diye ne yapmak iyi olur?",
+              "options": [
+                "Birleşme yerini hafif çizip nemlendirmek",
+                "Kuru kuru bastırmak",
+                "Üstüne boya sürmek"
+              ],
+              "correct": 0,
+              "skill": "san-heykel",
+              "hint": "Nemli birleşme daha iyi tutar.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir heykeltıraş taş yerine yumuşak kilden çalışmayı seçti. Sebebi ne olabilir?",
+              "options": [
+                "Kil taştan serttir",
+                "Kil daha kolay şekil alır ve hata düzeltilebilir",
+                "Taş boyanamaz"
+              ],
+              "correct": 1,
+              "skill": "san-heykel",
+              "hint": "Yumuşak malzeme affedicidir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir kağıdı katlayıp ayakta duran bir kutu yaptın. Kağıt artık kaç boyutlu?",
+              "options": [
+                "İki boyutlu",
+                "Sıfır boyutlu",
+                "Üç boyutlu"
+              ],
+              "correct": 2,
+              "skill": "san-3d",
+              "hint": "Artık derinliği var.",
+              "lvl": 2
+            },
+            {
+              "q": "Michelangelo'nun ünlü 'Davut' heykeli hangi malzemeden yapılmıştır?",
+              "options": [
+                "Mermer (taş)",
+                "Kil",
+                "Kağıt"
+              ],
+              "correct": 0,
+              "skill": "san-sanatci",
+              "hint": "Sert bir taştan yontuldu.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir heykel yapılırken sanatçı dış hatları (silueti) her yönden düşünmelidir. Neden?",
+              "options": [
+                "Sadece önden bakılacak",
+                "İzleyici etrafında dönüp her açıdan görecek",
+                "Sadece rengi önemli"
+              ],
+              "correct": 1,
+              "skill": "san-3d",
+              "hint": "Heykelin arkası da görünür.",
+              "lvl": 3
+            },
+            {
+              "q": "Büyük bir kil heykel ayakta durmuyor, deviriliyor. En mantıklı çözüm nedir?",
+              "options": [
+                "Daha çok boya sürmek",
+                "Daha çok su eklemek",
+                "İçine tel/çubuk iskelet koymak"
+              ],
+              "correct": 2,
+              "skill": "san-heykel",
+              "hint": "İskelet taşıyıcı olur.",
+              "lvl": 3
+            },
+            {
+              "q": "Taş yontarak heykel yapmanın en büyük riski nedir?",
+              "options": [
+                "Fazla parça çıkınca geri eklenememesi",
+                "Kilin çatlaması",
+                "Boyanın akması"
+              ],
+              "correct": 0,
+              "skill": "san-heykel",
+              "hint": "Yontmada geri dönüş zordur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir müzede aynı figürün hem heykeli hem tablosu var. Heykel fazladan neyi sunar?",
+              "options": [
+                "Daha çok renk",
+                "Etrafında dönerek derinliği yaşamayı",
+                "Daha büyük çerçeve"
+              ],
+              "correct": 1,
+              "skill": "san-3d",
+              "hint": "Üç boyut gerçekten yaşanır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir seramik vazo fırında pişirilince ne kazanır?",
+              "options": [
+                "Yumuşar",
+                "Erir",
+                "Sertleşir, kalıcı ve dayanıklı olur"
+              ],
+              "correct": 2,
+              "skill": "san-heykel",
+              "hint": "Ateş kili sertleştirir.",
+              "lvl": 3
             }
           ]
         }
@@ -2389,6 +3649,186 @@
               ],
               "correct": 0,
               "hint": "Göz büyük, canlı ve merkezî olana gider.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir resimde yakındaki nesneleri nasıl çizeriz?",
+              "options": [
+                "Daha büyük",
+                "Daha küçük",
+                "Hiç çizmeyiz"
+              ],
+              "correct": 0,
+              "skill": "san-perspektif",
+              "hint": "Yakın olan büyük görünür.",
+              "lvl": 1
+            },
+            {
+              "q": "Kompozisyon ne demektir?",
+              "options": [
+                "Renk karıştırmak",
+                "Nesneleri resimde düzenli yerleştirmek",
+                "Kil yoğurmak"
+              ],
+              "correct": 1,
+              "skill": "san-kompozisyon",
+              "hint": "Neyin nereye konacağı.",
+              "lvl": 1
+            },
+            {
+              "q": "Ufuk çizgisi genellikle neyi gösterir?",
+              "options": [
+                "Resmin çerçevesini",
+                "Rengin adını",
+                "Yerle göğün buluştuğu göz hizasını"
+              ],
+              "correct": 2,
+              "skill": "san-perspektif",
+              "hint": "En uzaktaki düz çizgi.",
+              "lvl": 1
+            },
+            {
+              "q": "Çok uzaktaki bir insan resimde nasıl görünür?",
+              "options": [
+                "Küçük",
+                "Kocaman",
+                "Aynı boyda"
+              ],
+              "correct": 0,
+              "skill": "san-perspektif",
+              "hint": "Uzaklaştıkça küçülür.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir resimde çok önemli nesne genelde nereye konur?",
+              "options": [
+                "En görünmez köşeye",
+                "Göze çarpan dengeli bir yere",
+                "Kağıdın dışına"
+              ],
+              "correct": 1,
+              "skill": "san-kompozisyon",
+              "hint": "Gözün ilk gittiği yer önemli.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir çocuk ev çiziyor; yakın köşesi büyük, uzak köşesi küçük. Bu neyi sağlar?",
+              "options": [
+                "Düzlük",
+                "Renk zenginliği",
+                "Derinlik (perspektif) hissi"
+              ],
+              "correct": 2,
+              "skill": "san-perspektif",
+              "hint": "Büyük-küçük farkı uzaklık verir.",
+              "lvl": 2
+            },
+            {
+              "q": "Fotoğrafçıların kullandığı 'üçte bir kuralı' neyi önerir?",
+              "options": [
+                "Ana nesneyi tam ortaya değil, dengeli bir çizgiye koymayı",
+                "Her şeyi köşeye yığmayı",
+                "Nesneyi kocaman yapmayı"
+              ],
+              "correct": 0,
+              "skill": "san-kompozisyon",
+              "hint": "Tam orta hep en ilginç değildir.",
+              "lvl": 2
+            },
+            {
+              "q": "Uzaktaki dağı yakındaki çiçekten nasıl ayırırız?",
+              "options": [
+                "İkisini aynı çizerek",
+                "Dağı küçük ve soluk, çiçeği büyük ve net çizerek",
+                "Dağı daha büyük çizerek"
+              ],
+              "correct": 1,
+              "skill": "san-perspektif",
+              "hint": "Uzak küçük ve soluk olur.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir resimde her şey aynı boyda ve aynı netlikte olursa ne olur?",
+              "options": [
+                "Daha gerçekçi olur",
+                "Renkler parlar",
+                "Resim düzleşir, derinlik kaybolur"
+              ],
+              "correct": 2,
+              "skill": "san-perspektif",
+              "hint": "Derinlik için fark gerekir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir manzarayı dengelemek isteyen çocuk ağır bir dağı sola koyduysa sağa ne koyabilir?",
+              "options": [
+                "Onu dengeleyecek bir öğe (ağaç ya da bulut)",
+                "Hiçbir şey",
+                "Daha büyük bir dağ"
+              ],
+              "correct": 0,
+              "skill": "san-kompozisyon",
+              "hint": "Denge ağırlığın dağılmasıdır.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir cadde resmi çizen çocuk binaların kenar çizgilerini nereye doğru götürmeli?",
+              "options": [
+                "Farklı yönlere",
+                "Uzaktaki tek bir kaçış noktasına",
+                "Yukarı, gökyüzüne"
+              ],
+              "correct": 1,
+              "skill": "san-perspektif",
+              "hint": "Çizgiler uzakta tek noktada buluşur.",
+              "lvl": 3
+            },
+            {
+              "q": "Ufuk çizgisini çok aşağı koyan ressam neyi büyütmüş olur?",
+              "options": [
+                "Yeri (ön planı)",
+                "Nesneleri",
+                "Gökyüzünü"
+              ],
+              "correct": 2,
+              "skill": "san-perspektif",
+              "hint": "Ufuk aşağıdaysa üstte gök çok kalır.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir ressam izleyicinin gözünü önce çaydanlığa, sonra fincana yönlendirmek istiyor. Kompozisyonda ne kullanır?",
+              "options": [
+                "Yerleşim, boyut ve çizgilerle bir göz yolu oluşturmak",
+                "Sadece parlak renk",
+                "Sadece imza"
+              ],
+              "correct": 0,
+              "skill": "san-kompozisyon",
+              "hint": "Göz, düzenlenmiş bir yolu izler.",
+              "lvl": 3
+            },
+            {
+              "q": "İki resimde de aynı ev var; birinde derinlik var, diğerinde yok. Fark nereden gelir?",
+              "options": [
+                "Kağıdın renginden",
+                "Perspektif ve boyut farkından",
+                "Çerçeveden"
+              ],
+              "correct": 1,
+              "skill": "san-perspektif",
+              "hint": "Derinlik perspektifle gelir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir fotoğrafta ana kişi tam ortada, arka plan da onunla yarışıyor. Daha iyi kompozisyon için ne yapılır?",
+              "options": [
+                "Kişiyi küçültmek",
+                "Daha çok nesne eklemek",
+                "Kişiyi dengeli bir yere alıp arka planı sadeleştirmek"
+              ],
+              "correct": 2,
+              "skill": "san-kompozisyon",
+              "hint": "Sadelik ana konuyu öne çıkarır.",
               "lvl": 3
             }
           ]
@@ -2668,6 +4108,186 @@
               "correct": 0,
               "hint": "Renk odanın duygusunu değiştirir.",
               "lvl": 3
+            },
+            {
+              "q": "Ateş ve alev genelde hangi renklerdedir?",
+              "options": [
+                "Sıcak renkler",
+                "Soğuk renkler",
+                "Renksiz"
+              ],
+              "correct": 0,
+              "skill": "san-sicak-soguk",
+              "hint": "Kırmızı ve turuncu.",
+              "lvl": 1
+            },
+            {
+              "q": "Buz ve kar hangi renk grubunu hatırlatır?",
+              "options": [
+                "Sıcak renkler",
+                "Soğuk renkler",
+                "Metalik renkler"
+              ],
+              "correct": 1,
+              "skill": "san-sicak-soguk",
+              "hint": "Mavi ve beyaz.",
+              "lvl": 1
+            },
+            {
+              "q": "Turuncu hangi renk grubuna girer?",
+              "options": [
+                "Soğuk",
+                "Renksiz",
+                "Sıcak"
+              ],
+              "correct": 2,
+              "skill": "san-sicak-soguk",
+              "hint": "Portakal ve güneş rengi.",
+              "lvl": 1
+            },
+            {
+              "q": "Yeşil hangi renk grubuna girer?",
+              "options": [
+                "Soğuk",
+                "Sıcak",
+                "Metalik"
+              ],
+              "correct": 0,
+              "skill": "san-sicak-soguk",
+              "hint": "Yaprak ve deniz serinliği.",
+              "lvl": 1
+            },
+            {
+              "q": "Sonbahar yaprakları genelde hangi renk grubundadır?",
+              "options": [
+                "Soğuk renkler",
+                "Sıcak renkler",
+                "Sadece mavi"
+              ],
+              "correct": 1,
+              "skill": "san-sicak-soguk",
+              "hint": "Kırmızı, turuncu, sarı.",
+              "lvl": 1
+            },
+            {
+              "q": "Sıcak bir yaz plajı afişi için hangi renkler uygundur?",
+              "options": [
+                "Sadece lacivert",
+                "Sadece gri",
+                "Sarı, turuncu ve kırmızı"
+              ],
+              "correct": 2,
+              "skill": "san-sicak-soguk",
+              "hint": "Güneşli bir gün gibi.",
+              "lvl": 2
+            },
+            {
+              "q": "Karlı bir kış sabahı için hangi renkler daha uygundur?",
+              "options": [
+                "Açık mavi, beyaz ve morumsu tonlar",
+                "Kırmızı ve turuncu",
+                "Sadece sarı"
+              ],
+              "correct": 0,
+              "skill": "san-sicak-soguk",
+              "hint": "Soğuk ve serin tonlar.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çocuk resimde bir nesneyi öne çekmek istiyor. Hangi renk yardımcı olur?",
+              "options": [
+                "Soğuk bir renk",
+                "Sıcak bir renk",
+                "Griye boyamak"
+              ],
+              "correct": 1,
+              "skill": "san-sicak-soguk",
+              "hint": "Sıcak renkler öne çıkar.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir orman resmini serin ve gölgeli göstermek isteyen çocuk hangi tonları seçer?",
+              "options": [
+                "Parlak turuncu",
+                "Sadece kırmızı",
+                "Soğuk yeşil ve maviler"
+              ],
+              "correct": 2,
+              "skill": "san-sicak-soguk",
+              "hint": "Serinlik soğuk renklerdedir.",
+              "lvl": 2
+            },
+            {
+              "q": "Sıcak ve soğuk renkler duyguyla nasıl eşleşir?",
+              "options": [
+                "Sıcak = enerji/neşe, soğuk = sakinlik/serinlik",
+                "İkisi de üzgünlük",
+                "Renk hiçbir duygu vermez"
+              ],
+              "correct": 0,
+              "skill": "san-sicak-soguk",
+              "hint": "Renk sıcaklığı his taşır.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam soğuk mavi bir gökyüzüne küçük sıcak sarı bir güneş koydu. Bu neyi güçlendirir?",
+              "options": [
+                "Resmin düzleşmesini",
+                "Sıcak-soğuk zıtlığıyla güneşin öne çıkmasını",
+                "Renk kaybını"
+              ],
+              "correct": 1,
+              "skill": "san-sicak-soguk",
+              "hint": "Zıtlık gözü çeker.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir manzarada uzak tepeleri soğuk-soluk, yakın çayırı sıcak-canlı yapmak neyi sağlar?",
+              "options": [
+                "Resmi düzleştirir",
+                "Renkleri siler",
+                "Derinlik hissini güçlendirir"
+              ],
+              "correct": 2,
+              "skill": "san-sicak-soguk",
+              "hint": "Sıcak yakın, soğuk uzak durur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk hem sıcak hem huzurlu bir şömine sahnesi istiyor. En akıllı denge nedir?",
+              "options": [
+                "Sıcak turuncularla biraz koyu-soğuk gölgeyi birlikte kullanmak",
+                "Sadece mavi",
+                "Sadece siyah"
+              ],
+              "correct": 0,
+              "skill": "san-sicak-soguk",
+              "hint": "Sıcak ve soğuk dengede buluşur.",
+              "lvl": 3
+            },
+            {
+              "q": "Aynı portre bir kez sıcak, bir kez soğuk renklerle boyandı. His nasıl değişir?",
+              "options": [
+                "İkisi de aynı hisseder",
+                "Sıcak olan daha canlı/yakın, soğuk olan daha durgun/uzak durur",
+                "Renk fark etmez"
+              ],
+              "correct": 1,
+              "skill": "san-sicak-soguk",
+              "hint": "Renk sıcaklığı duyguyu değiştirir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir ressam korkutucu, soğuk bir mağara sahnesi çizecek. Palet nasıl olmalı?",
+              "options": [
+                "Parlak sarı ve pembe",
+                "Sadece turuncu",
+                "Koyu maviler, morlar ve griler"
+              ],
+              "correct": 2,
+              "skill": "san-sicak-soguk",
+              "hint": "Soğuk ve koyu tonlar ürperti verir.",
+              "lvl": 3
             }
           ]
         }
@@ -2945,6 +4565,186 @@
               ],
               "correct": 0,
               "hint": "Çöp bile sanata dönüşebilir.",
+              "lvl": 3
+            },
+            {
+              "q": "Kolajda kesilmiş parçaları kağıda tutturmak için ne kullanılır?",
+              "options": [
+                "Yapıştırıcı",
+                "Çekiç",
+                "Su"
+              ],
+              "correct": 0,
+              "skill": "san-kolaj",
+              "hint": "Parçaları yapıştırır.",
+              "lvl": 1
+            },
+            {
+              "q": "Kağıttan şekilleri kesmek için hangi araç kullanılır?",
+              "options": [
+                "Fırça",
+                "Makas",
+                "Kalem"
+              ],
+              "correct": 1,
+              "skill": "san-kolaj",
+              "hint": "Keskin, iki ağızlı araç.",
+              "lvl": 1
+            },
+            {
+              "q": "İp ve yünle örülerek yapılan el işine ne denir?",
+              "options": [
+                "Fotoğrafçılık",
+                "Perspektif",
+                "Örgü"
+              ],
+              "correct": 2,
+              "skill": "san-elsanati",
+              "hint": "Şişlerle ilmek ilmek.",
+              "lvl": 1
+            },
+            {
+              "q": "Renkli boncukları ipe dizerek yapılan işe ne denir?",
+              "options": [
+                "Boncuk işi (takı)",
+                "Origami",
+                "Karakalem"
+              ],
+              "correct": 0,
+              "skill": "san-elsanati",
+              "hint": "Bilezik ve kolye yapılır.",
+              "lvl": 1
+            },
+            {
+              "q": "Kolaj hangi malzemelerle yapılabilir?",
+              "options": [
+                "Sadece boya",
+                "Kağıt, kumaş ve fotoğraf parçaları",
+                "Sadece kil"
+              ],
+              "correct": 1,
+              "skill": "san-kolaj",
+              "hint": "Kesilip yapıştırılan her şey.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir çocuk kolajında gökyüzü için ne kullanabilir?",
+              "options": [
+                "Kırmızı karton",
+                "Kum",
+                "Mavi tonlarda kesilmiş kağıtlar"
+              ],
+              "correct": 2,
+              "skill": "san-kolaj",
+              "hint": "Gökyüzü mavidir.",
+              "lvl": 2
+            },
+            {
+              "q": "Kolaj yapıştırırken kağıt buruşmasın diye ne yapılır?",
+              "options": [
+                "İnce ve eşit yapıştırıcı sürmek",
+                "Bol su dökmek",
+                "Üstüne basıp ezmek"
+              ],
+              "correct": 0,
+              "skill": "san-kolaj",
+              "hint": "Az ve eşit tutkal daha düzgün olur.",
+              "lvl": 2
+            },
+            {
+              "q": "El sanatlarında bir örgüyü bitirebilmek en çok neyi gerektirir?",
+              "options": [
+                "Sadece hız",
+                "Sabır ve dikkat",
+                "Sadece şans"
+              ],
+              "correct": 1,
+              "skill": "san-elsanati",
+              "hint": "El emeği sabır ister.",
+              "lvl": 2
+            },
+            {
+              "q": "Keçeden küçük bir oyuncak yapmak hangi tür sanattır?",
+              "options": [
+                "Fotoğrafçılık",
+                "Perspektif",
+                "El sanatı"
+              ],
+              "correct": 2,
+              "skill": "san-elsanati",
+              "hint": "Ellerinle biçimlendirirsin.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çocuk kolajında hem parlak folyo hem mat kağıt kullandı. Bu ne katar?",
+              "options": [
+                "Farklı doku ve ilgi çekicilik",
+                "Kötü koku",
+                "Renk kaybı"
+              ],
+              "correct": 0,
+              "skill": "san-kolaj",
+              "hint": "Farklı yüzeyler zenginlik verir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir kolaj sanatçısı güçlü bir 'orman' hissi vermek istiyor. Malzeme seçimi nasıl olmalı?",
+              "options": [
+                "Buz mavisi folyolar",
+                "Yeşil-kahve kağıtlar ve gerçek yaprak/dal parçaları",
+                "Sadece beyaz kağıt"
+              ],
+              "correct": 1,
+              "skill": "san-kolaj",
+              "hint": "Ormanın renk ve dokularını düşün.",
+              "lvl": 3
+            },
+            {
+              "q": "Kolajda büyük parçaları alta, küçük detayları üste yapıştırmak neden mantıklıdır?",
+              "options": [
+                "Daha çok yapıştırıcı gerektiği için",
+                "Hiç fark etmediği için",
+                "Katmanlar düzenli ve derinlikli görünür"
+              ],
+              "correct": 2,
+              "skill": "san-kolaj",
+              "hint": "Önce zemin, sonra detay.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir el sanatı ustası aynı deseni el emeğiyle sabırla tekrar tekrar işliyor. Bu ne gösterir?",
+              "options": [
+                "El sanatının sabır ve ustalık istediğini",
+                "Kolay olduğunu",
+                "Makine işi olduğunu"
+              ],
+              "correct": 0,
+              "skill": "san-elsanati",
+              "hint": "Ustalık zamanla ve emekle gelir.",
+              "lvl": 3
+            },
+            {
+              "q": "Kolajla bir portre yapan sanatçı yüzün açık-koyu bölgelerini nasıl gösterir?",
+              "options": [
+                "Tek renk kağıtla",
+                "Açık ve koyu renkli kağıt parçalarını yerli yerine koyarak",
+                "Hiç düşünmeden"
+              ],
+              "correct": 1,
+              "skill": "san-kolaj",
+              "hint": "Kağıtlar da ton oluşturabilir.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk kolajını hem dengeli hem canlı istiyor. En iyi yaklaşım nedir?",
+              "options": [
+                "Hepsini bir köşeye toplamak",
+                "Tek bir parça koymak",
+                "Renk ve ağırlıkları dağıtıp boşluğu da kullanmak"
+              ],
+              "correct": 2,
+              "skill": "san-kolaj",
+              "hint": "Denge, ağırlığın eşit dağılmasıdır.",
               "lvl": 3
             }
           ]
@@ -3224,6 +5024,186 @@
               "correct": 0,
               "hint": "Özgünlük denemekle gelişir.",
               "lvl": 3
+            },
+            {
+              "q": "Herkesin çizimi neden birbirinden farklıdır?",
+              "options": [
+                "Herkesin kendi tarzı olduğu için",
+                "Çünkü biri yanlış çizer",
+                "Çünkü tek bir doğru vardır"
+              ],
+              "correct": 0,
+              "skill": "san-tarz",
+              "hint": "Her elin bir sesi vardır.",
+              "lvl": 1
+            },
+            {
+              "q": "Sanatta en önemli, üstelik bedava olan malzeme nedir?",
+              "options": [
+                "Altın çerçeve",
+                "Hayal gücü",
+                "Pahalı fırça"
+              ],
+              "correct": 1,
+              "skill": "san-tarz",
+              "hint": "Herkeste var ve sınırsız.",
+              "lvl": 1
+            },
+            {
+              "q": "Yeni bir şey denemekten korkan bir çocuğa ne söylenir?",
+              "options": [
+                "Hiç denememelisin",
+                "Sadece kopyala",
+                "Denemek gelişmenin yoludur"
+              ],
+              "correct": 2,
+              "skill": "san-tarz",
+              "hint": "Cesaret sanatçıyı büyütür.",
+              "lvl": 1
+            },
+            {
+              "q": "Sanat yaparken çoğu zaman 'yanlış' olur mu?",
+              "options": [
+                "Genelde yoktur; senin kendi yolun vardır",
+                "Evet, tek bir doğru vardır",
+                "Sadece büyükler doğru yapar"
+              ],
+              "correct": 0,
+              "skill": "san-tarz",
+              "hint": "Sanatta senin yolun geçerli.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir sanatçının 'imzası' ne demektir?",
+              "options": [
+                "Sadece adını yazması",
+                "Ona özgü, tekrar eden tarzı",
+                "Resmin büyüklüğü"
+              ],
+              "correct": 1,
+              "skill": "san-tarz",
+              "hint": "Tarz, bir sanat imzasıdır.",
+              "lvl": 1
+            },
+            {
+              "q": "Kendi tarzını arayan bir çocuk için en yararlısı hangisidir?",
+              "options": [
+                "Tek şeyi hep tekrar etmek",
+                "Hiç çizmemek",
+                "Farklı teknik ve konuları denemek"
+              ],
+              "correct": 2,
+              "skill": "san-tarz",
+              "hint": "Çeşitlilik yeni kapılar açar.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir arkadaşının çizimini beğenip ondan öğrenmek istiyorsun. Doğru yol nedir?",
+              "options": [
+                "Fikir alıp kendi yorumunu katmak",
+                "Birebir kopyalayıp kendine mal etmek",
+                "Hiç bakmamak"
+              ],
+              "correct": 0,
+              "skill": "san-tarz",
+              "hint": "İlham al, kopyalama.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çizimin bir yerini beğenmeyen sanatçı ne yapmalı?",
+              "options": [
+                "Hemen yırtmak",
+                "Düzeltip geliştirmeyi denemek",
+                "Bırakıp gitmek"
+              ],
+              "correct": 1,
+              "skill": "san-tarz",
+              "hint": "Sanat geliştirme işidir.",
+              "lvl": 2
+            },
+            {
+              "q": "Farklı sanatçıların çok farklı çizmesi sanata ne katar?",
+              "options": [
+                "Karışıklık ve zarar",
+                "Hiçbir şey",
+                "Zenginlik ve çeşitlilik"
+              ],
+              "correct": 2,
+              "skill": "san-tarz",
+              "hint": "Farklılık sanatı besler.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir çocuk 'benim resmim başkasınınki gibi değil' diye üzülüyor. En doğru düşünce nedir?",
+              "options": [
+                "Farklı olmak değerlidir; senin tarzın oluşuyor",
+                "Herkes aynı çizmeli",
+                "Farklıysa yanlıştır"
+              ],
+              "correct": 0,
+              "skill": "san-tarz",
+              "hint": "Özgünlük bir güzelliktir.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir sanatçı yıllar içinde tarzını nasıl olgunlaştırır?",
+              "options": [
+                "Bir kez çizip bırakarak",
+                "Sürekli deneyerek, hata yaparak ve pratikle",
+                "Hep kopyalayarak"
+              ],
+              "correct": 1,
+              "skill": "san-tarz",
+              "hint": "Tarz zamanla ve emekle oturur.",
+              "lvl": 3
+            },
+            {
+              "q": "İki ressam aynı manzarayı bambaşka çizdi. Bu bize neyi öğretir?",
+              "options": [
+                "Birinin yanlış olduğunu",
+                "Manzaranın sahte olduğunu",
+                "Aynı konu farklı tarzlarla yorumlanabilir"
+              ],
+              "correct": 2,
+              "skill": "san-tarz",
+              "hint": "Aynı konu, farklı gözler.",
+              "lvl": 3
+            },
+            {
+              "q": "'İlham almak' ile 'kopyalamak' neden farklıdır?",
+              "options": [
+                "İlhamda senin katkın olur, kopyada olmaz",
+                "İkisi tıpatıp aynıdır",
+                "Kopya her zaman daha iyidir"
+              ],
+              "correct": 0,
+              "skill": "san-tarz",
+              "hint": "Fikir tohumu al, kendi çiçeğini aç.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir çocuk hem gerçekçi hem hayali çizimler yapmayı seviyor. Bu neyi gösterebilir?",
+              "options": [
+                "Kararsız ve yanlış olduğunu",
+                "Tarzının geniş ve gelişmekte olduğunu",
+                "Çizmemesi gerektiğini"
+              ],
+              "correct": 1,
+              "skill": "san-tarz",
+              "hint": "Denemek tarzı büyütür.",
+              "lvl": 3
+            },
+            {
+              "q": "Sanatta 'başarı' en doğru nasıl tanımlanır?",
+              "options": [
+                "Herkesi yenmek",
+                "Sadece para kazanmak",
+                "Kendini ifade edip gelişmeye devam etmek"
+              ],
+              "correct": 2,
+              "skill": "san-tarz",
+              "hint": "Sanat bir yarış değildir.",
+              "lvl": 3
             }
           ]
         }
@@ -3493,6 +5473,186 @@
               ],
               "correct": 0,
               "hint": "Sıcak öne gelir, soğuk geri kaçar.",
+              "lvl": 3
+            },
+            {
+              "q": "Mavi ile kırmızıyı karıştıran çocuk hangi rengi elde eder?",
+              "options": [
+                "Mor",
+                "Yeşil",
+                "Turuncu"
+              ],
+              "correct": 0,
+              "skill": "san-renk",
+              "hint": "Patlıcan rengi.",
+              "lvl": 1
+            },
+            {
+              "q": "Çizimin en temel izi olan, kalemle çizilen ize ne denir?",
+              "options": [
+                "Doku",
+                "Çizgi",
+                "Gölge"
+              ],
+              "correct": 1,
+              "skill": "san-cizgi",
+              "hint": "Her çizim onunla başlar.",
+              "lvl": 1
+            },
+            {
+              "q": "Kağıdı katlayarak kuş ya da kayık yapma sanatı hangisidir?",
+              "options": [
+                "Kolaj",
+                "Heykel",
+                "Origami"
+              ],
+              "correct": 2,
+              "skill": "san-elsanati",
+              "hint": "Japon kağıt katlama sanatı.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir insanın yüzünü konu alan resme ne denir?",
+              "options": [
+                "Portre",
+                "Manzara",
+                "Natürmort"
+              ],
+              "correct": 0,
+              "skill": "san-eser",
+              "hint": "Mona Lisa da bir örnektir.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir renge siyah katınca ne olur?",
+              "options": [
+                "Açılır",
+                "Koyulaşır",
+                "Kaybolur"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Gölge tonu oluşur.",
+              "lvl": 1
+            },
+            {
+              "q": "Bir çocuk ağaç kabuğunun pürüzlü dokusunu göstermek istiyor. Nasıl çizer?",
+              "options": [
+                "Cam gibi düz",
+                "Tek nokta koyarak",
+                "Çizik çizik, pürüzlü izlerle"
+              ],
+              "correct": 2,
+              "skill": "san-doku",
+              "hint": "Kabuk elini çizik çizik yapar.",
+              "lvl": 2
+            },
+            {
+              "q": "Yakındaki bir arabayı, uzaktaki bir kamyona göre nasıl çizeriz?",
+              "options": [
+                "Daha büyük",
+                "Daha küçük",
+                "Aynı boyda"
+              ],
+              "correct": 0,
+              "skill": "san-perspektif",
+              "hint": "Yakın olan büyük görünür.",
+              "lvl": 2
+            },
+            {
+              "q": "Sakin bir kış manzarası için hangi renkler daha uygundur?",
+              "options": [
+                "Parlak kırmızı",
+                "Soğuk renkler (mavi-beyaz)",
+                "Sadece turuncu"
+              ],
+              "correct": 1,
+              "skill": "san-sicak-soguk",
+              "hint": "Kışın serinliğini düşün.",
+              "lvl": 2
+            },
+            {
+              "q": "Kilden bir kâseyi büyütmek isteyen çocuk ne yapar?",
+              "options": [
+                "Kili keser",
+                "Suya atar",
+                "Üstüne kil ekler"
+              ],
+              "correct": 2,
+              "skill": "san-heykel",
+              "hint": "Ekleme yöntemi.",
+              "lvl": 2
+            },
+            {
+              "q": "Kübizmin ustası, yüzleri parçalayıp yeniden kuran ressam kimdir?",
+              "options": [
+                "Picasso",
+                "Monet",
+                "Frida Kahlo"
+              ],
+              "correct": 0,
+              "skill": "san-sanatci",
+              "hint": "İspanyol ressam.",
+              "lvl": 2
+            },
+            {
+              "q": "Bir ressam tek yeşil tüpüyle canlı bir orman istiyor. En iyi yol nedir?",
+              "options": [
+                "Tek düz yeşili her yere sürmek",
+                "Yeşilin açık-koyu birçok tonunu birlikte kullanmak",
+                "Yerine siyah kullanmak"
+              ],
+              "correct": 1,
+              "skill": "san-ton",
+              "hint": "Tek renkten onlarca ton çıkar.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir sokak resminde binaların kenarları uzakta tek bir noktaya doğru gidiyor. Bu tekniğe ne denir?",
+              "options": [
+                "Kolaj",
+                "Frotaj",
+                "Perspektif (kaçış noktası)"
+              ],
+              "correct": 2,
+              "skill": "san-perspektif",
+              "hint": "Çizgiler uzakta buluşur.",
+              "lvl": 3
+            },
+            {
+              "q": "Bir sanatçı figürde sıcak, arka planda soğuk renk kullandı. Bu neyi sağlar?",
+              "options": [
+                "Figürün öne çıkmasını ve derinlik hissini",
+                "Resmin düzleşmesini",
+                "Renk kaybını"
+              ],
+              "correct": 0,
+              "skill": "san-sicak-soguk",
+              "hint": "Sıcak öne gelir, soğuk geri kaçar.",
+              "lvl": 3
+            },
+            {
+              "q": "İki çocuk aynı vazoyu farklı tarzlarda çizdi. Bu ne gösterir?",
+              "options": [
+                "Birinin kesinlikle yanlış olduğunu",
+                "Herkesin kendi tarzı olduğunu",
+                "Vazonun sahte olduğunu"
+              ],
+              "correct": 1,
+              "skill": "san-tarz",
+              "hint": "Aynı konu, farklı yorumlar.",
+              "lvl": 3
+            },
+            {
+              "q": "Gerçek bir heykelin, fotoğrafına göre üstünlüğü nedir?",
+              "options": [
+                "Daha renkli olması",
+                "Daha küçük olması",
+                "Etrafında dönüp üç boyutu gerçekten yaşamak"
+              ],
+              "correct": 2,
+              "skill": "san-3d",
+              "hint": "Üç boyut avuçta yaşanır.",
               "lvl": 3
             }
           ]
